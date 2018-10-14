@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('client_views/home');
+});*/
+
+Route::get('/',"site_controllers\SiteController@viewHome");
+Route::get('contact-us',"site_controllers\SiteController@viewContactUs");
+Route::get('faq',"site_controllers\SiteController@viewFaq");
