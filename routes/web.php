@@ -19,6 +19,7 @@ Route::get('admin-login',"admin_controllers\AdminLogin@viewLoginPage");
 Route::get('admin-dashboard',"admin_controllers\Dashboard@viewIndexPage");
 Route::get('admin-register',"admin_controllers\Dashboard@viewRegisterPage");
 Route::get('admin-register1',"admin_controllers\Dashboard@viewRegister1Page");
+Route::get('add-organization',"admin_controllers\AdminOrganization@addOrganizationForm");
 
 
 /*   End Admin Work  */
