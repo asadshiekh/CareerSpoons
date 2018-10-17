@@ -221,7 +221,7 @@
 				</div>
 				<div class="row copyright">
 					<div class="container">
-						<p>Copyright Job Stock © 2017. All Rights Reserved </p>
+						<p>Copyright CareerSpoons © 2018. All Rights Reserved </p>
 					</div>
 				</div>
 			</footer>
@@ -236,8 +236,8 @@
 							<div class="tab" role="tabpanel">
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">As Candidate</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">As Company</a></li>
 							</ul>
 							<!-- Tab panes -->
 							<div class="tab-content" id="myModalLabel2">
@@ -247,10 +247,11 @@
 										<form class="form-inline" method="post">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="">
 													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
 													<div class="center">
 													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													<span style="display: block; margin-top:40px"><a href="#">Not Account Yet? Create Your Account</a></span>
 													</div>
 												</div>
 											</div>
@@ -263,17 +264,16 @@
 									<form class="form-inline" method="post">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Company Email" required="">
 													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
 													<div class="center">
-													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													<button type="submit" id="subscribe" class="submit-btn"> Login </button>
+													<span style="display: block; margin-top:40px"><a href="{{url('company-registeration')}}">Not Account Yet? Create Your Company Account</a></span>
 													</div>
 												</div>
 											</div>
 										</form>
-								</div>
+									</div>
 							</div>
 							</div>
 						</div>
