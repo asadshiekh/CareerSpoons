@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 
 class SiteCompany extends Controller
 {
-    public function viewRegisteredCompanies(){
+    public function viewRegisterCompany(){
 
-    	return view('client_views.registered_companies');
+    	return view('client_views.company_authentication.company_registeration');
     }
 
 }

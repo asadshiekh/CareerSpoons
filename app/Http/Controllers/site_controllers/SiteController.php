@@ -9,17 +9,17 @@ class SiteController extends Controller
 {
     public function viewHome(){
 
-     return view('client_views.home');
+     return view('client_views.main_site.home');
     
     }
 
     public function viewContactUs(){
 
-    	return view('client_views.contact_us');
+    	return view('client_views.main_site.contact_us');
     }
 
     public function viewFaq(){
 
-    	return view('client_views.faq');
+    	return view('client_views.main_site.faq');
     }
 }

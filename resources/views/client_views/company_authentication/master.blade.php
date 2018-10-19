@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:43:40 GMT -->
 <head>
 	<!-- Basic Page Needs
 		================================================== -->
@@ -14,81 +13,27 @@
 		<link rel="stylesheet" href="{{url('public/client_assets/plugins/css/plugins.css')}}">
 
 		<!-- Custom style -->
-		<link href="{{url('public/client_assets/css/style.css')}}" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
-
+		<link href="{{url('public/client_assets/css/mystyle.css')}}" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">    
 	</head>
-	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); ">
+
+	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); background-repeat: no-repeat;">
 		<div class="Loader"></div>
 		<div class="wrapper">  
 			
 			<!-- Title Header Start -->
-			<section class="signup-screen-sec">
+			<section class="lost-ps-screen-sec">
 				<div class="container">
-					<div class="signup-screen">
-						<a href="index.html"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
-						<form>
-							
-							<div class="form-group">
-								<label style="display: inline;">Company Name</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-map-marker"></i>
-									</div>
-									<input type="text" class="form-control" placeholder="Enter Company Name">
-								</div>
-							</div>
+					<div class="lost-ps-screen">
+						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
 
-							<label style="display: inline;">Email</label>
-							<input type="email" class="form-control" placeholder="User Email" required="">
-							<label style="display: inline;">Password</label>
-							<input type="password" class="form-control" placeholder="Password" required="">
-							<label style="display: inline;">Company Type</label>
-							<select class="form-control">
-								<option>Private</option>
-								<option>Public</option>
-								<option>NGO</option>
-								<option>Default select</option>
-							</select>
-							<label style="display: inline;">Chosse City</label>
-							<select class="form-control">
-								<option>Lahore</option>
-								<option>Karachi</option>
-								<option>Islamabad</option>
-								<option>Quetta</option>
-								<option>Multan</option>khaber pakhtoon khwa
-								<option>Khaber Pakhtoon Khwa</option>
-							</select>
-							<label style="display: inline;">Branch Name / Code</label>
-							<input type="text" class="form-control" placeholder="Branch Name / Branch Code">
-							<label style="display: inline;">Industry</label>
-							<select class="form-control">
-								<option selected="selected">IT</option>
-								<option>ETC</option>
-								<option>ETC</option>
-							</select>
-							<label style="display: inline;">Operating Since</label>
-							<select class="form-control">
-								<option>2018</option>
-								<option>2017</option>
-								<option>2016</option>
-							</select>
-							<label style="display: inline;">Phone</label>
-							<input type="phone" class="form-control" placeholder="03234976389">
-							<label style="display: inline;">CNIC</label>
-							<input type="text" class="form-control" placeholder="Useraname">
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="4">Company Address</textarea>
-							<input type="text" class="form-control" placeholder="Useraname">
-							<input type="text" class="form-control" placeholder="Useraname">
-							<input type="text" class="form-control" placeholder="Useraname">
-							<input type="text" class="form-control" placeholder="Useraname">
-							<input type="password" class="form-control" placeholder="Password">
-							<button class="btn btn-login" type="submit" >Sign Up</button>
-							<span>Have You Account? <a href="login.html"> Login</a></span>	
-						</form>
+						@yield('content');
+
+
 					</div>
 				</div>
 			</section>
+
 			<button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()"><i class="spin fa fa-cog" aria-hidden="true"></i></button>
 			<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="rightMenu">
 				<button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
@@ -156,5 +101,4 @@
 			</div>
 		</body>
 
-		<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:43:40 GMT -->
 		</html>

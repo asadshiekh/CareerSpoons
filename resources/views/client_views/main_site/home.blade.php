@@ -1,4 +1,4 @@
-@extends('client_views.master')
+@extends('client_views.main_site.master')
 @section('content')
 
 	<div class="clearfix"></div>

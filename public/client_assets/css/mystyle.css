@@ -1357,7 +1357,7 @@ button:hover, input:hover, input:focus, button:focus{
 outline:none;
 }
 .form-control {
-    height:43px;
+    height:50px;
     border: 1px solid #dde6ef;
 	margin-bottom:10px;
     box-shadow: none;
@@ -4867,7 +4867,7 @@ margin:10px -15px;
       Login Signup And Forget password page style settings
 ========================================================================== */
 body.simple-bg-screen {
-	
+	 position: initial;
 	background-size: cover;
     background-position: center;
 }
@@ -4885,8 +4885,8 @@ body.simple-bg-screen:before {
 }
 .login-screen, .signup-screen, .lost-ps-screen {
     position: relative;
-    max-width: 650px;
-    margin:-5% auto 0 auto;
+    max-width: 450px;
+    margin:12% auto 0 auto;
 }
 section.login-screen-sec, section.signup-screen-sec, section.lost-ps-screen-sec {
     background: transparent;
