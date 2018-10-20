@@ -9,7 +9,7 @@ class SiteCompany extends Controller
 {
     public function viewRegisterCompany(){
 
-    	return view('client_views.company_authentication.company_registeration');
+    	return view('client_views.company_related_pages.company_registeration');
     }
 
 }

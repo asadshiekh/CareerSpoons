@@ -10,11 +10,11 @@ class SiteCompanyLogin extends Controller
     
  	public function viewCompanyLogin(){
 
-    	return view('client_views.company_authentication.company_login');
+    	return view('client_views.company_related_pages.company_login');
     }
 
     public function viewCompanyForgotPassword(){
 
-    	return view('client_views.company_authentication.company_forgot_password');
+    	return view('client_views.company_related_pages.company_forgot_password');
     }
 }

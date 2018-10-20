@@ -9,8 +9,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- CSS
-	================================================== -->
+	<!-- Font Awesome  ================================================== -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<!-- CSS  ================================================== -->
 	<link rel="stylesheet" href="{{url('public/client_assets/plugins/css/plugins.css')}}">
     
     <!-- Custom style -->
@@ -30,7 +31,7 @@
 					</button>
 					<!-- Start Header Navigation -->
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="{{url('/')}}">
 							<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-display" alt="">
 							<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-scrolled" alt="">
 						</a>
@@ -39,8 +40,9 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-							<li><a href="login.html"><i class="fa fa-pencil" aria-hidden="true"></i>SignUp</a></li>
-							<li><a href="pricing.html"><i class="fa fa-sign-in" aria-hidden="true"></i>Pricing</a></li>
+							<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
+							<li><a href="pricing.html"><i class="fas fa-sitemap"></i>Companies</a></li>
+							<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
 							<li class="left-br"><a href="javascript:void(0)"  data-toggle="modal" data-target="#signup" class="signin">Sign In Now</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
@@ -120,7 +122,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="blog.html">Blog</a></li>
+							<li><a href="login.html"><i class="fas fa-users"></i>Candidates </a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div>   
@@ -251,7 +253,7 @@
 													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
 													<div class="center">
 													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
-													<span style="display: block; margin-top:40px"><a href="#">Not Account Yet? Create Your Account</a></span>
+													<span style="display: block; margin-top:40px"><a href="{{url('user-registeration')}}">Not Account Yet? Create Your Account</a></span>
 													</div>
 												</div>
 											</div>

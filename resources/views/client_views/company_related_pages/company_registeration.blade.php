@@ -16,6 +16,8 @@
 		<!-- Custom style -->
 		<link href="{{url('public/client_assets/css/style.css')}}" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
+		<!-- Customization style tags -->
+		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}"> 
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); ">
@@ -31,7 +33,7 @@
 
 							<div class="row">
 								<div class="col-xs-6">
-									<label style="display: inline;">Company Name</label>
+									<label>Company Name *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
@@ -41,7 +43,7 @@
 									<!--Error Msges -->
 								</div>
 								<div class="col-xs-6">
-									<label style="display: inline;">Company Email</label>
+									<label>Company Email *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-envelope"></i>
@@ -53,7 +55,7 @@
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label style="display: inline;">Password</label>
+									<label>Password *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock"></i>
@@ -62,12 +64,13 @@
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label style="display: inline;">Company Type</label>
+									<label>Company Type *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
 										</div>
-										<select class="form-control">
+										<select class="form-control" required="">
+											<option value="" disabled="disabled" selected="selected" hidden="hidden" >Please Choose...</option>
 											<option>Private</option>
 											<option>Public</option>
 											<option>NGO</option>
@@ -79,12 +82,13 @@
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label style="display: inline;">City</label>
+									<label>City *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
 										</div>
-										<select class="form-control">
+										<select class="form-control" required="">
+											<option value="" disabled selected hidden>Please Choose...</option>
 											<option>Lahore</option>
 											<option>Karachi</option>
 											<option>Islamabad</option>
@@ -95,58 +99,59 @@
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label style="display: inline;">Branch Name / Code</label>
+									<label>Branch Name / Code *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
 										</div>
-										<input type="text" class="form-control" placeholder="Branch Name / Branch Code">
+										<input type="text" class="form-control" placeholder="Branch Name / Branch Code" required="required">
 									</div>
 								</div>
 							</div>
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label style="display: inline;">Industry</label>
+									<label>Industry *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-industry"></i>
 										</div>
-										<select class="form-control">
-											<option selected="selected">IT</option>
+										<select class="form-control" required>
+											<option value="" disabled selected hidden>Please Choose...</option>
+											<option>IT</option>
 											<option>ETC</option>
 											<option>ETC</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label style="display: inline;">Operating Since</label>
+									<label>Operating Since *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="date" class="form-control" required="required" >
+										<input type="date" id="date" placeholder="DD/MM/YY" class="form-control"/>
 									</div>
 								</div>
 							</div>
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label style="display: inline;">Phone</label>
+									<label>Phone *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</div>
-										<input type="number" class="form-control" placeholder="03234976389" required="">
+										<input type="text" id="phone-number"  class="form-control" placeholder="03234976389" required="">
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label style="display: inline;">CNIC</label>
+									<label>CNIC *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa">&#xf2c3;</i>
 										</div>
-										<input type="number" class="form-control" placeholder="99999-9999999-9" required="">
+										<input type="text" id="cnic" class="form-control" placeholder="35202-2608620-7" required="" ">
 									</div>
 								</div>
 							</div>
@@ -155,12 +160,12 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="form-group">
-										<label style="display: inline;">Compnay Address</label>
+										<label>Compnay Address *</label>
 										<div class="input-group">
 											<div class="input-group-addon">
 												<i class="fa">&#xf2b9;</i>
 											</div>
-											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Company Address</textarea>
+											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required="" maxlength="100">Company Address</textarea>
 										</div>
 									</div>
 								</div>
@@ -222,10 +227,18 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<!-- Masking Input Js -->
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+				
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
+						$("#phone-number").mask("(9999) 999-9999");
+						$("#cnic").mask("99999-9999999-9");
+						//$('#date').mask('00/00/0000');
 					});
+					
 				</script>
 				<script>
 					function openRightMenu() {
@@ -235,6 +248,7 @@
 					function closeRightMenu() {
 						document.getElementById("rightMenu").style.display = "none";
 					}
+
 				</script>
 			</div>
 		</body>

@@ -1,0 +1,42 @@
+body{
+	background-repeat: no-repeat;
+}
+
+form label{
+display: inline-block;
+}
+
+input[type="text"]::-webkit-input-placeholder{
+color:#999999;
+opacity: 1;
+}
+
+input[type="email"]::-webkit-input-placeholder{
+color:#999999;
+opacity: 1;
+}
+
+input[type="number"]::-webkit-input-placeholder{
+color:#999999;
+opacity: 1;
+}
+
+input[type="password"]::-webkit-input-placeholder{
+color:#999999;
+opacity: 1;
+}
+
+input[type="date"]::-webkit-input-placeholder{
+color:#999999;
+opacity: 1;
+}
+
+form select:required:invalid{
+  color: gray;
+} 
+form select option[value=""][disabled] {
+  display: none;
+} 
+form select option{
+  color: black;
+}

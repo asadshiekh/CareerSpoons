@@ -1,4 +1,4 @@
-@extends('client_views.company_authentication.master')
+@extends('client_views.company_related_pages.master')
 @section('content')
 <form>
 	<div class="form-group">

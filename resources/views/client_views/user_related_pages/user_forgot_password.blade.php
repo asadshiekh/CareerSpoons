@@ -1,4 +1,4 @@
-@extends('client_views.company_authentication.master')
+@extends('client_views.user_related_pages.master')
 @section('content')
 
 <form>
@@ -7,7 +7,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
-			<input type="email" class="form-control" placeholder="Enter Company Email">
+			<input type="email" class="form-control" placeholder="Enter Candidate Email">
 		</div>
 	</div>
 	<button class="btn btn-login" type="submit">Submit</button>

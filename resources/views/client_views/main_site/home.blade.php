@@ -1,4 +1,4 @@
-@extends('client_views.main_site.master')
+@extends('client_views.master')
 @section('content')
 
 	<div class="clearfix"></div>
@@ -8,7 +8,7 @@
 				<div class="banner-caption">
 					<div class="col-md-12 col-sm-12 banner-text">
 						<h1>7,000+ Browse Jobs</h1>
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="{{url('search-jobs')}}">
 							<div class="col-md-4 no-padd">
 								 <div class="input-group">
 									 <input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies">

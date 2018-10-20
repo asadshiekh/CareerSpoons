@@ -14,7 +14,9 @@
 
 		<!-- Custom style -->
 		<link href="{{url('public/client_assets/css/mystyle.css')}}" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">    
+		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
+		<!-- Customization style tags -->
+		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}">     
 	</head>
 
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); background-repeat: no-repeat;">
