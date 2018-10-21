@@ -42,8 +42,8 @@
 
 
 
-            <form id="company_form" name="company_form" method="get" enctype="multipart/form-data">
-              <!-- @csrf -->
+            <form id="company_form" action="{{url('register-company')}}" name="company_form" method="post" enctype="multipart/form-data">
+              @csrf
               <!-- Company Name-->
               <div class="form-group col-sm-6 col-md-offset-3">
                 <label>Company Name:</label>
@@ -120,7 +120,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-external-link"></i>
                   </div>
-                  <input type="text" placeholder="Insert Website Link Here" class="form-control" name="company_website" id="company_website">
+                  <input type="link" placeholder="Insert Website Link Here" class="form-control" name="company_website" id="company_website">
                 </div>
               </div>
               <!-- No of Employees-->
@@ -130,15 +130,15 @@
                   <div class="input-group-addon">
                     <i class="fa fa-users"></i>
                   </div>
-                  <select name="selected_employees" class="form-control" placeholder="select no of employees" id="selected_employees">
+                  <select class="form-control" id="selected_employees" name="selected_employees">
                     <option value="" disabled="disabled" selected="selected">Select No of Employees</option>
-                    <option value="">Start Up</option>
-                    <option value="">1 to 15</option>
-                    <option value="">15 to 25</option>
-                    <option value="">25 to 50</option>
-                    <option value="">50 to 100</option>
-                    <option value="">100 to 200</option>
-                    <option value="">more then 200</option>
+                    <option value="Start Up">Start Up</option>
+                    <option value="1 to 15">1 to 15</option>
+                    <option value="15 to 25">15 to 25</option>
+                    <option value="25 to 50">25 to 50</option>
+                    <option value="50 to 100">50 to 100</option>
+                    <option value="100 to 200">100 to 200</option>
+                    <option value="more then 200">more then 200</option>
                   </select>
                 </div>
               </div>
@@ -167,7 +167,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-history"></i>
                   </div>
-                  <input type="date" class="form-control" placeholder="Enter Email OR Username" name="company_password" id="company_password">
+                  <input type="date" class="form-control" placeholder="Enter Email OR Username" name="company_since" id="company_since">
                 </div>
               </div>
               <!-- Address-->
@@ -198,17 +198,17 @@
                   <div class="input-group-addon">
                     <i class="fa fa-unlock-alt"></i>
                   </div>
-                  <input type="email" class="form-control" placeholder="Enter Email OR Username" name="company_password" id="company_password">
+                  <input type="Password" class="form-control" placeholder="Enter Email OR Username" name="company_password" id="company_password">
                 </div>
               </div>
               <!-- Cnic-->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>other gournment verification document:</label>
+                <label>CNIC No:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-github-alt"></i>
+                    <i class="fa fa-vcard-o"></i>
                   </div>
-                  <input type="file" class="form-control" name="company_doc" id="company_doc">
+                  <input type="Cnic" class="form-control" name="company_cnic" id="company_cnic">
                 </div>
               </div>
               <!--  for Verification-->
@@ -239,7 +239,7 @@
                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                   <button type="button" class="btn btn-primary">Cancel</button>
                   <button class="btn btn-primary" type="reset">Reset</button>
-                  <button type="button" class="btn btn-success" onclick="add_company();">Submit</button> 
+                  <button type="Submit" class="btn btn-success">Submit</button> 
                 </div>
               </div>
 
@@ -382,7 +382,9 @@
 </div>
 <!--/End model window-->
 
-
+<!-- var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+_token:CSRF_TOKEN
+ -->
 <script type="text/javascript">
   //company type  function for adding new type
   function company_type_adding(){

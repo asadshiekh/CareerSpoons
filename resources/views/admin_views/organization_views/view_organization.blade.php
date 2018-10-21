@@ -54,15 +54,17 @@
              </tr>
            </thead>
            <tbody>
+            @foreach($organizations as $organizations)
             <tr> 
                <th><input type="checkbox" id="check-all" class="flat"></th> 
-               <td>Donna Snider</td>
-               <td>Customer Support</td>
-               <td>New York</td>
-               <td>27</td>
-               <td>2011/01/25</td>
-               <td>$112,000</td>
+               <td>{{$organizations->company_name}}</td>
+               <td>{{$organizations->company_type}}</td>
+               <td>{{$organizations->company_email}}</td>
+               <td>{{$organizations->company_phone}}</td>
+               <td>{{$organizations->company_industry}}</td>
+               <td><a href=""><i class="fa fa-pencil"></i></a> | <a href=""><i class="fa fa-trash"></i></a> | <a onclick="view_full_page({{$organizations->company_id}});"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
            </tr>
+           @endforeach
            
          </tbody>
        </table>
@@ -94,6 +96,19 @@
 </div>
 <!--/model-->
 
+<script type="text/javascript">
+  function view_full_page(id){
+  var x =id;
+  $.get('organization-profile',{x:x},function(data){ 
+  
+   // window.location.replace('/');
+  
+  });
 
+  }
+</script>
 @endsection
+
+  
+
 

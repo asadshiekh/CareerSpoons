@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> Career Spoons </title>
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -276,6 +277,7 @@
     <script src="{{url('public/admin_assets/vendors/jszip/dist/jszip.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+        <script src="{{url('public/admin_assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
   </body>
 </html>
 <script type="text/javascript">

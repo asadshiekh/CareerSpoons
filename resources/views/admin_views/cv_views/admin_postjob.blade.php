@@ -44,12 +44,28 @@
 
             <form id="company_form" name="company_form" method="get" enctype="multipart/form-data">
               <!-- @csrf -->
+              <!-- Select Organization-->
+              <div class="form-group col-sm-6 col-md-offset-3">
+                <label>Organization:</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-building"></i>
+                  </div>
+                  <select name="selected_employees" class="form-control"  id="selected_employees">
+                    <option value="" disabled="disabled" selected="selected">select Organization</option>
+                    <option value="">Start Up</option>
+                    <option value="">1 to 15</option>
+                  </select>
+                </div>
+              </div>
+
+
               <!-- Job Title -->
               <div class="form-group col-sm-6 col-md-offset-3">
                 <label>Job Title:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-optin-monster"></i>
+                    <i class="glyphicon glyphicon-tree-conifer"></i>
                   </div>
                   <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" id="company_name">
                 </div>     
@@ -59,7 +75,7 @@
                 <label>Search Result Title:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-building"></i>
+                    <i class="glyphicon glyphicon-subscript"></i>
                   </div>
                   <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" id="company_name">
                 </div>
@@ -67,10 +83,18 @@
               </div>
 
               <!-- Contact Details-->
-              
-               
+              <div class="form-group col-sm-6 col-md-offset-3">
+
+                <div class="input-group" style="margin-bottom: 0px">
+
+                  <label>Contact Info <i class="glyphicon glyphicon-info-sign"></i> :</label>
+                  
+                  
+                </div>
+
+              </div>
+
               <div class="form-group col-sm-3 col-md-offset-3">
-                <label>Contact no:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-phone"></i>
@@ -80,157 +104,86 @@
 
               </div>
               <div class="form-group col-sm-3">
-                <label>Email:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="material-icons">&#xe0be;</i>
+                    <i class="glyphicon glyphicon-envelope"></i>
                   </div>
                   <input type="text" class="form-control" placeholder="Enter Email" name="company_name" id="company_name"> 
-                </div>
-             
-               
+                </div>       
               </div>
-            
-              <!-- Branch Name -->
+
+
+              
+
+              <!-- Career Level-->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Branch Name or Code:</label>
+                <label>Required Career Level for This Job:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-barcode"></i>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Enter Branch Name or Code" name="company_branch_name" id="company_branch_name">
-                </div>     
-              </div>
-
-              <!-- Phone No-->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Phone No:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <input type="text" placeholder="Enter Phone No" class="form-control" name="company_phone" id="company_phone">
-                </div>
-              </div>
-              <!-- Website link -->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Website Link:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-external-link"></i>
-                  </div>
-                  <input type="text" placeholder="Insert Website Link Here" class="form-control" name="company_website" id="company_website">
-                </div>
-              </div>
-              <!-- No of Employees-->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>No of Employees:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-users"></i>
                   </div>
                   <select name="selected_employees" class="form-control" placeholder="select no of employees" id="selected_employees">
                     <option value="" disabled="disabled" selected="selected">Select No of Employees</option>
                     <option value="">Start Up</option>
                     <option value="">1 to 15</option>
-                    <option value="">15 to 25</option>
-                    <option value="">25 to 50</option>
-                    <option value="">50 to 100</option>
-                    <option value="">100 to 200</option>
-                    <option value="">more then 200</option>
                   </select>
                 </div>
               </div>
-              <!-- Industry -->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Industry:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-industry"></i>
-                  </div>
-                  <select name="selected_industry" class="form-control" placeholder="select industry" id="selected_industry">
-                    <option id="industry-option" disabled="disabled" selected="selected">Select Industry</option>
-                    
-                    <option id="industry-option" value=""></option>
-                    
-                  </select>
-                  <span class="input-group-btn">
-                    <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-default">ADD Industry</button>
-                  </span>
-                </div>
-              </div>
-              <!-- Operating Since -->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Operating Since:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-history"></i>
-                  </div>
-                  <input type="date" class="form-control" placeholder="Enter Email OR Username" name="company_password" id="company_password">
-                </div>
-              </div>
-              <!-- Address-->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Location or Address:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-map-marker"></i>
-                  </div>
-                  <textarea id="company_location" name="company_location" class="form-control" rows="3" placeholder="Enter Address Here"></textarea>
 
+
+
+
+              <!-- Experience for job -->
+              <div class="form-group col-sm-6 col-md-offset-3">
+                <label>Year of Experience Required:</label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-external-link"></i>
+                  </div>
+                  <input type="text" placeholder="Enter Experience demands" class="form-control" name="company_website" id="company_website">
                 </div>
               </div>
-              <!-- Email -->
+              <!-- Salar for job-->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Email:</label>
+                <label>Salary Range:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-users"></i>
                   </div>
-                  <input type="email" class="form-control" placeholder="Enter Email OR Username" name="company_email" id="company_email">
-                </div>
-              </div>      
-              <!-- Password -->
-              <div class="form-group col-sm-6 col-md-offset-3">
-                <label>Password:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-unlock-alt"></i>
-                  </div>
-                  <input type="email" class="form-control" placeholder="Enter Email OR Username" name="company_password" id="company_password">
+                  <input type="text" placeholder="Enter Salary" class="form-control" name="company_website" id="company_website">
                 </div>
               </div>
-              <!-- Cnic-->
+              <!-- Job Preferences -->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>other gournment verification document:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-github-alt"></i>
-                  </div>
-                  <input type="file" class="form-control" name="company_doc" id="company_doc">
-                </div>
+                <label>Gender Prefrences:</label>
+                <p style="font-style: bold; font-size: 12px;">
+                  Male:
+                  <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> Female:
+                  <input type="radio" class="flat" name="gender" id="genderF" value="F" />
+                  None:
+                  <input type="radio" class="flat" name="gender" id="genderF" value="F" />
+                </p>
+
               </div>
-              <!--  for Verification-->
+              <!-- Skills -->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>other gournment verification document:</label>
+                <label>What Skills are Required for Job?:</label>
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-github-alt"></i>
+                    <i class="fa fa-barcode"></i>
                   </div>
-                  <input type="file" class="form-control" name="company_doc" id="company_doc">
-                </div>
+                  <input id="tags_1" type="text" class="tags form-control" value="" />
+                  <div id="suggestions-container" ></div> 
+                </div>     
               </div>
 
 
-              <!-- About Company -->
+              <!-- About Job -->
               <div class="form-group col-sm-6 col-md-offset-3">
-                <label>About Company (atleast 20 words):</label>
+                <label>Job Details (atleast 20 words):</label>
                 <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-info"></i>
-                  </div>
-                  <textarea id="company_info" name="company_info" class="form-control" rows="4" placeholder="Enter Some Info About Your Company Here...."></textarea>
 
+                  <textarea id="editor1" name="company_info" class="form-control" rows="4" placeholder="Enter Some Info About Your Company Here...."></textarea>
                 </div>
               </div>
 
@@ -243,8 +196,6 @@
               </div>
 
             </form>
-
-
           </div>
         </div>
       </div>
@@ -397,8 +348,8 @@
         },
         1000
         );
-}
-});
+      }
+    });
   }
 
 
