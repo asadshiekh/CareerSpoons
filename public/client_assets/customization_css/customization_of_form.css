@@ -40,3 +40,11 @@ form select option[value=""][disabled] {
 form select option{
   color: black;
 }
+form #checkbox{
+  border: 1px solid blue;
+}
+
+.form-check-input{
+
+	color:red;
+}

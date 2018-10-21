@@ -11,22 +11,27 @@
     <script>
         $(document).ready(function(){
             
+            
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
              var username = $("#username").val();
+             var formdata = new FormData(this);
 		            $(".postbutton").click(function(){
 		                $.ajax({
 		                    /* the route pointing to the post function */
-		                    url: '/postajax',
+		                    url: '/postajax2',
 		                    type: 'POST',
 		                    /* send the csrf-token and the input to the controller */
-		                    data: {_token: CSRF_TOKEN, username:username},
+		                    data: {_token: CSRF_TOKEN, formdata:formdata},
 		                    dataType: 'JSON',
 		                    /* remind that 'data' is the response of the AjaxController */
 		                    success: function (data) { 
-		                        $(".writeinfo").append(data.msg); 
+		                        $(".writeinfo").append(data.msg);
+
 		                    }
 		                }); 
 		            });
+
+
 
        		});    
     </script>
@@ -34,9 +39,18 @@
 </head>
 
 <body>
-    <input type="text" id="username" class="getinfo"></input>
-    <button class="postbutton">Post via ajax!</button>
-    <div class="writeinfo"></div>   
+
+ <form id="userform" method="post" enctype="multipart/form-data">
+ 	
+ 	<input type="text" name="name" value="ali">
+ 	<input type="text" name="fname" value="asad afzal">
+ 	<input type="file" name="file">
+ 	<button class="postbutton">Post via ajax!</button>
+
+ </form> 
+
+  <div class="writeinfo"></div>
+
 </body>
 
 </html>

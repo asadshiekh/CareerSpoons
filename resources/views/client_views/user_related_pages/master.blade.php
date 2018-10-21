@@ -6,6 +6,7 @@
 		================================================== -->
 		<title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
 		<meta charset="utf-8">
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- CSS
@@ -16,7 +17,9 @@
 		<link href="{{url('public/client_assets/css/mystyle.css')}}" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
 		<!-- Customization style tags -->
-		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}">    
+		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}">
+		<!-- Sweet Alert Libery -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
 	</head>
 
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg);">
@@ -86,6 +89,7 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<script src="{{url('public/client_assets/js/customization_js/user_login.js')}}"></script>
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();

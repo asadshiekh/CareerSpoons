@@ -6,6 +6,7 @@
 		================================================== -->
 		<title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
 		<meta charset="utf-8">
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- CSS
@@ -17,26 +18,27 @@
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
 		<!-- Customization style tags -->
 		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}">
+		<!-- Sweet Alert Libery -->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg);">
 		<div class="Loader"></div>
 		<div class="wrapper">  
-			
 			<!-- Title Header Start -->
 			<section class="signup-screen-sec">
 				<div class="container">
 					<div class="signup-screen">
 						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
 						<form>
-
+							
 							<div class="form-group">
 								<label>Full Name *</label>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</div>
-									<input type="text" class="form-control" placeholder="Enter User Name" required="required">
+									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -45,37 +47,63 @@
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</div>
-									<input type="email" class="form-control" placeholder="User Email" required="required">
+									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required">
 								</div>
 							</div>
-							<div class="form-group">
-								<label>User Password *</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-lock"></i>
+
+							<div class="row">
+								<div class="col-xs-6">
+									<label>User Password *</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+										<input type="password" id="user_password" class="form-control" placeholder="Enter Password" required="required">
 									</div>
-									<input type="password" class="form-control" placeholder="Enter Password" required="required">
+									<!--Error Msges -->
 								</div>
-							</div>
-							<div class="form-group">
-								<label>Re Enter Password *</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-lock"></i>
+								<div class="col-xs-6">
+									<label>Re Enter Password *</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+										<input type="password" id="re_password" class="form-control" placeholder="Re Enter Password" required="required">
 									</div>
-									<input type="text" class="form-control" placeholder="Re Enter Password" required="required">
 								</div>
 							</div>
-							<div class="form-group">
-								<label>Phone *</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-phone"></i>
+							<div class="form-group"></div>
+
+							<div class="row">
+								<div class="col-xs-6">
+									<label>Username *</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required>
 									</div>
-									<input type="text" id="phone-number" class="form-control" placeholder="03349974743" required="required">
+									<!--Error Msges -->
+								</div>
+								<div class="col-xs-6">
+									<label>Phone *</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-phone"></i>
+										</div>
+										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="03349974743" required="required">
+									</div>
 								</div>
 							</div>
-							<button class="btn btn-login" type="submit" >Create Account</button>
+							<div class="form-group"></div>
+							<div class="form-group">
+								<span class="form-check-label" style="font-weight: 500 ; text-align: left; font-size: 13px">
+									<input class="form-check-input" type="checkbox" id="checkbox" required>
+									I Accept Terms & Conditions And Privacy Policy Of CareerSpoons.com
+								</span>
+							</div>
+
+							<button type="button" class="btn btn-login" onclick="user_registration();">Create Account</button>
 							<span>Have You Account ? <a href="{{url('user-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -131,12 +159,17 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<script src="{{url('public/client_assets/js/customization_js/user_registration.js')}}"></script>
 				<!-- Masking Input Js -->
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
-						$("#phone-number").mask("(9999) 999-9999");
+						$("#phone_number").mask("(+92)99-999-9999");
+						//$.mask.definitions['#'] = $.mask.definitions['9'];
+						//$.mask.definitions['9'] = null; 
+						//+7 ([000]) [000]-[0000]
+						//$("#phone-number").mask("(?92) 00-000-0000");
 					});
 				</script>
 				<script>
@@ -152,13 +185,13 @@
 		</body>
 
 		</html>
-<style type="text/css">
-	
+		<style type="text/css">
 
-.login-screen, .signup-screen, .lost-ps-screen {
-    position: relative;
-    max-width: 450px;
-    margin:-5% auto 0 auto;
-}
 
-</style>
+		.login-screen, .signup-screen, .lost-ps-screen {
+			position: relative;
+			max-width: 480px;
+			margin:-4% auto 0 auto;
+		}
+
+	</style>

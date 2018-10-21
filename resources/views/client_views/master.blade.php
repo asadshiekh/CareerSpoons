@@ -17,6 +17,7 @@
     <!-- Custom style -->
     <link href="{{url('public/client_assets/css/style.css')}}" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
+	
     
 	</head>
 	<body>

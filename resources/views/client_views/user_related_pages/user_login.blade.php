@@ -6,7 +6,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
-			<input type="email" class="form-control" placeholder="Enter User Email">
+			<input type="email" class="form-control" id="user_email" placeholder="Enter User Email">
 		</div>
 	</div>
 
@@ -15,12 +15,12 @@
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>
 			</div>
-			<input type="password" class="form-control" placeholder="Password" required="">
+			<input type="password" class="form-control" id="user_password" placeholder="Password" required="">
 		</div>
 	</div>
 
 
-	<button class="btn btn-login" type="submit">Login</button>
+	<button type="button" class="btn btn-login" onclick="user_login();">Login</button>
 	<span>You Have No Account? <a href="{{url('user-registeration')}}"> Create An User Account</a></span>
 	<span><a href="{{url('user-forgot-password')}}"> Forgot Password</a></span>
 </form>
