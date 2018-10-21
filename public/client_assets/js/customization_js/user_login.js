@@ -36,7 +36,7 @@ function user_login(){
 						swal({
 							type: 'error',
 							title: 'Oops...',
-							text: 'Something went wrong Failed To Login!',
+							text: 'Something went wrong Failed To Login!!',
 							footer: '<a href>Why do I have this issue?</a>'
 						})
 					},
