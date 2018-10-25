@@ -20,8 +20,9 @@ class UserRegisteration extends Migration
             $table->string('password');
             $table->string('username');
             $table->string('phone_number');
-            $table->rememberToken();
+            $table->string('current_cv_status');
             $table->string('checkbox');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

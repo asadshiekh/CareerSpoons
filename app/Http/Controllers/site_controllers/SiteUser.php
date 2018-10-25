@@ -17,6 +17,7 @@ class SiteUser extends Controller
     public function doRegisterUser(Request $request){
 
     	$current_date = date("Y.m.d h:i:s");
+      $current_cv_status = 0;
     	//$phone = str_replace("-","",$request->phone_number);
     	
     	$user_response = array(
@@ -26,6 +27,7 @@ class SiteUser extends Controller
           'username' => $request->username,
           'phone_number' => $request->phone_number,
           'remember_token' => $request->_token,
+          'current_cv_status' => $current_cv_status,
           'checkbox' => $request->checkbox,
           'created_at' => $current_date
       );

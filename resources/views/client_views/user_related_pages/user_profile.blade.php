@@ -25,9 +25,9 @@
                         <div class="advance-detail detail-desc-caption">
                             <h4>Daniel Declizer</h4><span class="designation">Web Designer</span>
                             <ul>
-                                <li><strong class="j-view">85</strong>New Post</li>
-                                <li><strong class="j-applied">110</strong>Job Applied</li>
-                                <li><strong class="j-shared">120</strong>Invitation</li>
+                                <li><strong class="j-view">0</strong>New Post</li>
+                                <li><strong class="j-applied">0</strong>Job Applied</li>
+                                <li><strong class="j-shared">0</strong>Invitation</li>
                             </ul>
                         </div>
                     </div>
@@ -45,30 +45,59 @@
                             </ul>
                         </div>
                         <div class="col-md-7 col-sm-7">
-                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="footer-btn grn-btn" title="">Edit Now</a><a href="#" class="footer-btn blu-btn" title="">Save Draft</a></div>
+                            @if(Session::get('cv_status')==0)
+                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a><a href="#" class="footer-btn blu-btn" title="">Make Resume</a>
+                            </div>
+                            @elseif (Session::get('cv_status')==1)
+                            <div class="detail-pannel-footer-btn pull-right"><a href="#" class="footer-btn blu-btn" title="">Make Resume</a>
+                            </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
 				
             </div>
         </section>
-		
+
+
+
+        @if(Session::get('cv_status')==0)
+        <section class="full-detail-description full-detail gray-bg">
+            <div class="container">
+                <div class="col-md-12 col-sm-12">
+                    <div class="full-card">
+                    	<div class="tab-content" style="text-align: center;">
+                    		<div class="alert alert-info" style="border:none;border-radius: 20px; display: inline-block;margin-top:50px">
+  								 <p align="center" style="margin-top:10px;"><i class="fas fa-exclamation-triangle"></i> Upload or Make Your Resume to Manage Your Profile</p>
+							</div>
+                    	</div>
+         			</div>
+     			</div>
+ 			</div>
+		</section>
+
+		@elseif (Session::get('cv_status')==1)
         <section class="full-detail-description full-detail gray-bg">
             <div class="container">
                 <div class="col-md-12 col-sm-12">
                     <div class="full-card">
                       <div class="deatil-tab-employ tool-tab">
 							<ul class="nav simple nav-tabs" id="simple-design-tab">
-								<li class="active"><a href="#about">About</a></li>
-								<li><a href="#address">Address</a></li>
-								<li><a href="#matches-job">Matches Job</a></li>
-								<li><a href="#friends">Friends</a></li>
-								<li><a href="#messages">Messages <span class="info-bar">6</span></a></li>
-								<li><a href="#settings">Settings</a></li>
+								<li class="active"><a  data-toggle="tab" href="#about">About</a></li>
+								<li><a data-toggle="tab" href="#address">Personal-Info</a></li>
+								<li><a data-toggle="tab" href="#address">Academic-Info</a></li>
+								<li><a data-toggle="tab" href="#address">Experience</a></li>
+								<li><a data-toggle="tab" href="#address">Skills</a></li>
+								<li><a data-toggle="tab" href="#matches-job">Matches-Job</a></li>
+								<li><a data-toggle="tab" href="#matches-job">Insight</a></li>
+								<!-- <li><a data-toggle="tab" href="#friends">Friends</a></li> -->
+								<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
+								<li><a data-toggle="tab" href="#settings">Settings</a></li>
 							</ul>
-							
 							<!-- Start All Sec -->
 							<div class="tab-content">
+								
 								<div id="about" class="tab-pane fade in active">
 									<h3>About Adam Declizer</h3>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -101,7 +130,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-2.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
 												</div>
@@ -119,7 +148,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-6.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a><span>Vertue Ltd</span></div>
 												</div>
@@ -136,7 +165,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-7.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Database Designer</h4></a><span>Twitter Ltd</span></div>
 												</div>
@@ -153,7 +182,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-2.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
 												</div>
@@ -171,7 +200,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-5.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Human Resource</h4></a><span>Skype Ltd</span></div>
 												</div>
@@ -188,7 +217,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-6.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a><span>Vertue Ltd</span></div>
 												</div>
@@ -206,7 +235,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-7.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>CEO &amp; Manager</h4></a><span>Twitter</span></div>
 												</div>
@@ -223,7 +252,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-4.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Microsoft Ltd</span></div>
 												</div>
@@ -240,7 +269,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-3.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>PHP Developer</h4></a><span>Honda Ltd</span></div>
 												</div>
@@ -258,7 +287,7 @@
 											<div class="row no-mrg">
 												<div class="col-md-6 col-sm-6">
 													<a href="new-job-detail.html" title="job Detail">
-														<div class="advance-search-img-box"><img src="assets/img/com-1.jpg" class="img-responsive" alt=""></div>
+														<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt=""></div>
 													</a>
 													<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Web Designer</h4></a><span>Autodesk Ltd</span></div>
 												</div>
@@ -294,7 +323,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-1.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
 													<h4>Charles Hopman</h4><span>Web designer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -304,7 +333,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status available">Available</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-2.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
 													<h4>Ethan Marion</h4><span>IOS designer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -314,7 +343,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-3.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
 													<h4>Zara Clow</h4><span>UI/UX designer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -324,7 +353,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-4.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
 													<h4>Henry Crooks</h4><span>PHP Developer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -334,7 +363,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status available">Available</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-2.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
 													<h4>Joseph Macfarlan</h4><span>App Developer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -344,7 +373,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-1.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
 													<h4>Zane Joyner</h4><span>Html Expert</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -354,7 +383,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-3.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
 													<h4>Anna Hoysted</h4><span>UI/UX Designer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -364,7 +393,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status available">Available</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-4.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
 													<h4>Spencer Birdseye</h4><span>SEO Expert</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -374,7 +403,7 @@
 											<div class="manage-cndt">
 												<div class="cndt-status pending">Pending</div>
 												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="assets/img/can-1.png" class="img-responsive" alt=""></div>
+													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
 													<h4>Eden Macaulay</h4><span>Web designer</span>
 													<p>Our analysis team at Megriosft use end to end innovation proces</p>
 												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
@@ -400,7 +429,7 @@
 										<div class="mail-card">
 											<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#full-message" aria-expanded="false">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-1.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -427,7 +456,7 @@
 										<div class="mail-card unread">
 											<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-2" aria-expanded="false">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-2.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-2.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -454,7 +483,7 @@
 										<div class="mail-card">
 											<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-3" aria-expanded="false">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-1.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -481,7 +510,7 @@
 										<div class="mail-card">
 											<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-4" aria-expanded="false">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-3.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-3.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -508,7 +537,7 @@
 										<div class="mail-card unread">
 											<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="meaages-5" aria-expanded="false">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-4.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -535,7 +564,7 @@
 										<div class="mail-card">
 											<header class="card-header cursor-pointer">
 												<div class="card-title flexbox">
-												  <img class="img-responsive img-circle avatar" src="assets/img/can-4.png" alt="...">
+												  <img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
 												  <div>
 													<h6>Daniel Duke</h6>
 													<small>Today at 07:34 AM</small>
@@ -563,37 +592,37 @@
 												  </h5>
 													<div class="attachment-block">
 														<div class="thumb">
-															<img src="assets/img/gallery1.jpg" alt="img" class="img-responsive">
+															<img src="{{url('public/client_assets/img/gallery1.jpg')}}" alt="img" class="img-responsive">
 														</div>
 														<div class="attachment-info">
 															<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
 															<ul>
-																<li><a href="javascript:void(0)">Download</a></li>
-																<li><a href="javascript:void(0)">View</a></li>
+																<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
+																<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
 															</ul>
 														</div>
 													</div>
 													<div class="attachment-block">
 														<div class="thumb">
-															<img src="assets/img/gallery2.jpg" alt="img" class="img-responsive">
+															<img src="{{url('public/client_assets/img/gallery2.jpg')}}" alt="img" class="img-responsive">
 														</div>
 														<div class="attachment-info">
 															<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
 															<ul>
-																<li><a href="javascript:void(0)">Download</a></li>
-																<li><a href="javascript:void(0)">View</a></li>
+															<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
+																<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
 															</ul>
 														</div>
 													</div>
 													<div class="attachment-block">
 														<div class="thumb">
-															<img src="assets/img/gallery3.jpg" alt="img" class="img-responsive">
+															<img src="{{url('public/client_assets/img/gallery3.jpg')}}" alt="img" class="img-responsive">
 														</div>
 														<div class="attachment-info">
 															<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
 															<ul>
-																<li><a href="javascript:void(0)">Download</a></li>
-																<li><a href="javascript:void(0)">View</a></li>
+																<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
+																<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
 															</ul>
 														</div>
 													</div>
@@ -707,4 +736,28 @@
             </div>
         </section>
 		<!-- Candidate Profile End -->
+		@endif
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" style="margin-top:120px">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Resume</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" style="border-radius:15px">Small</button>
+        <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal" style="border-radius: 15px">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	
 @endsection
+
