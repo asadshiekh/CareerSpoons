@@ -36,7 +36,7 @@ class SiteUserLogin extends Controller
             "user_email"=>$info->user_email,
             "username"=>$info->username,
             "phone_number"=>$info->phone_number,
-            "status"=>'active'
+            "status"=>'Active'
         );
     	//print_r($userdata);
     	$request->session()->put($userdata);
@@ -51,20 +51,11 @@ class SiteUserLogin extends Controller
  
  	}
 
-
- 	public function view_session(Request $request){
-
-        $data = $request->session()->all();
-        echo "<pre>";
-        print_r($data);
-
-    }
-
     public function logout(Request $request){
 
         $email = $request->session()->get('email');
         $request->session()->flush();
-        //return redirect('/login');
+        return redirect('/');
     }
 
 

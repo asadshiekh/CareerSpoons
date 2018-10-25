@@ -8,7 +8,6 @@ use App\SiteModel\User\UserRegisteration;
 class SiteUser extends Controller
 {	
 
-	
 
     public function viewRegisterUser(){
 

@@ -22,4 +22,13 @@ class SiteController extends Controller
 
     	return view('client_views.main_site.faq');
     }
+
+    
+ 	public function view_session(Request $request){
+
+        $data = $request->session()->all();
+        echo "<pre>";
+        print_r($data);
+
+    }
 }
