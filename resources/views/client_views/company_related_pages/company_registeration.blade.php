@@ -7,6 +7,7 @@
 		================================================== -->
 		<title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
 		<meta charset="utf-8">
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- CSS
@@ -17,7 +18,9 @@
 		<link href="{{url('public/client_assets/css/style.css')}}" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
 		<!-- Customization style tags -->
-		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}"> 
+		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/css/customization_css/customization_of_form.css')}}"> 
+		<!-- Sweet Alert Libery -->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); ">
@@ -38,7 +41,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
 										</div>
-										<input type="text" class="form-control" placeholder="Enter Company Name" required="required">
+										<input type="text" class="form-control" placeholder="Enter Company Name"  id="company_name">
 									</div>
 									<!--Error Msges -->
 								</div>
@@ -48,7 +51,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-envelope"></i>
 										</div>
-										<input type="email" class="form-control" placeholder="Enter Company Email" required="required">
+										<input type="email" class="form-control" placeholder="Enter Company Email"  id="company_email">
 									</div>
 								</div>
 							</div>
@@ -60,7 +63,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-lock"></i>
 										</div>
-										<input type="password" class="form-control" placeholder="Password" required="">
+										<input type="password" class="form-control" placeholder="Password"  id="company_password">
 									</div>
 								</div>
 								<div class="col-xs-6">
@@ -69,7 +72,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
 										</div>
-										<select class="form-control" required="">
+										<select class="form-control"  id="company_type">
 											<option value="" disabled="disabled" selected="selected" hidden="hidden" >Please Choose...</option>
 											<option>Private</option>
 											<option>Public</option>
@@ -87,7 +90,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
 										</div>
-										<select class="form-control" required="">
+										<select class="form-control"  id="company_city">
 											<option value="" disabled selected hidden>Please Choose...</option>
 											<option>Lahore</option>
 											<option>Karachi</option>
@@ -104,7 +107,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
 										</div>
-										<input type="text" class="form-control" placeholder="Branch Name / Branch Code" required="required">
+										<input type="text" class="form-control" placeholder="Branch Name / Branch Code"  id="company_branch">
 									</div>
 								</div>
 							</div>
@@ -116,7 +119,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-industry"></i>
 										</div>
-										<select class="form-control" required>
+										<select class="form-control" id="company_industry">
 											<option value="" disabled selected hidden>Please Choose...</option>
 											<option>IT</option>
 											<option>ETC</option>
@@ -130,7 +133,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="date" id="date" placeholder="DD/MM/YY" class="form-control"/>
+										<input type="date" id="company_operating_since" placeholder="DD/MM/YY" class="form-control"/>
 									</div>
 								</div>
 							</div>
@@ -142,7 +145,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</div>
-										<input type="text" id="phone-number"  class="form-control" placeholder="03234976389" required="">
+										<input type="text" id="company_phone_number"  class="form-control" placeholder="03234976389" >
 									</div>
 								</div>
 								<div class="col-xs-6">
@@ -151,27 +154,32 @@
 										<div class="input-group-addon">
 											<i class="fa">&#xf2c3;</i>
 										</div>
-										<input type="text" id="cnic" class="form-control" placeholder="35202-2608620-7" required="" ">
+										<input type="text" id="company_cnic" class="form-control" placeholder="35202-2608620-7">
 									</div>
 								</div>
 							</div>
-
 							<br/>
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="form-group">
-										<label>Compnay Address *</label>
+										<label>Company Address *</label>
 										<div class="input-group">
 											<div class="input-group-addon">
 												<i class="fa">&#xf2b9;</i>
 											</div>
-											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required="" maxlength="100">Company Address</textarea>
+											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="100">Company Address</textarea>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<span class="form-check-label" style="font-weight: 500 ; text-align: left; font-size: 13px">
+									<input class="form-check-input" type="checkbox" id="checkbox">
+									I Accept Terms & Conditions And Privacy Policy Of CareerSpoons.com
+								</span>
+							</div>
 
-							<button class="btn btn-login" type="submit" >Create Account</button>
+							<button class="btn btn-login" onclick="register_company();" type="button" >Create Account</button>
 							<span>Have You Account ? <a href="{{url('company-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -227,15 +235,19 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<!-- Custom Js -->
+				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<!-- Masking Input Js -->
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+				<!-- Customization Register Company -->
+				<script src="{{url('public/client_assets/js/customization_js/company_registration.js')}}"></script>
 
 				
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
-						$("#phone-number").mask("(9999) 999-9999");
-						$("#cnic").mask("99999-9999999-9");
+						$("#company_phone_number").mask("(0399) 999-9999");
+						$("#company_cnic").mask("99999-9999999-9");
 						//$('#date').mask('00/00/0000');
 					});
 					

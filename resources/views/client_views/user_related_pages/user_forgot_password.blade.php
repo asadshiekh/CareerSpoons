@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<button class="btn btn-login" type="submit">Submit</button>
-	<span><a href="{{url('company-login')}}">Back to Login</a></span>
+	<span><a href="{{url('user-login')}}">Back to Login</a></span>
 </form>
 
 @endsection

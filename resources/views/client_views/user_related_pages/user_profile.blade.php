@@ -17,7 +17,14 @@
 			
                 <div class="row">
                     <div class="detail-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
-                    <div class="detail-status"><span>Active Now</span></div>
+
+                    @if(Session::get('email_status')=='1')
+                    <div class="detail-status"><span data-toggle="tooltip" title="Verified User to check the True identity of User">Verified Candidate</span></div>
+                    @else
+                     <div class="detail-status"><span data-toggle="tooltip" title="Verified your Identity to became a Verified User" style="background-color: red; color: white">Verification Required</span></div>
+                    @endif
+                
+
                 </div>
 				
                 <div class="row bottom-mrg">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\site_controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\User\UserRegisteration;
+use App\Mail\Site_Mail\User_Mail\User_Registeration;
+use Mail;
 class SiteUser extends Controller
 {	
 
@@ -36,6 +38,9 @@ class SiteUser extends Controller
     	//echo $request->username." ".$request->user_email." ".$request->candidate_name;
     	 $obj =  new UserRegisteration();
     	 $user_info = $obj->do_register_user($user_response);
+       
+       // Send User Mail For Verification
+       Mail::send(new User_Registeration());
 
     	 if($user_info){
 

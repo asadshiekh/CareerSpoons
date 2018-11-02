@@ -24,7 +24,7 @@ function user_login(){
 
 						window.location.replace('/');
 					},
-					2000
+					2100
 					);
 
 			}

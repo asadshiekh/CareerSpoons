@@ -16,6 +16,8 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        'd92e6dafb93e67e5b59c39d9b9d00659' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/functions.php',
+        'a806c12c6e24e7e4e900847766218dba' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -31,6 +33,10 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+        ),
+        'U' => 
+        array (
+            'UxWeb\\SweetAlert\\' => 17,
         ),
         'T' => 
         array (
@@ -132,6 +138,10 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'UxWeb\\SweetAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -320,6 +330,13 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
                 0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
             ),
         ),
+        'C' => 
+        array (
+            'Codecourse\\Notify\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/codecourse/notify/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -336,24 +353,35 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Controllers\\site_controllers\\SiteJobController' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteJobController.php',
         'App\\Http\\Controllers\\site_controllers\\SiteUser' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteUser.php',
         'App\\Http\\Controllers\\site_controllers\\SiteUserLogin' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteUserLogin.php',
+        'App\\Http\\Controllers\\site_controllers\\UserProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/UserProfile.php',
+        'App\\Http\\Controllers\\site_controllers\\mail_sender' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/mail_sender.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\SiteMiddleware\\User\\UserLoginCheck' => __DIR__ . '/../..' . '/app/Http/Middleware/SiteMiddleware/User/UserLoginCheck.php',
+        'App\\Http\\Middleware\\SiteMiddleware\\User\\UserProfileCheck' => __DIR__ . '/../..' . '/app/Http/Middleware/SiteMiddleware/User/UserProfileCheck.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\Site_Mail\\User_Mail\\User_Registeration' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Registeration.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\SiteModel\\Company\\CompanyRegisteration' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyRegisteration.php',
+        'App\\SiteModel\\User\\UserLoginModel' => __DIR__ . '/../..' . '/app/SiteModel/User/UserLoginModel.php',
+        'App\\SiteModel\\User\\UserRegisteration' => __DIR__ . '/../..' . '/app/SiteModel/User/UserRegisteration.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
-        'App\\User\\UserRegisteration' => __DIR__ . '/../..' . '/app/User/UserRegisteration.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Codecourse\\Notify\\Facades\\Notify' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/Facades/Notify.php',
+        'Codecourse\\Notify\\Notifier' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/Notifier.php',
+        'Codecourse\\Notify\\NotifyServiceProvider' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/NotifyServiceProvider.php',
+        'Codecourse\\Notify\\Storage\\Session' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/Storage/Session.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -3635,6 +3663,12 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UxWeb\\SweetAlert\\ConvertMessagesIntoSweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/ConvertMessagesIntoSweetAlert.php',
+        'UxWeb\\SweetAlert\\LaravelSessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/LaravelSessionStore.php',
+        'UxWeb\\SweetAlert\\SessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SessionStore.php',
+        'UxWeb\\SweetAlert\\SweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlert.php',
+        'UxWeb\\SweetAlert\\SweetAlertNotifier' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertNotifier.php',
+        'UxWeb\\SweetAlert\\SweetAlertServiceProvider' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

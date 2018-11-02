@@ -37,7 +37,8 @@ class SiteUserLogin extends Controller
             "username"=>$info->username,
             "phone_number"=>$info->phone_number,
             "cv_status"=>$info->current_cv_status,
-            "status"=>'Active'
+            "status"=>'Active',
+            "email_status"=>$info->verify_by_email,
         );
     	//print_r($userdata);
     	$request->session()->put($userdata);
@@ -53,8 +54,8 @@ class SiteUserLogin extends Controller
  	}
 
     public function logout(Request $request){
-
-        $email = $request->session()->get('email');
+        //alert()->success('You have been logged out.', 'Good bye!');
+        //$email = $request->session()->get('email');
         $request->session()->flush();
         return redirect('/');
     }

@@ -17,7 +17,7 @@
 		<link href="{{url('public/client_assets/css/style.css')}}" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="{{url('public/client_assets/css/colors/green-style.css')}}">
 		<!-- Customization style tags -->
-		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/customization_css/customization_of_form.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/css/customization_css/customization_of_form.css')}}">
 		<!-- Sweet Alert Libery -->
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -31,7 +31,7 @@
 					<div class="signup-screen">
 						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
 						<form>
-							
+
 							<div class="form-group">
 								<label>Full Name *</label>
 								<div class="input-group">
@@ -98,12 +98,12 @@
 							<div class="form-group"></div>
 							<div class="form-group">
 								<span class="form-check-label" style="font-weight: 500 ; text-align: left; font-size: 13px">
-									<input class="form-check-input" type="checkbox" id="checkbox" required>
+									<input class="form-check-input" type="checkbox" id="checkbox">
 									I Accept Terms & Conditions And Privacy Policy Of CareerSpoons.com
 								</span>
 							</div>
 
-							<button type="button" class="btn btn-login" onclick="user_registration();">Create Account</button>
+							<button type="button" class="btn btn-login" id="user_btn" onclick="user_registration();">Create Account</button>
 							<span>Have You Account ? <a href="{{url('user-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -165,7 +165,7 @@
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
-						$("#phone_number").mask("(+92)99-999-9999");
+						$("#phone_number").mask("(0399) 999-9999");
 						//$.mask.definitions['#'] = $.mask.definitions['9'];
 						//$.mask.definitions['9'] = null; 
 						//+7 ([000]) [000]-[0000]
@@ -194,4 +194,6 @@
 			margin:-4% auto 0 auto;
 		}
 
-	</style>
+
+
+		</style>

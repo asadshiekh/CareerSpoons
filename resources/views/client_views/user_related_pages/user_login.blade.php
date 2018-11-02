@@ -24,4 +24,21 @@
 	<span>You Have No Account? <a href="{{url('user-registeration')}}"> Create An User Account</a></span>
 	<span><a href="{{url('user-forgot-password')}}"> Forgot Password</a></span>
 </form>
+
+<script type="text/javascript">
+	var user_verify = {{Session::has('user_email_verify')}};
+
+	if(user_verify){
+
+		swal({
+			title: "Your Email Verify!",
+			text: "Lets Get Started!",
+			icon: "success",
+		});
+
+	}
+
+</script>
+
+
 @endsection
