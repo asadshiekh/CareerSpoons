@@ -19,7 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1">
         <div class="x_panel">
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Types of Organization<small style="font-family:'italic',bold">Here... </small></h2>
@@ -41,28 +41,46 @@
             <p class="text-muted font-13 m-b-30">
              
            </p>
-
+           <form action="delete-check-types" method="post" enctype="multipart/form-data">
+           @csrf
+           @if (session()->has('success'))
+           <script type="text/javascript">
+            swal("Deleted!", "Your Company Type has been deleted.", "success");
+            
+           </script>
+            @endif
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
             <thead>
               <tr>
-                 <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  
+                 <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
                  <th>Type Name</th>                
                  <th>Action</th>
              </tr>
            </thead>
            <tbody>
+            <tr id="type-tr"></tr>
             @foreach($types as $types)
-            <tr> 
-               <th><input type="checkbox" id="check-all" class="flat"></th> 
+            <tr id="type-tr{{$types->company_type_id}}"> 
+               <th><input type="checkbox" id="check_all[]" name="check_all[]" class="flat" value="{{$types->company_type_id}}"></th> 
                <td>{{$types->company_type_name}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a href=""><i class="fa fa-trash"></i></a></td>
-             
+               <td><a href=""><i class="fa fa-pencil"></i></a> | <a onclick="delete_type('{{$types->company_type_id}}');"><i class="fa fa-trash"></i></a></td>   
            </tr>
            @endforeach
            
          </tbody>
+         <tfoot>
+          <tr>
+             <td colspan="3">
+            
+              <button type="submit" class="btn btn-success">Delete</button>
+            
+             
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Type?</button>
+             </td>
+           </tr>
+         </tfoot>
        </table>
-
+</form>
        <!-- End Content-->
 
 
@@ -73,20 +91,45 @@
 </div>
 </div>
 <!--model-->
-<div  id="exampleModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <form>
+     <!--  @csrf -->
+     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Update User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD New Company Type</h4>
+        <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+          <i id="i" style="font-size:100px"></i>
+        </div>
+        <div class="col-sm-6 col-md-offset-4" id="loading-true">
+          <i id="tru" style="font-size:100px; color: #38b75e"></i>
+        </div>
       </div>
-      <div id="edit_text">
+      <div class="modal-body" id="modal-content">
+
+        <label>Company Type:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-yelp"></i>
+          </div>
+          <input type="text" placeholder="Enter New Type" class="form-control" name="add_company_type" id="add_company_type">
+        </div>
+        
+        <!-- <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> --> 
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="btn-type" type="button" class="btn btn-default" onclick="company_type_addingTable();">ADD</button>
+        </div>
       </div>
 
     </div>
-  </div>
+  </form>
+
+</div>
 </div>
 <!--/model-->
 

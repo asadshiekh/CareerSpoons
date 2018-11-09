@@ -4,11 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{csrf_token()}}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Career Spoons | Admin-Login</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="{{url('public/admin_assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -30,26 +31,24 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-          <form action="data" method="post">
+          <form  method="post">
             @csrf
               <h1>Login Here</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required=""  name="user"/>
+                <input type="text" class="form-control" placeholder="Username" required=""  id="user-name"/>
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" name="pass"/>
+                <input type="password" class="form-control" placeholder="Password" required="" id="password"/>
               </div>
               <div>
-                <input type="submit" class="btn btn-default submit" value="Log in"/>
+                <input type="button" class="btn btn-default submit" value="Log in" onclick="login_admin();" />
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
+                
 
                 <div class="clearfix"></div>
                 <br />
@@ -102,3 +101,18 @@
     </div>
   </body>
 </html>
+
+<script type="text/javascript">
+function login_admin(){
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+  var user = $("#user-name").val();
+  var pass = $("#password").val();
+    $.post("do-admin-login",{_token:CSRF_TOKEN,user:user,pass:pass},function(data){
+      if(data=="yes"){
+        window.location.replace("admin-dashboard");
+      }
+    });
+
+
+  }
+</script>

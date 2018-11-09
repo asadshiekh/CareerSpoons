@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationCity' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationCity.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationIndustry' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationIndustry.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AdminOrganization' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AdminOrganization.php',
+    'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\OrganizationProfile' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/OrganizationProfile.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

@@ -1,0 +1,73 @@
+<script type="text/javascript">
+
+
+    $(document).ready(function(){
+
+        $.ajaxSetup({
+            headers:
+            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+
+        $("#some-id").on("click", function () {
+            var request;
+
+
+            request = $.ajax({
+                url: "/your/url",
+                method: "POST",
+                data:
+                {
+                    a: 'something',
+                    b: 'something else',
+                },
+                datatype: "json"
+            });
+
+            request.done(function(msg) {
+                $("#result").html(msg);
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                $("#result").html("Request failed: " + textStatus);
+            });
+        });
+
+    });
+</script>
+
+
+
+$.ajax({
+    url: "/your/url",
+    method: "POST",
+    data:
+    {
+        a: 'something',
+        b: 'something else',
+        _token: $('meta[name="csrf-token"]').attr('content')
+    },
+    datatype: "json"
+});
+
+
+<form method="post" id="formData">
+ <input type="text" name="name" >
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
+ <input type="submit" id="sub" class="btn btn-default" value="Submit" />                            
+</form>
+<script>
+    $(document).on('submit', '#formData', function (event) {
+    event.preventDefault();
+     var formData = $('#formData').serialize();
+    $.ajax({
+        url: url,
+       type: "POST",
+       data : formData,   
+                success: function (result) {
+                    console.log(result);                             
+                }
+           });
+        });
+
+    });
+</script>

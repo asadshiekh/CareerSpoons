@@ -3,13 +3,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
+    <meta name="csrf-token" content="{{csrf_token()}}"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> Career Spoons </title>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{url('public/admin_assets/loading/loading-bar.css')}}"/>
+<script type="text/javascript" src="{{url('public/admin_assets/loading/loading-bar.js')}}"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="{{url('public/admin_assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -43,7 +46,9 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Syeda Nayab</h2>
+                <h2><?php if(session()->has('admin_fullname')){
+                  echo session()->get('admin_fullname');
+                } ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -55,24 +60,33 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                    <li><a href="{{url('index')}}">Dashboard</a></li>
-                      
-                    </ul>
+                  <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-home"></i> Dashboard </a>
+                   <!--  <ul class="nav child_menu">
+                    <li><a href="{{url('admin-dashboard')}}">Dashboard</a></li>                      
+                    </ul> -->
                   </li>
                  
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{url('add-organization')}}">Add Organization</a></li>
-                      <li><a href="{{url('admin-register1')}}">register1</a></li>
-                     
-                     
-                    </ul>
-                </li>
-                      
                   
-              
+                    <li><a><i class="fa fa-edit"></i> Organization <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Add<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{url('add-organization')}}">Add Organization</a></li>
+                          </ul>
+                        </li>
+                        <li><a>View<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                           
+                              <li><a href="{{url('view-organization')}}">View Organization</a></li>
+                              <li><a href="{{url('company-type')}}">View Types</a></li>
+                              <li><a href="{{url('view-industries')}}">View Industries</a></li>
+                              <li><a href="{{url('view-cities')}}">View Cities</a></li>                           
+                          </ul>
+                        </li>
+                        
+                    </ul>
+                  </li> 
+                     
                 </ul>
               </div>
               <div class="menu_section">
@@ -259,11 +273,14 @@
     <script src="{{url('public/admin_assets/vendors/moment/min/moment.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script> 
     <!-- Custom Theme Scripts -->
+<script type="text/javascript" src="{{url('public/admin_assets/customJS/organizationJS.js')}}"></script>
+
+    
     <script src="{{url('public/admin_assets/build/js/custom.min.js')}}"></script>
     <script src="{{url('public/admin_assets/ckeditor/ckeditor.js')}}"></script>
     <!-- Data Tables -->
     <script src="{{url('public/admin_assets/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/admin_assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}')}}"></script>
+    <script src="{{url('public/admin_assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
@@ -277,18 +294,20 @@
     <script src="{{url('public/admin_assets/vendors/jszip/dist/jszip.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{url('public/admin_assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
-        <script src="{{url('public/admin_assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
+    
   </body>
 </html>
 <script type="text/javascript">
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
-   CKEDITOR.replace('editor1',{
+   CKEDITOR.replace('company_info',{
+      
+    });
+      CKEDITOR.replace('job_info',{
       
     });
     
-
 
     
 </script>

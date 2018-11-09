@@ -336,6 +336,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationCity' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationCity.php',
         'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationIndustry' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationIndustry.php',
         'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AdminOrganization' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/AdminOrganization.php',
+        'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\OrganizationProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/OrganizationProfile.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

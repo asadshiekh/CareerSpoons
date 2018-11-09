@@ -13,10 +13,10 @@ class OrganizationProfile extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function viewOrganizationProfile(Request $request)
+    public function viewOrganizationProfile($id)
     {
 
-       $id= $request->get('x');
+       
        $org_page=DB::table('Add_organizations')->where(['company_id'=> $id])->first();
 
        if($org_page){

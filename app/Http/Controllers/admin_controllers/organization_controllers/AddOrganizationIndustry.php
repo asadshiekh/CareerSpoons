@@ -15,7 +15,7 @@ class AddOrganizationIndustry extends Controller
     }
      public function addCompanyIndustry(Request $request)
 	{
-      $company_industry = $request->get('company_industry');
+      $company_industry = $request->post('company_industry');
       $current_date = date("Y.m.d h:i:s");
       $data = array(
       	"company_industry_name" => str_replace(" ","_",$company_industry),
@@ -30,4 +30,41 @@ class AddOrganizationIndustry extends Controller
        
       }
 	}
+  public function deleteIndustry(Request $request){
+    $indus_id = $request->post('x');
+    if(DB::table('Company_industries')->where(['company_industry_id' => $indus_id])->delete()){
+      echo "yes";
+    }
+  }
+
+  public function deleteCheckIndustries(Request $request){
+    $ids=count($_POST['check_all']);
+      if(count($_POST['check_all'])>0){
+      foreach ($_POST['check_all'] as $row) {
+        echo $chk_all[]=$row;
+        DB::table('Company_industries')->where(['company_industry_id' => $row])->delete();   
+        
+      }
+       $request->session()->flash('success', $ids);
+       return redirect('view-industries');
+       $request->session()->flash('Access', true);
+     }
+
+  }
+  public function addTableCompanyIndustry(Request $request){
+    $company_indus = $request->post('company_indus');
+      $current_date = date("Y.m.d h:i:s");
+      $data = array(
+        "company_industry_name" => str_replace(" ","_",$company_indus),
+        "created_at" => $current_date,
+        "updated_at" => $current_date
+      );
+
+      if(DB::table('Company_industries')->insert($data)){
+       $id=DB::getPdo()->lastInsertId();
+       echo $id;
+       
+      }
+  }
+
 }

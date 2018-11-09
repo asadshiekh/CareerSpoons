@@ -19,7 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1">
         <div class="x_panel">
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Registed Organization<small style="font-family:'italic',bold">Here... </small></h2>
@@ -44,7 +44,7 @@
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
             <thead>
               <tr>
-                 <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  
+                 <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
                  <th>Company Name</th>
                  <th>Company Type</th>
                  <th>Email</th>
@@ -55,14 +55,14 @@
            </thead>
            <tbody>
             @foreach($organizations as $organizations)
-            <tr> 
+            <tr id="org-tr{{$organizations->company_id}}"> 
                <th><input type="checkbox" id="check-all" class="flat"></th> 
                <td>{{$organizations->company_name}}</td>
                <td>{{$organizations->company_type}}</td>
                <td>{{$organizations->company_email}}</td>
                <td>{{$organizations->company_phone}}</td>
                <td>{{$organizations->company_industry}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a href=""><i class="fa fa-trash"></i></a> | <a onclick="view_full_page({{$organizations->company_id}});"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
+               <td><a href=""><i class="fa fa-pencil"></i></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><i class="fa fa-trash"></i></a> | <a href="organization-profile/{{$organizations->company_id}}"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
            </tr>
            @endforeach
            
@@ -96,7 +96,7 @@
 </div>
 <!--/model-->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function view_full_page(id){
   var x =id;
   $.get('organization-profile',{x:x},function(data){ 
@@ -106,7 +106,12 @@
   });
 
   }
+
+</script> -->
+<script type="text/javascript">
+
 </script>
+
 @endsection
 
   

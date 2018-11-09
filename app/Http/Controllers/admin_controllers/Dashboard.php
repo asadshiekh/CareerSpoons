@@ -20,10 +20,19 @@ class Dashboard extends Controller
     {
         return view('admin_views/register');
     }
-     public function viewRegister1Page()
+    public function viewRegister1Page()
     {
         return view('admin_views/register1');
     }
 
+
+    public function fullformdata(){
+
+    }
+    //
+    public function jango()
+    {
+        return view("admin_views.jango");
+    }
     
 }
