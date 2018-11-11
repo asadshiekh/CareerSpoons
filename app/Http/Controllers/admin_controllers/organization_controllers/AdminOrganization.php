@@ -149,17 +149,30 @@ public function deleteCheckCompanyType(Request $request){
 
 
 	}
-	public function deleteOrganization(Request $request){
-		echo "yes";
-        // echo $org_id = $request->post('y');
-	    // if(DB::table('Add_organizations')->where(['company_id' => $org_id])->delete()){
-	    //   echo "yes";
-	    // }
+	public function deleteCheckOrg(Request $request){
+		echo $ids=count($_POST['check_all_org']);
+
+      if(count($_POST['check_all_org'])>0){
+      foreach ($_POST['check_all_org'] as $row) {
+        echo $chk_all[]=$row;
+        DB::table('add_organizations')->where(['company_id' => $row])->delete();   
+        
+      }
+       $request->session()->flash('success', $ids);
+       return redirect('view-organization');
+
+       $request->session()->flash('Access', true);
+   }
+
 	}
-	public function doCompanyPost(Request $request)
+	public function deleteOrganization(Request $request)
 	{
-    print_r($_POST);
+    $org_id = $request->post('o');
+	    if(DB::table('add_organizations')->where(['company_id' => $org_id])->delete()){
+	      echo "yes";
+	    }
 	}
+
 
 
 }

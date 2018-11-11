@@ -24,7 +24,7 @@
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Registed Organization<small style="font-family:'italic',bold">Here... </small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class=""><i class="fa fa-dashboard"></i></a>
+              <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-dashboard"></i></a>
               </li>
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -41,6 +41,13 @@
             <p class="text-muted font-13 m-b-30">
              
            </p>
+           <form action="delete-check-org" method="post" enctype="multipart/form-data">
+            @csrf
+            @if (session()->has('success'))
+           <script type="text/javascript">
+            swal("Deleted!", "Your Organization has been deleted.", "success");
+           </script>
+            @endif
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
             <thead>
               <tr>
@@ -56,7 +63,7 @@
            <tbody>
             @foreach($organizations as $organizations)
             <tr id="org-tr{{$organizations->company_id}}"> 
-               <th><input type="checkbox" id="check-all" class="flat"></th> 
+               <th><input type="checkbox" name="check_all_org[]" class="flat" value="{{$organizations->company_id}}"></th> 
                <td>{{$organizations->company_name}}</td>
                <td>{{$organizations->company_type}}</td>
                <td>{{$organizations->company_email}}</td>
@@ -67,7 +74,21 @@
            @endforeach
            
          </tbody>
+          <tfoot>
+          <tr>
+             <td colspan="7">
+              <?php  $query=DB::table('Add_organizations')->get()->count();
+                    if($query>0) {?>
+              <button type="submit" class="btn btn-success">Delete</button>
+              <?php }?>
+           
+             <!-- 
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button> -->
+             </td>
+           </tr>
+         </tfoot>
        </table>
+     </form>
 
        <!-- End Content-->
 
@@ -109,6 +130,20 @@
 
 </script> -->
 <script type="text/javascript">
+function delete_org(o){
+  var result = confirm("Really want to delete this Organization?");
+  if(result){
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+   $.post("delete-org",{_token:CSRF_TOKEN,o:o},function(data){ 
+
+    if(data){
+      $("#org-tr"+o).css('background-color','Crimson');
+      $("#org-tr"+o).hide(3000);
+    }
+    });
+ }
+
+}
 
 </script>
 

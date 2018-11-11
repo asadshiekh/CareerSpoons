@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-	<form id="data">
+	<form>
 	  <input type="hidden" name="id" value="123" readonly="readonly">
 	  User Name: <input type="text" name="username" value=""><br />
 	  Profile Image: <input name="profileImg" type="file" /><br />

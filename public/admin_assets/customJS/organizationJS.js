@@ -57,25 +57,33 @@ function company_city_adding(){
   }
 
 function delete_city(x){
+   var result = confirm("Really want to delete this city?");
+  if(result){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
  $.post("delete-city",{_token:CSRF_TOKEN,x:x},function(data){ 
 
     if(data){
-      alert(data);
-      $("#city-tr"+x).remove();
+      
+       $("#city-tr"+x).css('background-color','Crimson');
+      $("#city-tr"+x).hide(2000);
     }
     });
 }
+}
 
 function delete_industry(x){
+   var result = confirm("Really want to delete this industry?");
+  if(result){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
  $.post("delete-industry",{_token:CSRF_TOKEN,x:x},function(data){ 
 
     if(data){
-      alert(data);
-      $("#industry-tr"+x).remove();
+       $("#industry-tr"+x).css('background-color','Crimson');
+      $("#industry-tr"+x).hide(2000);
+  
     }
     });
+}
 }
 
 function company_industry_addingTable(){
@@ -100,14 +108,18 @@ function company_industry_addingTable(){
  });
 }
 function delete_type(x){
+   var result = confirm("Really want to delete this type?");
+  if(result){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
  $.post("delete-type",{_token:CSRF_TOKEN,x:x},function(data){ 
 
     if(data){
-      alert(data);
-      $("#type-tr"+x).remove();
+       $("#type-tr"+x).css('background-color','Crimson');
+      $("#type-tr"+x).hide(2000);
+
     }
     });
+}
 }
   function company_type_addingTable(){
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

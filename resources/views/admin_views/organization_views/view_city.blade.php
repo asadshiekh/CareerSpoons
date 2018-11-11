@@ -24,7 +24,7 @@
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Cities <small style="font-family:'italic',bold">Here... </small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class=""><i class="fa fa-dashboard"></i></a>
+              <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-dashboard"></i></a>
               </li>
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -51,7 +51,7 @@
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
 
             <thead>
-              <tr>
+              <tr id="city-tr">
                  <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
                  <th>City Name</th>                
                  <th>Action</th>
@@ -60,7 +60,7 @@
            
          
            <tbody>
-            <tr id="city-tr"></tr>
+            <!-- <tr id="city-tr"></tr> -->
             @foreach($cities as $cities)
             <tr id="city-tr{{$cities->company_city_id}}"> 
                <th class="chk"><input type="checkbox" name="check_all[]" class="flat" value="{{$cities->company_city_id}}"></th> 
@@ -74,8 +74,10 @@
          <tfoot>
           <tr>
              <td colspan="3">
+               <?php  $query=DB::table('Add_cities')->get()->count();
+                    if($query>0) {?>
               <button type="submit" class="btn btn-success">Delete</button>
-  
+  <?php } ?>
            
              
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button>

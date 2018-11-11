@@ -25,7 +25,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{url('public/admin_assets/build/css/custom.min.css')}}" rel="stylesheet">
-    {{-- <script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script> --}}
+    <script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
   </head>
 
   <body class="nav-md">
@@ -275,7 +275,7 @@
     <!-- Custom Theme Scripts -->
 <script type="text/javascript" src="{{url('public/admin_assets/customJS/organizationJS.js')}}"></script>
 
-    
+    <script src="{{url('public/admin_assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
     <script src="{{url('public/admin_assets/build/js/custom.min.js')}}"></script>
     <script src="{{url('public/admin_assets/ckeditor/ckeditor.js')}}"></script>
     <!-- Data Tables -->
@@ -304,9 +304,7 @@
    CKEDITOR.replace('company_info',{
       
     });
-      CKEDITOR.replace('job_info',{
-      
-    });
+    
     
 
     

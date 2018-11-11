@@ -24,7 +24,7 @@
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Types of Organization<small style="font-family:'italic',bold">Here... </small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class=""><i class="fa fa-dashboard"></i></a>
+              <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-dashboard"></i></a>
               </li>
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -51,14 +51,14 @@
             @endif
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
             <thead>
-              <tr>
+              <tr id="type-tr">
                  <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
                  <th>Type Name</th>                
                  <th>Action</th>
              </tr>
            </thead>
            <tbody>
-            <tr id="type-tr"></tr>
+            <!-- <tr id="type-tr"></tr> -->
             @foreach($types as $types)
             <tr id="type-tr{{$types->company_type_id}}"> 
                <th><input type="checkbox" id="check_all[]" name="check_all[]" class="flat" value="{{$types->company_type_id}}"></th> 
@@ -71,9 +71,10 @@
          <tfoot>
           <tr>
              <td colspan="3">
-            
+            <?php  $query=DB::table('company_types')->get()->count();
+                    if($query>0) {?>
               <button type="submit" class="btn btn-success">Delete</button>
-            
+            <?php } ?>
              
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Type?</button>
              </td>
@@ -132,7 +133,9 @@
 </div>
 </div>
 <!--/model-->
+<script type="text/javascript">
 
+</script>
 
 @endsection
 

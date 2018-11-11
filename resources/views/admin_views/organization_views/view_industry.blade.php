@@ -24,7 +24,7 @@
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Industries <small style="font-family:'italic',bold">Here... </small></h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class=""><i class="fa fa-dashboard"></i></a>
+              <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-dashboard"></i></a>
               </li>
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -50,14 +50,14 @@
             @endif
            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
             <thead>
-              <tr>
+              <tr id="industry-tr">
                  <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
                  <th>Industry Name</th>                
                  <th>Action</th>
              </tr>
            </thead>
            <tbody>
-            <tr id="industry-tr"></tr>
+            <!-- <tr id="industry-tr"></tr> -->
             @foreach($industry as $industry)
             <tr id="industry-tr{{$industry->company_industry_id}}"> 
                <th><input type="checkbox" name="check_all[]" class="flat" value="{{$industry->company_industry_id}}"></th> 
@@ -71,8 +71,10 @@
          <tfoot>
           <tr>
              <td colspan="3">
+              <?php  $query=DB::table('Company_industries')->get()->count();
+                    if($query>0) {?>
               <button type="submit" class="btn btn-success">Delete</button>
-             
+             <?php }?>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Add New industry?</button>
              </td>
            </tr>

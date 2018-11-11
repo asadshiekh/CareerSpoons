@@ -23,6 +23,8 @@ Route::get('admin-do-post',"admin_controllers\cv_controllers\AdminJobPost@viewJo
 Route::get('add-organization',"admin_controllers\organization_controllers\AdminOrganization@addOrganizationForm");
 
 Route::get('view-organization',"admin_controllers\organization_controllers\AdminOrganization@viewRegistedOrganization");
+Route::post('delete-check-org',"admin_controllers\organization_controllers\AdminOrganization@deleteCheckOrg");
+Route::post('delete-org',"admin_controllers\organization_controllers\AdminOrganization@deleteOrganization");
 Route::post('adding-company-type',"admin_controllers\organization_controllers\AdminOrganization@addCompanyType");
 Route::post('adding-company-city',"admin_controllers\organization_controllers\AddOrganizationCity@addCompanyCity");
 Route::post('delete-city',"admin_controllers\organization_controllers\AddOrganizationCity@deleteCity");
@@ -57,7 +59,16 @@ Route::any('jango1',function(){
 
 });
 Route::any('register-company',"admin_controllers\organization_controllers\AdminOrganization@addCompanyForm");
-// Route::any('do-company-post',"admin_controllers\organization_controllers\AdminOrganization@doCompanyPost");
-Route::any('do-company-post',function(){
-	print_r($_POST);
+
+//Route::post('asad',"admin_controllers\organization_controllers\AdminOrganization@doCompanyPost");
+// Route::any('do-company-post',function(){
+
+
+// echo "no";
+
+
+// });
+Route::prefix('organization-profile')->group(function () {
+Route::any('do-company-post',"admin_controllers\organization_controllers\OrganizationProfile@doCompanyPost");
+Route::any('delete-post',"admin_controllers\organization_controllers\OrganizationProfile@deleteOrgPost");
 });
