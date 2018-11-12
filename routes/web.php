@@ -42,7 +42,7 @@ Route::post('delete-check-types',"admin_controllers\organization_controllers\Adm
 
 Route::get('view-cities',"admin_controllers\organization_controllers\AddOrganizationCity@viewCitiesPage");
 Route::get('view-industries',"admin_controllers\organization_controllers\AddOrganizationIndustry@viewIndustriesPage");
-Route::get('organization-profile/{id}',"admin_controllers\organization_controllers\OrganizationProfile@viewOrganizationProfile");
+
 // Route::get('view-organization-profile',"admin_controllers\organization_controllers\OrganizationProfile@viewOrganizationProfile");
 /*   End Admin Work  */
 
@@ -60,15 +60,10 @@ Route::any('jango1',function(){
 });
 Route::any('register-company',"admin_controllers\organization_controllers\AdminOrganization@addCompanyForm");
 
-//Route::post('asad',"admin_controllers\organization_controllers\AdminOrganization@doCompanyPost");
-// Route::any('do-company-post',function(){
+Route::get('organization-profile/{id}',"admin_controllers\organization_controllers\OrganizationProfile@viewOrganizationProfile");
 
-
-// echo "no";
-
-
-// });
 Route::prefix('organization-profile')->group(function () {
-Route::any('do-company-post',"admin_controllers\organization_controllers\OrganizationProfile@doCompanyPost");
-Route::any('delete-post',"admin_controllers\organization_controllers\OrganizationProfile@deleteOrgPost");
+	Route::any('do-company-post',"admin_controllers\organization_controllers\OrganizationProfile@doCompanyPost");
+	Route::any('delete-post',"admin_controllers\organization_controllers\OrganizationProfile@deleteOrgPost");
+	Route::any('upload-org-img/{id}',"admin_controllers\organization_controllers\OrganizationProfile@uploadOrgPic");
 });

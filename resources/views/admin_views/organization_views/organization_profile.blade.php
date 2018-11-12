@@ -43,11 +43,21 @@
               <div class="profile_img">
                 <div id="crop-avatar">
                   <!-- Current avatar -->
-                  <!-- <i class="fa fa-pencil edit-pic"></i> -->
-                  <span class="img-view">
-                  <img class="img-responsive avatar-view" src="{{url('public/admin_assets/production/images/user.png')}}" alt="Avatar" title="Change the avatar"/>
-                </span>
                   
+                  <!-- <span class="img-view">
+                  <i class="fa fa-pencil edit-pic"></i>
+                  <img class="img-responsive avatar-view" src="{{url('public/admin_assets/production/images/user.png')}}" alt="Avatar" title="Change the avatar"/>
+
+                </span> -->
+<div class="contain">
+  <img src="{{url('uploads/organization_images')}}<?php echo '/'.$org_IMG->company_img; ?>" alt="Avatar" class="image">
+  <div class="overlay">
+    <a href="#" data-toggle="modal" data-target="#myModal1" class="icon" title="Edit Picture">
+      <i class="fa fa-pencil"></i>
+    </a>
+  </div>
+</div> 
+             
                 </div>
               </div>
               <h3>{{$org_page->company_name}}</h3>
@@ -323,21 +333,47 @@
         </div>
       </div>
       <!--model-->
-      <div  id="exampleModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Update User</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div id="edit_text">
-            </div>
+     <!-- Modal window for add City-->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-          </div>
+    <!-- Modal content-->
+    <form action="upload-org-img/{{$org_page->company_id}}" method="post" enctype="Multipart/form-data">
+      @csrf
+
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload image?</h4>
+        <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+          <i id="i" style="font-size:100px"></i>
+        </div>
+        <div class="col-sm-6 col-md-offset-4" id="loading-true">
+          <i id="tru" style="font-size:100px; color: #38b75e"></i>
         </div>
       </div>
+      <div class="modal-body" id="modal-content">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-yelp"></i>
+          </div>
+          <input type="file" class="form-control" name="org_picture" id="org_img">
+        </div>
+        <div id="img_or">
+        <img src="#" id="blah" height="250px" width="200px">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-default">Upload</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+</div>
+<!--/End model window-->
       <!--/model-->
 <script type="text/javascript">
 
@@ -372,8 +408,70 @@ $.post("delete-post",{_token:CSRF_TOKEN,id:id},function(data){
 });
 }
 }
-</script>
+$( document ).ready(function() {
+   $("#img_or").hide();
+});
+function readURL(input) {
+  $("#img_or").show();
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#org_img").change(function() {
+  readURL(this);
+});
+</script>
+<style type="text/css">
+.contain{
+  position: relative;
+  /*width: 100%;*/
+  background-color: pink;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background:transparent;
+}
+
+.contain:hover .overlay {
+  opacity: 0.5;
+}
+
+.icon {
+  color: white;
+  font-size: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.fa-user:hover {
+  color: #eee;
+}
+</style>
 
 @endsection
 

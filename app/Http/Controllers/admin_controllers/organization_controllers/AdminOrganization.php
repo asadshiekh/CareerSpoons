@@ -144,6 +144,11 @@ public function deleteCheckCompanyType(Request $request){
 			);
 			DB::table('add_organizations')->insert($organization);
 			echo $id=DB::getPdo()->lastInsertId();
+			  $picture_up=array(
+              'company_img'=>"user.png",
+              'company_id'=>$id
+            );
+            DB::table('upload_org_img')->insert($picture_up);
 		}
 		
 

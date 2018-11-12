@@ -19,8 +19,9 @@ class OrganizationProfile extends Controller
        
        $org_page=DB::table('Add_organizations')->where(['company_id'=> $id])->first();
        $org_post=DB::table('organization_posts')->where(['company_id'=> $id])->get();
+       $org_IMG=DB::table('upload_org_img')->where(['company_id'=> $id])->first();
        if($org_page){
-        return view('admin_views/Organization_views/organization_profile',['org_page'=>$org_page,'org_post'=>$org_post]);
+        return view('admin_views/Organization_views/organization_profile',['org_page'=>$org_page,'org_post'=>$org_post,'org_IMG'=>$org_IMG]);
         }
     }
 
@@ -72,9 +73,21 @@ class OrganizationProfile extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function uploadOrgPic(Request $request,$id)
     {
-        //
+       echo $id;
+       $file=$request->file('org_picture');
+       $current_date = date("Y.m.d h:i:s");
+        $new_name = rand().'.'.$file->getClientOriginalName();
+        $destination='uploads/organization_images';
+        if($file->move($destination,$new_name)){
+            echo "done";
+            $picture_up=array(
+              'company_img'=>$new_name,
+            );
+            DB::table('upload_org_img')->where(['company_id'=>$id])->update($picture_up);
+            return redirect('organization-profile/'.$id);
+        }
     }
 
     /**

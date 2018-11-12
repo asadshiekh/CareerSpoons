@@ -19,7 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
-      <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1">
+      <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Cities <small style="font-family:'italic',bold">Here... </small></h2>
@@ -37,7 +37,8 @@
 
 
             <!-- Start Content-->
-
+<div class="row">
+      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
             <p class="text-muted font-13 m-b-30">
              
            </p>
@@ -87,7 +88,8 @@
 
        </table>
          </form>
-
+</div>
+</div>
        <!-- End Content-->
 
 
