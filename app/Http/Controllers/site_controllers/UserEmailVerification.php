@@ -13,15 +13,16 @@ class UserEmailVerification extends Controller
     				
     		$obj =  new UserEmailVerificationModel();
     	 	$user_verifed = $obj->check_user_email_verification($email);
+            $request->session()->put('email_status','1');
     	 	$request->session()->flash('user_email_verify', true); 	
     	 	return redirect('/');
 
 		}
-
 		else{
 
 			$obj =  new UserEmailVerificationModel();
     	 	$user_verifed = $obj->check_user_email_verification($email);
+            $request->session()->put('email_status','1');
     	 	$request->session()->flash('user_email_verify', true);
     	 	return redirect('user-login'); 	
 		}

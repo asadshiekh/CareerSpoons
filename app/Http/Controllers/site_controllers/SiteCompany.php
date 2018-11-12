@@ -18,21 +18,19 @@ class SiteCompany extends Controller
 
 		$company_response = array(
 			'company_name' => $request->company_name,
-			'company_email' => $request->company_email,
-			'company_password' => $request->company_password,
 			'company_type' => $request->company_type,
 			'company_city' => $request->company_city,
 			'company_branch' => $request->company_branch,
+			'company_phone' => $request->company_phone_number,
 			'company_industry' => $request->company_industry,
-			'company_operating_since' => $request->company_operating_since,
-			'company_phone_number' => $request->company_phone_number,
+			'company_since' => $request->company_operating_since,
+			'company_location' => $request->company_address,
+			'company_email' => $request->company_email,
+			'company_password' => $request->company_password,
 			'company_cnic' => $request->company_cnic,
-			'company_address' => $request->company_address,
-			'remember_token' => $request->_token,
 			'isChecked' => $request->isChecked,
 			'created_at' => $current_date
 		);
-
 
 		$obj =  new CompanyRegisteration();
     	$company_info = $obj->do_register_company($company_response);

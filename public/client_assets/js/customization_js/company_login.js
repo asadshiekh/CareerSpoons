@@ -1,12 +1,19 @@
+function company_login(){
 
-function user_login(){
 
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	var user_email = $("#user_email").val();
-	var user_password = $("#user_password").val();
+	var company_email = $("#company_email").val();
+	var company_password = $("#company_password").val();
 
-	$.post("do-user-login",{_token:CSRF_TOKEN,user_email:user_email,user_password:user_password},function(data){ 
 
+	// alert(company_email);
+	// alert(CSRF_TOKEN);
+	// alert(company_password);
+
+
+	$.post("do-company-login",{_token:CSRF_TOKEN,company_email:company_email,company_password:company_password},function(data){ 
+
+		
 		if(data=="yes"){				
 
 			//alert(data);
@@ -43,11 +50,7 @@ function user_login(){
 					1000
 					);
 			}
-			
 
-
-			
-
-		});
+	});				
 
 }

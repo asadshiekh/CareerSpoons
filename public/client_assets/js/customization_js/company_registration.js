@@ -15,6 +15,7 @@ function register_company(){
 	var company_address = $("#exampleFormControlTextarea1").val();
 	var isChecked = $('#checkbox:checked').val()?true:false;
 
+
 	$.post("company-registeration-process",{_token:CSRF_TOKEN,company_name:company_name,company_email:company_email,
 		company_password:company_password,company_type:company_type,company_city:company_city,company_branch:company_branch,company_industry:company_industry,
 		company_operating_since:company_operating_since,company_phone_number:company_phone_number,company_cnic:company_cnic,company_address:company_address,isChecked:isChecked},function(data){ 

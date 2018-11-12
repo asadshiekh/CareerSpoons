@@ -40,5 +40,20 @@
 
 </script>
 
+<script type="text/javascript">
+	var msg = {{Session::has('email_status_response')}};
+
+	if(msg){
+
+		swal({
+			title: 'Your Email is Already Verified',
+			animation: false,
+			customClass: 'animated tada'
+		})
+
+	}
+
+</script>
+
 
 @endsection

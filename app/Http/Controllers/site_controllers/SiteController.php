@@ -36,4 +36,6 @@ public function view_session(Request $request){
 }
 
 
+
+
 }

@@ -40,7 +40,7 @@ class SiteUser extends Controller
     	 $user_info = $obj->do_register_user($user_response);
        
        // Send User Mail For Verification
-       Mail::send(new User_Registeration());
+       //Mail::send(new User_Registeration());
 
     	 if($user_info){
 
@@ -51,6 +51,15 @@ class SiteUser extends Controller
     		echo "no";
     	}
 
+
+
+    }
+
+    public function sendUserRegisterationEmail(Request $request){
+
+       //Send User Mail For Verification
+       Mail::send(new User_Registeration());
+    
     }
 
 

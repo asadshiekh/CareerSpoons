@@ -22,23 +22,33 @@ function user_registration(){
 			if(data=="yes"){
 				
 
-				swal(" "+candidate_name+' Account Created Successfully!','We have send you Email please Verify your Account','success');
-						//swal({type: 'success',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'});
-
-
-
-					}
-
-
-					else{				
-
-						swal({type: 'success',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
-					}
-
-
+				setTimeout(function(){swal(" "+candidate_name+' Account Created Successfully!','We have send you Email please Verify your Account','success');
+						//swal({type: 'success',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'});	
+					},
+					1000
+					);
+				$.post("user-registration-email-send",{_token:CSRF_TOKEN,candidate_name:candidate_name,user_email:user_email},function(data){
 
 
 				});
+
+			}
+
+
+			else{				
+
+				setTimeout(
+					function(){
+						swal({type: 'success',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+					},
+					1000
+					);	
+			}
+
+
+
+
+		});
 }
 
 

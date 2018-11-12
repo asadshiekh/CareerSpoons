@@ -20,6 +20,10 @@
 		<link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
 		<!-- Sweet Alert -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.min.css">
+		<link rel="stylesheet" href="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.css">
+		<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
+
+
 	</head>
 	<body>
 		<div class="Loader"></div>
@@ -48,10 +52,10 @@
 							@if(Session::has('status'))
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-									Profile
+									Candidate Profile
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									<li><a class="dropdown-item" href="user-profile/{{Session::get('username')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspYour Profile</a></li>
+									<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspYour Profile</a></li>
 									<li><a class="dropdown-item" href="{{url('logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 								</ul>
 							</li>
@@ -343,7 +347,8 @@
 				<script type="text/javascript" src="{{url('public/client_assets/plugins/js/owl.carousel.min.js')}}"></script>
 				<script type="text/javascript" src="{{url('public/client_assets/plugins/js/slick.min.js')}}"></script>
 				<script type="text/javascript" src="{{url('public/client_assets/plugins/js/gmap3.min.js')}}"></script>
-
+				<!-- Drop Zone .js -->
+				 <script type="text/javascript" src="{{url('public/client_assets/js/dropzone.js')}}"></script>
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
@@ -351,9 +356,15 @@
 				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
 				<!-- Sweet Alert -->
 				<script src="{{url('public/client_assets/js/customization_js/user_login.js')}}"></script>
+				<script src="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.js"></script>
+
+
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
+						$.protip();
+
+
 					});
 				</script>
 				<script type="text/javascript">
@@ -379,6 +390,19 @@
 							text: "Lets Get Started!",
 							icon: "success",
 						});
+
+					}
+				</script>
+				<script type="text/javascript">
+					var msg = {{Session::has('email_status_response')}};
+
+					if(msg){
+
+						swal({
+							title: 'Your Email is Already Verified',
+							animation: false,
+							customClass: 'animated tada'
+						})
 
 					}
 

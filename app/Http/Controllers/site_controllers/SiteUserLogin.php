@@ -57,6 +57,7 @@ class SiteUserLogin extends Controller
         //alert()->success('You have been logged out.', 'Good bye!');
         //$email = $request->session()->get('email');
         $request->session()->flush();
+        $request->session()->forget('email_status');
         return redirect('/');
     }
 
