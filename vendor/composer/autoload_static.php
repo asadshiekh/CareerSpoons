@@ -340,6 +340,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
     );
 
     public static $classMap = array (
+        'App\\CompanyLoginModel' => __DIR__ . '/../..' . '/app/CompanyLoginModel.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -355,6 +356,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Controllers\\site_controllers\\SiteUserLogin' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteUserLogin.php',
         'App\\Http\\Controllers\\site_controllers\\UserEmailVerification' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/UserEmailVerification.php',
         'App\\Http\\Controllers\\site_controllers\\UserProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/UserProfile.php',
+        'App\\Http\\Controllers\\site_controllers\\UserResume' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/UserResume.php',
         'App\\Http\\Controllers\\site_controllers\\mail_sender' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/mail_sender.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -372,7 +374,9 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\SiteModel\\Company\\CompanyLoginModel' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyLoginModel.php',
         'App\\SiteModel\\Company\\CompanyRegisteration' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyRegisteration.php',
+        'App\\SiteModel\\Resumes\\User_Resume_Model' => __DIR__ . '/../..' . '/app/SiteModel/Resumes/User_Resume_Model.php',
         'App\\SiteModel\\User\\UserEmailVerificationModel' => __DIR__ . '/../..' . '/app/SiteModel/User/UserEmailVerificationModel.php',
         'App\\SiteModel\\User\\UserLoginModel' => __DIR__ . '/../..' . '/app/SiteModel/User/UserLoginModel.php',
         'App\\SiteModel\\User\\UserRegisteration' => __DIR__ . '/../..' . '/app/SiteModel/User/UserRegisteration.php',

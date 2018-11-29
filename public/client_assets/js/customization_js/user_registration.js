@@ -7,8 +7,7 @@ function user_registration(){
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	var candidate_name = $("#candidate_name").val();
 	var user_email = $("#user_email").val();
-	var user_password = $("#user_password").val();
-	var re_password = $("#re_password").val();
+	var user_password = $("#password-field").val();
 	var username = $("#username").val();
 	var phone_number = $("#phone_number").val();
 	var checkbox = $('#checkbox:checked').val()?true:false;

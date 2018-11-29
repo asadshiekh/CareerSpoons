@@ -9,6 +9,9 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+
+		<!-- Font Awesome  ================================================== -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<!-- CSS
 		================================================== -->
 		<link rel="stylesheet" href="{{url('public/client_assets/plugins/css/plugins.css')}}">
@@ -20,6 +23,8 @@
 		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/css/customization_css/customization_of_form.css')}}">
 		<!-- Sweet Alert Libery -->
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<!-- Password Strength Meter Css -->
+		<link rel="stylesheet" href="{{url('public/client_assets/css/customization_css/passwordscheck.css')}}">
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg);">
@@ -52,24 +57,22 @@
 							</div>
 
 							<div class="row">
-								<div class="col-xs-6">
+								<div class="col-xs-8">
 									<label>User Password *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
-											<i class="fa fa-lock"></i>
+											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="password" id="user_password" class="form-control" placeholder="Enter Password" required="required">
+										<input type="password" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<div class="input-group-addon">
+											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+										</div>
 									</div>
 									<!--Error Msges -->
 								</div>
-								<div class="col-xs-6">
-									<label>Re Enter Password *</label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="fa fa-lock"></i>
-										</div>
-										<input type="password" id="re_password" class="form-control" placeholder="Re Enter Password" required="required">
-									</div>
+								<div class="col-xs-4" id="register">
+									
+									<span id="result" class="field-icon_1">Password Strength Meter</span>
 								</div>
 							</div>
 							<div class="form-group"></div>
@@ -162,6 +165,8 @@
 				<script src="{{url('public/client_assets/js/customization_js/user_registration.js')}}"></script>
 				<!-- Masking Input Js -->
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+				<!-- Passsword Strength Checker -->
+				<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
@@ -172,6 +177,22 @@
 						//$("#phone-number").mask("(?92) 00-000-0000");
 					});
 				</script>
+				<script type="text/javascript">
+
+
+					$(".toggle-password").click(function() {
+
+						$(this).toggleClass("fa-eye-slash fa-eye");
+						var input = $($(this).attr("toggle"));
+						if (input.attr("type") == "password") {
+							input.attr("type", "text");
+						} else {
+							input.attr("type", "password");
+						}
+					});
+
+				</script>
+
 				<script>
 					function openRightMenu() {
 						document.getElementById("rightMenu").style.display = "block";
@@ -194,6 +215,18 @@
 			margin:-4% auto 0 auto;
 		}
 
+		.field-icon_1{
+			font-size: 12px;
+			font-weight:bold;
+			color: limegreen;
+			float: left;
+			position: relative;
+			z-index:3;
+			border: 1px solid red;
+			top:12px;
+		}
 
 
-		</style>
+
+
+	</style>

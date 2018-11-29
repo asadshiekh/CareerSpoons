@@ -65,7 +65,6 @@ Route::get('all-jobs',"site_controllers\SiteJobController@viewAllJobSearch");
 Route::group(['middleware'=>'CheckUserProfile'],function(){
 
 Route::get('user-profile',"site_controllers\UserProfile@viewUserProfile");
-Route::any('upload-resume',"site_controllers\UserProfile@uploadResume");
 
 });
 //   UserProfile Controller //
@@ -76,9 +75,23 @@ Route::get('candidate-email-verification/{email}',"site_controllers\UserEmailVer
 //   UserEmailVerification Controller //
 
 
+//    UserResume Controller    //
+
+Route::any('upload-resume',"site_controllers\UserResume@uploadResume")->middleware('CheckUserProfile');
+Route::get('make-user-resume',"site_controllers\UserResume@manageUserResume")->middleware('CheckUserProfile');
+Route::any('add-user-education',"site_controllers\UserResume@addUserEduction")->middleware('CheckUserProfile');
+Route::any('add-user-experience',"site_controllers\UserResume@addUserExperience")->middleware('CheckUserProfile');
+Route::any('add-user-project',"site_controllers\UserResume@addUserProject")->middleware('CheckUserProfile');
+Route::any('add-user-skill',"site_controllers\UserResume@addUserSkill")->middleware('CheckUserProfile');
+Route::any('add-user-language',"site_controllers\UserResume@addUserLanguage")->middleware('CheckUserProfile');
+Route::any('add-user-hobbies',"site_controllers\UserResume@addUserHobbies")->middleware('CheckUserProfile');
+Route::any('add-user-resume-info',"site_controllers\UserResume@addUserResumeInfo")->middleware('CheckUserProfile');
+
+//    UserResume Controller    //
+
 Route::get('send',"site_controllers\mail_sender@send");
 Route::get('verify-email',"site_controllers\mail_sender@hello");
-
+Route::get('file',"site_controllers\UserResume@index");
 
 // CheckUserLogin => agr to ap login ho to ap ko login pages par nahi janay dy ga wapis osi page par lay ay ga...
 

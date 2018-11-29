@@ -3,10 +3,12 @@
 <div class="clearfix"></div>
 
 <!-- Title Header Start -->
-<section class="inner-header-title" style="background-color:#5E6DB9">
-	<div class="container">
-		<h3 style="margin-bottom: 65px">Welcome {{Session::get('candidate_name')}}</h3>
+<section class="inner-header-title" style="background-image:url('public/client_assets/img/gtrr.jpg');">
+
+	<div class="container" style="margin-bottom: 280px">
+		
 	</div>
+
 </section>
 <div class="clearfix"></div>
 <!-- Title Header End -->
@@ -16,7 +18,14 @@
 	<div class="container white-shadow">
 
 		<div class="row">
+
+			<!-- <div class="pull-left">
+				Profile Strength<div id="circle" ></div>
+			</div> -->
+
+
 			<div class="detail-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+
 
 			@if(Session::get('email_status')=='1')
 			<div class="detail-status"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is Verify By Email" data-pt-animate="bounceIn">Verified Candidate</span></div>
@@ -29,7 +38,28 @@
 		<div class="row bottom-mrg">
 			<div class="col-md-12 col-sm-12">
 				<div class="advance-detail detail-desc-caption">
-					<h4>Daniel Declizer</h4><span class="designation">Web Designer</span>
+
+
+					<div id="typed-strings">
+						<div class="contains_heading" style="font-size: 6px">
+							<h4>Welcome {{Session::get('candidate_name')}}</h4>
+							<p style="color: limegreen">( 
+								@if(Session::has('candidate_profession'))
+								{{Session::get('candidate_profession')}}
+								@else
+								Your Profession Title
+								@endif
+
+
+
+							)</p>
+
+						</div>
+					</div>
+
+					<span id="typed"></span>
+
+
 					<ul>
 						<li><strong class="j-view">0</strong>New Post</li>
 						<li><strong class="j-applied">0</strong>Job Applied</li>
@@ -52,10 +82,10 @@
 				</div>
 				<div class="col-md-7 col-sm-7">
 					@if(Session::get('cv_status')==0)
-					<div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a><a href="#" class="footer-btn blu-btn" title="">Make Resume</a>
+					<div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
 					</div>
 					@elseif (Session::get('cv_status')==1)
-					<div class="detail-pannel-footer-btn pull-right"><a href="#" class="footer-btn blu-btn" title="">Make Resume</a>
+					<div class="detail-pannel-footer-btn pull-right"><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
 					</div>
 					@endif
 
@@ -91,9 +121,9 @@
 				<div class="deatil-tab-employ tool-tab">
 					<ul class="nav simple nav-tabs" id="simple-design-tab">
 						<li class="active"><a  data-toggle="tab" href="#about">About</a></li>
-						<li><a data-toggle="tab" href="#address">Personal-Info</a></li>
-						<li><a data-toggle="tab" href="#address">Academic-Info</a></li>
-						<li><a data-toggle="tab" href="#address">Experience</a></li>
+						<li><a data-toggle="tab" href="#address">Info</a></li>
+						<li><a data-toggle="tab" href="#education_table">Resume Info</a></li>
+						<li><a data-toggle="tab" href="#profile_meter">Profile Strength</a></li>
 						<li><a data-toggle="tab" href="#address">Skills</a></li>
 						<li><a data-toggle="tab" href="#matches-job">Matches-Job</a></li>
 						<li><a data-toggle="tab" href="#matches-job">Insight</a></li>
@@ -105,10 +135,12 @@
 					<div class="tab-content">
 
 						<div id="about" class="tab-pane fade in active">
-							<h3>About Adam Declizer</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum sed diam ac fermentum. Mauris nec pellentesque neque. Cras nec diam euismod, congue sapien eu, fermentum libero. Vestibulum quis sem.</p>
+							<h3>Your Bio </h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+							<div class="col-sm-12">
+								<button type="button" class="update-btn">Update Bio</button>
+							</div>
+							<br>
 						</div>
 						<!-- End About Sec -->
 
@@ -125,6 +157,203 @@
 								<li><span>Fax:</span>(622) 123 456</li>
 								<li><span>Email:</span>youremail@gmail.com</li>
 							</ul>
+						</div>
+						<!-- End Address Sec -->
+
+						<!-- Start Address Sec -->
+						<div id="profile_meter" class="tab-pane fade">
+
+							<div class="row">
+								<div class="meter">
+									<h3>Profile Strength</h3>
+									<div id="circle"  data-value="0.89" style="margin-left: 45%; position: relative;"><span style="position: absolute; top:53px;left:62px;color:green;font-size:14px">67%</span></div>
+								</div>
+							</div>
+
+						</div>
+						<!-- End Address Sec -->
+
+						<div id="education_table" class="tab-pane fade">
+							<h3>Eduction Info</h3>
+							<br/>
+							<table id="myTable" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/><hr>
+							<h3>Experenice-Info</h3>
+							<br/>
+							<table id="userExperience" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/><hr>
+							<h3>Project Info</h3>
+							<br/>
+							<table id="userProject" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/><hr>
+							<h3>Your Skills</h3>
+							<br/>
+							<table id="userSkills" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/><hr>
+							<h3>Your Languages</h3>
+							<br/>
+							<table id="userLanguage" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/><hr>
+							<h3>Your Hobbies</h3>
+							<br/>
+							<table id="userHobbies" class="display">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Insistute Name</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Punjab College</td>
+										<td>Lahore Cantt</td>
+
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>South Aisa</td>
+										<td>Mall Of Lahore</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Catherdal</td>
+										<td>Lahore Cantt</td>
+									</tr>
+								</tbody>
+							</table>
+
 						</div>
 						<!-- End Address Sec -->
 
@@ -772,8 +1001,9 @@
 										</div>
 									</div>
 
+
 									<style type="text/css">
-									
+
 									.Uploadbtn {
 										position: relative;
 										overflow: hidden;

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\CompanyLoginModel' => $baseDir . '/app/CompanyLoginModel.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -21,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\site_controllers\\SiteUserLogin' => $baseDir . '/app/Http/Controllers/site_controllers/SiteUserLogin.php',
     'App\\Http\\Controllers\\site_controllers\\UserEmailVerification' => $baseDir . '/app/Http/Controllers/site_controllers/UserEmailVerification.php',
     'App\\Http\\Controllers\\site_controllers\\UserProfile' => $baseDir . '/app/Http/Controllers/site_controllers/UserProfile.php',
+    'App\\Http\\Controllers\\site_controllers\\UserResume' => $baseDir . '/app/Http/Controllers/site_controllers/UserResume.php',
     'App\\Http\\Controllers\\site_controllers\\mail_sender' => $baseDir . '/app/Http/Controllers/site_controllers/mail_sender.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -38,7 +40,9 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\SiteModel\\Company\\CompanyLoginModel' => $baseDir . '/app/SiteModel/Company/CompanyLoginModel.php',
     'App\\SiteModel\\Company\\CompanyRegisteration' => $baseDir . '/app/SiteModel/Company/CompanyRegisteration.php',
+    'App\\SiteModel\\Resumes\\User_Resume_Model' => $baseDir . '/app/SiteModel/Resumes/User_Resume_Model.php',
     'App\\SiteModel\\User\\UserEmailVerificationModel' => $baseDir . '/app/SiteModel/User/UserEmailVerificationModel.php',
     'App\\SiteModel\\User\\UserLoginModel' => $baseDir . '/app/SiteModel/User/UserLoginModel.php',
     'App\\SiteModel\\User\\UserRegisteration' => $baseDir . '/app/SiteModel/User/UserRegisteration.php',
