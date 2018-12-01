@@ -119,7 +119,8 @@
 		<div class="col-md-12 col-sm-12">
 			<div class="full-card">
 				<div class="deatil-tab-employ tool-tab">
-					<ul class="nav simple nav-tabs" id="simple-design-tab">
+
+					<ul class="nav nav-tabs" id="simple-design-tab">
 						<li class="active"><a  data-toggle="tab" href="#about">About</a></li>
 						<li><a data-toggle="tab" href="#address">Info</a></li>
 						<li><a data-toggle="tab" href="#education_table">Resume Info</a></li>
@@ -131,6 +132,8 @@
 						<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
 						<li><a data-toggle="tab" href="#settings">Settings</a></li>
 					</ul>
+
+
 					<!-- Start All Sec -->
 					<div class="tab-content">
 
@@ -162,197 +165,252 @@
 
 						<!-- Start Address Sec -->
 						<div id="profile_meter" class="tab-pane fade">
-
 							<div class="row">
-								<div class="meter">
-									<h3>Profile Strength</h3>
-									<div id="circle"  data-value="0.89" style="margin-left: 45%; position: relative;"><span style="position: absolute; top:53px;left:62px;color:green;font-size:14px">67%</span></div>
-								</div>
-							</div>
+								
+								<div class="col-md-12 col-sm-12">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
+										<select class="form-control input-lg" name="user_category" onchange="change_candidate_charts_view()" id="candidate_chart_view">
+											<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
+											<option value="" disabled="disabled" selected="selected" hidden="hidden">Choose the Chart Type</option>
+											<option>Bar</option>
+											<option>Pie</option>
+										</select>
+									</div>
+									<br>
+									<div class="pie_charts" id="pie_charts">
 
+										<canvas id="piechart" style="height:40vh; width:80vw"></canvas>
+										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+
+									</div>
+
+
+									<div class="line_charts" id="line_charts">
+										
+										<canvas id="linechart" style="height:40vh; width:80vw"></canvas>
+										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+
+									</div>
+
+								</div>
+							</div>	
 						</div>
 						<!-- End Address Sec -->
 
 						<div id="education_table" class="tab-pane fade">
-							<h3>Eduction Info</h3>
-							<br/>
-							<table id="myTable" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+							<h3 style="margin-bottom: 15px">Candidate-Resume</h3>
+							
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
+								<select class="form-control input-lg" name="user_category" onchange="change_category()" id="user_category">
+									<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
+									<option>Eduction</option>
+									<option>Experience</option>
+									<option>Project</option>
+									<option>Skills</option>
+									<option>Languages</option>
+									<option>Hobbies</option>
+								</select>
+							</div>	
+							<div class="candidate_eduction" id="candidate_eduction">
+								<h3>Eduction-Info</h3>
+								<br>	
+								<table id="myEduction" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
-							<br/><hr>
-							<h3>Experenice-Info</h3>
-							<br/>
-							<table id="userExperience" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<br/><hr>
+							</div>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
-							<br/><hr>
-							<h3>Project Info</h3>
-							<br/>
-							<table id="userProject" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+							<div class="candidate_experience" id="candidate_experience">
+								<h3>Experenice-Info</h3>
+								<br/>
+								<table id="userExperience" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
-							<br/><hr>
-							<h3>Your Skills</h3>
-							<br/>
-							<table id="userSkills" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<hr>
+							</div>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
-							<br/><hr>
-							<h3>Your Languages</h3>
-							<br/>
-							<table id="userLanguage" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+							<div class="candidate_project" id="candidate_project">
+								<h3>Project Info</h3>
+								<br/>
+								<table id="userProject" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
-							<br/><hr>
-							<h3>Your Hobbies</h3>
-							<br/>
-							<table id="userHobbies" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Insistute Name</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Punjab College</td>
-										<td>Lahore Cantt</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<br/><hr>
+							</div>
 
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>South Aisa</td>
-										<td>Mall Of Lahore</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Catherdal</td>
-										<td>Lahore Cantt</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="candidate_skill" id="candidate_skill">
+								<h3>Your Skills</h3>
+								<br/>
+								<table id="userSkills" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
+
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<br/><hr>
+							</div>
+
+							<div class="candidate_languages" id="candidate_languages">
+								<h3>Your Languages</h3>
+								<br/>
+								<table id="userLanguage" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
+
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<br/><hr>
+							</div>
+
+							<div class="candidate_hobbies" id="candidate_hobbies">
+								<h3>Your Hobbies</h3>
+								<br/>
+								<table id="userHobbies" class="display">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Insistute Name</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Punjab College</td>
+											<td>Lahore Cantt</td>
+
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>South Aisa</td>
+											<td>Mall Of Lahore</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Catherdal</td>
+											<td>Lahore Cantt</td>
+										</tr>
+									</tbody>
+								</table>
+								<br/><hr>
+							</div>
+
 
 						</div>
 						<!-- End Address Sec -->

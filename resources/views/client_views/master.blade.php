@@ -380,12 +380,14 @@
 			<script src="{{url('public/client_assets/js/customization_js/add_language_resume.js')}}"></script>
 			<!-- Add Hobbies Resume -->
 			<script src="{{url('public/client_assets/js/customization_js/add_hobbies_resume.js')}}"></script>
+			<!-- Manage Catgeory of Data Tables -->
+			<script src="{{url('public/client_assets/js/customization_js/manage_user_category.js')}}"></script>
 			<!-- Typed .Js -->
 			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 			<!-- Jquery data Tables .Js -->
 			<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-			<!-- Progress bar Link -->
-			<script src="{{url('public/client_assets/js/progress_bar/circle-progress.js')}}"></script>
+			<!--Js Charts Link -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 			<script>
 				$('#dob').dateDropper();
 			</script>
@@ -437,18 +439,130 @@
 				});
 			</script>
 
-			<script>
+			<script type="text/javascript">
 				
-				$('#circle').circleProgress({
-						size: 150,
-						fill: {
-							 color: "green"
-						},
 
-					});
+				var ctx = document.getElementById("piechart");
+				var myChart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+						labels: ["Eduction", "Experience", "Project", "Skills", "Languages", "Hobbies"],
+						datasets: [{
+							data: [{{Session::get('cv_status')}}, 19, 3, 5, 2, 3],
+							backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+							'rgba(255,99,132,1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+				});
 
 			</script>
 
+			<script type="text/javascript">
+				
+
+				var ctx = document.getElementById("linechart");
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["User Resume info"],
+						datasets: [{
+							label: 'Eduction',
+							data: [22],
+							backgroundColor: [
+							'rgba(255, 99, 132, 0.2)'
+							],
+							borderColor: [
+							'rgba(255,99,132,1)'
+							],
+							borderWidth: 1
+						},{
+							label: 'Experience',
+							data: [41],
+							backgroundColor: [
+							'rgba(54, 162, 235, 0.2)'
+							],
+							borderColor: [
+							'rgba(54, 162, 235, 1)'
+							],
+							borderWidth: 1
+						},{
+							label: 'Project',
+							data: [34],
+							backgroundColor: [
+							'rgba(255, 206, 86, 0.2)'
+							],
+							borderColor: [
+							'rgba(255, 206, 86, 1)'
+							],
+							borderWidth: 1
+						},{
+							label: 'Skills',
+							data: [27],
+							backgroundColor: [
+							'rgba(75, 192, 192, 0.2)'
+							],
+							borderColor: [
+							'rgba(75, 192, 192, 1)'
+							],
+							borderWidth: 1
+						},{
+							label: 'Languages',
+							data: [32],
+							backgroundColor: [
+							'rgba(153, 102, 255, 0.2)'
+							],
+							borderColor: [
+							'rgba(153, 102, 255, 1)'
+							],
+							borderWidth: 1
+						},{
+							label: 'Hobbies',
+							data: [18],
+							backgroundColor: [
+							'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+							'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}
+						]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+				});
+			</script>
 
 			<script type="text/javascript">
 				$(document).ready(function() {
@@ -459,12 +573,26 @@
 					$("#exp_ref_phone").mask("(0399) 999-9999");
 					$("#project_ref_phone").mask("(0399) 999-9999");
 					$("#candidate_number").mask("(0399) 999-9999");
-					$('#myTable').DataTable();
+
+					// load All Data Tables
+					$('#myEduction').DataTable();
 					$('#userProject').DataTable();
 					$('#userExperience').DataTable();
 					$('#userSkills').DataTable();
 					$('#userLanguage').DataTable();
 					$('#userHobbies').DataTable();
+
+					// Data Tables Show and Hide
+					$("#candidate_eduction").hide();
+					$("#candidate_experience").hide();
+					$("#candidate_project").hide();
+					$("#candidate_skill").hide();
+					$("#candidate_languages").hide();
+					$("#candidate_hobbies").hide();
+
+					// Chart Show and Hide
+					$("#pie_charts").hide();
+					$("#line_charts").hide();
 
 				});
 			</script>
