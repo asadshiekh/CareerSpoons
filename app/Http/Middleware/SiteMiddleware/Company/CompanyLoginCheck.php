@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Middleware\SiteMiddleware\User;
+namespace App\Http\Middleware\SiteMiddleware\Company;
 
 use Closure;
 use Alert;
 use Illuminate\Support\Facades\Redirect;
-class UserLoginCheck
+
+class CompanyLoginCheck
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,7 @@ class UserLoginCheck
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('login_status')=='Active'){
+      if($request->session()->get('login_status')=='Active'){
 
             
             $request->session()->flash('Access', true);

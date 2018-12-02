@@ -62,5 +62,9 @@ class Kernel extends HttpKernel
         'CheckUserProfile' => \App\Http\Middleware\SiteMiddleware\User\UserProfileCheck::class,
         'CheckUserLogin' => \App\Http\Middleware\SiteMiddleware\User\UserLoginCheck::class,
         'CheckUserEmailVerify' => \App\Http\Middleware\SiteMiddleware\User\CheckUserEmailVerify::class,
+        //Company Middle Ware 
+        'CheckComapnyLogin' => \App\Http\Middleware\SiteMiddleware\Company\CompanyLoginCheck::class,
+        'CheckCompanyProfile' => \App\Http\Middleware\SiteMiddleware\Company\CompanyProfileCheck::class,
+        'CheckCompanyEmailVerify' => \App\Http\Middleware\SiteMiddleware\Company\CheckCompanyEmailVerify::class,
     ];
 }

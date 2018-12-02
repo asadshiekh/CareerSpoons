@@ -1,5 +1,5 @@
 function addHobbies(num){
-
+var notyf = new Notyf();
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 var user_hobbies = $("#user_hobbies").val();
 
@@ -19,12 +19,12 @@ $.post("add-user-hobbies",{_token:CSRF_TOKEN,user_hobbies:user_hobbies},function
 					);
 
 		if(num==1){
-
+			notyf.confirm('Your changes have been successfully saved!');
 			 document.getElementById("hobbies_form").reset();
 		}
 
 		else if(num==0){
-
+			notyf.confirm('Your changes have been successfully saved!');
 			$("#hobbies_div").hide();
 		}
 
@@ -45,7 +45,7 @@ $.post("add-user-hobbies",{_token:CSRF_TOKEN,user_hobbies:user_hobbies},function
 					},
 					1000
 					);
-
+		notyf.alert('Something Went Worng Plz Try Again');
 	}
 
 });

@@ -23,8 +23,10 @@
 				Profile Strength<div id="circle" ></div>
 			</div> -->
 
+			<div class="detail-pic" data-toggle="modal" data-target="#mycropper"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img" alt="" />
+				<a type="file" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a>
 
-			<div class="detail-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+			</div>
 
 
 			@if(Session::get('email_status')=='1')
@@ -179,21 +181,15 @@
 									</div>
 									<br>
 									<div class="pie_charts" id="pie_charts">
-
 										<canvas id="piechart" style="height:40vh; width:80vw"></canvas>
 										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
-
 									</div>
-
-
 									<div class="line_charts" id="line_charts">
-										
 										<canvas id="linechart" style="height:40vh; width:80vw"></canvas>
 										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
-
 									</div>
-
 								</div>
+
 							</div>	
 						</div>
 						<!-- End Address Sec -->
@@ -219,28 +215,27 @@
 								<table id="myEduction" class="display">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+											<th>Degree Title</th>
+											<th>Degree Level</th>
+											<th>Institute Name</th>
+											<th>Institute Location</th>
+											<th>Majors</th>
+											<th>Action</th>
+											
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+										@foreach ($candidate_education as $edu)
+										<tr id="edu_unique_row{{ $edu->id }}">
+											<td>{{ $edu->degree_title }}</td>
+											<td>{{ $edu->degree_level }}</td>
+											<td>{{ $edu->Institute_name}}</td>
+											<td>{{ $edu->institute_location}}</td>
+											<td>{{ $edu->majors }}</td>
+											<td><a href="#DemoModal2" data-toggle="modal"><i class="far fa-eye"></i></a> | <i class="fas fa-edit"></i> | <a onclick="delete_edu(<?php echo $edu->id ?>)"><i class="fas fa-trash-alt"></i></a></td>
+										</tr>
+										@endforeach
 
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
 									</tbody>
 								</table>
 								<br/><hr>
@@ -252,28 +247,27 @@
 								<table id="userExperience" class="display">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+											<th>Job Title</th>
+											<th>Company Name</th>
+											<th>Your Position</th>
+											<th>Ref Email</th>
+											<th>Ref Phone</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										@foreach ($candidate_experience as $exp)
 										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+											
+											<td>{{ $exp->job_title }}</td>
+											<td>{{ $exp->company_name }}</td>
+											<td>{{ $exp->your_position}}</td>
+											<td>{{ $exp->ref_email}}</td>
+											<td>{{ $exp->ref_phone }}</td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
 
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 								<hr>
@@ -285,28 +279,27 @@
 								<table id="userProject" class="display">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+											<th>Project Title</th>
+											<th>Project Company Name</th>
+											<th>Project Ref Email</th>
+											<th>Project Ref Phone</th>
+											<th>Your Porject Position</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										@foreach ($candidate_project as $candidate_project)
 										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+											
+											<td>{{ $candidate_project->project_title }}</td>
+											<td>{{ $candidate_project->project_company_name }}</td>
+											<td>{{ $candidate_project->project_ref_email}}</td>
+											<td>{{ $candidate_project->project_ref_phone }}</td>
+											<td>{{ $candidate_project->your_porject_position }}</td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
 
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 								<br/><hr>
@@ -318,28 +311,21 @@
 								<table id="userSkills" class="display">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+											<th style="text-align: center;">Skill Name</th>
+											<th style="text-align: center;">Skill Percentage</th>
+											<th style="text-align: center;">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+										@foreach ($candidate_skill as $skill)
+										<tr style="text-align: center;">
+											
+											<td>{{ $skill->skill_name }}</td>
+											<td>{{ $skill->skill_percentage }}</td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
 
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 								<br/><hr>
@@ -351,28 +337,19 @@
 								<table id="userLanguage" class="display">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+											<th style="text-align: center;">User Language</th>
+											<th style="text-align: center;">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+										@foreach ($candidate_languages as $languages)
+										<tr style="text-align: center;">
+											
+											<td>{{ $languages->user_language }}</td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
 
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 								<br/><hr>
@@ -383,35 +360,24 @@
 								<br/>
 								<table id="userHobbies" class="display">
 									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Insistute Name</th>
-											<th>Location</th>
+										<tr> 
+											<th style="text-align: center;">Hobbies</th>
+											<th style="text-align: center;">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Punjab College</td>
-											<td>Lahore Cantt</td>
+										@foreach ($candidate_hobbies as $hobbies)
+										<tr style="text-align: center;">
+											
+											<td>{{ $hobbies->user_hobbies }}</td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
 
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>South Aisa</td>
-											<td>Mall Of Lahore</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Catherdal</td>
-											<td>Lahore Cantt</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 								<br/><hr>
 							</div>
-
-
 						</div>
 						<!-- End Address Sec -->
 
@@ -672,426 +638,486 @@
 															</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
 														</div>
 
-														<div class="col-md-4 col-sm-4">
-															<div class="manage-cndt">
-																<div class="cndt-status pending">Pending</div>
-																<div class="cndt-caption">
-																	<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
-																	<h4>Anna Hoysted</h4><span>UI/UX Designer</span>
-																	<p>Our analysis team at Megriosft use end to end innovation proces</p>
-																</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-															</div>
+<div class="col-md-4 col-sm-4">
+	<div class="manage-cndt">
+		<div class="cndt-status pending">Pending</div>
+		<div class="cndt-caption">
+			<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
+			<h4>Anna Hoysted</h4><span>UI/UX Designer</span>
+			<p>Our analysis team at Megriosft use end to end innovation proces</p>
+			</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+		</div>
+		<div class="col-md-4 col-sm-4">
+			<div class="manage-cndt">
+				<div class="cndt-status available">Available</div>
+				<div class="cndt-caption">
+					<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
+					<h4>Spencer Birdseye</h4><span>SEO Expert</span>
+					<p>Our analysis team at Megriosft use end to end innovation proces</p>
+					</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="manage-cndt">
+						<div class="cndt-status pending">Pending</div>
+						<div class="cndt-caption">
+							<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
+							<h4>Eden Macaulay</h4><span>Web designer</span>
+							<p>Our analysis team at Megriosft use end to end innovation proces</p>
+							</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+						</div>
+					</div>
+					<div class="row">
+						<ul class="pagination">
+							<li><a href="#">«</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+							<li><a href="#">»</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- End Friend List -->
 
-															<div class="col-md-4 col-sm-4">
-																<div class="manage-cndt">
-																	<div class="cndt-status available">Available</div>
-																	<div class="cndt-caption">
-																		<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
-																		<h4>Spencer Birdseye</h4><span>SEO Expert</span>
-																		<p>Our analysis team at Megriosft use end to end innovation proces</p>
-																	</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-																</div>
-
-																<div class="col-md-4 col-sm-4">
-																	<div class="manage-cndt">
-																		<div class="cndt-status pending">Pending</div>
-																		<div class="cndt-caption">
-																			<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
-																			<h4>Eden Macaulay</h4><span>Web designer</span>
-																			<p>Our analysis team at Megriosft use end to end innovation proces</p>
-																		</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-																	</div>
-																</div>
-																<div class="row">
-																	<ul class="pagination">
-																		<li><a href="#">«</a></li>
-																		<li class="active"><a href="#">1</a></li>
-																		<li><a href="#">2</a></li>
-																		<li><a href="#">3</a></li>
-																		<li><a href="#">4</a></li>
-																		<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
-																		<li><a href="#">»</a></li>
-																	</ul>
-																</div>
-															</div>
-															<!-- End Friend List -->
-
-															<!-- Start Message -->
-															<div id="messages" class="tab-pane fade">
-																<div class="inbox-body inbox-widget">
-																	<div class="mail-card">
-																		<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#full-message" aria-expanded="false">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="collapse" id="full-message" aria-expanded="false" style="height: 0px;">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="mail-card unread">
-																		<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-2" aria-expanded="false">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-2.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view1" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view1" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="collapse" id="meaages-2" aria-expanded="false" style="height: 0px;">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="mail-card">
-																		<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-3" aria-expanded="false">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view2" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view2" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="collapse" id="meaages-3" aria-expanded="false" style="height: 0px;">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="mail-card">
-																		<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-4" aria-expanded="false">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-3.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view3" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view3" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="collapse" id="meaages-4" aria-expanded="false" style="height: 0px;">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="mail-card unread">
-																		<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="meaages-5" aria-expanded="false">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view4" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view4" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="collapse" id="meaages-5" aria-expanded="false" style="height: 0px;">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="mail-card">
-																		<header class="card-header cursor-pointer">
-																			<div class="card-title flexbox">
-																				<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
-																				<div>
-																					<h6>Daniel Duke</h6>
-																					<small>Today at 07:34 AM</small>
-																					<small><a class="text-info collapsed" href="#detail-view-6" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
-
-																					<div class="no-collapsing cursor-text collapse" id="detail-view-6" aria-expanded="false" style="height: 0px;">
-																						<small class="d-inline-block">From:</small>
-																						<small>theadmin@thetheme.io</small>
-																						<br>
-																						<small class="d-inline-block">To:</small>
-																						<small>subscriber@yahoo.com</small>
-																					</div>
-																				</div>
-																			</div>
-																		</header>
-																		<div class="" id="meaages-6">
-																			<div class="card-body">
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-																				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-																				<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
-																				<hr>
-																				<h5 class="text-lighter">
-																					<i class="fa fa-paperclip"></i>
-																					<small>Attchments (3)</small>
-																				</h5>
-																				<div class="attachment-block">
-																					<div class="thumb">
-																						<img src="{{url('public/client_assets/img/gallery1.jpg')}}" alt="img" class="img-responsive">
-																					</div>
-																					<div class="attachment-info">
-																						<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
-																						<ul>
-																							<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
-																							<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
-																						</ul>
-																					</div>
-																				</div>
-																				<div class="attachment-block">
-																					<div class="thumb">
-																						<img src="{{url('public/client_assets/img/gallery2.jpg')}}" alt="img" class="img-responsive">
-																					</div>
-																					<div class="attachment-info">
-																						<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
-																						<ul>
-																							<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
-																							<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
-																						</ul>
-																					</div>
-																				</div>
-																				<div class="attachment-block">
-																					<div class="thumb">
-																						<img src="{{url('public/client_assets/img/gallery3.jpg')}}" alt="img" class="img-responsive">
-																					</div>
-																					<div class="attachment-info">
-																						<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
-																						<ul>
-																							<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li> 
-																							<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
-																						</ul>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<!-- End Message -->
-
-															<!-- Start Settings -->
-															<div id="settings" class="tab-pane fade">
-																<div class="row no-mrg">
-																	<h3>Edit Profile</h3>
-																	<div class="edit-pro">
-																		<div class="col-md-4 col-sm-6">
-																			<label>First Name</label>
-																			<input type="text" class="form-control" placeholder="Matthew">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Middle Name</label>
-																			<input type="text" class="form-control" placeholder="Else">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Last Name</label>
-																			<input type="text" class="form-control" placeholder="Dana">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Email</label>
-																			<input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Phone</label>
-																			<input type="text" class="form-control" placeholder="+91 258 475 6859">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Zip / Postal</label>
-																			<input type="text" class="form-control" placeholder="258 457 528">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Address</label>
-																			<input type="text" class="form-control" placeholder="204 Lowes Alley">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Address 2</label>
-																			<input type="text" class="form-control" placeholder="Software Developer">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Organization</label>
-																			<input type="text" class="form-control" placeholder="Software Developer">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>City</label>
-																			<input type="text" class="form-control" placeholder="Chandigarh">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>State</label>
-																			<input type="text" class="form-control" placeholder="Punjab">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Country</label>
-																			<input type="text" class="form-control" placeholder="India">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Old Password</label>
-																			<input type="password" class="form-control" placeholder="*********">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>New Password</label>
-																			<input type="password" class="form-control" placeholder="*********">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Old Password</label>
-																			<input type="password" class="form-control" placeholder="*********">
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>About you</label>
-																			<textarea class="form-control" placeholder="Write Something"></textarea>
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Upload Profile Pic</label>
-																			<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
-																				<div class="dz-default dz-message">
-																					<i class="fa fa-cloud-upload"></i>
-																					<span>Drop files here to upload</span>
-																				</div>
-																			</form>
-																		</div>
-																		<div class="col-md-4 col-sm-6">
-																			<label>Upload Profile Cover</label>
-																			<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
-																				<div class="dz-default dz-message">
-																					<i class="fa fa-cloud-upload"></i>
-																					<span>Drop files here to upload</span>
-																				</div>
-																			</form>
-																		</div>
-																		<div class="col-sm-12">
-																			<button type="button" class="update-btn">Update Now</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!-- End Settings -->
-														</div>
-														<!-- Start All Sec -->
-													</div>  
-												</div>
-											</div>
-										</div>
-									</section>
-									<!-- Candidate Profile End -->
-									@endif
-
-									<div class="modal" id="exampleModal" tabindex="-1" role="dialog" style="margin-top:120px">
-										<div class="modal-dialog" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Upload Resume</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<form action="{{url('upload-resume')}}" method="post" enctype="multipart/form-data" >
-													{{ csrf_field() }}
-													<div class="modal-body">
-
-														<div class="Uploadbtn">
-															<input type="file" class="input-upload" name="resume" />
-															<span>Upload<i class="fas fa-file-word" style="margin-left:10px;"></i></span>
-														</div>
-													</div>
-													<div class="modal-footer" style="margin-top: 20px;">
-
-														<button type="submit" class="btn btn-primary btn-sm" style="border-radius: 15px">Upload</button>
-														<button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal" style="border-radius: 15px">Close</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
+<!-- Start Message -->
+<div id="messages" class="tab-pane fade">
+	<div class="inbox-body inbox-widget">
+		<div class="mail-card">
+			<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#full-message" aria-expanded="false">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="collapse" id="full-message" aria-expanded="false" style="height: 0px;">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				</div>
+			</div>
+		</div>
+		<div class="mail-card unread">
+			<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-2" aria-expanded="false">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-2.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view1" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view1" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="collapse" id="meaages-2" aria-expanded="false" style="height: 0px;">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				</div>
+			</div>
+		</div>
+		<div class="mail-card">
+			<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-3" aria-expanded="false">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-1.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view2" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view2" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="collapse" id="meaages-3" aria-expanded="false" style="height: 0px;">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				</div>
+			</div>
+		</div>
+		<div class="mail-card">
+			<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#meaages-4" aria-expanded="false">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-3.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view3" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view3" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="collapse" id="meaages-4" aria-expanded="false" style="height: 0px;">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				</div>
+			</div>
+		</div>
+		<div class="mail-card unread">
+			<header class="card-header cursor-pointer collapsed" data-toggle="collapse" data-target="meaages-5" aria-expanded="false">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view4" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view4" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="collapse" id="meaages-5" aria-expanded="false" style="height: 0px;">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				</div>
+			</div>
+		</div>
+		<div class="mail-card">
+			<header class="card-header cursor-pointer">
+				<div class="card-title flexbox">
+					<img class="img-responsive img-circle avatar" src="{{url('public/client_assets/img/can-4.png')}}" alt="...">
+					<div>
+						<h6>Daniel Duke</h6>
+						<small>Today at 07:34 AM</small>
+						<small><a class="text-info collapsed" href="#detail-view-6" data-toggle="collapse" aria-expanded="false">View Detail</a></small>
+						<div class="no-collapsing cursor-text collapse" id="detail-view-6" aria-expanded="false" style="height: 0px;">
+							<small class="d-inline-block">From:</small>
+							<small>theadmin@thetheme.io</small>
+							<br>
+							<small class="d-inline-block">To:</small>
+							<small>subscriber@yahoo.com</small>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="" id="meaages-6">
+				<div class="card-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
+					<hr>
+					<h5 class="text-lighter">
+					<i class="fa fa-paperclip"></i>
+					<small>Attchments (3)</small>
+					</h5>
+					<div class="attachment-block">
+						<div class="thumb">
+							<img src="{{url('public/client_assets/img/gallery1.jpg')}}" alt="img" class="img-responsive">
+						</div>
+						<div class="attachment-info">
+							<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
+							<ul>
+								<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li>
+								<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
+							</ul>
+						</div>
+					</div>
+<div class="attachment-block">
+	<div class="thumb">
+		<img src="{{url('public/client_assets/img/gallery2.jpg')}}" alt="img" class="img-responsive">
+	</div>
+	<div class="attachment-info">
+		<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
+		<ul>
+			<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li>
+			<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
+		</ul>
+	</div>
+</div>
+<div class="attachment-block">
+	<div class="thumb">
+		<img src="{{url('public/client_assets/img/gallery3.jpg')}}" alt="img" class="img-responsive">
+	</div>
+	<div class="attachment-info">
+		<h6>Profile Pic  <span>( 1.69 mb )</span></h6>
+		<ul>
+			<li style="margin-right:20px; "><a href="javascript:void(0)">Download</a></li>
+			<li style="margin-left:10px;"><a href="javascript:void(0)">View</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Message -->
+<!-- Start Settings -->
+<div id="settings" class="tab-pane fade">
+<div class="row no-mrg">
+<h3>Edit Profile</h3>
+<div class="edit-pro">
+<div class="col-md-4 col-sm-6">
+<label>First Name</label>
+<input type="text" class="form-control" placeholder="Matthew">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Middle Name</label>
+<input type="text" class="form-control" placeholder="Else">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Last Name</label>
+<input type="text" class="form-control" placeholder="Dana">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Email</label>
+<input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Phone</label>
+<input type="text" class="form-control" placeholder="+91 258 475 6859">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Zip / Postal</label>
+<input type="text" class="form-control" placeholder="258 457 528">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Address</label>
+<input type="text" class="form-control" placeholder="204 Lowes Alley">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Address 2</label>
+<input type="text" class="form-control" placeholder="Software Developer">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Organization</label>
+<input type="text" class="form-control" placeholder="Software Developer">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>City</label>
+<input type="text" class="form-control" placeholder="Chandigarh">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>State</label>
+<input type="text" class="form-control" placeholder="Punjab">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Country</label>
+<input type="text" class="form-control" placeholder="India">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Old Password</label>
+<input type="password" class="form-control" placeholder="*********">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>New Password</label>
+<input type="password" class="form-control" placeholder="*********">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Old Password</label>
+<input type="password" class="form-control" placeholder="*********">
+</div>
+<div class="col-md-4 col-sm-6">
+<label>About you</label>
+<textarea class="form-control" placeholder="Write Something"></textarea>
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Upload Profile Pic</label>
+<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
+<div class="dz-default dz-message">
+	<i class="fa fa-cloud-upload"></i>
+	<span>Drop files here to upload</span>
+</div>
+</form>
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Upload Profile Cover</label>
+<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
+<div class="dz-default dz-message">
+	<i class="fa fa-cloud-upload"></i>
+	<span>Drop files here to upload</span>
+</div>
+</form>
+</div>
+<div class="col-sm-12">
+<button type="button" class="update-btn">Update Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- End Settings -->
+</div>
+<!-- Start All Sec -->
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Candidate Profile End -->
+@endif
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" style="margin-top:120px">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Upload Resume</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<form action="{{url('upload-resume')}}" method="post" enctype="multipart/form-data" >
+{{ csrf_field() }}
+<div class="modal-body">
+<div class="Uploadbtn">
+<input type="file" class="input-upload" name="resume" />
+<span>Upload<i class="fas fa-file-word" style="margin-left:10px;"></i></span>
+</div>
+</div>
+<div class="modal-footer" style="margin-top: 20px;">
+<button type="submit" class="btn btn-primary btn-sm" style="border-radius: 15px">Upload</button>
+<button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal" style="border-radius: 15px">Close</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 
 
-									<style type="text/css">
+<!-- Modal -->
+<div id="DemoModal2" class="modal fade "> 
 
-									.Uploadbtn {
-										position: relative;
-										overflow: hidden;
-										padding:10px 20px;
-										text-transform: uppercase;
-										color:#fff;
-										background:#03A9F4;
-										-webkit-border-radius: 4px;
-										-moz-border-radius: 4px;
-										-ms-border-radius: 4px;
-										-o-border-radius: 4px;
-										border-radius: 4px;
-										width:50%;
-										text-align:center;
-										cursor: pointer;
-										margin-top:20px;
-										margin-left:25%;
-									}
-									.Uploadbtn .input-upload {
-										position: absolute;
-										top: 0;
-										right: 0;
-										padding: 0;
-										opacity: 0;
-										height:100%;
-										width:100%;
-									}
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
 
-								</style>
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Eduction Viewed</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<div class="edit-pro">
+						<div class="col-md-4 col-sm-6">
+							<label>First Name</label>
+							<input type="text" class="form-control" placeholder="Matthew">
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Middle Name</label>
+							<input type="text" class="form-control" placeholder="Else">
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Last Name</label>
+							<input type="text" class="form-control" placeholder="Dana">
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Email</label>
+							<input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Phone</label>
+							<input type="text" class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Zip / Postal</label>
+							<input type="text" class="form-control" placeholder="258 457 528">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>About you</label>
+							<textarea class="form-control" placeholder="Write Something"></textarea>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Upload Profile Pic</label>
+							<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
+								<div class="dz-default dz-message">
+									<i class="fa fa-cloud-upload"></i>
+									<span>Drop files here to upload</span>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<label>Upload Profile Cover</label>
+							<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
+								<div class="dz-default dz-message">
+									<i class="fa fa-cloud-upload"></i>
+									<span>Drop files here to upload</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-default" data-dismiss="modal">Not Now!</button>
+				<button type="button" class="btn btn-primary">Download</button>
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
 
 
-								@endsection
+<style type="text/css">
+.Uploadbtn {
+	position: relative;
+	overflow: hidden;
+	padding:10px 20px;
+	text-transform: uppercase;
+	color:#fff;
+	background:#03A9F4;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	width:50%;
+	text-align:center;
+	cursor: pointer;
+	margin-top:20px;
+	margin-left:25%;
+}
+.Uploadbtn .input-upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	opacity: 0;
+	height:100%;
+	width:100%;
+}
 
+</style>
+
+
+
+@endsection

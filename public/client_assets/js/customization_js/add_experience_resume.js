@@ -1,6 +1,6 @@
 function addExperience(num){
 
-
+	var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	var job_title = $("#job_title").val();
 	var company_name = $("#company_name").val();
@@ -29,6 +29,7 @@ function addExperience(num){
 			if(num==1){
 
 				document.getElementById("exp_form").reset();
+				notyf.confirm('Your changes have been successfully saved!');
 			}
 
 
@@ -49,6 +50,8 @@ function addExperience(num){
 				1000
 				);
 
+
+			notyf.alert('Something Went Worng Plz Try Again');
 		}
 
 
@@ -58,7 +61,7 @@ function addExperience(num){
 
 
 function addExperience1(num){
-
+var notyf = new Notyf();
 
 		if(num==0){
 
@@ -75,6 +78,7 @@ function addExperience1(num){
 				
 				addExperience(0);
 				$("#experience_div").hide();
+				notyf.confirm('Your Changes Have Been Successfully Saved!');
 			}
 		})
 

@@ -37,7 +37,8 @@ class SiteUserLogin extends Controller
             "username"=>$info->username,
             "phone_number"=>$info->phone_number,
             "cv_status"=>$info->current_cv_status,
-            "status"=>'Active',
+            "login_status"=>'Active',
+            "user_status"=>'Active',
             "email_status"=>$info->verify_by_email,
         );
     	//print_r($userdata);

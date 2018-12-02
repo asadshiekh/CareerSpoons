@@ -18,13 +18,13 @@ class AddOrganization extends Migration
             $table->string('company_name'); 
             $table->string('company_type'); 
             $table->string('company_city'); 
-            $table->string('company_branch'); 
+            $table->string('company_branch')->nullable($value = true); 
             $table->string('company_phone'); 
             $table->string('company_website')->default('www.example.com'); 
             $table->string('company_employees')->default('0');
-            $table->string('company_industry');
-            $table->string('company_since');
-            $table->string('company_location');
+            $table->string('company_industry')->nullable($value = true);
+            $table->string('company_since')->nullable($value = true);
+            $table->string('company_location')->nullable($value = true);
             $table->string('company_email');
             $table->string('company_password');
             $table->string('company_cnic');

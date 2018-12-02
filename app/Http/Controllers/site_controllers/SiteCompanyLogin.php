@@ -44,6 +44,7 @@ class SiteCompanyLogin extends Controller
 				"company_info"=>$info->company_info,
 				"email_status"=>$info->verify_by_email,
 				"company_status"=>'Active',
+				"login_status"=>'Active',
 			);
     		//print_r($userdata);
 			$request->session()->put($company_data);

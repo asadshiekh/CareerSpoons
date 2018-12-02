@@ -25,21 +25,31 @@ Route::get('view-company-session',"site_controllers\SiteController@viewCompanyse
 
 
 //    Site Company Work   //
+Route::group(['middleware'=>'CheckComapnyLogin','middleware'=>'CheckUserLogin'],function(){
 Route::get('company-registeration',"site_controllers\SiteCompany@viewRegisterCompany");
 Route::any('company-registeration-process',"site_controllers\SiteCompany@doRegisterCompany");
+Route::any('company-registration-email-send',"site_controllers\SiteCompany@sendCompanyRegisterationEmail");
+});
 //   Site Company End-Work  //
 
 
 //    Site Company Login Work   //
+Route::group(['middleware'=>'CheckComapnyLogin','middleware'=>'CheckUserLogin'],function(){
 Route::get('company-login',"site_controllers\SiteCompanyLogin@viewCompanyLogin");
 Route::any('do-company-login',"site_controllers\SiteCompanyLogin@doCompanyLogin");
 Route::get('company-forgot-password',"site_controllers\SiteCompanyLogin@viewCompanyForgotPassword");
-Route::get('company-logout',"site_controllers\SiteCompanyLogin@companyLogout");
+});
+Route::get('company-logout',"site_controllers\SiteCompanyLogin@companyLogout")->middleware('CheckCompanyProfile');
 //   Site Company Login End-Work //
 
 
+//    CompanyEmailVerification Controller    //
+Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVerification@organizationEmailVerification")->middleware('CheckCompanyEmailVerify');
+//   CompanyEmailVerification Controller //
+
+
 //    Site User-Registeration Work   //
-Route::group(['middleware'=>'CheckUserLogin'],function(){
+Route::group(['middleware'=>'CheckUserLogin','middleware'=>'CheckComapnyLogin'],function(){
 Route::get('user-registeration',"site_controllers\SiteUser@viewRegisterUser");
 Route::any('user-registration-process',"site_controllers\SiteUser@doRegisterUser");
 Route::any('user-registration-email-send',"site_controllers\SiteUser@sendUserRegisterationEmail");
@@ -47,7 +57,7 @@ Route::any('user-registration-email-send',"site_controllers\SiteUser@sendUserReg
 //   Site User End-Work //
 
 //    Site User-Login Work   //
-Route::group(['middleware'=>'CheckUserLogin'],function(){
+Route::group(['middleware'=>'CheckUserLogin','middleware'=>'CheckComapnyLogin'],function(){
 Route::get('user-login',"site_controllers\SiteUserLogin@viewUserLogin");
 Route::any('do-user-login',"site_controllers\SiteUserLogin@doUserLogin");
 Route::get('user-forgot-password',"site_controllers\SiteUserLogin@viewUserForgotPassword");
@@ -77,6 +87,7 @@ Route::get('candidate-email-verification/{email}',"site_controllers\UserEmailVer
 
 //    UserResume Controller    //
 
+//Add 
 Route::any('upload-resume',"site_controllers\UserResume@uploadResume")->middleware('CheckUserProfile');
 Route::get('make-user-resume',"site_controllers\UserResume@manageUserResume")->middleware('CheckUserProfile');
 Route::any('add-user-education',"site_controllers\UserResume@addUserEduction")->middleware('CheckUserProfile');
@@ -87,14 +98,37 @@ Route::any('add-user-language',"site_controllers\UserResume@addUserLanguage")->m
 Route::any('add-user-hobbies',"site_controllers\UserResume@addUserHobbies")->middleware('CheckUserProfile');
 Route::any('add-user-resume-info',"site_controllers\UserResume@addUserResumeInfo")->middleware('CheckUserProfile');
 
+//DELETE
+
+Route::any('delete-candidate-education',"site_controllers\UserResume@deleteUserEduction")->middleware('CheckUserProfile');
+
+
+
+
+
 //    UserResume Controller    //
 
 Route::get('send',"site_controllers\mail_sender@send");
 Route::get('verify-email',"site_controllers\mail_sender@hello");
 Route::get('file',"site_controllers\UserResume@index");
 
+
+
+
+//User Details 
+
 // CheckUserLogin => agr to ap login ho to ap ko login pages par nahi janay dy ga wapis osi page par lay ay ga...
 
 // CheckUserProfile => agr to ap login nahi ho or profile access kar rahay ho to 404 error show karay ga...
 
 //CheckUserEmailVerify => agr ap nay email say button click kar diya ha verify ka to ya ap ko again nahi chalny dy ga function or sath may home par redirect kar wah dy ga with alert "already verify" agr nahi karwahaya hova verffiy to ya function chala dy ga
+
+
+// ----------------------------------------------------------------------
+
+
+// Company Details
+
+// CheckCompanyLogin => agr to ap login ho to ap ko login pages par nahi janay dy ga wapis osi page par lay ay ga na he register or forgetpassword par janay dy ga na he company kay na he user kay 
+
+//CheckCompanyEmailVerify => agr ap nay email say button click kar diya ha verify ka to ya ap ko again nahi chalny dy ga function or sath may home par redirect kar wah dy ga with alert "already verify" agr nahi karwahaya hova verffiy to ya function chala dy ga

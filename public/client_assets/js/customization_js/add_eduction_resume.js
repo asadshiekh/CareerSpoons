@@ -1,5 +1,5 @@
 function addEduction(num){
-
+	var notyf = new Notyf();
 	var CGPA_1 = $("#candidate_CGPA").val();
 	var Percentage_1 = $("#candidate_percentage").val();
 
@@ -38,14 +38,14 @@ function addEduction(num){
 				);
 
 			if(num==1){
-
+				notyf.confirm('Your changes have been successfully saved!');
 				$("#Percentage_fields").hide();
 				$("#CGPA_fields").hide();
 				document.getElementById("edu_form").reset();
 			}
 
 			else if(num==0){
-
+				notyf.confirm('Your Changes Have Been Successfully Saved!');
 				$("#eduction_div").hide();
 			}
 
@@ -66,6 +66,8 @@ function addEduction(num){
 				},
 				1000
 				);
+
+			notyf.alert('Something Went Worng Plz Try Again');
 
 		}
 
@@ -119,5 +121,83 @@ function change_fields(){
 	}
 
 
+}
+
+
+
+
+function delete_edu(id){
+
+ 		swal({
+			title: 'Are You Sure?',
+			text: "This education is permanently delete from your profile",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, Do it!'
+		}).then((result) => {
+			if (result.value) {
+				
+				delete_education(id);
+	
+			}
+		})
+}
+
+function delete_education(id){
+
+
+	var notyf = new Notyf();
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	$.post("delete-candidate-education",{_token:CSRF_TOKEN,id:id},function(data){
+
+      if(data=="yes"){
+
+      	$("#edu_unique_row"+id).hide(4500);
+
+      	setTimeout(
+				function(){
+						swal('Eduction Delete Successfully!','','success');
+				
+				setTimeout(
+				function(){
+				notyf.confirm('Your Changes Have Been Successfully Saved!');
+				},
+				1000
+				);
+
+
+				},
+				500
+				);
+      }
+
+      else{
+
+      	setTimeout(
+				function(){
+						swal({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Connection Failed!!',
+						footer: '<a href>Why do I have this issue?</a>'
+					})
+				
+				setTimeout(
+				function(){
+				notyf.alert('Something Went Worng Plz Try Again');
+				},
+				1000
+				);
+
+
+				},
+				500
+				);
+
+      }
+
+    });
 }
 

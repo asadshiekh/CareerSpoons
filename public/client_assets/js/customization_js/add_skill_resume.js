@@ -1,5 +1,5 @@
 function addSkill(num){
-
+	var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	var skill_name = $("#skill_name").val();
 	var skill_percentage = $("#skill_percentage").val();
@@ -20,12 +20,12 @@ function addSkill(num){
 				);
 
 			if(num==1){
-
+				notyf.confirm('Your changes have been successfully saved!');
 				document.getElementById("skill_form").reset();
 			}
 
 			else if(num==0){
-
+				notyf.confirm('Your Changes Have Been Successfully Saved!');
 				$("#skill_div").hide();
 			}
 
@@ -46,6 +46,8 @@ function addSkill(num){
 				},
 				1000
 				);
+
+			notyf.alert('Something Went Worng Plz Try Again');
 
 		}
 

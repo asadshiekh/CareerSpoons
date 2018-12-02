@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Middleware\SiteMiddleware\User;
+namespace App\Http\Middleware\SiteMiddleware\Company;
 
 use Closure;
 
-class UserProfileCheck
+class CompanyProfileCheck
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class UserProfileCheck
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('user_status')=='Active'){
+        if($request->session()->get('company_status')=='Active'){
 
             return $next($request);
 

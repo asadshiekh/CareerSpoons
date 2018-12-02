@@ -1,5 +1,5 @@
 function addLanguage(num){
-
+	var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	var user_language = $("#user_language").val();
 
@@ -19,12 +19,12 @@ $.post("add-user-language",{_token:CSRF_TOKEN,user_language:user_language},funct
 					);
 
 		if(num==1){
-
+			notyf.confirm('Your changes have been successfully saved!');
 			 document.getElementById("language_form").reset();
 		}
 
 		else if(num==0){
-
+			notyf.confirm('Your Changes Have Been Successfully Saved!');
 			$("#language_div").hide();
 		}
 
@@ -45,7 +45,7 @@ $.post("add-user-language",{_token:CSRF_TOKEN,user_language:user_language},funct
 					},
 					1000
 					);
-
+		notyf.alert('Something Went Worng Plz Try Again');
 	}
 
 }); 

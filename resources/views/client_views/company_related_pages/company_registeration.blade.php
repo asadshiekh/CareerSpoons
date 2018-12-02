@@ -21,6 +21,8 @@
 		<link rel="stylesheet" type="text/css" href="{{url('public/client_assets/css/customization_css/customization_of_form.css')}}"> 
 		<!-- Sweet Alert Libery -->
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<!-- Password Strength Meter Css -->
+		<link rel="stylesheet" href="{{url('public/client_assets/css/customization_css/passwordscheck.css')}}">
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg); ">
@@ -58,28 +60,28 @@
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label>Password *</label>
+									<!-- <label>Password *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock"></i>
 										</div>
 										<input type="password" class="form-control" placeholder="Password"  id="company_password">
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<label>Company Type *</label>
+									</div> -->
+									<label>User Password *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
-											<i class="fa fa-building"></i>
+											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<select class="form-control"  id="company_type">
-											<option value="" disabled="disabled" selected="selected" hidden="hidden" >Please Choose...</option>
-											<option>Private</option>
-											<option>Public</option>
-											<option>NGO</option>
-											<option>Default select</option>
-										</select>
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<div class="input-group-addon">
+											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+										</div>
 									</div>
+								</div>
+								<div class="col-xs-6" id="register">
+
+									<span id="result" class="field-icon_1">Password Strength Meter</span>
+
 								</div>
 							</div>
 							<br/>
@@ -102,16 +104,22 @@
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label>Branch Name / Code *</label>
+									<label>Company Type *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
-											<i class="fa fa-map-marker"></i>
+											<i class="fa fa-building"></i>
 										</div>
-										<input type="text" class="form-control" placeholder="Branch Name / Branch Code"  id="company_branch">
+										<select class="form-control"  id="company_type">
+											<option value="" disabled="disabled" selected="selected" hidden="hidden" >Please Choose...</option>
+											<option>Private</option>
+											<option>Public</option>
+											<option>NGO</option>
+											<option>Default select</option>
+										</select>
 									</div>
 								</div>
 							</div>
-							<br/>
+<!-- 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
 									<label>Industry *</label>
@@ -136,7 +144,7 @@
 										<input type="date" id="company_operating_since" placeholder="DD/MM/YY" class="form-control"/>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
@@ -159,7 +167,7 @@
 								</div>
 							</div>
 							<br/>
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-xs-12">
 									<div class="form-group">
 										<label>Company Address *</label>
@@ -171,7 +179,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<span class="form-check-label" style="font-weight: 500 ; text-align: left; font-size: 13px">
 									<input class="form-check-input" type="checkbox" id="checkbox">
@@ -239,8 +247,11 @@
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<!-- Masking Input Js -->
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+				<!-- Passsword Strength Checker -->
+				<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
 				<!-- Customization Register Company -->
 				<script src="{{url('public/client_assets/js/customization_js/company_registration.js')}}"></script>
+
 
 				
 				<script type="text/javascript">
@@ -251,6 +262,21 @@
 						//$('#date').mask('00/00/0000');
 					});
 					
+				</script>
+				<script type="text/javascript">
+					
+					$(".toggle-password").click(function() {
+
+						$(this).toggleClass("fa-eye-slash fa-eye");
+						var input = $($(this).attr("toggle"));
+						if (input.attr("type") == "text"){
+							
+							input.attr("type", "password");
+						} 
+						else {
+							input.attr("type", "text");
+						}
+					});
 				</script>
 				<script>
 					function openRightMenu() {
@@ -264,6 +290,20 @@
 				</script>
 			</div>
 		</body>
+		<style type="text/css">
 
-		<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:43:40 GMT -->
-		</html>
+		.field-icon_1{
+			font-size: 12px;
+			font-weight:bold;
+			color: limegreen;
+			float: left;
+			position: relative;
+			z-index:3;
+			border: 1px solid red;
+			top:24px;
+		}
+
+	</style>
+
+	<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:43:40 GMT -->
+	</html>

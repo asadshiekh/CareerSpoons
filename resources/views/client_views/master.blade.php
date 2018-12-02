@@ -24,7 +24,8 @@
 	<link rel="stylesheet" href="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.css">
 	<!-- JQuery Data Tables -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
+	<!-- javascript Css notify -->
+	<link rel="stylesheet" href="{{url('public/client_assets/css/notify/notyf.min.css')}}">
 	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 
 
@@ -54,7 +55,7 @@
 						<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
 						<li><a href="pricing.html"><i class="fas fa-city"></i>Companies</a></li>
 						<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
-						@if(Session::has('status'))
+						@if(Session::has('user_status'))
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
 								Candidate Profile
@@ -64,9 +65,21 @@
 								<li><a class="dropdown-item" href="{{url('logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
+						@elseif (Session::has('company_status'))
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+								Company Profile
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
+								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
+							</ul>
+						</li>
+
 						@else						
 						<li class="left-br"><a href="javascript:void(0)"  data-toggle="modal" data-target="#signup" class="signin">Sign In Now</a></li>
 						@endif
+
 					</ul>
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 						<li class="dropdown megamenu-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Brows</a>
@@ -288,10 +301,10 @@
 									<form class="form-inline" method="post">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<input type="email"  name="email" class="form-control" placeholder="Company Email" required="">
-												<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="">
+												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="">
 												<div class="center">
-													<button type="submit" id="subscribe" class="submit-btn"> Login </button>
+													<button type="button" onclick="company_login();" id="subscribe" class="submit-btn"> Login </button>
 													<span style="display: block; margin-top:40px"><a href="{{url('company-registeration')}}">Not Account Yet? Create Your Company Account</a></span>
 												</div>
 											</div>
@@ -358,10 +371,12 @@
 			<script src="http://themezhub.com/"></script>
 
 			<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
-			<!-- Custom Js for USER Login -->
-			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
 			<!-- Sweet Alert -->
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+			<!-- Custom Js for USER Login -->
 			<script src="{{url('public/client_assets/js/customization_js/user_login.js')}}"></script>
+			<!-- Custom Js for Company-Login -->
+			<script src="{{url('public/client_assets/js/customization_js/company_login.js')}}"></script>
 			<!-- Pro Tip javaScript -->
 			<script src="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.js"></script>
 			<!-- Ck Editors Basic -->
@@ -388,6 +403,9 @@
 			<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 			<!--Js Charts Link -->
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+			<!-- Notify Javascript -->
+			<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
+			
 			<script>
 				$('#dob').dateDropper();
 			</script>
@@ -438,6 +456,8 @@
 
 				});
 			</script>
+
+			
 
 			<script type="text/javascript">
 				
@@ -563,6 +583,7 @@
 					}
 				});
 			</script>
+
 
 			<script type="text/javascript">
 				$(document).ready(function() {

@@ -1,5 +1,5 @@
 function addProject(num){
-
+	var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	var project_title = $("#project_title").val();
 	var project_company_name = $("#pro_company_name").val();
@@ -27,12 +27,12 @@ function addProject(num){
 
 
 			if(num==1){
-
+				notyf.confirm('Your changes have been successfully saved!');
 				document.getElementById("project_form").reset();
 			}
 
 			else if(num==0){
-
+				notyf.confirm('Your changes have been successfully saved!');
 				$("#project_div").hide();
 			}
 
@@ -53,6 +53,7 @@ function addProject(num){
 					1000
 					);
 
+			notyf.alert('Something Went Worng Plz Try Again');
 		}
 
 	});

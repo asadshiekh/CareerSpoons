@@ -335,4 +335,22 @@ class UserResume extends Controller
 
 	}
 
+	public function deleteUserEduction(Request $request){
+
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_education($request->id,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+			echo "no";
+		}
+
+	}
+
 }
