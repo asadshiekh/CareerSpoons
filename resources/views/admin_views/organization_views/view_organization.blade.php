@@ -37,120 +37,144 @@
 
 
             <!-- Start Content-->
-<div class="row">
-      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
-            <p class="text-muted font-13 m-b-30">
-             
-           </p>
-           <form action="delete-check-org" method="post" enctype="multipart/form-data">
-            @csrf
-            @if (session()->has('success'))
-           <script type="text/javascript">
-            swal("Deleted!", "Your Organization has been deleted.", "success");
-           </script>
-            @endif
-           <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-            <thead>
-              <tr>
-                 <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
-                 <th>Company Name</th>
-                 <th>Company Type</th>
-                 <th>Email</th>
-                 <th>Phone No</th>
-                 <th>Industry</th>                
-                 <th>Action</th>
-             </tr>
-           </thead>
-           <tbody>
-            @foreach($organizations as $organizations)
-            <tr id="org-tr{{$organizations->company_id}}"> 
-               <th><input type="checkbox" name="check_all_org[]" class="flat" value="{{$organizations->company_id}}"></th> 
-               <td>{{$organizations->company_name}}</td>
-               <td>{{$organizations->company_type}}</td>
-               <td>{{$organizations->company_email}}</td>
-               <td>{{$organizations->company_phone}}</td>
-               <td>{{$organizations->company_industry}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><i class="fa fa-trash"></i></a> | <a href="organization-profile/{{$organizations->company_id}}"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
-           </tr>
-           @endforeach
-           
-         </tbody>
-          <tfoot>
-          <tr>
-             <td colspan="7">
-              <?php  $query=DB::table('Add_organizations')->get()->count();
+            <div class="row">
+              <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+                <p class="text-muted font-13 m-b-30">
+
+                </p>
+                <form action="delete-check-org" method="post" enctype="multipart/form-data">
+                  @csrf
+                  @if (session()->has('success'))
+                  <script type="text/javascript">
+                    swal("Deleted!", "Your Organization has been deleted.", "success");
+                  </script>
+                  @endif
+                  <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <thead>
+                      <tr>
+                       <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
+                       <th>Company Name</th>
+                       <th>Company Type</th>
+                       <th>Email</th>
+                       <th>Phone No</th>
+                       <th>Industry</th>                
+                       <th>Action</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                    @foreach($organizations as $organizations)
+                    <tr id="org-tr{{$organizations->company_id}}"> 
+                     <th><input type="checkbox" name="check_all_org[]" class="flat" value="{{$organizations->company_id}}"></th> 
+                     <td id="org-n{{$organizations->company_id}}">{{$organizations->company_name}}</td>
+                     <td id="org-t{{$organizations->company_id}}">{{$organizations->company_type}}</td>
+                     <td>{{$organizations->company_email}}</td>
+                     <td id="org-p{{$organizations->company_id}}">{{$organizations->company_phone}}</td>
+                     <td id="org-i{{$organizations->company_id}}">{{$organizations->company_industry}}</td>
+                     <td><a onclick="update_organizaion('{{$organizations->company_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><i class="fa fa-trash"></i></a> | <a href="organization-profile/{{$organizations->company_id}}"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
+                   </tr>
+                   @endforeach
+
+                 </tbody>
+                 <tfoot>
+                  <tr>
+                   <td colspan="7">
+                    <?php  $query=DB::table('Add_organizations')->get()->count();
                     if($query>0) {?>
-              <button type="submit" class="btn btn-success">Delete</button>
-              <?php }?>
-           
+                      <button type="submit" class="btn btn-success">Delete</button>
+                    <?php }?>
+
              <!-- 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button> -->
-             </td>
-           </tr>
-         </tfoot>
-       </table>
-     </form>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button> -->
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+  </div>
 </div>
-</div>
-       <!-- End Content-->
+<!-- End Content-->
 
 
-     </div>
-   </div>
- </div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <!--model-->
-<div  id="exampleModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Update User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="edit_text">
-      </div>
 
-    </div>
-  </div>
+<!-- Large modal -->
+<div id="org_view">
+  
 </div>
 <!--/model-->
 
-<!-- <script type="text/javascript">
-  function view_full_page(id){
-  var x =id;
-  $.get('organization-profile',{x:x},function(data){ 
-  
-   // window.location.replace('/');
-  
-  });
+
+<script type="text/javascript">
+  function delete_org(o){
+    var result = confirm("Really want to delete this Organization?");
+    if(result){
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      $.post("delete-org",{_token:CSRF_TOKEN,o:o},function(data){ 
+
+        if(data){
+          $("#org-tr"+o).css('background-color','Crimson');
+          $("#org-tr"+o).hide(3000);
+        }
+      });
+    }
 
   }
 
-</script> -->
-<script type="text/javascript">
-function delete_org(o){
-  var result = confirm("Really want to delete this Organization?");
-  if(result){
-  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-   $.post("delete-org",{_token:CSRF_TOKEN,o:o},function(data){ 
-
-    if(data){
-      $("#org-tr"+o).css('background-color','Crimson');
-      $("#org-tr"+o).hide(3000);
-    }
+  function update_organizaion(id){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post("update-org-form",{_token:CSRF_TOKEN,id:id},function(data){ 
+      $("#org_view").html(data);
+      $("#mymodal5").modal('show');
+      CKEDITOR.replace( 'post_info' );
     });
- }
+  }
+function update_org_info(x){
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+  var a = $("#new_company_name").val();
+  var b = $("#new_selected_company_type").val();
+  var c = $("#new_selected_city").val();
+  var d = $("#new_company_branch_name").val();
+  var e = $("#new_company_phone").val();
+  var f = $("#new_company_website").val();
+  var g = $("#new_selected_employees").val();
+  var h = $("#new_selected_industry").val();
+  var i = $("#new_company_since").val();
+  var j = $("#new_company_cnic").val();
+  var k = $("#new_company_location").val();
+  var l=CKEDITOR.instances['post_info'].getData();
+ //var l=$("#company_info").val();
+//alert(a+" "+b+" "+c+" "+d+" "+e+" "+f+" "+g+" "+h+" "+i+" "+j+" "+k);
 
+ //alert(l);
+$.post('update-company-data',{_token:CSRF_TOKEN,a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,x:x},function(data){
+  if(data){
+        //alert(data); 
+$("#mymodal5").modal('hide');
+$("#org-n"+x).html(a);
+$("#org-t"+x).html(b);
+$("#org-p"+x).html(e);
+$("#org-i"+x).html(h);
+       var originalColor = $("#org-tr"+x).css("background-color");
+      $("#org-tr"+x).css("background",'#84D285');
+      setTimeout(function(){
+        $("#org-tr"+x).css("background",originalColor);
+      },2000);
+        } 
+ });
 }
+
+
 
 </script>
 
 @endsection
 
-  
+
 
 

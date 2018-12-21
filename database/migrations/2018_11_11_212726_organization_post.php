@@ -15,17 +15,23 @@ class OrganizationPost extends Migration
     {
         Schema::create('Organization_posts', function (Blueprint $table) {
             $table->increments('post_id');
-            $table->string('company_id'); 
-            $table->bigInteger('org_contact_phone');
-            $table->string('org_contact_email'); 
-            $table->string('posted_job_title'); 
-            $table->string('career_level'); 
+            $table->bigInteger('company_id'); 
+            $table->string('job_title');
+            $table->string('job_skills');  
+            $table->string('functional_area'); 
+            $table->string('req_industry'); 
+            $table->string('req_career_level'); 
             $table->string('job_experience'); 
-            $table->string('job_salary'); 
-            $table->string('job_skills'); 
-            $table->string('job_tags'); 
-            $table->string('gender_preferences'); 
-            $table->longText('job_info'); 
+            $table->bigInteger('total_positions'); 
+            $table->bigInteger('working_hours');
+            $table->bigInteger('min_salary'); 
+            $table->bigInteger('max_salary'); 
+            $table->string('last_apply_date');  
+            $table->string('post_visibility_date');
+            $table->string('selected_gender');
+            $table->string('prefered_age');
+            $table->string('job_post_info'); 
+           
             $table->timestamps();
         });
     }

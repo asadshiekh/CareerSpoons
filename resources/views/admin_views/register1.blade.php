@@ -37,59 +37,50 @@
 
             <!-- Smart Wizard -->
             <p>form for data.</p>      
-            <form class="form-horizontal form-label-left" id="full-form">
+           
 
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Full Name <span class="required">*</span>
-                </label>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                  <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Enter First Name Here">
+         <!-- <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
 
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                  <input type="text" id="last-name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Enter Last Name Here">
-
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="selected-gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female"> Female
-                    </label>
-                  </div>
-                </div>
-              </div>
+                  <thead>
+                    <tr id="qual-tr">
+                     <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
+                     <th>Qualification Title</th>                
+                     <th>Action</th>
+                   </tr>
+                 </thead>
+                <tbody>
+            <tr id="qual-tr"> 
+               <th><input type="checkbox" name="check_all[]" class="flat" value=""></th> 
+               <td id="qual-td">yes</td>
+               <td><a><i class="fa fa-pencil"></i></a> | <a><i class="fa fa-trash"></i></a></td>
              
-
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Image <span class="required">*</span>
-                </label>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                  <input type="file" id="img" required="required" class="form-control col-md-7 col-xs-12" placeholder="Enter First Name Here">
-
-                </div>
-
-              </div>
-              <div class="ln_solid"></div>
-              <div class="form-group">
-                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                  <button type="button" class="btn btn-primary">Cancel</button>
-                  <button class="btn btn-primary" type="reset">Reset</button>
-                  <button type="button" class="btn btn-success" onclick="lala();">Submit</button>
-                </div>
-              </div>
-
-            </form>
-
-
-
+           </tr>
+                </tbody>
+           
+             
+          </table>
+ -->
             <!-- End SmartWizard Content -->
+
+
+<table id="myEduction" class="display">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+        </tr>
+    </tbody>
+</table>
 
 
 

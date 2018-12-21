@@ -37,65 +37,65 @@
 
 
             <!-- Start Content-->
-<div class="row">
-      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
-            <p class="text-muted font-13 m-b-30">
-             
-           </p>
-           <form action="delete-check-cities" method="post" enctype="multipart/form-data">
-               @csrf
-           @if (session()->has('success'))
-           <script type="text/javascript">
-            swal("Deleted!", "Your cities has been deleted.", "success");
-           </script>
-            @endif
-           <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+            <div class="row">
+              <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+                <p class="text-muted font-13 m-b-30">
 
-            <thead>
-              <tr id="city-tr">
-                 <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
-                 <th>City Name</th>                
-                 <th>Action</th>
-             </tr>
-           </thead>
-           
-         
-           <tbody>
-            <!-- <tr id="city-tr"></tr> -->
-            @foreach($cities as $cities)
-            <tr id="city-tr{{$cities->company_city_id}}"> 
-               <th class="chk"><input type="checkbox" name="check_all[]" class="flat" value="{{$cities->company_city_id}}"></th> 
-               <td>{{$cities->company_city_name}}</td>
-               <td><a href="edit-city/{{$cities->company_city_id}}"><i class="fa fa-pencil"></i></a> | <a onclick="delete_city('{{$cities->company_city_id}}');"><i class="fa fa-trash"></i></a></td>
-             
-           </tr>
-           @endforeach
-           
-         </tbody>
-         <tfoot>
-          <tr>
-             <td colspan="3">
-               <?php  $query=DB::table('Add_cities')->get()->count();
-                    if($query>0) {?>
-              <button type="submit" class="btn btn-success">Delete</button>
-  <?php } ?>
-           
-             
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button>
-             </td>
-           </tr>
-         </tfoot>
+                </p>
+                <form action="delete-check-cities" method="post" enctype="multipart/form-data">
+                 @csrf
+                 @if (session()->has('success'))
+                 <script type="text/javascript">
+                  swal("Deleted!", "Your cities has been deleted.", "success");
+                </script>
+                @endif
+                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
 
-       </table>
-         </form>
+                  <thead>
+                    <tr id="city-tr">
+                     <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
+                     <th>City Name</th>                
+                     <th>Action</th>
+                   </tr>
+                 </thead>
+
+
+                 <tbody>
+                  <!-- <tr id="city-tr"></tr> -->
+                  @foreach($cities as $cities)
+                  <tr id="city-tr{{$cities->company_city_id}}"> 
+                   <th class="chk"><input type="checkbox" name="check_all[]" class="flat" value="{{$cities->company_city_id}}"></th> 
+                   <td id="up-td{{$cities->company_city_id}}">{{$cities->company_city_name}}</td>
+                   <td><a onclick="update_request('{{$cities->company_city_name}}','{{$cities->company_city_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_city('{{$cities->company_city_id}}');"><i class="fa fa-trash"></i></a></td>
+
+                 </tr>
+                 @endforeach
+
+               </tbody>
+               <tfoot>
+                <tr>
+                 <td colspan="3">
+                   <?php  $query=DB::table('Add_cities')->get()->count();
+                   if($query>0) {?>
+                    <button type="submit" class="btn btn-success">Delete</button>
+                  <?php } ?>
+
+
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button>
+                </td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </form>
+      </div>
+    </div>
+    <!-- End Content-->
+
+
+  </div>
 </div>
 </div>
-       <!-- End Content-->
-
-
-     </div>
-   </div>
- </div>
 </div>
 </div>
 </div>
@@ -141,10 +141,38 @@
 </div>
 </div>
 <!--/End model window-->
+<!-- Modal window for update City-->
+<div id="up_view">
+  
+</div>
+<!--/End model window -->
 
 <script type="text/javascript">
 
-</script>
+function update_request(name,id){
+ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+  $.post("request-update-city",{_token:CSRF_TOKEN,name:name,id:id},function(data){
+      $("#up_view").html(data);
+      $("#myModal2").modal('show');
+    });
+}
+  function edit_city(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var city=$("#up_company_city").val();
+    var id=$("#city_id").val();
+    $.post("update-city",{_token:CSRF_TOKEN,city:city,id:id},function(data){
+      if(data){
+      $("#myModal2").modal('hide');
+      $("#up-td"+id).html(city);
+       var originalColor = $("#city-tr"+id).css("background-color");
+      $("#city-tr"+id).css("background",'#84D285');
+      setTimeout(function(){
+        $("#city-tr"+id).css("background",originalColor);
+      },2000);
+      }
+    });
+  }
 
+</script>
 @endsection
 

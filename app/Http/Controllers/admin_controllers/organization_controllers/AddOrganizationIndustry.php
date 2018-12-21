@@ -66,5 +66,50 @@ class AddOrganizationIndustry extends Controller
        
       }
   }
+  public function updateModelIndus(Request $request){
+$indus_name=$request->post('name');
+$indus_id=$request->post('id');
+$data=DB::table('Company_industries')->where(['company_industry_id'=>$indus_id])->first();
+  echo '<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  <!-- Modal content-->
+  <form>
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Update City ?</h4>
+  </div>
+  <div class="modal-body" id="modal-content">
+  <label>Enter Updated Name:</label>
+  <div class="input-group">
+  <div class="input-group-addon">
+  <i class="fa fa-yelp"></i>
+  </div>
+  <input type="hidden" value="'.$indus_id.'" id="indus_id">
+  <input type="text" placeholder="Update industry name here" class="form-control" name="up_company_indus" id="up_company_indus" value="'.$data->company_industry_name.'">
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-default" onclick="edit_industry();">Update</button>
+  </div>
+  </div>
+  </div>
+  </form>
+
+  </div>
+  </div>';
+}
+public function updateIndustry(Request $request){
+  $current_date = date("Y.m.d h:i:s");
+  $indus=$request->post('indus');
+  echo $id=$request->post('id');
+  $indus_up=array(
+    'company_industry_name'=>$indus,
+    'updated_at'=>$current_date
+  );
+      if(DB::table('Company_industries')->where(['company_industry_id'=>$id])->update($indus_up)){
+         echo "yes";
+      }
+}
 
 }

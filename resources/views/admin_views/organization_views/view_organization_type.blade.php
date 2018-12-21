@@ -64,8 +64,8 @@
             @foreach($types as $types)
             <tr id="type-tr{{$types->company_type_id}}"> 
                <th><input type="checkbox" id="check_all[]" name="check_all[]" class="flat" value="{{$types->company_type_id}}"></th> 
-               <td>{{$types->company_type_name}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a onclick="delete_type('{{$types->company_type_id}}');"><i class="fa fa-trash"></i></a></td>   
+               <td id="type-td{{$types->company_type_id}}">{{$types->company_type_name}}</td>
+               <td><a onclick="update_type('{{$types->company_type_name}}','{{$types->company_type_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_type('{{$types->company_type_id}}');"><i class="fa fa-trash"></i></a></td>   
            </tr>
            @endforeach
            
@@ -137,7 +137,34 @@
 </div>
 </div>
 <!--/model-->
+<!--update model-->
+<div id="type_view"></div>
+<!--/end update model-->
 <script type="text/javascript">
+  
+function update_type(name,id){
+ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("request-update-type",{_token:CSRF_TOKEN,name:name,id:id},function(data){
+      $("#type_view").html(data);
+      $("#myModal3").modal('show');
+    });
+}
+  function edit_type(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var type=$("#up_company_type").val();
+    var id=$("#type_id").val();
+    $.post("update-type",{_token:CSRF_TOKEN,type:type,id:id},function(data){
+      if(data){
+      $("#myModal3").modal('hide');
+      $("#type-td"+id).html(type);
+       var originalColor = $("#type-tr"+id).css("background-color");
+      $("#type-tr"+id).css("background",'#84D285');
+      setTimeout(function(){
+        $("#type-tr"+id).css("background",originalColor);
+      },2000);
+      }
+    });
+  }
 
 </script>
 

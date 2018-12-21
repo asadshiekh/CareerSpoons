@@ -44,6 +44,7 @@
            </p>
           <form action="delete-check-industries" method="post" enctype="multipart/form-data">
            @csrf
+           
            @if (session()->has('success'))
            <script type="text/javascript">
             swal("Deleted!", "Your industries has been deleted.", "success");
@@ -62,8 +63,8 @@
             @foreach($industry as $industry)
             <tr id="industry-tr{{$industry->company_industry_id}}"> 
                <th><input type="checkbox" name="check_all[]" class="flat" value="{{$industry->company_industry_id}}"></th> 
-               <td>{{$industry->company_industry_name}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a onclick="delete_industry('{{$industry->company_industry_id}}');"><i class="fa fa-trash"></i></a></td>
+               <td id="indus-td{{$industry->company_industry_id}}">{{$industry->company_industry_name}}</td>
+               <td><a onclick="update_industry('{{$industry->company_industry_name}}','{{$industry->company_industry_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_industry('{{$industry->company_industry_id}}');"><i class="fa fa-trash"></i></a></td>
              
            </tr>
            @endforeach
@@ -134,7 +135,38 @@
 </div>
 </div>
 <!--/model-->
+<!--update model -->
+<div id="indus_view">
+  
+</div>
+<!--/end update model -->
+<script type="text/javascript">
+  
+function update_industry(name,id){
+ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("request-update-industry",{_token:CSRF_TOKEN,name:name,id:id},function(data){
+      $("#indus_view").html(data);
+      $("#myModal3").modal('show');
+    });
+}
+  function edit_industry(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var indus=$("#up_company_indus").val();
+    var id=$("#indus_id").val();
+    $.post("update-industry",{_token:CSRF_TOKEN,indus:indus,id:id},function(data){
+      if(data){
+      $("#myModal3").modal('hide');
+      $("#indus-td"+id).html(indus);
+       var originalColor = $("#industry-tr"+id).css("background-color");
+      $("#industry-tr"+id).css("background",'#84D285');
+      setTimeout(function(){
+        $("#industry-tr"+id).css("background",originalColor);
+      },2000);
+      }
+    });
+  }
 
+</script>
 
 @endsection
 

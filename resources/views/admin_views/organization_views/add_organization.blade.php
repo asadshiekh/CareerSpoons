@@ -232,9 +232,9 @@
             <!-- About Company -->
             <div class="form-group col-sm-8 col-md-offset-2">
               <label>About Company (atleast  20 words):</label>
-              <div class="input-group">
+              <div class="input-group col-sm-12">
                 
-                <textarea id="company_info" name="company_info" class="form-control" rows="4" placeholder="Enter Some Info About Your Company Here...."></textarea>
+                <textarea id="company_info" name="company_info" class="form-control"  placeholder="Enter Some Info About Your Company Here...."></textarea>
 
               </div>
             </div>

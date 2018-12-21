@@ -42,7 +42,7 @@
               </div>
               <div>
                 <input type="button" class="btn btn-default submit" value="Log in" onclick="login_admin();" />
-                <a class="reset_pass" href="#">Lost your password?</a>
+                <a class="reset_pass" href="{{url('admin-pass-reset')}}">Lost your password?</a>
               </div>
 
               <div class="clearfix"></div>

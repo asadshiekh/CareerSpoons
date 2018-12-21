@@ -38,6 +38,14 @@ class AdminLogin extends Controller
   }
 
 
+  public function viewResetPage(){
+    //return view('admin_views/forget_password');
+  }
+  public function doCheckEmail(Request $request){
+    echo $email=$request->post('email');
+  }
+
+
 
 
 }
