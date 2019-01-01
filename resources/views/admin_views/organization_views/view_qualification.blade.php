@@ -64,7 +64,7 @@
             <tr id="qual-tr{{$all_qual->qual_id}}"> 
                <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_qual->qual_id}}"></th> 
                <td id="qual-td{{$all_qual->qual_id}}">{{$all_qual->qualification_title}}</td>
-               <td><a onclick="update_qual('{{$all_qual->qualification_title}}','{{$all_qual->qual_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_qual('{{$all_qual->qual_id}}');"><i class="fa fa-trash"></i></a></td>
+               <td><a onclick="update_qual('{{$all_qual->qualification_title}}','{{$all_qual->qual_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Qualification" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_qual('{{$all_qual->qual_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Qualification" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
              
            </tr>
            @endforeach

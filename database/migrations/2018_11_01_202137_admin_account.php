@@ -21,6 +21,8 @@ class AdminAccount extends Migration
             $table->string('admin_username');
             $table->string('admin_email');
             $table->string('admin_pass');
+            $table->string('account_right');
+            $table->string('account_activation');
             $table->timestamps();
         });
     }

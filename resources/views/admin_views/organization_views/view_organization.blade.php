@@ -70,7 +70,7 @@
                      <td>{{$organizations->company_email}}</td>
                      <td id="org-p{{$organizations->company_id}}">{{$organizations->company_phone}}</td>
                      <td id="org-i{{$organizations->company_id}}">{{$organizations->company_industry}}</td>
-                     <td><a onclick="update_organizaion('{{$organizations->company_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><i class="fa fa-trash"></i></a> | <a href="organization-profile/{{$organizations->company_id}}"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
+                     <td><a onclick="update_organizaion('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a href="organization-profile/{{$organizations->company_id}}"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></a></td>
                    </tr>
                    @endforeach
 
@@ -80,7 +80,7 @@
                    <td colspan="7">
                     <?php  $query=DB::table('Add_organizations')->get()->count();
                     if($query>0) {?>
-                      <button type="submit" class="btn btn-success">Delete</button>
+                      <button type="submit" class="btn btn-success" style="background-color: #2A3F54;">Delete</button>
                     <?php }?>
 
              <!-- 

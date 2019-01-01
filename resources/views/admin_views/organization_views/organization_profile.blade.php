@@ -158,7 +158,7 @@
                                   <td>{{$org_post->created_at}}</td>
                                   <td id="up-date-td{{$org_post->post_id}}">{{$org_post->updated_at}}</td>
                                   <td class="vertical-align-mid">
-                                    <a onclick="del_post('{{$org_post->post_id}}');"><i class="fa fa-trash"></i></a> | <a onclick="update_post('{{$org_post->post_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="view_post('{{$org_post->post_id}}');"><i class="fa fa-eye"></i></a>
+                                    <a onclick="del_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a onclick="update_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="view_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-eye"></i></span></a>
 
                                   </td>
                                 </tr>
@@ -199,11 +199,15 @@
                           <div class="form-group col-sm-12">
                             <label>What Skills are Required for Job?:</label>
                             <div class="input-group">
-                              <div class="input-group-addon">
+                                <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-subscript"></i>
-                              </div>
-                              <textarea name="tags_1" id="tags_1" rows="5" class="tags form-control"></textarea>
-                              <div id="suggestions-container" ></div> 
+                                </div>
+                                <input class="form-control" type="text" name="skill_tags" id="skill_tags" data-role="skill_tags"/>
+                                <style type="text/css">
+                                  #skill_tags{
+                                    width: 100%;
+                                  }
+                                </style>
                             </div>     
                           </div>
 
@@ -321,7 +325,7 @@
                             <label>ADD</label>
                             <div class="input-group">
 
-                             <button class="btn btn-primary" onclick="add_city_area();"><i class="fa fa-plus"></i></button>
+                             <button type="button" class="btn btn-primary" onclick="add_city_area();"><i class="fa fa-plus"></i></button>
                            </div>
                          </div>
                          <div class="clearfix"></div>
@@ -383,8 +387,8 @@
                           <div class="input-group-addon">
                             <i class="fa fa-calendar-o"></i>
                           </div>
-
-                          <input id="single_cal4" name="last_apply_date" type="text" class="tags form-control" placeholder="select date" />
+                          <input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+                          
                         </div>
                       </div>
                       <!-- Search Result Title-->
@@ -395,7 +399,7 @@
                             <i class="fa fa-calendar-o"></i>
                           </div>
 
-                          <input type="text" class="form-control" id="single_cal2" name="post_visibility_date" placeholder="select date">
+                          <input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
 
 
                         </div>
@@ -409,9 +413,9 @@
                           </div>
                           <select name="selected_gender" class="form-control" id="selected_gender">
                             <option value="select gender preferences" disabled="disabled" selected="selected">Select gender</option>
-                            <option value="PHD">Male</option>
-                            <option value="PHD">Female</option>
-                            <option value="PHD">None</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="None">None</option>
                           </select>
                         </div>
                       </div>
@@ -480,7 +484,7 @@
                           <label>ADD</label>
                           <div class="input-group">
 
-                           <button class="btn btn-primary" onclick="add_qual_area();"><i class="fa fa-plus"></i></button>
+                           <button type="button" class="btn btn-primary" onclick="add_qual_area();"><i class="fa fa-plus"></i></button>
                          </div>
                        </div>
                        <div class="clearfix"></div>
@@ -661,13 +665,21 @@
       <li><span>Since:</span>{{$org_page->company_since}}</li>
       <li><span>CNIC:</span>{{$org_page->company_cnic}}</li>
       <li><span>Location:</span>{{$org_page->company_location}}</li>
-      <li><span style="display: block;">Organization More Info or Introduction:</span>{{$org_page->company_info}}</li>
-      <li><span style="display: block;">Organization More Info or Introduction:</span>
+      
+      <li><span style="display: block;">Organization Documents:</span>
 
-       
-        
-
+    
       </li>
+      <li><span style="display: block; padding-bottom: 3%;">Organization More Info or Introduction:</span><p style="padding-left: 5%;"><?php
+      $org_page->company_info  = str_ireplace('<p>','',$org_page->company_info);
+        echo $org_page->company_info  = str_ireplace('</p>','',$org_page->company_info);
+         
+      ?></p></li>
+       <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span><a class="btn btn-default" href="{{url('uploads/organization_documents')}}<?php echo '/'.$org_page->company_document;?>" target="_blank">view Document</a></li>
+      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>>
+
+<a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li>
+
     </ul>
    
     <!-- end user projects -->
@@ -675,7 +687,27 @@
 
 </div>
 <!---------------------end Fourth content---------------------->
+<!----------------------start fifth content-------------------------->
+<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab">
+  <div class="box-header">
+            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Organization Post Graph</h3>
+          </div>
+  <?php 
+  $comp_id=$org_page->company_id;
+  $info = DB::table('Add_organizations')->select('created_at')->first();
+  $new=$info->created_at;
+  //print_r($info);
+  $date = explode(" ",$new);
+  // echo $date[0];
+  // echo date('Y-m-d', strtotime($date[0]. ' + 5 days'));
 
+  //$NewDate=Date('y:m:d', strtotime("+7 days Last Sunday"));
+  // $last_post = DB::table('organization_posts')->OrderBy('post_id','desc')->first();
+  // print_r($last_post);
+      ?>
+  <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+<!----------------------------------------------------->
 
               </div>
             </div>
@@ -751,6 +783,7 @@
       height: 150,
       debug: false
     });
+
   });
 
   function org_post(x){
@@ -779,7 +812,7 @@
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.post("delete-post",{_token:CSRF_TOKEN,id:id},function(data){
      if(data){
-      $("#post-tr"+id).css('background-color','red');
+      $("#post-tr"+id).css('background-color','#2A3F54');
       $("#post-tr"+id).hide(3000);
     }
   });
@@ -911,7 +944,12 @@ $.post('update-post',{_token:CSRF_TOKEN,x:x},function(data){
 if(data){
   $("#up-post").html(data);
   $("#mymodalpost").modal('show');
-  CKEDITOR.replace( 'user_info' );
+    CKEDITOR.replace( 'user_info' );
+    $('#modal_last_date').dateDropper();
+    $('#modal_post_visible').dateDropper();
+    $("#modal_skill_tags").tagsinput({
+     maxTags: 5,
+    });
 }
 });
 }
@@ -973,6 +1011,9 @@ function update_post_info(x){
 
 
 </script>
+
+
+<!-- end info -->
 <script type="text/javascript">
     $( document ).ready(function() {
        $("#update_email").hide();
@@ -1029,15 +1070,32 @@ function update_post_info(x){
     }
 
 </script>
+<script>
+
+</script>
 
 <!--   Styling on organization Image    -->
 <style type="text/css">
 #job-detail-des{
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
+  margin: 5%;
+  /*font-family: 'Montserrat', sans-serif;*/
 }
 #job-detail-des li{
 text-decoration: none;
+padding-bottom: 8px;
+padding-top: 7px;
+border-bottom: solid 1px #e0e0e0;
+padding-left: 1%;
+}
+#job-detail-des li:nth-child(even){
+  background-color: #F9F9F9;
+}
+#job-detail-des li:first-child{
+  border-top: solid 2px #e0e0e0;
+}
+#job-detail-des li:last-child{
+  border-bottom: solid 2px #e0e0e0;
 }
 #job-detail-des li span{
 font-size: 14px;
@@ -1047,6 +1105,7 @@ font-weight: bold;
 #heading-head{
   padding-top:4%;
   padding-bottom:5%;
+  font-weight: bold;
 }
 .contain{
   position: relative;
@@ -1112,6 +1171,47 @@ font-weight: bold;
 }
 
 </style>
+<script>
+  var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+        datasets: [{
+            label: '# of Votes',
+
+            data: [12, 30, 3, 5, 2, 3],
+           
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
 
 
 @endsection

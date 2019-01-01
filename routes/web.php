@@ -12,7 +12,9 @@
 */
 
 /*    Admin Work   */
-
+//session
+Route::get('view-session',"admin_controllers\AdminLogin@viewSession");
+//
 Route::get('admin-login',"admin_controllers\AdminLogin@viewLoginPage");
 Route::post('do-admin-login',"admin_controllers\AdminLogin@doAdminLogin");
 Route::get('admin-pass-reset',"admin_controllers\AdminLogin@viewResetPage");
@@ -22,6 +24,12 @@ Route::get('admin-register',"admin_controllers\Dashboard@viewRegisterPage");
 Route::get('admin-register1',"admin_controllers\Dashboard@viewRegister1Page");
 Route::get('admin-do-post',"admin_controllers\cv_controllers\AdminJobPost@viewJobPostForm");
 Route::get('log-out',"admin_controllers\Dashboard@logOut");
+
+//Admin  profile
+Route::get('admin-profile',"admin_controllers\admin_profile\AdminProfile@viewAdminProfile");
+Route::any('update-admin-info',"admin_controllers\admin_profile\AdminProfile@doAdminUpdate");
+Route::any('add_new_employee',"admin_controllers\admin_profile\AdminProfile@addNewEmployee");
+Route::any('delete-employee',"admin_controllers\admin_profile\AdminProfile@deleteEmployee");
 
 
 //organization routes

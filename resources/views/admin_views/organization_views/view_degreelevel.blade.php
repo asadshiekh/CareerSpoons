@@ -64,7 +64,7 @@
             <tr id="degree-tr{{$all_degree->degree_id}}"> 
                <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_degree->degree_id}}"></th> 
                <td id="degree-td{{$all_degree->degree_id}}">{{$all_degree->degree_title}}</td>
-               <td><a onclick="update_degree('{{$all_degree->degree_title}}','{{$all_degree->degree_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_degree('{{$all_degree->degree_id}}');"><i class="fa fa-trash"></i></a></td>
+               <td><a onclick="update_degree('{{$all_degree->degree_title}}','{{$all_degree->degree_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Degree" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_degree('{{$all_degree->degree_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Degree" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
              
            </tr>
            @endforeach

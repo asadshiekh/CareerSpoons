@@ -36,68 +36,23 @@
 
 
             <!-- Smart Wizard -->
-            <p>form for data.</p>      
-           
-
-         <!-- <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-
-                  <thead>
-                    <tr id="qual-tr">
-                     <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
-                     <th>Qualification Title</th>                
-                     <th>Action</th>
-                   </tr>
-                 </thead>
-                <tbody>
-            <tr id="qual-tr"> 
-               <th><input type="checkbox" name="check_all[]" class="flat" value=""></th> 
-               <td id="qual-td">yes</td>
-               <td><a><i class="fa fa-pencil"></i></a> | <a><i class="fa fa-trash"></i></a></td>
-             
-           </tr>
-                </tbody>
-           
-             
-          </table>
- -->
-            <!-- End SmartWizard Content -->
-
-
-<table id="myEduction" class="display">
-    <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-    </tbody>
-</table>
-
-
+            <p>form for data.</p> 
+            <button onclick="clickme();">click me</button>     
 
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
   <!-- /page content -->
 
-
   <script type="text/javascript">
-    function lala(){
-
-
+    function clickme(){
       alert("yes");
-    
+    var notyf = new Notyf();
+    notyf.confirm('Your changes have been successfully saved!');
+    notyf.alert('Something Went Worng Plz Try Again');
 
     }
   </script>

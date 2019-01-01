@@ -65,7 +65,7 @@
             <tr id="type-tr{{$types->company_type_id}}"> 
                <th><input type="checkbox" id="check_all[]" name="check_all[]" class="flat" value="{{$types->company_type_id}}"></th> 
                <td id="type-td{{$types->company_type_id}}">{{$types->company_type_name}}</td>
-               <td><a onclick="update_type('{{$types->company_type_name}}','{{$types->company_type_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_type('{{$types->company_type_id}}');"><i class="fa fa-trash"></i></a></td>   
+               <td><a onclick="update_type('{{$types->company_type_name}}','{{$types->company_type_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update this Organization type" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_type('{{$types->company_type_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete This Organization Type" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>   
            </tr>
            @endforeach
            

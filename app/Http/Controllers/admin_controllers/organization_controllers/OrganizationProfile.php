@@ -241,7 +241,7 @@ class OrganizationProfile extends Controller
       $job_post= array(
         'company_id' => $request->post('org_id'),
         'job_title' => $request->post('posted_job_title'), 
-        'job_skills' => $request->post('tags_1'), 
+        'job_skills' => $request->post('skill_tags'), 
         'functional_area' => $request->post('req_functional_area'),
         'req_industry' => $request->post('req_industry'), 
         'req_career_level' => $request->post('req_career_level'),
@@ -370,8 +370,8 @@ class OrganizationProfile extends Controller
       <div class="input-group-addon">
       <i class="glyphicon glyphicon-subscript"></i>
       </div>
-      <textarea name="tags" id="tags" rows="3" class="tags form-control">'.$job->job_skills.'</textarea>
-      <div id="suggestions-container" ></div> 
+      <input name="tags" id="modal_skill_tags" class="tags form-control" value="'.$job->job_skills.'"/>
+      
       </div>     
       </div>
 
@@ -567,7 +567,7 @@ class OrganizationProfile extends Controller
       <i class="fa fa-calendar-o"></i>
       </div>
 
-      <input id="single_cal4" name="last_apply_date" type="text" class="tags form-control" placeholder="select date" value="'.$job->last_apply_date.'"/>
+      <input id="modal_last_date" name="last_apply_date" type="date" class="form-control" placeholder="select date" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->last_apply_date.'"/>
       </div>
       </div>
       <!-- Search Result Title-->
@@ -578,7 +578,7 @@ class OrganizationProfile extends Controller
       <i class="fa fa-calendar-o"></i>
       </div>
 
-      <input type="text" class="form-control" id="single_cal2" name="post_visibility_date" placeholder="select date" value="'.$job->post_visibility_date.'">
+      <input type="date" id="modal_post_visible" name="post_visibility_date" placeholder="select date" class="form-control" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->post_visibility_date.'">
 
 
       </div>
@@ -840,14 +840,16 @@ class OrganizationProfile extends Controller
          <h2 class="page-title text-center model-head" id="myModalLabel">'.$name.'</h2>
 <div class="row">
 <div class="col-sm-12">
- <ul class="list-unstyled text-left pl-5" style="padding-left:10%;">
+ <ul class="list-unstyled text-center pl-5">
          <li><strong class="heading" style="display:inline-block;"> Post Title: &nbsp; </strong><p class="info-text" style="display:inline-block;">'.$job->job_title.'</p></li>
          </ul>
 </div>
 <div class="col-sm-12">
- <ul class="list-unstyled text-left pl-5" style="padding-left:10%;">
+ <ul class="list-unstyled text-center pl-5 pt-3">
+ <hr/>
          <li><strong class="heading" style="display:inline-block;"> Job Requirements: &nbsp; </strong></li>
          </ul>
+         <br/>
 </div>
 <div class="col-sm-6">
          <ul class="list-unstyled text-left pl-5" style="padding-left:40%;">
@@ -878,14 +880,18 @@ class OrganizationProfile extends Controller
 </u>
 </div>
 <div class="col-sm-12">
- <ul class="list-unstyled text-left pl-5" style="padding-left:10%;">
+ <ul class="list-unstyled text-center pl-5">
+ <hr/>
+ <br/>
+
          <li><strong class="heading" style="display:inline-block;"> Job Description: &nbsp; </strong></li>
          </ul>
+         <br/>
 </div>
 <div class="form-group col-sm-8 col-md-offset-2">
                       <div class="input-group col-sm-12">
 
-                        <textarea rows="8" name="user_info" id="user_info">'.$job->job_post_info.'</textarea>
+                        <textarea rows="8" name="user_info" id="user_info" disabled="disabled">'.$job->job_post_info.'</textarea>
                       </div>
                     </div>
 

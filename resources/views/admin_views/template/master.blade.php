@@ -10,13 +10,18 @@
 
   <title> Career Spoons </title>
   
-
+  
   <link rel="stylesheet" type="text/css" href="{{url('public/admin_assets/loading/loading-bar.css')}}"/>
   <script type="text/javascript" src="{{url('public/admin_assets/loading/loading-bar.js')}}"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <!-- Input Tags -->
+  <link href="{{url('public/admin_assets/input_tags/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+   <!-- Date Dropper -->
+  <link href="{{url('public/admin_assets/date_dropper/css/datedropper.css')}}" rel="stylesheet">
+  <link href="{{url('public/admin_assets/date_dropper/css/my-style.css')}}" rel="stylesheet">
   <!-- Bootstrap -->
   <link href="{{url('public/admin_assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Font Awesome -->
@@ -28,15 +33,23 @@
 
   <!-- Custom Theme Style -->
   <link href="{{url('public/admin_assets/build/css/custom.min.css')}}" rel="stylesheet">
-<!-- Ck Editors Basic -->
-    <script src="//cdn.ckeditor.com/4.11.1/basic/ckeditor.js"></script>
-      <!-- JQuery Data Tables -->
+  <!-- Ck Editors Basic -->
+  <script src="//cdn.ckeditor.com/4.11.1/basic/ckeditor.js"></script>
+  <!-- JQuery Data Tables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <!-- javascript Css notify -->
+  <link rel="stylesheet" href="{{url('public/admin_assets/notify/css/notyf.min.css')}}">
+  <!-- Pro Tip javaScript -->
+  <link rel="stylesheet" href="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.css">
+  <!-- bootstrap toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  
 </head>
 
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
+
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
@@ -52,8 +65,11 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2><?php if(session()->has('admin_fullname')){
-                echo session()->get('admin_fullname');
+              <h2><?php if(session()->has('admin_name')){
+                echo session()->get('admin_name');
+
+              }else{
+                echo "Syeda";
               } ?></h2>
             </div>
           </div>
@@ -93,9 +109,12 @@
                         <li><a href="{{url('view-degree-level')}}">View Degree Level</a></li>                           
                       </ul>
                     </li>
-
+                  
+                    
                   </ul>
                 </li> 
+  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-spoon"></i>About Us</a></li> 
+  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-spoon"></i>Contact  Us</a></li>            
 
               </ul>
             </div>
@@ -158,15 +177,15 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="javascript:;"> Profile</a></li>
-                  <li>
+                  <li><a href="{{url('admin-profile')}}"> Profile</a></li>
+                  <!-- <li>
                     <a href="javascript:;">
                       <span class="badge bg-red pull-right">50%</span>
                       <span>Settings</span>
                     </a>
                   </li>
-                  <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="javascript:;">Help</a></li> -->
+                  <li><a href="{{url('log-out')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
 
@@ -252,7 +271,7 @@
       <!-- /footer content -->
     </div>
   </div>
-<!--jquery table-->
+  <!--jquery table-->
 
   <!-- jQuery -->
   <script src="{{url('public/admin_assets/vendors/jquery/dist/jquery.min.js')}}"></script>
@@ -302,29 +321,40 @@
   <script src="{{url('public/admin_assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
   <script src="{{url('public/admin_assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
   <script src="{{url('public/admin_assets/vendors/jszip/dist/jszip.min.js')}}"></script>
-  <script src="{{url('public/admin_assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
-  <script src="{{url('public/admin_assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
-  <script src="{{url('public/admin_assets/vendors/cropper/dist/cropper.min.js')}}"></script>
+  
+  
   <!-- Jquery data Tables .Js -->
-      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <!-- jQuery -->
+  <script src="{{url('public/admin_assets/input_tags/js/bootstrap-tagsinput.js')}}"></script>
+  <script src="{{url('public/admin_assets/date_dropper/js/datedropper.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+  <!-- Notify Javascript -->
+  <script src="{{url('public/admin_assets/notify/js/notyf.min.js')}}"></script>
+  <!-- Pro Tip javaScript -->
+  <script src="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.js"></script>
+  <!-- bootstrap toogle -->
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+  <script type="text/javascript">
+    $( document ).ready(function() {
 
-<script type="text/javascript">
-$( document ).ready(function() {
-   
-    $('#myEduction').DataTable();
-});
-</script>
-<script type="text/javascript">
+      $('#myEduction').DataTable();
+       $.protip();
+    });
+  </script>
+  <script type="text/javascript">
   //alert("nayab");
   $('#myEduction').DataTable();
 </script>
 <script type="text/javascript">
   $('#myQual').DataTable();
 </script>
+<script type="text/javascript">
+  $('#employee').DataTable();
+</script>
 
-
-
+<!-- ckeditor -->
 <script>
   CKEDITOR.replace('company_info');
   CKEDITOR.replace( 'user_info' );
@@ -332,8 +362,44 @@ $( document ).ready(function() {
 
 <script>
   function loadingCk(){
-  CKEDITOR.replace( 'post_info' );  
-}
+    CKEDITOR.replace( 'post_info' );  
+  }
+</script>
+
+<!-- input tags -->
+
+<script>
+  $("#skill_tags").tagsinput({
+    maxTags: 5,
+  });
+</script>
+
+<!-- date dropper -->
+<script>
+  $('#last_apply').dateDropper();
+</script>
+
+<script>
+  $('#post_visible').dateDropper();
+</script>
+<script>
+  $(function() {
+    $('#toggle-account').bootstrapToggle();
+  })
+</script>
+<script>
+  var typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    smartBackspace: false,
+    typeSpeed: 60,
+     showCursor: false,
+     startDelay: 0,
+      backSpeed: 0,
+      backDelay: 100
+
+  });
+ 
+
 </script>
 
 </body>

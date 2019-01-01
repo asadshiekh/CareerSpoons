@@ -66,7 +66,7 @@
                   <tr id="city-tr{{$cities->company_city_id}}"> 
                    <th class="chk"><input type="checkbox" name="check_all[]" class="flat" value="{{$cities->company_city_id}}"></th> 
                    <td id="up-td{{$cities->company_city_id}}">{{$cities->company_city_name}}</td>
-                   <td><a onclick="update_request('{{$cities->company_city_name}}','{{$cities->company_city_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_city('{{$cities->company_city_id}}');"><i class="fa fa-trash"></i></a></td>
+                   <td><a onclick="update_request('{{$cities->company_city_name}}','{{$cities->company_city_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update City" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_city('{{$cities->company_city_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete City" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
 
                  </tr>
                  @endforeach

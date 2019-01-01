@@ -108,6 +108,7 @@ function login_admin(){
   var user = $("#user-name").val();
   var pass = $("#password").val();
     $.post("do-admin-login",{_token:CSRF_TOKEN,user:user,pass:pass},function(data){
+      alert(data);
       if(data=="yes"){
         window.location.replace("admin-dashboard");
       }

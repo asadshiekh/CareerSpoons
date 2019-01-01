@@ -64,7 +64,7 @@
             <tr id="industry-tr{{$industry->company_industry_id}}"> 
                <th><input type="checkbox" name="check_all[]" class="flat" value="{{$industry->company_industry_id}}"></th> 
                <td id="indus-td{{$industry->company_industry_id}}">{{$industry->company_industry_name}}</td>
-               <td><a onclick="update_industry('{{$industry->company_industry_name}}','{{$industry->company_industry_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_industry('{{$industry->company_industry_id}}');"><i class="fa fa-trash"></i></a></td>
+               <td><a onclick="update_industry('{{$industry->company_industry_name}}','{{$industry->company_industry_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Industry" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_industry('{{$industry->company_industry_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Industry" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
              
            </tr>
            @endforeach

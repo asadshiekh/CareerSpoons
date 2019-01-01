@@ -64,7 +64,7 @@
                   <tr id="major-tr{{$all_majors->major_id}}"> 
                    <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_majors->major_id}}"></th> 
                    <td id="major-td{{$all_majors->major_id}}">{{$all_majors->major_title}}</td>
-                   <td><a onclick="update_major('{{$all_majors->major_title}}','{{$all_majors->major_id}}');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_major('{{$all_majors->major_id}}');"><i class="fa fa-trash"></i></a></td>
+                   <td><a onclick="update_major('{{$all_majors->major_title}}','{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_major('{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
 
                  </tr>
                  @endforeach

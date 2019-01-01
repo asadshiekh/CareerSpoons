@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin_controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class Dashboard extends Controller
 {
@@ -14,7 +15,8 @@ class Dashboard extends Controller
      */
     public function viewIndexPage()
     {
-        return view('admin_views/index');
+        $total_org=DB::table('Add_organizations')->count();
+        return view('admin_views/index',['total_org'=>$total_org]);
     }
     public function viewRegisterPage()
     {
