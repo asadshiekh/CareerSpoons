@@ -206,5 +206,15 @@ class User_Resume_Model extends Model
 	}
 
 
+	public function delete_experience($id,$candidate_id){
+
+		$response = DB::table('add_user_experiences')->where([
+			['id','=',[$id]],
+			['candidate_id','=',[$candidate_id]],
+		])->delete();
+		return $response;
+	}
+
+
 
 }

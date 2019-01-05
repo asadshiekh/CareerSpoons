@@ -145,6 +145,7 @@ Route::any('add-user-resume-info',"site_controllers\UserResume@addUserResumeInfo
 //DELETE
 
 Route::any('delete-candidate-education',"site_controllers\UserResume@deleteUserEduction")->middleware('CheckUserProfile');
+Route::any('delete-candidate-experience',"site_controllers\UserResume@deleteUserExperience")->middleware('CheckUserProfile');
 
 
 // UPDATE Model Window Function

@@ -9,7 +9,6 @@ use App\SiteModel\User\UserProfileImages;
 use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\Resumes\User_Resume_Model;
 use App\Mail\Site_Mail\User_Mail\User_Registeration;
-
 use Mail;
 use DB;
 class SiteUser extends Controller

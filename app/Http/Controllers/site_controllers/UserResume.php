@@ -748,13 +748,32 @@ class UserResume extends Controller
 	}
 
 
-public function candidateJobMatchCriteria(Request $request){
+	public function candidateJobMatchCriteria(Request $request){
 
-	echo "<pre>";
-	print_r($request->candidate_skill);
+		echo "<pre>";
+		print_r($request->candidate_skill);
 	   // The Data is in Array PHP
 
-}
+	}
+
+
+
+	public function deleteUserExperience(Request $request){
+
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_experience($request->id,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+			echo "no";
+		}
+	}
 
 
 

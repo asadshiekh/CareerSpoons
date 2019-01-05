@@ -61,9 +61,9 @@ function addExperience(num){
 
 
 function addExperience1(num){
-var notyf = new Notyf();
+	var notyf = new Notyf();
 
-		if(num==0){
+	if(num==0){
 
 		swal({
 			title: 'Are you sure?',
@@ -85,4 +85,88 @@ var notyf = new Notyf();
 
 
 	}
+}
+
+
+function delete_exp(id){
+
+
+	swal({
+		title: 'Are You Sure?',
+		text: "This Experience is Permanently Delete from your profile",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, Do it!'
+	}).then((result) => {
+		if (result.value) {
+
+			delete_experience(id);
+
+		}
+	})
+}
+
+
+
+
+function delete_experience(id){
+
+	
+	var notyf = new Notyf();
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	$.post("delete-candidate-experience",{_token:CSRF_TOKEN,id:id},function(data){
+
+
+		if(data=="yes"){
+
+			$("#exp_unique_row"+id).hide(4500);
+			setTimeout(
+				function(){
+					swal('Experience Delete Successfully!','','success');
+
+					setTimeout(
+						function(){
+							notyf.confirm('Your Changes Have Been Successfully Saved!');
+						},
+						1000
+						);
+
+
+				},
+				500
+				);
+		}
+
+		else{
+
+			setTimeout(
+				function(){
+					swal({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Connection Failed!!',
+						footer: '<a href>Why do I have this issue?</a>'
+					})
+
+					setTimeout(
+						function(){
+							notyf.alert('Something Went Worng Plz Try Again');
+						},
+						1000
+						);
+
+
+				},
+				500
+				);
+		}
+
+	});
+
+
+
+
+
 }

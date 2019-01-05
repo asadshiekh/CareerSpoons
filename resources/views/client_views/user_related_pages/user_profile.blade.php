@@ -602,14 +602,14 @@
 									</thead>
 									<tbody>
 										@foreach ($candidate_experience as $exp)
-										<tr>
+										<tr id="exp_unique_row{{$edu->id}}">
 											
 											<td>{{ $exp->job_title }}</td>
 											<td>{{ $exp->company_name }}</td>
 											<td>{{ $exp->your_position}}</td>
 											<td>{{ $exp->ref_email}}</td>
 											<td>{{ $exp->ref_phone }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <a onclick="delete_exp(<?php echo $exp->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Experience" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 
 										</tr>
 										@endforeach
