@@ -586,37 +586,41 @@
 	<hr>
 </div>
 
-							<div class="candidate_experience" id="candidate_experience">
-								<h3>Experenice-Info</h3>
-								<br/>
-								<table id="userExperience" class="display">
-									<thead>
-										<tr>
-											<th>Job Title</th>
-											<th>Company Name</th>
-											<th>Your Position</th>
-											<th>Ref Email</th>
-											<th>Ref Phone</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_experience as $exp)
-										<tr id="exp_unique_row{{$edu->id}}">
-											
-											<td>{{ $exp->job_title }}</td>
-											<td>{{ $exp->company_name }}</td>
-											<td>{{ $exp->your_position}}</td>
-											<td>{{ $exp->ref_email}}</td>
-											<td>{{ $exp->ref_phone }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <a onclick="delete_exp(<?php echo $exp->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Experience" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
+<div class="candidate_experience" id="candidate_experience">
+	<h3>Experenice-Info</h3>
+	<br/>
+	<table id="userExperience" class="display">
+		<thead>
+			<tr>
+				<th>Job Title</th>
+				<th>Company Name</th>
+				<th>Your Position</th>
+				<th>Ref Email</th>
+				<th>Ref Phone</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_experience as $exp)
+			<tr id="exp_unique_row{{$exp->id}}">
 
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<hr>
-							</div>
+				<td>{{ $exp->job_title }}</td>
+				<td>{{ $exp->company_name }}</td>
+				<td>{{ $exp->your_position}}</td>
+				<td>{{ $exp->ref_email}}</td>
+				<td>{{ $exp->ref_phone }}</td>
+				<td><a href="#ExperienceViewed" data-toggle="modal" onclick='viewed_exp("<?php echo $exp->job_title ?>","<?php echo $exp->company_name?>","<?php echo $exp->ref_email ?>","<?php echo $exp->ref_phone?>","<?php echo $exp->your_position?>","<?php echo $exp->exp_start?>","<?php echo $exp->exp_end?>","<?php echo $exp->exp_description?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Experience" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> |<a onclick='update_exp("<?php echo $exp->id ?>");'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Experience" data-pt-animate="flipInX"> <i class="fas fa-edit"></i></span></a> | <a onclick="delete_exp(<?php echo $exp->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Experience" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
+
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+		<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#AddExperience" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Experience" data-pt-animate="flipInX">Add Experience</span></a></div>
+	<br>
+	<br>
+	<hr>
+</div>
 
 <div class="candidate_project" id="candidate_project">
 	<h3>Project Info</h3>
@@ -1589,15 +1593,182 @@ data-dismiss="modal" aria-hidden="true">×</button>
 
 
 
-
-
-
-
-
 <div id="model_div">
 	
 
 </div>
+
+
+
+
+
+
+<!-- Experience -->
+
+
+
+<!-- Experience Viewd -->
+
+<!-- Modal -->
+<div id="ExperienceViewed" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Experience Viewed</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<div class="edit-pro">
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Job Title</label>
+							<input type="text" id="viewed_exp_job_title" readonly="readonly" class="form-control" placeholder="Else">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Company Name</label>
+							<input type="text" id="viewed_exp_company_name" readonly="readonly" class="form-control" placeholder="Dana">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Referance Email</label>
+							<input type="email" id="viewed_exp_referance_email" readonly="readonly" class="form-control" placeholder="dana.mathew@gmail.com">
+						</div>
+						
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Reference Number</label>
+							<input type="text" id="viewed_exp_referance_number" readonly="readonly"  class="form-control" placeholder="258 457 528">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Your Position</label>
+							<input type="text" id="view_exp_your_position" readonly="readonly" class="form-control" placeholder="258 457 528">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Date From</label>
+							<input type="text" id="viewed_exp_date_from" readonly="readonly" class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Date To</label>
+							<input type="text" id="viewed_exp_date_to" readonly="readonly" class="form-control" placeholder="258 457 528">
+						</div>
+						
+						<div class="col-sm-12">
+							<label>Description</label>
+							<textarea class="form-control" name="view_exp_description" id="view_exp_description" placeholder="Write Something"></textarea>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
+<!-- Add Experience  -->
+
+
+<!-- Modal -->
+<div id="AddExperience" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Add Experience</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_exp">
+						<div class="edit-pro">
+
+							<div class="col-md-4 col-sm-6">
+								<label>Job Title</label>
+								<input type="text" id="job_title" class="form-control" placeholder="Job Title">
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<label>Company Name</label>
+								<input type="text" id="company_name" class="form-control" placeholder="Company Name">
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<label>Referance Email</label>
+								<input type="email" id="ref_email"  class="form-control" placeholder="Reference Email">
+							</div>
+
+
+							<div class="col-md-6 col-sm-6">
+								<label>Reference Number</label>
+								<input type="text" id="exp_ref_phone"  class="form-control" placeholder="Reference Number">
+							</div>
+
+							<div class="col-md-6 col-sm-6">
+								<label>Your Position</label>
+								<input type="text" id="your_position"  class="form-control" placeholder="Position, e.g. Web Designer">
+							</div>
+
+							<div class="col-md-6 col-sm-6">
+								<label>Date From</label>
+								<input type="text" id="exp-start" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
+							</div>
+
+							<div class="col-md-6 col-sm-6">
+								<label>Date To</label>
+								<input type="text" id="exp-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
+							</div>
+
+							<div class="col-sm-12">
+								<label>Description</label>
+								<textarea name="work_history" id="project_descrption">Describe Your Experience</textarea>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" onclick="addExperience(2);" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
+
+
+
+
 
 
 <script type="text/javascript">

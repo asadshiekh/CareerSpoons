@@ -216,7 +216,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

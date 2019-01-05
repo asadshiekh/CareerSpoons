@@ -216,5 +216,23 @@ class User_Resume_Model extends Model
 	}
 
 
+	public function get_selected_experience($id){
+
+		$response = DB::table('add_user_experiences')->where('id', $id)->first();
+		return $response;
+	}
+
+
+	public function update_experience($user_response,$experience_id_number,$candidate_id){
+
+		$response = DB::table('add_user_experiences')->where([
+			['id','=',[$experience_id_number]],
+			['candidate_id','=',[$candidate_id]],
+		])->update($user_response);
+
+		return $response;
+	}
+
+
 
 }

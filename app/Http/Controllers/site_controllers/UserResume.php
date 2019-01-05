@@ -192,13 +192,14 @@ class UserResume extends Controller
 
 		if($info){
 
-			echo "yes";
+			$id=DB::getPdo()->lastinsertId();
+			echo $id;
 
 		}
 
 		else{
 
-			echo "no";
+			
 		}
 	}
 
@@ -773,6 +774,122 @@ class UserResume extends Controller
 
 			echo "no";
 		}
+	}
+
+
+
+	public function updateUserExperience(Request $request){
+
+		$id =  $request->id;
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->get_selected_experience($id);
+
+		echo '
+<div id="UpdateExperienceModelWindow" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Update Experience</h4>
+			</div>
+
+			<div class="modal-body"> 
+				<div class="row no-mrg">
+					<div class="edit-pro">
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Job Title</label>
+							<input type="text" id="update_exp_job_title" class="form-control" placeholder="Job Title" value="'.$info->job_title.'" > 
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Company Name</label>
+							<input type="text" id="update_exp_company_name" class="form-control" placeholder="Company Name" value="'.$info->company_name.'">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Referance Email</label>
+							<input type="email" id="update_exp_referance_email" class="form-control" placeholder="dana.mathew@gmail.com" value="'.$info->ref_email.'">
+						</div>
+						
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Reference Number</label>
+							<input type="text" id="update_exp_referance_number"  class="form-control" placeholder="258 457 528" value="'.$info->ref_phone.'">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Your Position</label>
+							<input type="text" id="update_exp_your_position" class="form-control" placeholder="Position, e.g. Web Designer" value="'.$info->your_position.'">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Date From</label>
+								<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-start"  class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Date To</label>
+								<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-end"  class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						
+						<div class="col-sm-12">
+							<label>Description</label>
+							<textarea class="form-control" name="update_exp_description" id="update_exp_description" placeholder="Write Something">'.$info->exp_description.' </textarea>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="do_update_experience('.$info->id.')" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+			</div>
+		</div>
+	</div>
+</div>';
+		
+	}
+
+
+
+	public function doUpdateUserExperience(Request $request){
+
+		$updated_date = date("Y.m.d h:i:s");
+		$user_response = array(
+			'job_title' => $request->job_title,
+			'company_name' => $request->company_name,
+			'ref_email' => $request->ref_email,
+			'ref_phone' => $request->ref_phone,
+			'your_position' =>$request->your_position,
+			'exp_start' => $request->exp_start,
+			'exp_end' => $request->exp_end,
+			'exp_description' => $request->exp_description,
+			'updated_at' => $updated_date
+		);
+
+		//print_r($user_response);
+
+		$experience_id_number = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->update_experience($user_response,$experience_id_number,$request->session()->get('id'));
+
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+
+
 	}
 
 

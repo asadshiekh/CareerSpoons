@@ -510,6 +510,8 @@
 				$('#pro-end').dateDropper();
 			</script>
 
+
+
 			<script>
 				$("#skilltags").tagsinput({
 					maxTags: 5,
@@ -530,6 +532,12 @@
 			<script>
 				CKEDITOR.replace( 'view_edu_description' );	
 			</script>
+
+			<!-- Viewd Experience Ck Editior -->
+			<script>
+				CKEDITOR.replace( 'view_exp_description' );	
+			</script>
+
 
 			<script>
 				CKEDITOR.replace( 'work_history' );

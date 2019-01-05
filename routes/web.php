@@ -16,11 +16,11 @@
 
    // Site Controller Work //  
 Route::get('/',"site_controllers\SiteController@viewHome");
-Route::get('contact-us',"site_controllers\SiteController@viewContactUs");
+Route::get('/contact-us',"site_controllers\SiteController@viewContactUs");
 Route::post('do-contact-us',"site_controllers\SiteController@doContactUs");
 Route::post('do-contact-us-email-send',"site_controllers\SiteController@dosendEmailContactUs");
-Route::get('faq',"site_controllers\SiteController@viewFaq");
-Route::get('about-us',"site_controllers\SiteController@viewAboutUs");
+Route::get('/faq',"site_controllers\SiteController@viewFaq");
+Route::get('/about-us',"site_controllers\SiteController@viewAboutUs");
 Route::get('page-not-found',"site_controllers\SiteController@viewPageNotFound");
 Route::get('view-session',"site_controllers\SiteController@view_session");
 Route::get('view-company-session',"site_controllers\SiteController@viewCompanysession");
@@ -152,6 +152,8 @@ Route::any('delete-candidate-experience',"site_controllers\UserResume@deleteUser
 
 Route::any('update-candidate-form',"site_controllers\UserResume@updateUserEduction")->middleware('CheckUserProfile');
 
+
+
 // UPDATE Eduction
 
  Route::any('update-candidate-education',"site_controllers\UserResume@updateUserFormEduction")->middleware('CheckUserProfile');
@@ -163,6 +165,9 @@ Route::any('update-candidate-form',"site_controllers\UserResume@updateUserEducti
 Route::any('user_job_match_criteria',"site_controllers\UserResume@candidateJobMatchCriteria")->middleware('CheckUserProfile');
 
 
+Route::any('update-candidate-experience',"site_controllers\UserResume@updateUserExperience")->middleware('CheckUserProfile');
+
+Route::any('update-experience-model-window',"site_controllers\UserResume@doUpdateUserExperience")->middleware('CheckUserProfile');
 
 
 //    UserResume Controller    //
