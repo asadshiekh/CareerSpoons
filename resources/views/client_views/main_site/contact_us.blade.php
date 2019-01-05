@@ -20,21 +20,21 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="contact-box">
 							<i class="fa fa-map-marker"></i>
-							<p>#Street 2122, Near New Market<br>London Uk (122546)</p>
+							<p>Street #10 Phase #8, Defence Lahore Cantt<br>Pakistan,Lhr (54000)</p>
 						</div>
 					</div>
 					
 					<div class="col-md-4 col-sm-4">
 						<div class="contact-box">
 							<i class="fa fa-envelope"></i>
-							<p>careerdesk12@gmail.com<br>support@careerdesk.com</p>
+							<p>careerspoons@gmail.com<br>support@careerdesk.com</p>
 						</div>
 					</div>
 					
 					<div class="col-md-4 col-sm-4">
 						<div class="contact-box">
 							<i class="fa fa-phone"></i>
-							<p>UK: 01 123 456 7895<br>Ind: +91 123 546 8758</p>
+							<p>UK: 01 123 456 7895<br>Ind: +92 323 497 6389</p>
 						</div>
 					</div>
 					
@@ -46,30 +46,31 @@
 			<section class="contact-form">
 				<div class="container">
 					<h2>Drop A Mail</h2>
-					
+					<form>
 					<div class="col-md-6 col-sm-6">
-						<input type="text" class="form-control" placeholder="Your Name">
+						<input type="text" class="form-control" id="candidate_name" placeholder="Your Name">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
-						<input type="email" class="form-control" placeholder="Your Email">
+						<input type="email" class="form-control" id="candidate_email" placeholder="Your Email">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
-						<input type="text" class="form-control" placeholder="Phone Number">
+						<input type="text" class="form-control" id="candidate_number" placeholder="Phone Number">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
-						<input type="text" class="form-control" placeholder="Subject">
+						<input type="text" class="form-control" id="candidate_subject" placeholder="Subject">
 					</div>
 					
 					<div class="col-md-12 col-sm-12">
-						<textarea class="form-control" placeholder="Message"></textarea>
+						<textarea class="form-control" id="candidate_message" placeholder="Message"></textarea>
 					</div>
 					
 					<div class="col-md-12 col-sm-12">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="button" onclick="contactUs();" class="btn btn-primary">Submit</button>
 					</div>
+				</form>
 					
 				</div>
 			</section>

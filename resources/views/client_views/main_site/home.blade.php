@@ -1,638 +1,532 @@
 @extends('client_views.master')
 @section('content')
 
-	<div class="clearfix"></div>
-		<!-- Main Banner Section Start -->
-		<div class="banner" style="background-image:url('public/client_assets/img/banner-9.jpg');">  
-			<div class="container">
-				<div class="banner-caption">
-					<div class="col-md-12 col-sm-12 banner-text">
-						<h1>7,000+ Browse Jobs</h1>
-						<form class="form-horizontal" action="{{url('search-jobs')}}">
-							<div class="col-md-4 no-padd">
-								 <div class="input-group">
-									 <input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies">
-								 </div>
-							</div>
-							<div class="col-md-3 no-padd">
-								 <div class="input-group">
-									 <input type="text" class="form-control right-bor" placeholder="Search By Location..">
-								 </div>
-							</div>
-							
-							<div class="col-md-3 no-padd">
-								 <div class="input-group">
-									<select id="choose-city" class="form-control">
-										<option>Choose City</option>
-										<option>Chandigarh</option>
-										<option>London</option>
-										<option>England</option>
-										<option>Pratapcity</option>
-										<option>Ukrain</option>
-										<option>Wilangana</option>
-									</select>
-								 </div>
-							</div>
-							
-							<div class="col-md-2 no-padd">
-								<div class="input-group">
-									<button type="submit" class="btn btn-primary">Search Job</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			
-			<div class="company-brand">
-				<div class="container">
-					<div id="company-brands" class="owl-carousel">
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/microsoft-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/img-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/paypal-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/serv-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/xerox-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/yahoo-home.png')}}" class="img-responsive" alt="" />
-						</div>
-						<div class="brand-img">
-							<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
+<div class="clearfix"></div>
+<!-- Main Banner Section Start -->
+<div class="banner" style="background-image:url('public/client_assets/img/banner-9.jpg');">  
+	<div class="container">
+		<div class="banner-caption">
+			<div class="col-md-12 col-sm-12 banner-text">
+				<h1>7,000+ Browse Jobs</h1>
+				<form class="form-horizontal" action="{{url('search-jobs')}}">
+					<div class="col-md-4 no-padd">
+						<div class="input-group">
+							<input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies">
 						</div>
 					</div>
-				</div>
+					<div class="col-md-3 no-padd">
+						<div class="input-group">
+							<input type="text" class="form-control right-bor" placeholder="Search By Location..">
+						</div>
+					</div>
+
+					<div class="col-md-3 no-padd">
+						<div class="input-group">
+							<select id="choose-city" class="form-control">
+								<option>Choose City</option>
+								<option>Chandigarh</option>
+								<option>London</option>
+								<option>England</option>
+								<option>Pratapcity</option>
+								<option>Ukrain</option>
+								<option>Wilangana</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-2 no-padd">
+						<div class="input-group">
+							<button type="submit" class="btn btn-primary">Search Job</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			
 		</div>
-		<div class="clearfix"></div>
-		<!-- Main Banner Section End -->
-		
+	</div>
 
-			<section>
-				<div class="container">
-				
-				  <div class="row">
-						<div class="main-heading">
-							<h2>Browse Jobs By <span>Category</span></h2>
-						</div>
-				   </div>
-
-				   <div class="row">
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-bargraph" aria-hidden="true"></i>
-										<i class="icon-bargraph abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Accounting & Finance</a></h4>
-										<p>122 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-tools-2" aria-hidden="true"></i>
-										<i class="icon-tools-2 abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Automotive Jobs</a></h4>
-										<p>155 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-briefcase" aria-hidden="true"></i>
-										<i class="icon-briefcase abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Business</a></h4>
-										<p>300 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-edit" aria-hidden="true"></i>
-										<i class="icon-edit abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Education Training</a></h4>
-										<p>80 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-heart" aria-hidden="true"></i>
-										<i class="icon-heart abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Healthcare</a></h4>
-										<p>120 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-wine" aria-hidden="true"></i>
-										<i class="icon-wine abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Restaurant & Food</a></h4>
-										<p>78 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-map" aria-hidden="true"></i>
-										<i class="icon-map abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Transportation</a></h4>
-										<p>90 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6">
-							<div class="category-box" data-aos="fade-up">
-								<div class="category-desc">
-									<div class="category-icon">
-										<i class="icon-desktop" aria-hidden="true"></i>
-										<i class="icon-desktop abs-icon" aria-hidden="true"></i>
-									</div>
-
-									<div class="category-detail category-desc-text">
-										<h4> <a href="browse-jobs-grid.html">Telecommunications</a></h4>
-										<p>210 Jobs</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-					
+	<div class="company-brand">
+		<div class="container">
+			<div id="company-brands" class="owl-carousel">
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/microsoft-home.png')}}" class="img-responsive" alt="" />
 				</div>
-			</section>
-			<!-- Job By Category End-->
-
-		<!-- Job List-->
-		<section>
-			<div class="container">
-				
-				<div class="row">
-					<div class="main-heading">
-						<p>200 New Jobs</p>
-						<h2>New & Random <span>Jobs</span></h2>
-					</div>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/img-home.png')}}" class="img-responsive" alt="" />
 				</div>
-				<!--/row-->
-				
-				<!--Browse Job In Grid-->
-				<div class="row extra-mrg">
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="part-time">Part Time</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="freelanc">Freelancer</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-							<span class="tg-themetag tg-featuretag">Premium</span>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="enternship">Enternship</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="full-time">Full Time</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="part-time">Part Time</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-							<span class="tg-themetag tg-featuretag">Premium</span>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="full-time">Full Time</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="freelanc">Freelancer</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					<!-- Single Job Grid -->
-					<div class="col-md-3 col-sm-6">
-						<div class="grid-view brows-job-list">
-							<div class="brows-job-company-img">
-								<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
-							</div>
-							<div class="brows-job-position">
-								<h3><a href="job-detail.html">Web Developer</a></h3>
-								<p><span>Google</span></p>
-							</div>
-							<div class="job-position">
-								<span class="job-num">5 Position</span>
-							</div>
-							<div class="brows-job-type">
-								<span class="enternship">Enternship</span>
-							</div>
-							<ul class="grid-view-caption">
-								<li>
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</li>
-								<li>
-									<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
 				</div>
-				<!--/.Browse Job In Grid-->
-					
-			</div>
-		</section>
-		<div class="clearfix"></div>
-		<!-- Latest Job End-->
-		
-		<!-- video section Start -->
-		<section class="video-sec dark" id="video" style="background-image:url('public/client_assets/img/banner-10.jpg');">
-			<div class="container">
-				<div class="row">
-					<div class="main-heading">
-						<p>Best For Your Projects</p>
-						<h2>Watch Our <span>video</span></h2>
-					</div>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/paypal-home.png')}}" class="img-responsive" alt="" />
 				</div>
-				<!--/row-->
-				<div class="video-part">
-					<a href="#" data-toggle="modal" data-target="#my-video" class="video-btn"><i class="fa fa-play"></i></a>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/serv-home.png')}}" class="img-responsive" alt="" />
+				</div>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/xerox-home.png')}}" class="img-responsive" alt="" />
+				</div>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/yahoo-home.png')}}" class="img-responsive" alt="" />
+				</div>
+				<div class="brand-img">
+					<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
 				</div>
 			</div>
-		</section>
-		<div class="clearfix"></div>
-		<!-- video section Start -->
+		</div>
+	</div>
 
-		<!-- ====================== How It Work ================= -->
-		<section class="how-it-works">
-			<div class="container">
-				
-				<div class="row" data-aos="fade-up">
-					<div class="col-md-12">
-						<div class="main-heading">
-							<p>Working Process</p>
-							<h2>How It <span>Works</span></h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-				
-					<div class="col-md-4 col-sm-4">
-						<div class="working-process">
-							<span class="process-img">
-								<img src="{{url('public/client_assets/img/step-1.png')}}" class="img-responsive" alt="" />
-								<span class="process-num">01</span>
-							</span>
-							<h4>Create An Account</h4>
-							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
-						</div>
-					</div>
-					
-					<div class="col-md-4 col-sm-4">
-						<div class="working-process">
-							<span class="process-img">
-								<img src="{{url('public/client_assets/img/step-2.png')}}" class="img-responsive" alt="" />
-								<span class="process-num">02</span>
-							</span>
-							<h4>Search Jobs</h4>
-							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
-						</div>
-					</div>
-					
-					<div class="col-md-4 col-sm-4">
-						<div class="working-process">
-							<span class="process-img">
-								<img src="{{url('public/client_assets/img/step-3.png')}}" class="img-responsive" alt="" />
-								<span class="process-num">03</span>
-							</span>
-							<h4>Save & Apply</h4>
-							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
-						</div>
-					</div>
-					
-				</div>
-				
+</div>
+<div class="clearfix"></div>
+<!-- Main Banner Section End -->
+
+
+<!-- Job List-->
+<section>
+	<div class="container">
+
+		<div class="row">
+			<div class="main-heading">
+				<p>200 New Jobs</p>
+				<h2>New & Random <span>Jobs</span></h2>
 			</div>
-		</section>
-		<div class="clearfix"></div>
-		
-		<!-- testimonial section Start -->
-		<section class="testimonial" id="testimonial">
-			<div class="container">
-				<div class="row">
-					<div class="main-heading">
-						<p>What Say Our Client</p>
-						<h2>Our Success <span>Stories</span></h2>
+		</div>
+		<!--/row-->
+
+		<!--Browse Job In Grid-->
+		<div class="row extra-mrg">
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
 					</div>
-				</div>
-				<!--/row-->
-				<div class="row">
-					<div id="client-testimonial-slider" class="owl-carousel">
-						<div class="client-testimonial">
-							<div class="pic">
-								<img src="{{url('public/client_assets/img/client-1.jpg')}}" alt="">
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="part-time">Part Time</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
 							</div>
-							<p class="client-description">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua.
-							</p>
-							<h3 class="client-testimonial-title">Lacky Mole</h3>
-							<ul class="client-testimonial-rating">
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star"></li>
-							</ul>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="freelanc">Freelancer</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+					<span class="tg-themetag tg-featuretag">Premium</span>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="enternship">Enternship</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="full-time">Full Time</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="part-time">Part Time</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+					<span class="tg-themetag tg-featuretag">Premium</span>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="full-time">Full Time</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="freelanc">Freelancer</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Single Job Grid -->
+			<div class="col-md-3 col-sm-6">
+				<div class="grid-view brows-job-list">
+					<div class="brows-job-company-img">
+						<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
+					</div>
+					<div class="brows-job-position">
+						<h3><a href="job-detail.html">Web Developer</a></h3>
+						<p><span>Google</span></p>
+					</div>
+					<div class="job-position">
+						<span class="job-num">5 Position</span>
+					</div>
+					<div class="brows-job-type">
+						<span class="enternship">Enternship</span>
+					</div>
+					<ul class="grid-view-caption">
+						<li>
+							<div class="brows-job-location">
+								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+							</div>
+						</li>
+						<li>
+							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<!--/.Browse Job In Grid-->
+
+	</div>
+</section>
+
+<!-- Latest Job End-->
+
+
+
+
+<section style="padding:0px;margin-bottom:50px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="main-heading">
+				<h2>Browse Jobs By <span>Category</span></h2>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-bargraph" aria-hidden="true"></i>
+							<i class="icon-bargraph abs-icon" aria-hidden="true"></i>
 						</div>
 
-						<div class="client-testimonial">
-							<div class="pic">
-								<img src="{{url('public/client_assets/img/client-2.jpg')}}" alt="">
-							</div>
-							<p class="client-description">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua.
-							</p>
-							<h3 class="client-testimonial-title">Karan Wessi</h3>
-							<ul class="client-testimonial-rating">
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-							</ul>
-						</div>
-						
-						<div class="client-testimonial">
-							<div class="pic">
-								<img src="{{url('public/client_assets/img/client-3.jpg')}}" alt="">
-							</div>
-							<p class="client-description">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua.
-							</p>
-							<h3 class="client-testimonial-title">Roul Pinchai</h3>
-							<ul class="client-testimonial-rating">
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star"></li>
-							</ul>
-						</div>
-						
-						<div class="client-testimonial">
-							<div class="pic">
-								<img src="{{url('public/client_assets/img/client-1.jpg')}}" alt="">
-							</div>
-							<p class="client-description">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua.
-							</p>
-							<h3 class="client-testimonial-title">Adam Jinna</h3>
-							<ul class="client-testimonial-rating">
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star-o"></li>
-								<li class="fa fa-star"></li>
-							</ul>
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Accounting & Finance</a></h4>
+							<p>122 Jobs</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- testimonial section End -->
-		
-		<!-- pricing Section Start -->
-		<section class="pricing">
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-tools-2" aria-hidden="true"></i>
+							<i class="icon-tools-2 abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Automotive Jobs</a></h4>
+							<p>155 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-briefcase" aria-hidden="true"></i>
+							<i class="icon-briefcase abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Business</a></h4>
+							<p>300 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-edit" aria-hidden="true"></i>
+							<i class="icon-edit abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Education Training</a></h4>
+							<p>80 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-heart" aria-hidden="true"></i>
+							<i class="icon-heart abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Healthcare</a></h4>
+							<p>120 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-wine" aria-hidden="true"></i>
+							<i class="icon-wine abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Restaurant & Food</a></h4>
+							<p>78 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-map" aria-hidden="true"></i>
+							<i class="icon-map abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Transportation</a></h4>
+							<p>90 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-desktop" aria-hidden="true"></i>
+							<i class="icon-desktop abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<h4> <a href="browse-jobs-grid.html">Telecommunications</a></h4>
+							<p>210 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<!-- Job By Category End-->
+
+
+<!-- testimonial section Start -->
+<section class="testimonial" id="testimonial">
+	<div class="container">
+		<div class="row">
+			<div class="main-heading">
+				<p>What Say Our Client</p>
+				<h2>Our Success <span>Stories</span></h2>
+			</div>
+		</div>
+		<!--/row-->
+		<div class="row">
+			<div id="client-testimonial-slider" class="owl-carousel">
+
+				@foreach ($get_reviews as $row)
+				<div class="client-testimonial">
+					<div class="pic">
+						<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{$row->profile_image}}" alt="">
+					</div>
+					<p class="client-description">
+						{{$row->review_description}}.
+					</p>
+					<h3 class="client-testimonial-title">{{$row->candidate_name}}</h3>
+
+					<div class="detail" style="margin-left: 33%">
+						<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$row->rating_points}}" data-pt-animate="swing">
+							<div id="candidate_rateYo{{$row->id}}"></div>
+						</span>
+					</div>
+
+				</div>
+				@endforeach
+
+
+
+			</div>
+		</div>
+	</section>
+	<!-- testimonial section End -->
+
+	<!-- pricing Section Start -->
+<!-- 		<section class="pricing">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -642,11 +536,11 @@
 						</div>
 					</div>
 				</div>
-				<!--/row-->
+				
 				
 				<div class="row">
 					
-					<!-- Single Freelancer Style 2 -->
+					
 					<div class="col-md-4 col-sm-6">
 						<div class="freelance-container style-2">
 							<div class="freelance-box">
@@ -683,7 +577,7 @@
 						</div>
 					</div>
 					
-					<!-- Single Freelancer Style 2 -->
+					
 					<div class="col-md-4 col-sm-6">
 						<div class="freelance-container style-2">
 							<div class="freelance-box">
@@ -720,7 +614,7 @@
 						</div>
 					</div>
 					
-					<!-- Single Freelancer Style 2 -->
+					
 					<div class="col-md-4 col-sm-6">
 						<div class="freelance-container style-2">
 							<div class="freelance-box">
@@ -759,7 +653,7 @@
 					
 				</div>
 				
-				<!-- Single Freelancer -->
+				
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 						<div class="text-center">
@@ -769,7 +663,7 @@
 				</div>
 				
 			</div>
-		</section>
+		</section> -->
 		<!-- End Pricing Section -->
 		
 		<!-- Download app Section Start -->
@@ -793,5 +687,8 @@
 		<div class="clearfix"></div>
 		<!-- Download app Section End -->
 		
+
+
+
 		
-  @endsection
+		@endsection

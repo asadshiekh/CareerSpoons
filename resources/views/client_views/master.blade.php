@@ -26,8 +26,31 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<!-- javascript Css notify -->
 	<link rel="stylesheet" href="{{url('public/client_assets/css/notify/notyf.min.css')}}">
-	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
+	<!--  Css Effects -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+	<!--  Chart(Js) css Wigets -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/1.6.2/billboard.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/1.6.2/theme/insight.css" rel="stylesheet">
+	<!-- Input Tags -->
+	<link href="{{url('public/client_assets/css/bootstrap_tags/bootstrap-tagsinput.css')}}" rel="stylesheet">
+	<!-- Zoom in Effect  -->
+	<link href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.2/dist/css/lightgallery.min.css" rel="stylesheet">
+	<!-- / Cropper Files -->
+	<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+	<script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
+	<!-- / Cropper Files  -->
+
+	<!-- Toggle Button -->
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+	<!-- Css rating -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+
+	<!-- <link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css"> -->
+	
 
 
 </head>
@@ -178,7 +201,7 @@
 						<ul>
 							<li><a href="{{url('/')}}" title="">Home</a></li>
 							<!-- <li><a href="blog.html" title="">Blog</a></li> -->
-							<li><a href="404.html" title="">About Us</a></li>
+							<li><a href="{{url('about-us')}}" title="">About Us</a></li>
 							<li><a href="{{url('faq')}}" title="">FAQ</a></li>
 							<li><a href="{{url('contact-us')}}" title="">Contact Us</a></li>
 						</ul>
@@ -246,10 +269,12 @@
 							<h3 class="widgettitle widget-title">Connect Us</h3>
 							<div class="textwidget">
 								<form class="footer-form">
-									<input type="text" class="form-control" placeholder="Your Name"> 
-									<input type="text" class="form-control" placeholder="Email">
-									<textarea class="form-control" placeholder="Message"></textarea>
-									<button type="submit" class="btn btn-primary">Login</button>
+									<input type="text" id="candidate_name1" class="form-control" placeholder="Your Name"> 
+									<input type="text" id="candidate_email1" class="form-control" placeholder="Your Email">
+									<input type="hidden" id="candidate_number1" value="0000" class="form-control"> 
+									<input type="hidden" id="candidate_subject1" value="no-subject"  class="form-control">
+									<textarea class="form-control" id="candidate_message1" placeholder="Message"></textarea>
+									<button type="button" onclick="contactUs1();" class="btn btn-primary">Send</button>
 								</form>
 							</div>
 						</div>
@@ -397,6 +422,10 @@
 			<script src="{{url('public/client_assets/js/customization_js/add_hobbies_resume.js')}}"></script>
 			<!-- Manage Catgeory of Data Tables -->
 			<script src="{{url('public/client_assets/js/customization_js/manage_user_category.js')}}"></script>
+			<!-- Contact Us -->
+			<script src="{{url('public/client_assets/js/customization_js/contact_us.js')}}"></script>
+			<!-- Review -->
+			<script src="{{url('public/client_assets/js/customization_js/review.js')}}"></script>
 			<!-- Typed .Js -->
 			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 			<!-- Jquery data Tables .Js -->
@@ -405,9 +434,57 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 			<!-- Notify Javascript -->
 			<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
+			<!-- css effect link -->
+			<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+			<!-- Chart(Js) Javascript cdn link -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/1.6.2/billboard.js"></script>
+			<!-- Chart(Js) Javascript cdn link -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/1.6.2/billboard.pkgd.js"></script>
+			<!-- Input Tags -->
+			<script src="{{url('public/client_assets/js/bootstrap_tags/bootstrap-tagsinput.js')}}"></script>
+			<!-- Zoom in Zoom Out -->
+			<script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.2/dist/css/lightgallery.min.css"></script>
+			<!-- Toggle Button -->
+			<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+			<!-- Script  -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 			
 			<script>
+				
+				$("#rateYo").rateYo({
+					rating:{{Session::get('candidate_rating')}},
+					onChange: function (rating, rateYoInstance) {
+
+						$(this).next().text(rating);
+					}
+
+
+				});
+
+			</script>
+
+			<script>
+			<?php
+			$info=DB::select(DB::raw("SELECT * FROM candidate_reviews,register_users,user_profile_images WHERE 
+			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id ")); ?>
+
+
+				<?php foreach($info as  $row): ?>
+					$("#candidate_rateYo{{$row->id}}").rateYo({
+						rating: <?php echo $row->rating_points?>,
+						readOnly: true,
+						starWidth: "20px"
+					});
+				<?php endforeach; ?>  
+			</script>
+
+
+			<script>
 				$('#dob').dateDropper();
+			</script>
+
+			<script>
+				$('#update_dob').dateDropper();
 			</script>
 
 			<script>
@@ -432,20 +509,105 @@
 			<script>
 				$('#pro-end').dateDropper();
 			</script>
+
+			<script>
+				$("#skilltags").tagsinput({
+					maxTags: 5,
+				});
+			</script>
+
+			<!-- Bio Ck Editor -->
 			<script>
 				CKEDITOR.replace( 'editor1' );
 			</script>
+
+			<!-- Add Eduction Ck Editior -->
 			<script>
 				CKEDITOR.replace( 'eduction' );
-				
 			</script>
+
+			<!-- Viewd Eduction Ck Editior -->
+			<script>
+				CKEDITOR.replace( 'view_edu_description' );	
+			</script>
+
 			<script>
 				CKEDITOR.replace( 'work_history' );
 			</script>
+			
 			<script>
-				CKEDITOR.replace( 'project' );
+				CKEDITOR.replace( 'project' );	
 			</script>
+
+			<!-- User Profile Update Bio Ck Editor -->
 			<script>
+				CKEDITOR.replace( 'profile_bio' );	
+			</script>
+
+			<!-- User Profile Update Address Ck Editor -->
+			<script>
+				CKEDITOR.replace( 'profile_Address' );	
+			</script>
+
+
+			<!-- Rating Prtoduct -->
+			<script>
+
+				CKEDITOR.replace( 'rating_pro' );
+				// var j = 'Enter Your Reviews About This Products!';
+				// CKEDITOR.instances['rating_pro'].setData();
+			</script>
+
+
+			<script>
+				lightGallery(document.getElementById('aniimated-thumbnials'), {
+					thumbnail:true
+				}); 
+			</script>
+
+			<script>
+				$(function() {
+					$('#toggle-two').bootstrapToggle({
+						on: 'Enabled',
+						off: 'Disabled',
+						width: 120,
+						height:40
+					});
+				})
+			</script>
+
+
+			<script>
+				$(function(){
+					$('#toggle-two').change(function() {
+
+						var value = $(this).prop('checked');
+
+						if(value==true){
+
+
+							$("#candidate_facebook_social_link").prop('disabled',false);
+							$("#candidate_google_social_link").prop('disabled',false);
+							$("#candidate_twitter_social_link").prop('disabled',false);
+							$("#candidate_linkedin_social_link").prop('disabled',false);
+						}
+
+						else if(value==false){
+
+							$("#candidate_facebook_social_link").prop('disabled',true);
+							$("#candidate_google_social_link").prop('disabled',true);
+							$("#candidate_twitter_social_link").prop('disabled',true);
+							$("#candidate_linkedin_social_link").prop('disabled',true);
+
+						}
+
+					})
+				})
+			</script>
+			
+
+			<script>			
+
 				var typed = new Typed('#typed', {
 					stringsElement: '#typed-strings',
 					typeSpeed: 100,
@@ -453,14 +615,32 @@
 					startDelay: 500,
 					bindInputFocusEvents: true,
 
-
 				});
 			</script>
 
-			
+			<script>
+				AOS.init();
+			</script>
+
+
 
 			<script type="text/javascript">
-				
+
+
+				<?php 
+
+				$id = 	Session::get('id');
+				$user_edu=DB::table('add_user_eductions')->where('candidate_id', $id)->get()->count();
+				$user_exp=DB::table('add_user_experiences')->where('candidate_id', $id)->get()->count();
+				$user_pro=DB::table('add_user_projects')->where('candidate_id', $id)->get()->count();
+				$user_skill=DB::table('add_user_skills')->where('candidate_id', $id)->get()->count();
+				$user_lanaguage=DB::table('add_user_languages')->where('candidate_id', $id)->get()->count();
+				$user_hobbies=DB::table('add_user_hobbies')->where('candidate_id', $id)->get()->count();
+
+
+
+
+				?>	
 
 				var ctx = document.getElementById("piechart");
 				var myChart = new Chart(ctx, {
@@ -468,7 +648,7 @@
 					data: {
 						labels: ["Eduction", "Experience", "Project", "Skills", "Languages", "Hobbies"],
 						datasets: [{
-							data: [{{Session::get('cv_status')}}, 19, 3, 5, 2, 3],
+							data: [{{$user_edu}},{{$user_exp}},{{$user_pro}},{{$user_skill}},{{$user_lanaguage}},{{$user_hobbies}}],
 							backgroundColor: [
 							'rgba(255, 99, 132, 0.2)',
 							'rgba(54, 162, 235, 0.2)',
@@ -499,10 +679,6 @@
 					}
 				});
 
-			</script>
-
-			<script type="text/javascript">
-				
 
 				var ctx = document.getElementById("linechart");
 				var myChart = new Chart(ctx, {
@@ -511,7 +687,7 @@
 						labels: ["User Resume info"],
 						datasets: [{
 							label: 'Eduction',
-							data: [22],
+							data: [{{$user_edu}}],
 							backgroundColor: [
 							'rgba(255, 99, 132, 0.2)'
 							],
@@ -521,7 +697,7 @@
 							borderWidth: 1
 						},{
 							label: 'Experience',
-							data: [41],
+							data: [{{$user_exp}}],
 							backgroundColor: [
 							'rgba(54, 162, 235, 0.2)'
 							],
@@ -531,7 +707,7 @@
 							borderWidth: 1
 						},{
 							label: 'Project',
-							data: [34],
+							data: [{{$user_pro}}],
 							backgroundColor: [
 							'rgba(255, 206, 86, 0.2)'
 							],
@@ -541,7 +717,7 @@
 							borderWidth: 1
 						},{
 							label: 'Skills',
-							data: [27],
+							data: [{{$user_skill}}],
 							backgroundColor: [
 							'rgba(75, 192, 192, 0.2)'
 							],
@@ -551,7 +727,7 @@
 							borderWidth: 1
 						},{
 							label: 'Languages',
-							data: [32],
+							data: [{{$user_lanaguage}}],
 							backgroundColor: [
 							'rgba(153, 102, 255, 0.2)'
 							],
@@ -561,7 +737,7 @@
 							borderWidth: 1
 						},{
 							label: 'Hobbies',
-							data: [18],
+							data: [{{$user_hobbies}}],
 							backgroundColor: [
 							'rgba(255, 159, 64, 0.2)'
 							],
@@ -582,6 +758,95 @@
 						}
 					}
 				});
+
+
+				function strengthMeter() {
+
+					<?php 
+
+					$id = 	(Session::get('id') ? Session::get('id') : "0");
+					$edu_value = 1;
+					$user_edu=DB::table('user_profile_strength')->where([
+						['candidate_id','=',[$id]],
+						['education_category','=',[$edu_value]],
+					])->first();
+
+					$edu_data = ($user_edu ? $user_edu->education_value : "0")
+
+					?>
+
+					var chart = bb.generate({
+						data: {
+							columns: [
+							["Profile-Strength-Meter", 91.4]
+							],
+							type: "gauge",
+							onclick: function(d, i) {
+								console.log("onclick", d, i);
+							},
+							onover: function(d, i) {
+								console.log("onover", d, i);
+							},
+							onout: function(d, i) {
+								console.log("onout", d, i);
+							}
+						},
+						gauge: {},
+						color: {
+							pattern: [
+							"#FF0000",
+							"#F97600",
+							"#1FB6FF",
+							"#60B044"
+							],
+							threshold: {
+								values: [
+								30,
+								60,
+								80,
+								100
+								]
+							}
+						},
+						size: {
+							height: 180
+						},
+						bindto: "#GaugeChart"
+					});
+
+					setTimeout(function() {
+						chart.load({
+							columns: [["Profile-Strength-Meter", 10]]
+						});
+					}, 1000);
+
+					setTimeout(function() {
+						chart.load({
+							columns: [["Profile-Strength-Meter", 50]]
+						});
+					}, 2000);
+
+					setTimeout(function() {
+						chart.load({
+							columns: [["Profile-Strength-Meter", 70]]
+						});
+					}, 3000);
+
+					setTimeout(function() {
+						chart.load({
+							columns: [["Profile-Strength-Meter", 2]]
+						});
+					}, 4000);
+
+					setTimeout(function() {
+						chart.load({
+							columns: [["Profile-Strength-Meter",{{$edu_data}}]]
+						});
+					}, 5000);
+
+				}
+
+
 			</script>
 
 
@@ -589,8 +854,12 @@
 				$(document).ready(function() {
 					$('#styleOptions').styleSwitcher();
 					$.protip();
+					
+					//Add Edcution Field both in resume and in profile 
 					$("#Percentage_fields").hide();
 					$("#CGPA_fields").hide();
+
+
 					$("#exp_ref_phone").mask("(0399) 999-9999");
 					$("#project_ref_phone").mask("(0399) 999-9999");
 					$("#candidate_number").mask("(0399) 999-9999");
@@ -614,66 +883,21 @@
 					// Chart Show and Hide
 					$("#pie_charts").hide();
 					$("#line_charts").hide();
+					$("#ProfileStrengthMeter").hide();
+
+
+					$("#candidate_facebook_social_link").prop('disabled', true);
+					$("#candidate_google_social_link").prop('disabled', true);
+					$("#candidate_twitter_social_link").prop('disabled', true);
+					$("#candidate_linkedin_social_link").prop('disabled', true);	
 
 				});
 			</script>
-			<script type="text/javascript">
-				var has_value = {{Session::has('Access')}};
-				if(has_value){
-					swal({
-						title: 'Oops...You Are Already Sign In',
-						animation: false,
-						customClass: 'animated tada',
-						showCloseButton:true,
-						type: 'warning',
-						footer: '<a href="">Why do I have this issue?</a>',
-					})
-				}
-			</script>
-			<script type="text/javascript">
-				var user_verify = {{Session::has('user_email_verify')}};
 
-				if(user_verify){
-
-					swal({
-						title: "Your Email Verify!",
-						text: "Lets Get Started!",
-						icon: "success",
-					});
-
-				}
-			</script>
-			<script type="text/javascript">
-				var msg = {{Session::has('email_status_response')}};
-
-				if(msg){
-
-					swal({
-						title: 'Your Email is Already Verified',
-						animation: false,
-						customClass: 'animated tada'
-					})
-
-				}
-
-			</script>
-			<script type="text/javascript">
-				var user_cv_status = {{Session::has('user_cv_status_flash')}};
-
-				if(user_cv_status){
-
-					swal({
-						type: 'info',
-						title: '<strong>Resume Uploaded!</strong>',
-						text: "Now You Can Manage Your Profile As Well As Your Resume!",
-						icon: "success",
+			@include('client_views.main_site.flash-message')
+			@include('client_views.main_site.alerts') 
 
 
-					})
-
-
-				}
-			</script>
 
 			<script>
 				function openRightMenu() {
@@ -685,5 +909,13 @@
 				}
 			</script>
 		</div>
+
+
+
+
+
+
+
+
 	</body>
 	</html>

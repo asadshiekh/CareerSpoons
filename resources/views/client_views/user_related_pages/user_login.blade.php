@@ -1,5 +1,13 @@
 @extends('client_views.user_related_pages.master')
 @section('content')
+
+						@if ($message = Session::get('password_updated'))
+						<div class="alert alert-success alert-block">
+							<button type="button" class="close" data-dismiss="alert">×</button>	
+							<strong>{{ $message }}</strong>
+						</div>
+						@endif
+
 <form>
 	<div class="form-group">
 		<div class="input-group">

@@ -22,17 +22,25 @@
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
 	</head>
 
-	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg);">
+	<body class="simple-bg-screen" id="body-f">
+
 		<div class="Loader"></div>
 		<div class="wrapper">  
 			
 			<!-- Title Header Start -->
 			<section class="lost-ps-screen-sec">
+
+
+
 				<div class="container">
 					<div class="lost-ps-screen">
+
 						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
 
+
 						@yield('content');
+
+
 
 
 					</div>
@@ -89,12 +97,17 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<!-- Notify Javascript -->
+				<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
 				<script src="{{url('public/client_assets/js/customization_js/user_login.js')}}"></script>
+				<!-- Forget password -->
+				<script src="{{url('public/client_assets/js/customization_js/forgetpassword.js')}}"></script>
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
 					});
 				</script>
+
 				<script>
 					function openRightMenu() {
 						document.getElementById("rightMenu").style.display = "block";
@@ -104,6 +117,11 @@
 						document.getElementById("rightMenu").style.display = "none";
 					}
 				</script>
+				<style type="text/css">
+					#body-f{
+						background-image: url('public/client_assets/img/banner-3.jpg');
+					}
+				</style>
 			</div>
 		</body>
 

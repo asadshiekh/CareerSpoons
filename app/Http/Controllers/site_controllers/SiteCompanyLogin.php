@@ -19,6 +19,7 @@ class SiteCompanyLogin extends Controller
 		return view('client_views.company_related_pages.company_forgot_password');
 	}
 
+
 	public function doCompanyLogin(Request $request){
 
 

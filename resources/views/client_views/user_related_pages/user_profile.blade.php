@@ -3,13 +3,13 @@
 <div class="clearfix"></div>
 
 <!-- Title Header Start -->
-<section class="inner-header-title" style="background-image:url('public/client_assets/img/gtrr.jpg');">
+<a href="http://careerspoons.com/uploads/client_site/cover_photo/cropped/{{Session::get('cropped_cover_image')}}" target="_blank"><section class="inner-header-title banner" style="background-image:url('uploads/client_site/cover_photo/cropped/{{Session::get('cropped_cover_image')}}');">
 
-	<div class="container" style="margin-bottom: 280px">
+	<div class="container" style="margin-bottom: 100px">
 		
 	</div>
 
-</section>
+</section></a>
 <div class="clearfix"></div>
 <!-- Title Header End -->
 
@@ -23,16 +23,28 @@
 				Profile Strength<div id="circle" ></div>
 			</div> -->
 
-			<div class="detail-pic" data-toggle="modal" data-target="#mycropper"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img" alt="" />
-				<a type="file" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a>
 
+			<div id="aniimated-thumbnials">
+			<div class="detail-pic">
+
+			<div id="image_div">
+
+			<a href="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" target="_blank">
+				
+			<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" class="img" alt="" />
+				
+			</a>
+			</div>
+				<a type="file" data-toggle="modal" data-target="#uploadUser_profile" class="detail-edit" title="Update Profile"><i class="fa fa-pencil"></i></a>
+
+			</div>
 			</div>
 
 
 			@if(Session::get('email_status')=='1')
-			<div class="detail-status"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is Verify By Email" data-pt-animate="bounceIn">Verified Candidate</span></div>
+			<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is Verify By Email" data-pt-animate="bounceIn">Verified Candidate</span></div>
 			@else
-			<div class="detail-status"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Verified Your Email To Became A Verified Candidate" data-pt-animate="shake" style="background-color: red; color: white">Verification Required</span></div>
+			<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Verified Your Email To Became A Verified Candidate" data-pt-animate="shake" style="background-color: red; color: white">Verification Required</span></div>
 			@endif
 
 		</div>
@@ -46,13 +58,24 @@
 						<div class="contains_heading" style="font-size: 6px">
 							<h4>Welcome {{Session::get('candidate_name')}}</h4>
 							<p style="color: limegreen">( 
-								@if(Session::has('candidate_profession'))
+								<!-- @if(Session::has('candidate_profession'))
 								{{Session::get('candidate_profession')}}
 								@else
 								Your Profession Title
-								@endif
+								@endif -->
+								<?php 
+								$id = 	Session::get('id');
+								$users_pro = DB::table('add_user_generals_info')->select('candidate_profession')->where('candidate_id', $id)->first();
 
+								if($users_pro->candidate_profession){
 
+								echo $users_pro->candidate_profession;
+								}
+								else{
+								echo "Your Profression Title";
+								}
+
+								?>
 
 							)</p>
 
@@ -74,19 +97,25 @@
 		<div class="row no-padd">
 			<div class="detail pannel-footer">
 				<div class="col-md-5 col-sm-5">
+						<!-- 					
 					<ul class="detail-footer-social">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-					</ul>
+					</ul> -->
+
+					<div class="detail-pannel-footer-btn pull-left"><a href="" class="footer-btn blu-btn" title="" data-toggle="modal" data-target="#uploadcoverphoto">Upload Cover</a>
+					</div>
 				</div>
 				<div class="col-md-7 col-sm-7">
 					@if(Session::get('cv_status')==0)
 					<div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
 					</div>
 					@elseif (Session::get('cv_status')==1)
+					<div class="detail-pannel-footer-btn pull-right"><a href="{{url('user-public-profile')}}" class="footer-btn grn-btn" title="">Viewed as Public</a>
+					</div>
 					<div class="detail-pannel-footer-btn pull-right"><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
 					</div>
 					@endif
@@ -123,13 +152,15 @@
 				<div class="deatil-tab-employ tool-tab">
 
 					<ul class="nav nav-tabs" id="simple-design-tab">
-						<li class="active"><a  data-toggle="tab" href="#about">About</a></li>
+						<li class="active"><a  data-toggle="tab" href="#about">Bio</a></li>
 						<li><a data-toggle="tab" href="#address">Info</a></li>
-						<li><a data-toggle="tab" href="#education_table">Resume Info</a></li>
-						<li><a data-toggle="tab" href="#profile_meter">Profile Strength</a></li>
-						<li><a data-toggle="tab" href="#address">Skills</a></li>
+						<li><a data-toggle="tab" href="#education_table">Resume-Info</a></li>
+						<li><a data-toggle="tab" href="#social_media">Social-Media</a></li>
+						<li><a data-toggle="tab" href="#resume_templates">Resume-Template</a></li>
+						<li><a data-toggle="tab" href="#job_criteria">Job-Match-Criteria</a></li>
 						<li><a data-toggle="tab" href="#matches-job">Matches-Job</a></li>
-						<li><a data-toggle="tab" href="#matches-job">Insight</a></li>
+						<li><a data-toggle="tab" href="#profile_meter">Profile-Insight</a></li>
+						<li><a data-toggle="tab" href="#rating">Rating</a></li>
 						<!-- <li><a data-toggle="tab" href="#friends">Friends</a></li> -->
 						<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
 						<li><a data-toggle="tab" href="#settings">Settings</a></li>
@@ -137,109 +168,423 @@
 
 
 					<!-- Start All Sec -->
-					<div class="tab-content">
+<div class="tab-content">
+	<div id="about" class="tab-pane fade in active">
+		<h3>Your Bio </h3>
 
-						<div id="about" class="tab-pane fade in active">
-							<h3>Your Bio </h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
-							<div class="col-sm-12">
-								<button type="button" class="update-btn">Update Bio</button>
-							</div>
-							<br>
-						</div>
-						<!-- End About Sec -->
+	<?php 
+	 $id = 	Session::get('id');
+	$respose = DB::table('add_user_generals_info')->where('candidate_id', $id)->first();
+	
+	?>	
+	<form action="{{url('update_candidate_resume_bio')}}" method="post">
+		 {{ csrf_field() }}
 
-						<!-- Start Address Sec -->
-						<div id="address" class="tab-pane fade">
-							<h3>Address Info</h3>
-							<ul class="job-detail-des">
-								<li><span>Address:</span>SCO 210, Neez Plaza</li>
-								<li><span>City:</span>Mohali</li>
-								<li><span>State:</span>Punjab</li>
-								<li><span>Country:</span>India</li>
-								<li><span>Zip:</span>520 548</li>
-								<li><span>Telephone:</span>+91 123 456 7854</li>
-								<li><span>Fax:</span>(622) 123 456</li>
-								<li><span>Email:</span>youremail@gmail.com</li>
-							</ul>
-						</div>
-						<!-- End Address Sec -->
+		<textarea name="profile_bio" id="profile_bio">{{ $respose->candidate_resume_details}}</textarea>
+		
+		<div class="col-sm-12">
+			<button type="submit" class="update-btn">Update Bio</button>
+		</div>
+		<br>
+	</form>
 
-						<!-- Start Address Sec -->
-						<div id="profile_meter" class="tab-pane fade">
-							<div class="row">
-								
-								<div class="col-md-12 col-sm-12">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
-										<select class="form-control input-lg" name="user_category" onchange="change_candidate_charts_view()" id="candidate_chart_view">
-											<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
-											<option value="" disabled="disabled" selected="selected" hidden="hidden">Choose the Chart Type</option>
-											<option>Bar</option>
-											<option>Pie</option>
-										</select>
-									</div>
-									<br>
-									<div class="pie_charts" id="pie_charts">
-										<canvas id="piechart" style="height:40vh; width:80vw"></canvas>
-										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
-									</div>
-									<div class="line_charts" id="line_charts">
-										<canvas id="linechart" style="height:40vh; width:80vw"></canvas>
-										<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
-									</div>
-								</div>
+	</div>
 
-							</div>	
-						</div>
-						<!-- End Address Sec -->
 
-						<div id="education_table" class="tab-pane fade">
-							<h3 style="margin-bottom: 15px">Candidate-Resume</h3>
-							
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
-								<select class="form-control input-lg" name="user_category" onchange="change_category()" id="user_category">
-									<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
-									<option>Eduction</option>
-									<option>Experience</option>
-									<option>Project</option>
-									<option>Skills</option>
-									<option>Languages</option>
-									<option>Hobbies</option>
-								</select>
-							</div>	
-							<div class="candidate_eduction" id="candidate_eduction">
-								<h3>Eduction-Info</h3>
-								<br>	
-								<table id="myEduction" class="display">
-									<thead>
-										<tr>
-											<th>Degree Title</th>
-											<th>Degree Level</th>
-											<th>Institute Name</th>
-											<th>Institute Location</th>
-											<th>Majors</th>
-											<th>Action</th>
-											
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_education as $edu)
-										<tr id="edu_unique_row{{ $edu->id }}">
-											<td>{{ $edu->degree_title }}</td>
-											<td>{{ $edu->degree_level }}</td>
-											<td>{{ $edu->Institute_name}}</td>
-											<td>{{ $edu->institute_location}}</td>
-											<td>{{ $edu->majors }}</td>
-											<td><a href="#DemoModal2" data-toggle="modal"><i class="far fa-eye"></i></a> | <i class="fas fa-edit"></i> | <a onclick="delete_edu(<?php echo $edu->id ?>)"><i class="fas fa-trash-alt"></i></a></td>
-										</tr>
-										@endforeach
+	<div id="rating" class="tab-pane fade">
+		<h3>Rate Our Product</h3>
+		<?php 
 
-									</tbody>
-								</table>
-								<br/><hr>
-							</div>
+		$id = 	Session::get('id');
+		$candidate_reviews = DB::table('candidate_reviews')->where('candidate_id', $id)->first();
+		if($candidate_reviews->review_description){
+
+		}
+		else{
+
+			$candidate_reviews->review_description = "Enter Your Reviews About This Products!";
+		}
+
+		?>
+		<form action="{{url('')}}" method="post">
+			{{ csrf_field() }}
+			<br/>
+			<div class="col-sm-12">
+				<label style="display:block">Rate out of 5</label>
+				<div id="rateYo" style="display:inline-block;"></div>
+				<div class="counter" style="display:inline-block;"></div>
+			</div>
+
+			<div class="col-sm-12">
+			<br/>
+				<textarea name="rating_pro" id="rating_pro">{{$candidate_reviews->review_description}}</textarea>
+			</div>
+			<div class="col-sm-12">
+				<button type="button" onclick="review();" class="update-btn">Rate Product</button>
+			</div>
+			<br>
+		</form>
+
+	</div>
+
+
+
+
+
+<div id="job_criteria" class="tab-pane fade">
+<h3>Job Match Criteria </h3>
+<form action="{{url('user_job_match_criteria')}}" method="post">
+{{ csrf_field() }}
+<div class="row no-mrg">
+<div class="edit-pro">
+<br>	
+<div class="col-md-4 col-sm-6">
+<label>Functional Area</label>
+ <input class="form-control input-lg" list="functional_area" name="candidate_functional_area" placeholder="Select Functional Area">
+  <datalist id="functional_area">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Desired Designation</label>
+ <input class="form-control input-lg" list="desired_designation" name="candidate_desired_designation" placeholder="Select Desired Designation">
+  <datalist id="desired_designation">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Minimum Experience</label>
+<select class="form-control input-lg" id="candidate_experience_level">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Experience</option>
+	<option>Data</option>
+</select>
+</div>
+<div class="col-md-4 col-sm-6">
+<label>Minimum Expected Salary</label>
+<select class="form-control input-lg" id="candidate_salary">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Expected Salary</option>
+	<option>Data</option>
+</select>
+</div>
+
+<div class="col-md-4 col-sm-6">
+<label>Preferred Job City</label>
+<select class="form-control input-lg" id="candidate_preferred_city">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
+	<option>Data</option>
+</select>
+</div>
+
+<div class="col-md-4 col-sm-6">
+<label>Job Type</label>
+<select class="form-control input-lg" id="candidate_job_type">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Job Type</option>
+	<option>Data</option>
+</select>
+</div>
+
+<!-- <div class="col-md-12 col-sm-12">
+<label>Primary Skill</label>
+ <input class="form-control input-lg" list="functional_area" name="candidate_skill_category" placeholder="Select Functional Area" id="candidate_skill_category" oninput="fun();">
+  <datalist id="functional_area">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</div>
+
+
+<div class="col-md-12 col-sm-12">
+<label>Primary Skill</label>
+ <select class="form-control input-lg"  multiple data-role="tagsinput" name="candidate_skill[]" id="skilltags">
+ 
+</select>
+</div> -->
+
+
+<div class="col-md-12 col-sm-12">
+<label style="display:block">Primary Skill</label>
+<select class="form-control input-lg"  multiple data-role="tagsinput" name="candidate_skill[]" id="skilltags">
+ <option value=""></option>
+</select>
+</div>
+
+
+
+<div class="col-sm-12">
+<br>
+<button type="submit" class="update-btn">Update Now</button>
+</div>
+</div>
+</div>
+</form>	
+</div>
+
+<!--  -->
+<div id="resume_templates" class="tab-pane fade">
+<h3>Resume Template</h3>
+
+
+
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <div class="thumbnail">
+      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-4 col-md-4">
+    <div class="thumbnail">
+      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-4 col-md-4">
+    <div class="thumbnail">
+      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>	
+
+
+	
+
+
+
+
+
+	<!-- End About Sec -->
+	<!-- Start Address Sec -->
+	<div id="address" class="tab-pane fade">
+		<h3>Gerneral Info</h3>
+		<ul class="job-detail-des">
+			@foreach ($general_info as $user_general_info)
+			<li><span>Full-Name:</span>{{$user_general_info->candidate_name}}</li>
+			<li><span>Professional-Title:</span>{{$user_general_info->	candidate_profession}}</li>
+			<li><span>Number:</span>{{$user_general_info->candidate_number}}</li>
+			<li><span>Region:</span>{{$user_general_info->candidate_city}}</li>
+			<li><span>DOB:</span>{{$user_general_info->candidate_dob}}</li>
+			<li><span>Gender:</span>{{$user_general_info->candidate_gender}}</li>
+			<li><span>Web-Address:</span>{{$user_general_info->candidate_website}}</li>
+			<li><span>Career-Level:</span>{{$user_general_info->	candidate_career_level}}</li>
+			<li><span>Degree-Level:</span>{{$user_general_info->candidate_degree_level}}</li>
+			<li><span>Your Address:</span>{{$user_general_info->	candidate_location}}</li>
+			@endforeach
+		</ul>
+		<br/>
+		<div class="col-sm-12">
+			<a href="#UpdatePerionalInfo" data-toggle="modal"><button type="button" class="update-btn">Edit Info</button></a>
+		</div>
+		<br/>
+	</div>
+	<!-- End Address Sec -->
+<!-- Start Address Sec -->
+<div id="profile_meter" class="tab-pane fade">
+	<div class="row">
+		
+		<div class="col-md-12 col-sm-12">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
+				<select class="form-control input-lg" name="user_category" onchange="change_candidate_charts_view()" id="candidate_chart_view">
+					<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
+					<option value="" disabled="disabled" selected="selected" hidden="hidden">Choose the Chart Type</option>
+					<option>Bar</option>
+					<option>Pie</option>
+					<option>Profile-Strength-Meter</option>
+				</select>
+			</div>
+			<br>
+			<div class="pie_charts" id="pie_charts">
+				<canvas id="piechart" style="height:40vh; width:60vw"></canvas>
+				<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+			</div>
+			<div class="line_charts" id="line_charts">
+				<canvas id="linechart" style="height:40vh; width:60vw"></canvas>
+				<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+			</div>
+			<div class="ProfileStrengthMeter" id="ProfileStrengthMeter">
+				<div id="GaugeChart"></div>
+				<br/>
+				<p style="margin-top: 20px;">Welcome, <b>{{Session::get('candidate_name')}}</b> to your Profile Strength Meter. It is Special Design for the Candidate to check how Healthy is your Profile. It will Check your profile as well as your Resume that how much it is Complete.</p>
+
+			<div class="user-info">
+				
+			<div class="media">
+				<span class="badge bg-danger">BAD</span>
+				<div class="media-body">
+					Between <b>1%</b> to <b>29%</b> Your Profile Will Rate as Bad and Your Profile Strenght Meter Will Tell You About By Showing You <b style="color: red">Red</b> Color...
+				</div>
+			</div>
+
+			<div class="media">
+				<span class="badge bg-warning">OK</span>
+				<div class="media-body">
+					Between <b>31%</b> to <b>60%</b> Your Profile Will Rate as Ok or fine and Your Profile Strenght Meter Will Tell You About By Showing You <b style="color:#F97600">GOLD</b> Color...
+					
+				</div>
+			</div>
+
+			<div class="media">
+				<span class="badge bg-primary">GOOD</span>
+				<div class="media-body">
+					Between <b>61%</b> to <b>80%</b> Your Profile Will Rate as GOOD or Keep it Up and Your Profile Strenght Meter Will Tell You About By Showing You <b style="color: #1FB6FF">Light Blue</b> Color...
+					
+				</div>
+			</div>
+
+			<div class="media">
+				<span class="badge bg-success">EXCELLENT</span>
+				<div class="media-body">
+					Between <b>81%</b> to <b>100%</b> Your Profile Will Rate as EXCELLENT and Your Profile Strenght Meter Will Tell You About By Showing You <b style="color: #60B044">Green</b> Color...
+				</div>
+			</div>
+
+			</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div id="social_media" class="tab-pane fade">
+<div class="row no-mrg">
+<div class="col-md-6">	
+<h3>Manage Social Links</h3>
+</div>
+<div class="col-md-2  col-md-offset-4">	
+<input type="checkbox" id="toggle-two" data-onstyle="success" data-offstyle="danger">
+</div>
+<br>
+<form action="update-social-links" method="post">
+{{ csrf_field() }}
+<div class="edit-pro">
+<div class="col-md-6 col-sm-12">
+<label>Facebook</label>
+<input type="text" class="form-control" name="candidate_facebook_link" value="{{$social_link->candidate_fackbook}}" id="candidate_facebook_social_link" placeholder="Facebook Social Link">
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Google</label>
+<input type="text" class="form-control" name="candidate_google_link" value="{{$social_link->candidate_google}}" id="candidate_google_social_link" placeholder="Google Plus Social Link">
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Twitter</label>
+<input type="text" class="form-control" name="candidate_twitter_link" value="{{$social_link->candidate_twitter}}" id="candidate_twitter_social_link" placeholder="Twitter Social Link">
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Linkedin</label>
+<input type="text" class="form-control" name="candidate_linkedin" value="{{$social_link->candidate_linkedin}}" id="candidate_linkedin_social_link"  placeholder="Linkedin Social Link">
+</div>
+<div class="col-sm-12">
+<br>
+<!-- <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+ -->
+<button type="submit" class="update-btn">Update Now</button>
+
+
+</div>
+</div>
+</form>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End Address Sec -->
+<div id="education_table" class="tab-pane fade">
+	<h3 style="margin-bottom: 15px">Candidate-Resume</h3>
+	
+	<div class="input-group">
+		<span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
+		<select class="form-control input-lg" name="user_category" onchange="change_category()" id="user_category">
+			<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Category</option>
+			<option>Eduction</option>
+			<option>Experience</option>
+			<option>Project</option>
+			<option>Skills</option>
+			<option>Languages</option>
+			<option>Hobbies</option>
+		</select>
+	</div>
+<div class="candidate_eduction" id="candidate_eduction">
+	<h3>Eduction-Info</h3>
+	<br>
+	<table id="myEduction" class="display">
+		<thead>
+			<tr>
+				<th>Degree Title</th>
+				<th>Degree Level</th>
+				<th>Institute Name</th>
+				<th>Institute Location</th>
+				<th>Majors</th>
+				<th>Action</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_education as $edu)
+			<tr id="edu_unique_row{{ $edu->id }}">
+				<td id="unique_edu_degree_title{{ $edu->id }}">{{ $edu->degree_title }}</td>
+				<td id="unique_edu_degree_level{{ $edu->id }}">{{ $edu->degree_level }}</td>
+				<td id="unique_edu_institute_name{{ $edu->id }}">{{ $edu->Institute_name}}</td>
+				<td id="unique_edu_location_name{{ $edu->id }}">{{ $edu->institute_location}}</td>
+				<td id="unique_edu_majors{{ $edu->id }}">{{ $edu->majors }}</td>
+				<td id="unique_edu_action{{ $edu->id }}"><a href="#DemoModal2" data-toggle="modal" onclick='viewed_edu("<?php echo $edu->degree_title ?>","<?php echo $edu->degree_level?>","<?php echo $edu->Institute_name ?>","<?php echo $edu->institute_location?>","<?php echo $edu->edu_start?>","<?php echo $edu->edu_end?>","<?php echo $edu->majors?>","<?php echo $edu->cgpa?>","<?php echo $edu->percentage?>","<?php echo $edu->edu_description?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Eduction" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_edu("<?php echo $edu->id ?>","<?php echo $edu->selected_result ?>");'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Eduction" data-pt-animate="flipInX"><i class="fas fa-edit"></i></span></a> | <a onclick="delete_edu(<?php echo $edu->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Eduction" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#AddEductionModelWindow" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Eduction" data-pt-animate="flipInX">Add Eduction</span></a></div>
+	<br>
+	<br>
+	<hr>
+</div>
 
 							<div class="candidate_experience" id="candidate_experience">
 								<h3>Experenice-Info</h3>
@@ -273,370 +618,233 @@
 								<hr>
 							</div>
 
-							<div class="candidate_project" id="candidate_project">
-								<h3>Project Info</h3>
-								<br/>
-								<table id="userProject" class="display">
-									<thead>
-										<tr>
-											<th>Project Title</th>
-											<th>Project Company Name</th>
-											<th>Project Ref Email</th>
-											<th>Project Ref Phone</th>
-											<th>Your Porject Position</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_project as $candidate_project)
-										<tr>
-											
-											<td>{{ $candidate_project->project_title }}</td>
-											<td>{{ $candidate_project->project_company_name }}</td>
-											<td>{{ $candidate_project->project_ref_email}}</td>
-											<td>{{ $candidate_project->project_ref_phone }}</td>
-											<td>{{ $candidate_project->your_porject_position }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+<div class="candidate_project" id="candidate_project">
+	<h3>Project Info</h3>
+	<br/>
+	<table id="userProject" class="display">
+		<thead>
+			<tr>
+				<th>Project Title</th>
+				<th>Project Company Name</th>
+				<th>Project Ref Email</th>
+				<th>Project Ref Phone</th>
+				<th>Your Porject Position</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_project as $candidate_project)
+			<tr>
+				
+				<td>{{ $candidate_project->project_title }}</td>
+				<td>{{ $candidate_project->project_company_name }}</td>
+				<td>{{ $candidate_project->project_ref_email}}</td>
+				<td>{{ $candidate_project->project_ref_phone }}</td>
+				<td>{{ $candidate_project->your_porject_position }}</td>
+				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br/><hr>
+</div>
+<div class="candidate_skill" id="candidate_skill">
+	<h3>Your Skills</h3>
+	<br/>
+	<table id="userSkills" class="display">
+		<thead>
+			<tr>
+				<th style="text-align: center;">Skill Name</th>
+				<th style="text-align: center;">Skill Percentage</th>
+				<th style="text-align: center;">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_skill as $skill)
+			<tr style="text-align: center;">
+				
+				<td>{{ $skill->skill_name }}</td>
+				<td>{{ $skill->skill_percentage }}</td>
+				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br/><hr>
+</div>
 
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<br/><hr>
-							</div>
+<div class="candidate_languages" id="candidate_languages">
+	<h3>Your Languages</h3>
+	<br/>
+	<table id="userLanguage" class="display">
+		<thead>
+			<tr>
+				<th style="text-align: center;">User Language</th>
+				<th style="text-align: center;">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_languages as $languages)
+			<tr style="text-align: center;">
+				
+				<td>{{ $languages->user_language }}</td>
+				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br/><hr>
+</div>
+<div class="candidate_hobbies" id="candidate_hobbies">
+	<h3>Your Hobbies</h3>
+	<br/>
+	<table id="userHobbies" class="display">
+		<thead>
+			<tr>
+				<th style="text-align: center;">Hobbies</th>
+				<th style="text-align: center;">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($candidate_hobbies as $hobbies)
+			<tr style="text-align: center;">
+				
+				<td>{{ $hobbies->user_hobbies }}</td>
+				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br/><hr>
+</div>
+</div>
+<!-- End Address Sec -->
 
-							<div class="candidate_skill" id="candidate_skill">
-								<h3>Your Skills</h3>
-								<br/>
-								<table id="userSkills" class="display">
-									<thead>
-										<tr>
-											<th style="text-align: center;">Skill Name</th>
-											<th style="text-align: center;">Skill Percentage</th>
-											<th style="text-align: center;">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_skill as $skill)
-										<tr style="text-align: center;">
-											
-											<td>{{ $skill->skill_name }}</td>
-											<td>{{ $skill->skill_percentage }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
-
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<br/><hr>
-							</div>
-
-							<div class="candidate_languages" id="candidate_languages">
-								<h3>Your Languages</h3>
-								<br/>
-								<table id="userLanguage" class="display">
-									<thead>
-										<tr>
-											<th style="text-align: center;">User Language</th>
-											<th style="text-align: center;">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_languages as $languages)
-										<tr style="text-align: center;">
-											
-											<td>{{ $languages->user_language }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
-
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<br/><hr>
-							</div>
-
-							<div class="candidate_hobbies" id="candidate_hobbies">
-								<h3>Your Hobbies</h3>
-								<br/>
-								<table id="userHobbies" class="display">
-									<thead>
-										<tr> 
-											<th style="text-align: center;">Hobbies</th>
-											<th style="text-align: center;">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($candidate_hobbies as $hobbies)
-										<tr style="text-align: center;">
-											
-											<td>{{ $hobbies->user_hobbies }}</td>
-											<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
-
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<br/><hr>
-							</div>
+<!-- Start Job List -->
+<div id="matches-job" class="tab-pane fade">
+	<h3>Matches-job 122 new job</h3>
+	<div class="row">
+		<article class="advance-search-job">
+			<div class="row no-mrg">
+				<div class="col-md-6 col-sm-6">
+					<a href="new-job-detail.html" title="job Detail">
+						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
+					</a>
+					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="advance-search-job-locat">
+						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
+			</div>
+			<span class="tg-themetag tg-featuretag">Premium</span>
+		</article>
+		
+		<article class="advance-search-job">
+			<div class="row no-mrg">
+				<div class="col-md-6 col-sm-6">
+					<a href="new-job-detail.html" title="job Detail">
+						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
+					</a>
+					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>CEO &amp; Manager</h4></a><span>Twitter</span></div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="advance-search-job-locat">
+						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
+			</div>
+		</article>
+		<article class="advance-search-job">
+			<div class="row no-mrg">
+				<div class="col-md-6 col-sm-6">
+					<a href="new-job-detail.html" title="job Detail">
+						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt=""></div>
+					</a>
+					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Microsoft Ltd</span></div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="advance-search-job-locat">
+						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
+			</div>
+		</article>
+	</div>
+	<div class="row">
+		<ul class="pagination">
+			<li><a href="#">«</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+			<li><a href="#">»</a></li>
+		</ul>
+	</div>
+</div>
+<!-- End Job List -->
+<!-- Start Friend List -->
+<div id="friends" class="tab-pane fade">
+	<div class="row">
+		<div class="col-md-4 col-sm-4">
+			<div class="manage-cndt">
+				<div class="cndt-status pending">Pending</div>
+				<div class="cndt-caption">
+					<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
+					<h4>Charles Hopman</h4><span>Web designer</span>
+					<p>Our analysis team at Megriosft use end to end innovation proces</p>
+					</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+				</div>
+<div class="col-md-4 col-sm-4">
+	<div class="manage-cndt">
+		<div class="cndt-status available">Available</div>
+		<div class="cndt-caption">
+			<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
+			<h4>Ethan Marion</h4><span>IOS designer</span>
+			<p>Our analysis team at Megriosft use end to end innovation proces</p>
+			</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+		</div>
+<div class="col-md-4 col-sm-4">
+	<div class="manage-cndt">
+		<div class="cndt-status pending">Pending</div>
+		<div class="cndt-caption">
+			<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
+			<h4>Zara Clow</h4><span>UI/UX designer</span>
+			<p>Our analysis team at Megriosft use end to end innovation proces</p>
+			</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+		</div>
+<div class="col-md-4 col-sm-4">
+	<div class="manage-cndt">
+		<div class="cndt-status pending">Pending</div>
+		<div class="cndt-caption">
+			<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
+			<h4>Henry Crooks</h4><span>PHP Developer</span>
+			<p>Our analysis team at Megriosft use end to end innovation proces</p>
+			</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+		</div>
+		<div class="col-md-4 col-sm-4">
+			<div class="manage-cndt">
+				<div class="cndt-status available">Available</div>
+				<div class="cndt-caption">
+					<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
+					<h4>Joseph Macfarlan</h4><span>App Developer</span>
+					<p>Our analysis team at Megriosft use end to end innovation proces</p>
+					</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="manage-cndt">
+						<div class="cndt-status pending">Pending</div>
+						<div class="cndt-caption">
+							<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
+							<h4>Zane Joyner</h4><span>Html Expert</span>
+							<p>Our analysis team at Megriosft use end to end innovation proces</p>
+							</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
 						</div>
-						<!-- End Address Sec -->
-
-						<!-- Start Job List -->
-						<div id="matches-job" class="tab-pane fade">
-							<h3>Matches-job 122 new job</h3>
-							<div class="row">
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a><span>Vertue Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-									</div>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Database Designer</h4></a><span>Twitter Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
-									</div>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Human Resource</h4></a><span>Skype Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
-									</div>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a><span>Vertue Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="applied">Apply</a></div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>CEO &amp; Manager</h4></a><span>Twitter</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-									</div>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Microsoft Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
-									</div>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>PHP Developer</h4></a><span>Honda Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt=""></div>
-											</a>
-											<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Web Designer</h4></a><span>Autodesk Ltd</span></div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
-									</div>
-								</article>
-
-							</div>
-
-							<div class="row">
-								<ul class="pagination">
-									<li><a href="#">«</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
-									<li><a href="#">»</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- End Job List -->
-
-						<!-- Start Friend List -->
-						<div id="friends" class="tab-pane fade">
-							<div class="row">
-								<div class="col-md-4 col-sm-4">
-									<div class="manage-cndt">
-										<div class="cndt-status pending">Pending</div>
-										<div class="cndt-caption">
-											<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
-											<h4>Charles Hopman</h4><span>Web designer</span>
-											<p>Our analysis team at Megriosft use end to end innovation proces</p>
-										</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-									</div>
-
-									<div class="col-md-4 col-sm-4">
-										<div class="manage-cndt">
-											<div class="cndt-status available">Available</div>
-											<div class="cndt-caption">
-												<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
-												<h4>Ethan Marion</h4><span>IOS designer</span>
-												<p>Our analysis team at Megriosft use end to end innovation proces</p>
-											</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-										</div>
-
-										<div class="col-md-4 col-sm-4">
-											<div class="manage-cndt">
-												<div class="cndt-status pending">Pending</div>
-												<div class="cndt-caption">
-													<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-3.png')}}" class="img-responsive" alt=""></div>
-													<h4>Zara Clow</h4><span>UI/UX designer</span>
-													<p>Our analysis team at Megriosft use end to end innovation proces</p>
-												</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-											</div>
-
-											<div class="col-md-4 col-sm-4">
-												<div class="manage-cndt">
-													<div class="cndt-status pending">Pending</div>
-													<div class="cndt-caption">
-														<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-4.png')}}" class="img-responsive" alt=""></div>
-														<h4>Henry Crooks</h4><span>PHP Developer</span>
-														<p>Our analysis team at Megriosft use end to end innovation proces</p>
-													</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-												</div>
-
-												<div class="col-md-4 col-sm-4">
-													<div class="manage-cndt">
-														<div class="cndt-status available">Available</div>
-														<div class="cndt-caption">
-															<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-2.png')}}" class="img-responsive" alt=""></div>
-															<h4>Joseph Macfarlan</h4><span>App Developer</span>
-															<p>Our analysis team at Megriosft use end to end innovation proces</p>
-														</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-													</div>
-
-													<div class="col-md-4 col-sm-4">
-														<div class="manage-cndt">
-															<div class="cndt-status pending">Pending</div>
-															<div class="cndt-caption">
-																<div class="cndt-pic"><img src="{{url('public/client_assets/img/can-1.png')}}" class="img-responsive" alt=""></div>
-																<h4>Zane Joyner</h4><span>Html Expert</span>
-																<p>Our analysis team at Megriosft use end to end innovation proces</p>
-															</div><a href="#" title="" class="cndt-profile-btn">View Profile</a></div>
-														</div>
 
 <div class="col-md-4 col-sm-4">
 	<div class="manage-cndt">
@@ -1008,9 +1216,106 @@
 </div>
 
 
+
+<!-- Upload Cover Photo -->
+
+<div id="uploadcoverphoto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload Cover Image</h4>
+          <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+            <i id="i" style="font-size:100px"></i>
+          </div>
+          <div class="col-sm-6 col-md-offset-4" id="loading-true">
+            <i id="tru" style="font-size:100px; color: #38b75e"></i>
+          </div>
+        </div>
+    <form action="{{url('update-user-cover-pic')}}" method="post" enctype="multipart/form-data">
+    	{{ csrf_field() }}
+        <div class="modal-body" id="modal-content">
+         	
+
+
+        	<br>
+        	<div class="form-group">
+        		<label for="exampleInputFile">Upload Candidate Cover Image</label>
+        		<input type="file" id="exampleInputFile" name="input_img">
+        		<p class="help-block">Click To Choose Your Profile Pic.</p>
+        	</div>
+
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Upload</button>
+         	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </form>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Upload Profile Pic -->
+
+
+<div id="uploadUser_profile" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload image</h4>
+          <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+            <i id="i" style="font-size:100px"></i>
+          </div>
+          <div class="col-sm-6 col-md-offset-4" id="loading-true">
+            <i id="tru" style="font-size:100px; color: #38b75e"></i>
+          </div>
+        </div>
+        <div class="modal-body" id="modal-content">
+         	
+
+
+        <div class="row">
+        	<br>
+        	<div class="col-md-12" style="margin-left:30px;"><input type="file" id="upload"></div>
+            <div class="col-md-6 text-center">
+                <div id="upload-demo" style="width:350px"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:30px;height:300px;margin-top:30px"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+          <div class="modal-footer">
+            <button class="btn btn-success upload-result">Upload</button>
+         	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
 <!-- Modal -->
 <div id="DemoModal2" class="modal fade "> 
-
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 
@@ -1025,59 +1330,57 @@
 				<div class="row no-mrg">
 					<div class="edit-pro">
 						<div class="col-md-4 col-sm-6">
-							<label>First Name</label>
-							<input type="text" class="form-control" placeholder="Matthew">
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<label>Middle Name</label>
-							<input type="text" class="form-control" placeholder="Else">
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<label>Last Name</label>
-							<input type="text" class="form-control" placeholder="Dana">
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<label>Email</label>
-							<input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<label>Phone</label>
-							<input type="text" class="form-control" placeholder="+91 258 475 6859">
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<label>Zip / Postal</label>
-							<input type="text" class="form-control" placeholder="258 457 528">
+							<label>Degree Title</label>
+							<input type="text" id="viewed_edu_degree_title" readonly="readonly" class="form-control" placeholder="Matthew">
 						</div>
 						
 						<div class="col-md-4 col-sm-6">
-							<label>About you</label>
-							<textarea class="form-control" placeholder="Write Something"></textarea>
+							<label>Degree Level</label>
+							<input type="text" id="viewed_edu_degree_level" readonly="readonly" class="form-control" placeholder="Else">
 						</div>
+						
 						<div class="col-md-4 col-sm-6">
-							<label>Upload Profile Pic</label>
-							<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
-								<div class="dz-default dz-message">
-									<i class="fa fa-cloud-upload"></i>
-									<span>Drop files here to upload</span>
-								</div>
-							</form>
+							<label>Institute Name</label>
+							<input type="text" id="viewed_edu_institute_name" readonly="readonly" class="form-control" placeholder="Dana">
 						</div>
+						
 						<div class="col-md-4 col-sm-6">
-							<label>Upload Profile Cover</label>
-							<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
-								<div class="dz-default dz-message">
-									<i class="fa fa-cloud-upload"></i>
-									<span>Drop files here to upload</span>
-								</div>
-							</form>
+							<label>Institute Location</label>
+							<input type="email" id="viewed_edu_institute_location" readonly="readonly" class="form-control" placeholder="dana.mathew@gmail.com">
 						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Date From</label>
+							<input type="text" id="viewed_edu_date_from" readonly="readonly" class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Date To</label>
+							<input type="text" id="viewed_edu_date_to" readonly="readonly" class="form-control" placeholder="258 457 528">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Majors</label>
+							<input type="text" id="viewed_edu_majors" readonly="readonly"  class="form-control" placeholder="258 457 528">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>CGP/Percentage</label>
+							<input type="text" id="view_edu_cgp_percentage" readonly="readonly" class="form-control" placeholder="258 457 528">
+						</div>
+						
+						<div class="col-sm-12">
+							<label>Description</label>
+							<textarea class="form-control" name="view_edu_description" id="view_edu_description" placeholder="Write Something"></textarea>
+						</div>
+
 					</div>
 				</div>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" class="btn btn-default" data-dismiss="modal">Not Now!</button>
-				<button type="button" class="btn btn-primary">Download</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
 
 		</div> <!-- / .modal-content -->
@@ -1086,6 +1389,296 @@
 
 </div><!-- / .modal -->
 
+
+
+<!-- Modal -->
+<div id="AddEductionModelWindow" class="modal fade"> 
+
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+<div class="modal-header"> <!-- modal header -->
+<button type="button" class="close"
+data-dismiss="modal" aria-hidden="true">×</button>
+<h4 class="modal-title">Add Eduction</h4>
+</div>
+<div class="modal-body"> <!-- modal body -->
+<div class="row no-mrg">
+<form id="user_profile_add_edu">
+<div class="edit-pro">
+	<div class="col-md-4 col-sm-6">
+		<label>Degree Title</label>
+		<input type="text" id="degree_title" class="form-control" placeholder="Degree Title, e.g. Degree Name">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Degree Level</label>
+		<select class="form-control input-lg" id="degree_level">
+			<option value="" disabled="disabled" selected="selected" hidden="hidden">Degree Level</option>
+			<option>Non-Matriculation</option>
+			<option>Matriculation/O-Level</option>
+			<option>Intermediate/A-Level</option>
+			<option>Bachelors</option>
+			<option>Masters</option>
+			<option>MPhil/MS</option>
+			<option>PHD/Doctorate</option>
+			<option>Certification</option>
+			<option>Diploma</option>
+			<option>Short Course</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Institute Name</label>
+		<input type="text" id="institute_name" class="form-control" placeholder="Institute Name">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Institute Location</label>
+		<input type="email" id="institute_location" class="form-control" placeholder="Institute Location: Address Details ">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Date From</label>
+		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" data-default-date="11-13-2016">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Date To</label>
+		<input type="date" id="edu-end" data-theme="my-style" data-translate-mode="true" data-min-year="1980"  data-max-year="2020" data-large-mode="true" class="form-control" data-default-date="11-13-2016">
+	</div>
+	<div class="col-md-4 col-sm-4">
+		<label>Majors</label>
+		<select class="form-control input-lg" id="majors">
+			<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
+			<option>Accounting</option>
+			<option>Actuarial Sciences</option>
+			<option>Aerospace Engineering</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-4">
+		<label>CGP/Percentage</label>
+		<select class="form-control input-lg" id="edu_result" onchange="change_fields()">
+			<option value="" disabled="disabled" selected="selected" hidden="hidden">CGPA / Percentage</option>
+			<option>CGPA</option>
+			<option>Percentage</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-6" id="CGPA_fields">
+		<label>CGPA</label>
+		<input type="text"  id="candidate_CGPA" class="form-control" placeholder="Enter CGPA e.g 2.0 , 3.5 etc">
+	</div>
+	<div class="col-md-4 col-sm-6" id="Percentage_fields">
+		<label>Percentage</label>
+		<input type="text" id="candidate_percentage" class="form-control"  placeholder="Enter Percentage e.g 60% , 70%">
+	</div>
+	
+	<div class="col-sm-12">
+		<label>Description</label>
+		<textarea name="eduction" id="edu_description">Tell Us Something about Your Eduction Experience</textarea>
+	</div>
+</div>
+</form>
+</div>
+<div class="modal-footer"> <!-- modal footer -->
+<button type="button" onclick="addEduction2(2);" class="btn btn-success">Save</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+</div>
+</div> <!-- / .modal-content -->
+</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+</div><!-- / .modal -->
+
+
+
+<!-- Update Perional Info  Modal -->
+<div id="UpdatePerionalInfo" class="modal fade"> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+<div class="modal-header"> <!-- modal header -->
+<button type="button" class="close"
+data-dismiss="modal" aria-hidden="true">×</button>
+<h4 class="modal-title">Edit Personal Info</h4>
+</div>
+<form action="{{url('update_candidate_Personal_Info')}}" method="post">
+ {{ csrf_field() }}
+<div class="modal-body"> <!-- modal body -->
+<div class="row no-mrg">
+<div class="edit-pro">
+	@foreach ($general_info as $user_general_info)
+	<div class="col-md-4 col-sm-6">
+		<label>Full Name</label>
+		<input type="text" name="candidate_name" id="candidate_name" value="{{$user_general_info->candidate_name}}" class="form-control">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Professional-Title</label>
+		<input type="text" id="candidate_profession" name="candidate_profession" class="form-control" value="{{$user_general_info->candidate_profession}}">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Phone Number</label>
+		<input type="text" id="candidate_number" name="candidate_number" class="form-control" value="{{$user_general_info->candidate_number}}">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Region</label>
+		<select class="form-control input-lg" name="candidate_city">
+			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
+			<option>Lahore</option>
+			<option>Karachi</option>
+			<option>Multan</option>
+			<option>Peshawar</option>
+			<option>Quette</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>DOB</label>
+		<input type="text" value="{{$user_general_info->candidate_dob}}" id="update_dob" name="candidate_dob" class="form-control">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Gender</label>
+		<select class="form-control input-lg" name="candidate_gender">
+			<option value="{{$user_general_info->candidate_gender}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_gender}}</option>
+			<option>Male</option>
+			<option>Female</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Website-Link</label>
+		<input type="text"  name="website_link" value="{{$user_general_info->candidate_website}}" class="form-control">
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Career Level</label>
+		<select class="form-control input-lg" name="candidate_career_level">
+			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_career_level}}</option>
+			<option>Entry Level</option>
+			<option>Intermediate</option>
+			<option>Experienced Professional</option>
+			<option>Department Head</option>
+			<option>Gm / CEO / Country Head</option>
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<label>Degree Level</label>
+		<select class="form-control input-lg" name="candidate_degree_level" id="degree_level">
+			<option value="{{$user_general_info->candidate_degree_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_degree_level}}</option>
+			<option>Non-Matriculation</option>
+			<option>Matriculation/O-Level</option>
+			<option>Intermediate/A-Level</option>
+			<option>Bachelors</option>
+			<option>Masters</option>
+			<option>MPhil/MS</option>
+			<option>PHD/Doctorate</option>
+			<option>Certification</option>
+			<option>Diploma</option>
+			<option>Short Course</option>
+		</select>
+	</div>
+	<div class="col-sm-12">
+		<label>Location/Address</label>
+		<textarea name="profile_Address" id="profile_Address">{{$user_general_info->	candidate_location}}</textarea>
+	</div>
+
+	@endforeach
+</div>
+</div>
+<div class="modal-footer"> <!-- modal footer -->
+<button type="submit" class="btn btn-success">Update</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+</div>
+</div> <!-- / .modal-content -->
+</form>
+
+</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+</div><!-- / .modal -->
+
+
+
+
+
+
+
+
+<div id="model_div">
+	
+
+</div>
+
+
+<script type="text/javascript">
+				
+
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+			$uploadCrop = $('#upload-demo').croppie({
+			    enableExif: true,
+			    viewport: {
+			        width: 200,
+			        height: 200,
+			        type: 'circle'
+			    },
+			    boundary: {
+			        width: 300,
+			        height: 300
+			    }
+			});
+
+
+			$('#upload').on('change', function () { 
+			    var reader = new FileReader();
+			    reader.onload = function (e) {
+			        $uploadCrop.croppie('bind', {
+			            url: e.target.result
+			        }).then(function(){
+			            console.log('jQuery bind complete');
+			        });
+			        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			});
+
+
+			$('.upload-result').on('click', function (ev) {
+			    $uploadCrop.croppie('result', {
+			        type: 'canvas',
+			        size: 'viewport'
+			    }).then(function (resp) {
+
+			        //alert(resp);
+
+			        $.ajax({
+			            url: "update-user-profile-pic",
+			            type: "post",
+			            data: {_token:CSRF_TOKEN,"image":resp},
+			            success: function (data) {
+			                html = '<img src="'+resp+'"/>';
+			                $("#upload-demo-i").html(html);
+			                html1 = '<a href="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" target="_blank"><img src="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" /></a>';
+			                $("#image_div").html(html1);
+			                setTimeout(
+			                	function(){
+
+			                		swal('Profile Updated Successfully!','','success');
+			                	},
+			                	500
+			                	);
+
+			                setTimeout(
+			                	function(){
+
+			                		$("#uploadUser_profile .close").click();
+
+			                	},
+			                	500
+			                	);
+			                
+			                
+			            }
+			        });
+			    });
+			});
+
+			</script>
+
+
+			
+
+<!-- <img src="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" class="img" alt="" /> -->
 
 <style type="text/css">
 .Uploadbtn {
@@ -1116,8 +1709,7 @@
 	width:100%;
 }
 
+
 </style>
-
-
 
 @endsection

@@ -63,7 +63,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="password" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
 										<div class="input-group-addon">
 											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
 										</div>
@@ -212,7 +212,7 @@
 		.login-screen, .signup-screen, .lost-ps-screen {
 			position: relative;
 			max-width: 480px;
-			margin:-4% auto 0 auto;
+			margin:-5% auto 0 auto;
 		}
 
 		.field-icon_1{

@@ -172,16 +172,16 @@
 							<span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
 							<select class="form-control input-lg" name="candidate_degree_level">
 								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Degree Level</option>
-								<option value="1">Non-Matriculation</option>
-								<option value="2">Matriculation/O-Level</option>
-								<option value="3">Intermediate/A-Level</option>
-								<option value="4">Bachelors</option>
-								<option value="5">Masters</option>
-								<option value="6">MPhil/MS</option>
-								<option value="7">PHD/Doctorate</option>
-								<option value="8">Certification</option>
-								<option value="9">Diploma</option>
-								<option value="10">Short Course</option>
+								<option>Non-Matriculation</option>
+								<option>Matriculation/O-Level</option>
+								<option>Intermediate/A-Level</option>
+								<option>Bachelors</option>
+								<option>Masters</option>
+								<option>MPhil/MS</option>
+								<option>PHD/Doctorate</option>
+								<option>Certification</option>
+								<option>Diploma</option>
+								<option>Short Course</option>
 							</select>
 						</div>	
 					</div>
