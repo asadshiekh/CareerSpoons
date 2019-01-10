@@ -24,6 +24,7 @@ class AdminLogin extends Controller
        if($info){
             if($info->account_activation == true){
           $admin=array(
+            'account_id' => $info->account_id,
             'admin_name' => $info->admin_fullname,
             'admin_phone' => $info->admin_phone,
             'admin_address' => $info->admin_address,
@@ -37,6 +38,8 @@ class AdminLogin extends Controller
         }else{
           echo "Acount Blocked";
         }
+      }else{
+        echo "no";
       }
 
 

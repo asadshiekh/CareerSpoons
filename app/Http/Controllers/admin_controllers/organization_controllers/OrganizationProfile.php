@@ -80,21 +80,26 @@ class OrganizationProfile extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function uploadOrgPic(Request $request,$id)
+    public function uploadOrgPic(Request $request)
     {
-     echo $id;
-     $file=$request->file('org_picture');
-     $current_date = date("Y.m.d h:i:s");
-     $new_name = rand().'.'.$file->getClientOriginalName();
-     $destination='uploads/organization_images';
-     if($file->move($destination,$new_name)){
-      echo "done";
-      $picture_up=array(
-        'company_img'=>$new_name,
-      );
-      DB::table('upload_org_img')->where(['company_id'=>$id])->update($picture_up);
-      return redirect('organization-profile/'.$id);
-    }
+     // echo "yes";
+     $id=$request->segment(3);
+     $data = $request->image;
+      
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        
+        $data = base64_decode($data);
+        $imageName = time().'.png';
+        $destinationPath = 'uploads/organization_images/';
+        $image = file_put_contents($destinationPath.$imageName,$data);
+         $org_image= array(
+            'company_img' => $imageName
+          );
+          $data = DB::table('upload_org_img')->where(['company_id'=>$id])->update($org_image);
+        
+
+        echo $imageName;
   }
 
     /**
@@ -172,7 +177,7 @@ class OrganizationProfile extends Controller
       $major=DB::table('Add_major')->get();
       $qual=DB::table('Add_qualification')->get();
       echo '<div id="fields'.$random_value.'">
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
       <label>Required Qualification:</label>
       <div class="input-group">
       <div class="input-group-addon">
@@ -186,24 +191,9 @@ class OrganizationProfile extends Controller
       echo '</select>
       </div>
       </div>
-      <!-- Search Result Title-->
-      <div class="form-group col-sm-3">
-      <label>Majors:</label>
-      <div class="input-group">
-      <div class="input-group-addon">
-      <i class="fa fa-trophy"></i>
-      </div>
-
-      <select name="selected_majors[]" class="form-control" id="selected_majors[]">
-      <option disabled="disabled" selected="selected">Select Majors</option>';
-      foreach($major as $major):
-        echo '<option value="'.$major->major_title.'">'.$major->major_title.'</option>';
-      endforeach;
-      echo '</select>
-      </div>
-      </div>
+      <!---majors --->
       <!-- required degree level-->
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
       <label>Required Degree Level:</label>
       <div class="input-group">
       <div class="input-group-addon">
@@ -219,7 +209,7 @@ class OrganizationProfile extends Controller
       </div>
       </div>
 
-      <div class="form-group col-sm-3">
+      <div class="form-group col-sm-4">
       <div class="input-group paren">
 
       <div class="chil"><a onclick="del_field('.$random_value.');"><i class="fa fa-close"></i></a>
@@ -243,6 +233,7 @@ class OrganizationProfile extends Controller
         'job_title' => $request->post('posted_job_title'), 
         'job_skills' => $request->post('skill_tags'), 
         'functional_area' => $request->post('req_functional_area'),
+        'req_major' => $request->post('selected_majors'),
         'req_industry' => $request->post('req_industry'), 
         'req_career_level' => $request->post('req_career_level'),
         'job_experience' => $request->post('job_exp_req'), 
@@ -295,10 +286,6 @@ class OrganizationProfile extends Controller
                 //echo "Value".$row."<br/>\n";
           $quals[] = $row;
         }
-        foreach($_POST['selected_majors'] as $row){
-                //echo "Value".$row."<br/>\n";
-          $majors[] = $row;
-        }
         foreach($_POST['req_degree'] as $row){
                 //echo "Value".$row."<br/>\n";
           $degrees[] = $row;
@@ -307,7 +294,6 @@ class OrganizationProfile extends Controller
                 // echo $cities[$i];
           $qual_criteria=array(
            'req_qualification'=>$quals[$i],
-           'req_majors'=>$majors[$i],
            'req_degree_level'=>$degrees[$i],
            'post_id'=>$id,
            'company_id'=>$comp_id
@@ -327,6 +313,8 @@ class OrganizationProfile extends Controller
     public function doUpdateProfile(Request $request){
       $id = $request->post('x');
       $job=DB::table('organization_posts')->where(['post_id' => $id])->first();
+      $areas=$job->functional_area;
+      $area_majors=DB::table('Add_major')->where(['area_title' => $areas])->get();
       $job_qual=DB::table('job_req_qualifications')->where(['post_id' => $id])->get();
       $count_qual=DB::table('job_req_qualifications')->where(['post_id' => $id])->count();
       $job_pre=DB::table('job_preferences')->where(['post_id' => $id])->get();
@@ -384,14 +372,34 @@ class OrganizationProfile extends Controller
       <div class="input-group-addon">
       <i class="fa fa-users"></i>
       </div>
-      <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area">
-      <option value="'.$job->functional_area.'" selected="selected">'.$job->functional_area.'</option>';
+      <select name="n_req_functional_area" class="form-control" placeholder="Select Functional Area" id="n_req_functional_area" onchange="n_select_major();">
+      <option value="'.$job->functional_area.'" selected="selected" disabled="disabled">'.$job->functional_area.'</option>';
       foreach($area as $a):
         echo '<option value="'.$a->area_title.'">'.$a->area_title.'</option>';
       endforeach;
       echo '</select>
       </div>
       </div>
+      <!-- Search Result Title-->
+        <div class="form-group col-sm-6">
+        <label>Majors:</label>
+        <div class="input-group">
+        <div class="input-group-addon">
+        <i class="fa fa-trophy"></i>
+        </div>
+
+        <select name="n_req_major" class="form-control" placeholder="Select Functional Area" id="n_req_major">
+      <option value="'.$job->req_major.'" selected="selected" disabled="disabled">'.$job->req_major.'</option>';
+      foreach($area_majors as $m):
+        echo '<option value="'.$m->major_title.'">'.$m->major_title.'</option>';
+      endforeach;
+      echo '</select>
+         <!--<input type="text" disabled="disabled" class="form-control" value="/*$quali->req_majors*/"/>-->';
+
+
+        echo '
+        </div>
+        </div>
       <!-- Industry job-->
       <div class="form-group col-sm-6">
       <label>Industry:</label>
@@ -427,19 +435,6 @@ class OrganizationProfile extends Controller
       </div>
       </div>
 
-
-
-
-      <!-- Experience for job -->
-      <div class="form-group col-sm-6">
-      <label>Year of Experience Required:</label>
-      <div class="input-group">
-      <div class="input-group-addon">
-      <i class="fa fa-external-link"></i>
-      </div>
-      <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req" value="'.$job->job_experience.'">
-      </div>
-      </div>
       <!-- Ciities criteria-->
       <div class="bg">';
 //for($i=1; $i<=$count_pre; $i++){
@@ -515,9 +510,19 @@ class OrganizationProfile extends Controller
       </div>
       </div>
       <!------>
+      <!-- Experience for job -->
+      <div class="form-group col-sm-4">
+      <label>Year of Experience Required:</label>
+      <div class="input-group">
+      <div class="input-group-addon">
+      <i class="fa fa-external-link"></i>
+      </div>
+      <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req" value="'.$job->job_experience.'">
+      </div>
+      </div>
 
       <!-- Search Result Title-->
-      <div class="form-group col-sm-6">
+      <div class="form-group col-sm-4">
       <label>Total Positions:</label>
       <div class="input-group">
       <div class="input-group-addon">
@@ -528,7 +533,7 @@ class OrganizationProfile extends Controller
       </div>
       </div>
       <!-- Search Result Title-->
-      <div class="form-group col-sm-6">
+      <div class="form-group col-sm-4">
       <label>Working Hours:</label>
       <div class="input-group">
       <div class="input-group-addon">
@@ -613,7 +618,7 @@ class OrganizationProfile extends Controller
       <div class="bg">';
       foreach ($job_qual as $quali):
         echo '<div id="fields'.$quali->job_qual_id.'"><!-- Search Result Title-->
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-4">
         <label>Required Qualification:</label>
         <div class="input-group">
         <div class="input-group-addon">
@@ -626,23 +631,9 @@ class OrganizationProfile extends Controller
         echo '
         </div>
         </div>
-        <!-- Search Result Title-->
-        <div class="form-group col-sm-3">
-        <label>Majors:</label>
-        <div class="input-group">
-        <div class="input-group-addon">
-        <i class="fa fa-trophy"></i>
-        </div>
-
         
-        <input type="text" disabled="disabled" class="form-control" value="'.$quali->req_majors.'"/>';
-
-
-        echo '
-        </div>
-        </div>
         <!-- required degree level-->
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-4">
         <label>Required Degree Level:</label>
         <div class="input-group">
         <div class="input-group-addon">
@@ -657,7 +648,7 @@ class OrganizationProfile extends Controller
         </div>
         </div>
         <!------>
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-4">
         <label>Del</label>
         <div class="input-group">
 
@@ -724,7 +715,8 @@ class OrganizationProfile extends Controller
     $j_post= array(
       'job_title' => $request->post('u_posted_job_title'), 
       'job_skills' => $request->post('tags'), 
-      'functional_area' => $request->post('req_functional_area'),
+      'functional_area' => $request->post('n_req_functional_area'),
+      'req_major' => $request->post('n_req_major'),
       'req_industry' => $request->post('req_industry'), 
       'req_career_level' => $request->post('req_career_level'),
       'job_experience' => $request->post('job_exp_req'), 
@@ -737,6 +729,7 @@ class OrganizationProfile extends Controller
       'selected_gender' => $request->post('selected_gender'), 
       'prefered_age' => $request->post('prefered_age'),
       'job_post_info' =>$request->post('user_info'),
+      'post_status' =>"Active",
       'updated_at' => $current_date
     );
       $p_id=$request->post('org_post');//1
@@ -792,10 +785,7 @@ class OrganizationProfile extends Controller
                       //echo "Value".$row."<br/>\n";
               $quals[] = $row;
             }
-            foreach($_POST['selected_majors'] as $row){
-                      //echo "Value".$row."<br/>\n";
-              $majors[] = $row;
-            }
+            
             foreach($_POST['req_degree'] as $row){
                       //echo "Value".$row."<br/>\n";
               $degrees[] = $row;
@@ -804,7 +794,6 @@ class OrganizationProfile extends Controller
                       // echo $cities[$i];
               $qual_criteria=array(
                'req_qualification'=>$quals[$i],
-               'req_majors'=>$majors[$i],
                'req_degree_level'=>$degrees[$i],
                'post_id'=>$p_id,
                'company_id'=>$o_id
@@ -957,6 +946,25 @@ public function doOrgUpdateEmail(Request $request){
 
         return $error;
     }
+}
+
+function doFetchMajors(Request $request){
+ $area=$request->post('area');
+ $info =DB::table('Add_major')->where(['area_title'=>$area])->get();
+  return $info;
+}
+
+function changePostStatus(Request $request){
+ echo $id=$request->post('id');
+  $status=$request->post('x');
+  $post=array(
+    'post_status'=>$status
+  );
+if(DB::table('Organization_posts')->where(['post_id'=>$id])->update($post)){
+echo "yes";
+}
+
+
 }
 
 

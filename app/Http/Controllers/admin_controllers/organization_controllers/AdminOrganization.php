@@ -180,6 +180,7 @@ class AdminOrganization extends Controller
 				"company_location" => $company_location,
 				"company_email" => $company_email,
 				"company_password" => $company_password,
+				"org_activation" => "Active",
 				"company_cnic" => $company_cnic,
 				"company_info" => $company_info,
 				"company_document" => $new_name,
@@ -429,6 +430,20 @@ class AdminOrganization extends Controller
 	if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
 		echo "yes";
 	}
+	}
+
+	public function changeOrgStatus(Request $request){
+		$status=$request->post('x');
+		$id=$request->post('id');
+
+		$org_status=array(
+			'org_activation'=>$status
+		);
+		if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($org_status)){
+         echo $id;
+		}
+		
+
 	}
 
 

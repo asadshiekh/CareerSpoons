@@ -55,7 +55,8 @@
                   <thead>
                     <tr id="major-tr">
                      <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
-                     <th>Majors Title</th>                
+                     <th>Majors Title</th> 
+                     <th>Functional Area</th>               
                      <th>Action</th>
                    </tr>
                  </thead>
@@ -64,7 +65,8 @@
                   <tr id="major-tr{{$all_majors->major_id}}"> 
                    <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_majors->major_id}}"></th> 
                    <td id="major-td{{$all_majors->major_id}}">{{$all_majors->major_title}}</td>
-                   <td><a onclick="update_major('{{$all_majors->major_title}}','{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_major('{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
+                   <td id="area-td{{$all_majors->major_id}}">{{$all_majors->area_title}}</td>
+                   <td><a onclick="update_major('{{$all_majors->major_title}}','{{$all_majors->area_title}}','{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_major('{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
 
                  </tr>
                  @endforeach
@@ -74,7 +76,7 @@
 
                <tfoot>
                 <tr>
-                 <td colspan="3">
+                 <td colspan="4">
                    <?php $query=DB::table('Add_major')->get()->count();
                    if($query>0) {?>
                     <button type="submit" class="btn btn-success">Delete</button>
@@ -116,7 +118,22 @@
         </div>
       </div>
       <div class="modal-body" id="modal-content">
+        <div class="form-group">
+        <label>Select functional area:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-building-o"></i>
+          </div>
+          <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area">
+            <option value="" disabled="disabled" selected="selected">Select Your functional area</option>
+            @foreach($all_area as $all_area)
+            <option value="{{$all_area->area_title}}">{{$all_area->area_title}}</option>
+            @endforeach
 
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
         <label>ADD Major title:</label>
         <div class="input-group">
           <div class="input-group-addon">
@@ -124,6 +141,7 @@
           </div>
           <input type="text" placeholder="Enter Major here" class="form-control" name="add_major" id="add_major">
         </div>
+      </div>
         
         <!-- <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> --> 
 
@@ -147,48 +165,53 @@
 
 <script type="text/javascript">
 
-  function update_major(name,id){
- var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-$.post("request-update-major",{_token:CSRF_TOKEN,name:name,id:id},function(data){
-      $("#major_view").html(data);
-      $("#myModal5").modal('show');
-    });
-}
-function edit_major(){
-  
+  function update_major(name,area,id){
    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    var major=$("#up_m_name").val();
-    var id=$("#major_id").val();
-    $.post("update-major",{_token:CSRF_TOKEN,major:major,id:id},function(data){
-      if(data){
+   $.post("request-update-major",{_token:CSRF_TOKEN,name:name,area:area,id:id},function(data){
+    $("#major_view").html(data);
+    $("#myModal5").modal('show');
+  });
+ }
+ function edit_major(){
+
+   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+   var major=$("#up_m_name").val();
+   var u_area=$("#u_functional_area").val();
+   var id=$("#major_id").val();
+   $.post("update-major",{_token:CSRF_TOKEN,major:major,id:id,u_area:u_area},function(data){
+    if(data){
       $("#myModal5").modal('hide');
       $("#major-td"+id).html(major);
-       var originalColor = $("#major-tr"+id).css("background-color");
-      $("#major-tr"+id).css("background",'#84D285');
+      $("#area-td"+id).html(u_area);
+      var originalColor = $("#major-tr"+id).css("background-color");
+      $("#major-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#major-tr"+id).css("background",originalColor);
       },2000);
-      }
-    });
-}
-  function major_adding(){
+    }
+  });
+ }
+ function major_adding(){
    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
    var add_major = $("#add_major").val();
+   var area = $("#req_functional_area").val();
+   
    var c_major ="'"+add_major+"'";
-   $.post('addtable-major-type',{_token:CSRF_TOKEN,add_major:add_major},function(data){
+   var c_area ="'"+area+"'";
+   $.post('addtable-major-type',{_token:CSRF_TOKEN,add_major:add_major,area:area},function(data){
      if (data) {
       var id ="'"+data+"'";
-       $("#major-tr").after('<tr id="major-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td>'+add_major+'</td><td id="major-td'+data+'"><a onclick="update_major('+c_major+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_major('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
-       $("#myModalmajor .close").click();
+      $("#major-tr").after('<tr id="major-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="major-td'+data+'">'+add_major+'</td><td id="area-td'+data+'">'+area+'</td><td><a onclick="update_major('+c_major+','+c_area+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_major('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+      $("#myModalmajor .close").click();
 
-       setTimeout(
-         function(){
-          swal("Successfully Added!", "Major qualification Added Successfully in Your DataBase!", "success");
-        },
-        1000
-        );
-     }
-   });
+      setTimeout(
+       function(){
+        swal("Successfully Added!", "Major qualification Added Successfully in Your DataBase!", "success");
+      },
+      1000
+      );
+    }
+  });
  }
 
 </script>

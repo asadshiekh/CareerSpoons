@@ -30,6 +30,15 @@ Route::get('admin-profile',"admin_controllers\admin_profile\AdminProfile@viewAdm
 Route::any('update-admin-info',"admin_controllers\admin_profile\AdminProfile@doAdminUpdate");
 Route::any('add_new_employee',"admin_controllers\admin_profile\AdminProfile@addNewEmployee");
 Route::any('delete-employee',"admin_controllers\admin_profile\AdminProfile@deleteEmployee");
+Route::any('block-employee-acc',"admin_controllers\admin_profile\AdminProfile@blockEmployeeAcc");
+Route::any('data-table',"admin_controllers\admin_profile\AdminProfile@showData");
+Route::any('admin-email-up',"admin_controllers\admin_profile\AdminProfile@adminEmailUpdate");
+Route::any('admin-pass-up',"admin_controllers\admin_profile\AdminProfile@adminPasswordUpdate");
+Route::any('view-single-employee',"admin_controllers\admin_profile\AdminProfile@viewSingleProfile");
+Route::any('edit-single-employee',"admin_controllers\admin_profile\AdminProfile@editSingleProfile");
+Route::any('edit-detail-employee',"admin_controllers\admin_profile\AdminProfile@editDetailProfile");
+Route::any('do-crop','admin_controllers\admin_profile\AdminProfile@doImgCrop');
+Route::any('change-employee-status','admin_controllers\admin_profile\AdminProfile@changeStatus');
 
 
 //organization routes
@@ -41,6 +50,7 @@ Route::post('delete-org',"admin_controllers\organization_controllers\AdminOrgani
 Route::any('update-org-form',"admin_controllers\organization_controllers\AdminOrganization@updateOrganization");
 Route::any('update-company-data',"admin_controllers\organization_controllers\AdminOrganization@updateCompanyData");
 Route::any('register-company',"admin_controllers\organization_controllers\AdminOrganization@addCompanyForm");
+Route::any('change-org-status',"admin_controllers\organization_controllers\AdminOrganization@changeOrgStatus");
 
 
 //City
@@ -124,6 +134,8 @@ Route::prefix('organization-profile')->group(function () {
     Route::any('view-post-data',"admin_controllers\organization_controllers\OrganizationProfile@viewPostData");
     Route::any('org-pass-up',"admin_controllers\organization_controllers\OrganizationProfile@doOrgUpdatePass");
     Route::any('org-email-up',"admin_controllers\organization_controllers\OrganizationProfile@doOrgUpdateEmail");
+    Route::any('fetch_area_majors',"admin_controllers\organization_controllers\OrganizationProfile@doFetchMajors");
+    Route::any('change-post-status',"admin_controllers\organization_controllers\OrganizationProfile@changePostStatus");
 
 });
 

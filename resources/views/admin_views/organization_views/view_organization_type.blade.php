@@ -158,7 +158,7 @@ $.post("request-update-type",{_token:CSRF_TOKEN,name:name,id:id},function(data){
       $("#myModal3").modal('hide');
       $("#type-td"+id).html(type);
        var originalColor = $("#type-tr"+id).css("background-color");
-      $("#type-tr"+id).css("background",'#84D285');
+      $("#type-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#type-tr"+id).css("background",originalColor);
       },2000);

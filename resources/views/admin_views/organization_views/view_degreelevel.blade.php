@@ -162,7 +162,7 @@ function edit_degree(){
       $("#myModal4").modal('hide');
       $("#degree-td"+id).html(degree);
        var originalColor = $("#degree-tr"+id).css("background-color");
-      $("#degree-tr"+id).css("background",'#84D285');
+      $("#degree-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#degree-tr"+id).css("background",originalColor);
       },2000);

@@ -19,6 +19,7 @@ class OrganizationPost extends Migration
             $table->string('job_title');
             $table->string('job_skills');  
             $table->string('functional_area'); 
+            $table->string('req_major');
             $table->string('req_industry'); 
             $table->string('req_career_level'); 
             $table->string('job_experience'); 
@@ -31,6 +32,7 @@ class OrganizationPost extends Migration
             $table->string('selected_gender');
             $table->string('prefered_age');
             $table->string('job_post_info'); 
+            $table->string('post_status'); 
            
             $table->timestamps();
         });

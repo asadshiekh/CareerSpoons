@@ -164,7 +164,7 @@ function edit_qual(){
       $("#myModal7").modal('hide');
       $("#qual-td"+id).html(qual);
        var originalColor = $("#qual-tr"+id).css("background-color");
-      $("#qual-tr"+id).css("background",'#84D285');
+      $("#qual-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#qual-tr"+id).css("background",originalColor);
       },2000);

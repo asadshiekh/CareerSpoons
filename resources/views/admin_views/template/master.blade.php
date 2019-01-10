@@ -19,6 +19,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <!-- Input Tags -->
   <link href="{{url('public/admin_assets/input_tags/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+  <!-- image cropper -->
+  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+  <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
+  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
    <!-- Date Dropper -->
   <link href="{{url('public/admin_assets/date_dropper/css/datedropper.css')}}" rel="stylesheet">
   <link href="{{url('public/admin_assets/date_dropper/css/my-style.css')}}" rel="stylesheet">
@@ -351,7 +356,7 @@
   $('#myQual').DataTable();
 </script>
 <script type="text/javascript">
-  $('#employee').DataTable();
+   
 </script>
 
 <!-- ckeditor -->

@@ -162,7 +162,7 @@ function edit_area(){
       $("#myModal6").modal('hide');
       $("#area-td"+id).html(area);
        var originalColor = $("#area-tr"+id).css("background-color");
-      $("#area-tr"+id).css("background",'#84D285');
+      $("#area-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#area-tr"+id).css("background",originalColor);
       },2000);

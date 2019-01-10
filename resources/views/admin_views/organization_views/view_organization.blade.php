@@ -38,7 +38,7 @@
 
             <!-- Start Content-->
             <div class="row">
-              <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <p class="text-muted font-13 m-b-30">
 
                 </p>
@@ -57,7 +57,9 @@
                        <th>Company Type</th>
                        <th>Email</th>
                        <th>Phone No</th>
-                       <th>Industry</th>                
+                       <th>Industry</th>  
+                       <th>Status</th> 
+                       <th>Change Status</th>               
                        <th>Action</th>
                      </tr>
                    </thead>
@@ -70,6 +72,12 @@
                      <td>{{$organizations->company_email}}</td>
                      <td id="org-p{{$organizations->company_id}}">{{$organizations->company_phone}}</td>
                      <td id="org-i{{$organizations->company_id}}">{{$organizations->company_industry}}</td>
+                     <td id="status-td{{$organizations->company_id}}">{{$organizations->org_activation}}</td>
+                     <td><select id="org_status" name="org_status" onchange="change_org_status(this.value,'{{$organizations->company_id}}');">
+                      <option selected="selected" disabled="disabled">Select Status</option>
+                       <option value="Active">Active</option>
+                       <option value="Block">Block</option>
+                     </select></td>
                      <td><a onclick="update_organizaion('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a href="organization-profile/{{$organizations->company_id}}"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></a></td>
                    </tr>
                    @endforeach
@@ -77,7 +85,7 @@
                  </tbody>
                  <tfoot>
                   <tr>
-                   <td colspan="7">
+                   <td colspan="9">
                     <?php  $query=DB::table('Add_organizations')->get()->count();
                     if($query>0) {?>
                       <button type="submit" class="btn btn-success" style="background-color: #2A3F54;">Delete</button>
@@ -111,6 +119,24 @@
 
 
 <script type="text/javascript">
+
+  function change_org_status(x,id){
+ //var x=$("#org_status").val();
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      $.post('change-org-status',{_token:CSRF_TOKEN,x:x,id:id},function(data){
+          if(data){
+        if(x == "Block"){
+        
+       swal("Oops", "Account Blocked.", "error");
+     }else{
+       swal("Success", "Account Activated.", "success");
+     }
+
+     $("#status-td"+id).html(x);
+   }
+    });
+
+  }
   function delete_org(o){
     var result = confirm("Really want to delete this Organization?");
     if(result){
@@ -161,7 +187,7 @@ $("#org-t"+x).html(b);
 $("#org-p"+x).html(e);
 $("#org-i"+x).html(h);
        var originalColor = $("#org-tr"+x).css("background-color");
-      $("#org-tr"+x).css("background",'#84D285');
+      $("#org-tr"+x).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#org-tr"+x).css("background",originalColor);
       },2000);

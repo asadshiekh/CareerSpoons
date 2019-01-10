@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\admin_controllers\\AdminLogin' => $baseDir . '/app/Http/Controllers/admin_controllers/AdminLogin.php',
     'App\\Http\\Controllers\\admin_controllers\\Dashboard' => $baseDir . '/app/Http/Controllers/admin_controllers/Dashboard.php',
+    'App\\Http\\Controllers\\admin_controllers\\admin_profile\\AdminProfile' => $baseDir . '/app/Http/Controllers/admin_controllers/admin_profile/AdminProfile.php',
     'App\\Http\\Controllers\\admin_controllers\\cv_controllers\\AdminJobPost' => $baseDir . '/app/Http/Controllers/admin_controllers/cv_controllers/AdminJobPost.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationCity' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationCity.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationIndustry' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationIndustry.php',

@@ -158,7 +158,7 @@ $.post("request-update-industry",{_token:CSRF_TOKEN,name:name,id:id},function(da
       $("#myModal3").modal('hide');
       $("#indus-td"+id).html(indus);
        var originalColor = $("#industry-tr"+id).css("background-color");
-      $("#industry-tr"+id).css("background",'#84D285');
+      $("#industry-tr"+id).css("background",'#d8d8d8');
       setTimeout(function(){
         $("#industry-tr"+id).css("background",originalColor);
       },2000);

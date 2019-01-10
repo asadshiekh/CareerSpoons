@@ -34,6 +34,7 @@
           <form  method="post">
             @csrf
               <h1>Login Here</h1>
+              <p id="log_error" style="color: red;"></p>
               <div>
                 <input type="text" class="form-control" placeholder="Username" required=""  id="user-name"/>
               </div>
@@ -108,9 +109,13 @@ function login_admin(){
   var user = $("#user-name").val();
   var pass = $("#password").val();
     $.post("do-admin-login",{_token:CSRF_TOKEN,user:user,pass:pass},function(data){
-      alert(data);
       if(data=="yes"){
         window.location.replace("admin-dashboard");
+      }else if(data == "no"){
+        $("#log_error").html(Invalid Account Details);
+      }
+      else{
+        swal("Oops", "Account Blocked.", "error");
       }
     });
 

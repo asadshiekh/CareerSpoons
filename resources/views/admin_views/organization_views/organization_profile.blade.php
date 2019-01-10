@@ -52,44 +52,44 @@
                 </span> -->
                 <div class="contain">
 
-                <span class="img-view">
-                 <img class="img-responsive avatar-view image" src="{{url('uploads/organization_images')}}<?php echo '/'.$org_IMG->company_img; ?>" alt="Avatar" title="Change the avatar"> 
-               </span>
+                  <span class="img-view" id="img-div">
+                   <img class="img-responsive avatar-view image" src="{{url('uploads/organization_images')}}<?php echo '/'.$org_IMG->company_img; ?>" alt="Avatar" title="Change the avatar"> 
+                 </span>
 
-               <div class="overlay">
-                <a href="#" data-toggle="modal" data-target="#myModal1" class="icon" title="Edit Picture">
-                  <i class="fa fa-pencil"></i>
-                </a>
-              </div>
-    </div> 
+                 <div class="overlay">
+                  <a href="#" data-toggle="modal" data-target="#myModalimg" class="icon" title="Edit Picture">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </div>
+              </div> 
 
+            </div>
           </div>
-        </div>
-        <h3>{{$org_page->company_name}}</h3>
+          <h3>{{$org_page->company_name}}</h3>
 
-        <ul class="list-unstyled user_data">
-          <li><i class="fa fa-map-marker user-profile-icon"></i> {{$org_page->company_location}}
-          </li>
-          <li class="m-top-xs">
-            <i class="fa fa-flag-o"></i>
-            <a href="http://www.kimlabs.com/profile/" target="_blank">{{$org_page->company_city}}</a>
-          </li>
+          <ul class="list-unstyled user_data">
+            <li><i class="fa fa-map-marker user-profile-icon"></i> {{$org_page->company_location}}
+            </li>
+            <li class="m-top-xs">
+              <i class="fa fa-flag-o"></i>
+              <a href="http://www.kimlabs.com/profile/" target="_blank">{{$org_page->company_city}}</a>
+            </li>
 
-          <li>
-            <i class="fa fa-briefcase user-profile-icon"></i> 
-            {{$org_page->company_industry}}
-          </li>
+            <li>
+              <i class="fa fa-briefcase user-profile-icon"></i> 
+              {{$org_page->company_industry}}
+            </li>
 
-          <li class="m-top-xs">
-            <i class="fa fa-external-link user-profile-icon"></i>
-            <a href="http://www.kimlabs.com/profile/" target="_blank">{{$org_page->company_website}}</a>
-          </li>
-        </ul>
+            <li class="m-top-xs">
+              <i class="fa fa-external-link user-profile-icon"></i>
+              <a href="http://www.kimlabs.com/profile/" target="_blank">{{$org_page->company_website}}</a>
+            </li>
+          </ul>
 
-        <!-- <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a> -->
-        <br/>
+          <!-- <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a> -->
+          <br/>
 
-        <!--  start skills -->
+          <!--  start skills -->
                      <!--  <h4>Skills</h4>
                       <ul class="list-unstyled user_data">
                         <li>
@@ -139,15 +139,17 @@
 
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                           <div id="first-part">
-                          <div class="box-header">
-            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">All Posts</h3>
-          </div>
+                            <div class="box-header">
+                              <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">All Posts</h3>
+                            </div>
                             <!-- start user projects -->
                             <table class="data table table-striped no-margin">
                               <thead>
                                 <th>Post Name</th>
                                 <th>Posted Date</th>
                                 <th>Updated Date</th>
+                                <th>Status</th>
+                                <th>Change Status</th>
                                 <th>Action</th>
                               </thead>
                               <tbody>
@@ -157,6 +159,14 @@
                                   <td id="title-td{{$org_post->post_id}}">{{$org_post->job_title}}</td>
                                   <td>{{$org_post->created_at}}</td>
                                   <td id="up-date-td{{$org_post->post_id}}">{{$org_post->updated_at}}</td>
+                                  <td id="post-td{{$org_post->post_id}}">{{$org_post->post_status}}</td>
+                                  <td><select id="post_state" name="post_state" onchange="change_post_status(this.value,'{{$org_post->post_id}}');">
+                      <option disabled="disabled" selected="selected">Select Status</option>
+                       <option value="Active">Active</option>
+                       <option value="Block">Block</option>
+                     </select>
+                                    
+                                  </td>
                                   <td class="vertical-align-mid">
                                     <a onclick="del_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a onclick="update_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="view_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-eye"></i></span></a>
 
@@ -171,43 +181,43 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                           <div class="box-header">
-            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">New Post</h3>
-          </div>
-                         <!-- start add post -->
-                         <form id="data_org" action="organization-post-data" method="post" enctype="Multipart/form-data">
-                          @csrf
-                          @if (session()->has('success'))
-                           <script type="text/javascript">
-                            swal("success!", "Your Post added", "success");
-                          </script>
-                          @endif
-
-                           <input type="hidden" name="org_id" value="{{$org_page->company_id}}">
-
-                           <!-- Job Title -->
-                           <div class="form-group col-sm-12">
-                            <label>Job Title:</label>
-                            <div class="input-group">
-                              <div class="input-group-addon">
-                                <i class="glyphicon glyphicon-tree-conifer"></i>
-                              </div>
-                              <input type="text" class="form-control" placeholder="Enter Job Title" name="posted_job_title" id="posted_job_title">
-                            </div>     
+                            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">New Post</h3>
                           </div>
+                          <!-- start add post -->
+                          <form id="data_org" action="organization-post-data" method="post" enctype="Multipart/form-data">
+                            @csrf
+                            @if (session()->has('success'))
+                            <script type="text/javascript">
+                              swal("success!", "Your Post added", "success");
+                            </script>
+                            @endif
 
-                          <!-- Skills -->
-                          <div class="form-group col-sm-12">
-                            <label>What Skills are Required for Job?:</label>
-                            <div class="input-group">
+                            <input type="hidden" name="org_id" value="{{$org_page->company_id}}">
+
+                            <!-- Job Title -->
+                            <div class="form-group col-sm-12">
+                              <label>Job Title:</label>
+                              <div class="input-group">
                                 <div class="input-group-addon">
-                                <i class="glyphicon glyphicon-subscript"></i>
+                                  <i class="glyphicon glyphicon-tree-conifer"></i>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter Job Title" name="posted_job_title" id="posted_job_title">
+                              </div>     
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="form-group col-sm-12">
+                              <label>What Skills are Required for Job?:</label>
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="glyphicon glyphicon-subscript"></i>
                                 </div>
                                 <input class="form-control" type="text" name="skill_tags" id="skill_tags" data-role="skill_tags"/>
                                 <style type="text/css">
-                                  #skill_tags{
-                                    width: 100%;
-                                  }
-                                </style>
+                                #skill_tags{
+                                  width: 100%;
+                                }
+                              </style>
                             </div>     
                           </div>
 
@@ -219,7 +229,7 @@
                               <div class="input-group-addon">
                                 <i class="fa fa-users"></i>
                               </div>
-                              <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area">
+                              <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area" onchange="select_major();">
                                 <option value="" disabled="disabled" selected="selected">Select Your Career level</option>
                                 @foreach($area as $area)
                                 <option value="{{$area->area_title}}">{{$area->area_title}}</option>
@@ -228,6 +238,22 @@
                               </select>
                             </div>
                           </div>
+                          <!-- Search Result Title-->
+                        <div class="form-group col-sm-6">
+                          <label>Majors:</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-trophy"></i>
+                            </div>
+
+                            <select name="selected_majors" class="form-control" id="selected_majors">
+                              <option disabled="disabled" selected="selected">Select Majors</option> 
+                              <!-- @foreach($major as $major)
+                              <option value="{{$major->major_title}}">{{$major->major_title}}</option>
+                              @endforeach -->
+                            </select>
+                          </div>
+                        </div>
                           <!-- Industry job-->
                           <div class="form-group col-sm-6">
                             <label>Industry:</label>
@@ -262,19 +288,6 @@
                            </div>
                          </div>
 
-
-
-
-                         <!-- Experience for job -->
-                         <div class="form-group col-sm-6">
-                          <label>Year of Experience Required:</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-external-link"></i>
-                            </div>
-                            <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
-                          </div>
-                        </div>
                         <!-- Ciities criteria-->
                         <div class="bg">
                           <div class="form-group col-sm-3">
@@ -336,9 +349,19 @@
                        </div>
 
                        <!------>
+                        <!-- Experience for job -->
+                         <div class="form-group col-sm-4">
+                          <label>Year of Experience Required:</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-external-link"></i>
+                            </div>
+                            <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
+                          </div>
+                        </div>
 
                        <!-- Search Result Title-->
-                       <div class="form-group col-sm-6">
+                       <div class="form-group col-sm-4">
                         <label>Total Positions:</label>
                         <div class="input-group">
                           <div class="input-group-addon">
@@ -349,7 +372,7 @@
                         </div>
                       </div>
                       <!-- Search Result Title-->
-                      <div class="form-group col-sm-6">
+                      <div class="form-group col-sm-4">
                         <label>Working Hours:</label>
                         <div class="input-group">
                           <div class="input-group-addon">
@@ -433,7 +456,7 @@
                       <!--Career criteria -->
                       <div class="bg">
                         <!-- Search Result Title-->
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                           <label>Required Qualification:</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -447,24 +470,9 @@
                             </select>
                           </div>
                         </div>
-                        <!-- Search Result Title-->
-                        <div class="form-group col-sm-3">
-                          <label>Majors:</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-trophy"></i>
-                            </div>
-
-                            <select name="selected_majors[]" class="form-control" id="selected_majors[]">
-                              <option disabled="disabled" selected="selected">Select Majors</option>
-                              @foreach($major as $major)
-                              <option value="{{$major->major_title}}">{{$major->major_title}}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                        </div>
+                        
                         <!-- required degree level-->
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                           <label>Required Degree Level:</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -480,7 +488,7 @@
                           </div>
                         </div>
                         <!------>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                           <label>ADD</label>
                           <div class="input-group">
 
@@ -524,239 +532,237 @@
 
                 </div>
 
-<!---------------------third content---------------------->
-<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
-  <div id="first-part">
+                <!---------------------third content---------------------->
+                <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                  <div id="first-part">
 
-    <!-- start user projects -->
-          <div class="box-header">
-            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">UPDATE ACCOUNT</h3>
-          </div>
-          <div class="box-body">
+                    <!-- start user projects -->
+                    <div class="box-header">
+                      <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">UPDATE ACCOUNT</h3>
+                    </div>
+                    <div class="box-body">
 
-            <div id="update_email">
+                      <div id="update_email">
 
-              <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
-                @csrf
-                <!-- IP mask -->
+                        <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
+                          @csrf
+                          <!-- IP mask -->
 
-                <div class="form-group col-sm-6 col-md-offset-3">
-                  <div class="input-group">
-                    <label>Existing Password:  <p id="error" style="color:red"></p></label>
+                          <div class="form-group col-sm-6 col-md-offset-3">
+                            <div class="input-group">
+                              <label>Existing Password:  <p id="error" style="color:red"></p></label>
+                            </div>
+                            <div class="input-group">
+
+                              <input type="text" class="form-control" placeholder="Enter password" name="exist_password" id="exist_password">
+                              <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                              </div>
+
+                            </div>
+
+                            <!-- /.input group -->
+                          </div>
+                          <div class="form-group col-sm-6 col-md-offset-3">
+                            <label>Create New User:</label>
+
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Enter new user" name="new_email" id="new_email">
+                              <div class="input-group-addon">
+                                <a  id="emailbtn"onclick="email_update('{{$org_page->company_id}}');">Update</a>
+                              </div>
+                            </div>
+                            <!-- /.input group -->
+                          </div>
+
+
+                          <!-- /.form group -->
+                        </form>
+
+                      </div>
+                      <div id="current">
+                        <div class="form-group col-sm-6 col-md-offset-3">
+
+                          <div class="input-group">
+
+                            <input type="text" class="form-control" value="edit email" disabled="disabled">
+                            <div class="input-group-addon" id="e_pencil">
+                              <a onclick="update_email_field();"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="input-group-addon" id="close">
+                              <a onclick="update_close();"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                            </div>
+                          </div>
+                          <div class="input-group">
+
+                            <input type="text" class="form-control" value="edit password" disabled="disabled">
+                            <div class="input-group-addon" id="p_pencil">
+                              <a onclick="update_pass_field();"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="input-group-addon" id="pclose">
+                              <a onclick="pass_close();"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                            </div>
+                          </div>
+                          <!-- /.input group -->
+                        </div>
+                      </div>
+
+                      <!-- Date dd/mm/yyyy -->
+
+                      <!-- /.box-body -->
+                      <!-- update pass -->
+
+
+
+                      <div id="update_pass">
+                        <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
+                          @csrf
+                          <div class="form-group col-sm-6 col-md-offset-3">
+                            <label>Existing Password:   <p id="perror" style="color:red"></p></label>
+                            <div class="input-group">
+
+                              <input type="text" class="form-control" placeholder="Enter password" name="ex_password" id="ex_password">
+                              <div class="input-group-addon">
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="form-group col-sm-6 col-md-offset-3">
+                            <label>Create New Password:</label>
+                            <div class="input-group">
+
+                              <input type="text" class="form-control" placeholder="Enter password" name="password" id="password">
+                              <div class="input-group-addon">
+                                <a onclick="pass_update('{{$org_page->company_id}}');">Update</a>
+                              </div>
+                            </div>
+                          </div>
+
+                        </form>
+                      </div>
+
+
+                      <!-- update pass -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- end user projects -->
                   </div>
-                  <div class="input-group">
 
-                    <input type="text" class="form-control" placeholder="Enter password" name="exist_password" id="exist_password">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user"></i>
+                </div>
+                <!---------------------end third content---------------------->
+                <!---------------------forth content---------------------->
+                <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
+                  <div id="first-part">
+
+                    <!-- start user projects -->
+                    <div class="box-header">
+                      <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Organization full Information</h3>
+                    </div>
+                    <ul class="list-unstyled" id="job-detail-des">
+                      <li><span>Organization Name:</span>{{$org_page->company_name}}</li>
+                      <li><span>Professional Type:</span>{{$org_page->company_type}}</li>
+                      <li><span>City:</span>{{$org_page->company_city}}</li>
+                      <li><span>Branch Name:</span>{{$org_page->company_branch}}</li>
+                      <li><span>Phone:</span>{{$org_page->company_phone}}</li>
+                      <li><span>Website:</span>{{$org_page->company_website}}</li>
+                      <li><span>Employees:</span>{{$org_page->company_employees}}</li>
+                      <li><span>Industry:</span>{{$org_page->company_industry}}</li>
+                      <li><span>Since:</span>{{$org_page->company_since}}</li>
+                      <li><span>CNIC:</span>{{$org_page->company_cnic}}</li>
+                      <li><span>Location:</span>{{$org_page->company_location}}</li>
+
+                      <li><span style="display: block;">Organization Documents:</span>
+
+
+                      </li>
+                      <li><span style="display: block; padding-bottom: 3%;">Organization More Info or Introduction:</span><p style="padding-left: 5%;"><?php
+                      $org_page->company_info  = str_ireplace('<p>','',$org_page->company_info);
+                      echo $org_page->company_info  = str_ireplace('</p>','',$org_page->company_info);
+
+                      ?></p></li>
+                      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span><a class="btn btn-default" href="{{url('uploads/organization_documents')}}<?php echo '/'.$org_page->company_document;?>" target="_blank">view Document</a></li>
+                      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>>
+
+                        <a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li>
+
+                      </ul>
+
+                      <!-- end user projects -->
                     </div>
 
                   </div>
-
-                  <!-- /.input group -->
-                </div>
-                <div class="form-group col-sm-6 col-md-offset-3">
-                  <label>Create New User:</label>
-
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter new user" name="new_email" id="new_email">
-                    <div class="input-group-addon">
-                      <a  id="emailbtn"onclick="email_update('{{$org_page->company_id}}');">Update</a>
+                  <!---------------------end Fourth content---------------------->
+                  <!----------------------start fifth content-------------------------->
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab">
+                    <div class="box-header">
+                      <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Organization Post Graph</h3>
                     </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-
-
-                <!-- /.form group -->
-              </form>
-
-            </div>
-            <div id="current">
-              <div class="form-group col-sm-6 col-md-offset-3">
-
-                <div class="input-group">
-
-                  <input type="text" class="form-control" value="edit email" disabled="disabled">
-                  <div class="input-group-addon" id="e_pencil">
-                    <a onclick="update_email_field();"><i class="fa fa-pencil"></i></a>
-                  </div>
-                  <div class="input-group-addon" id="close">
-                    <a onclick="update_close();"><i class="glyphicon glyphicon-remove-circle"></i></a>
-                  </div>
-                </div>
-                <div class="input-group">
-
-                  <input type="text" class="form-control" value="edit password" disabled="disabled">
-                  <div class="input-group-addon" id="p_pencil">
-                    <a onclick="update_pass_field();"><i class="fa fa-pencil"></i></a>
-                  </div>
-                  <div class="input-group-addon" id="pclose">
-                    <a onclick="pass_close();"><i class="glyphicon glyphicon-remove-circle"></i></a>
-                  </div>
-                </div>
-                <!-- /.input group -->
-              </div>
-            </div>
-
-            <!-- Date dd/mm/yyyy -->
-
-            <!-- /.box-body -->
-            <!-- update pass -->
-
-
-
-            <div id="update_pass">
-              <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
-                @csrf
-                <div class="form-group col-sm-6 col-md-offset-3">
-                  <label>Existing Password:   <p id="perror" style="color:red"></p></label>
-                  <div class="input-group">
-
-                    <input type="text" class="form-control" placeholder="Enter password" name="ex_password" id="ex_password">
-                    <div class="input-group-addon">
-                      <i class="fa fa-lock"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="form-group col-sm-6 col-md-offset-3">
-                  <label>Create New Password:</label>
-                  <div class="input-group">
-
-                    <input type="text" class="form-control" placeholder="Enter password" name="password" id="password">
-                    <div class="input-group-addon">
-                      <a onclick="pass_update('{{$org_page->company_id}}');">Update</a>
-                    </div>
-                  </div>
-                </div>
-
-              </form>
-            </div>
-
-
-            <!-- update pass -->
-          </div>
-          <!-- /.box -->
-   
-    <!-- end user projects -->
-  </div>
-
-</div>
-<!---------------------end third content---------------------->
-<!---------------------forth content---------------------->
-<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
-  <div id="first-part">
-
-    <!-- start user projects -->
-          <div class="box-header">
-            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Organization full Information</h3>
-          </div>
-    <ul class="list-unstyled" id="job-detail-des">
-      <li><span>Organization Name:</span>{{$org_page->company_name}}</li>
-      <li><span>Professional Type:</span>{{$org_page->company_type}}</li>
-      <li><span>City:</span>{{$org_page->company_city}}</li>
-      <li><span>Branch Name:</span>{{$org_page->company_branch}}</li>
-      <li><span>Phone:</span>{{$org_page->company_phone}}</li>
-      <li><span>Website:</span>{{$org_page->company_website}}</li>
-      <li><span>Employees:</span>{{$org_page->company_employees}}</li>
-      <li><span>Industry:</span>{{$org_page->company_industry}}</li>
-      <li><span>Since:</span>{{$org_page->company_since}}</li>
-      <li><span>CNIC:</span>{{$org_page->company_cnic}}</li>
-      <li><span>Location:</span>{{$org_page->company_location}}</li>
-      
-      <li><span style="display: block;">Organization Documents:</span>
-
-    
-      </li>
-      <li><span style="display: block; padding-bottom: 3%;">Organization More Info or Introduction:</span><p style="padding-left: 5%;"><?php
-      $org_page->company_info  = str_ireplace('<p>','',$org_page->company_info);
-        echo $org_page->company_info  = str_ireplace('</p>','',$org_page->company_info);
-         
-      ?></p></li>
-       <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span><a class="btn btn-default" href="{{url('uploads/organization_documents')}}<?php echo '/'.$org_page->company_document;?>" target="_blank">view Document</a></li>
-      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>>
-
-<a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li>
-
-    </ul>
-   
-    <!-- end user projects -->
-  </div>
-
-</div>
-<!---------------------end Fourth content---------------------->
-<!----------------------start fifth content-------------------------->
-<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab">
-  <div class="box-header">
-            <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Organization Post Graph</h3>
-          </div>
-  <?php 
-  $comp_id=$org_page->company_id;
-  $info = DB::table('Add_organizations')->select('created_at')->first();
-  $new=$info->created_at;
+                    <?php 
+                    $comp_id=$org_page->company_id;
+                    $info = DB::table('Add_organizations')->select('created_at')->first();
+                    $new=$info->created_at;
   //print_r($info);
-  $date = explode(" ",$new);
+                    $date = explode(" ",$new);
   // echo $date[0];
   // echo date('Y-m-d', strtotime($date[0]. ' + 5 days'));
 
   //$NewDate=Date('y:m:d', strtotime("+7 days Last Sunday"));
   // $last_post = DB::table('organization_posts')->OrderBy('post_id','desc')->first();
   // print_r($last_post);
-      ?>
-  <canvas id="myChart" width="400" height="200"></canvas>
-</div>
-<!----------------------------------------------------->
+                    ?>
+                    <canvas id="myChart" width="400" height="200"></canvas>
+                  </div>
+                  <!----------------------------------------------------->
 
+                </div>
               </div>
             </div>
+
+            <!-- End Content-->
+
+
           </div>
-
-          <!-- End Content-->
-
-
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
 <!--model-->
 <!-- Modal window for add City-->
-<div id="myModal1" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<div id="myModalimg" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
-    <form action="upload-org-img/{{$org_page->company_id}}" method="post" enctype="Multipart/form-data">
-      @csrf
-
+    <form>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Upload image?</h4>
-          <div class="col-sm-6 col-md-offset-4" id="loading-spin">
-            <i id="i" style="font-size:100px"></i>
-          </div>
-          <div class="col-sm-6 col-md-offset-4" id="loading-true">
-            <i id="tru" style="font-size:100px; color: #38b75e"></i>
+          <div style="padding-top:30px;">
+            <strong>Select Image:</strong>
+            <br/>
+            <input type="file" id="upload">
+            <br/>             
           </div>
         </div>
         <div class="modal-body" id="modal-content">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="fa fa-yelp"></i>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5 text-center">
+                <div id="upload-demo" style="width:350px"></div>
+              </div>
+              <div class="col-md-5" style="">
+                <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:30px;height:300px;margin-top:30px"></div>
+              </div>
             </div>
-            <input type="file" class="form-control" name="org_picture" id="org_img">
-          </div>
-          <input id="demo" type="hidden" name="test[image]">
-          <div id="img_or">
-            <img src="#" id="blah" height="250px" width="200px">
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-default">Upload</button>
+            <button type="button" class="btn btn-success upload-result">Upload Image</button>
           </div>
         </div>
 
@@ -773,6 +779,9 @@
 
 </div>
 <!-- end div-->
+
+<!-- test -->
+<div id="data_app"></div>
 
 
 
@@ -944,12 +953,12 @@ $.post('update-post',{_token:CSRF_TOKEN,x:x},function(data){
 if(data){
   $("#up-post").html(data);
   $("#mymodalpost").modal('show');
-    CKEDITOR.replace( 'user_info' );
-    $('#modal_last_date').dateDropper();
-    $('#modal_post_visible').dateDropper();
-    $("#modal_skill_tags").tagsinput({
-     maxTags: 5,
-    });
+  CKEDITOR.replace( 'user_info' );
+  $('#modal_last_date').dateDropper();
+  $('#modal_post_visible').dateDropper();
+  $("#modal_skill_tags").tagsinput({
+   maxTags: 5,
+ });
 }
 });
 }
@@ -993,7 +1002,7 @@ function update_post_info(x){
       $("#title-td"+x).html(y);
       $("#up-date-td"+x).html(returndata);
       var originalColor = $("#post-tr"+x).css("background-color");
-      $("#post-tr"+x).css("background",'#84D285');
+      $("#post-tr"+x).css("background",'#d8d8d8');
      // swal("Successfully!", "Your Post is Successfully Updated!", "success");
      setTimeout(function(){
 
@@ -1015,63 +1024,191 @@ function update_post_info(x){
 
 <!-- end info -->
 <script type="text/javascript">
-    $( document ).ready(function() {
-       $("#update_email").hide();
-       $("#update_pass").hide();
-       $("#close").hide();
-       $("#pclose").hide();
-    });
-    function update_email_field(){
-        $("#e_pencil").hide();
-        $("#update_email").show();
-        $("#close").show();
-        var x= $("#exist_password").val();
-        var y= $("#new_email").val();
-    }
-    function email_update(id){
-       
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        var x= $("#exist_password").val();
-        var y= $("#new_email").val();
+  $("#update_email").hide();
+   $("#update_pass").hide();
+   $("#close").hide();
+   $("#pclose").hide();
+</script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+   $("#update_email").hide();
+   $("#update_pass").hide();
+   $("#close").hide();
+   $("#pclose").hide();
+ });
+
+  function update_email_field(){
+    $("#e_pencil").hide();
+    $("#update_email").show();
+    $("#close").show();
+    var x= $("#exist_password").val();
+    var y= $("#new_email").val();
+  }
+  function email_update(id){
+
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var x= $("#exist_password").val();
+    var y= $("#new_email").val();
        // alert("x");
-     $.post("org-email-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
+       $.post("org-email-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
         $("#error").html(data);
-     });
-    }
-    function update_pass_field(){
+      });
+     }
+     function update_pass_field(){
        $("#p_pencil").hide();
-        $("#update_pass").show();
-        $("#pclose").show();
-    }
-    function pass_update(id){
-     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        var x= $("#ex_password").val();
-        var y= $("#password").val();
-        alert(id+"     "+x+"     "+y);
-     $.post("org-pass-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
+       $("#update_pass").show();
+       $("#pclose").show();
+     }
+     function pass_update(id){
+       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+       var x= $("#ex_password").val();
+       var y= $("#password").val();
+       alert(id+"     "+x+"     "+y);
+       $.post("org-pass-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
         $("#perror").html(data);
-     });
-    }
-    function update_close(){
-        $("#update_email").hide();
-        $("#close").hide();
-        $("#e_pencil").show();
-         
+      });
+     }
+     function update_close(){
+      $("#update_email").hide();
+      $("#close").hide();
+      $("#e_pencil").show();
+
 
 
 
     }
     function pass_close(){
-        $("#update_pass").hide();
-        $("#pclose").hide();
-        
-        $("#p_pencil").show();
-         
+      $("#update_pass").hide();
+      $("#pclose").hide();
+
+      $("#p_pencil").show();
+
     }
 
-</script>
-<script>
+  </script>
+  <script>
+   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+   $uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+      width: 200,
+      height: 200,
+      type: 'circle'
+    },
+    boundary: {
+      width: 300,
+      height: 300
+    }
+  });
+
+
+   $('#upload').on('change', function () { 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+
+    }
+    reader.readAsDataURL(this.files[0]);
+  });
+
+
+   $('.upload-result').on('click', function (ev) {
+    $uploadCrop.croppie('result', {
+      type: 'canvas',
+      size: 'viewport'
+    }).then(function (resp) {
+
+        //alert(resp);
+      // window.alert(this.href.substr(this.href.lastIndexOf('/') + 1));
+      $.ajax({
+        url: "upload-org-img/{{$org_page->company_id}}",
+        type: "post",
+        data: {_token:CSRF_TOKEN,"image":resp},
+        success: function (data) {
+          html = '<img src="'+resp+'"/>';        
+          $("#upload-demo-i").html(html);
+          if(data){
+             html = '<img class="img-responsive avatar-view image" src="http://localhost/CareerSpoons/uploads/organization_images/'+data+'" alt="Avatar" title="Change the avatar">  ';  
+             $("#img-div").html(html);
+            
+            $("#myModalimg .close").click();
+          }
+
+          }
+        });
+    });
+  });
+
+</script>
+<!-- onchange for major selection -->
+<script>
+ function n_select_major(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var area=$("#n_req_functional_area").val();
+    alert(area);
+    $.post("fetch_area_majors",{_token:CSRF_TOKEN,area:area},function(data){
+            $('select[name="n_req_major"]').empty();
+       $.each(data, function( key, value ) {
+            $('select[name="n_req_major"]').append('<option value="'+ data[key].major_title +'">'+ data[key].major_title +'</option>');
+               alert(data[key].major_title);
+          });
+           //alert(data[0].area_title);
+        //var obj = jQuery.parseJSON(data);
+        //var x = obj.info[0].major_title;
+        // for (j in data.info[i].area_title) {
+        //   x += data.info[i].area_title[j];
+         //alert(x);
+        // } 
+    //alert(data.area_title[0]);
+    //$("#data_app").append(data);
+    //alert(data.info[0]);
+    //  $('select[name="selected_majors"]').empty();
+    //  $.each(data, function(key, value) {
+    //   $('select[name="selected_majors"]').append('<option value="'+ key +'">'+ value +'</option>');
+    // });
+
+  });
+
+  }
+  function select_major(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var area=$("#req_functional_area").val();
+    alert(area);
+    $.post("fetch_area_majors",{_token:CSRF_TOKEN,area:area},function(data){
+
+       $.each(data, function( key, value ) {
+            $('select[name="selected_majors"]').append('<option value="'+ data[key].major_title +'">'+ data[key].major_title +'</option>');
+               //alert(data[key].major_title);
+          });
+
+  });
+
+  }
+</script>
+<script type="text/javascript">
+  function change_post_status(x,id){
+//var x=$("#post_state").val();
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      $.post('change-post-status',{_token:CSRF_TOKEN,x:x,id:id},function(data){
+        if(data){
+            if(x == "Block"){
+            
+           swal("Oops", "Account Blocked.", "error");
+         }else{
+           swal("Success", "Account Activated.", "success");
+         }
+         $("#post-td"+id).html(x);
+   }
+     
+    });
+ //alert(x);
+// alert(id);
+  }
 </script>
 
 <!--   Styling on organization Image    -->
@@ -1082,11 +1219,11 @@ function update_post_info(x){
   /*font-family: 'Montserrat', sans-serif;*/
 }
 #job-detail-des li{
-text-decoration: none;
-padding-bottom: 8px;
-padding-top: 7px;
-border-bottom: solid 1px #e0e0e0;
-padding-left: 1%;
+  text-decoration: none;
+  padding-bottom: 8px;
+  padding-top: 7px;
+  border-bottom: solid 1px #e0e0e0;
+  padding-left: 1%;
 }
 #job-detail-des li:nth-child(even){
   background-color: #F9F9F9;
@@ -1098,9 +1235,9 @@ padding-left: 1%;
   border-bottom: solid 2px #e0e0e0;
 }
 #job-detail-des li span{
-font-size: 14px;
-padding-right: 3%;
-font-weight: bold;
+  font-size: 14px;
+  padding-right: 3%;
+  font-weight: bold;
 }
 #heading-head{
   padding-top:4%;
@@ -1108,15 +1245,20 @@ font-weight: bold;
   font-weight: bold;
 }
 .contain{
-  position: relative;
-  /*width: 100%;*/
-  background-color: pink;
+ position: relative;
+ height: 200px;
+ width: 200px;
+ background-color: pink;
+ border-radius: 50%;
+ border:solid 3px #A5A9AC;
 }
 
 .image {
-  display: block;
-  width: 100%;
-  height: auto;
+ display: block;
+ width: 100%;
+ height: auto;
+ border-radius: 50%;
+ border:solid 8px #F5F7FA;
 }
 
 .overlay {
@@ -1138,12 +1280,12 @@ font-weight: bold;
 
 .icon {
   color: white;
-  font-size: 70px;
+  font-size: 60px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  top: 45%;
+  left: 45%;
+  transform: translate(-30%, -30%);
+  -ms-transform: translate(-30%, -30%);
   text-align: center;
 }
 
@@ -1167,50 +1309,50 @@ font-weight: bold;
   font-size: 30px;
 }
 .heading{
-    font-size: 14px;
+  font-size: 14px;
 }
 
 </style>
 <script>
   var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
+  var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
-        datasets: [{
-            label: '# of Votes',
+      labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+      datasets: [{
+        label: '# of Votes',
 
-            data: [12, 30, 3, 5, 2, 3],
-           
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+        data: [12, 30, 3, 5, 2, 3],
+
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
     }
-});
+  });
 </script>
 
 

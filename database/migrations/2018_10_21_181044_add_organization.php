@@ -27,6 +27,7 @@ class AddOrganization extends Migration
             $table->string('company_location');
             $table->string('company_email');
             $table->string('company_password');
+            $table->string('org_activation');
             $table->bigInteger('company_cnic');
             $table->longText('company_info');
             $table->string('company_document');
