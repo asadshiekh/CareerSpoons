@@ -386,6 +386,11 @@ Route::prefix('organization-profile')->group(function () {
 
 });
 
+//Registered user view
+Route::any('view-registered-users',"admin_controllers\user_controllers\RegisteredUsers@viewRegisteredUsers");
+Route::any('change-user-status',"admin_controllers\user_controllers\RegisteredUsers@doChangeStatus");
+
+
 
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');

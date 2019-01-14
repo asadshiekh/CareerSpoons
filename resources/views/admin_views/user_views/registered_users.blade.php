@@ -19,7 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
-      <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1">
+      <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
             <h2 style="font-family:'italic',bold">All Registed Organization<small style="font-family:'italic',bold">Here... </small></h2>
@@ -39,41 +39,54 @@
             <!-- Start Content-->
 
             <p class="text-muted font-13 m-b-30">
-             
-           </p>
-           <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-            <thead>
-              <tr>
+
+            </p>
+            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+              <thead>
+                <tr>
                  <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  
-                 <th>User Name</th>
+                 <th>Full Name</th>
                  <th>Email</th>
-                 <th>Phone</th>
                  <th>Phone No</th>
-                 <th>Industry</th>                
+                 <th>Current Status</th> 
+                 <th>Change Status</th>               
                  <th>Action</th>
-             </tr>
-           </thead>
-           <tbody>
-            
-            <tr> 
+               </tr>
+             </thead>
+             <tbody>
+              @foreach($all_users as $all)
+              <tr> 
                <th><input type="checkbox" id="check-all" class="flat"></th> 
-               <td>{{}}</td>
-               <td>{{}}</td>
-               <td>{{}}</td>
-               <td>{{}}</td>
-               <td>{{}}</td>
-               <td><a href=""><i class="fa fa-pencil"></i></a> | <a href=""><i class="fa fa-trash"></i></a> | <a href="organization-profile/{{$organizations->company_id}}"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
-           </tr>
-           
-         </tbody>
-       </table>
+               <td>{{$all->candidate_name}}</td>
+               <td>{{$all->user_email}}</td>
+               <td>{{$all->phone_number}}</td>
+               <td id="status-td{{$all->id}}">
+                <?php if($all->user_activation_status == "1"){
+                 echo "Active";
+               }else{
+                echo "Block";
+              }?>
+            </td>
+            <td>
+              <select name="selected_status" id="selected_status" onchange="change_user_status(this.value,'{{$all->id}}');">
+                <option hidden="hidden" disabled="disabled" selected="selected">Select Status</option>
+                <option value="1">Active</option>
+                <option value="0">Block</option>
+              </select>
+            </td>
+            <td><a href=""><i class="fa fa-trash"></i></a> | <a href="organization-profile/"><i class="glyphicon glyphicon-eye-open"></i></a></a></td>
+          </tr>
+          @endforeach
 
-       <!-- End Content-->
+        </tbody>
+      </table>
+
+      <!-- End Content-->
 
 
-     </div>
-   </div>
- </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 </div>
@@ -106,8 +119,27 @@
 
   }
 </script> -->
+<script>
+ function change_user_status(x,id){
+   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+   $.post('change-user-status',{_token:CSRF_TOKEN,x:x,id:id},function(data){
+        if(data){
+          if(x == "0"){
+            $("#status-td"+id).html("Block");
+           swal("Oops", "Account Blocked.", "error");
+         }else{
+           $("#status-td"+id).html("Active");
+           swal("Success", "Account Activated.", "success");
+         }
+        
+       }
+
+ });
+ }
+
+</script>
 @endsection
 
-  
+
 
 
