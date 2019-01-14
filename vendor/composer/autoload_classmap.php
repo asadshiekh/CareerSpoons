@@ -39,6 +39,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\Site_Request\\User_Register_Validation' => $baseDir . '/app/Http/Requests/Site_Request/User_Register_Validation.php',
     'App\\Mail\\Site_Mail\\Company_Mail\\Company_Registeration' => $baseDir . '/app/Mail/Site_Mail/Company_Mail/Company_Registeration.php',
+    'App\\Mail\\Site_Mail\\User_Mail\\User_Change_Email' => $baseDir . '/app/Mail/Site_Mail/User_Mail/User_Change_Email.php',
     'App\\Mail\\Site_Mail\\User_Mail\\User_Contact_Us' => $baseDir . '/app/Mail/Site_Mail/User_Mail/User_Contact_Us.php',
     'App\\Mail\\Site_Mail\\User_Mail\\User_Forget_Password' => $baseDir . '/app/Mail/Site_Mail/User_Mail/User_Forget_Password.php',
     'App\\Mail\\Site_Mail\\User_Mail\\User_Registeration' => $baseDir . '/app/Mail/Site_Mail/User_Mail/User_Registeration.php',

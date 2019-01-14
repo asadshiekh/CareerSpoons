@@ -406,6 +406,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Site_Request\\User_Register_Validation' => __DIR__ . '/../..' . '/app/Http/Requests/Site_Request/User_Register_Validation.php',
         'App\\Mail\\Site_Mail\\Company_Mail\\Company_Registeration' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/Company_Mail/Company_Registeration.php',
+        'App\\Mail\\Site_Mail\\User_Mail\\User_Change_Email' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Change_Email.php',
         'App\\Mail\\Site_Mail\\User_Mail\\User_Contact_Us' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Contact_Us.php',
         'App\\Mail\\Site_Mail\\User_Mail\\User_Forget_Password' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Forget_Password.php',
         'App\\Mail\\Site_Mail\\User_Mail\\User_Registeration' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Registeration.php',
