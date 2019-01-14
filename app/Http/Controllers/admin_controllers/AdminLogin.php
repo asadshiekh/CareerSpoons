@@ -22,14 +22,15 @@ class AdminLogin extends Controller
        $pass= $request->post('pass');
        $info=DB::table('Admin_account')->where(['admin_username' => $user,'admin_pass' => $pass])->first();
        if($info){
-            if($info->account_activation == true){
+            if($info->account_activation == "Active"){
           $admin=array(
             'account_id' => $info->account_id,
             'admin_name' => $info->admin_fullname,
             'admin_phone' => $info->admin_phone,
             'admin_address' => $info->admin_address,
             'admin_username' => $info->admin_username,
-            'admin_email' => $info->admin_email
+            'admin_email' => $info->admin_email,
+            'account_right' => $info->account_right
         );
           $request->session()->put($admin);
           if($request->session()->get('admin_name')){

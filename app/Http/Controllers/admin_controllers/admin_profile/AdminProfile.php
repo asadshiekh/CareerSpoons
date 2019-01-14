@@ -20,7 +20,7 @@ class AdminProfile extends Controller
         $phone=$request->session()->get('admin_phone');
         $id=$request->session()->get('account_id');
 
-        $ad_info=DB::table('Admin_account')->where(['admin_username'=>$username,'admin_email'=>$email,'admin_phone'=>$phone])->first();
+        $ad_info=DB::table('Admin_account')->where(['admin_username'=>$username])->first();
         $em_info=DB::table('Admin_account')->where('account_right','!=', 'superadmin')->get();
         $ad_img=DB::table('Admin_img')->where('admin_id','=', $id)->first();
         
@@ -34,6 +34,7 @@ class AdminProfile extends Controller
      */
     public function doAdminUpdate(Request $request)
     {
+
         $current_date=date("Y.m.d h:i:s");
         $id=$request->post('id');
         $new_info=array(
@@ -45,9 +46,12 @@ class AdminProfile extends Controller
         );
         // print_r($new_info);
         if(DB::table('Admin_account')->where(['account_id'=>$id])->update($new_info)){
-       $request->session()->flash('success', $id);
-       return redirect('admin-profile');
-       $request->session()->flash('Access', true);
+
+         // $request->session()->forget('admin_name');
+         // $request->session()->put('admin_name',$request->post('new_admin_name'));
+       return redirect('admin-profile')->with('success','Your Info is Successfully Updated!');
+       //return redirect('admin-profile');
+       
    }
 
         
@@ -193,8 +197,11 @@ class AdminProfile extends Controller
         $for_up=array(
           "admin_username"=>$new_email
         );
+
         if(DB::table('Admin_account')->where('account_id','=',$id)->update($for_up)){
             $data="successfully updated";
+            $request->session()->forget('admin_username');
+            $request->session()->put('admin_username',$new_email);
 
         return $data;
         }

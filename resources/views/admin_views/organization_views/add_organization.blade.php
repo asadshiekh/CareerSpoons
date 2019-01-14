@@ -168,7 +168,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-history"></i>
                 </div>
-                <input type="date" class="form-control" placeholder="Enter Email OR Username" name="company_since" id="company_since">
+                <input type="date" class="form-control" name="company_since" id="company_since" placeholder="11/25/2018" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en">
               </div>
             </div>
             <!-- Cnic-->

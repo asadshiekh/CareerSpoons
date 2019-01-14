@@ -21,6 +21,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{url('public/admin_assets/build/css/custom.min.css')}}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
   <body class="login">
@@ -112,10 +113,10 @@ function login_admin(){
       if(data=="yes"){
         window.location.replace("admin-dashboard");
       }else if(data == "no"){
-        $("#log_error").html(Invalid Account Details);
+        $("#log_error").html("<p style='color:red;text-align:center'>Invalid Account Details</p>");
       }
       else{
-        swal("Oops", "Account Blocked.", "error");
+        swal("Oops", "Your Account Blocked.", "error");
       }
     });
 

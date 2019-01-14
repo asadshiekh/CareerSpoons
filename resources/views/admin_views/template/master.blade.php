@@ -58,7 +58,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><span class="fa fa-spoon"></span> <span>Career Spoons!</span></a>
+            <a href="index.html" class="site_title"><span class="fa fa-spoon"></span> <span style="font-family: georgia regular;font-size: 20px;">Career Spoons!</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -69,12 +69,17 @@
               <img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Welcome,</span>
-              <h2><?php if(session()->has('admin_name')){
-                echo session()->get('admin_name');
+              <span>Welcome</span>
+              <h2 style="font-family: georgia;font-size: 14px;"><?php if(session()->has('admin_name')){
+                //echo session()->get('admin_name');
+
+              $str=session()->get('admin_name');
+              $str=explode(" ",$str);
+              echo $str[0];
+            
 
               }else{
-                echo "Syeda";
+                echo "No Name";
               } ?></h2>
             </div>
           </div>
@@ -86,7 +91,7 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <h3>General</h3>
-              <ul class="nav side-menu">
+              <ul class="nav side-menu" style="font-family: georgia regular;">
                 <li><a href="{{url('admin-dashboard')}}"><i class="fa fa-home"></i> Dashboard </a>
                    <!--  <ul class="nav child_menu">
                     <li><a href="{{url('admin-dashboard')}}">Dashboard</a></li>                      
@@ -118,23 +123,12 @@
                     
                   </ul>
                 </li> 
-  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-spoon"></i>About Us</a></li> 
-  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-spoon"></i>Contact  Us</a></li>            
+  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
+  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>            
 
               </ul>
             </div>
-            <div class="menu_section">
-              <h3>Live On</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                  </ul>
-                </li>
-
-              </ul>
-            </div>
+            
             <div class="menu_section">
               <h3>Account</h3>
               <ul class="nav side-menu">
@@ -149,20 +143,12 @@
           <!-- /sidebar menu -->
 
           <!-- /menu footer buttons -->
-          <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+          <!-- <div class="sidebar-footer hidden-small">
+            
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{url('log-out')}}">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
-          </div>
+          </div> -->
           <!-- /menu footer buttons -->
         </div>
       </div>
@@ -177,8 +163,8 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="">Syeda
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="font-family: georgia;font-size: 14px;">
+                  <img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt=""><?php echo session()->get('admin_name'); ?>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -200,42 +186,7 @@
                   <span class="badge bg-green">6</span>
                 </a>
                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                  <li>
-                    <a>
-                      <span class="image"><img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image"><img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image"><img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
+               
                   <li>
                     <a>
                       <span class="image"><img src="{{url('public/admin_assets/production/images/img.jpg')}}" alt="Profile Image" /></span>
@@ -269,7 +220,7 @@
       <!-- footer content -->
       <footer>
         <div class="pull-right">
-          Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          <a href="#" style="font-family: georgia regular;font-size: 12px;">Admin Panel of Career Spoons</a>
         </div>
         <div class="clearfix"></div>
       </footer>
@@ -388,6 +339,10 @@
   $('#post_visible').dateDropper();
 </script>
 <script>
+  $('#company_since').dateDropper();
+</script>
+
+<script>
   $(function() {
     $('#toggle-account').bootstrapToggle();
   })
@@ -406,6 +361,7 @@
  
 
 </script>
+@include('admin_views.alerts') 
 
 </body>
 

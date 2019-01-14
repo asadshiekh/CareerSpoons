@@ -246,6 +246,7 @@ class OrganizationProfile extends Controller
         'selected_gender' => $request->post('selected_gender'), 
         'prefered_age' => $request->post('prefered_age'),
         'job_post_info' =>$request->post('company_info'),
+        'post_status' =>"Active",
         'created_at' => $current_date,
         'updated_at' => $current_date
       );

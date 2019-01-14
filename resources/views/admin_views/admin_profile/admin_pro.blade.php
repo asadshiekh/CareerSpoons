@@ -4,12 +4,13 @@
 
 <!--content-->
 
+
 <!-- page content -->
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3 id="c_name">{{$ad_info->admin_fullname}}</i></h3>
+        <h3 id="c_name">{{Session::get('admin_name')}}</i></h3>
       </div>
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -61,7 +62,9 @@
           <div class="col-md-3 col-sm-3 col-xs-12 profile_left admin-text">
             <!-- <h3 id="typed-strings">nayab</h3> -->
             
-            <h3 style="font-size: 18px; font-weight: 400">{{$ad_info->admin_fullname}}</h3>
+            <h3 style="font-size: 18px; font-weight: 400">{{$ad_info->admin_fullname}}
+
+            </h3>
             
 
             <div id="typed-strings">
@@ -102,8 +105,10 @@
 
                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal Information</a>
                </li>
-               <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">New Employees</a>
-               </li>
+               <?php if(session()->get('account_right') == "admin" || session()->get('account_right') == "superadmin"){?>
+                <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">New Employees</a>
+               </li> 
+               <?php }?>
                <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Account Setting</a>
                </li>
                <li role="presentation" class=""><a href="#tab_content5" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">Send Email</a>
@@ -119,21 +124,24 @@
                     <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">Personal Information</h3>
                   </div>
                   <!-- swall atart  -->
-                  @if (session()->has('success'))
+                 <!--  @if (session()->has('success'))
                   <script type="text/javascript">
                     swal("success!", "Your information is successfully Updated.", "success");
                   </script>
-                  @endif
+                  @endif -->
                   <!-- swall end -->
+
                   <ul class="list-unstyled" id="job-detail-des">
-                    <li><span>Full Name:</span>{{$ad_info->admin_fullname}}</li>
+                   
+                    <li><span>Full Name:</span>
+                    {{$ad_info->admin_fullname}}</li>
                     <li><span>Right:</span>{{$ad_info->account_right}}</li>
                     <li><span>Phone:</span>{{$ad_info->admin_phone}}</li>
                     <li><span>Address:</span>{{$ad_info->admin_address}}</li>
                     <li><span>Email:</span>{{$ad_info->admin_email}}</li>
-                    <li><span>last updated Date and time:</span>{{$ad_info->updated_at}}</li>
+                    
                     <li><a data-toggle="modal" data-target="#myModaladmin" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Info</a></li>
-
+                 
 
                   </ul>
                 </div>
@@ -275,7 +283,7 @@
 
                 <div id="update_email">
 
-                  <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
+                  <form mmethod="post" action="" enctype="multipart/form-data" id="updateEmailform" name="form">
                     @csrf
                     <!-- IP mask -->
 
@@ -300,7 +308,7 @@
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Enter new username" name="new_email" id="new_email">
                         <div class="input-group-addon">
-                          <a  id="emailbtn"onclick="email_update('{{$ad_info->account_id}}');">Update</a>
+                          <a  id="emailbtn"onclick="email_update('{{Session::get('account_id')}}');">Update</a>
                         </div>
                       </div>
                       <!-- /.input group -->
@@ -316,7 +324,7 @@
 
                     <div class="input-group">
 
-                      <input type="text" class="form-control" value="edit email" disabled="disabled">
+                      <input type="text" class="form-control" value="Edit OR Change Username" disabled="disabled">
                       <div class="input-group-addon" id="e_pencil">
                         <a onclick="update_email_field();"><i class="fa fa-pencil"></i></a>
                       </div>
@@ -326,7 +334,7 @@
                     </div>
                     <div class="input-group">
 
-                      <input type="text" class="form-control" value="edit password" disabled="disabled">
+                      <input type="text" class="form-control" value="Edit OR Change Password" disabled="disabled">
                       <div class="input-group-addon" id="p_pencil">
                         <a onclick="update_pass_field();"><i class="fa fa-pencil"></i></a>
                       </div>
@@ -337,16 +345,11 @@
                     <!-- /.input group -->
                   </div>
                 </div>
-
-                <!-- Date dd/mm/yyyy -->
-
                 <!-- /.box-body -->
                 <!-- update pass -->
 
-
-
                 <div id="update_pass">
-                  <form mmethod="post" action="" enctype="multipart/form-data" id="form" name="form">
+                  <form mmethod="post" action="" enctype="multipart/form-data" id="passwordform" name="form">
                     @csrf
                     <div class="form-group col-sm-6 col-md-offset-3">
                       <label>Existing Password:   <p id="perror" style="color:red"></p></label>
@@ -366,7 +369,7 @@
 
                         <input type="text" class="form-control" placeholder="Enter password" name="password" id="password">
                         <div class="input-group-addon">
-                          <a onclick="pass_update('{{$ad_info->account_id}}');">Update</a>
+                          <a onclick="pass_update('{{Session::get('account_id')}}');">Update</a>
                         </div>
                       </div>
                     </div>
@@ -458,7 +461,7 @@
             <i id="tru" style="font-size:100px; color: #38b75e"></i>
           </div>
         </div>
-        <input type="hidden" name="id" value="{{$ad_info->account_id}}">
+        <input type="hidden" name="id" value="{{Session::get('account_id')}}">
         <div class="modal-body" id="modal-content">
           <div style="padding: 5%;">
             <label style="margin-top:4%;">Full Name:</label>
@@ -699,9 +702,10 @@
        // alert("x");
        $.post("admin-email-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
         $("#error").html(data);
+        document.getElementById("updateEmailform").reset();
       });
      }
-     function update_pass_field(){
+  function update_pass_field(){
        $("#p_pencil").hide();
        $("#update_pass").show();
        $("#pclose").show();
@@ -713,15 +717,14 @@
         //alert(id+"     "+x+"     "+y);
         $.post("admin-pass-up",{_token:CSRF_TOKEN,x:x,y:y,id:id},function(data){
           $("#perror").html(data);
+          //$("#updateEmailform").reset();
+          document.getElementById("passwordform").reset();
         });
       }
       function update_close(){
         $("#update_email").hide();
         $("#close").hide();
         $("#e_pencil").show();
-
-
-
 
       }
       function pass_close(){

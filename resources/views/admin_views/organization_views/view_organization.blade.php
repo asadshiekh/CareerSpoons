@@ -74,7 +74,7 @@
                      <td id="org-i{{$organizations->company_id}}">{{$organizations->company_industry}}</td>
                      <td id="status-td{{$organizations->company_id}}">{{$organizations->org_activation}}</td>
                      <td><select id="org_status" name="org_status" onchange="change_org_status(this.value,'{{$organizations->company_id}}');">
-                      <option selected="selected" disabled="disabled">Select Status</option>
+                      <option selected="selected" disabled="disabled" hidden="hidden">Select Status</option>
                        <option value="Active">Active</option>
                        <option value="Block">Block</option>
                      </select></td>
