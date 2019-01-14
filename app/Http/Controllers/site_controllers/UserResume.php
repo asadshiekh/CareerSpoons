@@ -84,6 +84,11 @@ class UserResume extends Controller
 		return view('client_views.index');
 	}
 
+	public function kuchkardo(){
+
+		echo "i like it";
+	}
+
 	public function addUserEduction(Request $request){
 
 		$current_date = date("Y.m.d h:i:s");
