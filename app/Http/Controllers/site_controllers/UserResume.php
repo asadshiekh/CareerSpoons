@@ -107,9 +107,6 @@ class UserResume extends Controller
 
 		$obj =  new User_Resume_Model();
 
-
-
-
 		// Check User Profile Strenght Value
 
 		$edu_status  = $obj->check_profile_strength($request->session()->get('id'));
@@ -251,13 +248,13 @@ class UserResume extends Controller
 
 
 		if($info){
-
-			echo "yes";
+			$id=DB::getPdo()->lastinsertId();
+			echo $id;
 		}
 
 		else{
 
-			echo "no";
+			
 		}
 
 	}
@@ -303,12 +300,13 @@ class UserResume extends Controller
 
 		if($info){
 
-			echo "yes";
+			$id=DB::getPdo()->lastinsertId();
+			echo $id;
 		}
 
 		else{
 
-			echo "no";
+			
 		}
 
 	}
@@ -329,7 +327,8 @@ class UserResume extends Controller
 
 		if($info){
 
-			echo "yes";
+			$id=DB::getPdo()->lastinsertId();
+			echo $id;
 		}
 
 		else{
@@ -375,12 +374,13 @@ class UserResume extends Controller
 
 		if($info){
 
-			echo "yes";
+			$id=DB::getPdo()->lastinsertId();
+			echo $id;
 		}
 
 		else{
 
-			echo "no";
+			
 		}
 
 	}
@@ -398,7 +398,6 @@ class UserResume extends Controller
 		$user_response = array(
 			'candidate_name' => $request->candidate_name,
 			'candidate_profession' => $request->candidate_profession,
-			'candidate_number' => $request->candidate_number,
 			'candidate_city' => $request->candidate_city,
 			'candidate_location' => $request->candidate_location,
 			'candidate_dob' => $request->candidate_dob,
@@ -713,7 +712,6 @@ class UserResume extends Controller
 		$user_response = array(
 			'candidate_name' => $request->candidate_name,
 			'candidate_profession' => $request->candidate_profession,
-			'candidate_number' => $request->candidate_number,
 			'candidate_city' => $request->candidate_city,
 			'candidate_dob' => $request->candidate_dob,
 			'candidate_gender' =>$request->candidate_gender,
@@ -765,6 +763,19 @@ class UserResume extends Controller
 		$obj =  new User_Resume_Model();
 		$info = $obj->delete_experience($request->id,$request->session()->get('id'));
 
+
+		$exp = DB::table('add_user_experiences')->where('candidate_id', $request->session()->get('id'))->get();
+
+		if($exp->count()==0){
+
+			$user_response = array(
+				'experience_category' => '0',
+				'experience_value' => '0',
+			);	
+
+			DB::table('user_profile_strength')->where('candidate_id', $request->session()->get('id'))->update($user_response);
+		}
+
 		if($info){
 
 			echo "yes";
@@ -786,72 +797,72 @@ class UserResume extends Controller
 		$info = $obj->get_selected_experience($id);
 
 		echo '
-<div id="UpdateExperienceModelWindow" class="modal fade "> 
-	<div class="modal-dialog modal-lg">
+		<div id="UpdateExperienceModelWindow" class="modal fade "> 
+		<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 
-			<div class="modal-header">
-				<button type="button" class="close" 
-				data-dismiss="modal" aria-hidden="true">×</button>
+		<div class="modal-header">
+		<button type="button" class="close" 
+		data-dismiss="modal" aria-hidden="true">×</button>
 
-				<h4 class="modal-title">Update Experience</h4>
-			</div>
-
-			<div class="modal-body"> 
-				<div class="row no-mrg">
-					<div class="edit-pro">
-						
-						<div class="col-md-4 col-sm-6">
-							<label>Job Title</label>
-							<input type="text" id="update_exp_job_title" class="form-control" placeholder="Job Title" value="'.$info->job_title.'" > 
-						</div>
-						
-						<div class="col-md-4 col-sm-6">
-							<label>Company Name</label>
-							<input type="text" id="update_exp_company_name" class="form-control" placeholder="Company Name" value="'.$info->company_name.'">
-						</div>
-						
-						<div class="col-md-4 col-sm-6">
-							<label>Referance Email</label>
-							<input type="email" id="update_exp_referance_email" class="form-control" placeholder="dana.mathew@gmail.com" value="'.$info->ref_email.'">
-						</div>
-						
-						
-						<div class="col-md-6 col-sm-6">
-							<label>Reference Number</label>
-							<input type="text" id="update_exp_referance_number"  class="form-control" placeholder="258 457 528" value="'.$info->ref_phone.'">
-						</div>
-
-						<div class="col-md-6 col-sm-6">
-							<label>Your Position</label>
-							<input type="text" id="update_exp_your_position" class="form-control" placeholder="Position, e.g. Web Designer" value="'.$info->your_position.'">
-						</div>
-
-						<div class="col-md-6 col-sm-6">
-							<label>Date From</label>
-								<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-start"  class="form-control" placeholder="+91 258 475 6859">
-						</div>
-						
-						<div class="col-md-6 col-sm-6">
-							<label>Date To</label>
-								<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-end"  class="form-control" placeholder="+91 258 475 6859">
-						</div>
-						
-						<div class="col-sm-12">
-							<label>Description</label>
-							<textarea class="form-control" name="update_exp_description" id="update_exp_description" placeholder="Write Something">'.$info->exp_description.' </textarea>
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" onclick="do_update_experience('.$info->id.')" class="btn btn-success">Save</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
-			</div>
+		<h4 class="modal-title">Update Experience</h4>
 		</div>
-	</div>
-</div>';
+
+		<div class="modal-body"> 
+		<div class="row no-mrg">
+		<div class="edit-pro">
+
+		<div class="col-md-4 col-sm-6">
+		<label>Job Title</label>
+		<input type="text" id="update_exp_job_title" class="form-control" placeholder="Job Title" value="'.$info->job_title.'" > 
+		</div>
+
+		<div class="col-md-4 col-sm-6">
+		<label>Company Name</label>
+		<input type="text" id="update_exp_company_name" class="form-control" placeholder="Company Name" value="'.$info->company_name.'">
+		</div>
+
+		<div class="col-md-4 col-sm-6">
+		<label>Referance Email</label>
+		<input type="email" id="update_exp_referance_email" class="form-control" placeholder="dana.mathew@gmail.com" value="'.$info->ref_email.'">
+		</div>
+
+
+		<div class="col-md-6 col-sm-6">
+		<label>Reference Number</label>
+		<input type="text" id="update_exp_referance_number"  class="form-control" placeholder="258 457 528" value="'.$info->ref_phone.'">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Your Position</label>
+		<input type="text" id="update_exp_your_position" class="form-control" placeholder="Position, e.g. Web Designer" value="'.$info->your_position.'">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Date From</label>
+		<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-start"  class="form-control" placeholder="+91 258 475 6859">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Date To</label>
+		<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-end"  class="form-control" placeholder="+91 258 475 6859">
+		</div>
+
+		<div class="col-sm-12">
+		<label>Description</label>
+		<textarea class="form-control" name="update_exp_description" id="update_exp_description" placeholder="Write Something">'.$info->exp_description.' </textarea>
+		</div>
+
+		</div>
+		</div>
+		</div>
+		<div class="modal-footer">
+		<button type="button" onclick="do_update_experience('.$info->id.')" class="btn btn-success">Update</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+		</div>
+		</div>
+		</div>
+		</div>';
 		
 	}
 
@@ -892,6 +903,456 @@ class UserResume extends Controller
 
 	}
 
+
+	public function deleteUserProject(Request $request){
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_project($request->id,$request->session()->get('id'));
+
+
+		$pro= DB::table('add_user_projects')->where('candidate_id', $request->session()->get('id'))->get();
+
+		if($pro->count()==0){
+
+			$user_response = array(
+				'project_category' => '0',
+				'project_value' => '0',
+			);	
+
+			DB::table('user_profile_strength')->where('candidate_id', $request->session()->get('id'))->update($user_response);
+		}
+
+
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+			echo "no";
+		}
+	}
+
+
+	public function updateUserProject(Request $request){
+
+		$id = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->get_selected_project($id);
+
+		echo '<div id="UpdateProjectModelWindow" class="modal fade "> 
+		<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+		<div class="modal-header">
+		<button type="button" class="close" 
+		data-dismiss="modal" aria-hidden="true">×</button>
+
+		<h4 class="modal-title">Update Project</h4>
+		</div>
+
+		<div class="modal-body">
+		<div class="row no-mrg">
+		<form id="user_profile_add_pro">
+		<div class="edit-pro">
+
+		<div class="col-md-4 col-sm-6">
+		<label>Project Title</label>
+		<input type="text" id="update_project_title" class="form-control" placeholder="Project Title" value="'.$info->project_title.'">
+		</div>
+
+		<div class="col-md-4 col-sm-6">
+		<label>Company Name</label>
+		<input type="text" id="update_project_company_name" class="form-control" placeholder="Client Name" value="'.$info->project_company_name.'">
+		</div>
+
+		<div class="col-md-4 col-sm-6">
+		<label>Client Email</label>
+		<input type="email" id="update_project_ref_email" class="form-control" placeholder="Client Email" value="'.$info->project_ref_email.'">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Client Number</label>
+		<input type="text" id="update_project_ref_phone"  class="form-control" placeholder="Client Number" value="'.$info->project_ref_phone.'">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Your Position</label>
+		<input type="text" id="update_your_porject_position" class="form-control" placeholder="Your Position" value="'.$info->your_porject_position.'"> 
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Date From</label>
+		<input type="text" id="update-pro-start" class="form-control" placeholder="12/9/2019" value="'.$info->pro_start.'">
+		</div>
+
+		<div class="col-md-6 col-sm-6">
+		<label>Date To</label>
+		<input type="text" id="update-pro-end" class="form-control" placeholder="12/9/2019" value="'.$info->pro_end.'">
+		</div>
+
+		<div class="col-sm-12">
+		<label>Description</label>
+		<textarea class="form-control" name="update_pro_description" id="update_pro_description" placeholder="Description">'.$info->project_title.'</textarea>
+		</div>
+
+
+		</div>
+		</form>
+		</div>
+		</div>
+
+		<div class="modal-footer">
+		<button type="button" onclick="update_project('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+		</div>
+		</div>
+		</div>
+		</div>';
+
+	}
+
+
+
+	public function doUpdateUserProject(Request $request){
+
+
+		$request->project_description=str_ireplace('<p>','',$request->project_description);
+		$request->project_description=str_ireplace('</p>','',$request->project_description);
+		$updated_date = date("Y.m.d h:i:s");
+		$user_response = array(
+			'project_title' => $request->project_title,
+			'project_company_name' => $request->project_company_name,
+			'project_ref_email' => $request->project_ref_email,
+			'project_ref_phone' => $request->project_ref_phone,
+			'your_porject_position' => $request->your_porject_position,
+			'pro_start' =>$request->pro_start,
+			'pro_end' => $request->pro_end,
+			'project_description' => $request->project_description,
+			'updated_at' => $updated_date
+		);
+
+
+		//print_r($user_response);
+
+		$project_id_number = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->update_project($user_response,$project_id_number,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+
+	}	
+
+
+
+
+	public function deleteUserSkill(Request $request){
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_skill($request->id,$request->session()->get('id'));
+
+
+		$skill = DB::table('add_user_skills')->where('candidate_id', $request->session()->get('id'))->get();
+
+		if($skill->count()==0){
+
+			$user_response = array(
+				'skill_category' => '0',
+				'skill_value' => '0',
+			);	
+
+			DB::table('user_profile_strength')->where('candidate_id', $request->session()->get('id'))->update($user_response);
+		}
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+			echo "no";
+		}
+
+	}
+
+
+	public function updateCandidateSkill(Request $request){
+
+		
+		$id = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->get_selected_skill($id);
+
+		echo '<div id="UpdateSkill" class="modal fade "> 
+		<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+		<div class="modal-header"> 
+		<button type="button" class="close" 
+		data-dismiss="modal" aria-hidden="true">×</button>
+
+		<h4 class="modal-title">Update Skill</h4>
+		</div>
+
+		<div class="modal-body">
+		<div class="row no-mrg">
+		<form id="user_profile_add_skill">
+		<div class="edit-pro">
+
+		<div class="col-md-12 col-sm-12">
+		<label>Skill Name</label>
+		<input type="text" id="skill_name" class="form-control" value="'.$info->skill_name.'" placeholder="Skill Name">
+		</div>
+
+		<div class="col-md-12 col-sm-12">
+		<div class="slidecontainer">
+		<input type="range" min="1" max="100" class="slider" value="'.$info->skill_percentage.'"  id="skill_percentage">
+		<p><b>Value : </b> <span id="demo"></span></p>
+		</div>
+		</div>
+
+		</div>
+		</form>
+		</div>
+		</div>
+
+		<div class="modal-footer">
+		<button type="button" onclick="update_skill('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+		</div>
+		</div> 
+		</div> 
+		</div>';
+
+	}
+
+
+	public function doUpdateUserSkill(Request $request){
+
+		$updated_date = date("Y.m.d h:i:s");
+		$user_response = array(
+			'skill_name' => $request->skill_name,
+			'skill_percentage' => $request->skill_percentage,
+			'updated_at' => $updated_date
+		);
+
+		//print_r($user_response);
+		$skill_id_number = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->update_skill($user_response,$skill_id_number,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+
+	}
+
+
+	public function deleteUserHobbey(Request $request){
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_hobbey($request->id,$request->session()->get('id'));
+
+		$hobb = DB::table('add_user_hobbies')->where('candidate_id', $request->session()->get('id'))->get();
+
+		if($hobb->count()==0){
+
+			$user_response = array(
+				'hobbies_category' => '0',
+				'hobbies_value' => '0',
+			);	
+
+			DB::table('user_profile_strength')->where('candidate_id', $request->session()->get('id'))->update($user_response);
+		}
+
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+			
+		}
+
+	}
+
+
+	public function updateCandidateHobbey(Request $request){
+
+		$id = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->get_selected_hobbey($id);
+
+		echo '<div id="UpdateHobbey" class="modal fade "> 
+		<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+		<div class="modal-header">
+		<button type="button" class="close" 
+		data-dismiss="modal" aria-hidden="true">×</button>
+
+		<h4 class="modal-title">Update Hobbey</h4>
+		</div>
+
+		<div class="modal-body">
+		<div class="row no-mrg">
+		<form id="user_profile_add_hobbey">
+		<div class="edit-pro">
+
+		<div class="col-md-12 col-sm-12">
+		<label>Hobbey Name</label>
+		<input type="text" id="user_hobbies" class="form-control" placeholder="Hobbies eg Cricket,Football" value="'.$info->user_hobbies.'">
+		</div>
+
+
+		</div>
+		</form>
+		</div>
+		</div>
+
+		<div class="modal-footer">
+		<button type="button" onclick="updatehobbey('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+		</div>
+		</div>
+		</div>
+		</div>';
+	}
+
+
+
+	public function doUpdateUserHobbey(Request $request){
+
+
+		$updated_date = date("Y.m.d h:i:s");
+		$user_response = array(
+			'user_hobbies' => $request->user_hobbies,
+			'updated_at' => $updated_date
+		);
+
+		//print_r($user_response);
+		$hobbey_id_number = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->update_skills($user_response,$hobbey_id_number,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+	}
+
+
+	public function deleteUserlanguages(Request $request){
+
+
+		$obj =  new User_Resume_Model();
+		$info = $obj->delete_languages($request->id,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+	}
+
+
+	public function updateCandidateLanguage(Request $request){
+
+		$id = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->get_selected_language($id);
+
+		echo '
+
+		<div id="UpdateLanguageModelWindow" class="modal fade "> 
+		<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+		<div class="modal-header">
+		<button type="button" class="close" 
+		data-dismiss="modal" aria-hidden="true">×</button>
+
+		<h4 class="modal-title">Update Languages</h4>
+		</div>
+
+		<div class="modal-body">
+		<div class="row no-mrg">
+		<form id="user_profile_add_language">
+		<div class="edit-pro">
+
+		<div class="col-md-12 col-sm-12">
+		<label>Hobbey Name</label>
+		<input type="text" id="user_language" class="form-control" placeholder="Your Languages" value="'.$info->user_language.'">
+		</div>
+
+
+		</div>
+		</form>
+		</div>
+		</div>
+
+		<div class="modal-footer">
+		<button type="button" onclick="update_language('.$info->id.');" class="btn btn-success">Save</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+		</div>
+		</div>
+		</div>
+		</div>';
+	}
+
+
+	public function doUpdateCandidateLanguage(Request $request){
+
+		$updated_date = date("Y.m.d h:i:s");
+		$user_response = array(
+			'user_language' => $request->user_language,
+			'updated_at' => $updated_date
+		);
+
+		//print_r($user_response);
+		$language_id_number = $request->id;
+		$obj =  new User_Resume_Model();
+		$info = $obj->update_language($user_response,$language_id_number,$request->session()->get('id'));
+
+		if($info){
+
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+
+	}
 
 
 }

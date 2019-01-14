@@ -28,7 +28,7 @@ function user_registration(){
 					);
 				$.post("user-registration-email-send",{_token:CSRF_TOKEN,candidate_name:candidate_name,user_email:user_email},function(data){
 
-
+						
 				});
 
 			}

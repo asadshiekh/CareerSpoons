@@ -167,6 +167,7 @@ public function doUserLogin(Request $request){
     "cover_image"=>$info2->cover_image,
     "cropped_cover_image"=>$info2->cropped_cover_image,
     "candidate_rating"=>$info3->rating_points,
+    "phone_status"=>$info->current_number_status,
   );
     	//print_r($userdata);
    $request->session()->put($userdata);

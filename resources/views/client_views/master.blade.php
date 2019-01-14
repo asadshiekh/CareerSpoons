@@ -48,8 +48,11 @@
 	<!-- Css rating -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
+	<!-- Password Strength Meter Css -->
+		<link rel="stylesheet" href="{{url('public/client_assets/css/customization_css/passwordscheck.css')}}">
 
-	<!-- <link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css"> -->
+
+	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 	
 
 
@@ -85,6 +88,7 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspYour Profile</a></li>
+								<li><a class="dropdown-item" href="#CandidateSetting" data-toggle="modal" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspSetting</a></li>		
 								<li><a class="dropdown-item" href="{{url('logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
@@ -95,6 +99,7 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
+
 								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
@@ -344,6 +349,192 @@
 		</div>   
 		<!-- End Sign Up Window -->
 
+
+
+		<!-- Candidate Setting -->
+
+
+<div id="CandidateSetting" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Candidate Setting</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+						<div class="edit-pro">
+							
+							<div class="col-md-4">
+								<br>
+								<br>
+								<div class="list-group">
+									<a data-toggle="tab" href="#CandidatePhone" class="list-group-item">Candidate Phone Setting</a>
+									<a data-toggle="tab" href="#CandidateEmail" class="list-group-item">Candidate Email Setting</a>
+									<a data-toggle="tab" href="#CandidatePassword" class="list-group-item">Candidate Password Setting</a>
+									<a data-toggle="tab" href="#CandidateCloseAccount" class="list-group-item">Delete Account</a>
+								</div>
+
+							</div>
+
+<div class="col-md-8">
+	<div class="tab-content">
+		<div id="CandidatePhone" class="tab-pane fade in active">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title" style="text-align:center;">Candidate Phone Setting</h3>
+				</div>
+				<div class="panel-body">
+					
+					<div class="table-bordered">
+					<form>
+						<table class="table">
+							<tr>
+								<th>Phone Number</th>
+								<th style="text-align: center;">Visibility Status</th>
+								<th style="text-align: center;">Action</th>
+							</tr>
+							<tr style="border:1px solid #DDDDDD">
+								<td>{{Session::get('phone_number')}}</td>
+
+								<td id="status-td">
+									<?php if(Session::get('phone_status') == "1" ){?>
+                                          <p style="text-align:center; color:green">Visible</p>
+								<?php }else{ ?>
+									<p style="text-align:center; color:red;">Not Visible</p>
+								<?php }?>
+								</td>
+								<td>
+									<select class="form-control input-md" id="select_phone_status" onchange="change_phone_status(this.value);">
+										<option  disabled="disabled" selected hidden="hidden">Select Status</option>
+										<option value="1">Visible</option>
+										<option value="0" >Not Visible</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="CandidateEmail" class="tab-pane fade">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title" style="text-align:center;">Candidate Email Setting</h3>
+				</div>
+				<div class="panel-body">
+
+					<form id="user_profile_add_pro">
+						    <h5 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace;font-weight: bold;">Change Email Here</h5>
+						    <br/>
+							<div class="col-sm-12 col-md-6">
+								<label>Enter New Email:</label>
+								<input type="text" id="new_email" name="new_email" class="form-control" placeholder="Write Your New Email">
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<label>Enter Current Password:</label>
+								<input type="password" name="password_email" id="password_email" class="form-control" placeholder="Your password?">
+							</div>
+							
+							<div class="col-sm-12 col-md-4 col-md-offset-4">
+								<br/>
+								<input type="button" onclick="change_email_setting();" class="btn btn-success" value="Save Changes">
+							</div>
+
+
+					</form>
+						
+				</div>
+			</div>
+		</div>
+		<div id="CandidatePassword" class="tab-pane fade">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title" style="text-align:center;">Candidate Password Setting</h3>
+				</div>
+				<div class="panel-body">
+
+
+					<form id="user_profile_add_pro">
+						<h5 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace;font-weight: bold;">Change Password Here</h5>
+						<br/>
+						<div class="col-sm-12 col-md-12">
+							<label>Enter Current Password:</label>
+							<input type="text" id="new_password" name="new_password" class="form-control" placeholder="Enter Current Password">
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<label>Enter New Password:</label>
+							<input type="password" name="password-field" id="password-field" class="form-control" placeholder="Enter New Password?">
+						</div>
+
+						<div class="col-sm-12 col-md-4" id="register">
+							<br/>
+							<span id="result" class="field-icon_1">Password Strength Meter</span>
+						</div>
+                        <div class="col-sm-12 col-md-6">
+							<br/>
+							<br/>
+							<a href="" style="text-decoration: underline;">Forget-Password?</a>
+						</div>
+						<div class="col-sm-12 col-md-6" style="text-align: right;">
+							<br/>
+							
+							<input type="button" onclick="change_password();" class="btn btn-success" value="Save Changes">
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div id="CandidateCloseAccount" class="tab-pane fade">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title" style="text-align:center;">Candidate Delete Account</h3>
+				</div>
+				<div class="panel-body">
+					<h5 class="box-title text-left" id="heading-head" style="font-family:'Courier New', Courier, monospace;font-weight: bold;">Dear {{Session::get('candidate_name')}}:</h5>
+					<h5 class="box-title text-left" id="heading-head" style="font-family:'Courier New', Courier, monospace;">Alert: Once Your User Account Has Been Deleted, CarrerSpoons Cannot Restore Your Content.</h5>
+
+
+					<div class="col-sm-12 col-md-4 col-md-offset-4">
+						<br/>
+
+						<input type="button" onclick="delete_account();"  class="btn btn-success" value="Delete Account">
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+						
+
+						</div>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
 		<button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()"><i class="spin fa fa-cog" aria-hidden="true"></i></button>
 		<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="rightMenu">
 			<button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
@@ -426,6 +617,8 @@
 			<script src="{{url('public/client_assets/js/customization_js/contact_us.js')}}"></script>
 			<!-- Review -->
 			<script src="{{url('public/client_assets/js/customization_js/review.js')}}"></script>
+			<!-- Candiadte Setting -->
+			<script src="{{url('public/client_assets/js/customization_js/candidate_setting.js')}}"></script>
 			<!-- Typed .Js -->
 			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 			<!-- Jquery data Tables .Js -->
@@ -434,6 +627,8 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 			<!-- Notify Javascript -->
 			<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
+			<!-- Passsword Strength Checker -->
+			<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
 			<!-- css effect link -->
 			<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 			<!-- Chart(Js) Javascript cdn link -->
@@ -448,6 +643,22 @@
 			<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 			<!-- Script  -->
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+			<style type="text/css">
+				
+			.field-icon_1{
+				font-size: 12px;
+				font-weight:bold;
+				color: limegreen;
+				float: left;
+				position: relative;
+				z-index:3;
+				border: 1px solid red;
+				top:8px;
+				left:5px;
+			}
+
+			</style>
 			
 			<script>
 				
@@ -771,15 +982,47 @@
 				function strengthMeter() {
 
 					<?php 
-
+					
 					$id = 	(Session::get('id') ? Session::get('id') : "0");
-					$edu_value = 1;
+					$law_rule = 1;
+
 					$user_edu=DB::table('user_profile_strength')->where([
 						['candidate_id','=',[$id]],
-						['education_category','=',[$edu_value]],
+						['education_category','=',[$law_rule]],
 					])->first();
 
-					$edu_data = ($user_edu ? $user_edu->education_value : "0")
+					$user_exp=DB::table('user_profile_strength')->where([
+						['candidate_id','=',[$id]],
+						['experience_category','=',[$law_rule]],
+					])->first();
+
+
+					$user_pro=DB::table('user_profile_strength')->where([
+						['candidate_id','=',[$id]],
+						['project_category','=',[$law_rule]],
+					])->first();
+
+
+					$user_skill=DB::table('user_profile_strength')->where([
+						['candidate_id','=',[$id]],
+						['skill_category','=',[$law_rule]],
+					])->first();
+
+
+
+					$user_hobbey=DB::table('user_profile_strength')->where([
+						['candidate_id','=',[$id]],
+						['hobbies_category','=',[$law_rule]],
+					])->first();
+
+					$edu_data = ($user_edu ? $user_edu->education_value : "0");
+					$exp_data = ($user_exp ? $user_exp->experience_value : "0");
+					$pro_data = ($user_pro ? $user_pro->project_value : "0");
+					$sk_data = ($user_skill ? $user_skill->skill_value : "0");
+					$hob_data = ($user_hobbey ? $user_hobbey->hobbies_value : "0");
+
+
+					$total_strength = $edu_data+$exp_data+$pro_data+$sk_data+$hob_data;
 
 					?>
 
@@ -848,7 +1091,7 @@
 
 					setTimeout(function() {
 						chart.load({
-							columns: [["Profile-Strength-Meter",{{$edu_data}}]]
+							columns: [["Profile-Strength-Meter",{{$total_strength}}]]
 						});
 					}, 5000);
 
@@ -897,7 +1140,8 @@
 					$("#candidate_facebook_social_link").prop('disabled', true);
 					$("#candidate_google_social_link").prop('disabled', true);
 					$("#candidate_twitter_social_link").prop('disabled', true);
-					$("#candidate_linkedin_social_link").prop('disabled', true);	
+					$("#candidate_linkedin_social_link").prop('disabled', true);
+
 
 				});
 			</script>

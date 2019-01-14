@@ -11,6 +11,7 @@ class UserLoginModel extends Model
         $info=DB::table('register_users')->select('*')->where([
             ['user_email','=',[$email]],
             ['password','=',[$password]],
+            ['user_activation_status','=',"1"],
          ])->first();
          return $info;
     }

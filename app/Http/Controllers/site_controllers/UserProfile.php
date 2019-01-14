@@ -7,7 +7,10 @@ use App\SiteModel\Resumes\User_Resume_Model;
 use App\SiteModel\User\UserProfileImages;
 use App\SiteModel\User\UserProfileModel;
 use App\Http\Controllers\Controller;
+use App\Mail\Site_Mail\User_Mail\User_Change_Email;
+use Mail;
 use Image;
+
 
 class UserProfile extends Controller
 {
@@ -70,8 +73,8 @@ class UserProfile extends Controller
 		//echo $imageName;  image name
 
 		$user_response = array(
-          'profile_image' => $imageName,
-        );
+			'profile_image' => $imageName,
+		);
 
 		$obj =  new UserProfileImages();
 		$info = $obj->update_user_profile_image($request->session()->get('id'),$user_response);
@@ -114,9 +117,9 @@ class UserProfile extends Controller
 		$image->move($destinationPath, $data);
 
 		$user_response = array(
-          'cover_image' => $data,
-          'cropped_cover_image' => $data
-        );
+			'cover_image' => $data,
+			'cropped_cover_image' => $data
+		);
 
 		$obj =  new UserProfileImages();
 		$info = $obj->update_user_profile_image($request->session()->get('id'),$user_response);
@@ -144,7 +147,7 @@ class UserProfile extends Controller
 
 		$current_date = date("Y.m.d h:i:s");
 
-			$user_response = array(
+		$user_response = array(
 			'candidate_id' => $request->session()->get('id'),
 			'candidate_fackbook' => $request->candidate_facebook_link,
 			'candidate_google' => $request->candidate_google_link,
@@ -182,11 +185,11 @@ class UserProfile extends Controller
 
 	public function rateproduct(Request $request){
 
-			$current_date = date("Y.m.d h:i:s");
+		$current_date = date("Y.m.d h:i:s");
 		$request->rating_description=str_ireplace('<p>','',$request->rating_description);
 		$request->rating_description=str_ireplace('</p>','',$request->rating_description);
 
-			$user_response = array(
+		$user_response = array(
 			'rating_points' => $request->rating,
 			'review_description' => $request->rating_description,
 			'updated_at' => $current_date
@@ -209,6 +212,145 @@ class UserProfile extends Controller
 		}
 
 	}
+
+
+	public function doChangePhoneStatus(Request $request){
+
+		$user_response = array(
+			'current_number_status' => $request->x,
+		);
+
+		$obj =  new UserProfileModel();
+		$info = $obj->update_phone_status($request->session()->get('id'),$user_response); 
+
+		if($info){
+			$request->session()->forget('phone_status');
+			$request->session()->put('phone_status',$request->x);
+			echo "yes";
+		}
+
+		else{
+
+			
+		}
+
+	}
+
+
+	public function doChangeCandidatePassword(Request $request){
+		$current_date = date("Y.m.d h:i:s");
+		$obj =  new UserProfileModel();
+		$info = $obj->get_details_of_user($request->session()->get('id'));
+
+		//print_r($info);
+
+		if($info->password==$request->current_password){
+			
+			$user_response = array(
+				'password' => $request->new_password,
+				'updated_at' => $current_date
+			);
+
+			$info1 = $obj->update_candidate_password($request->session()->get('id'),$user_response);
+
+			if($info1){
+
+				echo "yes";
+			}
+
+			else{
+
+
+			}
+
+		}
+
+
+		else{
+
+			
+
+		}
+
+	}
+
+
+
+	public function dodDeleteCandidateAccount(Request $request){
+		$current_date = date("Y.m.d h:i:s");
+		$obj =  new UserProfileModel();
+		$info = $obj->get_details_of_user($request->session()->get('id'));
+
+		$user_response = array(
+			'user_activation_status' => '0',
+			'updated_at' => $current_date
+		);
+
+		$info1 = $obj->update_candidate_activition_status($request->session()->get('id'),$user_response);
+
+		if($info1){	
+
+			$request->session()->flush();
+			echo "yes";
+		}
+
+		else{
+
+
+		}
+
+
+	}
+
+
+	public function dodChangeCandidateEmail(Request $request){
+
+		$new_email  = $request->new_email;
+		$password  = $request->password;
+
+		$obj =  new UserProfileModel();
+		$info = $obj->check_user_password($request->session()->get('id'),$request->session()->get('user_email'),$password);
+
+		if($info){
+
+			//print_r($info);
+
+			if($info->user_email==$new_email){
+
+				echo "2";
+			}
+
+			$user_response = array(
+				'user_email' => $new_email,
+				'verify_by_email' => '0'
+			);
+
+			$obj->update_candidate_details($request->session()->get('id'),$user_response);
+
+			$request->session()->forget('email_status');
+			$request->session()->put('email_status','0');
+			$request->session()->forget('user_email');
+			$request->session()->put('user_email',$new_email);
+			echo "yes";
+
+		}	
+
+		else{
+
+			echo "3";
+		}
+
+	}
+
+
+
+	public function doResendCandidateEmail(Request $request){
+
+		Mail::send(new User_Change_Email());
+	}
+
+
+
 
 
 

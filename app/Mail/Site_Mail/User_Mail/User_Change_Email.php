@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\request;
 
-class User_Contact_Us extends Mailable
+class User_Change_Email extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,9 +29,10 @@ class User_Contact_Us extends Mailable
      */
     public function build(Request $request)
     {
-       return $this->from('careerspoons@gmail.com','CareerSpoons')->to($request->candidate_email,'to '.$request->candidate_name)->subject('CareerSpoons')->markdown('client_views/mails/usermails/user_contact_us')->with([
-                        'UserName' => $request->candidate_name,
-                        'UserEmail' => $request->candidate_email,
+        //return $this->markdown('client_views/mails/usermails/user_change_email');
+          
+          return $this->from('careerspoons@gmail.com','CareerSpoons')->to($request->new_email,'to ')->subject('CareerSpoons')->markdown('client_views/mails/usermails/user_change_email')->with([
+                        'UserEmail' => $request->new_email,
                     ]);;
     }
 }

@@ -47,7 +47,6 @@ function addExperience(num){
 				var n_exp_end = '"'+exp_end+  '"';
 				var n_exp_description = '"'+exp_description+  '"';
 
-				alert(data)
 
 				setTimeout(
 					function(){

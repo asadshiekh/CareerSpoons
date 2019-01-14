@@ -120,6 +120,12 @@ Route::any('update-user-profile-pic',"site_controllers\UserProfile@updateUserPro
 Route::any('update-user-cover-pic',"site_controllers\UserProfile@updateUserCoverPic");
 Route::any('update-social-links',"site_controllers\UserProfile@updateSocialLinks");
 Route::any('candidate-rating',"site_controllers\UserProfile@rateproduct");
+Route::any('change_phone_mode',"site_controllers\UserProfile@doChangePhoneStatus");
+Route::any('candidate-change-password-from-pofile',"site_controllers\UserProfile@doChangeCandidatePassword");
+Route::any('delete-candidate-account-preminently',"site_controllers\UserProfile@dodDeleteCandidateAccount");
+Route::any('change-candidate-email',"site_controllers\UserProfile@dodChangeCandidateEmail");
+Route::any('do-resent-candidate-email',"site_controllers\UserProfile@doResendCandidateEmail");
+
 });
 //   UserProfile Controller //
 
@@ -146,6 +152,11 @@ Route::any('add-user-resume-info',"site_controllers\UserResume@addUserResumeInfo
 
 Route::any('delete-candidate-education',"site_controllers\UserResume@deleteUserEduction")->middleware('CheckUserProfile');
 Route::any('delete-candidate-experience',"site_controllers\UserResume@deleteUserExperience")->middleware('CheckUserProfile');
+Route::any('delete-candidate-project',"site_controllers\UserResume@deleteUserProject")->middleware('CheckUserProfile');
+Route::any('delete-candidate-skill',"site_controllers\UserResume@deleteUserSkill")->middleware('CheckUserProfile');
+Route::any('delete-candidate-hobbey',"site_controllers\UserResume@deleteUserHobbey")->middleware('CheckUserProfile');
+Route::any('delete-candidate-languages',"site_controllers\UserResume@deleteUserlanguages")->middleware('CheckUserProfile');
+
 
 
 // UPDATE Model Window Function
@@ -169,8 +180,28 @@ Route::any('update-candidate-experience',"site_controllers\UserResume@updateUser
 
 Route::any('update-experience-model-window',"site_controllers\UserResume@doUpdateUserExperience")->middleware('CheckUserProfile');
 
+Route::any('update-candidate-project',"site_controllers\UserResume@updateUserProject")->middleware('CheckUserProfile');
+
+Route::any('update-project-model-window',"site_controllers\UserResume@doUpdateUserProject")->middleware('CheckUserProfile');
+
+Route::any('update-candidate-skill',"site_controllers\UserResume@updateCandidateSkill")->middleware('CheckUserProfile');
+
+Route::any('update-skill-model-window',"site_controllers\UserResume@doUpdateUserSkill")->middleware('CheckUserProfile');
+
+Route::any('update-candidate-hobbey',"site_controllers\UserResume@updateCandidateHobbey")->middleware('CheckUserProfile');
+
+Route::any('update-hobbey-model-window',"site_controllers\UserResume@doUpdateUserHobbey")->middleware('CheckUserProfile');
+
+Route::any('update-candidate-language',"site_controllers\UserResume@updateCandidateLanguage")->middleware('CheckUserProfile');
+
+Route::any('update-language-model-window',"site_controllers\UserResume@doUpdateCandidateLanguage")->middleware('CheckUserProfile');
+
+
 
 //    UserResume Controller    //
+
+
+
 
 Route::get('send',"site_controllers\mail_sender@send");
 Route::get('verify-email',"site_controllers\mail_sender@hello");

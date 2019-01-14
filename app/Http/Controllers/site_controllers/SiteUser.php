@@ -91,7 +91,7 @@ class SiteUser extends Controller
 
        //Send User Mail For Verification
        Mail::send(new User_Registeration());
-    
+       
     }
 
 

@@ -156,8 +156,8 @@
 						<li><a data-toggle="tab" href="#address">Info</a></li>
 						<li><a data-toggle="tab" href="#education_table">Resume-Info</a></li>
 						<li><a data-toggle="tab" href="#social_media">Social-Media</a></li>
-						<li><a data-toggle="tab" href="#resume_templates">Resume-Template</a></li>
-						<li><a data-toggle="tab" href="#job_criteria">Job-Match-Criteria</a></li>
+						<li><a data-toggle="tab" href="#resume_templates">Templates</a></li>
+						<li><a data-toggle="tab" href="#job_criteria">Job-Criteria</a></li>
 						<li><a data-toggle="tab" href="#matches-job">Matches-Job</a></li>
 						<li><a data-toggle="tab" href="#profile_meter">Profile-Insight</a></li>
 						<li><a data-toggle="tab" href="#rating">Rating</a></li>
@@ -387,15 +387,14 @@
 		<ul class="job-detail-des">
 			@foreach ($general_info as $user_general_info)
 			<li><span>Full-Name:</span>{{$user_general_info->candidate_name}}</li>
-			<li><span>Professional-Title:</span>{{$user_general_info->	candidate_profession}}</li>
-			<li><span>Number:</span>{{$user_general_info->candidate_number}}</li>
+			<li><span>Professional-Title:</span>{{$user_general_info->candidate_profession}}</li>
 			<li><span>Region:</span>{{$user_general_info->candidate_city}}</li>
 			<li><span>DOB:</span>{{$user_general_info->candidate_dob}}</li>
 			<li><span>Gender:</span>{{$user_general_info->candidate_gender}}</li>
 			<li><span>Web-Address:</span>{{$user_general_info->candidate_website}}</li>
-			<li><span>Career-Level:</span>{{$user_general_info->	candidate_career_level}}</li>
+			<li><span>Career-Level:</span>{{$user_general_info->candidate_career_level}}</li>
 			<li><span>Degree-Level:</span>{{$user_general_info->candidate_degree_level}}</li>
-			<li><span>Your Address:</span>{{$user_general_info->	candidate_location}}</li>
+			<li><span>Your Address:</span>{{$user_general_info->candidate_location}}</li>
 			@endforeach
 		</ul>
 		<br/>
@@ -638,19 +637,23 @@
 		</thead>
 		<tbody>
 			@foreach ($candidate_project as $candidate_project)
-			<tr>
+			<tr id="pro_unique_row{{$candidate_project->id}}">
 				
 				<td>{{ $candidate_project->project_title }}</td>
 				<td>{{ $candidate_project->project_company_name }}</td>
 				<td>{{ $candidate_project->project_ref_email}}</td>
 				<td>{{ $candidate_project->project_ref_phone }}</td>
 				<td>{{ $candidate_project->your_porject_position }}</td>
-				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+				<td><a href="#ProjectViewed" data-toggle="modal" onclick='viewed_project("<?php echo $candidate_project->project_title ?>","<?php echo $candidate_project->project_company_name ?>","<?php echo $candidate_project->project_ref_email ?>","<?php echo $candidate_project->project_ref_phone ?>","<?php echo $candidate_project->your_porject_position ?>","<?php echo $candidate_project->pro_start ?>","<?php echo $candidate_project->pro_end ?>","<?php echo $candidate_project->project_description ?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Project" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_pro(<?php echo $candidate_project->id ?>);'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Project" data-pt-animate="flipInX"> <i class="fas fa-edit"></i></span></a> | <a onclick="delete_pro(<?php echo $candidate_project->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Project" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
-	<br/><hr>
+	<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#AddProject" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Project" data-pt-animate="flipInX">Add Project</span></a></div>
+	<br>
+	<br>
+	<hr>
 </div>
 <div class="candidate_skill" id="candidate_skill">
 	<h3>Your Skills</h3>
@@ -665,16 +668,20 @@
 		</thead>
 		<tbody>
 			@foreach ($candidate_skill as $skill)
-			<tr style="text-align: center;">
+			<tr id="skill_unique_row{{$skill->id}}" style="text-align: center;">
 				
 				<td>{{ $skill->skill_name }}</td>
 				<td>{{ $skill->skill_percentage }}</td>
-				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+				<td><a href="#SkillViewed" data-toggle="modal" onclick='viewed_skill("<?php echo $skill->skill_name ?>","<?php echo $skill->skill_percentage ?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Skill" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_sk(<?php echo $skill->id ?>);'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Skill" data-pt-animate="flipInX"> <i class="fas fa-edit"></i></span></a> |<a onclick="dele_skill(<?php echo $skill->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Skill" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
-	<br/><hr>
+	<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#AddSkill" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Skill" data-pt-animate="flipInX">Add Skill</span></a></div>
+	<br>
+	<br>
+	<hr>
 </div>
 
 <div class="candidate_languages" id="candidate_languages">
@@ -689,15 +696,19 @@
 		</thead>
 		<tbody>
 			@foreach ($candidate_languages as $languages)
-			<tr style="text-align: center;">
+			<tr id="languages_unique_row{{$languages->id}}" style="text-align: center;">
 				
 				<td>{{ $languages->user_language }}</td>
-				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+				<td><a href="#Viewlanguages" data-toggle="modal" onclick='viewed_language("<?php echo $languages->user_language ?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Languages" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_lang(<?php echo $languages->id ?>);'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Language" data-pt-animate="flipInX"> <i class="fas fa-edit"></i></span></a> |<a onclick="dele_language(<?php echo $languages->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Language" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
-	<br/><hr>
+	<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Skill</span></a></div>
+	<br>
+	<br>
+	<hr>
 </div>
 <div class="candidate_hobbies" id="candidate_hobbies">
 	<h3>Your Hobbies</h3>
@@ -711,15 +722,19 @@
 		</thead>
 		<tbody>
 			@foreach ($candidate_hobbies as $hobbies)
-			<tr style="text-align: center;">
+			<tr id="hobbey_unique_row{{$hobbies->id}}" style="text-align: center;">
 				
 				<td>{{ $hobbies->user_hobbies }}</td>
-				<td><i class="far fa-eye"></i> | <i class="fas fa-edit"></i> | <i class="fas fa-trash-alt"></i></td>
+				<td><a href="#ViewHobbies" data-toggle="modal" onclick='viewed_hobbies("<?php echo $hobbies->user_hobbies ?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Hobbies" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_hobb(<?php echo $hobbies->id ?>);'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Hobbey" data-pt-animate="flipInX"> <i class="fas fa-edit"></i></span></a> | <a onclick="dele_hobbey(<?php echo $hobbies->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Hobbey" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
-	<br/><hr>
+	<br/>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#AddHobbey" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Hobbey" data-pt-animate="flipInX">Add Hobbey</span></a></div>
+	<br>
+	<br>
+	<hr>
 </div>
 </div>
 <!-- End Address Sec -->
@@ -1515,10 +1530,6 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<input type="text" id="candidate_profession" name="candidate_profession" class="form-control" value="{{$user_general_info->candidate_profession}}">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Phone Number</label>
-		<input type="text" id="candidate_number" name="candidate_number" class="form-control" value="{{$user_general_info->candidate_number}}">
-	</div>
-	<div class="col-md-4 col-sm-6">
 		<label>Region</label>
 		<select class="form-control input-lg" name="candidate_city">
 			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
@@ -1545,7 +1556,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Website-Link</label>
 		<input type="text"  name="website_link" value="{{$user_general_info->candidate_website}}" class="form-control">
 	</div>
-	<div class="col-md-4 col-sm-6">
+	<div class="col-md-6 col-sm-6">
 		<label>Career Level</label>
 		<select class="form-control input-lg" name="candidate_career_level">
 			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_career_level}}</option>
@@ -1556,7 +1567,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			<option>Gm / CEO / Country Head</option>
 		</select>
 	</div>
-	<div class="col-md-4 col-sm-6">
+	<div class="col-md-6 col-sm-6">
 		<label>Degree Level</label>
 		<select class="form-control input-lg" name="candidate_degree_level" id="degree_level">
 			<option value="{{$user_general_info->candidate_degree_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_degree_level}}</option>
@@ -1766,6 +1777,435 @@ data-dismiss="modal" aria-hidden="true">×</button>
 
 
 
+<!-- Project  -->
+
+
+<!-- Project Viewed  -->
+
+
+<!-- Modal -->
+<div id="ProjectViewed" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Project Viewed</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<div class="edit-pro">
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Project Title</label>
+							<input type="text" id="viewed_pro_job_title" readonly="readonly" class="form-control" placeholder="Project Title">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Company Name</label>
+							<input type="text" id="viewed_pro_company_name" readonly="readonly" class="form-control" placeholder="Client Name">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Reference Email</label>
+							<input type="email" id="viewed_pro_referance_email" readonly="readonly" class="form-control" placeholder="Client Number">
+						</div>
+						
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Reference Number</label>
+							<input type="text" id="viewed_pro_referance_number" readonly="readonly"  class="form-control" placeholder="258 457 528">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Your Position</label>
+							<input type="text" id="view_pro_your_position" readonly="readonly" class="form-control" placeholder="Your Position">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Date From</label>
+							<input type="text" id="viewed_pro_date_from" readonly="readonly" class="form-control" placeholder="+91 258 475 6859">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Date To</label>
+							<input type="text" id="viewed_pro_date_to" readonly="readonly" class="form-control" placeholder="258 457 528">
+						</div>
+						
+						<div class="col-sm-12">
+							<label>Description</label>
+							<textarea class="form-control" name="view_pro_description" id="view_pro_description" placeholder="Description"></textarea>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+		</div> <!-- / .modal-content -->
+	</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+
+
+<!-- Add Project -->
+
+<!-- Modal -->
+<div id="AddProject" class="modal fade "> 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Add Project</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_pro">
+						<div class="edit-pro">
+
+							<div class="col-md-4 col-sm-6">
+							<label>Project Title</label>
+							<input type="text" id="project_title" class="form-control" placeholder="Project Title">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Company Name</label>
+							<input type="text" id="pro_company_name" class="form-control" placeholder="Client Name">
+						</div>
+						
+						<div class="col-md-4 col-sm-6">
+							<label>Client Email</label>
+							<input type="email" id="project_ref_email" class="form-control" placeholder="Client Email">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Client Number</label>
+							<input type="text" id="project_ref_phone"  class="form-control" placeholder="Client Number">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Your Position</label>
+							<input type="text" id="your_porject_position" class="form-control" placeholder="Your Position">
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<label>Date From</label>
+							<input type="text" id="pro-start" class="form-control" placeholder="12/9/2019">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Date To</label>
+							<input type="text" id="pro-end" class="form-control" placeholder="12/9/2019">
+						</div>
+						
+						<div class="col-sm-12">
+							<label>Description</label>
+							<textarea class="form-control" name="project" id="project_des" placeholder="Description"></textarea>
+						</div>
+
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" onclick="addPro(2);" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
+
+<!-- Skill -->
+
+<!-- Modal -->
+<div id="SkillViewed" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Skill Viewed</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<div class="edit-pro">
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Skill Name</label>
+							<input type="text" id="viewed_skill_name" readonly="readonly" class="form-control" placeholder="Skill Name">
+						</div>
+						
+						<div class="col-md-6 col-sm-6">
+							<label>Skill Percentage</label>
+							<input type="text" id="viewed_skill_precentage" readonly="readonly" class="form-control" placeholder="Skill Percentage">
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+		</div> <!-- / .modal-content -->
+	</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+
+
+
+
+<!-- Add Skill -->
+
+<!-- Modal -->
+<div id="AddSkill" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Add Skill</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_skill">
+						<div class="edit-pro">
+
+							<div class="col-md-12 col-sm-12">
+								<label>Skill Name</label>
+								<input type="text" id="skill_name" class="form-control" placeholder="Skill Name">
+							</div>
+
+							<div class="col-md-12 col-sm-12">
+								<div class="slidecontainer">
+									<input type="range" min="1" max="100" value="50" class="slider" id="skill_percentage">
+									<p><b>Value : </b> <span id="demo"></span></p>
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" onclick="addnewskill(2);" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+		</div> <!-- / .modal-content -->
+	</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+
+
+
+
+<!-- Hobbies -->
+
+
+<!-- View Hobbies -->
+
+<!-- Modal -->
+<div id="ViewHobbies" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">View Hobbey</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_pro_hobby">
+						<div class="edit-pro">
+
+							<div class="col-md-12 col-sm-12">
+							<label>Hobbey Name</label>
+							<input type="text" id="view_hobby_name" class="form-control" placeholder="Hobbies eg Cricket,Football" readonly="readonly">
+						</div>
+						
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
+<!-- Add Hobbey -->
+
+
+<!-- Modal -->
+<div id="AddHobbey" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Add Hobbey</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_hobbey">
+						<div class="edit-pro">
+
+							<div class="col-md-12 col-sm-12">
+							<label>Hobbey Name</label>
+							<input type="text" id="user_hobbies" class="form-control" placeholder="Hobbies eg Cricket,Football">
+						</div>
+						
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" onclick="addnewHobbey(2);" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+	</div> <!-- / .modal-dialog -->
+</div><!-- / .modal -->
+
+
+
+
+<!-- Languages -->
+
+
+<!-- View Languages -->
+
+<div id="Viewlanguages" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">View Hobbey</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_pro">
+						<div class="edit-pro">
+
+							<div class="col-md-12 col-sm-12">
+							<label>Hobbey Name</label>
+							<input type="text" id="view_user_language" class="form-control" placeholder="Your Languages" readonly="readonly">
+						</div>
+						
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
+<!-- Add Languages -->
+
+<div id="Addlanguage" class="modal fade "> 
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+			<div class="modal-header"> <!-- modal header -->
+				<button type="button" class="close" 
+				data-dismiss="modal" aria-hidden="true">×</button>
+
+				<h4 class="modal-title">Add Languages</h4>
+			</div>
+
+			<div class="modal-body"> <!-- modal body -->
+				<div class="row no-mrg">
+					<form id="user_profile_add_language">
+						<div class="edit-pro">
+
+							<div class="col-md-12 col-sm-12">
+							<label>Hobbey Name</label>
+							<input type="text" id="user_language" class="form-control" placeholder="Your Languages">
+						</div>
+						
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer"> <!-- modal footer -->
+				<button type="button" onclick="addnewlanguage(2);" class="btn btn-success">Save</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+				<!-- <button type="button" class="btn btn-primary">Download</button> -->
+			</div>
+
+		</div> <!-- / .modal-content -->
+
+	</div> <!-- / .modal-dialog -->
+
+</div><!-- / .modal -->
+
+
+
+
 
 
 
@@ -1844,6 +2284,8 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			    });
 			});
 
+
+
 			</script>
 
 
@@ -1881,6 +2323,52 @@ data-dismiss="modal" aria-hidden="true">×</button>
 }
 
 
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
 </style>
+
+<script>
+var slider = document.getElementById("skill_percentage");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+
 
 @endsection

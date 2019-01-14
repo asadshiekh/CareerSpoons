@@ -96,14 +96,24 @@
 						</div>
 					</div>
 
-					<div class="col-md-6 col-sm-6">
+
+					<div class="col-md-4 col-sm-4">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-							<input type="text" id="candidate_number" name="candidate_number" class="form-control" placeholder="Phone Number">
+							<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+							<input type="text" name="candidate_location" class="form-control" placeholder="Location: Your Address Full ">
 						</div>	
 					</div>
 
-					<div class="col-md-6 col-sm-6">
+
+					<div class="col-md-4 col-sm-4">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+							<input type="text" id="dob" name="candidate_dob" data-lang="en" data-large-mode="true" data-min-year="1980" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
+						</div>	
+					</div>
+
+
+					<div class="col-md-4 col-sm-4">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-flag"></i></span>
 							<select class="form-control input-lg" name="candidate_city">
@@ -114,21 +124,6 @@
 								<option>Peshawar</option>
 								<option>Quette</option>
 							</select>
-						</div>	
-					</div>
-
-					<div class="col-md-6 col-sm-6">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-							<input type="text" name="candidate_location" class="form-control" placeholder="Location: Your Address Full ">
-						</div>	
-					</div>
-
-
-					<div class="col-md-6 col-sm-6">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-							<input type="text" id="dob" name="candidate_dob" data-lang="en" data-large-mode="true" data-min-year="1980" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
 						</div>	
 					</div>
 
@@ -508,9 +503,13 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
-							<div class="input-group">
+							<!-- <div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-percentage"></i></span>
 								<input type="text" id="skill_percentage" class="form-control" placeholder="Enter Percentage e.g 60% , 70%">
+							</div> -->
+							<div class="slidecontainer">
+								<input type="range" min="1" max="100" value="50" class="slider" id="skill_percentage">
+								<p><b>Value : </b> <span id="demo"></span></p>
 							</div>
 						</div>
 
@@ -573,6 +572,56 @@
 </div>
 </section>
 <!-- full detail SetionStart-->	
+<style type="text/css">
+	
 
+	<style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+</style>
+
+</style>
+
+<script>
+var slider = document.getElementById("skill_percentage");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
 
 @endsection

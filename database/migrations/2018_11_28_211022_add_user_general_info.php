@@ -18,7 +18,6 @@ class AddUserGeneralInfo extends Migration
             $table->string('candidate_id');
             $table->string('candidate_name')->nullable($value = true);
             $table->string('candidate_profession')->nullable($value = true);
-            $table->string('candidate_number')->nullable($value = true);
             $table->string('candidate_city')->nullable($value = true);
             $table->string('candidate_location')->nullable($value = true);
             $table->string('candidate_dob')->nullable($value = true);

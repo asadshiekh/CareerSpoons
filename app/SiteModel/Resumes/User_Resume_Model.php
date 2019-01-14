@@ -233,6 +233,117 @@ class User_Resume_Model extends Model
 		return $response;
 	}
 
+	public function delete_project($id,$candidate_id){
+
+		$response = DB::table('add_user_projects')->where([
+			['id','=',[$id]],
+			['candidate_id','=',[$candidate_id]],
+		])->delete();
+		return $response;
+	}
+
+	public function get_selected_project($id){
+
+		$response = DB::table('add_user_projects')->where('id', $id)->first();
+		return $response;
+
+	}
+
+
+	public function update_project($user_response,$project_id_number,$candidate_id){
+
+		$response = DB::table('add_user_projects')->where([
+			['id','=',[$project_id_number]],
+			['candidate_id','=',[$candidate_id]],
+		])->update($user_response);
+
+		return $response;
+	}
+
+
+	public function delete_skill($id,$candidate_id){
+
+		$response = DB::table('add_user_skills')->where([
+			['id','=',[$id]],
+			['candidate_id','=',[$candidate_id]],
+		])->delete();
+		return $response;
+	}
+
+
+	public function get_selected_skill($id){
+
+		$response = DB::table('add_user_skills')->where('id', $id)->first();
+		return $response;
+	}
+
+	public function update_skill($user_response,$skill_id_number,$candidate_id){
+
+		
+		$response = DB::table('add_user_skills')->where([
+			['id','=',[$skill_id_number]],
+			['candidate_id','=',[$candidate_id]],
+		])->update($user_response);
+
+		return $response;
+	}
+
+
+	public function delete_hobbey($id,$candidate_id){
+
+		$response = DB::table('add_user_hobbies')->where([
+			['id','=',[$id]],
+			['candidate_id','=',[$candidate_id]],
+		])->delete();
+		return $response;
+	}
+
+
+	public function get_selected_hobbey($id){
+
+		$response = DB::table('add_user_hobbies')->where('id', $id)->first();
+		return $response;
+	}
+
+	public function update_skills($user_response,$hobbey_id_number,$candidate_id){
+
+		$response = DB::table('add_user_hobbies')->where([
+			['id','=',[$hobbey_id_number]],
+			['candidate_id','=',[$candidate_id]],
+		])->update($user_response);
+
+		return $response;
+
+	}
+
+	public function delete_languages($id,$candidate_id){
+
+		$response = DB::table('add_user_languages')->where([
+			['id','=',[$id]],
+			['candidate_id','=',[$candidate_id]],
+		])->delete();
+		return $response;
+
+	}
+
+
+	public function get_selected_language($id){
+
+		$response = DB::table('add_user_languages')->where('id', $id)->first();
+		return $response;
+	}
+
+
+	public function update_language($user_response,$language_id_number,$candidate_id){
+
+		
+		$response = DB::table('add_user_languages')->where([
+			['id','=',[$language_id_number]],
+			['candidate_id','=',[$candidate_id]],
+		])->update($user_response);
+
+		return $response;
+	}
 
 
 }

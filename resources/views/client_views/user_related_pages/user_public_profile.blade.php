@@ -228,7 +228,7 @@
 								<ul>
 									<li><i class="fa fa-map-marker"></i><span>{{$general_info->candidate_city}}, {{$general_info->candidate_location}}</span></li>
 									<li><i class="fa fa-envelope"></i><span>{{Session::get('user_email')}}</span></li>
-									<li><i class="fa fa-phone"></i><span>{{$general_info->candidate_number}}</span></li>
+									
 									<li><i class="fas fa-birthday-cake"></i><span>{{$general_info->candidate_dob}} , <b>{{$general_info->candidate_age}}</b> Year Old</span></li>
 								</ul>
 							</div>

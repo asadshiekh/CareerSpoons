@@ -22,7 +22,9 @@ class UserRegisteration extends Migration
             $table->string('phone_number');
             $table->string('current_cv_status');
             $table->string('checkbox');
-            $table->string('verify_by_email')->default('0');;
+            $table->string('verify_by_email')->default('0');
+            $table->string('current_number_status')->default('1');
+            $table->string('user_activation_status')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });
