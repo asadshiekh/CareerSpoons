@@ -206,7 +206,7 @@ Route::any('update-language-model-window',"site_controllers\UserResume@doUpdateC
 Route::get('send',"site_controllers\mail_sender@send");
 Route::get('verify-email',"site_controllers\mail_sender@hello");
 Route::get('file',"site_controllers\UserResume@index");
-Route::get('kuchB',"site_controllers\UserResume@kuchkardo");
+Route::get('hello-world',"site_controllers\UserResume@kuchkardo");
 
 
 
