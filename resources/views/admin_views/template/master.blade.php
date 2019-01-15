@@ -123,8 +123,9 @@
                     
                   </ul>
                 </li> 
-  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
-  <li><a href="{{url('view-degree-level')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>            
+  <li><a href="{{url('view-registered-users')}}"><i class="fa fa-circle-o"></i>View Registered Users</a></li> 
+  <li><a href="{{url('view-aboutus-page')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
+  <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>            
 
               </ul>
             </div>
@@ -259,6 +260,7 @@
   <script src="{{url('public/admin_assets/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script> 
   <!-- Custom Theme Scripts -->
   <script type="text/javascript" src="{{url('public/admin_assets/customJS/organizationJS.js')}}"></script>
+  <script type="text/javascript" src="{{url('public/admin_assets/customJS/usersJS.js')}}"></script>
 
   <script src="{{url('public/admin_assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
   <script src="{{url('public/admin_assets/build/js/custom.min.js')}}"></script>

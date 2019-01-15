@@ -389,7 +389,15 @@ Route::prefix('organization-profile')->group(function () {
 //Registered user view
 Route::any('view-registered-users',"admin_controllers\user_controllers\RegisteredUsers@viewRegisteredUsers");
 Route::any('change-user-status',"admin_controllers\user_controllers\RegisteredUsers@doChangeStatus");
+Route::any('delete-single-user',"admin_controllers\user_controllers\RegisteredUsers@deleteSingleUser");
+Route::any('view-single-user',"admin_controllers\user_controllers\RegisteredUsers@viewSingleUser");
 
+
+//contact us routes
+
+Route::any('view-contactus-page',"admin_controllers\main_controllers\MainController@viewContactUs");
+Route::any('view-single-message',"admin_controllers\main_controllers\MainController@viewSingleMessage");
+Route::any('reply-single-message',"admin_controllers\main_controllers\MainController@replySingleMessage");
 
 
 //test work

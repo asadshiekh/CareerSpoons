@@ -5,14 +5,19 @@ namespace App\Http\Controllers\site_controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Resumes\User_Resume_Model;
+use App\SiteModel\ClientSite\ClientSiteModel;
 use App\SiteModel\User\UserRegisteration;
 use DB;
 class UserResume extends Controller
 {
 	public function manageUserResume(){
-
-
-		return view('client_views.resume_related_pages.make_resume');
+		$obj = new ClientSiteModel();
+		$get_cities=$obj->get_all_cities();
+		$get_degree=$obj->get_all_degree_level();
+		$get_degree1=$obj->get_all_degree_level();
+		$get_majors=$obj->get_all_majors();
+		$get_area=$obj->get_all_area();
+		return view('client_views.resume_related_pages.make_resume',['get_cities'=>$get_cities,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'get_area'=>$get_area]);
 	}
 
 	public function uploadResume(Request $request){
@@ -500,7 +505,11 @@ class UserResume extends Controller
 		$edu_id ="'$info->id'";
 		$edu_level ="'$info->degree_level'";
 		$edu_majors ="'$info->majors'";
-		$edu_selected_result ="'$info->selected_result'";	
+		$edu_selected_result ="'$info->selected_result'";
+
+		$obj1 = new ClientSiteModel();	
+		$get_degree=$obj1->get_all_degree_level();
+		$get_majors=$obj1->get_all_majors();
 		echo '
 		<div id="UpdateEductionModelWindow" class="modal fade"> 
 		<div class="modal-dialog modal-lg">
@@ -525,18 +534,11 @@ class UserResume extends Controller
 		<div class="col-md-4 col-sm-6">
 		<label>Degree Level</label>
 		<select class="form-control input-lg" name="update_edu_degree_level" id="update_edu_degree_level">
-		<option disabled="disabled" selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>
-		<option>Non-Matriculation</option>
-		<option>Matriculation/O-Level</option>
-		<option>Intermediate/A-Level</option>
-		<option>Bachelors</option>
-		<option>Masters</option>
-		<option>MPhil/MS</option>
-		<option>PHD/Doctorate</option>
-		<option>Certification</option>
-		<option>Diploma</option>
-		<option>Short Course</option>
-		</select>
+		<option disabled="disabled" selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>';
+foreach($get_degree as $get_degree){
+		echo '<option value="'.$get_degree->degree_title.'">'.$get_degree->degree_title.'</option>';
+}
+		echo '</select>
 		</div>
 
 		<div class="col-md-4 col-sm-6">
@@ -562,11 +564,11 @@ class UserResume extends Controller
 		<div class="col-md-4 col-sm-4">
 		<label>Majors</label>
 		<select class="form-control input-lg" name="update_edu_majors" id="update_edu_majors">
-		<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->majors.'</option>
-		<option>Accounting</option>
-		<option>Actuarial Sciences</option>
-		<option>Aerospace Engineering</option>
-		</select>
+		<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->majors.'</option>';
+		foreach($get_majors as $get_majors){
+		echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_title.'</option>';
+         }
+		echo '</select>
 		</div>
 
 		<div class="col-md-4 col-sm-4">

@@ -83,7 +83,7 @@
 						<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
 						@if(Session::has('user_status'))
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+							<a class="nav-link dropdown-toggle" href="{{url('user-profile')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
 								Candidate Profile
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

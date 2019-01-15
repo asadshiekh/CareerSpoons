@@ -135,7 +135,7 @@
 		<div class="col-md-12 col-sm-12">
 			<div class="full-card">
 				<div class="tab-content" style="text-align: center;">
-					<div class="alert alert-info" style="border:none;border-radius: 20px; display: inline-block;margin-top:50px">
+					<div style="border:none;border-radius: 20px; display: inline-block;margin-top:50px">
 						<p align="center" style="margin-top:10px;"><i class="fas fa-exclamation-triangle"></i> Upload or Make Your Resume to Manage Your Profile <img height="70" width="60" src="{{url('public/client_assets/img/random/info.gif')}}"></p>
 					</div>
 				</div>
@@ -242,11 +242,9 @@
 <label>Functional Area</label>
  <input class="form-control input-lg" list="functional_area" name="candidate_functional_area" placeholder="Select Functional Area">
   <datalist id="functional_area">
-    <option value="Internet Explorer">
-    <option value="Firefox">
-    <option value="Chrome">
-    <option value="Opera">
-    <option value="Safari">
+  	@foreach($get_area as $get_area)
+    <option value="{{$get_area->area_title}}">{{$get_area->area_title}}</option>
+    @endforeach
   </datalist>
 </div>
 <div class="col-md-4 col-sm-6">
@@ -279,7 +277,9 @@
 <label>Preferred Job City</label>
 <select class="form-control input-lg" id="candidate_preferred_city">
 	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
-	<option>Data</option>
+	@foreach($get_cities as $get_cities)
+	<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+	@endforeach
 </select>
 </div>
 
@@ -287,7 +287,8 @@
 <label>Job Type</label>
 <select class="form-control input-lg" id="candidate_job_type">
 	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Job Type</option>
-	<option>Data</option>
+	<option value="full time">Full Time</option>
+	<option value="part time">Part Time</option>
 </select>
 </div>
 
@@ -1433,16 +1434,10 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Degree Level</label>
 		<select class="form-control input-lg" id="degree_level">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Degree Level</option>
-			<option>Non-Matriculation</option>
-			<option>Matriculation/O-Level</option>
-			<option>Intermediate/A-Level</option>
-			<option>Bachelors</option>
-			<option>Masters</option>
-			<option>MPhil/MS</option>
-			<option>PHD/Doctorate</option>
-			<option>Certification</option>
-			<option>Diploma</option>
-			<option>Short Course</option>
+			@foreach($get_degree as $get_degree)
+			<option value="{{$get_degree->degree_title}}">{{$get_degree->degree_title}}</option>
+			@endforeach
+			
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6">
@@ -1465,9 +1460,10 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Majors</label>
 		<select class="form-control input-lg" id="majors">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
-			<option>Accounting</option>
-			<option>Actuarial Sciences</option>
-			<option>Aerospace Engineering</option>
+			@foreach($get_majors as $get_majors)
+			<option value="{{$get_majors->major_title}}">{{$get_majors->major_title}}</option>
+			@endforeach
+
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-4">
@@ -1530,14 +1526,14 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<input type="text" id="candidate_profession" name="candidate_profession" class="form-control" value="{{$user_general_info->candidate_profession}}">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Region</label>
+		<label>City</label>
 		<select class="form-control input-lg" name="candidate_city">
 			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
-			<option>Lahore</option>
-			<option>Karachi</option>
-			<option>Multan</option>
-			<option>Peshawar</option>
-			<option>Quette</option>
+
+			@foreach($get_cities1 as $get_cities1)
+			<option value="{{$get_cities1->company_city_name}}">{{$get_cities1->company_city_name}}</option>
+			@endforeach
+			
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6">
@@ -1571,16 +1567,10 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Degree Level</label>
 		<select class="form-control input-lg" name="candidate_degree_level" id="degree_level">
 			<option value="{{$user_general_info->candidate_degree_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_degree_level}}</option>
-			<option>Non-Matriculation</option>
-			<option>Matriculation/O-Level</option>
-			<option>Intermediate/A-Level</option>
-			<option>Bachelors</option>
-			<option>Masters</option>
-			<option>MPhil/MS</option>
-			<option>PHD/Doctorate</option>
-			<option>Certification</option>
-			<option>Diploma</option>
-			<option>Short Course</option>
+			@foreach($get_degree1 as $get_degree1)
+			<option value="{{$get_degree1->degree_title}}">{{$get_degree1->degree_title}}</option>
+			@endforeach
+			
 		</select>
 	</div>
 	<div class="col-sm-12">

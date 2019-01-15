@@ -4,9 +4,10 @@ namespace App\Http\Controllers\site_controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\User\UserProfileModel;
+use App\SiteModel\ClientSite\ClientSiteModel;
+use App\Mail\Site_Mail\User_Mail\User_Contact_Us;
 use Alert;
 use DB;
-use App\Mail\Site_Mail\User_Mail\User_Contact_Us;
 use Mail;
 class SiteController extends Controller
 {
@@ -14,11 +15,13 @@ class SiteController extends Controller
 
   $obj =  new UserProfileModel();
   $get_reviews = $obj->get_all_candidate_reviews();
+  $obj1 = new ClientSiteModel();
+  $get_cities = $obj1->get_all_cities();
 
   // echo "<pre>";
   // print_r($get_reviews);
 
-   return view('client_views.main_site.home',['get_reviews' => $get_reviews]);
+   return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities]);
  }
 
  public function viewContactUs(){

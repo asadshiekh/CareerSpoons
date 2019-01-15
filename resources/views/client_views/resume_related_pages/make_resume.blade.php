@@ -117,12 +117,10 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-flag"></i></span>
 							<select class="form-control input-lg" name="candidate_city">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Region</option>
-								<option>Lahore</option>
-								<option>Karachi</option>
-								<option>Multan</option>
-								<option>Peshawar</option>
-								<option>Quette</option>
+								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
+								@foreach($get_cities as $get_cities)
+								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+								@endforeach
 							</select>
 						</div>	
 					</div>
@@ -167,16 +165,10 @@
 							<span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
 							<select class="form-control input-lg" name="candidate_degree_level">
 								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Degree Level</option>
-								<option>Non-Matriculation</option>
-								<option>Matriculation/O-Level</option>
-								<option>Intermediate/A-Level</option>
-								<option>Bachelors</option>
-								<option>Masters</option>
-								<option>MPhil/MS</option>
-								<option>PHD/Doctorate</option>
-								<option>Certification</option>
-								<option>Diploma</option>
-								<option>Short Course</option>
+								@foreach($get_degree as $get_degree)
+								<option value="{{$get_degree->degree_title}}">{{$get_degree->degree_title}}</option>
+								@endforeach
+								
 							</select>
 						</div>	
 					</div>
@@ -259,16 +251,9 @@
 								<span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
 								<select class="form-control input-lg" id="degree_level">
 									<option value="" disabled="disabled" selected="selected" hidden="hidden">Degree Level</option>
-									<option>Non-Matriculation</option>
-									<option>Matriculation/O-Level</option>
-									<option>Intermediate/A-Level</option>
-									<option>Bachelors</option>
-									<option>Masters</option>
-									<option>MPhil/MS</option>
-									<option>PHD/Doctorate</option>
-									<option>Certification</option>
-									<option>Diploma</option>
-									<option>Short Course</option>
+									@foreach($get_degree1 as $get_degree1)
+								<option value="{{$get_degree1->degree_title}}">{{$get_degree1->degree_title}}</option>
+								@endforeach
 								</select>
 							</div>	
 						</div>
@@ -306,9 +291,9 @@
 								<span class="input-group-addon"><i class="fas fa-book"></i></span>
 								<select class="form-control input-lg" id="majors">
 									<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
-									<option>Accounting</option>
-									<option>Actuarial Sciences</option>
-									<option>Aerospace Engineering</option>
+									@foreach($get_majors as $get_majors)
+									<option value="{{$get_majors->major_title}}">{{$get_majors->major_title}}</option>
+									@endforeach
 								</select>
 							</div>	
 						</div>

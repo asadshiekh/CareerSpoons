@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SiteModel\Resumes\User_Resume_Model;
 use App\SiteModel\User\UserProfileImages;
 use App\SiteModel\User\UserProfileModel;
+use App\SiteModel\ClientSite\ClientSiteModel;
 use App\Http\Controllers\Controller;
 use App\Mail\Site_Mail\User_Mail\User_Change_Email;
 use Mail;
@@ -26,10 +27,20 @@ class UserProfile extends Controller
 		$general_info = $obj->get_candidate_info($request->session()->get('id'));
 		$social_link = $obj->get_candidate_social_link($request->session()->get('id'));
 
+		//fetch admin site data 
+		$obj1 =  new ClientSiteModel();
+		$get_area=$obj1->get_all_area();
+		$get_cities=$obj1->get_all_cities();
+		$get_cities1=$obj1->get_all_cities();
+		$get_degree=$obj1->get_all_degree_level();
+		$get_degree1=$obj1->get_all_degree_level();
+		$get_majors=$obj1->get_all_majors();
+
+
 
 		// Fetch Eduction of User Number
 
-		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link]);
+		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors]);
 	}
 
 

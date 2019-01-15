@@ -23,13 +23,11 @@
 					<div class="col-md-3 no-padd">
 						<div class="input-group">
 							<select id="choose-city" class="form-control">
-								<option>Choose City</option>
-								<option>Chandigarh</option>
-								<option>London</option>
-								<option>England</option>
-								<option>Pratapcity</option>
-								<option>Ukrain</option>
-								<option>Wilangana</option>
+								<option disabled="disabled" selected="selected" hidden="hidden">Choose City</option>
+							@foreach($get_cities as $get_cities)
+								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+								
+								@endforeach
 							</select>
 						</div>
 					</div>
