@@ -17,3 +17,42 @@ var msg=CKEDITOR.instances['message'].getData();
          }
        });
 }
+
+//About Us functions
+
+function about_us_content(){
+//$("#about_btn").addattr("disabled","disabled");
+
+
+   $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  //disable the default form submission
+  event.preventDefault();
+
+  //grab all form data  
+  var formData = new FormData($("#about")[0]);
+
+  $.ajax({
+    url: 'about-us-form-send',
+    type: 'POST',
+    data: formData,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+        document.getElementById("about").reset();
+
+        swal("success", "About Us Content Updated.", "success");
+      //$("#about_btn").removeattr("disabled","disabled");
+
+    }
+  });
+
+  return false;
+ 
+}

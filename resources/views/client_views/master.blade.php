@@ -217,13 +217,13 @@
 				<div class="container">
 					<div class="col-md-3 col-sm-12">
 						<div class="footer-widget">
-							<h3 class="widgettitle widget-title">About Job Stock</h3>
+							<h3 class="widgettitle widget-title">About CareerSpoons</h3>
 							<div class="textwidget">
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-								<p>7860 North Park Place<br>
-								San Francisco, CA 94120</p>
-								<p><strong>Email:</strong> Support@careerdesk</p>
-								<p><strong>Call:</strong> <a href="tel:+15555555555">555-555-1234</a></p>
+								<?php $about=DB::table('about_us_content')->first(); ?>
+								<p>{{$about->about_qoute}}</p>
+								<p>{{$about->about_address}}</p>
+								<p><strong>Email:</strong> {{$about->about_no}}</p>
+								<p><strong>Call:</strong> <a href="tel:+15555555555">{{$about->about_no}}</a></p>
 								<ul class="footer-social">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>

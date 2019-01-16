@@ -124,7 +124,7 @@
                   </ul>
                 </li> 
   <li><a href="{{url('view-registered-users')}}"><i class="fa fa-circle-o"></i>View Registered Users</a></li> 
-  <li><a href="{{url('view-aboutus-page')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
+  <li><a href="{{url('view-about-us')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
   <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>            
 
               </ul>

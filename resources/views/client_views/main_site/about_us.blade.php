@@ -11,8 +11,54 @@
 			</section>
 			<div class="clearfix"></div>
 
-
-
+<!-- Contact Page Section Start -->
+			<section class="contact-page">
+				<div class="container">
+				<h2>About CareerSpoons</h2>
+				
+					<div class="col-md-4 col-sm-4">
+						<div class="contact-box">
+							<i class="fa fa-map-marker"></i>
+							<p>{{$about->about_address}}</p>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="contact-box">
+							<i class="fa fa-envelope"></i>
+							<p>{{$about->about_email}}</p>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="contact-box">
+							<i class="fa fa-phone"></i>
+							<p>{{$about->about_no}}</p>
+						</div>
+					</div>
+					
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- contact section End -->
+		<!-- video section Start -->
+		<section class="video-sec dark" id="video" style="background-image:url('public/client_assets/img/banner-5.jpg');">
+			<div class="container">
+				<div class="row">
+					<div class="main-heading">
+						<p>Best For Your Projects</p>
+						<h2>Watch Our <span>video</span></h2>
+					</div>
+				</div>
+				<!--/row-->
+				<div class="video-part">
+					
+					<a href="#" data-toggle="modal" data-target="#my-video" class="video-btn"><i class="fa fa-play"></i></a>
+				</div>
+			</div>
+		</section>
+		<div class="clearfix"></div>
+		<!-- video section end -->
 
 		<section class="how-it-works">
 			<div class="container">
@@ -67,22 +113,7 @@
 		</section>
 		<div class="clearfix"></div>
 
-		<!-- video section Start -->
-		<section class="video-sec dark" id="video" style="background-image:url('public/client_assets/img/banner-5.jpg');">
-			<div class="container">
-				<div class="row">
-					<div class="main-heading">
-						<p>Best For Your Projects</p>
-						<h2>Watch Our <span>video</span></h2>
-					</div>
-				</div>
-				<!--/row-->
-				<div class="video-part">
-					<a href="#" data-toggle="modal" data-target="#my-video" class="video-btn"><i class="fa fa-play"></i></a>
-				</div>
-			</div>
-		</section>
-		<div class="clearfix"></div>
+
 		<br><br>
 
 

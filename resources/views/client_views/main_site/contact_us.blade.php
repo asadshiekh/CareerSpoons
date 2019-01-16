@@ -12,40 +12,14 @@
 			<div class="clearfix"></div>
 			<!-- Title Header End -->
 			
-			<!-- Contact Page Section Start -->
-			<section class="contact-page">
-				<div class="container">
-				<h2>Drop A Mail</h2>
-				
-					<div class="col-md-4 col-sm-4">
-						<div class="contact-box">
-							<i class="fa fa-map-marker"></i>
-							<p>Street #10 Phase #8, Defence Lahore Cantt<br>Pakistan,Lhr (54000)</p>
-						</div>
-					</div>
-					
-					<div class="col-md-4 col-sm-4">
-						<div class="contact-box">
-							<i class="fa fa-envelope"></i>
-							<p>careerspoons@gmail.com<br>support@careerdesk.com</p>
-						</div>
-					</div>
-					
-					<div class="col-md-4 col-sm-4">
-						<div class="contact-box">
-							<i class="fa fa-phone"></i>
-							<p>UK: 01 123 456 7895<br>Ind: +92 323 497 6389</p>
-						</div>
-					</div>
-					
-				</div>
-			</section>
-			<!-- contact section End -->
+			
 			
 			<!-- contact form -->
+			<br/><br/>
 			<section class="contact-form">
 				<div class="container">
 					<h2>Drop A Mail</h2>
+					<br/>
 					<form>
 					<div class="col-md-6 col-sm-6">
 						<input type="text" class="form-control" id="candidate_name" placeholder="Your Name">

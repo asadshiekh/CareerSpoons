@@ -78,7 +78,8 @@ public function viewPageNotFound(){
 
     //Alert::message('Robots are working!');
     //alert()->error('Error Message', 'Optional Title');
-  return view('client_views.main_site.page_not_found');
+  $about=DB::table('about_us_content')->first();
+  return view('client_views.main_site.page_not_found',['about'=>$about]);
 }
 
 public function view_session(Request $request){
@@ -89,8 +90,8 @@ public function view_session(Request $request){
 }
 
 public function viewAboutUs(){
-
-  return view('client_views.main_site.about_us');
+  $about=DB::table('about_us_content')->first();
+  return view('client_views.main_site.about_us',['about'=>$about]);
 }
 
 

@@ -1,5 +1,5 @@
 @component('mail::message')
-# Welcome {{$UserName}}
+# Hello {{$UserName}}
 
 @component('mail::panel')
 {{$Reply}}

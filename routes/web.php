@@ -402,6 +402,12 @@ Route::any('reply-contact-email',"admin_controllers\main_controllers\MainControl
 Route::any('sending-reply-email',"admin_controllers\main_controllers\MainController@sendingReplyEmail");
 
 
+//About Us routes 
+Route::any('view-about-us',"admin_controllers\main_controllers\MainController@viewAboutUs");
+Route::any('about-us-form-send',"admin_controllers\main_controllers\MainController@aboutUsFormSend");
+
+
+
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

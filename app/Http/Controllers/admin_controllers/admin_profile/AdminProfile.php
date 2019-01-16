@@ -412,7 +412,7 @@ public function doImgCrop(Request $request){
          $admin_image= array(
             'admin_img' => $imageName
           );
-          $data = DB::table('admin_img')->where(['admin_id'=>$id])->update($admin_image);
+         $data = DB::table('admin_img')->where(['admin_id'=>$id])->update($admin_image);
         
 
         echo $imageName;
