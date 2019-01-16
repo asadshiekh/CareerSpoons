@@ -118,7 +118,8 @@ public function sendingReplyEmail(Request $request){
 
 
 public function viewAboutUs(){
-  return view('admin_views.main_views.about_us');
+  $about=DB::table('about_us_content')->first();
+  return view('admin_views.main_views.about_us',['about'=>$about]);
 }
 
 public function aboutUsFormSend(Request $request){

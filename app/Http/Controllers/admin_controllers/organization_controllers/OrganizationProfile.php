@@ -374,7 +374,7 @@ class OrganizationProfile extends Controller
       <i class="fa fa-users"></i>
       </div>
       <select name="n_req_functional_area" class="form-control" placeholder="Select Functional Area" id="n_req_functional_area" onchange="n_select_major();">
-      <option value="'.$job->functional_area.'" selected="selected" disabled="disabled">'.$job->functional_area.'</option>';
+      <option value="'.$job->functional_area.'" selected="selected">'.$job->functional_area.'</option>';
       foreach($area as $a):
         echo '<option value="'.$a->area_title.'">'.$a->area_title.'</option>';
       endforeach;
@@ -390,7 +390,7 @@ class OrganizationProfile extends Controller
         </div>
 
         <select name="n_req_major" class="form-control" placeholder="Select Functional Area" id="n_req_major">
-      <option value="'.$job->req_major.'" selected="selected" disabled="disabled">'.$job->req_major.'</option>';
+      <option value="'.$job->req_major.'" selected="selected">'.$job->req_major.'</option>';
       foreach($area_majors as $m):
         echo '<option value="'.$m->major_title.'">'.$m->major_title.'</option>';
       endforeach;

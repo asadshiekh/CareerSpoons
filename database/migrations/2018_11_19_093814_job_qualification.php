@@ -16,7 +16,6 @@ class JobQualification extends Migration
         Schema::create('job_req_qualifications', function (Blueprint $table) {
             $table->increments('job_qual_id');
             $table->string('req_qualification');
-            $table->string('req_majors');
             $table->string('req_degree_level');
             $table->bigInteger('post_id');
             $table->bigInteger('company_id'); 

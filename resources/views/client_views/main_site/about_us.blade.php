@@ -52,7 +52,7 @@
 				</div>
 				<!--/row-->
 				<div class="video-part">
-					
+					<!-- <video class="afterglow" id="my-video" src="uploads/aboutus_video/{{$about->about_video}}"></video> -->
 					<a href="#" data-toggle="modal" data-target="#my-video" class="video-btn"><i class="fa fa-play"></i></a>
 				</div>
 			</div>

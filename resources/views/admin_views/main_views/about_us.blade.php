@@ -47,7 +47,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-asterisk"></i>
                 </div>
-                <input type="text" class="form-control" name="qoute" id="qoute" placeholder="Enter Qoutation">
+                <input type="text" class="form-control" name="qoute" id="qoute" placeholder="Enter Qoutation" value="{{$about->about_qoute}}">
               </div>
             </div>
             <div class="form-group col-sm-12 col-md-8 col-md-offset-2">
@@ -56,7 +56,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-crosshairs"></i>
                 </div>
-                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Qoutation">
+                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address" value="{{$about->about_address}}">
               </div>
             </div>
             <div class="form-group col-sm-12 col-md-8 col-md-offset-2">
@@ -65,7 +65,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-envelope-o"></i>
                 </div>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Qoutation">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" value="{{$about->about_email}}">
               </div>
             </div>
             <div class="form-group col-sm-12 col-md-8 col-md-offset-2">
@@ -75,7 +75,7 @@
                   <i class="fa fa-headphones"></i>
 
                 </div>
-                <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter Qoutation">
+                <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter Phone No" value="{{$about->about_no}}">
               </div>
             </div>
             <div class="form-group col-sm-12 col-md-8 col-md-offset-2">
@@ -85,13 +85,21 @@
                   <i class="fa fa-file-video-o"></i>
 
                 </div>
-                <input type="file" class="form-control" name="video" id="video" placeholder="Enter Qoutation">
+                <input type="file" class="form-control" name="video" id="video" placeholder="Upload video">
               </div>
             </div>
-            <div class="form-group col-sm-12 col-md-4 col-md-offset-4">
-              
+            <div class="form-group col-sm-12 col-md-3 col-md-offset-2">
+              <label>Current Uploaded Video:</label>
+              <label style="font-size: 12px;color:green;">{{$about->about_video}}</label>
+            </div>
+            <div class="form-group col-sm-12 col-md-5">
               <div class="input-group">
-               <input type="button" class="btn btn-success" name="about_btn" onclick="about_us_content();" value="update">
+              <a href="{{url('uploads/aboutus_video/')}}/{{$about->about_video}}" target="_blank"><video src="uploads/aboutus_video/{{$about->about_video}}" width="150px"></video></a>
+              </div>
+            </div>
+            <div class="form-group col-sm-12 col-md-8 col-md-offset-2">
+              <div class="input-group">
+               <input type="button" class="btn btn-success btn-md" name="about_btn" onclick="about_us_content();" value="Update About Content">
               </div>
             </div>
             </form>

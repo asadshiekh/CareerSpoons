@@ -75,7 +75,7 @@
 							</div>
 							
 							<div class="card-body">
-							
+							@foreach($jobs as $jobs)
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
@@ -85,7 +85,12 @@
 												</div>
 											</a>
 											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a>
+												<a href="new-job-detail.html" title="Job Dtail"><h4>{{$jobs->job_title}}</h4></a>
+
+												<?php
+												$id=$jobs->company_id;
+												 $company=DB::table('add_organizations')->select('company_name')->where(['company_id'=>$id])->first();
+												 echo $company->company_name; ?>
 												<span>Google Ltd</span>
 											</div>
 										</div>
@@ -101,200 +106,7 @@
 									<span class="tg-themetag tg-featuretag">Premium</span>
 								</article>
 								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-6.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a>
-												<span>Vertue Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
-										</div>
-									</div>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-7.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Database Designer</h4></a>
-												<span>Twitter Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a>
-										</div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-2.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a>
-												<span>Google Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
-										</div>
-									</div>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-5.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Human Resource</h4></a>
-												<span>Skype Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a>
-										</div>
-									</div>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-6.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Project Manager</h4></a>
-												<span>Vertue Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="applied">Apply</a>
-										</div>
-									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-7.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>CEO & Manager</h4></a>
-												<span>Twitter</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
-										</div>
-									</div>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-4.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a>
-												<span>Microsoft Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a>
-										</div>
-									</div>
-								</article>
-								
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-3.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>PHP Developer</h4></a>
-												<span>Honda Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
-										</div>
-									</div>
-								</article>
-								
+							@endforeach
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
