@@ -21,6 +21,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 		<!-- Sweet Alert Libery Css -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+			<!-- javascript Css notify -->
+	<link rel="stylesheet" href="{{url('public/client_assets/css/notify/notyf.min.css')}}">
 	</head>
 	<body>
 		<div class="Loader"></div>
@@ -246,17 +248,19 @@
 						</div>
 
 						<div class="col-md-3 col-sm-4">
-							<div class="footer-widget">
-								<h3 class="widgettitle widget-title">Connect Us</h3>
-								<div class="textwidget">
-									<form class="footer-form">
-										<input type="text" class="form-control" placeholder="Your Name"> 
-										<input type="text" class="form-control" placeholder="Email">
-										<textarea class="form-control" placeholder="Message"></textarea>
-										<button type="submit" class="btn btn-primary">Login</button>
-									</form>
-								</div>
+						<div class="footer-widget">
+							<h3 class="widgettitle widget-title">Connect Us</h3>
+							<div class="textwidget">
+								<form class="footer-form">
+									<input type="text" id="candidate_name1" class="form-control" placeholder="Your Name"> 
+									<input type="text" id="candidate_email1" class="form-control" placeholder="Your Email">
+									<input type="hidden" id="candidate_number1" value="0000" class="form-control"> 
+									<input type="hidden" id="candidate_subject1" value="no-subject"  class="form-control">
+									<textarea class="form-control" id="candidate_message1" placeholder="Message"></textarea>
+									<button type="button" onclick="contactUs1();" class="btn btn-primary">Send</button>
+								</form>
 							</div>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -374,6 +378,11 @@
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
 				<!-- Custom Js for USER Login -->
 				<script src="{{url('public/client_assets/js/customization_js/user_login.js')}}"></script>
+				<!-- Notify Javascript -->
+			<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
+				<!-- Contact Us -->
+			<script src="{{url('public/client_assets/js/customization_js/contact_us.js')}}"></script>
+
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
