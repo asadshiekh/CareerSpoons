@@ -110,6 +110,8 @@ class MainController extends Controller
   public function sendingReplyEmail(Request $request){
 
     Mail::send(new Reply_Contact_Us());
+   
+  
   }
 
 }
