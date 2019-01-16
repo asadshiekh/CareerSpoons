@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin_controllers\main_controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Admin_Mail\User_Mail\Reply_Contact_us;
+use Mail;
 use DB;
 
 class MainController extends Controller
@@ -53,7 +55,9 @@ class MainController extends Controller
       $id=$request->post('x');
       $name =$request->post('y');
       $email =$request->post('z');
-
+      $n_id = "'".$id."'";
+      $n_email ="'".$email."'";
+      $n_name ="'".$name."'";
        echo '<div id="mymodalreply" class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
        <div class="modal-dialog modal-lg">
        <div class="modal-content">
@@ -82,7 +86,7 @@ class MainController extends Controller
        </div>
        <div class="modal-footer">
        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       <button type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+       <button type="button" class="btn btn-success" data-dismiss="modal" onclick="send_email_message('.$n_id.','.$n_email.','.$n_name.');">Send</button>
 
        </div>
        </div>
@@ -90,4 +94,22 @@ class MainController extends Controller
        </div>';
 
     }
+  public function replyContactMessage(Request $request){
+    $id=$request->post('x');
+    $email=$request->post('y');
+    $msg=$request->post('msg');
+    $status=array(
+    'replay_status'=>"1"
+    );
+     $contact=DB::table('user_contact_us')->where(['id'=>$id])->update($status);
+     if($contact){
+      echo "yes";
+     }
+  }
+
+  public function sendingReplyEmail(Request $request){
+
+    Mail::send(new Reply_Contact_Us());
+  }
+
 }

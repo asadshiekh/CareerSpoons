@@ -32,6 +32,6 @@ class User_Contact_Us extends Mailable
        return $this->from('careerspoons@gmail.com','CareerSpoons')->to($request->candidate_email,'to '.$request->candidate_name)->subject('CareerSpoons')->markdown('client_views/mails/usermails/user_contact_us')->with([
                         'UserName' => $request->candidate_name,
                         'UserEmail' => $request->candidate_email,
-                    ]);;
+                    ]);
     }
 }

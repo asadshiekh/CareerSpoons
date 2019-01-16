@@ -398,6 +398,8 @@ Route::any('view-single-user',"admin_controllers\user_controllers\RegisteredUser
 Route::any('view-contactus-page',"admin_controllers\main_controllers\MainController@viewContactUs");
 Route::any('view-single-message',"admin_controllers\main_controllers\MainController@viewSingleMessage");
 Route::any('reply-single-message',"admin_controllers\main_controllers\MainController@replySingleMessage");
+Route::any('reply-contact-email',"admin_controllers\main_controllers\MainController@replyContactMessage");
+Route::any('sending-reply-email',"admin_controllers\main_controllers\MainController@sendingReplyEmail");
 
 
 //test work

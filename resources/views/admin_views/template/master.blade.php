@@ -261,7 +261,7 @@
   <!-- Custom Theme Scripts -->
   <script type="text/javascript" src="{{url('public/admin_assets/customJS/organizationJS.js')}}"></script>
   <script type="text/javascript" src="{{url('public/admin_assets/customJS/usersJS.js')}}"></script>
-
+  <script type="text/javascript" src="{{url('public/admin_assets/customJS/mainJS.js')}}"></script>
   <script src="{{url('public/admin_assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
   <script src="{{url('public/admin_assets/build/js/custom.min.js')}}"></script>
 
