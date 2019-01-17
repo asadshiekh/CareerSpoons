@@ -52,8 +52,17 @@
 				</div>
 				<!--/row-->
 				<div class="video-part">
+
+					<div id="vidBox">
+						<div id="videCont">
+							<video autoplay id="v1" loop controls>
+								<source src="uploads/aboutus_video/{{$about->about_video}}" type="video/mp4">
+								</video>
+							</div>
+						</div>
+    
 					<!-- <video class="afterglow" id="my-video" src="uploads/aboutus_video/{{$about->about_video}}"></video> -->
-					<a href="#" data-toggle="modal" data-target="#my-video" class="video-btn"><i class="fa fa-play"></i></a>
+					<a id="video1" class="video-btn"><i class="fa fa-play"></i></a>
 				</div>
 			</div>
 		</section>

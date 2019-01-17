@@ -51,10 +51,12 @@
 	<!-- Password Strength Meter Css -->
 		<link rel="stylesheet" href="{{url('public/client_assets/css/customization_css/passwordscheck.css')}}">
 
+	<!-- Video Pop Up -->
+		<link rel="stylesheet" href="{{url('public/client_assets/css/video_css/videopopup.css')}}">
+	
 
 	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
-	<!-- video -->
-			<script type="text/javascript" src="//cdn.jsdelivr.net/npm/afterglowplayer@1.x"></script>
+
 
 
 </head>
@@ -644,6 +646,8 @@
 			<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 			<!-- Script  -->
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+			<!-- Video Pop Up -->
+			<script src="{{url('public/client_assets/js/video_js/videopopup.js')}}"></script>
 			
 
 			<style type="text/css">
@@ -841,6 +845,17 @@
 
 			<script>
 				AOS.init();
+			</script>
+
+			<script type="text/javascript">
+				$(function() {
+					$('#vidBox').VideoPopUp({
+						backgroundColor: "#17212a",
+						opener: "video1",
+						idvideo: "v1",
+						pausevideo: false,
+					});
+				});
 			</script>
 
 
