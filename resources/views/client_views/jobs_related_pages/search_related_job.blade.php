@@ -81,7 +81,7 @@
 										<div class="col-md-6 col-sm-6">
 											<a href="new-job-detail.html" title="job Detail">
 												<div class="advance-search-img-box">
-													<img src="assets/img/com-2.jpg" class="img-responsive" alt="">
+													<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="">
 												</div>
 											</a>
 											<div class="advance-search-caption">
@@ -98,7 +98,7 @@
 											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
 										</div>
 									</div>
-									<span class="tg-themetag tg-featuretag">Job</span>
+									<span class="tg-themetag tg-featuretag">{{date('d M ',strtotime($jobs->created_at))}}</span>
 								</article>
 								
 							@endforeach

@@ -15,12 +15,18 @@ class SiteJobController extends Controller
         // echo "<pre>";
         // print_r($jobs);
         // echo "</pre>";
+        //dd($job);
     	return view('client_views.jobs_related_pages.search_related_job',['job'=>$job]);
     }
 
     public function viewAllJobSearch(){
 
     	return view('client_views.jobs_related_pages.all_jobs');
+    }
+
+    public function viewjobDetail(){
+
+        return view('client_views.jobs_related_pages.job_details');   
     }
 
 

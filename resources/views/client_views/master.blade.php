@@ -648,6 +648,7 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 			<!-- Video Pop Up -->
 			<script src="{{url('public/client_assets/js/video_js/videopopup.js')}}"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
 			
 
 			<style type="text/css">
@@ -857,6 +858,41 @@
 					});
 				});
 			</script>
+
+		<script type="text/javascript">
+				$('#map_full_width_one').gmap3({
+					map: {
+						options: {
+							zoom: 5,
+							center: [41.785091, -73.968285],
+							mapTypeControl: true,
+							mapTypeControlOptions: {
+								style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+							},
+							mapTypeId: "style1",
+							mapTypeControlOptions: {
+								mapTypeIds: [google.maps.MapTypeId.ROADMAP, "style1"]
+							},
+							navigationControl: true,
+							scrollwheel: false,
+							streetViewControl: true
+						}
+					},
+					marker: {
+						latLng: [40.785091, -73.968285],
+						options: {animation:google.maps.Animation.BOUNCE, icon: 'assets/img/marker.png' }
+					},
+					styledmaptype: {
+						id: "style1",
+						options: {
+							name: "Style 1"
+						},
+
+					}
+				});
+
+			</script>
+
 
 
 

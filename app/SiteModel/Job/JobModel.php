@@ -10,7 +10,7 @@ class JobModel extends Model
     //fetch jobs function
 	public function fetch_all_jobs(){
 
-		$jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->select('add_organizations.*', 'organization_posts.*')->inRandomOrder()->simplePaginate(4);
+		$jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->inRandomOrder()->simplePaginate(2);
 			return $jobs;
 
 	}

@@ -55,7 +55,7 @@
 
 					<div id="vidBox">
 						<div id="videCont">
-							<video autoplay id="v1" loop controls>
+							<video autoplay id="v1" loop controls autoplay="false">
 								<source src="uploads/aboutus_video/{{$about->about_video}}" type="video/mp4">
 								</video>
 							</div>
