@@ -75,7 +75,7 @@
 							</div>
 							
 							<div class="card-body">
-							@foreach($jobs as $jobs)
+							@foreach($job as $jobs)
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
@@ -86,24 +86,19 @@
 											</a>
 											<div class="advance-search-caption">
 												<a href="new-job-detail.html" title="Job Dtail"><h4>{{$jobs->job_title}}</h4></a>
-
-												<?php
-												$id=$jobs->company_id;
-												 $company=DB::table('add_organizations')->select('company_name')->where(['company_id'=>$id])->first();
-												 echo $company->company_name; ?>
-												<span>Google Ltd</span>
+												<span>{{$jobs->company_name}}</span>
 											</div>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+												<p><i class="fa fa-map-marker"></i>{{$jobs->company_location}}</p>
 											</div>
 										</div>
 										<div class="col-md-2 col-sm-2">
 											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
 										</div>
 									</div>
-									<span class="tg-themetag tg-featuretag">Premium</span>
+									<span class="tg-themetag tg-featuretag">Job</span>
 								</article>
 								
 							@endforeach
@@ -134,15 +129,19 @@
 							</div>
 						</div>
 						
+						<!-- <div class="row">
+							<ul class="pagination">
+								
+								<li><a href="#">&laquo;</a></li>
+								<li class="active"><a>{{$job->currentPage()}}</a></li>
+								<li><a href="{{$job->links()}}">2</a></li>
+								<li><a href="#">&raquo;</a></li>
+								
+							</ul>
+						</div> -->
 						<div class="row">
 							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li> 
-								<li><a href="#">4</a></li> 
-								<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
-								<li><a href="#">&raquo;</a></li> 
+							 <h5 style="text-align:center">{{$job->links()}}</h5>
 							</ul>
 						</div>
 						
@@ -157,29 +156,7 @@
 					<!-- Sidebar Start -->
 					<div class="col-md-3 col-sm-12">
 						<div class="sidebar right-sidebar">
-						
-							<div class="side-widget">
-								<h2 class="side-widget-title">Job Alert</h2>
-								<div class="job-alert">
-									<div class="widget-text">
-										<form>
-											<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
-											<input type="email" name="email" class="form-control" placeholder="Email ID">
-											<button type="submit" class="btn btn-alrt">Add Alert</button>
-										</form>
-									</div>
-								</div>
-							</div>
-							
-							<div class="side-widget">
-								<h2 class="side-widget-title">Advertisment</h2>
-								<div class="widget-text padd-0">
-									<div class="ad-banner">
-										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
-									</div>
-								</div>
-							</div>
-							
+
 							<div class="side-widget">
 								<h2 class="side-widget-title">Compensation</h2>
 								<div class="widget-text padd-0">
@@ -388,6 +365,27 @@
 											<span class="pull-right">85</span>
 										</li>
 									</ul>
+								</div>
+							</div>
+							<div class="side-widget">
+								<h2 class="side-widget-title">Job Alert</h2>
+								<div class="job-alert">
+									<div class="widget-text">
+										<form>
+											<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
+											<input type="email" name="email" class="form-control" placeholder="Email ID">
+											<button type="submit" class="btn btn-alrt">Add Alert</button>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+							<div class="side-widget">
+								<h2 class="side-widget-title">Advertisment</h2>
+								<div class="widget-text padd-0">
+									<div class="ad-banner">
+										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
+									</div>
 								</div>
 							</div>
 							
