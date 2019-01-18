@@ -20,6 +20,7 @@ function company_city_adding(){
 
     if(data){
      $("#city-option:last-child").after(data);
+      document.getElementById("city_form").reset();
      $("#myModal1 .close").click();
      setTimeout(
        function(){
@@ -42,6 +43,7 @@ function company_city_addingTable(){
     if(data){
       var id ="'"+data+"'";
       $("#city-tr").after('<tr id="city-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="up-td'+data+'">'+company_city+'</td><td><a onclick="update_request('+c_city+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_city('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+        document.getElementById("city_form").reset();
       $("#myModal1 .close").click();
 
       setTimeout(
@@ -154,6 +156,7 @@ function company_industry_addingTable(){
     if(data){
       var id ="'"+data+"'";
       $("#industry-tr").after('<tr id="industry-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="indus-td'+data+'">'+company_indus+'</td><td><a onclick="update_industry('+c_indus+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_industry('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+        document.getElementById("indus_form").reset();
       $("#myModal2 .close").click();
 
       setTimeout(
@@ -190,6 +193,7 @@ function company_type_addingTable(){
     if(data){
      var id ="'"+data+"'"; 
      $("#type-tr").after('<tr id="type-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="type-td'+data+'">'+company_type+'</td><td><a onclick="update_type('+c_type+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_type('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+       document.getElementById("type_form").reset();
      $("#myModal .close").click();
 
      setTimeout(

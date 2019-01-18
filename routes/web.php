@@ -109,7 +109,7 @@ Route::get('logout',"site_controllers\SiteUserLogin@logout")->middleware('CheckU
 //    Site Job Controller    //
 Route::get('search-jobs',"site_controllers\SiteJobController@viewRelatedJobSearch");
 Route::get('all-jobs',"site_controllers\SiteJobController@viewAllJobSearch");
-Route::get('job-details',"site_controllers\SiteJobController@viewjobDetail");
+Route::get('job-details/{id}',"site_controllers\SiteJobController@viewjobDetail");
 //   Site Job Controller //
 
 //   UserProfile Controller    //

@@ -102,7 +102,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form>
+    <form id="area_form">
      <!--  @csrf -->
      <div class="modal-content">
       <div class="modal-header">
@@ -177,6 +177,7 @@ function edit_area(){
     var id ="'"+data+"'";
      if (data) {
        $("#area-tr").after('<tr id="area-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="area-td'+data+'">'+add_area+'</td><td><a onclick="update_area('+c_area+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_area('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+         document.getElementById("area_form").reset();
        $("#myModalarea .close").click();
 
        setTimeout(

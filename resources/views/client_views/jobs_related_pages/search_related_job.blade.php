@@ -79,13 +79,13 @@
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
+											<a href="job-details/{{$jobs->post_id}}" title="job Detail">
 												<div class="advance-search-img-box">
 													<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="">
 												</div>
 											</a>
 											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>{{$jobs->job_title}}</h4></a>
+												<a href="job-details/{{$jobs->post_id}}" title="Job Dtail"><h4>{{$jobs->job_title}}</h4></a>
 												<span>{{$jobs->company_name}}</span>
 											</div>
 										</div>
@@ -105,7 +105,7 @@
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
-											<a href="new-job-detail.html" title="job Detail">
+											<a href="job-details/{{$jobs->post_id}}" title="job Detail">
 												<div class="advance-search-img-box">
 													<img src="assets/img/com-1.jpg" class="img-responsive" alt="">
 												</div>

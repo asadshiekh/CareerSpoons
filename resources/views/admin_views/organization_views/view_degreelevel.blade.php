@@ -101,7 +101,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form>
+    <form id="degree_form">
      <!--  @csrf -->
      <div class="modal-content">
       <div class="modal-header">
@@ -177,7 +177,8 @@ function degree_adding(){
   $.post('addtable-degree-type',{_token:CSRF_TOKEN,add_degree:add_degree},function(data){
     var id ="'"+data+"'";
    if (data) {
-         $("#degree-tr").after('<tr id="degree-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="degree-td'+data+'">'+add_degree+'</td><td><a onclick="update_degree('+c_qual+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_degree('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+         $("#degree-tr").after('<tr id="degree-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="degree-td'+data+'">'+add_degree+'</td><td><a onclick="update_degree('+c_degree+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_degree('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+           document.getElementById("degree_form").reset();
      $("#myModaldegree .close").click();
 
      setTimeout(

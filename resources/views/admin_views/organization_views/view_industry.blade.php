@@ -98,7 +98,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form>
+    <form id="indus_form">
      <!--  @csrf -->
      <div class="modal-content">
       <div class="modal-header">

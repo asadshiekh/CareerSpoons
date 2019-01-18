@@ -796,7 +796,6 @@
   });
 
   function org_post(x){
-    alert(x);
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     var a=$("#org_contact_phone").val();
     var b=$("#org_contact_email").val();
@@ -1150,7 +1149,6 @@ function update_post_info(x){
  function n_select_major(){
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     var area=$("#n_req_functional_area").val();
-    alert(area);
     $.post("fetch_area_majors",{_token:CSRF_TOKEN,area:area},function(data){
             $('select[name="n_req_major"]').empty();
        $.each(data, function( key, value ) {
@@ -1178,9 +1176,8 @@ function update_post_info(x){
   function select_major(){
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     var area=$("#req_functional_area").val();
-    alert(area);
     $.post("fetch_area_majors",{_token:CSRF_TOKEN,area:area},function(data){
-
+        $('select[name="selected_majors"]').empty();
        $.each(data, function( key, value ) {
             $('select[name="selected_majors"]').append('<option value="'+ data[key].major_title +'">'+ data[key].major_title +'</option>');
                //alert(data[key].major_title);
