@@ -6,11 +6,80 @@
 				<div class="container">
 					<h1>Job Detail</h1>
 				</div>
+
 			</section>
 			<div class="clearfix"></div>
 			<!-- Title Header End -->
-			<br/>
-			<br/>
+
+			
+			<!-- Job Detail Start -->
+			<section class="detail-desc">
+				<div class="container white-shadow">
+				
+					<div class="row">
+					
+						<div class="detail-pic">
+							<img src="assets/img/com-2.jpg" class="img" alt="" />
+							<a href="#" class="detail-edit" title="edit" ><i class="fa fa-pencil"></i></a>
+						</div>
+						
+						<div class="detail-status">
+							<span>2 Days Ago</span>
+						</div>
+						
+					</div>
+					
+					<div class="row bottom-mrg">
+						<div class="col-md-8 col-sm-8">
+							<div class="detail-desc-caption">
+								<h4>Google</h4>
+								<span class="designation">Software Development Company</span>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								<ul>
+									<li><i class="fa fa-briefcase"></i><span>Full time</span></li>
+									<li><i class="fa fa-flask"></i><span>3 Year Experience</span></li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="col-md-4 col-sm-4">
+							<div class="get-touch">
+								<h4>Get in Touch</h4>
+								<ul>
+									<li><i class="fa fa-map-marker"></i><span>Menlo Park, CA</span></li>
+									<li><i class="fa fa-envelope"></i><span>danieldax704@gmail.com</span></li>
+									<li><i class="fa fa-globe"></i><span>microft.com</span></li>
+									<li><i class="fa fa-phone"></i><span>0 123 456 7859</span></li>
+									<li><i class="fa fa-money"></i><span>$1000 -$1200/Month</span></li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row no-padd">
+						<div class="detail pannel-footer">
+							<div class="col-md-5 col-sm-5">
+								<ul class="detail-footer-social">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+								</ul>
+							</div>
+							
+							<div class="col-md-7 col-sm-7">
+								<div class="detail-pannel-footer-btn pull-right">
+									<a href="#" class="footer-btn grn-btn" title="">Quick Apply</a>
+									<a href="#" class="footer-btn blu-btn" title="">Save Draft</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Job Detail End -->
 
 			
 			<!-- Job full detail Start -->
@@ -128,21 +197,6 @@
 							</div>
 						</div>
 
-
-						<!-- Share This Job -->
-						<div class="sidebar-wrapper">
-							<div class="sidebar-box-header bb-1">
-								<h4>Share This Job</h4>
-							</div>
-						
-							<ul class="social-share">
-								<li><a href="#" class="fb-share"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="tw-share"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#" class="gp-share"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#" class="in-share"><i class="fa fa-instagram"></i></a></li>
-								<li><a href="#" class="li-share"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
 
 
 						<div class="side-widget">
