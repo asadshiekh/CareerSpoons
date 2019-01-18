@@ -2,7 +2,7 @@
 @section('content')
 <!-- Title Header Start -->
 			
-			<section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
+			<section class="inner-header-title" style="background-image:url(../public/client_assets/img/banner-11.jpg);">
 				<div class="container">
 					<h1>Job Detail</h1>
 				</div>
@@ -77,7 +77,75 @@
 					<!-- Start Sidebar -->
 					<div class="col-md-3 col-sm-12">
 						<div class="sidebar right-sidebar">
+							
+							
 							<div class="side-widget">
+								<h2 class="side-widget-title">Advertisment</h2>
+								<div class="widget-text padd-0">
+									<div class="ad-banner">
+										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
+									</div>
+								</div>
+							</div>
+
+
+						<div class="sidebar-wrapper">
+							<div class="sidebar-box-header bb-1">
+								<h4>Similar Jobs</h4>
+							</div>
+						
+							<div class="member-profile-list">
+								<div class="member-profile-thumb">
+									<a href="company-detail.html"><img src="assets/img/can-2.png" class="img-responsive img-circle" alt="" /></a>
+								</div>
+								<div class="member-profile-detail">
+									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
+									<span>Web Developer</span>
+									<span class="cl-success">Freelancer</span>
+								</div>
+							</div>
+							
+							<div class="member-profile-list">
+								<div class="member-profile-thumb">
+									<a href="company-detail.html"><img src="assets/img/can-3.png" class="img-responsive img-circle" alt="" /></a>
+								</div>
+								<div class="member-profile-detail">
+									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
+									<span>Web Developer</span>
+									<a href="company-detail.html"><span class="cl-success">Freelancer</span></a>
+								</div>
+							</div>
+							
+							<div class="member-profile-list">
+								<div class="member-profile-thumb">
+									<a href="company-detail.html"><img src="assets/img/can-4.png" class="img-responsive img-circle" alt="" /></a>
+								</div>
+								<div class="member-profile-detail">
+									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
+									<span>Web Developer</span>
+									<a href="company-detail.html"><span class="cl-success">Freelancer</span></a>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Share This Job -->
+						<div class="sidebar-wrapper">
+							<div class="sidebar-box-header bb-1">
+								<h4>Share This Job</h4>
+							</div>
+						
+							<ul class="social-share">
+								<li><a href="#" class="fb-share"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#" class="tw-share"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#" class="gp-share"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#" class="in-share"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="#" class="li-share"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+
+
+						<div class="side-widget">
 								<h2 class="side-widget-title">Job Alert</h2>
 								<div class="job-alert">
 									<div class="widget-text">
@@ -89,15 +157,9 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="side-widget">
-								<h2 class="side-widget-title">Advertisment</h2>
-								<div class="widget-text padd-0">
-									<div class="ad-banner">
-										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
-									</div>
-								</div>
-							</div>
+
+
+
 							
 						</div>
 					</div>

@@ -38,7 +38,7 @@ class OrganizationProfile extends Controller
      * @return \Illuminate\Http\Response
      */
     public function doCompanyPost(Request $request){
-      echo "asad";
+      
       $current_date = date("Y.m.d h:i:s");
       $job_post= array(
         'company_id' => $request->post('x'),
@@ -305,9 +305,9 @@ class OrganizationProfile extends Controller
 
       
       //echo $id;
-      $request->session()->flash('success', $comp_id);
-       return redirect('organization-profile/'.$comp_id);
-       $request->session()->flash('Access', true);
+      
+       return redirect('organization-profile/'.$comp_id)->with('success','Your  Post Successfully Added!');
+       
     }
 
 

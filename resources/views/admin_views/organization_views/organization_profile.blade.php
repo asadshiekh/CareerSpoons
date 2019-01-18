@@ -186,11 +186,7 @@
                           <!-- start add post -->
                           <form id="data_org" action="organization-post-data" method="post" enctype="Multipart/form-data">
                             @csrf
-                            @if (session()->has('success'))
-                            <script type="text/javascript">
-                              swal("success!", "Your Post added", "success");
-                            </script>
-                            @endif
+                           
 
                             <input type="hidden" name="org_id" value="{{$org_page->company_id}}">
 
@@ -795,24 +791,24 @@
 
   });
 
-  function org_post(x){
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    var a=$("#org_contact_phone").val();
-    var b=$("#org_contact_email").val();
-    var c=$("#posted_job_title").val();
-    var d=$("#selected_career").val();
-    var e=$("#job_exp_req").val();
-    var f=$("#job_salary_range").val();
-    var g=$("#job_skills").val();
-    var h=$("#tags_1").val();
-    var i=$("#gender").val();
-    var j=CKEDITOR.instances['info'].getData();
-    $.post('do-company-post',{_token:CSRF_TOKEN,a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,x:x},function(data){
-      swal("Successfully!", "Your Job is Successfully Posted!", "success");   
-    }); 
+  // function org_post(x){
+  //   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+  //   var a=$("#org_contact_phone").val();
+  //   var b=$("#org_contact_email").val();
+  //   var c=$("#posted_job_title").val();
+  //   var d=$("#selected_career").val();
+  //   var e=$("#job_exp_req").val();
+  //   var f=$("#job_salary_range").val();
+  //   var g=$("#job_skills").val();
+  //   var h=$("#tags_1").val();
+  //   var i=$("#gender").val();
+  //   var j=CKEDITOR.instances['info'].getData();
+  //   $.post('do-company-post',{_token:CSRF_TOKEN,a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,x:x},function(data){
+  //     swal("Successfully!", "Your Job is Successfully Posted!", "success");   
+  //   }); 
 
 
-  }
+  // }
 
   function del_post(id){
    var result = confirm("Really want to delete this?");
