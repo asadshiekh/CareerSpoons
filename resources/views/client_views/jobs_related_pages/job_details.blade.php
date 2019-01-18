@@ -19,38 +19,43 @@
 					<div class="row">
 					
 						<div class="detail-pic">
-							<img src="assets/img/com-2.jpg" class="img" alt="" />
+							<img src="uploads/organization_images/{{$job_detail->company_img}}" class="img" alt="" />
 							<a href="#" class="detail-edit" title="edit" ><i class="fa fa-pencil"></i></a>
 						</div>
 						
 						<div class="detail-status">
-							<span>2 Days Ago</span>
+							<span>
+							<?php $str= explode(" ", $job_detail->created_at);
+							    echo $str[0];
+
+							 ?>
+							</span>
 						</div>
 						
 					</div>
 					
 					<div class="row bottom-mrg">
-						<div class="col-md-8 col-sm-8">
-							<div class="detail-desc-caption">
-								<h4>Google</h4>
-								<span class="designation">Software Development Company</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-								<ul>
-									<li><i class="fa fa-briefcase"></i><span>Full time</span></li>
-									<li><i class="fa fa-flask"></i><span>3 Year Experience</span></li>
-								</ul>
+						<div class="col-md-9 col-sm-9">
+							<div class="detail-desc-caption" style="padding-left: 5%;">
+								<h4 style="padding-bottom: 3%;">{{$job_detail->company_name}}</h4>
+								<span class="designation">{{$job_detail->company_type}} Company</span>
+
+								<p><?php $job_detail->company_info= str_replace("<p>"," ",$job_detail->company_info);
+								$job_detail->company_info= str_replace("</p>"," ",$job_detail->company_info);
+								 ?>
+									{{$job_detail->company_info}}.</p>
+								
 							</div>
 						</div>
 						
-						<div class="col-md-4 col-sm-4">
+						<div class="col-md-3 col-sm-3">
 							<div class="get-touch">
 								<h4>Get in Touch</h4>
 								<ul>
-									<li><i class="fa fa-map-marker"></i><span>Menlo Park, CA</span></li>
-									<li><i class="fa fa-envelope"></i><span>danieldax704@gmail.com</span></li>
-									<li><i class="fa fa-globe"></i><span>microft.com</span></li>
-									<li><i class="fa fa-phone"></i><span>0 123 456 7859</span></li>
-									<li><i class="fa fa-money"></i><span>$1000 -$1200/Month</span></li>
+									<li><i class="fa fa-map-marker"></i><span>{{$job_detail->company_location}}</span></li>
+									<li><i class="fa fa-envelope"></i><span>{{$job_detail->company_email}}</span></li>
+									<li><i class="fa fa-globe"></i><span>{{$job_detail->company_website}}</span></li>
+									<li><i class="fa fa-phone"></i><span>{{$job_detail->company_phone}}</span></li>
 								</ul>
 							</div>
 						</div>
@@ -92,44 +97,90 @@
 							<div class="row row-bottom mrg-0">
 								<h2 class="detail-title">Job Detail</h2>
 								<ul class="job-detail-des">
-									<li><span>Salary:</span>$10,000 - $12,000 P.A.</li>
-									<li><span>Industry:</span>IT-Software / Software Services</li>
-									<li><span>Role Category:</span>Programming & Design</li>
-									<li><span>Role:</span>Product Designer</li>
-									<li><span>Job Type:</span>Full Time</li>
+									<li><span>Role:</span>{{$job_detail->job_title}}</li>
+									<li><span>Salary:</span>{{$job_detail->min_salary}} - {{$job_detail->max_salary}} Rs</li>
+									<li><span>Industry:</span>{{$job_detail->req_industry}}</li>
+									<li><span>Required Experience:</span>{{$job_detail->job_experience}}</li>
+									<li><span>Total Positions:</span>{{$job_detail->total_positions}}</li>
+									<li><span>Working Hours:</span>{{$job_detail->working_hours}}</li>
+									
+								
 								</ul>
 							</div>
 							
 							<div class="row row-bottom mrg-0">
 								<h2 class="detail-title">Location</h2>
 								<ul class="job-detail-des">
-									<li><span>Address:</span>SCO 210, Neez Plaza</li>
-									<li><span>City:</span>Mohali</li>
+									<li><span>Address:</span>{{$job_detail->company_location}}</li>
 									<li><span>State:</span>Punjab</li>
-									<li><span>Country:</span>India</li>
-									<li><span>Zip:</span>520 548</li>
-									<li><span>Telephone:</span>+91 123 456 7854</li>
-									<li><span>Fax:</span>(622) 123 456</li>
-									<li><span>Email:</span>youremail@gmail.com</li>
+									<li><span>Country:</span>Pakistan</li>
+									<li><span>Telephone:</span>{{$job_detail->company_phone}}</li>
+									<li><span>Email:</span>{{$job_detail->company_email}}</li>
+								</ul>
+							</div>
+							<div class="row row-bottom mrg-0">
+								<h2 class="detail-title">Job Preferences Cities:</h2>
+								<ul class="job-detail-des">
+									
+									@foreach($job_p as $job_p)
+									<div class="media">
+										<div class="media-left media-middle">
+											<a href="#">
+												<img class="media-object" src="{{url('public/client_assets/img/university/circle.png')}}" alt="..." style="width:30px; height:30px">
+											</a>
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading" style="color:grey"><b>In {{$job_p->city}}</b></h4>
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">Job Type:</b> {{$job_p->job_type}}</li>
+											</h5>
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">Job Shift:</b> {{$job_p->job_shift}}</li>
+											</h5>
+											
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">last date for Apply:</b> {{$job_detail->last_apply_date}}</li></h5>
+										</div>
+									</div>
+									<hr>
+									@endforeach
+									
+								</ul>
+							</div>
+							<div class="row row-bottom mrg-0">
+								<h2 class="detail-title">Job Qualification Requirements:</h2>
+								<ul class="job-detail-des">
+									
+									@foreach($job_req as $job_req)
+									<div class="media">
+										<div class="media-left media-middle">
+											<a href="#">
+
+												<img class="media-object" src="{{url('public/client_assets/img/university/circle.png')}}" alt="..." style="width:30px; height:30px">
+											</a>
+										</div>
+										<div class="media-body">
+											
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">Qualification:</b> {{$job_req->req_qualification}}</li>
+											</h5>
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">Degree Level:</b> {{$job_req->req_degree_level}}</li>
+											</h5>
+											
+											<h5 style="color:gray"><li><b style="padding-right: 2%;">last date for Apply:</b> {{$job_detail->last_apply_date}}</li></h5>
+										</div>
+									</div>
+									<hr>
+									@endforeach
+									
 								</ul>
 							</div>
 							
 							<div class="row row-bottom mrg-0">
 								<h2 class="detail-title">Job Responsibilities</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								<p>{{$job_detail->job_post_info}}</p>
 							</div>
 							
 							<div class="row row-bottom mrg-0">
-							<h2 class="detail-title">Skill Requirement</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<ul class="detail-list">
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</li>
-							</ul>
+							<h2 class="detail-title">Required Skills</h2>
+							<p>{{$job_detail->job_skills}}</p>
+							
 							</div>
 							
 							<div class="row row-bottom mrg-0">
