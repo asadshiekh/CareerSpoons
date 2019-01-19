@@ -359,7 +359,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Accounting & Finance</a></h4>
-							<p>122 Jobs</p>
+							<p><?php 
+
+							if($get_AccountingFinance===0){
+								echo $get_AccountingFinance;
+							}
+							else{
+								echo $get_AccountingFinance;
+							}
+							?>
+							 Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -375,7 +384,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Automotive Jobs</a></h4>
-							<p>155 Jobs</p>
+							<p><?php 
+
+							if($get_Automotive===0){
+								echo $get_Automotive;
+							}
+							else{
+								echo $get_Automotive;
+							}
+							?>	
+							Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -391,7 +409,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Business</a></h4>
-							<p>300 Jobs</p>
+							<p><?php 
+
+							if($get_business===0){
+								echo $get_business;
+							}
+							else{
+								echo $get_business;
+							}
+							?>		
+							Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -407,7 +434,15 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Education Training</a></h4>
-							<p>80 Jobs</p>
+							<p><?php 
+
+							if($get_eduction===0){
+								echo $get_eduction;
+							}
+							else{
+								echo $get_eduction;
+							}
+							?>  Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -423,7 +458,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Healthcare</a></h4>
-							<p>120 Jobs</p>
+							<p><?php 
+							
+							if($get_healthcare===0){
+								echo $get_healthcare;
+							}
+							else{
+								echo $get_healthcare;
+							}
+							?>
+							 Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -439,7 +483,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Restaurant & Food</a></h4>
-							<p>78 Jobs</p>
+							<p><?php 
+							
+							if($get_RestaurantFood===0){
+								echo $get_RestaurantFood;
+							}
+							else{
+								echo $get_RestaurantFood;
+							}
+							?> 
+							Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -455,7 +508,17 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Transportation</a></h4>
-							<p>90 Jobs</p>
+							<p> 
+							<?php 
+							
+							if($get_Transportation===0){
+								echo $get_Transportation;
+							}
+							else{
+								echo $get_Transportation;
+							}
+							?> 	
+							Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -471,7 +534,16 @@
 
 						<div class="category-detail category-desc-text">
 							<h4> <a href="browse-jobs-grid.html">Telecommunications</a></h4>
-							<p>210 Jobs</p>
+							<p><?php 
+							
+							if($get_Telecommunications===0){
+								echo $get_Telecommunications;
+							}
+							else{
+								echo $get_Telecommunications;
+							}
+							?> 	
+							Jobs</p>
 						</div>
 					</div>
 				</div>

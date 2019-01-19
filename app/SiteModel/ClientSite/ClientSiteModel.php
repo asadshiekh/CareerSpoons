@@ -23,4 +23,117 @@ class ClientSiteModel extends Model
     	$major=DB::table('add_major')->get();
     	return $major;
     }
+
+    public function get_all_accounting_jobs(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Accounting_&_Finance')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+
+    }
+
+    public function get_all_automotive_jobs(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Automotive')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+    }
+
+
+    public function get_all_business_jobs(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Business')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+    }
+
+
+    public function get_all_education_jobs(){
+
+
+        $response = DB::table('organization_posts')->where('req_industry','Education_Training')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+
+    }
+
+
+    public function get_all_healthcare_jobs(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Healthcare')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+
+    }
+
+
+    public function get_all_RestaurantFood(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Restaurant_Food')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+
+    }
+
+
+    public function get_all_Transportation(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Transportation')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+
+    }
+
+
+    public function get_all_Telecommunications(){
+
+        $response = DB::table('organization_posts')->where('req_industry','Telecommunications')->get();
+
+        if($response->count()>0){
+            return $response->count();
+        }
+        else{
+            return $response->count();
+        }
+        
+    }
+
+
+
+
 }

@@ -17,11 +17,19 @@ class SiteController extends Controller
   $get_reviews = $obj->get_all_candidate_reviews();
   $obj1 = new ClientSiteModel();
   $get_cities = $obj1->get_all_cities();
+  $get_AccountingFinance = $obj1->get_all_accounting_jobs();
+  $get_Automotive = $obj1->get_all_automotive_jobs();
+  $get_business = $obj1->get_all_business_jobs();
+  $get_eduction = $obj1->get_all_education_jobs();
+  $get_healthcare = $obj1->get_all_healthcare_jobs();
+  $get_RestaurantFood = $obj1->get_all_RestaurantFood();
+  $get_Transportation = $obj1->get_all_Transportation();
+  $get_Telecommunications = $obj1->get_all_Telecommunications();
+  
+   //echo "<pre>";
+   //print_r($get_AccountingFinance);
 
-  // echo "<pre>";
-  // print_r($get_reviews);
-
-   return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities]);
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications]);
  }
 
  public function viewContactUs(){
