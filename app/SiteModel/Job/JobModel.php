@@ -20,6 +20,25 @@ class JobModel extends Model
 			return $detail;
 	}
 
+
+	public function fetch_job_similar($job_details,$post_id){
+
+		$jobs=DB::table('organization_posts')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->join('upload_org_img','organization_posts.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->where([
+			['organization_posts.req_industry','=',[$job_details]],
+			['organization_posts.post_id','!=',[$post_id]]
+		])->orderBy('organization_posts.post_id','desc')->limit(3)->get();
+			
+		if($jobs->count()>0){
+            return $jobs;
+        }
+        else{
+            return $jobs->count();
+        }
+
+        
+
+		}
+
 	
 
 

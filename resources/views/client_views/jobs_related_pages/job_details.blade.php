@@ -11,32 +11,35 @@
 			<div class="clearfix"></div>
 			<!-- Title Header End -->
 
-			
-			<!-- Job Detail Start -->
+						<!-- Resume Detail Start -->
 			<section class="detail-desc">
 				<div class="container white-shadow">
-				
-					<div class="row">
-					
-						<div class="detail-pic">
-							<img src="uploads/organization_images/{{$job_detail->company_img}}" class="img" alt="" />
-							<a href="#" class="detail-edit" title="edit" ><i class="fa fa-pencil"></i></a>
-						</div>
+					<div class="row mrg-0">
 						
+						<div class="detail-pic">
+							<img src="../uploads/organization_images/{{$job_detail->company_img}}" class="img" alt="" />
+							<a href="#" class="detail-edit" title="edit" ><i class="fas fa-shield-alt"></i></a>
+						</div>
+
+
+
 						<div class="detail-status">
 							<span>
-							<?php $str= explode(" ", $job_detail->created_at);
-							    echo $str[0];
+							<?php
 
+							echo  $date = date('d F Y',strtotime($job_detail->created_at));
+							    
 							 ?>
 							</span>
 						</div>
-						
+
+
 					</div>
-					
-					<div class="row bottom-mrg">
-						<div class="col-md-9 col-sm-9">
-							<div class="detail-desc-caption" style="padding-left: 5%;">
+					<div class="row bottom-mrg mrg-0">
+						<div class="col-md-8 col-sm-8">
+
+								
+							<div class="detail-desc-caption">
 								<h4 style="padding-bottom: 3%;">{{$job_detail->company_name}}</h4>
 								<span class="designation">{{$job_detail->company_type}} Company</span>
 
@@ -46,10 +49,13 @@
 									{{$job_detail->company_info}}.</p>
 								
 							</div>
+								
+								
+							
+							
 						</div>
-						
-						<div class="col-md-3 col-sm-3">
-							<div class="get-touch">
+						<div class="col-md-4 col-sm-4">
+							<div class="get-touch pull-right">
 								<h4>Get in Touch</h4>
 								<ul>
 									<li><i class="fa fa-map-marker"></i><span>{{$job_detail->company_location}}</span></li>
@@ -59,10 +65,8 @@
 								</ul>
 							</div>
 						</div>
-						
 					</div>
-					
-					<div class="row no-padd">
+					<div class="row no-padd mrg-0">
 						<div class="detail pannel-footer">
 							<div class="col-md-5 col-sm-5">
 								<ul class="detail-footer-social">
@@ -73,18 +77,18 @@
 									<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 								</ul>
 							</div>
-							
 							<div class="col-md-7 col-sm-7">
 								<div class="detail-pannel-footer-btn pull-right">
-									<a href="#" class="footer-btn grn-btn" title="">Quick Apply</a>
-									<a href="#" class="footer-btn blu-btn" title="">Save Draft</a>
+									<a href="#" class="footer-btn grn-btn" title="">Apply Now</a>
+									<a href="#" class="footer-btn blu-btn" title="">View Company</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- Job Detail End -->
+			<!-- Resume Detail End -->
+			
 
 			
 			<!-- Job full detail Start -->
@@ -99,7 +103,12 @@
 								<ul class="job-detail-des">
 									<li><span>Role:</span>{{$job_detail->job_title}}</li>
 									<li><span>Salary:</span>{{$job_detail->min_salary}} - {{$job_detail->max_salary}} Rs</li>
-									<li><span>Industry:</span>{{$job_detail->req_industry}}</li>
+									<li><span>Industry:</span><?php
+										
+								echo $data = str_replace("_"," ",$job_detail->req_industry);
+										
+									
+									?></li>
 									<li><span>Required Experience:</span>{{$job_detail->job_experience}}</li>
 									<li><span>Total Positions:</span>{{$job_detail->total_positions}}</li>
 									<li><span>Working Hours:</span>{{$job_detail->working_hours}}</li>
@@ -213,39 +222,34 @@
 							<div class="sidebar-box-header bb-1">
 								<h4>Similar Jobs</h4>
 							</div>
+
+						 <?php 
+                    if($job_similar===0){ ?>
+
+                    	<span class="cl-danger">( Sorry ! Record Not Found )</span>
+                    <?php }else{ ?>
+						@foreach($job_similar as $job_similar)
+							<div class="member-profile-list">
+								<div class="member-profile-thumb">
+									<a href="../uploads/organization_images/{{$job_similar->company_img}}"><img src="../uploads/organization_images/{{$job_similar->company_img}}" class="img-responsive img-circle" alt="" /></a>
+								</div>
+								<div class="member-profile-detail">
+									<h4><a href="{{$job_similar->post_id}}">{{$job_similar->company_name}}</a></h4>
+									<span>{{$job_similar->job_title}}</span>
+									<span class="cl-success"><?php
+										
+										echo $data = str_replace("_"," ",$job_similar->req_industry);
+
+										?>
+									</span>
+								</div>
+							</div>
+							
+						@endforeach
+
+						<?php } ?>
+
 						
-							<div class="member-profile-list">
-								<div class="member-profile-thumb">
-									<a href="company-detail.html"><img src="assets/img/can-2.png" class="img-responsive img-circle" alt="" /></a>
-								</div>
-								<div class="member-profile-detail">
-									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
-									<span>Web Developer</span>
-									<span class="cl-success">Freelancer</span>
-								</div>
-							</div>
-							
-							<div class="member-profile-list">
-								<div class="member-profile-thumb">
-									<a href="company-detail.html"><img src="assets/img/can-3.png" class="img-responsive img-circle" alt="" /></a>
-								</div>
-								<div class="member-profile-detail">
-									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
-									<span>Web Developer</span>
-									<a href="company-detail.html"><span class="cl-success">Freelancer</span></a>
-								</div>
-							</div>
-							
-							<div class="member-profile-list">
-								<div class="member-profile-thumb">
-									<a href="company-detail.html"><img src="assets/img/can-4.png" class="img-responsive img-circle" alt="" /></a>
-								</div>
-								<div class="member-profile-detail">
-									<h4><a href="company-detail.html">Adam Crivatinly</a></h4>
-									<span>Web Developer</span>
-									<a href="company-detail.html"><span class="cl-success">Freelancer</span></a>
-								</div>
-							</div>
 						</div>
 
 

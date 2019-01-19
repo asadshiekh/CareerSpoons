@@ -27,16 +27,18 @@ class SiteJobController extends Controller
     public function viewjobDetail($id){
         
         $obj = new JobModel();
-        $job_detail=$obj->fetch_job_details($id);
-        $job_similar=$obj->fetch_job_similar($id);
 
-        // echo "<pre>";
-        // print_r($job_detail);
-        // echo "</pre>";
-        //dd($job);
+        $job_detail=$obj->fetch_job_details($id);
+        $job_similar=$obj->fetch_job_similar($job_detail->req_industry,$id);
         $job_req=DB::table('job_req_qualifications')->where(['post_id'=>$id])->get();
         $job_p=DB::table('job_preferences')->where(['post_id'=>$id])->get();
-        return view('client_views.jobs_related_pages.job_details',['job_detail'=>$job_detail,'job_req'=>$job_req,'job_p'=>$job_p]);   
+        
+        // echo "<pre>";
+        // print_r($job_similar);
+        // echo "</pre>";
+        //dd($job);
+        
+        return view('client_views.jobs_related_pages.job_details',['job_detail'=>$job_detail,'job_req'=>$job_req,'job_p'=>$job_p,'job_similar'=>$job_similar]);   
     }
 
 
