@@ -53,7 +53,9 @@
 
 	<!-- Video Pop Up -->
 		<link rel="stylesheet" href="{{url('public/client_assets/css/video_css/videopopup.css')}}">
-	
+
+
+
 
 	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 
@@ -622,6 +624,8 @@
 			<script src="{{url('public/client_assets/js/customization_js/review.js')}}"></script>
 			<!-- Candiadte Setting -->
 			<script src="{{url('public/client_assets/js/customization_js/candidate_setting.js')}}"></script>
+			<!--Company Profile -->
+			<script src="{{url('public/client_assets/js/customization_js/company_profile.js')}}"></script>
 			<!-- Typed .Js -->
 			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 			<!-- Jquery data Tables .Js -->

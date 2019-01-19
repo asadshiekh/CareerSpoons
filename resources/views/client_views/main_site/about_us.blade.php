@@ -46,7 +46,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="main-heading">
-						<p>Best For Your Projects</p>
+						<p>Best For Your Jobs</p>
 						<h2>Watch Our <span>video</span></h2>
 					</div>
 				</div>
@@ -55,8 +55,8 @@
 
 					<div id="vidBox">
 						<div id="videCont">
-							<video autoplay id="v1" loop controls autoplay="false">
-								<source src="uploads/aboutus_video/{{$about->about_video}}" type="video/mp4">
+							<video id="v1" controls preload="none">
+								<source src="uploads/aboutus_video/{{$about->about_video}}" type="video/mp4" autostart="false">
 								</video>
 							</div>
 						</div>

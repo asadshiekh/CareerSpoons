@@ -146,4 +146,58 @@ public function aboutUsFormSend(Request $request){
   }
 
 
+  public function viewFrequentAskedQuestion(){
+    $faq=DB::table('frequently_asked_questions')->get();
+    return view('admin_views/main_views/view_faq',['faq'=>$faq]);
+  }
+
+
+  public function doPostFaq(Request $req){
+
+    $question = $req->question;
+    $solution = $req->answer;
+    $solution=str_ireplace('<p>','',$solution);
+    $solution=str_ireplace('</p>','',$solution);
+    $random_key  = time();
+    $current_date = date("Y.m.d h:i:s");
+
+    $user_response=array(
+            'question'=>$question,
+            'random_key'=>$random_key,
+            'solution'=>$solution,
+            'created_at' => $current_date
+          );
+
+    $data = DB::table('frequently_asked_questions')->insert($user_response);
+
+    if($data){
+
+      return redirect('view-faq-page')->with('success','Your FAQ Successfully Posted To Main Site');
+    }
+
+    else{
+
+      return redirect('view-faq-page')->with('error','Your FAQ Links are Not Posted!');
+    }
+
+  }
+
+
+  public function doDeleteFaq($id){
+
+    $info= DB::table('frequently_asked_questions')->where('id','=',$id)->delete();
+
+    if($info){
+
+       return redirect('view-faq-page')->with('success','Your FAQ Successfully Delete');
+    }
+
+    else{
+
+      return redirect('view-faq-page')->with('error','Something Wrong To Delete Faq');
+    }
+    
+  } 
+
+
 }

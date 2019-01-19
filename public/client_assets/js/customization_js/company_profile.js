@@ -1,0 +1,4 @@
+function nayab(){
+
+	alert("asad");
+}

@@ -808,6 +808,10 @@
 	</div>
 </div>
 <!-- End Job List -->
+
+
+
+
 <!-- Start Friend List -->
 <div id="friends" class="tab-pane fade">
 	<div class="row">

@@ -125,7 +125,9 @@
                 </li> 
   <li><a href="{{url('view-registered-users')}}"><i class="fa fa-circle-o"></i>View Registered Users</a></li> 
   <li><a href="{{url('view-about-us')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
-  <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>            
+  <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>
+  <li><a href="{{url('view-faq-page')}}"><i class="fa fa-circle-o"></i>FAQ</a></li>            
+            
 
               </ul>
             </div>
@@ -308,6 +310,10 @@
 <script type="text/javascript">
   $('#myQual').DataTable();
 </script>
+
+<script type="text/javascript">
+  $('#faq_datatable').DataTable();
+</script>
 <script type="text/javascript">
    
 </script>
@@ -323,6 +329,13 @@
     CKEDITOR.replace( 'post_info' );  
   }
 </script>
+<script>
+    CKEDITOR.replace( 'answer' );  
+</script>
+<script>
+    CKEDITOR.replace( 'view_solution' );  
+</script>
+
 
 <!-- input tags -->
 

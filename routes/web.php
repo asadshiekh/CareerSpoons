@@ -62,8 +62,22 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 //   CompanyEmailVerification Controller //
 
 
+/*---------------------------------------------------------------------------------------*/
+
+
 
 /*---------------------------------------------------------------------------------------*/
+//    CompanyProfile Controller    //
+
+
+Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyEmailVerify');
+
+
+
+
+//   CompanyEmailVerification Controller //
+/*---------------------------------------------------------------------------------------*/
+
 
 
 //    Site User-Registeration Work   //
@@ -406,6 +420,14 @@ Route::any('sending-reply-email',"admin_controllers\main_controllers\MainControl
 //About Us routes 
 Route::any('view-about-us',"admin_controllers\main_controllers\MainController@viewAboutUs");
 Route::any('about-us-form-send',"admin_controllers\main_controllers\MainController@aboutUsFormSend");
+
+
+
+// FAQ (Frequently Asked Question)
+Route::any('view-faq-page',"admin_controllers\main_controllers\MainController@viewFrequentAskedQuestion");
+Route::any('do_post_faq',"admin_controllers\main_controllers\MainController@doPostFaq");
+Route::any('delete-faq/{id}',"admin_controllers\main_controllers\MainController@doDeleteFaq");
+
 
 
 

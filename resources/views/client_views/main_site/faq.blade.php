@@ -1,70 +1,75 @@
 @extends('client_views.master')
 @section('content')
 
-			<div class="clearfix"></div>
-			
-			<!-- Title Header Start -->
-			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-10.jpg);">
-				<div class="container">
-					<h1>FAQ</h1>
-				</div>
-			</section>
-			<div class="clearfix"></div>
-			<!-- Title Header End -->
-			
-			<!-- Accordion Design Start -->
-			<section class="accordion">
-				<div class="container">
-					<div class="col-md-12 col-sm-12">
-						<div class="simple-tab">
-							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-								<div class="panel panel-default">
-									<div class="panel-heading" role="tab" id="headingOne">
-										<h4 class="panel-title">
-											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-											   Our Work Process
-											</a>
-										</h4>
-									</div>
-									<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-										<div class="panel-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue leo in congue mattis. Phasellus leo augue, consequat vitae cursus ut, efficitur a elit.</p>
-										</div>
-									</div>
+<div class="clearfix"></div>
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-12.jpg);">
+	<div class="container" style="margin-bottom: 120px;">
+	</div>
+</section>
+<div class="clearfix"></div>
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="page-header">
+				<br>
+				Frequently Asked Questions
+				<br>
+			</h1>
+
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="home">
+					<div class="content_accordion">
+						<div class="panel-group" id="accordion">
+
+							@foreach($faq as $value)
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#faq{{$value->random_key}}">{{$value->id}}. {{$value->question}}</a>
+									</h4>
 								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading" role="tab" id="headingTwo">
-										<h4 class="panel-title">
-											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-												What We Do?
-											</a>
-										</h4>
-									</div>
-									<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-										<div class="panel-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue leo in congue mattis. Phasellus leo augue, consequat vitae cursus ut, efficitur a elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading" role="tab" id="headingThree">
-										<h4 class="panel-title">
-											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												How We Do?
-											</a>
-										</h4>
-									</div>
-									<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-										<div class="panel-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue leo in congue mattis. Phasellus leo augue, consequat vitae cursus ut, efficitur a elit.</p>
-										</div>
+								<div id="faq{{$value->random_key}}" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>{{$value->solution}}</p>
 									</div>
 								</div>
 							</div>
+
+							@endforeach
+
+
+								
+								<!-- <div class="panel">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#ca">5. Current Affairs</a>
+										</h4>
+									</div>
+									<div id="ca" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p> <a href="" target="_blank">Learn more.</a></p>
+										</div>
+									</div>
+								</div>
+
+ -->
+
+							</div>
 						</div>
+						<!--accordion end-->
 					</div>
 				</div>
-			</section>
-			<!-- Accordion Design End -->
-			
-@endsection
+				<!--accordion end-->
+			</div>
+		</div>
+	</div>
+
+
+
+	@endsection

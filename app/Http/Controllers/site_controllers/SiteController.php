@@ -71,7 +71,8 @@ public function dosendEmailContactUs(Request $request){
 
 public function viewFaq(){
 
- return view('client_views.main_site.faq');
+$faq=DB::table('frequently_asked_questions')->get();
+ return view('client_views.main_site.faq',['faq'=>$faq]);
 }
 
 public function viewPageNotFound(){
