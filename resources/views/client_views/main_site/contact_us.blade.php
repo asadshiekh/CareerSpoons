@@ -20,7 +20,7 @@
 				<div class="container">
 					<h2>Drop A Mail</h2>
 					<br/>
-					<form>
+					<form id="contact_us">
 					<div class="col-md-6 col-sm-6">
 						<input type="text" class="form-control" id="candidate_name" placeholder="Your Name">
 					</div>

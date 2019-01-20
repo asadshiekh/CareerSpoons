@@ -47,7 +47,7 @@ function sendcontactUs(candidate_name,candidate_email,candidate_number,candidate
 
 		if(data=="yes"){
 
-
+			document.getElementById("contact_us").reset();
 				setTimeout(function(){swal(" "+candidate_name+' Email Send Successfully!','Please be Patient ( Check Your Email )','success');
 						//swal({type: 'success',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'});	
 					},

@@ -141,6 +141,8 @@ Route::any('delete-candidate-account-preminently',"site_controllers\UserProfile@
 Route::any('change-candidate-email',"site_controllers\UserProfile@dodChangeCandidateEmail");
 Route::any('do-resent-candidate-email',"site_controllers\UserProfile@doResendCandidateEmail");
 
+Route::any('fetch_candidate_f_area_related_majors',"site_controllers\UserProfile@doFetchFunctionalArea_Major");
+
 });
 //   UserProfile Controller //
 

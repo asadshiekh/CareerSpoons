@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\Site_Mail\User_Mail\User_Change_Email;
 use Mail;
 use Image;
+use DB;
 
 
 class UserProfile extends Controller
@@ -358,6 +359,20 @@ class UserProfile extends Controller
 	public function doResendCandidateEmail(Request $request){
 
 		Mail::send(new User_Change_Email());
+	}
+
+
+	public function doFetchFunctionalArea_Major(Request $request){
+
+		$area=$request->post('f_area');
+		$info =DB::table('Add_major')->where(['area_title'=>$area])->get();
+		//return $info;
+		// foreach ($info as $key => $node) {
+ 	// 	 	str_replace('_', '',$key->$node);
+		// }
+
+		return $info;
+
 	}
 
 

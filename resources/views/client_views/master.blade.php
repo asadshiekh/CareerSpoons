@@ -278,7 +278,7 @@
 						<div class="footer-widget">
 							<h3 class="widgettitle widget-title">Connect Us</h3>
 							<div class="textwidget">
-								<form class="footer-form">
+								<form class="footer-form" id="contact_us">
 									<input type="text" id="candidate_name1" class="form-control" placeholder="Your Name"> 
 									<input type="text" id="candidate_email1" class="form-control" placeholder="Your Email">
 									<input type="hidden" id="candidate_number1" value="0000" class="form-control"> 
@@ -626,6 +626,8 @@
 			<script src="{{url('public/client_assets/js/customization_js/candidate_setting.js')}}"></script>
 			<!--Company Profile -->
 			<script src="{{url('public/client_assets/js/customization_js/company_profile.js')}}"></script>
+			<!--Company Profile -->
+			<script src="{{url('public/client_assets/js/customization_js/job_match_criteria.js')}}"></script>
 			<!-- Typed .Js -->
 			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 			<!-- Jquery data Tables .Js -->

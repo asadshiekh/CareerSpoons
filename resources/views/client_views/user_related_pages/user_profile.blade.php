@@ -86,7 +86,7 @@
 
 
 					<ul>
-						<li><strong class="j-view">0</strong>New Post</li>
+						<li><strong class="j-view">0</strong>Profile Visitor</li>
 						<li><strong class="j-applied">0</strong>Job Applied</li>
 						<li><strong class="j-shared">0</strong>Invitation</li>
 					</ul>
@@ -238,16 +238,37 @@
 <div class="row no-mrg">
 <div class="edit-pro">
 <br>	
+
 <div class="col-md-4 col-sm-6">
 <label>Functional Area</label>
- <input class="form-control input-lg" list="functional_area" name="candidate_functional_area" placeholder="Select Functional Area">
-  <datalist id="functional_area">
-  	@foreach($get_area as $get_area)
-    <option value="{{$get_area->area_title}}">{{$get_area->area_title}}</option>
-    @endforeach
-  </datalist>
+<select class="form-control input-lg" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Functional Area</option>
+	@foreach($get_area as $get_area)
+	<option>{{$get_area->area_title}}</option>
+	@endforeach
+</select>
 </div>
+
+
 <div class="col-md-4 col-sm-6">
+<label>Select Majors</label>
+<select class="form-control input-lg" id="candidate_majors_area">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Majors</option>
+	
+</select>
+</div>
+
+
+<div class="col-md-4 col-sm-6">
+<label>Desired Designation</label>
+<select class="form-control input-lg" id="desired_designation">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Designation</option>
+	
+</select>
+</div>
+
+
+<!-- <div class="col-md-4 col-sm-6">
 <label>Desired Designation</label>
  <input class="form-control input-lg" list="desired_designation" name="candidate_desired_designation" placeholder="Select Desired Designation">
   <datalist id="desired_designation">
@@ -257,7 +278,9 @@
     <option value="Opera">
     <option value="Safari">
   </datalist>
-</div>
+</div> -->
+
+
 <div class="col-md-4 col-sm-6">
 <label>Minimum Experience</label>
 <select class="form-control input-lg" id="candidate_experience_level">
@@ -265,6 +288,7 @@
 	<option>Data</option>
 </select>
 </div>
+
 <div class="col-md-4 col-sm-6">
 <label>Minimum Expected Salary</label>
 <select class="form-control input-lg" id="candidate_salary">
