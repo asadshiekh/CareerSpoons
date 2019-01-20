@@ -275,11 +275,11 @@
                               </div>
                               <select name="req_career_level" class="form-control" placeholder="select Career" id="req_career_level">
                                <option value="" disabled="disabled" selected="selected" hidden="hidden">Select Career Level</option>
-                               <option>Entry Level</option>
-                               <option>Intermediate</option>
-                               <option>Experienced Professional</option>
-                               <option>Department Head</option>
-                               <option>Gm / CEO / Country Head</option>
+                               <option value="Entry Level">Entry Level</option>
+                               <option value="Intermediate">Intermediate</option>
+                               <option value="Experienced Professional">Experienced Professional</option>
+                               <option value="Department Head">Department Head</option>
+                               <option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
                              </select>
                            </div>
                          </div>
@@ -326,6 +326,7 @@
                                 <option value="" disabled="disabled" selected="selected">Select Shift</option>
                                 <option value="Morning Shift">Morning Shift</option>
                                 <option value="Night Shift">Night Shift</option>
+                                <option value="Evening Shift">Evening Shift</option>
                               </select>
                             </div>
                           </div>
@@ -446,7 +447,7 @@
                             <i class="fa fa-birthday-cake"></i>
                           </div>
 
-                          <input id="prefered_age" name="prefered_age" type="text" class="tags form-control" placeholder="Enter Prefered Age Group (20 to 25)" />
+                          <input id="prefered_age" name="prefered_age" type="text" class="form-control" placeholder="Enter Prefered Age Group (20 to 25)" />
                         </div>
                       </div>
                       <!--Career criteria -->

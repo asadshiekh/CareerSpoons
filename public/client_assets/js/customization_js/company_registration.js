@@ -17,7 +17,7 @@ function register_company(){
 
 
 
-			// alert(data);
+			//alert(data);
 
 			if(data=="yes"){
 

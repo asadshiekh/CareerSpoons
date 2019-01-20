@@ -103,7 +103,7 @@
 								Company Profile
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
+								<li><a class="dropdown-item" href="{{url('company-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
 
 								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
@@ -227,7 +227,7 @@
 								<?php $about=DB::table('about_us_content')->first(); ?>
 								<p>{{$about->about_qoute}}</p>
 								<p>{{$about->about_address}}</p>
-								<p><strong>Email:</strong> {{$about->about_no}}</p>
+								<p><strong>Email:</strong> {{$about->about_email}}</p>
 								<p><strong>Call:</strong> <a href="tel:+15555555555">{{$about->about_no}}</a></p>
 								<ul class="footer-social">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -726,12 +726,21 @@
 			<script>
 				$('#edu-end').dateDropper();
 			</script>
+			
 			<script>
 				$('#pro-start').dateDropper();
 			</script>
 
 			<script>
 				$('#pro-end').dateDropper();
+			</script>
+
+			<script>
+				$('#last_apply').dateDropper();
+			</script>
+
+			<script>
+				$('#post_visible').dateDropper();
 			</script>
 
 
@@ -779,6 +788,10 @@
 			<!-- User Profile Update Address Ck Editor -->
 			<script>
 				CKEDITOR.replace( 'profile_Address' );	
+			</script>
+            <!-- Organiation Job Post CK Editor -->
+			<script>
+				CKEDITOR.replace( 'post_information' );	
 			</script>
 
 

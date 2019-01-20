@@ -35,8 +35,21 @@ function company_login(){
 					);
 
 			}
-			else if(data="no"){
+			else if(data=="nups"){
 
+				setTimeout(
+					function(){
+
+						swal({
+							type: 'error',
+							title: 'Oops...',
+							text: 'Your Account is Currently Blocked!!',
+							footer: '<a href>Why do I have this issue?</a>'
+						})
+					},
+					1000
+					);
+			}else if(data =="no"){
 				setTimeout(
 					function(){
 
@@ -49,6 +62,7 @@ function company_login(){
 					},
 					1000
 					);
+
 			}
 
 	});				

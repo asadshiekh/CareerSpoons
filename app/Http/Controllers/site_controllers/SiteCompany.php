@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SiteModel\Company\CompanyRegisteration;
 use App\Mail\Site_Mail\Company_Mail\Company_Registeration;
 use Mail;
+use DB;
 class SiteCompany extends Controller
 {
 	public function viewRegisterCompany(){
@@ -26,16 +27,26 @@ class SiteCompany extends Controller
 			'company_email' => $request->company_email,
 			'company_password' => $request->company_password,
 			'company_cnic' => $request->company_cnic,
-			'isChecked' => $request->isChecked,
-			'created_at' => $current_date
+			'org_activation' => "Active",
+			'registeration_process' => "N",
+			'created_at' => $current_date,
+			'updated_at' =>$current_date
+
 		);
 
 		$obj =  new CompanyRegisteration();
     	$company_info = $obj->do_register_company($company_response);
+    	
+			
 
     	if($company_info){
-
-    		echo "yes";
+            $picture_up=array(
+				'company_img'=>"user.png",
+				'company_id'=>$company_info
+		    );
+		    //print_r($picture_up);
+			DB::table('upload_org_img')->insert($picture_up);
+     		echo "yes";
     	}
     	else{
 

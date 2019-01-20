@@ -31,9 +31,9 @@ class SiteCompanyLogin extends Controller
 
 
 		if($info){
-
-			$company_data=array(
-				"company_id"=>$info->id,
+			if($info->org_activation == "Active"){
+				$company_data=array(
+				"company_id"=>$info->company_id,
 				"company_name"=>$info->company_name,
 				"company_email"=>$info->company_email,
 				"company_branch"=>$info->company_branch,
@@ -44,12 +44,16 @@ class SiteCompanyLogin extends Controller
 				"company_cnic"=>$info->company_cnic,
 				"company_info"=>$info->company_info,
 				"email_status"=>$info->verify_by_email,
-				"company_status"=>'Active',
+				"registeration_process"=>$info->registeration_process,
+				"company_status"=>$info->org_activation,
 				"login_status"=>'Active',
 			);
-    		//print_r($userdata);
 			$request->session()->put($company_data);
-			echo "yes";
+			echo "yes";	
+			}else{
+				echo "nups";
+			}
+			
 
 		}
 

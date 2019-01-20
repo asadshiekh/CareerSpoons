@@ -181,6 +181,8 @@ class AdminOrganization extends Controller
 				"company_email" => $company_email,
 				"company_password" => $company_password,
 				"org_activation" => "Active",
+				"verify_by_email" => "0",
+				"registeration_process" => "C",
 				"company_cnic" => $company_cnic,
 				"company_info" => $company_info,
 				"company_document" => $new_name,

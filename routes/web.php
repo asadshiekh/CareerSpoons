@@ -71,6 +71,8 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 
 
 Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyEmailVerify');
+Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData")->middleware('CheckCompanyEmailVerify');
+Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData")->middleware('CheckCompanyEmailVerify');
 
 
 
