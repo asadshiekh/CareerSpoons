@@ -134,6 +134,14 @@ class ClientSiteModel extends Model
     }
 
 
+    public function get_all_types(){
+
+        $cities=DB::table('company_types')->get();
+        return $cities;
+
+    }
+
+
 
 
 }

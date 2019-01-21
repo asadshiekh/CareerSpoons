@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Company\CompanyRegisteration;
 use App\Mail\Site_Mail\Company_Mail\Company_Registeration;
+use App\SiteModel\ClientSite\ClientSiteModel;
 use Mail;
 use DB;
 class SiteCompany extends Controller
 {
 	public function viewRegisterCompany(){
 
-		return view('client_views.company_related_pages.company_registeration');
+		$obj1 = new ClientSiteModel();
+		$get_cities = $obj1->get_all_cities();
+		$get_types = $obj1->get_all_types();
+		return view('client_views.company_related_pages.company_registeration',['get_cities'=>$get_cities,'get_types'=>$get_types]);
 	}
 
 	public function doRegisterCompany(Request $request){

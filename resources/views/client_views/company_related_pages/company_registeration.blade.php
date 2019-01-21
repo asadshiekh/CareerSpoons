@@ -94,12 +94,9 @@
 										</div>
 										<select class="form-control"  id="company_city">
 											<option value="" disabled selected hidden>Please Choose...</option>
-											<option>Lahore</option>
-											<option>Karachi</option>
-											<option>Islamabad</option>
-											<option>Quetta</option>
-											<option>Multan</option>khaber pakhtoon khwa
-											<option>Khaber Pakhtoon Khwa</option>
+											@foreach($get_cities as $get_cities)
+											<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+											@endforeach
 										</select>
 									</div>
 								</div>
@@ -111,10 +108,9 @@
 										</div>
 										<select class="form-control"  id="company_type">
 											<option value="" disabled="disabled" selected="selected" hidden="hidden" >Please Choose...</option>
-											<option>Private</option>
-											<option>Public</option>
-											<option>NGO</option>
-											<option>Default select</option>
+											@foreach($get_types as $get_types)
+											<option value="{{$get_types->company_type_name}}">{{$get_types->company_type_name}}</option>
+											@endforeach
 										</select>
 									</div>
 								</div>
