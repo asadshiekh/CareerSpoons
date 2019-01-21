@@ -794,6 +794,10 @@
 				CKEDITOR.replace( 'post_information' );	
 			</script>
 
+			<script>
+				CKEDITOR.replace( 'company_info' );	
+			</script>
+
 
 			<!-- Rating Prtoduct -->
 			<script>

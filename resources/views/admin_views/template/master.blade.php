@@ -302,6 +302,7 @@
       $('#myEduction').DataTable();
        $.protip();
     });
+    
   </script>
   <script type="text/javascript">
   //alert("nayab");
@@ -355,6 +356,9 @@
 </script>
 <script>
   $('#company_since').dateDropper();
+</script>
+<script>
+  $('#company_s').dateDropper();
 </script>
 
 <script>

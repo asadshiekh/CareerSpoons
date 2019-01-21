@@ -73,6 +73,10 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyEmailVerify');
 Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData")->middleware('CheckCompanyEmailVerify');
 Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData")->middleware('CheckCompanyEmailVerify');
+Route::prefix('company-profile')->group(function () {
+	Route::any('adding-org-information',"site_controllers\CompanyProfile@addingOrgRemainingData")->middleware('CheckCompanyEmailVerify');
+	Route::any('front-org-post-job',"site_controllers\CompanyProfile@frontOrgPostJob")->middleware('CheckCompanyEmailVerify');
+});
 
 
 

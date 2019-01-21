@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	var notyf = new Notyf();
 	swal({
-		title: "Info Updated!",
+		title: "Successfully!",
 		text:  "{{$message}}",
 		icon: "success",
 	});

@@ -43,9 +43,11 @@
                                 <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
+                        @if(Session::get('registeration_process')=="N")
                         <div class="col-md-7 col-sm-7">
-                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="footer-btn grn-btn" title="" onclick="nayab();">Add Info</a></div>
+                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#info-modal" class="footer-btn grn-btn" title="">Add Info</a></div>
                         </div>
+                        @endif
                     </div>
                 </div>
 				
@@ -87,7 +89,11 @@
 							<div class="tab-content">
 								<div id="bios" class="tab-pane fade in active">
 									<h3>You Bio</h3>
-									<p>{{$fetch_org->company_info}}</p>
+									<p><?php
+				                      $fetch_org->company_info  = str_ireplace('<p>','',$fetch_org->company_info);
+				                      echo $fetch_org->company_info  = str_ireplace('</p>','',$fetch_org->company_info);
+
+				                      ?></p>
 								</div>
 								<!-- End Bio Sec -->
 							<!-- Start All Sec -->
@@ -95,7 +101,17 @@
 								<div id="info" class="tab-pane fade">
 									<h3>Information About You</h3>
 									<ul class="job-detail-des">
-										<li><span>Address:</span>SCO 210, Neez Plaza</li>
+										 <li><span>Company Name:</span>{{$fetch_org->company_name}}</li>
+				                      <li><span>Company Type:</span>{{$fetch_org->company_type}}</li>
+				                      <li><span>City:</span>{{$fetch_org->company_city}}</li>
+				                      <li><span>Branch Name:</span>{{$fetch_org->company_branch}}</li>
+				                      <li><span>Phone:</span>{{$fetch_org->company_phone}}</li>
+				                      <li><span>Website:</span>{{$fetch_org->company_website}}</li>
+				                      <li><span>Employees:</span>{{$fetch_org->company_employees}}</li>
+				                      <li><span>Industry:</span>{{$fetch_org->company_industry}}</li>
+				                      <li><span>Since:</span>{{$fetch_org->company_since}}</li>
+				                      <li><span>CNIC:</span>{{$fetch_org->company_cnic}}</li>
+				                      <li><span>Location:</span>{{$fetch_org->company_location}}</li>
 										
 									</ul>
 								</div>
@@ -104,7 +120,8 @@
 								<!-- Start new posts Sec -->
 								<div id="new-job" class="tab-pane fade">
 									<h3>New Job Post</h3>
-									<form>
+									<form method="post" action="{{url('company-profile/front-org-post-job')}}">
+										@csrf
 										<div class="edit-pro">
 											<div class="col-md-4 col-sm-6">
 												<label>Job Title</label>
@@ -118,21 +135,27 @@
 												<label>Functional Area</label>
 												<select class="form-control" name="req_functional_area" id="req_functional_area">
 													<option disabled="disabled" hidden="hidden">Select Required Functional area</option>
-													<option value="">yes</option>
+													@foreach($area as $area)
+        											<option id="industry-option" value="{{$area->area_title}}">{{$area->area_title}}</option>
+        											@endforeach
 												</select>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Majors</label>
 												<select class="form-control" name="selected_majors" id="selected_majors">
 													<option disabled="disabled" hidden="hidden">Select Required Majors</option>
-													<option value="">yes</option>
+													@foreach($major as $major)
+        											<option id="industry-option" value="{{$major->major_title}}">{{$major->major_title}}</option>
+        											@endforeach
 												</select>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Industry</label>
 												<select class="form-control" name="req_industry" id="req_industry">
 													<option disabled="disabled" hidden="hidden">Select Required Industry</option>
-													<option value="">yes</option>
+													@foreach($industry1 as $industry1)
+        											<option id="industry-option" value="{{$industry1->company_industry_name}}">{{$industry1->company_industry_name}}</option>
+        											@endforeach
 												</select>
 											</div>
 											<div class="col-md-4 col-sm-6">
@@ -204,11 +227,11 @@
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Last Apply Date</label>
-												<input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+												<input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Post visibility Date:</label>
-												<input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+												<input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Gender Preferences</label>
@@ -233,16 +256,20 @@
 										<div class="bgg col-md-12">
 											<div class="col-md-4 col-sm-4">
 												<label>Required Qualification</label>
-												<select name="selected_qualification[]" class="form-control" id="selected_qualification[]">
+												<select name="selected_qualificaltion[]" class="form-control" id="selected_qualificaltion[]">
 					                            <option hidden disabled="disabled" selected="selected">Select Required Qualification</option>
-					                            <option value="">yes</option>
+					                            @foreach($qual as $qual)
+        											<option id="industry-option" value="{{$qual->qualification_title}}">{{$qual->qualification_title}}</option>
+        											@endforeach
 					                          </select>
 											</div>
 											<div class="col-md-4 col-sm-4">
 												<label>Required Degree Level</label>
 												<select name="req_degree[]" class="form-control" id="req_degree[]">
 					                            <option hidden disabled="disabled" selected="selected">Select Required Degree Level</option>
-					                            <option value="">yes</option>
+					                            @foreach($degree as $degree)
+        											<option id="industry-option" value="{{$degree->degree_title}}">{{$degree->degree_title}}</option>
+        											@endforeach
 					                          </select>
 											</div>
 											<div class="col-sm-4 col-md-4">
@@ -255,12 +282,12 @@
 				                       		<div id="content_qual"></div>	
 										</div> 
 										<div class="col-md-12 col-sm-12">
-												<label>Required Degree Level</label>
-												<textarea class="form-control" id="post_information" class="post_information"></textarea>
+												<label>Information About Post</label>
+												<textarea class="form-control" id="post_information" name="post_information" class="post_information"></textarea>
 											</div>
 											
 											<div class="col-sm-12">
-												<button type="button" class="update-btn">ADD Post</button>
+												<button type="submit" class="update-btn">ADD Post</button>
 											</div>
 										</div>
 										
@@ -270,25 +297,99 @@
 								
 		<!-- Start Job List -->
 		<div id="total-posts" class="tab-pane fade">
-			<h3>Matches-job 122 new job</h3>
+			<h3>Total Posts</h3>
 			<div class="row">
-				<article class="advance-search-job">
-					<div class="row no-mrg">
-						<div class="col-md-6 col-sm-6">
-							<a href="new-job-detail.html" title="job Detail">
-								<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
-							</a>
-							<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
-						</div>
-						<div class="col-md-4 col-sm-4">
-							<div class="advance-search-job-locat">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">View</a></div>
-					</div>
-					
-				</article>	
+				@foreach($fetch_post as $fetch_post)
+				
+				<div class="col-md-12">
+				<article>
+								<div class="mng-company">
+									<div class="col-md-2 col-sm-2">
+										<div class="mng-company-pic">
+											<img src="assets/img/com-1.jpg" class="img-responsive" alt="" />
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<div class="mng-company-name">
+											<h4><b>{{$fetch_post->job_title}}</b><span class="cmp-tagline">({{$fetch_post->req_industry}})</span></h4>
+											<span class="cmp-time"><?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$fetch_post->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?>
+										</span>
+									</div>
+								</div>
+									<div class="col-md-5 col-sm-5">
+										<div class="mng-company-location">
+											<p><i class="fas fa-clock"></i> <b>Last Apply Date: </b><?php 
+											echo date('d F Y ',strtotime($fetch_post->last_apply_date));
+											?></p>
+										</div>
+									</div>
+									<div class="col-md-1 col-sm-1">
+										<div class="mng-company-action">
+											<a href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
+											<a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
+										</div>
+									</div>
+								</div>
+				</article>
+			    </div>
+				@endforeach	
 			</div>
 			<div class="row">
 				<ul class="pagination">
@@ -305,7 +406,10 @@
 		<!-- End Job List -->
 		<!-- Start Friend List -->
 		<div id="setting" class="tab-pane fade">
-		<div class="row"></div>
+			<h3>Settigs</h3>
+		<div class="row">
+			
+		</div>
 		</div>
 		<!-- End Friend List -->
 
@@ -325,100 +429,6 @@
 		</div>
 		<!-- End Message -->
 
-		<!-- Start Settings -->
-		<div id="settings" class="tab-pane fade">
-			<div class="row no-mrg">
-				<h3>Edit Profile</h3>
-				<div class="edit-pro">
-					<div class="col-md-4 col-sm-6">
-						<label>First Name</label>
-						<input type="text" class="form-control" placeholder="Matthew">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Middle Name</label>
-						<input type="text" class="form-control" placeholder="Else">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Last Name</label>
-						<input type="text" class="form-control" placeholder="Dana">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Email</label>
-						<input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Phone</label>
-						<input type="text" class="form-control" placeholder="+91 258 475 6859">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Zip / Postal</label>
-						<input type="text" class="form-control" placeholder="258 457 528">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Address</label>
-						<input type="text" class="form-control" placeholder="204 Lowes Alley">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Address 2</label>
-						<input type="text" class="form-control" placeholder="Software Developer">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Organization</label>
-						<input type="text" class="form-control" placeholder="Software Developer">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>City</label>
-						<input type="text" class="form-control" placeholder="Chandigarh">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>State</label>
-						<input type="text" class="form-control" placeholder="Punjab">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Country</label>
-						<input type="text" class="form-control" placeholder="India">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Old Password</label>
-						<input type="password" class="form-control" placeholder="*********">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>New Password</label>
-						<input type="password" class="form-control" placeholder="*********">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Old Password</label>
-						<input type="password" class="form-control" placeholder="*********">
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>About you</label>
-						<textarea class="form-control" placeholder="Write Something"></textarea>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Upload Profile Pic</label>
-						<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
-							<div class="dz-default dz-message">
-								<i class="fa fa-cloud-upload"></i>
-								<span>Drop files here to upload</span>
-							</div>
-						</form>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<label>Upload Profile Cover</label>
-						<form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
-							<div class="dz-default dz-message">
-								<i class="fa fa-cloud-upload"></i>
-								<span>Drop files here to upload</span>
-							</div>
-						</form>
-					</div>
-					<div class="col-sm-12">
-						<button type="button" class="update-btn">Update Now</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Settings -->
 	</div>
 	<!-- Start All Sec -->
 						</div>  
@@ -427,7 +437,93 @@
             </div>
         </section>
         @endif
-		<!-- Candidate Profile End -->
+        <!-- Candidate Profile End -->
+
+        <!-- model window for information -->
+        <div id="info-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true"> 
+        	<div class="modal-dialog modal-lg">
+        		<div class="modal-content">
+        			<div class="modal-header"> <!-- modal header -->
+        				<button type="button" class="close" 
+        				data-dismiss="modal" aria-hidden="true">×</button>
+        				<h4 class="modal-title">Information About You</h4>
+        			</div>
+        			<div class="modal-body"> <!-- modal body -->
+        				<div class="row no-mrg">
+        					<form method="post" action="{{url('company-profile/adding-org-information')}}" enctype="Multipart/form-data">
+        						@csrf
+        						<div class="edit-pro" style="padding: 5%;">
+        							<input type="hidden" name="id" value="{{$fetch_org->company_id}}">
+        							<div class="col-md-6 col-sm-12">
+        								<label>Branch Name or Code</label>
+        								<input type="text" id="company_branch_name" name="company_branch_name" class="form-control" placeholder="Enter Branch name or code here">
+        							</div>
+        							<!-- Website link -->
+        							<div class="col-md-6 col-sm-12">
+        								<label>Website Link:</label>
+        									<input type="link" placeholder="Insert Website Link Here" class="form-control" name="company_website" id="company_website">
+        							</div>
+        							<!-- No of Employees-->
+        							<div class="col-md-6 col-sm-12">
+        								<label>No of Employees:</label>
+        									<select class="form-control" id="selected_employees" name="selected_employees">
+        										<option value="" disabled="disabled" selected="selected">Select No of Employees</option>
+        										<option value="Start Up">Start Up</option>
+        										<option value="1 to 15">1 to 15</option>
+        										<option value="15 to 25">15 to 25</option>
+        										<option value="25 to 50">25 to 50</option>
+        										<option value="50 to 100">50 to 100</option>
+        										<option value="100 to 200">100 to 200</option>
+        										<option value="more then 200">more then 200</option>
+        									</select>
+        								</div>
+        								<!-- Industry -->
+        								<div class="col-md-6 col-sm-12">
+        									<label>Industry:</label>
+        										<select name="selected_industry" class="form-control" placeholder="select industry" id="selected_industry">
+        											<option id="industry-option" disabled="disabled" selected="selected">Select Industry</option>
+        											@foreach($industry as $industry)
+        											<option id="industry-option" value="{{$industry->company_industry_name}}">{{$industry->company_industry_name}}</option>
+        											@endforeach
+        										</select>
+        								</div>
+        							<!-- Operating Since -->
+        							<div class="col-md-6 col-sm-12">
+        								<label>Operating Since:</label>
+        									<input type="date" class="form-control" name="company_s" id="company_s" placeholder="11/25/2018" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en">
+        								</div>
+
+        								<!-- Address-->
+        								<div class="col-md-6 col-sm-12">
+        								<label>Location or Address:</label>
+        								<input id="company_location" name="company_location" class="form-control" placeholder="Enter Address Here"/>
+        								</div>
+
+        								<!--  for Verification-->
+        								<div class="col-md-6 col-sm-12">
+        									<label>Gournment verification document:</label>
+        									<span class="btn btn-success btn-file" style="width: 180px;margin-bottom: 3%;">
+        										<i id="btn-up">Browse..</i><input type="file" name="company_doc" id="company_doc" >
+        									</span>
+        								</div>
+        									<!-- About Company -->
+        									<div class="col-md-12 col-sm-12">
+        										<label>About Company (atleast  20 words):</label>
+        											<textarea id="company_info" name="company_info" class="form-control"  placeholder="Enter Some Info About Your Company Here...."></textarea>
+        									</div>
+        						</div>
+        					
+        				</div>
+        			</div>
+        			<div class="modal-footer"> <!-- modal footer -->
+        				<button type="submit"class="btn btn-success">Save</button>
+        				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+        			</div>
+        			</form>
+        		</div>
+        	</div>
+        </div>
+		<!-- model window end -->
 		<style type="text/css">
 		.bgg{
 			padding: 2%;
@@ -446,6 +542,56 @@
 			border-radius: 25%;
 			border:none;
 		}
+		.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
 
 	   </style>
+	   <script type="text/javascript">
+		$(function() {
+
+		  // We can attach the `fileselect` event to all file inputs on the page
+		  $(document).on('change', ':file', function() {
+		    var input = $(this),
+		        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+		        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		    input.trigger('fileselect', [numFiles, label]);
+		  });
+
+		  // We can watch for our custom `fileselect` event like this
+		  $(document).ready( function() {
+		      $(':file').on('fileselect', function(event, numFiles, label) {
+
+		          var input = $(this).parents('.input-group').find(':text'),
+		              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+		          if( input.length ) {
+		              input.val(log);
+		          } else {
+		              //if( log ) alert("yes"+log);
+		              $("#btn-up").html(log);
+		          }
+
+		      });
+		  });
+		  
+		});
+	   </script>
+
 @endsection

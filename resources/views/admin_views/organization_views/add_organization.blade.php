@@ -103,17 +103,17 @@
                 <input type="text" class="form-control" placeholder="Enter Branch Name or Code" name="company_branch_name" id="company_branch_name">
               </div>     
             </div>
-
-            <!-- Phone No-->
+            <!-- Website link -->
             <div class="form-group col-sm-5 col-md-offset-1">
-              <label>Phone No:</label>
+              <label>Phone no:</label>
               <div class="input-group">
                 <div class="input-group-addon">
                   <i class="fa fa-phone"></i>
                 </div>
-                <input type="text" placeholder="Enter Phone No" class="form-control" name="company_phone" id="company_phone">
+                <input type="number" placeholder="Enter No here Here" class="form-control" name="company_phone" id="company_phone">
               </div>
             </div>
+
             <!-- Website link -->
             <div class="form-group col-sm-5">
               <label>Website Link:</label>

@@ -10,10 +10,16 @@ class CompanyProfile extends Controller
 {
     public function viewCompanyProfile(Request $request){
         $fetch_city=DB::table('Add_cities')->get();
+        $industry=DB::table('company_industries')->get();
         $id=$request->session()->get('company_id');
+        $degree=DB::table('Add_degreelevel')->get();
+        $major=DB::table('Add_major')->get();
+        $area=DB::table('Add_functionalarea')->get();
+        $qual=DB::table('Add_qualification')->get();
         $fetch_org=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+        $fetch_post=DB::table('organization_posts')->where(['company_id'=>$id])->get();
         $fetch_pic=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
-    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic]);
+    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post]);
     }
     public function PreferencesCitiesData(){
       $city=DB::table('Add_cities')->get();
@@ -93,4 +99,114 @@ class CompanyProfile extends Controller
       </div>
       </div><div class="clearfix"></div></div>';
     }
+
+  public function addingOrgRemainingData(Request $request){
+      $id=$request->post('id');
+      $file=$request->file('company_doc');
+      $new_name = rand().'.'.$file->getClientOriginalExtension();
+      $destination='uploads/organization_documents';
+      if($file->move($destination,$new_name)){
+        $up_organization=array(
+        "company_branch" => $request->post('company_branch_name'),
+        "company_website" => $request->post('company_website'),
+        "company_employees" => $request->post('selected_employees'),
+        "company_industry" => $request->post('selected_industry'),
+        "company_since" => $request->post('company_s'),
+        "company_location" => $request->post('company_location'),
+        "company_info" => $request->post('company_info'),
+        "company_document" => $new_name,
+        "registeration_process" =>"C"
+
+        );
+        if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
+          return redirect('company-profile')->with('success','Information Added Successfully!');
+          
+        }
+      }
+  }
+
+  public function frontOrgPostJob(Request $request){
+      
+      $company_id=$request->session()->get('company_id');
+      $current_date = date("Y.m.d h:i:s");
+      $job_post= array(
+        'company_id' => $company_id,
+        'job_title' => $request->post('posted_job_title'), 
+        'job_skills' => $request->post('skill_tags'), 
+        'functional_area' => $request->post('req_functional_area'),
+        'req_major' => $request->post('selected_majors'),
+        'req_industry' => $request->post('req_industry'), 
+        'req_career_level' => $request->post('req_career_level'),
+        'job_experience' => $request->post('job_exp_req'), 
+        'total_positions' => $request->post('total_positions'), 
+        'working_hours' => $request->post('working_hour'), 
+        'min_salary' => $request->post('min_salary'), 
+        'max_salary' => $request->post('max_salary'), 
+        'last_apply_date' => $request->post('last_apply_date'), 
+        'post_visibility_date' => $request->post('post_visibility_date'),
+        'selected_gender' => $request->post('selected_gender'), 
+        'prefered_age' => $request->post('prefered_age'),
+        'job_post_info' =>$request->post('post_information'),
+        'post_status' =>"Active",
+        'created_at' => $current_date,
+        'updated_at' => $current_date
+      );
+      DB::table('Organization_posts')->insert($job_post);
+      $id=DB::getPdo()->lastInsertId();
+      $value=count($_POST['selected_city']);
+       //city criteria adding in dtabase
+      if(count($_POST['selected_city'])>0){
+        foreach($_POST['selected_city'] as $row){
+                //echo "Value".$row."<br/>\n";
+          $cities[] = $row;
+        }
+        foreach($_POST['selected_type'] as $row){
+                //echo "Value".$row."<br/>\n";
+          $types[] = $row;
+        }
+        foreach($_POST['selected_shift'] as $row){
+                //echo "Value".$row."<br/>\n";
+          $shifts[] = $row;
+        }
+        for ($i=0; $i<$value ; $i++) {
+                // echo $cities[$i];
+          $city_criteria=array(
+           'city'=>$cities[$i],
+           'job_type'=>$types[$i],
+           'job_shift'=>$shifts[$i],
+           'post_id'=>$id,
+           'company_id'=>$company_id
+         );
+          DB::table('job_preferences')->insert($city_criteria);
+        }
+      }
+        //qualification criteria adding in database
+      $val_qual=count($_POST['selected_qualificaltion']);
+      if(count($_POST['selected_qualificaltion'])>0){
+        foreach($_POST['selected_qualificaltion'] as $row){
+                //echo "Value".$row."<br/>\n";
+          $quals[] = $row;
+        }
+        foreach($_POST['req_degree'] as $row){
+                //echo "Value".$row."<br/>\n";
+          $degrees[] = $row;
+        }
+        for ($i=0; $i<$val_qual ; $i++) {
+                // echo $cities[$i];
+          $qual_criteria=array(
+           'req_qualification'=>$quals[$i],
+           'req_degree_level'=>$degrees[$i],
+           'post_id'=>$id,
+           'company_id'=>$company_id
+         );
+          DB::table('job_req_qualifications')->insert($qual_criteria);
+        }
+      }
+       return redirect('company-profile')->with('success','Your  Post Successfully Added!');
+
+
+  }
+
+
+
 }
