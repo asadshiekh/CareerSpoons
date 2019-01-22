@@ -19,7 +19,9 @@ class CompanyProfile extends Controller
         $fetch_org=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
         $fetch_post=DB::table('organization_posts')->where(['company_id'=>$id])->get();
         $fetch_pic=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
-    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post]);
+        $fetch_links=DB::table('add_organization_social_link')->where(['organization_id'=>$request->session()->get('company_id')])->first();
+        
+    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post,'fetch_links'=>$fetch_links]);
     }
     public function PreferencesCitiesData(){
       $city=DB::table('Add_cities')->get();
@@ -203,6 +205,33 @@ class CompanyProfile extends Controller
         }
       }
        return redirect('company-profile')->with('success','Your  Post Successfully Added!');
+
+
+  }
+
+
+  public function updateSocialLinks(Request $request){
+
+      $update_links=array(
+        "organization_fackbook" => $request->organization_facebook_link,
+        "organization_google" => $request->organization_google_link,
+        "organization_twitter" => $request->organization_twitter_link,
+        "organization_linkedin" => $request->organization_linkedin,
+        );
+
+      // echo "<pre>";
+      // print_r($update_links);
+    $info =  DB::table('add_organization_social_link')->where('organization_id','=',$request->session()->get('company_id'))->update($update_links);
+
+    if($info){
+
+       return redirect('company-profile')->with('success','Your Links Are Updated Successfully!');
+    }
+
+    else{
+
+       return redirect('company-profile')->with('p_errors','Your Links Are Not Update!');
+    }
 
 
   }

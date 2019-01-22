@@ -243,8 +243,8 @@
 <label>Functional Area</label>
 <select class="form-control input-lg" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
 	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Functional Area</option>
-	@foreach($get_area as $get_area)
-	<option>{{$get_area->area_title}}</option>
+	@foreach($get_area as $value)
+	<option value="{{$value->area_title}}">{{$value->area_title}}</option>
 	@endforeach
 </select>
 </div>
@@ -301,8 +301,8 @@
 <label>Preferred Job City</label>
 <select class="form-control input-lg" id="candidate_preferred_city">
 	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
-	@foreach($get_cities as $get_cities)
-	<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+	@foreach($get_cities as $value)
+	<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 	@endforeach
 </select>
 </div>
@@ -1488,8 +1488,8 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Majors</label>
 		<select class="form-control input-lg" id="majors">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
-			@foreach($get_majors as $get_majors)
-			<option value="{{$get_majors->major_title}}">{{$get_majors->major_title}}</option>
+			@foreach($get_majors as $value)
+			<option value="{{$value->major_title}}">{{$value->major_title}}</option>
 			@endforeach
 
 		</select>
@@ -1558,8 +1558,8 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<select class="form-control input-lg" name="candidate_city">
 			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
 
-			@foreach($get_cities1 as $get_cities1)
-			<option value="{{$get_cities1->company_city_name}}">{{$get_cities1->company_city_name}}</option>
+			@foreach($get_cities1 as $value)
+			<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 			@endforeach
 			
 		</select>
@@ -1595,8 +1595,8 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Degree Level</label>
 		<select class="form-control input-lg" name="candidate_degree_level" id="degree_level">
 			<option value="{{$user_general_info->candidate_degree_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_degree_level}}</option>
-			@foreach($get_degree1 as $get_degree1)
-			<option value="{{$get_degree1->degree_title}}">{{$get_degree1->degree_title}}</option>
+			@foreach($get_degree1 as $value)
+			<option value="{{$value->degree_title}}">{{$value->degree_title}}</option>
 			@endforeach
 			
 		</select>

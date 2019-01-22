@@ -15,19 +15,35 @@
             <div class="container white-shadow">
 			
                 <div class="row">
-                    <div class="detail-pic"><img src="{{url('uploads/organization_images/')}}/{{$fetch_pic->company_img}}" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+                    
+
+                    <div class="detail-pic"><img src="{{url('uploads/organization_images/')}}/{{$fetch_pic->company_img}}" class="img" alt="" /><a data-toggle="modal" data-target="#uploadOrganization_profile" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+
+
                     <div class="detail-status"><span>Active Now</span></div>
+                
+
                 </div>
 				
                 <div class="row bottom-mrg">
                     <div class="col-md-12 col-sm-12">
                         <div class="advance-detail detail-desc-caption">
-                            <h4>{{$fetch_org->company_name}}</h4><span class="designation">( {{$fetch_org->company_type}} )</span>
+                            
+                        	<div id="typed-strings">
+                        		<div class="contains_heading" style="font-size: 6px">
+                        			<h4>{{$fetch_org->company_name}}</h4><span class="designation" style="color: limegreen">( {{$fetch_org->company_type}} )</span>
+
+                        		</div>
+                        	</div>
+                        	<span id="typed"></span>
+                            
                             <ul>
-                                <li><strong class="j-view">85</strong>New Post</li>
+                                <li><strong class="j-view">85</strong>Total Visitors</li>
                                 <li><strong class="j-applied">110</strong>Job Applied</li>
                                 <li><strong class="j-shared">120</strong>Invitation</li>
                             </ul>
+
+
                         </div>
                     </div>
                 </div>
@@ -46,6 +62,10 @@
                         @if(Session::get('registeration_process')=="N")
                         <div class="col-md-7 col-sm-7">
                             <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#info-modal" class="footer-btn grn-btn" title="">Add Info</a></div>
+                        </div>
+                        @elseif (Session::get('registeration_process')=="C")
+                        <div class="col-md-7 col-sm-7">
+                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" class="footer-btn grn-btn" title="">Viewed as Public</a></div>
                         </div>
                         @endif
                     </div>
@@ -80,6 +100,7 @@
 						<li><a data-toggle="tab" href="#info">Info</a></li>
 						<li><a data-toggle="tab" href="#new-job">New-Job-Post</a></li>
 						<li><a data-toggle="tab" href="#total-posts">Total-Posts</a></li>
+						<li><a data-toggle="tab" href="#social_media">Social-Media</a></li>
 						<li><a data-toggle="tab" href="#setting">Settings <span class="info-bar">6</span></a></li>
 						<li><a data-toggle="tab" href="#insights">Insights</a></li>
 						<li><a data-toggle="tab" href="#reviews">Reviews</a></li>
@@ -294,6 +315,47 @@
 									</form>
 								</div>
 								<!-- End Address Sec -->
+
+
+
+<div id="social_media" class="tab-pane fade">
+<div class="row no-mrg">
+<div class="col-md-6">	
+<h3>Manage Social Links</h3>
+</div>
+<div class="col-md-2  col-md-offset-4">	
+<input type="checkbox" id="toggle-two" data-onstyle="success" data-offstyle="danger">
+</div>
+<br>
+<form action="update-company-social-links" method="post">
+{{ csrf_field() }}
+<div class="edit-pro">
+<div class="col-md-6 col-sm-12">
+<label>Facebook</label>
+<input type="text" class="form-control" name="organization_facebook_link" value="{{$fetch_links->organization_fackbook}}"  id="candidate_facebook_social_link"/>
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Google</label>
+<input type="text" class="form-control" name="organization_google_link" value="{{$fetch_links->organization_google}}"  id="candidate_google_social_link"/>
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Twitter</label>
+<input type="text" class="form-control" name="organization_twitter_link" value="{{$fetch_links->organization_twitter}}"  id="candidate_twitter_social_link"/>
+</div>
+<div class="col-md-6 col-sm-12">
+<label>Linkedin</label>
+<input type="text" class="form-control" name="organization_linkedin" value="{{$fetch_links->organization_linkedin}}"  id="candidate_linkedin_social_link"/>
+</div>
+<div class="col-sm-12">
+<br>
+<button type="submit" class="update-btn">Update Now</button>
+</div>
+</div>
+</form>
+</div>
+
+</div>
+
 								
 		<!-- Start Job List -->
 		<div id="total-posts" class="tab-pane fade">
@@ -302,17 +364,20 @@
 				@foreach($fetch_post as $fetch_post)
 				
 				<div class="col-md-12">
-				<article>
-								<div class="mng-company">
-									<div class="col-md-2 col-sm-2">
-										<div class="mng-company-pic">
-											<img src="assets/img/com-1.jpg" class="img-responsive" alt="" />
+						<article>
+							<div class="brows-resume">
+								<div class="row">
+									<!-- <div class="col-md-2 col-sm-2">
+										<div class="brows-resume-pic">
+											<img src="assets/img/can-4.png" class="img-responsive" alt="" />
 										</div>
-									</div>
+									</div> -->
 									<div class="col-md-4 col-sm-4">
-										<div class="mng-company-name">
-											<h4><b>{{$fetch_post->job_title}}</b><span class="cmp-tagline">({{$fetch_post->req_industry}})</span></h4>
-											<span class="cmp-time"><?php 
+										<div class="brows-resume-name">
+											<h4>{{$fetch_post->job_title}}</h4>
+											<span class="brows-resume-designation">( {{$fetch_post->req_industry}} )</span>
+
+											<span class="cand-status"><i class="far fa-clock"></i> <?php 
 
    											// $this->load->helper('date');
 
@@ -369,25 +434,70 @@
 												echo $minutes.' Minutes Ago.' ;
 											}
 
-											?>
-										</span>
-									</div>
-								</div>
-									<div class="col-md-5 col-sm-5">
-										<div class="mng-company-location">
-											<p><i class="fas fa-clock"></i> <b>Last Apply Date: </b><?php 
-											echo date('d F Y ',strtotime($fetch_post->last_apply_date));
-											?></p>
+											?></span>
+
 										</div>
 									</div>
-									<div class="col-md-1 col-sm-1">
-										<div class="mng-company-action">
-											<a href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
-											<a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
+									
+									<div class="col-md-2 col-sm-2">
+										<div class="brows-resume-name">
+											<span><i class="fas fa-user-plus">&nbsp; 
+												<?php 
+
+													if($fetch_post->total_positions>1){
+
+											echo   $fetch_post->total_positions.' 
+											 Positions' ;
+													}
+													else{
+														echo $fetch_post->total_positions.' Position' ;
+
+													}	
+
+												?>
+												</i></span>
+										</div>
+									</div>
+
+																	
+
+									<div class="col-md-4 col-sm-4">
+										<div class="brows-resume-name" style="text-align: center;">
+											<span><i class="fa fa-money"></i> 
+											 {{$fetch_post->min_salary}} - {{$fetch_post->max_salary}} Rupees</span>
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-2">
+										<div class="mng-resume-action" style="text-align: center;">
+
+											<a href="#" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a> 
+											| <a href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> | 
+											 <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
+
+											
+										</div>
+									</div>
+
+								</div>
+								<div class="row extra-mrg row-skill">
+									<div class="browse-resume-skills">
+										<div class="col-md-9 col-sm-8">
+											<div class="br-resume">
+												<span>css</span><span>html</span><span>photoshop</span><span>wordpress</span>
+												<span>css</span>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-4">
+											<div class="browse-resume-exp">
+												<span class="resume-exp">Exp. {{$fetch_post->job_experience}} Year</span>
+											</div>
 										</div>
 									</div>
 								</div>
-				</article>
+							</div>
+						</article>
+
 			    </div>
 				@endforeach	
 			</div>
@@ -524,6 +634,61 @@
         	</div>
         </div>
 		<!-- model window end -->
+
+
+
+<!-- Profile Upload Model Window -->
+
+<div id="uploadOrganization_profile" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload Profile Image</h4>
+          <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+            <i id="i" style="font-size:100px"></i>
+          </div>
+          <div class="col-sm-6 col-md-offset-4" id="loading-true">
+            <i id="tru" style="font-size:100px; color: #38b75e"></i>
+          </div>
+        </div>
+        <div class="modal-body" id="modal-content">
+         	
+
+
+        <div class="row">
+        	<br>
+        	<div class="col-md-12" style="margin-left:30px;"><input type="file" id="upload"></div>
+            <div class="col-md-6 text-center">
+                <div id="upload-demo" style="width:350px"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:30px;height:300px;margin-top:30px"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+          <div class="modal-footer">
+            <button class="btn btn-success upload-result">Upload</button>
+         	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
 		<style type="text/css">
 		.bgg{
 			padding: 2%;
@@ -593,5 +758,83 @@
 		  
 		});
 	   </script>
+
+
+	   <script type="text/javascript">
+				
+
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+			$uploadCrop = $('#upload-demo').croppie({
+			    enableExif: true,
+			    viewport: {
+			        width: 200,
+			        height: 200,
+			        type: 'circle'
+			    },
+			    boundary: {
+			        width: 300,
+			        height: 300
+			    }
+			});
+
+
+			$('#upload').on('change', function () { 
+			    var reader = new FileReader();
+			    reader.onload = function (e) {
+			        $uploadCrop.croppie('bind', {
+			            url: e.target.result
+			        }).then(function(){
+			            console.log('jQuery bind complete');
+			        });
+			        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			});
+
+
+			$('.upload-result').on('click', function (ev) {
+			    $uploadCrop.croppie('result', {
+			        type: 'canvas',
+			        size: 'viewport'
+			    }).then(function (resp) {
+
+			        //alert(resp);
+
+			        $.ajax({
+			            url: "",
+			            type: "post",
+			            data: {_token:CSRF_TOKEN,"image":resp},
+			            success: function (data) {
+			                // html = '<img src="'+resp+'"/>';
+			                // $("#upload-demo-i").html(html);
+			                // html1 = '<a href="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" target="_blank"><img src="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" /></a>';
+			                // $("#image_div").html(html1);
+			                // setTimeout(
+			                // 	function(){
+
+			                // 		swal('Profile Updated Successfully!','','success');
+			                // 	},
+			                // 	500
+			                // 	);
+
+			                // setTimeout(
+			                // 	function(){
+
+			                // 		$("#uploadUser_profile .close").click();
+
+			                // 	},
+			                // 	500
+			                // 	);
+			                			                
+			            }
+			        });
+			    });
+			});
+
+
+
+			</script>
+
 
 @endsection

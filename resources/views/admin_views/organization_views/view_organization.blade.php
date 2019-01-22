@@ -67,7 +67,8 @@
                     @foreach($organizations as $organizations)
                     <tr id="org-tr{{$organizations->company_id}}"> 
                      <th><input type="checkbox" name="check_all_org[]" class="flat" value="{{$organizations->company_id}}"></th> 
-                     <td id="org-n{{$organizations->company_id}}">{{$organizations->company_name}}</td>
+                     <td id="org-n{{$organizations->company_id}}">
+                      <a href="organization-profile/{{$organizations->company_id}}" style="text-decoration: none;border-bottom:2px double #0c0;">{{$organizations->company_name}}</a></td>
                      <td id="org-t{{$organizations->company_id}}">{{$organizations->company_type}}</td>
                      <td>{{$organizations->company_email}}</td>
                      <td id="org-p{{$organizations->company_id}}">{{$organizations->company_phone}}</td>

@@ -742,6 +742,10 @@
 			<script>
 				$('#post_visible').dateDropper();
 			</script>
+			
+			<script>
+				$('#company_s').dateDropper();
+			</script>
 
 
 
@@ -853,6 +857,8 @@
 					})
 				})
 			</script>
+
+
 			
 
 			<script>			

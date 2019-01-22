@@ -196,6 +196,14 @@ class AdminOrganization extends Controller
 				'company_id'=>$id
 			);
 			DB::table('upload_org_img')->insert($picture_up);
+
+			$company_social_links = array(
+				'organization_id' => $id,
+				'created_at' => $current_date
+			);
+
+			DB::table('add_organization_social_link')->insert($company_social_links);
+
 		}
 		
 
@@ -429,9 +437,9 @@ class AdminOrganization extends Controller
 			"company_info" => $request->post('l'),
 			"updated_at" => $current_date
 		);
-	if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
-		echo "yes";
-	}
+		if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
+			echo "yes";
+		}
 	}
 
 	public function changeOrgStatus(Request $request){
@@ -442,7 +450,7 @@ class AdminOrganization extends Controller
 			'org_activation'=>$status
 		);
 		if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($org_status)){
-         echo $id;
+			echo $id;
 		}
 		
 

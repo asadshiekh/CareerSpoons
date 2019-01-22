@@ -41,7 +41,15 @@ class SiteCompany extends Controller
 		$obj =  new CompanyRegisteration();
     	$company_info = $obj->do_register_company($company_response);
     	
-			
+		$lastInsertId = DB::getPdo()->lastInsertId();
+
+		 $company_social_links = array(
+          'organization_id' => $lastInsertId,
+          'created_at' => $current_date
+        );
+
+		 DB::table('add_organization_social_link')->insert($company_social_links);
+     		
 
     	if($company_info){
             $picture_up=array(
