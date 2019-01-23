@@ -2,7 +2,7 @@
 @section('content')
 
 			<!-- Title Header Start -->
-			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-10.jpg);">
+			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-13.png);">
 				<div class="container" style="margin-bottom: 100px;">
 					<h1>Company Profile</h1>
 				</div>
@@ -496,6 +496,7 @@
 									</div>
 								</div>
 							</div>
+							<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
 						</article>
 
 			    </div>
