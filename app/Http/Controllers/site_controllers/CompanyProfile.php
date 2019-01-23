@@ -4,11 +4,13 @@ namespace App\Http\Controllers\site_controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\SiteModel\Job\JobModel;
 use DB;
 
 class CompanyProfile extends Controller
 {
     public function viewCompanyProfile(Request $request){
+        
         $fetch_city=DB::table('Add_cities')->get();
         $industry=DB::table('company_industries')->get();
         $id=$request->session()->get('company_id');
@@ -121,6 +123,8 @@ class CompanyProfile extends Controller
 
         );
         if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
+          $request->session()->forget("registeration_process");
+          $request->session()->put("registeration_process","C");
           return redirect('company-profile')->with('success','Information Added Successfully!');
           
         }
@@ -236,6 +240,499 @@ class CompanyProfile extends Controller
 
   }
 
+  public function viewPrivateSinglePost(Request $request){
+    $id=$request->post("x");
+    $obj = new JobModel();
+    $job_detail=$obj->fetch_job_details($id);
+    $job_req=DB::table('job_req_qualifications')->where(['post_id'=>$id])->get();
+    $job_p=DB::table('job_preferences')->where(['post_id'=>$id])->get();
+
+    echo '<div id="viewpostmodalwindow" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true"> 
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-header"> <!-- modal header -->
+    <button type="button" class="close" 
+    data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Information About You</h4>
+    </div>
+    <div class="modal-body" style="padding:5%;"> <!-- modal body -->
+    <div class="row no-mrg">
+   <div class="full-card">
+
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Job Detail</h2>
+                <ul class="job-detail-des" style="padding-right:5%;">
+                  <li><span>Role:</span>'.$job_detail->job_title.'</li>
+                  <li><span>Salary:</span>'.$job_detail->min_salary.' - '.$job_detail->max_salary.' Rs</li>
+                  <li><span>Industry:</span>';
+
+                    echo $data = str_replace("_"," ",$job_detail->req_industry);
+
+
+                  echo '</li>
+                  <li><span>Required Experience:</span>'.$job_detail->job_experience.'</li>
+                  <li><span>Total Positions:</span>'.$job_detail->total_positions.'</li>
+                  <li><span>Working Hours:</span>'.$job_detail->working_hours.'</li>
+
+
+                </ul>
+              </div>
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Location</h2>
+                <ul class="job-detail-des" style="padding-right:5%;">
+                  <li><span>Address:</span>'.$job_detail->company_location.'</li>
+                  <li><span>State:</span>Punjab</li>
+                  <li><span>Country:</span>Pakistan</li>
+                  <li><span>Telephone:</span>'.$job_detail->company_phone.'</li>
+                  <li><span>Email:</span>'.$job_detail->company_email.'</li>
+                </ul>
+              </div>
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Job Preferences Cities:</h2>
+                <ul class="job-detail-des">';
+                  foreach($job_p as $job_p){
+                  echo '<div class="media">
+                    <div class="media-left media-middle">
+                      <a href="#">
+                        <img class="media-object" src="public/client_assets/img/university/circle.png" alt="..." style="width:30px; height:30px">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="media-heading" style="color:grey"><b>In '.$job_p->city.'</b></h5>
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">Job Type:</b>'.$job_p->job_type.'</li>
+                      </h5>
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">Job Shift:</b> '.$job_p->job_shift.'</li>
+                      </h5>
+
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">last date for Apply:</b> '.$job_detail->last_apply_date.'</li></h5>
+                    </div>
+                  </div>
+                  <hr>';
+                }
+
+              echo '</ul>
+                </div>
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Job Qualification Requirements:</h2>
+                <ul class="job-detail-des">';
+
+                  foreach($job_req as $job_req){
+                  echo '<div class="media">
+                    <div class="media-left media-middle">
+                      <a href="#">
+
+                        <img class="media-object" src="public/client_assets/img/university/circle.png" alt="..." style="width:30px; height:30px">
+                      </a>
+                    </div>
+                    <div class="media-body">
+
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">Qualification:</b> '.$job_req->req_qualification.'</li>
+                      </h5>
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">Degree Level:</b> '.$job_req->req_degree_level.'</li>
+                      </h5>
+
+                      <h5 style="color:gray"><li><b style="padding-right: 2%;">last date for Apply:</b> '.$job_detail->last_apply_date.'</li></h5>
+                    </div>
+                  </div>
+                  <hr>';
+                }
+
+              echo '</ul>
+                 </div>
+
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Job Responsibilities</h2>
+                <p style="padding-left:5%;">';
+              
+               $job_detail->job_post_info=str_ireplace('<p>','',$job_detail->job_post_info);
+               echo $job_detail->job_post_info=str_ireplace('</p>','',$job_detail->job_post_info);
+
+
+                
+              echo '</p>
+              </div>
+              <div class="row row-bottom mrg-0">
+                <h2 class="detail-title">Required Skills</h2>
+                <p style="padding-left:5%;">'.$job_detail->job_skills.'</p>
+              </div>
+          </div>
+
+    </div>
+    </div>
+    <div class="modal-footer"> <!-- modal footer -->
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+    </div>
+    </div>
+    </div>
+    </div>';
+  }
+
+public function deletePostSingleFront(Request $request){
+  $id=$request->post("x");
+
+  $del=DB::table('organization_posts')->where(['post_id'=>$id])->delete();
+  if($del){
+    echo "yes";
+  }
+}
+public function updatePostSingleFront(Request $request){
+        $fetch_city=DB::table('Add_cities')->get();
+        $industry=DB::table('company_industries')->get();
+        $degree=DB::table('Add_degreelevel')->get();
+        $major=DB::table('Add_major')->get();
+        $area=DB::table('Add_functionalarea')->get();
+        $qual=DB::table('Add_qualification')->get();
+   $id=$request->post("x");
+   $job_pre=DB::table('job_preferences')->where(['post_id' => $id])->get();
+    $job_qual=DB::table('job_req_qualifications')->where(['post_id' => $id])->get();  
+    $job=DB::table('organization_posts')->where(['post_id' => $id])->first();   $areas=$job->functional_area;
+      $area_majors=DB::table('Add_major')->where(['area_title' => $areas])->get();
+   echo '<div id="editpostmodalwindow" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true"> 
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <form method="post" action="post-update-data-front">
+    <div class="modal-header"> <!-- modal header -->
+    <button type="button" class="close" 
+    data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Information About You</h4>
+    </div>
+    <div class="modal-body" style="padding:5%;"> <!-- modal body -->
+
+    <!-- start form -->
+    
+                    <div class="edit-pro">
+                    <input type="hidden" name="org_post" id="org_post" value="'.$id.'">
+                      <div class="col-md-4 col-sm-6">
+                        <label>Job Title</label>
+                        <input type="text" class="form-control" placeholder="Enter Title" name="u_posted_job_title" id="u_posted_job_title" value="'.$job->job_title.'">
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Skills</label>
+                        <input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="u_skill_tags" id="u_skill_tags" value="'.$job->job_skills.'">
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Functional Area</label>
+                        <select class="form-control" name="n_req_functional_area" id="n_req_functional_area" onchange="n_select_major();">
+                          <option disabled="disabled" hidden="hidden">Select Required Functional area</option>
+                          <option value="'.$job->functional_area.'" selected="selected">'.$job->functional_area.'</option>';
+                          foreach($area as $area_val){
+                              echo '<option id="industry-option" value="'.$area_val->area_title.'">'.$area_val->area_title.'</option>';
+                              }
+                        echo '</select>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Majors</label>
+                        <select class="form-control" name="n_req_major" id="n_req_major">
+                          <option disabled="disabled" hidden="hidden">Select Required Majors</option>
+                          <option value="'.$job->req_major.'" selected="selected">'.$job->req_major.'</option>';
+                         foreach($area_majors as $m){
+                              echo '<option id="industry-option" value="'.$m->major_title.'">'.$m->major_title.'</option>';
+                           }
+                        echo '</select>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Industry</label>
+                        <select class="form-control" name="req_industry" id="req_industry">
+                          <option disabled="disabled" hidden="hidden">Select Required Industry</option>
+                          <option value="'.$job->req_industry.'" selected="selected">'.$job->req_industry.'</option>';
+                          foreach($industry as $industry_val){
+                              echo '<option id="industry-option" value="'.$industry_val->company_industry_name.'">'.$industry_val->company_industry_name.'</option>';
+                            }
+                       echo '</select>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Career Level</label>
+                        <select class="form-control" name="req_career_level" id="req_career_level">
+                          <option disabled="disabled" hidden="hidden">Select Required Career level</option>
+                          <option value="Entry Level">Entry Level</option>
+                          <option value="Intermediate">Intermediate</option>
+                          <option value="Experienced Professional">Experienced Professional</option>
+                          <option value="Department Head">Department Head</option>
+                          <option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
+                        </select>
+                      </div>
+        <!--////////////////////-->
+                      <!-- Ciities criteria-->
+      <div class="bgg col-md-12">';
+//for($i=1; $i<=$count_pre; $i++){
+      foreach ($job_pre as $pre):
+        echo '<div id="Cityfields'.$pre->job_preferences_id.'">
+        <div class="col-md-3 col-sm-6">
+        <label>City:</label>
+        <input type="text" disabled="disabled" class="form-control" selected="selected" value="'.$pre->city.'"/>';
+        echo '
+        </div>
+
+        <!-- Job type -->
+
+        <div class="col-md-3 col-sm-6">
+        <label>Job Type:</label>
+        
+        <input type="text" class="form-control" disabled="disabled" value="'.$pre->job_type.'"/>
+        </div>
+        <!-- job shift-->
+        <div class="col-md-3 col-sm-6">
+        <label>Job Shift:</label>
+        
+        <input type="text" disabled="disabled" class="form-control" value="'.$pre->job_shift.'"/>
+        </div>
+        <!------>
+        <div class="col-md-3 col-sm-6">
+        <label>Del</label>
+        <div class="input-group">
+
+        <a class="btn btn-primary" onclick="del_fields('.$pre->job_preferences_id.');"><i class="fa fa-close"></i></a>
+        </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="content">
+
+        </div>
+        </div>';
+
+      endforeach;
+
+      echo '<div class="form-group col-sm-3">
+      <label>ADD</label>
+      <div class="input-group">
+
+      <a class="btn btn-primary" onclick="add_modal_area();"><i class="fa fa-plus"></i></a>
+      </div>
+      </div>
+      <div class="clearfix"></div>
+      <div id="content_modal_area">
+
+      </div>
+      </div>
+      <!------>
+       <!-- ///////////////////    -->          
+                   
+                      <div class="col-md-4 col-sm-6">
+                        <label>Year of Experience Required</label>
+                        <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req" value="'.$job->job_experience.'">
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Total positions</label>
+                         <input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" value="'.$job->total_positions.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Working Hours</label>
+                        <input id="working_hour" name="working_hour" type="number" class="form-control" placeholder="Enter hours in Numbers" value="'.$job->working_hours.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Minimum Salary:</label>
+                        <input id="min_salary" name="min_salary" type="number" class="form-control" placeholder="just Enter Amount" value="'.$job->min_salary.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Maximum Salary:</label>
+                        <input id="max_salary" name="max_salary" type="number" class="form-control" placeholder="just Enter Amount" value="'.$job->max_salary.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Last Apply Date</label>
+                        <input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->last_apply_date.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Post visibility Date:</label>
+                        <input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->post_visibility_date.'"/>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Gender Preferences</label>
+                        <select name="selected_gender" class="form-control" id="selected_gender">
+                        <option value="'.$job->selected_gender.'" selected="selected">'.$job->selected_gender.'</option>
+                                  <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                      <option value="None">None</option>
+                                    </select>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <label>Prefered Age Group</label>
+                        <select name="prefered_age" class="form-control" id="prefered_age">
+                                      <option selected="selected" disabled value="'.$job->prefered_age.'">'.$job->prefered_age.'</option>
+                                      <option value="under 20">Under 20</option>
+                                      <option value="20 to 30">20 to 30</option>
+                                      <option value="30 to 40">30 to 40</option>
+                                      <option value="40 to 50">40 to 50</option>
+                                      <option value="Above 50">Above 50</option>
+                                    </select>
+                      </div>
+                      <!-- ////////////////////-->
+
+                       <!--Career criteria -->
+      <div class="bgg col-md-12">';
+      foreach ($job_qual as $quali):
+        echo '<div id="fields'.$quali->job_qual_id.'"><!-- Search Result Title-->
+        <div class="col-md-4 col-sm-4">
+        <label>Required Qualification:</label>
+        <input type="text" class="form-control" value="'.$quali->req_qualification.'" disabled="disabled" class="form-control"/>';
+
+
+        echo '
+        </div>
+        
+        <!-- required degree level-->
+        <div class="col-md-4 col-sm-4">
+        <label>Required Degree Level:</label>
+        <input type="text" value="'.$quali->req_degree_level.'" disabled="disabled" class="form-control"/>';
+        echo '
+        </div>
+        <!------>
+        <div class="col-md-4 col-sm-4">
+        <label>Del</label>
+        <div class="input-group">
+
+        <a class="btn btn-primary" onclick="del_qual_area('.$quali->job_qual_id.');"><i class="fa fa-close"></i></a>
+        </div>
+        </div>
+        <div class="clearfix"></div>
+        </div>';
+      endforeach;
+      echo '
+
+      <div class="form-group col-sm-3">
+      <label>ADD</label>
+      <div class="input-group">
+
+      <a class="btn btn-primary" onclick="add_modal_qual_area();"><i class="fa fa-plus"></i></a>
+      </div>
+      </div>
+      <div class="clearfix"></div>
+      <div id="content_modal_qual">
+
+      </div>
+
+      </div>
+      <!---end criteria--->
+
+                      <!-- ////////////////////-->
+                    
+                    <div class="col-md-12 col-sm-12">
+                        <label>Information About Post</label>
+                        <textarea class="form-control" id="post_information" name="user_info" class="user_info">'.$job->job_post_info.'</textarea>
+                      </div>
+                      
+                    
+                    </div>
+                    
+                  
+    <!-- end form -->
+
+    </div>
+    <div class="modal-footer"> <!-- modal footer -->
+    <input type="submit" class="btn btn-success" value="Update Post"/>
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+    </div>
+     </form>
+    </div>
+    </div>
+    </div>';
+}
+
+ public function delQualFrontField(Request $request){
+     $id = $request->post('x');
+     if(DB::table('job_req_qualifications')->where(['job_qual_id' => $id])->delete()){
+       echo $id;
+     }
+   }
+  public function delCityFrontField(Request $request){
+     $id = $request->post('x');
+     if(DB::table('job_preferences')->where(['job_preferences_id' => $id])->delete()){
+       echo $id;
+     }
+   }
+
+   public function doPostUpdateFront(Request $request){
+     $current_date = date("Y.m.d h:i:s");
+    $j_post= array(
+      'job_title' => $request->post('u_posted_job_title'), 
+      'job_skills' => $request->post('u_skill_tags'), 
+      'functional_area' => $request->post('n_req_functional_area'),
+      'req_major' => $request->post('n_req_major'),
+      'req_industry' => $request->post('req_industry'), 
+      'req_career_level' => $request->post('req_career_level'),
+      'job_experience' => $request->post('job_exp_req'), 
+      'total_positions' => $request->post('total_positions'), 
+      'working_hours' => $request->post('working_hour'), 
+      'min_salary' => $request->post('min_salary'), 
+      'max_salary' => $request->post('max_salary'), 
+      'last_apply_date' => $request->post('last_apply_date'), 
+      'post_visibility_date' => $request->post('post_visibility_date'),
+      'selected_gender' => $request->post('selected_gender'), 
+      'prefered_age' => $request->post('prefered_age'),
+      'job_post_info' =>$request->post('user_info'),
+      'updated_at' => $current_date
+    );
+      $p_id=$request->post('org_post');//1
+      if(DB::table('Organization_posts')->where(['post_id'=>$p_id])->update($j_post)){
+       $info=DB::table('Organization_posts')->where(['post_id'=>$p_id])->first();
+             $o_id=$info->company_id;//27
+            //print_r($j_post);
+             echo $current_date;
+           }
+
+      //start if city
+
+           if($request->has('selected_city')){
+            echo $value = count($_POST['selected_city']);
+
+              //start 
+
+            foreach($_POST['selected_city'] as $row){
+                        //echo "Value".$row."<br/>\n";
+              $cities[] = $row;
+            }
+            foreach($_POST['selected_type'] as $row){
+                        //echo "Value".$row."<br/>\n";
+              $types[] = $row;
+            }
+            foreach($_POST['selected_shift'] as $row){
+                        //echo "Value".$row."<br/>\n";
+              $shifts[] = $row;
+            }
+            for ($i=0; $i<$value ; $i++) {
+                        // echo $cities[$i];
+              $city_criteria=array(
+               'city'=>$cities[$i],
+               'job_type'=>$types[$i],
+               'job_shift'=>$shifts[$i],
+               'post_id'=>$p_id,
+               'company_id'=>$o_id
+             );
+              DB::table('job_preferences')->insert($city_criteria);
+            }
+             //end
+          }
+
+      //end if city
+
+      //start if qualification
+
+          if($request->has('selected_qualificaltion')){
+
+            $val_qual=count($_POST['selected_qualificaltion']);
+
+            foreach($_POST['selected_qualificaltion'] as $row){
+                      //echo "Value".$row."<br/>\n";
+              $quals[] = $row;
+            }
+            
+            foreach($_POST['req_degree'] as $row){
+                      //echo "Value".$row."<br/>\n";
+              $degrees[] = $row;
+            }
+            for ($i=0; $i<$val_qual ; $i++) {
+                      // echo $cities[$i];
+              $qual_criteria=array(
+               'req_qualification'=>$quals[$i],
+               'req_degree_level'=>$degrees[$i],
+               'post_id'=>$p_id,
+               'company_id'=>$o_id
+             );
+              DB::table('job_req_qualifications')->insert($qual_criteria);
+
+            }
+          }
+          return redirect('company-profile')->with('success','Your  Post Successfully Updated!');
+   }
 
 
 }

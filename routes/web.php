@@ -71,16 +71,18 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 
 
 Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyEmailVerify');
-Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData")->middleware('CheckCompanyEmailVerify');
-Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData")->middleware('CheckCompanyEmailVerify');
-
-Route::prefix('company-profile')->group(function (){
-	Route::any('adding-org-information',"site_controllers\CompanyProfile@addingOrgRemainingData")->middleware('CheckCompanyEmailVerify');
-	Route::any('front-org-post-job',"site_controllers\CompanyProfile@frontOrgPostJob")->middleware('CheckCompanyEmailVerify');
-});
-
+Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData");
+Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData");
+Route::any('adding-org-information',"site_controllers\CompanyProfile@addingOrgRemainingData");
+Route::any('front-org-post-job',"site_controllers\CompanyProfile@frontOrgPostJob");
 Route::any('update-company-social-links',"site_controllers\CompanyProfile@updateSocialLinks");
-
+Route::any('view-post-single-private',"site_controllers\CompanyProfile@viewPrivateSinglePost");
+Route::any('delete-front-post',"site_controllers\CompanyProfile@deletePostSingleFront");
+Route::any('update-post-single-private',"site_controllers\CompanyProfile@updatePostSingleFront");
+Route::any('fetch-cities-preferences-front',"site_controllers\CompanyProfile@fetchCitiesPreferencesFront");
+Route::any('del-qual-field-front',"site_controllers\CompanyProfile@delQualFrontField");
+Route::any('del-city-field-front',"site_controllers\CompanyProfile@delCityFrontField");
+Route::any('post-update-data-front',"site_controllers\CompanyProfile@doPostUpdateFront");
 
 
 //   CompanyEmailVerification Controller //

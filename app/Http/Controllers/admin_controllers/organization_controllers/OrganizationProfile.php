@@ -392,7 +392,7 @@ class OrganizationProfile extends Controller
         <select name="n_req_major" class="form-control" placeholder="Select Functional Area" id="n_req_major">
       <option value="'.$job->req_major.'" selected="selected">'.$job->req_major.'</option>';
       foreach($area_majors as $m):
-        echo '<option value="'.$m->major_title.'">'.$m->major_title.'</option>';
+        echo '<option id="industry-option" value="'.$m->major_title.'">'.$m->major_title.'</option>';
       endforeach;
       echo '</select>
          <!--<input type="text" disabled="disabled" class="form-control" value="/*$quali->req_majors*/"/>-->';

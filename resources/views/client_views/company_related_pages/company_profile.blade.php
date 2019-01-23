@@ -141,7 +141,7 @@
 								<!-- Start new posts Sec -->
 								<div id="new-job" class="tab-pane fade">
 									<h3>New Job Post</h3>
-									<form method="post" action="{{url('company-profile/front-org-post-job')}}">
+									<form method="post" action="{{url('front-org-post-job')}}">
 										@csrf
 										<div class="edit-pro">
 											<div class="col-md-4 col-sm-6">
@@ -363,7 +363,7 @@
 			<div class="row">
 				@foreach($fetch_post as $fetch_post)
 				
-				<div class="col-md-12">
+				<div class="col-md-12" id="post-del{{$fetch_post->post_id}}">
 						<article>
 							<div class="brows-resume">
 								<div class="row">
@@ -463,17 +463,16 @@
 
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name" style="text-align: center;">
-											<span><i class="fa fa-money"></i> 
-											 {{$fetch_post->min_salary}} - {{$fetch_post->max_salary}} Rupees</span>
+											<span><i class="fa fa-yelp"></i> 
+											 Exp. {{$fetch_post->job_experience}} Year</span>
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-2">
 										<div class="mng-resume-action" style="text-align: center;">
 
-											<a href="#" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a> 
-											| <a href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> | 
-											 <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
+											<a type="button" onclick="update_front_post('{{$fetch_post->post_id}}');" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> | 
+											 <a type="button" onclick="delete_front_post('{{$fetch_post->post_id}}');" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
 
 											
 										</div>
@@ -484,13 +483,19 @@
 									<div class="browse-resume-skills">
 										<div class="col-md-9 col-sm-8">
 											<div class="br-resume">
-												<span>css</span><span>html</span><span>photoshop</span><span>wordpress</span>
-												<span>css</span>
+												<?php
+												$str_tag=explode(",", $fetch_post->job_skills);
+												$count_skill= count($str_tag);
+                                                 for($i=0;$i<$count_skill;$i++){
+                                                 	echo "<span>".$str_tag[$i]."</span>";
+                                                 }
+												 ?>
+												
 											</div>
 										</div>
 										<div class="col-md-3 col-sm-4">
 											<div class="browse-resume-exp">
-												<span class="resume-exp">Exp. {{$fetch_post->job_experience}} Year</span>
+												<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view</button></span>
 											</div>
 										</div>
 									</div>
@@ -622,8 +627,7 @@
         										<label>About Company (atleast  20 words):</label>
         											<textarea id="company_info" name="company_info" class="form-control"  placeholder="Enter Some Info About Your Company Here...."></textarea>
         									</div>
-        						</div>
-        					
+        						</div>		
         				</div>
         			</div>
         			<div class="modal-footer"> <!-- modal footer -->
@@ -635,7 +639,13 @@
         	</div>
         </div>
 		<!-- model window end -->
+        <!-- model window for view single post  -->
+        <div id="append-view-post"></div>
+		<!-- model window end -->
 
+		<!-- model window for view single post  -->
+        <div id="append-edit-post"></div>
+		<!-- model window end -->
 
 
 <!-- Profile Upload Model Window -->
@@ -656,9 +666,6 @@
           </div>
         </div>
         <div class="modal-body" id="modal-content">
-         	
-
-
         <div class="row">
         	<br>
         	<div class="col-md-12" style="margin-left:30px;"><input type="file" id="upload"></div>
@@ -669,13 +676,6 @@
                 <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:30px;height:300px;margin-top:30px"></div>
             </div>
         </div>
-
-
-
-
-
-
-
           <div class="modal-footer">
             <button class="btn btn-success upload-result">Upload</button>
          	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
