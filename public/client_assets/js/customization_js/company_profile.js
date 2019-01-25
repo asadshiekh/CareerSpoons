@@ -60,13 +60,13 @@ function delete_front_post(x){
 }
 
 function update_front_post(x){
-alert(x);
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 	$.post("update-post-single-private",{_token:CSRF_TOKEN,x:x},function(data){
-    alert(data);
     $("#append-edit-post").html(data);
 		$("#editpostmodalwindow").modal('show');
+		$('#post_visible').dateDropper();
+		$('#last_apply').dateDropper();
 		CKEDITOR.replace('user_info'); 
 
 		
@@ -108,4 +108,51 @@ function del_fields(x){
     }
   });
   
+}
+
+function update_post_info(x){
+  var y= $("#u_posted_job_title").val();
+  var z= $("#u_total_positions").val();
+  var f= $("#u_job_exp_req").val();
+  var d= $("#n_req_functional_area").val();
+  
+  
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+    //disable the default form submission
+    event.preventDefault();
+  //grab all form data  
+  var formData = new FormData($("#info_post_up")[0]);
+  $.ajax({
+    url: 'post-update-data-front',
+    type: 'POST',
+    data: formData,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (returndata) {
+      $("#editpostmodalwindow").modal('hide');
+      $("#job_name"+x).html(y);
+      $("#position-td"+x).html(" "+z+" Positions");
+      $("#exp-td"+x).html(" "+f+" Year");
+      $("#indus-td"+x).html(" "+d+" ");
+      //$("#up-date-td"+x).html(returndata);
+      var originalColor = $("#post-show"+x).css("background-color");
+      $("#post-show"+x).css("background",'#d8d8d8');
+      swal("Successfully!", "Your Post is Successfully Updated!", "success");
+     setTimeout(function(){
+
+      $("#post-show"+x).css("background",originalColor);
+    },2000);
+
+      //alert(returndata);
+    }
+  });
+
+  return false;
+
 }

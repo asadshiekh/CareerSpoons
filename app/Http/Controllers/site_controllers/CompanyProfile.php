@@ -390,7 +390,7 @@ public function updatePostSingleFront(Request $request){
    echo '<div id="editpostmodalwindow" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true"> 
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
-    <form method="post" action="post-update-data-front">
+    <form method="post" id="info_post_up">
     <div class="modal-header"> <!-- modal header -->
     <button type="button" class="close" 
     data-dismiss="modal" aria-hidden="true">×</button>
@@ -509,11 +509,11 @@ public function updatePostSingleFront(Request $request){
                    
                       <div class="col-md-4 col-sm-6">
                         <label>Year of Experience Required</label>
-                        <input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req" value="'.$job->job_experience.'">
+                        <input type="number" placeholder="Enter Required Experience" class="form-control" name="u_job_exp_req" id="u_job_exp_req" value="'.$job->job_experience.'">
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <label>Total positions</label>
-                         <input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" value="'.$job->total_positions.'"/>
+                         <input id="u_total_positions" name="u_total_positions" type="number" class="form-control" placeholder="Enter in Numbers" value="'.$job->total_positions.'"/>
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <label>Working Hours</label>
@@ -529,11 +529,11 @@ public function updatePostSingleFront(Request $request){
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <label>Last Apply Date</label>
-                        <input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->last_apply_date.'"/>
+                        <input type="text" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="F S- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="'.$job->last_apply_date.'"/>
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <label>Post visibility Date:</label>
-                        <input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->post_visibility_date.'"/>
+                        <input type="text" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="F S- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="'.$job->post_visibility_date.'"/>
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <label>Gender Preferences</label>
@@ -547,7 +547,7 @@ public function updatePostSingleFront(Request $request){
                       <div class="col-md-4 col-sm-6">
                         <label>Prefered Age Group</label>
                         <select name="prefered_age" class="form-control" id="prefered_age">
-                                      <option selected="selected" disabled value="'.$job->prefered_age.'">'.$job->prefered_age.'</option>
+                                      <option selected="selected" value="'.$job->prefered_age.'">'.$job->prefered_age.'</option>
                                       <option value="under 20">Under 20</option>
                                       <option value="20 to 30">20 to 30</option>
                                       <option value="30 to 40">30 to 40</option>
@@ -618,8 +618,10 @@ public function updatePostSingleFront(Request $request){
 
     </div>
     <div class="modal-footer"> <!-- modal footer -->
-    <input type="submit" class="btn btn-success" value="Update Post"/>
+    <div id="foot-p">
+    <button type="button" class="btn btn-success" onclick="update_post_info('.$id.');">Update Post</button>
     <button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
+    </div>
     </div>
      </form>
     </div>
@@ -649,8 +651,8 @@ public function updatePostSingleFront(Request $request){
       'req_major' => $request->post('n_req_major'),
       'req_industry' => $request->post('req_industry'), 
       'req_career_level' => $request->post('req_career_level'),
-      'job_experience' => $request->post('job_exp_req'), 
-      'total_positions' => $request->post('total_positions'), 
+      'job_experience' => $request->post('u_job_exp_req'), 
+      'total_positions' => $request->post('u_total_positions'), 
       'working_hours' => $request->post('working_hour'), 
       'min_salary' => $request->post('min_salary'), 
       'max_salary' => $request->post('max_salary'), 
@@ -731,7 +733,8 @@ public function updatePostSingleFront(Request $request){
 
             }
           }
-          return redirect('company-profile')->with('success','Your  Post Successfully Updated!');
+          //return redirect('company-profile')->with('success','Your  Post Successfully Updated!');
+          echo $p_id;
    }
 
 

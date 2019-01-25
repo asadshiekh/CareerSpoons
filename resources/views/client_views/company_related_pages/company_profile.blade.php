@@ -364,7 +364,7 @@
 				@foreach($fetch_post as $fetch_post)
 				
 				<div class="col-md-12" id="post-del{{$fetch_post->post_id}}">
-						<article>
+						<article id="post-show{{$fetch_post->post_id}}">
 							<div class="brows-resume">
 								<div class="row">
 									<!-- <div class="col-md-2 col-sm-2">
@@ -374,8 +374,8 @@
 									</div> -->
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name">
-											<h4>{{$fetch_post->job_title}}</h4>
-											<span class="brows-resume-designation">( {{$fetch_post->req_industry}} )</span>
+											<h4 id="job_name{{$fetch_post->post_id}}">{{$fetch_post->job_title}}</h4>
+											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">{{$fetch_post->req_industry}} </i>)</span>
 
 											<span class="cand-status"><i class="far fa-clock"></i> <?php 
 
@@ -441,7 +441,7 @@
 									
 									<div class="col-md-2 col-sm-2">
 										<div class="brows-resume-name">
-											<span><i class="fas fa-user-plus">&nbsp; 
+											<span><i class="fas fa-user-plus" id="position-td{{$fetch_post->post_id}}">&nbsp; 
 												<?php 
 
 													if($fetch_post->total_positions>1){
@@ -463,8 +463,9 @@
 
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name" style="text-align: center;">
-											<span><i class="fa fa-yelp"></i> 
-											 Exp. {{$fetch_post->job_experience}} Year</span>
+											<span><i class="fa fa-yelp"></i>
+											Exp. 
+											  <span id="exp-td{{$fetch_post->post_id}}">{{$fetch_post->job_experience}} Year</span></span>
 										</div>
 									</div>
 
@@ -726,6 +727,12 @@
     background: white;
     cursor: inherit;
     display: block;
+}
+#foot-p{
+	float: left;
+	padding-left:5%;
+	display: block;
+	padding-top: 3%;
 }
 
 	   </style>
