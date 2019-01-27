@@ -21,6 +21,7 @@ function add_qual_front_area(){
   // $("#content_modal_qual").html(data);
 });
 }
+
 function view_post_private(x){
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
@@ -116,7 +117,7 @@ function update_post_info(x){
   var f= $("#u_job_exp_req").val();
   var d= $("#n_req_functional_area").val();
   
-  
+
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -140,7 +141,8 @@ function update_post_info(x){
       $("#position-td"+x).html(" "+z+" Positions");
       $("#exp-td"+x).html(" "+f+" Year");
       $("#indus-td"+x).html(" "+d+" ");
-      //$("#up-date-td"+x).html(returndata);
+       
+
       var originalColor = $("#post-show"+x).css("background-color");
       $("#post-show"+x).css("background",'#d8d8d8');
       swal("Successfully!", "Your Post is Successfully Updated!", "success");
@@ -149,10 +151,40 @@ function update_post_info(x){
       $("#post-show"+x).css("background",originalColor);
     },2000);
 
-      //alert(returndata);
+      //alert(returndata);<?php
+
     }
   });
 
   return false;
 
+}
+
+function update_org_pass(){
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+       var y= $("#current_password").val();
+       var x= $("#new_password").val();
+       $.post("company-update-password",{_token:CSRF_TOKEN,x:x,y:y},function(data){
+        if(data == "yes"){
+          document.getElementById("updatepassform").reset();
+          swal("Successfully!", "Your Password is Successfully Updated!", "success");
+          $("#password-error").html(" ");
+        }else{
+          $("#password-error").html(" **Invalid Password** ");
+        }
+      });
+}
+function update_email_org(){
+   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+       var y= $("#curr_password").val();
+       var x= $("#new_email").val();
+       $.post("company-update-email",{_token:CSRF_TOKEN,x:x,y:y},function(data){
+        if(data == "yes"){
+          document.getElementById("updateEmailform").reset();
+          swal("Successfully!", "Your Email is Successfully Updated!", "success");
+          $("#email-error").html(" ");
+        }else{
+          $("#email-error").html(" **Invalid Password** ");
+        }
+      });
 }

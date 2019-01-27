@@ -12,18 +12,24 @@ class CompanyProfile extends Controller
     public function viewCompanyProfile(Request $request){
         
         $fetch_city=DB::table('Add_cities')->get();
+        $fetch_up_city=$fetch_city;
         $industry=DB::table('company_industries')->get();
+        $fetch_up_indus=$industry;
         $id=$request->session()->get('company_id');
         $degree=DB::table('Add_degreelevel')->get();
         $major=DB::table('Add_major')->get();
         $area=DB::table('Add_functionalarea')->get();
         $qual=DB::table('Add_qualification')->get();
+        $fetch_up_type=DB::table('company_types')->get();
+        $fetch_links=DB::table('add_organization_social_link')->where(['organization_id'=>$id])->first();
+
         $fetch_org=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+        $data=$fetch_org;
         $fetch_post=DB::table('organization_posts')->where(['company_id'=>$id])->get();
         $fetch_pic=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
         $fetch_links=DB::table('add_organization_social_link')->where(['organization_id'=>$request->session()->get('company_id')])->first();
         
-    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post,'fetch_links'=>$fetch_links]);
+    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post,'fetch_links'=>$fetch_links,'data'=>$data,'fetch_up_indus'=>$fetch_up_indus,'fetch_up_city'=>$fetch_up_city,'fetch_up_type'=>$fetch_up_type,'fetch_links'=>$fetch_links]);
     }
     public function PreferencesCitiesData(){
       $city=DB::table('Add_cities')->get();
@@ -736,6 +742,98 @@ public function updatePostSingleFront(Request $request){
           //return redirect('company-profile')->with('success','Your  Post Successfully Updated!');
           echo $p_id;
    }
+   public function doUpdateBioPost(Request $request){
+    //echo $request->post("update_bio");
+    $bio=array(
+      'company_info'=>$request->post("update_bio")
+    );
+    if(DB::table("add_organizations")->update($bio)){
+     return redirect('company-profile')->with('success','Your  Bio Successfully Updated!');
 
+    }
+   }
+
+   public function doUpdateOrgFront(Request $request){
+    $current_date = date("Y.m.d h:i:s");
+    $id= $request->session()->get("company_id");
+    $up_organization=array(
+      "company_name" => $request->post('new_company_name'),
+      "company_type" => $request->post('new_selected_company_type'),
+      "company_city" => $request->post('new_selected_city'),
+      "company_branch" => $request->post('new_company_branch_name'),
+      "company_phone" => $request->post('new_company_phone'),
+      "company_website" => $request->post('new_company_website'),
+      "company_employees" => $request->post('new_selected_employees'),
+      "company_industry" => $request->post('new_selected_industry'),
+      "company_since" => $request->post('new_company_since'),
+      "company_location" => $request->post('new_company_location'),
+      "updated_at" => $current_date
+    );
+    if(DB::table('Add_organizations')->where(['company_id'=>$id])->update($up_organization)){
+      return redirect('company-profile')->with('success','Your Information Successfully Updated!');
+     
+    }
+   }
+  public function doUpdateOrgPassFront(Request $request){
+  $current_pass=$request->post("y");
+  $new_pass=$request->post("x");
+  $id= $request->session()->get("company_id");
+  $info= DB::table('Add_organizations')->where('company_id','=',$id)->select("company_password")->first();
+       $pass=$info->company_password;
+    if($current_pass == $pass){
+        $for_up=array(
+          "company_password" =>$new_pass
+        );
+        if(DB::table('Add_organizations')->where('company_id','=',$id)->update($for_up)){
+          $data="yes";
+
+          return $data;
+        }
+    }else{
+      $error="no";
+
+      return $error;
+    }
+  }
+  public function doUpdateOrgEmailFront(Request $request){
+  $current_pass=$request->post("y");
+  $new_email=$request->post("x");
+  $id= $request->session()->get("company_id");
+  $info= DB::table('Add_organizations')->where('company_id','=',$id)->select("company_password")->first();
+       $pass=$info->company_password;
+
+        if($current_pass == $pass){
+          $for_up=array(
+            "company_email"=>$new_email
+          );
+          if(DB::table('Add_organizations')->where('company_id','=',$id)->update($for_up)){
+              $data="yes";
+              return $data;
+          }
+       }else{
+        $error="no";
+        return $error;
+        }
+  }
+
+  public function doUploadOrgImgFront(Request $request){
+     $id=$request->session()->get("company_id");
+     $data = $request->image;
+      
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        
+        $data = base64_decode($data);
+        $imageName = time().'.png';
+        $destinationPath = 'uploads/organization_images/';
+        $image = file_put_contents($destinationPath.$imageName,$data);
+         $org_image= array(
+            'company_img' => $imageName
+          );
+          $data = DB::table('upload_org_img')->where(['company_id'=>$id])->update($org_image);
+        
+
+        echo $imageName;
+  }
 
 }

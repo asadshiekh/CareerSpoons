@@ -746,6 +746,10 @@
 			<script>
 				$('#company_s').dateDropper();
 			</script>
+			
+			<script>
+				$('#new_company_since').dateDropper();
+			</script>
 
 
 
@@ -800,6 +804,9 @@
 
 			<script>
 				CKEDITOR.replace( 'company_info' );	
+			</script>
+			<script>
+				CKEDITOR.replace( 'update_bio' );	
 			</script>
 
 

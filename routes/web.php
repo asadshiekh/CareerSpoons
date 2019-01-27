@@ -83,7 +83,11 @@ Route::any('fetch-cities-preferences-front',"site_controllers\CompanyProfile@fet
 Route::any('del-qual-field-front',"site_controllers\CompanyProfile@delQualFrontField");
 Route::any('del-city-field-front',"site_controllers\CompanyProfile@delCityFrontField");
 Route::any('post-update-data-front',"site_controllers\CompanyProfile@doPostUpdateFront");
-
+Route::any('update-bio-front',"site_controllers\CompanyProfile@doUpdateBioPost");
+Route::any('update-org-info-front',"site_controllers\CompanyProfile@doUpdateOrgFront");
+Route::any('company-update-password',"site_controllers\CompanyProfile@doUpdateOrgPassFront");
+Route::any('company-update-email',"site_controllers\CompanyProfile@doUpdateOrgEmailFront");
+Route::any('company-upload-image',"site_controllers\CompanyProfile@doUploadOrgImgFront");
 
 //   CompanyEmailVerification Controller //
 /*---------------------------------------------------------------------------------------*/

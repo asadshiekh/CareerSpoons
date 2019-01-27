@@ -17,7 +17,11 @@
                 <div class="row">
                     
 
-                    <div class="detail-pic"><img src="{{url('uploads/organization_images/')}}/{{$fetch_pic->company_img}}" class="img" alt="" /><a data-toggle="modal" data-target="#uploadOrganization_profile" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+                    <div class="detail-pic">
+                    	<div id="Orgimg-div">
+                    	<img src="{{url('uploads/organization_images/')}}/{{$fetch_pic->company_img}}" class="img" alt="" />
+                        </div>
+                    	<a data-toggle="modal" data-target="#uploadOrganization_profile" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
 
 
                     <div class="detail-status"><span>Active Now</span></div>
@@ -52,11 +56,11 @@
                     <div class="detail pannel-footer">
                         <div class="col-md-5 col-sm-5">
                             <ul class="detail-footer-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="{{$fetch_links->organization_fackbook}}"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="{{$fetch_links->organization_google}}"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="{{$fetch_links->organization_twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="{{$fetch_links->organization_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+                                
                             </ul>
                         </div>
                         @if(Session::get('registeration_process')=="N")
@@ -101,21 +105,33 @@
 						<li><a data-toggle="tab" href="#new-job">New-Job-Post</a></li>
 						<li><a data-toggle="tab" href="#total-posts">Total-Posts</a></li>
 						<li><a data-toggle="tab" href="#social_media">Social-Media</a></li>
-						<li><a data-toggle="tab" href="#setting">Settings <span class="info-bar">6</span></a></li>
+						<li><a data-toggle="tab" href="#setting">Settings</a></li>
 						<li><a data-toggle="tab" href="#insights">Insights</a></li>
 						<li><a data-toggle="tab" href="#reviews">Reviews</a></li>
 					</ul>
 							
 							<!-- Start Bio Sec -->
 							<div class="tab-content">
+
 								<div id="bios" class="tab-pane fade in active">
 									<h3>You Bio</h3>
-									<p><?php
-				                      $fetch_org->company_info  = str_ireplace('<p>','',$fetch_org->company_info);
-				                      echo $fetch_org->company_info  = str_ireplace('</p>','',$fetch_org->company_info);
+									<p><!-- <?php
+				                      // $fetch_org->company_info  = str_ireplace('<p>','',$fetch_org->company_info);
+				                      // echo $fetch_org->company_info  = str_ireplace('</p>','',$fetch_org->company_info);
 
-				                      ?></p>
+				                      ?> -->
+				                     
+										<form method="post" action="update-bio-front">
+				                      	@csrf
+				                      	<textarea name="update_bio" id="update_bio">{{$fetch_org->company_info}}</textarea>
+									
+				                  </p>
+				                      <div class="col-sm-12">
+				                      	<button type="submit" class="update-btn">Update Bio</button>
+				                      </div>
+				                      <br>
 								</div>
+								</form>
 								<!-- End Bio Sec -->
 							<!-- Start All Sec -->
 							
@@ -135,6 +151,10 @@
 				                      <li><span>Location:</span>{{$fetch_org->company_location}}</li>
 										
 									</ul>
+									 <div class="col-sm-12">
+				                      	<button type="submit" data-toggle="modal" data-target="#updatedetailfront" title="edit" class="update-btn">Update Info</button>
+				                      </div>
+				                      <br>
 								</div>
 								<!-- End info Sec -->
 								
@@ -483,7 +503,7 @@
 								<div class="row extra-mrg row-skill">
 									<div class="browse-resume-skills">
 										<div class="col-md-9 col-sm-8">
-											<div class="br-resume">
+											<div class="br-resume" id="skill-tags">
 												<?php
 												$str_tag=explode(",", $fetch_post->job_skills);
 												$count_skill= count($str_tag);
@@ -523,10 +543,108 @@
 		<!-- End Job List -->
 		<!-- Start Friend List -->
 		<div id="setting" class="tab-pane fade">
-			<h3>Settigs</h3>
-		<div class="row">
-			
-		</div>
+			<h3>Settings</h3>
+			<div class="row">
+				<!-- start email -->
+				<div class="col-xs-12 col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<a id="text-view" type="button" class="form-control" onclick="show_email_area();"><u>Edit Your Email</u></a>
+						<div class="input-group-addon">
+							<i class="fa fa-pencil"></i>
+						</div>
+					</div>
+				</div>
+					<!-- for check -->
+					<div class="col-xs-12 col-md-6 col-md-offset-3" style="border:solid 1px #11b719; margin-bottom: 5%; margin-top:5%;padding: 2%;" id="email-area-setting">
+				          <button type="button" class="close" onclick="hide_email_area();"><i class="fa fa-close"></i></button>
+				          <hr/>
+				        <div class="col-xs-12 col-md-12" id="email-error" style="color: red; text-align: center;">
+				        	
+				        </div>
+				        <form id="updateEmailform">
+					    <div class="col-xs-12 col-md-6">
+							<label> Enter New Email</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Enter Email" name="new_email" id="new_email" />
+								<div class="input-group-addon">
+									<i class="fa fa-envelope"></i>
+								</div>
+							</div>
+					    </div>
+					    <div class="col-xs-12 col-md-6">
+							<label> Enter Current Password</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Enter Password" name="curr_password" id="curr_password" />
+								<div class="input-group-addon">
+									<i class="fa fa-lock"></i>
+								</div>
+							</div>
+					    </div>
+					    <div class="col-xs-12 col-md-6">
+					    	<br/><br/>
+							<a style="font-size:10px; color: grey; text-decoration: underline;" >Forget Email?</a>
+					    </div>
+					    <div class="col-xs-12 col-md-3 col-md-offset-3">
+					    	<br/><br/>
+							<button class="btn btn-success" style="border:none; font-size:10px; color: white;" onclick="update_email_org();">Update Email</button>
+					    </div>
+					    </form>
+
+				    </div>
+
+					<!-- end chek -->
+
+			    <!-- end email -->
+				<!-- for password -->
+				<div class="col-xs-12 col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<a id="text-view" type="button" class="form-control" onclick="show_pass_area();"><u>Edit Your Password</u></a>
+						<div class="input-group-addon">
+							<i class="fa fa-pencil"></i>
+						</div>
+					</div>
+				</div>
+				<!-- for check -->
+					<div class="col-xs-12 col-md-6 col-md-offset-3" style="border:solid 1px #11b719; margin-bottom: 5%; margin-top:5%;padding: 2%;" id="password-area-setting">
+				          <button type="button" class="close" onclick="hide_pass_area();"><i class="fa fa-close"></i></button>
+				          <hr/>
+				        <div class="col-xs-12 col-md-12" id="password-error" style="color: red; text-align: center;">
+				        	
+				        </div>
+				        <form id="updatepassform">
+					    <div class="col-xs-12 col-md-6">
+							<label> Enter New Password</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="New Password" name="new_password" id="new_password" />
+								<div class="input-group-addon">
+									<i class="fa fa-lock"></i>
+								</div>
+							</div>
+					    </div>
+					    <div class="col-xs-12 col-md-6">
+							<label> Enter Current Password</label>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Old Password" name="current_password" id="current_password" />
+								<div class="input-group-addon">
+									<i class="fa fa-lock"></i>
+								</div>
+							</div>
+					    </div>
+					    <div class="col-xs-12 col-md-6">
+					    	<br/><br/>
+							<a style="font-size:10px; color: grey; text-decoration: underline;" >Forget Password?</a>
+					    </div>
+					    <div class="col-xs-12 col-md-4 col-md-offset-2">
+					    	<br/><br/>
+							<button type="button" class="btn btn-success" style="border:none; font-size:10px; color: white;margin-left: 8%;" onclick="update_org_pass();">Update Password</button>
+					    </div>
+						</form>
+
+				    </div>
+
+					<!-- end chek -->
+				<!-- end password -->
+			</div>
 		</div>
 		<!-- End Friend List -->
 
@@ -648,6 +766,99 @@
         <div id="append-edit-post"></div>
 		<!-- model window end -->
 
+<!-- edit detail -->
+<div id="updatedetailfront" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Your Information</h4>
+         
+        </div>
+        <div class="modal-body" id="modal-content">
+        	<div class="row" style="padding: 5%;">
+        		<form action="{{url('update-org-info-front')}}" method="post">
+        		@csrf
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company Name</label>
+        			<input class="form-control" placeholder="Enter Company Name" name="new_company_name" id="new_company_name" value="{{$data->company_name}}" />
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company type</label>
+        			<select name="new_selected_company_type" class="form-control" placeholder="select no of Employees" id="new_selected_company_type">
+					<option id="type-option" value="{{$data->company_type}}" selected="selected">{{$data->company_type}}</option>
+					@foreach($fetch_up_type as $do_type)
+					<option id="type-option" value="{{$do_type->company_type_name}}">{{$do_type->company_type_name}}</option>
+					@endforeach
+					</select>
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>City</label>
+        			<select name="new_selected_city" class="form-control" placeholder="select city" id="new_selected_city">
+					<option id="city-option" value="{{$data->company_city}}"  selected="selected">{{$data->company_city}}</option>
+                    @foreach($fetch_up_city as $do_city)
+					<option id="city-option" value="{{$do_city->company_city_name}}">{{$do_city->company_city_name}}</option>
+					@endforeach
+
+					</select>
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Branch Name OR Code</label>
+        			<input type="text" class="form-control" placeholder="Enter Branch Name or Code" name="new_company_branch_name" id="new_company_branch_name" value="{{$data->company_branch}}" />
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company Phone no</label>
+        			<input type="text" placeholder="Enter Phone No" class="form-control" name="new_company_phone" id="new_company_phone" value="{{$data->company_phone}}" />
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company Website Link</label>
+        			<input type="link" placeholder="Insert Website Link Here" class="form-control" name="new_company_website" id="new_company_website" value="{{$data->company_website}}" />
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company Employees</label>
+        			<select class="form-control" id="new_selected_employees" name="new_selected_employees">
+					<option value="{{$data->company_employees}}" selected="selected">{{$data->company_employees}}</option>
+					<option value="Start Up">Start Up</option>
+					<option value="1 to 15">1 to 15</option>
+					<option value="15 to 25">15 to 25</option>
+					<option value="25 to 50">25 to 50</option>
+					<option value="50 to 100">50 to 100</option>
+					<option value="100 to 200">100 to 200</option>
+					<option value="more then 200">more then 200</option>
+					</select>
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company Industry</label>
+        			<select name="new_selected_industry" class="form-control" placeholder="select industry" id="new_selected_industry">
+					<option id="industry-option" selected="selected" value="{{$data->company_industry}}">{{$data->company_industry}}</option>
+					@foreach($fetch_up_indus as $do_indus)
+					<option id="industry-option" value="{{$do_indus->company_industry_name}}">{{$do_indus->company_industry_name}}</option>
+					@endforeach
+					</select>
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company since</label>
+        			<input type="date" class="form-control" name="new_company_since" id="new_company_since"  data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="{{$data->company_since}}" data-default-date="{{$data->company_since}}" />
+        			<!-- <input type="date" data-default-date="{{$data->company_since}}" id="new_company_since" name="new_company_since" class="form-control" data-min-year="1970" data-max-year="2030"> -->
+        		</div>
+        		<div class="col-md-6 col-sm-6">
+        			<label>Company location OR Address</label>
+        			<input id="new_company_location" name="new_company_location" class="form-control" placeholder="Enter Address Here" value="{{$data->company_location}}" />
+        		</div>
+
+        	</div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success upload-result">Update</button>
+         	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      </form>
+        </div>
+      </div>
+  </div>
+</div>
+<!-- end modal window -->
 
 <!-- Profile Upload Model Window -->
 
@@ -667,21 +878,23 @@
           </div>
         </div>
         <div class="modal-body" id="modal-content">
+        
         <div class="row">
         	<br>
-        	<div class="col-md-12" style="margin-left:30px;"><input type="file" id="upload"></div>
+        	<div class="col-md-12" style="margin-left:30px;"><input type="file" id="upload" name="org_img"></div>
             <div class="col-md-6 text-center">
                 <div id="upload-demo" style="width:350px"></div>
             </div>
-            <div class="col-md-6">
+           <!--  <div class="col-md-6">
                 <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:30px;height:300px;margin-top:30px"></div>
-            </div>
+            </div> -->
         </div>
-          <div class="modal-footer">
-            <button class="btn btn-success upload-result">Upload</button>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success upload-result">Upload</button>
          	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
+        
       </div>
   </div>
 </div>
@@ -691,42 +904,46 @@
 
 
 
-		<style type="text/css">
-		.bgg{
-			padding: 2%;
-			float: left;
-			background-color: #F1F2F2;
-			margin-bottom: 10px;
-		}
-		#butn{
-			height: 43px;
-			padding-top: 4%;
-			border-radius: 25%;
-			border:none;
-		}
-		#del_butn{
-			margin-top: 3%;
-			border-radius: 25%;
-			border:none;
-		}
-		.btn-file {
-    position: relative;
-    overflow: hidden;
+<style type="text/css">
+#text-view:hover {
+	cursor:pointer;
+	color: grey;
+}
+.bgg{
+	padding: 2%;
+	float: left;
+	background-color: #F1F2F2;
+	margin-bottom: 10px;
+}
+#butn{
+	height: 43px;
+	padding-top: 4%;
+	border-radius: 25%;
+	border:none;
+}
+#del_butn{
+	margin-top: 3%;
+	border-radius: 25%;
+	border:none;
+}
+.btn-file {
+	position: relative;
+	overflow: hidden;
 }
 .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
 }
 #foot-p{
 	float: left;
@@ -735,7 +952,7 @@
 	padding-top: 3%;
 }
 
-	   </style>
+</style>
 	   <script type="text/javascript">
 		$(function() {
 
@@ -810,30 +1027,18 @@
 			        //alert(resp);
 
 			        $.ajax({
-			            url: "",
+			            url: "company-upload-image",
 			            type: "post",
 			            data: {_token:CSRF_TOKEN,"image":resp},
 			            success: function (data) {
-			                // html = '<img src="'+resp+'"/>';
-			                // $("#upload-demo-i").html(html);
-			                // html1 = '<a href="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" target="_blank"><img src="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" /></a>';
-			                // $("#image_div").html(html1);
-			                // setTimeout(
-			                // 	function(){
-
-			                // 		swal('Profile Updated Successfully!','','success');
-			                // 	},
-			                // 	500
-			                // 	);
-
-			                // setTimeout(
-			                // 	function(){
-
-			                // 		$("#uploadUser_profile .close").click();
-
-			                // 	},
-			                // 	500
-			                // 	);
+			            // 	 html = '<img src="'+resp+'"/>';        
+					          // $("#upload-demo-i").html(html);
+					          if(data){
+					             html = "<img class='img' src='{{url('uploads/organization_images')}}/"+data+"' alt='Avatar' title='Change the avatar'>";  
+					             $("#Orgimg-div").html(html);
+					            
+					            $("#uploadOrganization_profile .close").click();
+					          }
 			                			                
 			            }
 			        });
@@ -842,6 +1047,24 @@
 
 
 
+			</script>
+			<script type="text/javascript">
+				$(function() {
+					$("#email-area-setting").hide();
+					$("#password-area-setting").hide();
+				});
+				function hide_email_area(){
+					$("#email-area-setting").hide();
+				}
+				function show_email_area(){
+					$("#email-area-setting").show();
+				}
+				function hide_pass_area(){
+					$("#password-area-setting").hide();
+				}
+				function show_pass_area(){
+					$("#password-area-setting").show();
+				}
 			</script>
 
 
