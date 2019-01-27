@@ -586,7 +586,7 @@
 					    </div>
 					    <div class="col-xs-12 col-md-3 col-md-offset-3">
 					    	<br/><br/>
-							<button class="btn btn-success" style="border:none; font-size:10px; color: white;" onclick="update_email_org();">Update Email</button>
+							<button  type="button" class="btn btn-success" style="border:none; font-size:10px; color: white;" onclick="update_email_org();">Update Email</button>
 					    </div>
 					    </form>
 
@@ -685,7 +685,7 @@
         			</div>
         			<div class="modal-body"> <!-- modal body -->
         				<div class="row no-mrg">
-        					<form method="post" action="{{url('company-profile/adding-org-information')}}" enctype="Multipart/form-data">
+        					<form method="post" action="{{url('adding-org-information')}}" enctype="Multipart/form-data">
         						@csrf
         						<div class="edit-pro" style="padding: 5%;">
         							<input type="hidden" name="id" value="{{$fetch_org->company_id}}">
