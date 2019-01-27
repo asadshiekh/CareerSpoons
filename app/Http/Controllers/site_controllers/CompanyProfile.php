@@ -838,9 +838,12 @@ public function updatePostSingleFront(Request $request){
 
 
 
-  public function viewCompanyPublicProfile(){
+  public function viewCompanyPublicProfile(Request $request){
+    $id=$request->session()->get('company_id');
+    $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+    $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
     $about=DB::table('about_us_content')->first();
-    return view('client_views.company_related_pages.company_public_profile',['about'=>$about]);
+    return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts]);
 
   }
 
