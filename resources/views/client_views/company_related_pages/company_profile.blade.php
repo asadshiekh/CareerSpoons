@@ -782,11 +782,11 @@
         		<form action="{{url('update-org-info-front')}}" method="post">
         		@csrf
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Name</label>
+        			<label>Company Name:</label>
         			<input class="form-control" placeholder="Enter Company Name" name="new_company_name" id="new_company_name" value="{{$data->company_name}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company type</label>
+        			<label>Company type:</label>
         			<select name="new_selected_company_type" class="form-control" placeholder="select no of Employees" id="new_selected_company_type">
 					<option id="type-option" value="{{$data->company_type}}" selected="selected">{{$data->company_type}}</option>
 					@foreach($fetch_up_type as $do_type)
@@ -795,7 +795,7 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>City</label>
+        			<label>City:</label>
         			<select name="new_selected_city" class="form-control" placeholder="select city" id="new_selected_city">
 					<option id="city-option" value="{{$data->company_city}}"  selected="selected">{{$data->company_city}}</option>
                     @foreach($fetch_up_city as $do_city)
@@ -805,19 +805,19 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Branch Name OR Code</label>
+        			<label>Branch Name OR Code:</label>
         			<input type="text" class="form-control" placeholder="Enter Branch Name or Code" name="new_company_branch_name" id="new_company_branch_name" value="{{$data->company_branch}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Phone no</label>
+        			<label>Company Phone no:</label>
         			<input type="text" placeholder="Enter Phone No" class="form-control" name="new_company_phone" id="new_company_phone" value="{{$data->company_phone}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Website Link</label>
+        			<label>Company Website Link:</label>
         			<input type="link" placeholder="Insert Website Link Here" class="form-control" name="new_company_website" id="new_company_website" value="{{$data->company_website}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Employees</label>
+        			<label>Company Employees:</label>
         			<select class="form-control" id="new_selected_employees" name="new_selected_employees">
 					<option value="{{$data->company_employees}}" selected="selected">{{$data->company_employees}}</option>
 					<option value="Start Up">Start Up</option>
@@ -839,7 +839,7 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company since</label>
+        			<label>Company since:</label>
         			<input type="date" class="form-control" name="new_company_since" id="new_company_since"  data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="{{$data->company_since}}" data-default-date="{{$data->company_since}}" />
         			<!-- <input type="date" data-default-date="{{$data->company_since}}" id="new_company_since" name="new_company_since" class="form-control" data-min-year="1970" data-max-year="2030"> -->
         		</div>
