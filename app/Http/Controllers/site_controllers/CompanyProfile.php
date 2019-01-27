@@ -836,4 +836,12 @@ public function updatePostSingleFront(Request $request){
         echo $imageName;
   }
 
+
+
+  public function viewCompanyPublicProfile(){
+    $about=DB::table('about_us_content')->first();
+    return view('client_views.company_related_pages.company_public_profile',['about'=>$about]);
+
+  }
+
 }

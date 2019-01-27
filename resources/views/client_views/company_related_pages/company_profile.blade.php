@@ -69,7 +69,7 @@
                         </div>
                         @elseif (Session::get('registeration_process')=="C")
                         <div class="col-md-7 col-sm-7">
-                            <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" class="footer-btn grn-btn" title="">Viewed as Public</a></div>
+                            <div class="detail-pannel-footer-btn pull-right"><a href="company-public-profile" class="footer-btn grn-btn" title="">Viewed as Public</a></div>
                         </div>
                         @endif
                     </div>

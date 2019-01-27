@@ -70,7 +70,7 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 //    CompanyProfile Controller    //
 
 
-Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyEmailVerify');
+Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile");
 Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData");
 Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData");
 Route::any('adding-org-information',"site_controllers\CompanyProfile@addingOrgRemainingData");
@@ -88,6 +88,8 @@ Route::any('update-org-info-front',"site_controllers\CompanyProfile@doUpdateOrgF
 Route::any('company-update-password',"site_controllers\CompanyProfile@doUpdateOrgPassFront");
 Route::any('company-update-email',"site_controllers\CompanyProfile@doUpdateOrgEmailFront");
 Route::any('company-upload-image',"site_controllers\CompanyProfile@doUploadOrgImgFront");
+Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile");
+
 
 //   CompanyEmailVerification Controller //
 /*---------------------------------------------------------------------------------------*/
