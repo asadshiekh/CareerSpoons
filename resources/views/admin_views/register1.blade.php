@@ -37,8 +37,13 @@
 
             <!-- Smart Wizard -->
             <p>form for data.</p> 
-            <button onclick="clickme();">click me</button>     
+            <button onclick="clickme();">click me</button>    
+            @foreach($posts as $post) 
 
+              <p>{{$post->job_title}}</p>
+            @endforeach
+              <div id="grid"></div>
+                 <button type="button" onclick="loadMoreData();">btn</button>
           </div>
         </div>
       </div>
@@ -55,7 +60,62 @@
     notyf.alert('Something Went Worng Plz Try Again');
 
     }
+
   </script>
+  <script type="text/javascript">
+    var pageNumber = 1;
+
+    $(document).ready(function() {
+            $.ajax({
+                type : 'GET',
+                url: "admin-register1?page=" +pageNumber,
+                success : function(data){
+                    pageNumber +=1;
+                        if(data.length == 0){
+                        }else{
+                            $('#grid').append(data.html);
+                        }
+                },error: function(data){
+
+                },
+            })  
+    });
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            $.ajax({
+                type : 'GET',
+                url: "admin-register1?page=" +pageNumber,
+                success : function(data){
+                    pageNumber +=1;
+                        if(data.length == 0){
+                        }else{
+                            $('#grid').append(data.html);
+                        }
+                },error: function(data){
+
+                },
+            })  
+        }
+    });
+
+    function loadMoreData(){
+            $.ajax({
+                type : 'GET',
+                url: "admin-register1?page=" +pageNumber,
+                success : function(data){
+                    pageNumber +=1;
+                        if(data.length == 0){
+                            // :( no more articles
+                        }else{
+                            $('#grid').append(data.html);
+                        }
+                },error: function(data){
+                      alert("no");
+                },
+            })  
+    }
+</script>
 
 
 

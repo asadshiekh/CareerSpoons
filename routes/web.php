@@ -301,7 +301,7 @@ Route::get('admin-pass-reset',"admin_controllers\AdminLogin@viewResetPage");
 Route::post('reset-email-check',"admin_controllers\AdminLogin@doCheckEmail");
 Route::get('admin-dashboard',"admin_controllers\Dashboard@viewIndexPage");
 Route::get('admin-register',"admin_controllers\Dashboard@viewRegisterPage");
-Route::get('admin-register1',"admin_controllers\Dashboard@viewRegister1Page");
+Route::get('admin-register1/{id?}',"admin_controllers\Dashboard@viewRegister1Page");
 Route::get('admin-do-post',"admin_controllers\cv_controllers\AdminJobPost@viewJobPostForm");
 Route::get('log-out',"admin_controllers\Dashboard@logOut");
 
