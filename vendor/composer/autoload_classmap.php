@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\admin_controllers\\Dashboard' => $baseDir . '/app/Http/Controllers/admin_controllers/Dashboard.php',
     'App\\Http\\Controllers\\admin_controllers\\admin_profile\\AdminProfile' => $baseDir . '/app/Http/Controllers/admin_controllers/admin_profile/AdminProfile.php',
     'App\\Http\\Controllers\\admin_controllers\\cv_controllers\\AdminJobPost' => $baseDir . '/app/Http/Controllers/admin_controllers/cv_controllers/AdminJobPost.php',
+    'App\\Http\\Controllers\\admin_controllers\\cv_controllers\\ManageResumeTemplate' => $baseDir . '/app/Http/Controllers/admin_controllers/cv_controllers/ManageResumeTemplate.php',
     'App\\Http\\Controllers\\admin_controllers\\main_controllers\\MainController' => $baseDir . '/app/Http/Controllers/admin_controllers/main_controllers/MainController.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationCity' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationCity.php',
     'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationIndustry' => $baseDir . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationIndustry.php',

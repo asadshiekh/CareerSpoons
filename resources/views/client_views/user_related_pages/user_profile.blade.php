@@ -368,38 +368,20 @@
 
 
 <div class="row">
+  @foreach($templates as $get_templates)
   <div class="col-sm-4 col-md-4">
     <div class="thumbnail">
-      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
+      <img src="{{url('uploads/cv_temp')}}/{{$get_templates->template_folder}}/{{$get_templates->cover_img}}" style="border-radius: 0%;" alt="data">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
+        <h3 style="text-align: center;margin-top: 0px;">{{$get_templates->temp_title}}</h3>
+        <p>{{$get_templates->temp_info}}</p>
+        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="{{url('uploads/cv_temp')}}/{{$get_templates->template_folder}}/{{$get_templates->index_page}}" target="_blank" class="btn btn-default" onclick="target_function('{{$get_templates->template_folder}}','{{$get_templates->css_page}}');" role="button">Preview</a></p>
       </div>
     </div>
   </div>
+  @endforeach
 
-    <div class="col-sm-4 col-md-4">
-    <div class="thumbnail">
-      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
-      </div>
-    </div>
-  </div>
 
-    <div class="col-sm-4 col-md-4">
-    <div class="thumbnail">
-      <img src="{{url('public/client_assets/img/can-2.png')}}" alt="data">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Apply</a> <a href="#" class="btn btn-default" role="button">Preview</a></p>
-      </div>
-    </div>
-  </div>
 </div>
 
 </div>	
@@ -2392,6 +2374,8 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+</script>
+<script type="text/javascript">
 </script>
 
 

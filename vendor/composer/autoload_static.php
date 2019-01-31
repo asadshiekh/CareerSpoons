@@ -384,6 +384,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Controllers\\admin_controllers\\Dashboard' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/Dashboard.php',
         'App\\Http\\Controllers\\admin_controllers\\admin_profile\\AdminProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/admin_profile/AdminProfile.php',
         'App\\Http\\Controllers\\admin_controllers\\cv_controllers\\AdminJobPost' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/cv_controllers/AdminJobPost.php',
+        'App\\Http\\Controllers\\admin_controllers\\cv_controllers\\ManageResumeTemplate' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/cv_controllers/ManageResumeTemplate.php',
         'App\\Http\\Controllers\\admin_controllers\\main_controllers\\MainController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/main_controllers/MainController.php',
         'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationCity' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationCity.php',
         'App\\Http\\Controllers\\admin_controllers\\organization_controllers\\AddOrganizationIndustry' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/organization_controllers/AddOrganizationIndustry.php',

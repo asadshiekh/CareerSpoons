@@ -448,9 +448,10 @@ Route::any('view-faq-page',"admin_controllers\main_controllers\MainController@vi
 Route::any('do_post_faq',"admin_controllers\main_controllers\MainController@doPostFaq");
 Route::any('delete-faq/{id}',"admin_controllers\main_controllers\MainController@doDeleteFaq");
 
-
-
-
+//CV work
+Route::any('view-cv-manage-page',"admin_controllers\cv_controllers\ManageResumeTemplate@viewCVManagePage");
+Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTemplate@addResumeTemp");
+Route::any('show-temp-preview',"admin_controllers\cv_controllers\ManageResumeTemplate@showPreviewTemplate");
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

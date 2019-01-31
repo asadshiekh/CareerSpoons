@@ -344,6 +344,9 @@ class User_Resume_Model extends Model
 
 		return $response;
 	}
+	public function get_cv_templates(){
+		
+	}
 
 
 }

@@ -27,6 +27,7 @@ class UserProfile extends Controller
 		$candidate_hobbies = $obj->get_candidate_hobbies($request->session()->get('id'));
 		$general_info = $obj->get_candidate_info($request->session()->get('id'));
 		$social_link = $obj->get_candidate_social_link($request->session()->get('id'));
+		$templates = DB::table('resume_templates')->get();
 
 		//fetch admin site data 
 		$obj1 =  new ClientSiteModel();
@@ -41,7 +42,7 @@ class UserProfile extends Controller
 
 		// Fetch Eduction of User Number
 
-		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors]);
+		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates]);
 	}
 
 

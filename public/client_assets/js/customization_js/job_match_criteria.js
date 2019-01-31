@@ -19,3 +19,11 @@ function candidate_select_major_onchange(){
   });
 
 }
+
+function target_function(x,y){
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("show-temp-preview",{_token:CSRF_TOKEN,x:x,y:y},function(data){
+        
+       
+  });
+}
