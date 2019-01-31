@@ -7,7 +7,9 @@ function candidate_select_major_onchange(){
    $.post("fetch_candidate_f_area_related_majors",{_token:CSRF_TOKEN,f_area:f_area},function(data){
           $('#candidate_majors_area').empty();
         $.each(data, function( key, value ) {
-             $('#candidate_majors_area').append('<option value="'+ data[key].major_title +'">'+ data[key].major_title +'</option>');
+            var str = data[key].major_title;
+            str = str.replace("_"," ");
+             $('#candidate_majors_area').append('<option value="'+ data[key].major_title +'">'+ str +'</option>');
                 //alert(data[key].major_title);
            });
 

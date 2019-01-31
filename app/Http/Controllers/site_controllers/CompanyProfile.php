@@ -847,4 +847,16 @@ public function updatePostSingleFront(Request $request){
 
   }
 
+
+  public function fetchFunctionalAreaMajors(Request $request){
+
+    $area=$request->post('f_area');
+    $info =DB::table('Add_major')->where(['area_title'=>$area])->get();
+    //return $info;
+    //foreach ($info as $key => $node) {
+    //str_replace('_', '',$key->$node);
+    // }
+    return $info;
+  }
+
 }

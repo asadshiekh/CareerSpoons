@@ -145,7 +145,13 @@
 				                      <li><span>Phone:</span>{{$fetch_org->company_phone}}</li>
 				                      <li><span>Website:</span>{{$fetch_org->company_website}}</li>
 				                      <li><span>Employees:</span>{{$fetch_org->company_employees}}</li>
-				                      <li><span>Industry:</span>{{$fetch_org->company_industry}}</li>
+				                      <li><span>Industry:</span>
+
+				                      	<?php
+				                      	 $fetch_org->company_industry= str_replace("_"," ",$fetch_org->company_industry);
+				                      	 echo $fetch_org->company_industry;
+				                      	?></li>
+				                      
 				                      <li><span>Since:</span>{{$fetch_org->company_since}}</li>
 				                      <li><span>CNIC:</span>{{$fetch_org->company_cnic}}</li>
 				                      <li><span>Location:</span>{{$fetch_org->company_location}}</li>
@@ -174,28 +180,43 @@
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Functional Area</label>
-												<select class="form-control" name="req_functional_area" id="req_functional_area">
-													<option disabled="disabled" hidden="hidden">Select Required Functional area</option>
+												<select class="form-control" name="req_functional_area" id="req_functional_area" onchange="select_functional_area_majors();">
+													<option disabled="disabled" hidden="hidden" selected="selected">Select Required Functional area</option>
 													@foreach($area as $area)
-        											<option id="industry-option" value="{{$area->area_title}}">{{$area->area_title}}</option>
+        											<option id="industry-option" value="{{$area->area_title}}"><?php
+
+        												
+        												$area->area_title= str_replace("_"," ",$area->area_title);
+														echo $area->area_title
+
+        											?>
+        												
+        											</option>
         											@endforeach
 												</select>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Majors</label>
 												<select class="form-control" name="selected_majors" id="selected_majors">
-													<option disabled="disabled" hidden="hidden">Select Required Majors</option>
-													@foreach($major as $major)
-        											<option id="industry-option" value="{{$major->major_title}}">{{$major->major_title}}</option>
-        											@endforeach
+													<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Majors</option>
+
+
+													
 												</select>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label>Industry</label>
 												<select class="form-control" name="req_industry" id="req_industry">
-													<option disabled="disabled" hidden="hidden">Select Required Industry</option>
+													<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Industry</option>
 													@foreach($industry1 as $industry1)
-        											<option id="industry-option" value="{{$industry1->company_industry_name}}">{{$industry1->company_industry_name}}</option>
+        											<option id="industry-option" value="{{$industry1->company_industry_name}}">
+        												<?php
+        											
+        								$industry1->company_industry_name= str_replace("_"," ",$industry1->company_industry_name);
+				                      	 echo $industry1->company_industry_name;
+        												
+        												?>
+        											</option>
         											@endforeach
 												</select>
 											</div>
@@ -368,7 +389,7 @@
 </div>
 <div class="col-sm-12">
 <br>
-<button type="submit" class="update-btn">Update Now</button>
+<button type="submit" id="social_links_update_button" class="update-btn">Update Now</button>
 </div>
 </div>
 </form>
@@ -395,7 +416,14 @@
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name">
 											<h4 id="job_name{{$fetch_post->post_id}}">{{$fetch_post->job_title}}</h4>
-											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">{{$fetch_post->req_industry}} </i>)</span>
+											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">
+											<?php
+
+											
+												$fetch_post->req_industry= str_replace("_"," ",$fetch_post->req_industry);
+												echo $fetch_post->req_industry;
+
+											?> </i>)</span>
 
 											<span class="cand-status"><i class="far fa-clock"></i> <?php 
 
@@ -527,7 +555,6 @@
 
 			    </div>
 				@endforeach	
-			</div>
 			<div class="row">
 				<ul class="pagination">
 					<li><a href="#">«</a></li>
@@ -538,6 +565,8 @@
 					<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
 					<li><a href="#">»</a></li>
 				</ul>
+			</div>
+
 			</div>
 		</div>
 		<!-- End Job List -->
@@ -788,7 +817,7 @@
         		<div class="col-md-6 col-sm-6">
         			<label>Company type:</label>
         			<select name="new_selected_company_type" class="form-control" placeholder="select no of Employees" id="new_selected_company_type">
-					<option id="type-option" value="{{$data->company_type}}" selected="selected">{{$data->company_type}}</option>
+					<option id="type-option" value="{{$data->company_type}}" selected="selected" hidden="hidden" readonly="readonly">{{$data->company_type}}</option>
 					@foreach($fetch_up_type as $do_type)
 					<option id="type-option" value="{{$do_type->company_type_name}}">{{$do_type->company_type_name}}</option>
 					@endforeach
@@ -797,7 +826,7 @@
         		<div class="col-md-6 col-sm-6">
         			<label>City:</label>
         			<select name="new_selected_city" class="form-control" placeholder="select city" id="new_selected_city">
-					<option id="city-option" value="{{$data->company_city}}"  selected="selected">{{$data->company_city}}</option>
+					<option id="city-option" value="{{$data->company_city}}"  selected="selected" hidden="hidden" readonly="readonly">{{$data->company_city}}</option>
                     @foreach($fetch_up_city as $do_city)
 					<option id="city-option" value="{{$do_city->company_city_name}}">{{$do_city->company_city_name}}</option>
 					@endforeach
@@ -819,7 +848,7 @@
         		<div class="col-md-6 col-sm-6">
         			<label>Company Employees:</label>
         			<select class="form-control" id="new_selected_employees" name="new_selected_employees">
-					<option value="{{$data->company_employees}}" selected="selected">{{$data->company_employees}}</option>
+					<option value="{{$data->company_employees}}" hidden="hidden" readonly="readonly" selected="selected">{{$data->company_employees}}</option>
 					<option value="Start Up">Start Up</option>
 					<option value="1 to 15">1 to 15</option>
 					<option value="15 to 25">15 to 25</option>
@@ -832,9 +861,18 @@
         		<div class="col-md-6 col-sm-6">
         			<label>Company Industry</label>
         			<select name="new_selected_industry" class="form-control" placeholder="select industry" id="new_selected_industry">
-					<option id="industry-option" selected="selected" value="{{$data->company_industry}}">{{$data->company_industry}}</option>
+					<option id="industry-option" selected="selected" value="{{$data->company_industry}}" hidden="hidden" readonly="readonly">{{$data->company_industry}}</option>
 					@foreach($fetch_up_indus as $do_indus)
-					<option id="industry-option" value="{{$do_indus->company_industry_name}}">{{$do_indus->company_industry_name}}</option>
+					<option id="industry-option" value="{{$do_indus->company_industry_name}}">
+
+						<?php 
+
+						$do_indus->company_industry_name= str_replace("_"," ",$do_indus->company_industry_name);
+				         echo $do_indus->company_industry_name;
+						
+						?>
+
+					</option>
 					@endforeach
 					</select>
         		</div>

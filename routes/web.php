@@ -88,7 +88,9 @@ Route::any('update-org-info-front',"site_controllers\CompanyProfile@doUpdateOrgF
 Route::any('company-update-password',"site_controllers\CompanyProfile@doUpdateOrgPassFront");
 Route::any('company-update-email',"site_controllers\CompanyProfile@doUpdateOrgEmailFront");
 Route::any('company-upload-image',"site_controllers\CompanyProfile@doUploadOrgImgFront");
+Route::any('fetch_company_f_area_related_majors',"site_controllers\CompanyProfile@fetchFunctionalAreaMajors");
 Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile");
+
 
 
 //   CompanyEmailVerification Controller //

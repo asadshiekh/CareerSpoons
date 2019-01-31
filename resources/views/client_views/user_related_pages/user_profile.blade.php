@@ -244,7 +244,13 @@
 <select class="form-control input-lg" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
 	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Functional Area</option>
 	@foreach($get_area as $value)
-	<option value="{{$value->area_title}}">{{$value->area_title}}</option>
+	<option value="{{$value->area_title}}">
+		<?php
+		
+		$value->area_title= str_replace("_"," ",$value->area_title);
+		echo $value->area_title;
+		?>
+	</option>
 	@endforeach
 </select>
 </div>

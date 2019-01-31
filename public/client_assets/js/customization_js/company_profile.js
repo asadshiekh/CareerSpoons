@@ -188,3 +188,23 @@ function update_email_org(){
         }
       });
 }
+
+function select_functional_area_majors(){
+
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var f_area=$("#req_functional_area").val();
+
+   $.post("fetch_company_f_area_related_majors",{_token:CSRF_TOKEN,f_area:f_area},function(data){
+          
+      //alert(data);
+      $('#selected_majors').empty();
+        $.each(data, function( key, value ) {
+            var str = data[key].major_title;
+            str = str.replace("_"," ");
+             $('#selected_majors').append('<option value="'+ data[key].major_title +'">'+ str +'</option>');
+                //alert(data[key].major_title);
+           });
+
+
+  });
+}

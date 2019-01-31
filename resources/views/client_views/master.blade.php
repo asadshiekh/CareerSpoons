@@ -850,6 +850,8 @@
 							$("#candidate_google_social_link").prop('disabled',false);
 							$("#candidate_twitter_social_link").prop('disabled',false);
 							$("#candidate_linkedin_social_link").prop('disabled',false);
+
+							$("#social_links_update_button").prop("disabled",false);
 						}
 
 						else if(value==false){
@@ -858,6 +860,9 @@
 							$("#candidate_google_social_link").prop('disabled',true);
 							$("#candidate_twitter_social_link").prop('disabled',true);
 							$("#candidate_linkedin_social_link").prop('disabled',true);
+
+						$("#social_links_update_button").prop("disabled",true);
+
 
 						}
 
@@ -1231,6 +1236,9 @@
 					$("#candidate_twitter_social_link").prop('disabled', true);
 					$("#candidate_linkedin_social_link").prop('disabled', true);
 
+					$("#social_links_update_button").prop("disabled",true);
+					$("#social_links_update_button").attr("aria-disabled",true);; 
+
 
 				});
 			</script>
@@ -1250,9 +1258,6 @@
 				}
 			</script>
 		</div>
-
-
-
 
 
 

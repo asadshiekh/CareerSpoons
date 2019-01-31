@@ -65,7 +65,7 @@
 								Company Profile
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
+								<li><a class="dropdown-item" href="{{url('company-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
 								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
@@ -169,7 +169,12 @@
 							<div class="freelance-image"><a href="company-detail.html"><img src="{{url('public/client_assets/img/can-5.jpg')}}" class="img-responsive img-circle" alt=""></a></div>
 							<div class="header-details">
 								<h4>{{$fetch_company->company_name}}</h4>
-								<p>({{$fetch_company->company_industry}})</p>
+								<p>(<?php
+									
+									$fetch_company->company_industry= str_replace("_"," ",$fetch_company->company_industry);
+									echo $fetch_company->company_industry;
+
+								?>)</p>
 								<ul>
 									<li><img class="flag" src="assets/img/gb.svg" alt="">Pakistan</li>
 									<li><div class="verified-action">Verified</div></li>
@@ -239,7 +244,13 @@
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name">
 											<h4 id="job_name{{$fetch_post->post_id}}">{{$fetch_post->job_title}}</h4>
-											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">{{$fetch_post->req_industry}} </i>)</span>
+											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">
+											<?php
+												
+												$fetch_post->req_industry= str_replace("_"," ",$fetch_post->req_industry);
+												echo $fetch_post->req_industry;
+
+											?> </i>)</span>
 
 											<span class="cand-status"><i class="far fa-clock"></i> <?php 
 
@@ -366,9 +377,43 @@
 							</ul>
 						</div>
 						</div>
+						<div class="row no-mrg">
+								<div class="comments-form"> 
+									<div class="section-title2">
+										<h3>Comments (2)</h3>
+									</div>
+									<form>
+									<div class="col-md-6 col-sm-6">
+										<input type="text" class="form-control" placeholder="Your Name">
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<input type="email" class="form-control" placeholder="Your Email">
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<input type="text" class="form-control" placeholder="Your Mobile">
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<input type="text" class="form-control" placeholder="Subject">
+									</div>
+									<div class="col-md-12 col-sm-12">
+										<textarea class="form-control" placeholder="Comment"></textarea>
+									</div>
+									<button class="thm-btn btn-comment" type="submit">submit now</button>
+									</form>
+								</div>
+							</div>
+
+
+
 						
 						
 					</div>
+
+
+
+
+
+
 					<div class="col-md-5 col-sm-5">
 						<!-- Similar Jobs -->
 						<div class="container-detail-box">
@@ -427,6 +472,128 @@
 									</div>
 								</div>
 								
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12">
+												<!-- Similar Jobs -->
+						<div class="container-detail-box">
+						
+							<div class="row">
+								<div class="col-md-12">
+									<h4>Similar Companies</h4>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="grid-slide-2">
+									
+									<!-- Single Freelancer & Premium job -->
+									<div class="freelance-box">
+										<div class="popular-jobs-container">
+											<div class="popular-jobs-box">
+												<span class="popular-jobs-status bg-success">hourly</span>
+												<h4 class="flc-rate">$17/hr</h4>
+												<div class="popular-jobs-box">
+													<div class="popular-jobs-box-detail">
+														<h4>Google Inc</h4>
+														<span class="desination">Software Designer</span>
+													</div>
+												</div>
+												<div class="popular-jobs-box-extra">
+													<ul>
+														<li>Php</li>
+														<li>Android</li>
+														<li>Html</li>
+														<li class="more-skill bg-primary">+3</li>
+													</ul>
+													<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
+												</div>
+											</div>
+											<a href="http://themezhub.com/" class="btn btn-popular-jobs bt-1">View Detail</a>
+										</div>
+									</div>
+									
+									<!-- Single Freelancer & Premium job -->
+									<div class="freelance-box">
+										<div class="popular-jobs-container">
+											<div class="popular-jobs-box">
+												<span class="popular-jobs-status bg-warning">Monthly</span>
+												<h4 class="flc-rate">$570/Mo</h4>
+												<div class="popular-jobs-box">
+													<div class="popular-jobs-box-detail">
+														<h4>Duff Beer</h4>
+														<span class="desination">Marketting</span>
+													</div>
+												</div>
+												<div class="popular-jobs-box-extra">
+													<ul>
+														<li>Php</li>
+														<li>Android</li>
+														<li>Html</li>
+														<li class="more-skill bg-primary">+3</li>
+													</ul>
+													<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
+												</div>
+											</div>
+											<a href="http://themezhub.com/" class="btn btn-popular-jobs bt-1">View Detail</a>
+										</div>
+									</div>
+									
+									<!-- Single Freelancer & Premium job -->
+									<div class="freelance-box">
+										<div class="popular-jobs-container">
+											<div class="popular-jobs-box">
+												<span class="popular-jobs-status bg-info">Weekly</span>
+												<h4 class="flc-rate">$200/We</h4>
+												<div class="popular-jobs-box">
+													<div class="popular-jobs-box-detail">
+														<h4>Cyberdyne Systems</h4>
+														<span class="desination">Human Resource</span>
+													</div>
+												</div>
+												<div class="popular-jobs-box-extra">
+													<ul>
+														<li>Php</li>
+														<li>Android</li>
+														<li>Html</li>
+														<li class="more-skill bg-primary">+3</li>
+													</ul>
+													<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
+												</div>
+											</div>
+											<a href="http://themezhub.com/" class="btn btn-popular-jobs bt-1">View Detail</a>
+										</div>
+									</div>
+									
+									<!-- Single Freelancer & Premium job -->
+									<div class="freelance-box">
+										<div class="popular-jobs-container">
+											<div class="popular-jobs-box">
+												<span class="popular-jobs-status bg-danger">Yearly</span>
+												<h4 class="flc-rate">$2000/Pa</h4>
+												<div class="popular-jobs-box">
+													<div class="popular-jobs-box-detail">
+														<h4>Wayne Enterprises</h4>
+														<span class="desination">App Designer</span>
+													</div>
+												</div>
+												<div class="popular-jobs-box-extra">
+													<ul>
+														<li>Php</li>
+														<li>Android</li>
+														<li>Html</li>
+														<li class="more-skill bg-primary">+3</li>
+													</ul>
+													<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
+												</div>
+											</div>
+											<a href="http://themezhub.com/" class="btn btn-popular-jobs bt-1">View Detail</a>
+										</div>
+									</div>
+							
+								</div>
 							</div>
 							
 						</div>
