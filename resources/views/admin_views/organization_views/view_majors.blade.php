@@ -64,8 +64,18 @@
                   @foreach($all_majors as $all_majors)
                   <tr id="major-tr{{$all_majors->major_id}}"> 
                    <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_majors->major_id}}"></th> 
-                   <td id="major-td{{$all_majors->major_id}}">{{$all_majors->major_title}}</td>
-                   <td id="area-td{{$all_majors->major_id}}">{{$all_majors->area_title}}</td>
+                   <td id="major-td{{$all_majors->major_id}}">
+                    <?php
+                      
+                      $all_majors->major_title= str_replace("_"," ",$all_majors->major_title);
+                      echo $all_majors->major_title;
+                    ?></td>
+                   <td id="area-td{{$all_majors->major_id}}">
+                    <?php
+                    
+                    $all_majors->area_title= str_replace("_"," ",$all_majors->area_title);
+                    echo $all_majors->area_title;
+                    ?></td>
                    <td><a onclick="update_major('{{$all_majors->major_title}}','{{$all_majors->area_title}}','{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_major('{{$all_majors->major_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Major" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
 
                  </tr>
@@ -104,7 +114,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form>
+    <form id="form_add_majors">
      <!--  @csrf -->
      <div class="modal-content">
       <div class="modal-header">
@@ -127,7 +137,12 @@
           <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area">
             <option value="" disabled="disabled" selected="selected">Select Your functional area</option>
             @foreach($all_area as $all_area)
-            <option value="{{$all_area->area_title}}">{{$all_area->area_title}}</option>
+            <option value="{{$all_area->area_title}}">
+            <?php
+              
+              $all_area->area_title= str_replace("_"," ",$all_area->area_title);
+              echo $all_area->area_title;
+            ?></option>
             @endforeach
 
           </select>
@@ -202,6 +217,7 @@
      if (data) {
       var id ="'"+data+"'";
       $("#major-tr").after('<tr id="major-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="major-td'+data+'">'+add_major+'</td><td id="area-td'+data+'">'+area+'</td><td><a onclick="update_major('+c_major+','+c_area+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_major('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+      document.getElementById("form_add_majors").reset();
       $("#myModalmajor .close").click();
 
       setTimeout(

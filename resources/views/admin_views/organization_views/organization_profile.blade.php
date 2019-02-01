@@ -77,7 +77,11 @@
 
             <li>
               <i class="fa fa-briefcase user-profile-icon"></i> 
-              {{$org_page->company_industry}}
+              <?php 
+              
+              $org_page->company_industry= str_replace("_"," ",$org_page->company_industry);
+              echo $org_page->company_industry;
+              ?>
             </li>
 
             <li class="m-top-xs">
@@ -228,7 +232,12 @@
                               <select name="req_functional_area" class="form-control" placeholder="Select Functional Area" id="req_functional_area" onchange="select_major();">
                                 <option value="" disabled="disabled" selected="selected">Select Your Career level</option>
                                 @foreach($area as $area)
-                                <option value="{{$area->area_title}}">{{$area->area_title}}</option>
+                                <option value="{{$area->area_title}}">
+                                  <?php
+                                    $area->area_title= str_replace("_"," ",$area->area_title);
+                                    echo $area->area_title;
+                                  ?>
+                                </option>
                                 @endforeach
                                 
                               </select>
@@ -260,7 +269,12 @@
                               <select name="req_industry" class="form-control" placeholder="select Industry" id="req_industry">
                                 <option value="" disabled="disabled" selected="selected">Select Your Industry</option>
                                 @foreach($industry as $industry)
-                                <option value="{{$industry->company_industry_name}}">{{$industry->company_industry_name}}</option>
+                                <option value="{{$industry->company_industry_name}}">
+                                  <?php
+                                    
+                                    $industry->company_industry_name= str_replace("_"," ",$industry->company_industry_name);
+                                        echo $industry->company_industry_name;
+                                  ?></option>
                                 @endforeach
                               </select>
 
@@ -666,7 +680,11 @@
                       <li><span>Phone:</span>{{$org_page->company_phone}}</li>
                       <li><span>Website:</span>{{$org_page->company_website}}</li>
                       <li><span>Employees:</span>{{$org_page->company_employees}}</li>
-                      <li><span>Industry:</span>{{$org_page->company_industry}}</li>
+                      <li><span>Industry:</span><?php
+                        
+                        $org_page->company_industry= str_replace("_"," ",$org_page->company_industry);
+                        echo $org_page->company_industry;
+                      ?></li>
                       <li><span>Since:</span>{{$org_page->company_since}}</li>
                       <li><span>CNIC:</span>{{$org_page->company_cnic}}</li>
                       <li><span>Location:</span>{{$org_page->company_location}}</li>
@@ -681,7 +699,7 @@
 
                       ?></p></li>
                       <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span><a class="btn btn-default" href="{{url('uploads/organization_documents')}}<?php echo '/'.$org_page->company_document;?>" target="_blank">view Document</a></li>
-                      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>>
+                      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>
 
                         <a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li>
 
@@ -1176,7 +1194,9 @@ function update_post_info(x){
     $.post("fetch_area_majors",{_token:CSRF_TOKEN,area:area},function(data){
         $('select[name="selected_majors"]').empty();
        $.each(data, function( key, value ) {
-            $('select[name="selected_majors"]').append('<option value="'+ data[key].major_title +'">'+ data[key].major_title +'</option>');
+             var str = data[key].major_title;
+            str = str.replace("_"," ");
+            $('select[name="selected_majors"]').append('<option value="'+ data[key].major_title +'">'+  str +'</option>');
                //alert(data[key].major_title);
           });
 

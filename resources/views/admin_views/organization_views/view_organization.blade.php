@@ -72,7 +72,12 @@
                      <td id="org-t{{$organizations->company_id}}">{{$organizations->company_type}}</td>
                      <td>{{$organizations->company_email}}</td>
                      <td id="org-p{{$organizations->company_id}}">{{$organizations->company_phone}}</td>
-                     <td id="org-i{{$organizations->company_id}}">{{$organizations->company_industry}}</td>
+                     <td id="org-i{{$organizations->company_id}}">
+                    <?php
+                      
+                      $organizations->company_industry= str_replace("_"," ",$organizations->company_industry);
+                      echo $organizations->company_industry;
+                    ?></td>
                      <td id="status-td{{$organizations->company_id}}">{{$organizations->org_activation}}</td>
                      <td><select id="org_status" name="org_status" onchange="change_org_status(this.value,'{{$organizations->company_id}}');">
                       <option selected="selected" disabled="disabled" hidden="hidden">Select Status</option>

@@ -103,7 +103,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form>
+    <form id="form_qualification">
      <!--  @csrf -->
      <div class="modal-content">
       <div class="modal-header">
@@ -180,6 +180,7 @@ function qualification_adding(){
     var id ="'"+data+"'";
    if (data) {
          $("#qual-tr").after('<tr id="qual-tr'+data+'"><th><input type="checkbox" name="check_all[]" value="'+data+'" class="flat"></th><td id="qual-td'+data+'">'+add_qual+'</td><td><a onclick="update_qual('+c_qual+','+id+');"><i class="fa fa-pencil"></i></a> | <a onclick="delete_qual('+id+');"><i class="fa fa-trash"></i></a></td></tr>');
+      document.getElementById("form_qualification").reset();    
      $("#myModalqual .close").click();
 
      setTimeout(

@@ -63,7 +63,13 @@
                    @foreach($all_area as $all_area)
                    <tr id="area-tr{{$all_area->area_id}}"> 
                      <th><input type="checkbox" name="check_all[]" class="flat" value="{{$all_area->area_id}}"></th> 
-                     <td id="area-td{{$all_area->area_id}}">{{$all_area->area_title}}</td>
+                     <td id="area-td{{$all_area->area_id}}">
+                      <?php
+                        
+                        $all_area->area_title= str_replace("_"," ",$all_area->area_title);
+                        echo $all_area->area_title;
+                        
+                      ?></td>
                      <td><a onclick="update_area('{{$all_area->area_title}}','{{$all_area->area_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Functional area" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_area('{{$all_area->area_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Functional area" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a></td>
 
                    </tr>
