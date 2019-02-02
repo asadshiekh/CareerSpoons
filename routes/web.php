@@ -231,6 +231,8 @@ Route::any('update-candidate-language',"site_controllers\UserResume@updateCandid
 
 Route::any('update-language-model-window',"site_controllers\UserResume@doUpdateCandidateLanguage")->middleware('CheckUserProfile');
 
+//template controllers
+Route::any('show-temp-preview',"site_controllers\UserResume@showPreviewTemplate");
 
 
 //    UserResume Controller    //
@@ -451,7 +453,7 @@ Route::any('delete-faq/{id}',"admin_controllers\main_controllers\MainController@
 //CV work
 Route::any('view-cv-manage-page',"admin_controllers\cv_controllers\ManageResumeTemplate@viewCVManagePage");
 Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTemplate@addResumeTemp");
-Route::any('show-temp-preview',"admin_controllers\cv_controllers\ManageResumeTemplate@showPreviewTemplate");
+
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

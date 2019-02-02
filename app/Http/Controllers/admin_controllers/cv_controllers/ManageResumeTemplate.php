@@ -57,7 +57,5 @@ class ManageResumeTemplate extends Controller
         $file->move($destination,$new_name);
         return $new_name;
     }
-    public function showPreviewTemplate(){
-    
-    }
+   
 }

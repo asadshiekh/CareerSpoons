@@ -20,10 +20,10 @@ function candidate_select_major_onchange(){
 
 }
 
-function target_function(x,y){
+function target_function(x){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-$.post("show-temp-preview",{_token:CSRF_TOKEN,x:x,y:y},function(data){
-        
+$.post("show-temp-preview",{_token:CSRF_TOKEN,x:x},function(data){
+        alert(data);
        
   });
 }

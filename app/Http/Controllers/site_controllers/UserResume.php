@@ -1360,6 +1360,13 @@ foreach($get_degree as $get_degree){
 		}
 
 	}
-
+    
+    public function showPreviewTemplate(Request $request){
+      $id=$request->post("x");
+      //$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
+     // $index_p=$data->index_page;
+      //$folder_name=$data->template_folder;
+      return view("client_views.resume_related_pages.show_template_preview");
+    }
 
 }
