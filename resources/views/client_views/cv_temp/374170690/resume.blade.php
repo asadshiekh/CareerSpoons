@@ -24,6 +24,7 @@
   </a>
 
   <form class="form-inline">
+  	<a class="btn btn-outline-primary my-2 my-sm-0" href="#" style="color:white;">Download PDF</a>
   	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a>
   </form>
 
@@ -34,16 +35,17 @@
 		<div id="hd">
 			<div class="yui-gc">
 				<div class="yui-u first">
-					<h1>Jonathan Doe</h1>
-					<h2>Web Designer, Director</h2>
+					<h1>{{$general_info->candidate_name}}</h1>
+					<h2>{{$general_info->candidate_profession}}</h2>
+
 				</div>
 
 				<div class="yui-u">
 					<div class="contact-info">
-						<h3><a id="pdf" href="#">Download PDF</a></h3>
-						<h3><a href="mailto:name@yourdomain.com">name@yourdomain.com</a></h3>
-						<h3>(313) - 867-5309</h3>
+						<h3><a href="mailto:name@yourdomain.com">{{$user_register->user_email}}</a></h3>
+						<h3>{{$user_register->phone_number}}</h3>
 					</div><!--// .contact-info -->
+
 				</div>
 			</div><!--// .yui-gc -->
 		</div><!--// hd -->
@@ -51,66 +53,57 @@
 		<div id="bd">
 			<div id="yui-main">
 				<div class="yui-b">
+					<div class="yui-gf">
+						<ul>
 
+							<li style="border-bottom:0px;"><i class="fas fa-transgender"></i><span style="font-weight: bold; padding-right: 5px;">Gender :</span>{{$general_info->candidate_gender}}</li>
+							<li style="border-bottom:0px;"><i class="fas fa-birthday-cake"></i><span style="font-weight: bold; padding-right: 5px;">Age :</span> {{$general_info->candidate_age}}</li>
+							<li style="border-bottom:0px;"><i class="fas fa-address-card"></i><span style="font-weight: bold;padding-right: 5px;">Address :</span>{{$general_info->candidate_location}}</li>
+							<li style="border-bottom:0px;"><i class="fas fa-address-card"></i><span style="font-weight: bold;padding-right: 5px;">City :</span>{{$general_info->candidate_city}}</li>
+							
+						</ul>
+					</div><!--// .yui-gf -->
 					<div class="yui-gf">
 						<div class="yui-u first">
 							<h2>Profile</h2>
 						</div>
 						<div class="yui-u">
+
 							<p class="enlarge">
-								Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
+								{{$general_info->candidate_resume_details}} 
 							</p>
 						</div>
 					</div><!--// .yui-gf -->
-
+                    
+                   
 					<div class="yui-gf">
+
 						<div class="yui-u first">
-							<h2>Skills</h2>
-						</div>
+							<h2>Education</h2>
+						</div><!--// .yui-u -->
+
 						<div class="yui-u">
+							<?php 
+							if($candidate_eductions===0){ ?>
+								<h3 style="color:red;">  Dont Have Any Eduction Yet!</h3>
+							<?php }else{ 	
+								foreach ($candidate_eductions as $value) { ?>
+									<div class="job last">
+										<h2>{{$value->degree_level}}</h2>
+										<h3>{{$value->degree_title}} | 
+											<?php if($value->selected_result=='Percentage'){
+												echo $value->percentage;	
+											}	
+											else{
+												echo $value->cgpa.' '.'CPGA';
+											}?></h3>
+											<h4><?php echo date('Y',strtotime($value->edu_start)) ?> - <?php echo date('Y',strtotime($value->edu_end)) ?></h4>
+											<p>{{$value->edu_description}} </p>
+										</div>
+									<?php }} ?>
 
-								<div class="talent">
-									<h2>Web Design</h2>
-									<p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
-								</div>
-
-								<div class="talent">
-									<h2>Interface Design</h2>
-									<p>Credibly streamline mission-critical value with multifunctional functionalities.	 </p>
-								</div>
-
-								<div class="talent">
-									<h2>Project Direction</h2>
-									<p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
-								</div>
-						</div>
-					</div><!--// .yui-gf -->
-
-					<div class="yui-gf">
-						<div class="yui-u first">
-							<h2>Technical</h2>
-						</div>
-						<div class="yui-u">
-							<ul class="talent">
-								<li>XHTML</li>
-								<li>CSS</li>
-								<li class="last">Javascript</li>
-							</ul>
-
-							<ul class="talent">
-								<li>Jquery</li>
-								<li>PHP</li>
-								<li class="last">CVS / Subversion</li>
-							</ul>
-
-							<ul class="talent">
-								<li>OS X</li>
-								<li>Windows XP/Vista</li>
-								<li class="last">Linux</li>
-							</ul>
-						</div>
-					</div><!--// .yui-gf-->
-
+						</div><!--// .yui-u -->
+					</div>
 					<div class="yui-gf">
 	
 						<div class="yui-u first">
@@ -118,49 +111,71 @@
 						</div><!--// .yui-u -->
 
 						<div class="yui-u">
-
-							<div class="job">
-								<h2>Facebook</h2>
-								<h3>Senior Interface Designer</h3>
-								<h4>2005-2007</h4>
-								<p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>
-							</div>
-
-							<div class="job">
-								<h2>Apple Inc.</h2>
-								<h3>Senior Interface Designer</h3>
-								<h4>2005-2007</h4>
-								<p>Progressively reconceptualize multifunctional "outside the box" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>
-							</div>
-
-							<div class="job">
-								<h2>Microsoft</h2>
-								<h3>Principal and Creative Lead</h3>
-								<h4>2004-2005</h4>
-								<p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>
-							</div>
-
-
+                           <?php 
+		                    if($candidate_experience===0){ ?>
+		                   <h3 style="color:red;">  Dont Have Any Experience Yet!</h3>
+		                 <?php }else{ 	
+		                 	foreach ($candidate_experience as $value) { ?>
 							<div class="job last">
-								<h2>International Business Machines (IBM)</h2>
-								<h3>Lead Web Designer</h3>
-								<h4>2001-2004</h4>
-								<p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>
+								<h2>{{$value->job_title}}</h2>
+								<h3>Your Postion in {{$value->company_name}} as a {{$value->your_position}}</h3>
+								<h4><?php echo date('Y',strtotime($value->exp_start)) ?> - <?php echo date('Y',strtotime($value->exp_end)) ?></h4>
+								<p>{{$value->exp_description}}.</p>
 							</div>
+						<?php }} ?>
 
+							
 						</div><!--// .yui-u -->
 					</div><!--// .yui-gf -->
 
+					
 
-					<div class="yui-gf last">
+					<div class="yui-gf">
 						<div class="yui-u first">
-							<h2>Education</h2>
+							<h2>Skills</h2>
 						</div>
 						<div class="yui-u">
-							<h2>Indiana University - Bloomington, Indiana</h2>
-							<h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
+							<?php 
+		                    if($candidate_skill===0){ ?>
+		                   <h3 style="color:red;"> Dont Have Any Skill Yet!</h3>
+		                  <?php } else{ ?> 
+		                <?php foreach ($candidate_skill as $value) { ?>
+							<ul class="talent">
+								<li style="margin-right: 15%; text-align: center;">{{ $value->skill_name }}</li>
+							</ul>
+						<?php }} ?>
+
+							
 						</div>
-					</div><!--// .yui-gf -->
+					</div><!--// .yui-gf-->
+                     
+                      <div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Hobbies</h2>
+						</div>
+						<div class="yui-u">
+							<?php 
+						foreach($hobb as $hobbies){
+							?>
+							<span style="background-color:#e0e0e0;padding: 2%;">{{$hobbies->user_hobbies}}</span>
+						<?php } ?>
+							
+
+						</div>
+					</div>
+
+					<!--// .yui-gf -->
+					<div class="yui-gf last">
+						<div class="yui-u first">
+							<h2>Languages</h2>
+						</div>
+						<div class="yui-u">
+							
+							<span style="background-color:#e0e0e0;padding: 2%;">Cricket</span>
+							
+
+						</div>
+					</div>
 
 
 				</div><!--// .yui-b -->
@@ -168,7 +183,7 @@
 		</div><!--// bd -->
 
 		<div id="ft">
-			<p>Jonathan Doe &mdash; <a href="mailto:name@yourdomain.com">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>
+			<p>{{$general_info->candidate_name}} &mdash; <a href="mailto:name@yourdomain.com">{{$user_register->user_email}}</a> &mdash; {{$user_register->phone_number}}</p>
 		</div><!--// footer -->
 
 	</div><!-- // inner -->
