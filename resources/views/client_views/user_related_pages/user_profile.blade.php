@@ -371,11 +371,11 @@
   @foreach($templates as $get_templates)
   <div class="col-sm-4 col-md-4">
     <div class="thumbnail">
-      <img src="{{url('uploads/cv_temp')}}/{{$get_templates->template_folder}}/{{$get_templates->cover_img}}" style="border-radius: 0%;" alt="data">
+      <img src="{{url('public/client_assets/css/cv_temp')}}/{{$get_templates->template_folder}}/{{$get_templates->cover_img}}" style="border-radius: 0%;" alt="data">
       <div class="caption">
         <h3 style="text-align: center;margin-top: 0px;">{{$get_templates->temp_title}}</h3>
         <p>{{$get_templates->temp_info}}</p>
-        <p><a href="{{url('show-temp-preview')}}" class="btn btn-primary" role="button">Apply</a> <a class="btn btn-default" role="button">Preview</a></p>
+        <p><a href="" class="btn btn-primary" role="button">Apply</a><a href="{{url('show-temp-preview')}}/{{$get_templates->temp_id}}" class="btn btn-default" role="button">Preview</a></p>
       </div>
     </div>
   </div>

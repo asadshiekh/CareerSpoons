@@ -1361,12 +1361,26 @@ foreach($get_degree as $get_degree){
 
 	}
     
-    public function showPreviewTemplate(Request $request){
-      $id=$request->post("x");
-      //$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
-     // $index_p=$data->index_page;
-      //$folder_name=$data->template_folder;
-      return view("client_views.resume_related_pages.show_template_preview");
+    public function showPreviewTemplate(Request $request,$id){
+      //$id=$request->post("x");
+      $data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
+      $general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$request->session()->get('id')])->first();
+      $user_register=DB::table('register_users')->where(['id'=>$request->session()->get('id')])->first();
+
+    $obj =  new User_Resume_Model();
+	$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
+	$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
+	$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
+	$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
+
+
+      
+      $index_p=$data->index_page;
+      $folder_name=$data->template_folder;
+      $index_p=str_ireplace('.blade.php','',$index_p);
+
+
+      return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill]);
     }
 
 }

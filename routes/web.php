@@ -232,7 +232,7 @@ Route::any('update-candidate-language',"site_controllers\UserResume@updateCandid
 Route::any('update-language-model-window',"site_controllers\UserResume@doUpdateCandidateLanguage")->middleware('CheckUserProfile');
 
 //template controllers
-Route::any('show-temp-preview',"site_controllers\UserResume@showPreviewTemplate");
+Route::any('show-temp-preview/{id}',"site_controllers\UserResume@showPreviewTemplate");
 
 
 //    UserResume Controller    //

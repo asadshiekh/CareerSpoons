@@ -24,7 +24,7 @@ class ManageResumeTemplate extends Controller
     	$randam=rand();
     	$index=$this->upload_files($index_file,$randam);
     	$css=$this->upload_files_css($css_file,$randam);
-    	$banner=$this->upload_files($banner_file,$randam);
+    	$banner=$this->upload_files_css($banner_file,$randam);
         $resume=array(
         'temp_title'=>$title,
         'temp_info'=>$info,
@@ -45,15 +45,14 @@ class ManageResumeTemplate extends Controller
 
     public function upload_files($file,$randam){
 
-
-		$new_name = rand().'.'.$file->getClientOriginalName();
-		$destination='uploads/cv_temp/'.$randam;
+		$new_name = $file->getClientOriginalName();
+		$destination='resources/views/client_views/cv_temp/'.$randam;
 		$file->move($destination,$new_name);
         return $new_name;
     }
     public function upload_files_css($file,$randam){
         $new_name = $file->getClientOriginalName();
-        $destination='uploads/cv_temp/'.$randam;
+        $destination='public/client_assets/css/cv_temp/'.$randam;
         $file->move($destination,$new_name);
         return $new_name;
     }

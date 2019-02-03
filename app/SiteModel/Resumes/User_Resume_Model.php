@@ -344,9 +344,57 @@ class User_Resume_Model extends Model
 
 		return $response;
 	}
-	public function get_cv_templates(){
-		
+	
+	public function fetch_candidate_eduction_resume_details($candidate_id){
+
+		$candidate_eductions=DB::table('add_user_eductions')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($candidate_eductions->count()>0){
+			return $candidate_eductions;
+		}
+		else{
+			return $candidate_eductions->count();
+		}
 	}
+
+	public function fetch_candidate_experience_resume_details($candidate_id){
+
+		$candidate_experience=DB::table('add_user_experiences')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($candidate_experience->count()>0){
+			return $candidate_experience;
+		}
+		else{
+			return $candidate_experience->count();
+		}		
+	}
+
+
+	public function fetch_candidate_project_resume_details($candidate_id){
+
+		$candidate_project=DB::table('add_user_projects')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($candidate_project->count()>0){
+			return $candidate_project;
+		}
+		else{
+			return $candidate_project->count();
+		}			
+	}
+
+	public function fetch_candidate_skill_resume_details($candidate_id){
+
+
+		$candidate_skill=DB::table('add_user_skills')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($candidate_skill->count()>0){
+			return $candidate_skill;
+		}
+		else{
+			return $candidate_skill->count();
+		}	
+	}
+
 
 
 }
