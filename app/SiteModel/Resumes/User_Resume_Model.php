@@ -396,5 +396,31 @@ class User_Resume_Model extends Model
 	}
 
 
+	public function fetch_candidate_hobby_resume_details($candidate_id){
+
+		$candidate_hobby=DB::table('add_user_hobbies')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($candidate_hobby->count()>0){
+			return $candidate_hobby;
+		}
+		else{
+			return $candidate_hobby->count();
+		}	
+	}
+
+	public function fetch_candidate_languages_resume_details($candidate_id){
+
+		$languages=DB::table('add_user_languages')->where(['candidate_id'=>$candidate_id])->get();
+
+		if($languages->count()>0){
+			return $languages;
+		}
+		else{
+			return $languages->count();
+		}	
+	}
+
+
+
 
 }

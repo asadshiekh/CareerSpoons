@@ -24,7 +24,7 @@
   </a>
 
   <form class="form-inline">
-  	<a class="btn btn-outline-primary my-2 my-sm-0" href="#" style="color:white;">Download PDF</a>
+  	<a class="btn btn-outline-primary my-2 my-sm-0" href="#" style="color:white; margin-right:5px">Download PDF</a>
   	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a>
   </form>
 
@@ -154,11 +154,15 @@
 							<h2>Hobbies</h2>
 						</div>
 						<div class="yui-u">
-							<?php 
+						<?php 
+		                    if($hobb===0){ ?>
+		                   <h3 style="color:red;"> Dont Have Any Skill Yet!</h3>
+		                  <?php } else{ 
+							
 						foreach($hobb as $hobbies){
 							?>
 							<span style="background-color:#e0e0e0;padding: 2%;">{{$hobbies->user_hobbies}}</span>
-						<?php } ?>
+						<?php }} ?>
 							
 
 						</div>
@@ -170,10 +174,15 @@
 							<h2>Languages</h2>
 						</div>
 						<div class="yui-u">
+							<?php 
+		                    if($languages===0){ ?>
+		                   <h3 style="color:red;"> Dont Have Any Skill Yet!</h3>
+		                  <?php } else{ 
 							
-							<span style="background-color:#e0e0e0;padding: 2%;">Cricket</span>
-							
-
+						foreach($languages as $value){
+							?>
+							<span style="background-color:#e0e0e0;padding: 2%;">{{$value->user_language}}</span>
+							<?php }} ?>
 						</div>
 					</div>
 

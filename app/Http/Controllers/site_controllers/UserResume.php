@@ -1372,7 +1372,10 @@ foreach($get_degree as $get_degree){
 	$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
 	$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
 	$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
-	$hobb = DB::table('add_user_hobbies')->where('candidate_id', $request->session()->get('id'))->get();
+	$hobb = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
+
+	$languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
+	
 
 
       
@@ -1381,7 +1384,7 @@ foreach($get_degree as $get_degree){
       $index_p=str_ireplace('.blade.php','',$index_p);
 
 
-      return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb]);
+      return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
     }
 
 }
