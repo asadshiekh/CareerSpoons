@@ -520,7 +520,7 @@
 <br>
 <!-- <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
  -->
-<button type="submit" class="update-btn">Update Now</button>
+<button type="submit" id="social_links_update_button" class="update-btn">Update Now</button>
 
 
 </div>
