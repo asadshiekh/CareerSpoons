@@ -563,14 +563,16 @@ foreach($get_degree as $get_degree){
 
 		<div class="col-md-4 col-sm-4">
 		<label>Majors</label>
-		<select class="form-control input-lg" name="update_edu_majors" id="update_edu_majors">
-		<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->majors.'</option>';
+		<select class="form-control input-lg" name="update_edu_majors" id="update_edu_majors">';
+		$info->major=str_replace("_"," ",$info->majors);
+		echo '<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->major.'</option>';
 		foreach($get_majors as $get_majors){
-		echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_title.'</option>';
+			$get_majors->major_titles=str_replace("_"," ",$get_majors->major_title);
+		echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_titles.'</option>';
          }
 		echo '</select>
 		</div>
-
+		
 		<div class="col-md-4 col-sm-4">
 		<label>CGP/Percentage</label>
 		<select class="form-control input-lg" name="update_edu_result" id="update_edu_result"  onchange="update_change_fields()" >

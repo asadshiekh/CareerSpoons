@@ -347,7 +347,7 @@ class User_Resume_Model extends Model
 	
 	public function fetch_candidate_eduction_resume_details($candidate_id){
 
-		$candidate_eductions=DB::table('add_user_eductions')->where(['candidate_id'=>$candidate_id])->get();
+		$candidate_eductions=DB::table('add_user_eductions')->where(['candidate_id'=>$candidate_id])->orderBy('id','asc')->get();
 
 		if($candidate_eductions->count()>0){
 			return $candidate_eductions;

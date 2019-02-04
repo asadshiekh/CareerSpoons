@@ -585,7 +585,11 @@
 				<td id="unique_edu_degree_level{{ $edu->id }}">{{ $edu->degree_level }}</td>
 				<td id="unique_edu_institute_name{{ $edu->id }}">{{ $edu->Institute_name}}</td>
 				<td id="unique_edu_location_name{{ $edu->id }}">{{ $edu->institute_location}}</td>
-				<td id="unique_edu_majors{{ $edu->id }}">{{ $edu->majors }}</td>
+				<td id="unique_edu_majors{{ $edu->id }}"><?php
+					
+					$edu->majors = str_replace("_"," ",$edu->majors);
+					echo $edu->majors 
+				?></td>
 				<td id="unique_edu_action{{ $edu->id }}"><a href="#DemoModal2" data-toggle="modal" onclick='viewed_edu("<?php echo $edu->degree_title ?>","<?php echo $edu->degree_level?>","<?php echo $edu->Institute_name ?>","<?php echo $edu->institute_location?>","<?php echo $edu->edu_start?>","<?php echo $edu->edu_end?>","<?php echo $edu->majors?>","<?php echo $edu->cgpa?>","<?php echo $edu->percentage?>","<?php echo $edu->edu_description?>");' ><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Eduction" data-pt-animate="flipInX"><i class="far fa-eye"></i></span></a> | <a onclick='update_edu("<?php echo $edu->id ?>","<?php echo $edu->selected_result ?>");'><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Eduction" data-pt-animate="flipInX"><i class="fas fa-edit"></i></span></a> | <a onclick="delete_edu(<?php echo $edu->id ?>)"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Eduction" data-pt-animate="flipInX"> <i class="fas fa-trash-alt"></i></span></a></td>
 			</tr>
 			@endforeach
@@ -718,7 +722,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Skill</span></a></div>
+	<div class="detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Languages</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -1466,18 +1470,23 @@ data-dismiss="modal" aria-hidden="true">×</button>
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<label>Date From</label>
-		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" data-default-date="11-13-2016">
+		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" placeholder="12/31/2016">
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<label>Date To</label>
-		<input type="date" id="edu-end" data-theme="my-style" data-translate-mode="true" data-min-year="1980"  data-max-year="2020" data-large-mode="true" class="form-control" data-default-date="11-13-2016">
+		<input type="date" id="edu-end" data-theme="my-style" data-translate-mode="true" data-min-year="1980"  data-max-year="2020" data-large-mode="true" class="form-control" placeholder="12/31/2016" data-dd-default-date="12/31/2016">
 	</div>
 	<div class="col-md-4 col-sm-4">
 		<label>Majors</label>
 		<select class="form-control input-lg" id="majors">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
 			@foreach($get_majors as $value)
-			<option value="{{$value->major_title}}">{{$value->major_title}}</option>
+			<option value="{{$value->major_title}}">
+			 <?php
+			 
+			 $value->major_title= str_replace("_"," ",$value->major_title);
+			echo $value->major_title 
+			 ?></option>
 			@endforeach
 
 		</select>

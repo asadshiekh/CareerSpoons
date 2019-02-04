@@ -50,15 +50,15 @@ class UserProfile extends Controller
 
 		$obj =  new User_Resume_Model();
 		$general_info = $obj->get_candidate_general_info($request->session()->get('id'));
-		$candidate_education = $obj->get_candidate_eduction($request->session()->get('id'));
-		$candidate_experience = $obj->get_candidate_experience($request->session()->get('id'));
+		$candidate_education = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
 		$get_candidate_skill_just_six = $obj->get_candidate_skill_just_six($request->session()->get('id'));
 
-		$candidate_project = $obj->get_candidate_project($request->session()->get('id'));
+		$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
 
-		$candidate_languages = $obj->get_candidate_languages($request->session()->get('id'));
-		$candidate_hobbies = $obj->get_candidate_hobbies($request->session()->get('id'));
-		$candidate_skill = $obj->get_candidate_skill($request->session()->get('id'));
+		$candidate_languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
+		$candidate_hobbies = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
 
 		return view('client_views.user_related_pages.user_public_profile',['general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill]);
 

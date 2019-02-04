@@ -270,7 +270,12 @@
 							<h2 class="detail-title">Education</h2>
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
 
-							@foreach ($candidate_education as $edu)
+							<?php 
+							if($candidate_education===0){ ?>
+								<h4 style="color:red; text-align: center;">  Dont Have Any Eduction Yet!</h4>
+							<?php }else{ 	
+								foreach ($candidate_education as $edu) { ?>
+
 							<div class="media">
 								<div class="media-left media-middle">
 									<a href="#">
@@ -279,7 +284,7 @@
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">{{ $edu->Institute_name}}</h4>
-									<h5>{{ $edu->degree_level}} , 
+									<h5>{{$edu->degree_level}} , 
 										<?php  
 
 										if($edu->selected_result=="CGPA"){
@@ -296,13 +301,17 @@
 
 
 									</h5>
-									<h5 style="color:gray">{{ $edu->edu_start}} - {{ $edu->edu_end}}r</h5>
+									<h5 style="color:gray"><?php echo  date('Y',strtotime($edu->edu_start)) ?> - <?php echo date('Y',strtotime($edu->edu_end))?></h5>
 									{{$edu->edu_description}}
-									<h6 style="color:gray">{{$edu->	degree_title}} With the Major in {{$edu->majors}}</h6>
+									<h6 style="color:gray">{{$edu->	degree_title}} With the Major in 
+									<?php  
+									$edu->majors= str_replace("_"," ",$edu->majors);
+									echo $edu->majors
+									?></h6>
 								</div>
 							</div>
 							<hr>
-							@endforeach
+							<?php }} ?>
 
 
 
@@ -313,7 +322,12 @@
 						<h2 class="detail-title">Work Experience</h2>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
 
-						@foreach ($candidate_experience as $exp)
+						<?php 
+							if($candidate_experience===0){ ?>
+								<h4 style="color:red; text-align: center;">  Dont Have Any Experience Yet!</h4>
+							<?php }else{ 	
+								foreach ($candidate_experience as $exp) { ?>
+
 						<div class="media">
 							<div class="media-left media-middle">
 								<a href="#">
@@ -322,13 +336,16 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">{{$exp->job_title}} In {{$exp->company_name}}</h4>
-								<h5 style="color:gray">{{$exp->exp_start}} - {{ $exp->exp_end}}</h5>
+
+
+
+								<h5 style="color:gray"><?php echo  date('Y',strtotime($exp->exp_start)) ?> - <?php echo date('Y',strtotime($exp->exp_end))?></h5>
 								{{$exp->exp_description}}
 								<h6 style="color:gray">Your Postion in Company <b>{{$exp->your_position}}</b></h6>
 							</div>
 						</div>
 						<hr>
-						@endforeach
+						<?php }} ?>
 
 					</div>
 
@@ -339,7 +356,12 @@
 						<h2 class="detail-title">Candidate Projects</h2>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
 
-						@foreach ($candidate_project as $pro)
+						<?php 
+						if($candidate_project===0){ ?>
+							<h4 style="color:red; text-align: center;">  Dont Have Any Project Yet!</h4>
+						<?php }else{ 	
+							foreach ($candidate_project as $pro) { ?>
+
 						<div class="media">
 							<div class="media-left media-middle">
 								<a href="#">
@@ -347,14 +369,16 @@
 								</a>
 							</div>
 							<div class="media-body">
+
+
 								<h4 class="media-heading">{{$pro->project_title}} In {{$pro->project_company_name}}</h4>
-								<h5 style="color:gray">{{$pro->pro_start}} - {{ $pro->pro_end}}</h5>
+								<h5 style="color:gray"><?php echo  date('Y',strtotime($pro->pro_start))?> - <?php echo date('Y',strtotime($pro->pro_end))?></h5>
 								{{$pro->project_description}}
 								<h6 style="color:gray">Your Postion in Company <b>{{$pro->your_porject_position}}</b></h6>
 							</div>
 						</div>
 						<hr>
-						@endforeach
+						<?php }} ?>
 
 					</div>
 					
@@ -365,7 +389,13 @@
 							<div class="col-md-12 col-sm-12">
 								<div class="panel-body">
 									<div class="row">
-									@foreach ($candidate_skill as $skill)
+
+									<?php 
+		                    if($candidate_skill===0){ ?>
+		                   <h4 style="color:red;text-align:center;"> Dont Have Any Skill Yet!</h4>
+		                  <?php } else{
+		                  	foreach ($candidate_skill as $skill) { 
+		                   ?> 
 									<div class="col-md-6 col-sm-12">
 									<h3 class="progressbar-title">{{ $skill->skill_name }}</h3>
 									<div class="progress">
@@ -375,7 +405,9 @@
 										</div>
 									</div>
 									</div>
-									@endforeach
+									<?php  }}?>
+									
+
 									</div>
 									
 								<!-- 	<h3 class="progressbar-title">iPhone Development</h3>
@@ -453,9 +485,16 @@
 
 						<div class="col-sm-6">
 							<ul class="list-group">
-								@foreach ($candidate_hobbies as $hobbies)
+									
+							<?php 
+		                    if($candidate_hobbies===0){ ?>
+		                   <h4 style="color:red;"> Dont Have Any Hobbies Yet!</h4>
+		                  <?php } else{
+		                  	foreach ($candidate_hobbies as $hobbies) { 
+		                   ?> 
+
 								<li class="list-group-item">{{$hobbies->user_hobbies}}</li>
-								@endforeach
+								<?php }}?>
 							</ul>
 						</div>
 						
@@ -464,9 +503,17 @@
 						<div class="col-sm-6">
 
 							<ul class="list-group">
-								@foreach ($candidate_languages as $languages)
+
+
+								<?php 
+								if($candidate_languages===0){ ?>
+									<h4 style="color:red;"> Dont Have Any Languages Yet!</h4>
+								<?php } else{
+									foreach ($candidate_languages as $languages) { 
+										?> 
+
 								<li class="list-group-item">{{$languages->user_language}}</li>
-								@endforeach
+								<?php }} ?>
 							</ul>
 						</div>	
 

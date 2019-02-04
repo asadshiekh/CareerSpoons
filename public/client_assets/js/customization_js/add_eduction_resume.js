@@ -66,7 +66,7 @@
 				var n_CGPA = '"'+CGPA+  '"';
 				var n_Percentage = '"'+Percentage+  '"';
 				var n_edu_description = '"'+edu_description+  '"';
-
+				majors = majors.replace("_"," ");
 
 				setTimeout(
 					function(){
