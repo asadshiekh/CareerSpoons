@@ -19,7 +19,7 @@
 <body id="top">
 
 
-<nav class="navbar navbar-light" style="background-color:#35434E">
+<nav id="top-nav" class="navbar navbar-light" style="background-color:#35434E">
 
   <a class="navbar-brand" href="#">
     <img src="{{url('public/client_assets/img/logo-white.png')}}" class="d-inline-block align-top">

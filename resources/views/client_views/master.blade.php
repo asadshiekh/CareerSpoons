@@ -638,6 +638,7 @@
 			<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
 			<!-- Passsword Strength Checker -->
 			<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
+			
 			<!-- css effect link -->
 			<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 			<!-- Chart(Js) Javascript cdn link -->

@@ -3,12 +3,52 @@
     <head>
         <meta charset="UTF-8">
         <title>CareerSpoons - Resume</title>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="{{url('public/client_assets/css/cv_temp')}}/{{$data->template_folder}}/{{$data->css_page}}">
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700|Source+Sans+Pro:400,400i" rel="stylesheet">
 
-    <body>
+<body>
+<div id="top-nav" style="background-color:#35434E;">
+    <div id="nav-logo">
+        <div id="nav-bran">
+      <a class="navbar-brand" href="#">
+        <img src="{{url('public/client_assets/img/logo-white.png')}}" class="d-inline-block align-top">
+      </a>
+      </div>
+      <div id="nav-but">
+      <button type="button" id="nav-buttons" onclick="top_bar();" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button>
+        <a id="nav-buttons" href="{{url('user-profile')}}" class="navbar-brand">Go Back</a>
+    </div>
+    </div>
+
+</div>
+<style type="text/css">
+    #nav-logo{
+        width: 100%;
+        padding: 5px;
+    }
+    #nav-bran{
+        width: 70%;
+        display: inline-block;
+    }
+    #nav-but{
+        width: 25%;
+        display: inline-block;
+        float: right;
+        margin-top: 12px;
+        padding-left: 6%;
+    }
+    #nav-buttons{
+        border:solid 1px blue;
+        padding:7px;
+        margin-top: 0px;
+        color: white;
+    }
+    .navbar-brand:hover,.btn-outline-primary:hover{
+        background-color: #35434E;
+    }
+</style>
         <div class="page" style="border:solid 1px #ba0018;">
             <div class="section row">
                 <?php $name = explode(" ",$general_info->candidate_name)?>
@@ -154,5 +194,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{url('public/client_assets/js/customization_js/downloadPDF.js')}}"></script>
     </body>
 </html>
