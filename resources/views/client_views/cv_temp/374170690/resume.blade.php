@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>CareerSpoons - Curriculum Vitae (Ionic)</title>
+	<title>Curriculum Vitae</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
@@ -24,7 +24,9 @@
   </a>
 
   <form class="form-inline">
-  	<a class="btn btn-outline-primary my-2 my-sm-0" href="#" style="color:white; margin-right:5px">Download PDF</a>
+  		<a class="btn btn-outline-primary my-2 my-sm-0"  onclick="print_cv();" style="color:white;margin-right:5px">Download PDF</a>
+  	 <a href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}">link</a>
+  	
   	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a>
   </form>
 
@@ -200,6 +202,12 @@
 
 </div><!--// doc -->
 
+
+<script type="text/javascript">
+function print_cv() {
+  window.print();
+}
+</script>
 
 </body>
 </html>

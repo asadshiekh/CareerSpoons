@@ -233,6 +233,7 @@ Route::any('update-language-model-window',"site_controllers\UserResume@doUpdateC
 
 //template controllers
 Route::any('show-temp-preview/{id}',"site_controllers\UserResume@showPreviewTemplate");
+Route::any('download-candidate-pdf/{id}',"site_controllers\UserResume@doDownloadPdf");
 
 
 //    UserResume Controller    //

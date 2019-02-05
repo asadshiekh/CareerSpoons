@@ -2,7 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}"/>
         <title>CareerSpoons - Resume</title>
+
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="{{url('public/client_assets/css/cv_temp')}}/{{$data->template_folder}}/{{$data->css_page}}">
@@ -17,7 +21,8 @@
       </a>
       </div>
       <div id="nav-but">
-      <button type="button" id="nav-buttons" onclick="top_bar();" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button>
+      <button type="button" id="nav-buttons" onclick="top_bar('{{$data->temp_id}}');" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button>
+      <a href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}">link</a>
         <a id="nav-buttons" href="{{url('user-profile')}}" class="navbar-brand">Go Back</a>
     </div>
     </div>
@@ -194,6 +199,8 @@
                 </div>
             </div>
         </div>
+        
+        
         <script src="{{url('public/client_assets/js/customization_js/downloadPDF.js')}}"></script>
     </body>
 </html>

@@ -26,7 +26,7 @@
   </a>
 
   <form class="form-inline">
-  	<a class="btn btn-outline-primary my-2 my-sm-0" href="#" style="color:white;margin-right:5px">Download PDF</a>
+  	<a class="btn btn-outline-primary my-2 my-sm-0" href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}" style="color:white;margin-right:5px">Download PDF</a>
   	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a>
   </form>
 

@@ -8,6 +8,7 @@ use App\SiteModel\Resumes\User_Resume_Model;
 use App\SiteModel\ClientSite\ClientSiteModel;
 use App\SiteModel\User\UserRegisteration;
 use DB;
+use PDF;
 class UserResume extends Controller
 {
 	public function manageUserResume(){
@@ -535,9 +536,9 @@ class UserResume extends Controller
 		<label>Degree Level</label>
 		<select class="form-control input-lg" name="update_edu_degree_level" id="update_edu_degree_level">
 		<option disabled="disabled" selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>';
-foreach($get_degree as $get_degree){
-		echo '<option value="'.$get_degree->degree_title.'">'.$get_degree->degree_title.'</option>';
-}
+		foreach($get_degree as $get_degree){
+			echo '<option value="'.$get_degree->degree_title.'">'.$get_degree->degree_title.'</option>';
+		}
 		echo '</select>
 		</div>
 
@@ -568,8 +569,8 @@ foreach($get_degree as $get_degree){
 		echo '<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->major.'</option>';
 		foreach($get_majors as $get_majors){
 			$get_majors->major_titles=str_replace("_"," ",$get_majors->major_title);
-		echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_titles.'</option>';
-         }
+			echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_titles.'</option>';
+		}
 		echo '</select>
 		</div>
 		
@@ -1362,31 +1363,57 @@ foreach($get_degree as $get_degree){
 		}
 
 	}
-    
-    public function showPreviewTemplate(Request $request,$id){
+
+	public function showPreviewTemplate(Request $request,$id){
       //$id=$request->post("x");
-      $data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
-      $general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$request->session()->get('id')])->first();
-      $user_register=DB::table('register_users')->where(['id'=>$request->session()->get('id')])->first();
+		$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
+		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$request->session()->get('id')])->first();
+		$user_register=DB::table('register_users')->where(['id'=>$request->session()->get('id')])->first();
 
-    $obj =  new User_Resume_Model();
-	$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
-	$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
-	$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
-	$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
-	$hobb = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
+		$obj =  new User_Resume_Model();
+		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
+		$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
+		$hobb = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
 
-	$languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
-	
-
-
-      
-      $index_p=$data->index_page;
-      $folder_name=$data->template_folder;
-      $index_p=str_ireplace('.blade.php','',$index_p);
+		$languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
 
 
-      return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
-    }
+
+
+		$index_p=$data->index_page;
+		$folder_name=$data->template_folder;
+		$index_p=str_ireplace('.blade.php','',$index_p);
+
+
+		return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
+	}
+
+
+	public function doDownloadPdf(Request $request,$id){
+
+    	$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
+    	$index_p=$data->index_page;
+		$folder_name=$data->template_folder;
+		$index_p=str_ireplace('.blade.php','',$index_p);
+
+		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$request->session()->get('id')])->first();
+		$user_register=DB::table('register_users')->where(['id'=>$request->session()->get('id')])->first();
+
+		$obj =  new User_Resume_Model();
+		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
+		$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
+		$hobb = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
+
+		$languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
+
+
+		$pdf = PDF::loadView("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
+		return $pdf->setPaper('letter','portrait')->setWarnings(false)->download('myfile.pdf');
+
+	}
 
 }
