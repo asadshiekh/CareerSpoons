@@ -419,7 +419,10 @@ class User_Resume_Model extends Model
 			return $languages->count();
 		}	
 	}
-
+    public function get_temp_id($id){
+    $in=DB::table('user_choose_temp')->where(['candidate_id'=>$id])->first();
+    return $in;
+    }
 
 
 

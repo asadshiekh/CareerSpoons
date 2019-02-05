@@ -431,18 +431,24 @@ class UserResume extends Controller
 			'created_at' => $current_date
 		);
 
+        $template=array(
+        	'candidate_id'=>$request->session()->get('id'),
+        	'temp_id'=>"1"
+        );
+        DB::table('user_choose_temp')->insert($template);
 		// echo "<pre>";
 		// print_r($user_response);
 		// echo "<pre>";
 		// print_r($user_response_2);
 
-
+   
 		$obj =  new User_Resume_Model();
 		$info = $obj->add_user_general($user_response,$request->session()->get('id'));
 		$info1 = $obj->add_user_social_media($user_response_2);
 
 		if($info){
 
+            
 			$obj1 =  new UserRegisteration();
 			$resume_response = $obj1->update_candidate_name($request->candidate_name,$request->session()->get('id'));
 			$request->session()->forget('candidate_name');
@@ -1414,6 +1420,30 @@ class UserResume extends Controller
 		$pdf = PDF::loadView("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
 		return $pdf->setPaper('letter','portrait')->setWarnings(false)->download('myfile.pdf');
 
+	}
+
+	public function getDownloadResume(Request $request,$id){
+		$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
+    	$index_p=$data->index_page;
+		$folder_name=$data->template_folder;
+		$index_p=str_ireplace('.blade.php','',$index_p);
+		$url="https://stackoverflow.com/questions/757675/website-screenshots";
+ $screen_shot_json_data = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$url&screenshot=true");
+ $screen_shot_result = json_decode($screen_shot_json_data, true);
+ $screen_shot = $screen_shot_result['screenshot']['data'];
+ $screen_shot = str_replace(array('_','-'), array('/', '+'), $screen_shot);
+ $imed= "<img src=\"data:image/jpeg;base64,".$screen_shot."\" class='img-responsive img-thumbnail'/>";
+	
+	}
+
+	public function doAppliedTheme(Request $request,$id){
+		$c_id=$request->session()->get('id');
+		$template=array(
+        	'temp_id'=>$id
+        );
+        if(DB::table('user_choose_temp')->where(['candidate_id'=>$c_id])->update($template)){
+        	return redirect('user-profile')->with('success','Your Resume Template is changed!');
+        }
 	}
 
 }

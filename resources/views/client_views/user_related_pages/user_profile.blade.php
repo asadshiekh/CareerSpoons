@@ -375,7 +375,12 @@
       <div class="caption">
         <h3 style="text-align: center;margin-top: 0px;">{{$get_templates->temp_title}}</h3>
         <p>{{$get_templates->temp_info}}</p>
-        <p><a href="" class="btn btn-primary" role="button">Apply</a><a href="{{url('show-temp-preview')}}/{{$get_templates->temp_id}}" class="btn btn-default" role="button">Preview</a></p>
+        <p> <?php if($get_templates->temp_id == $temp_in->temp_id){ ?>
+        	<button class="btn btn-primary" disabled="disabled" style="background-color: red;">Applied</button>
+        <?php }else{?>
+        	<a href="{{url('applied-resume-theme')}}/{{$get_templates->temp_id}}" class="btn btn-primary" role="button">Apply</a>
+        <?php } ?> 
+        	<a href="{{url('show-temp-preview')}}/{{$get_templates->temp_id}}" class="btn btn-default" role="button">Preview</a></p>
       </div>
     </div>
   </div>
