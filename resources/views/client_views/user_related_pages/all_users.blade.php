@@ -1,0 +1,119 @@
+@extends('client_views.master2')
+@section('content')
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-page">
+				<div class="container">
+					
+					<h2>Hire The Best UI Specialists</h2>
+					<p>Work with the world’s best talent on Upwork — the top freelancing website trusted by over 5 million businesses.</p>
+					
+				</div>
+			</section>
+			<div class="clearfix"></div>
+
+
+			<!-- Employee list start -->
+			<section class="manage-employee gray">
+				<div class="container">
+					<!-- search filter -->
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="search-filter">
+							
+								<div class="col-md-4 col-sm-5">
+									<div class="filter-form">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search…">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default">Go</button>
+											</span>
+										</div>
+									</div>
+								</div>
+									
+								<div class="col-md-8 col-sm-7">
+									<div class="short-by pull-right">
+										Short By
+										<div class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Short By Date</a></li>
+											<li><a href="#">Short By Views</a></li>
+											<li><a href="#">Short By Popular</a></li>
+										</ul>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<!-- search filter End -->
+					
+					<!-- Manage Employee -->
+					<div class="row">
+						
+						@foreach ($candidates as $value)
+						<div class="col-md-3 col-sm-3">
+							<div class="manage-cndt">
+
+							<div class="pull-right">
+									<div class="btn-group action-btn">
+										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<i class="fa fa-ellipsis-v"></i>
+										</button>
+										<ul class="dropdown-menu pull-right" role="menu">
+											<li><a href="#">Profile</a>
+											</li>
+											<li><a href="#">Preview Resume</a>
+											</li>
+											<li><a href="#">User Summery</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="cndt-caption">
+									<div class="cndt-pic">
+										<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{$value->profile_image}}" class="img-responsive" alt="" />
+									</div>
+									<h4>{{$value->candidate_name}}</h4>
+									<span>( {{$value->candidate_profession}} )</span>
+									<p><i>{{$value->candidate_city}}</i></p>
+									<ul class="employee-social">
+										<li><a href="http://facebook.com" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="{{$value->candidate_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="{{$value->candidate_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="{{$value->candidate_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+										
+									</ul>
+									
+								</div>
+								<a href="#" title="" class="cndt-profile-btn">View Profile</a>
+							</div>
+						</div>
+						@endforeach
+
+
+
+						
+
+					</div>
+					<div class="row">
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li> 
+							<li><a href="#">4</a></li> 
+							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
+							<li><a href="#">&raquo;</a></li> 
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- Employee List End -->
+			
+			
+		@endsection

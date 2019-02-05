@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 
+<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/freelancers-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:43:22 GMT -->
+<head>
 <!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:39:06 GMT -->
 <head>
 <!-- Basic Page Needs
@@ -59,31 +61,30 @@
 
 	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
+			
+			<!-- Start Navigation -->
+			<nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav">
 
-
-</head>
-<body>
-	<div class="Loader"></div>
-	<div class="wrapper">  
-		<!-- Start Navigation -->
-		<nav class="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-
-			<div class="container">            
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-					<i class="fa fa-bars"></i>
-				</button>
-				<!-- Start Header Navigation -->
-				<div class="navbar-header">
-					<a class="navbar-brand" href="{{url('/')}}">
-						<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-display" alt="">
-						<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-scrolled" alt="">
+				<div class="container">            
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<!-- Start Header Navigation -->
+					<div class="navbar-header">
+						<a class="navbar-brand" href="{{url('/')}}">
+						<img src="{{url('public/client_assets/img/logo.png')}}" class="logo logo-display" alt="">
+						<img src="{{url('public/client_assets/img/logo.png')}}" class="logo logo-scrolled" alt="">
 					</a>
-				</div>
+					</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-						<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-menu">
+						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+							<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
 						<li><a href="pricing.html"><i class="fas fa-city"></i>Companies</a></li>
 						<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
 						@if(Session::has('user_status'))
@@ -118,15 +119,17 @@
 						<li class="dropdown megamenu-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Brows</a>
 						</li>
 						<li><a href="{{url('all-candidates')}}"><i class="fas fa-users"></i>Candidates </a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div>   
-		</nav>
-		<!-- End Navigation -->
-		@yield('content');
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div>   
+			</nav>
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
 
 
-		<!-- Footer Section Start -->
+			@yield('content');
+
+			<!-- Footer Section Start -->
 		<footer class="footer">
 			<div class="row lg-menu">
 				<div class="container">
@@ -600,151 +603,6 @@
 
 			</style>
 			
-			<script>
-				
-				$("#rateYo").rateYo({
-					rating:{{Session::get('candidate_rating')}},
-					onChange: function (rating, rateYoInstance) {
-
-						$(this).next().text(rating);
-					}
-
-
-				});
-
-			</script>
-
-			<script>
-			<?php
-			$info=DB::select(DB::raw("SELECT * FROM candidate_reviews,register_users,user_profile_images WHERE 
-			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id ")); ?>
-
-
-				<?php foreach($info as  $row): ?>
-					$("#candidate_rateYo{{$row->id}}").rateYo({
-						rating: <?php echo $row->rating_points?>,
-						readOnly: true,
-						starWidth: "20px"
-					});
-				<?php endforeach; ?>  
-			</script>
-
-
-			<script>
-				$('#dob').dateDropper();
-			</script>
-
-			<script>
-				$('#update_dob').dateDropper();
-			</script>
-
-			<script>
-				$('#exp-start').dateDropper();
-			</script>
-
-			<script>
-				$('#exp-end').dateDropper();
-			</script>
-
-			<script>
-				$('#edu-start').dateDropper();
-			</script>
-
-			<script>
-				$('#edu-end').dateDropper();
-			</script>
-			
-			<script>
-				$('#pro-start').dateDropper();
-			</script>
-
-			<script>
-				$('#pro-end').dateDropper();
-			</script>
-
-			<script>
-				$('#last_apply').dateDropper();
-			</script>
-
-			<script>
-				$('#post_visible').dateDropper();
-			</script>
-			
-			<script>
-				$('#company_s').dateDropper();
-			</script>
-			
-			<script>
-				$('#new_company_since').dateDropper();
-			</script>
-
-
-
-			<script>
-				$("#skilltags").tagsinput({
-					maxTags: 5,
-				});
-			</script>
-
-			<!-- Bio Ck Editor -->
-			<script>
-				CKEDITOR.replace( 'editor1' );
-			</script>
-
-			<!-- Add Eduction Ck Editior -->
-			<script>
-				CKEDITOR.replace( 'eduction' );
-			</script>
-
-			<!-- Viewd Eduction Ck Editior -->
-			<script>
-				CKEDITOR.replace( 'view_edu_description' );	
-			</script>
-
-			<!-- Viewd Experience Ck Editior -->
-			<script>
-				CKEDITOR.replace( 'view_exp_description' );	
-			</script>
-
-
-			<script>
-				CKEDITOR.replace( 'work_history' );
-			</script>
-			
-			<script>
-				CKEDITOR.replace( 'project' );	
-			</script>
-
-			<!-- User Profile Update Bio Ck Editor -->
-			<script>
-				CKEDITOR.replace( 'profile_bio' );	
-			</script>
-
-			<!-- User Profile Update Address Ck Editor -->
-			<script>
-				CKEDITOR.replace( 'profile_Address' );	
-			</script>
-            <!-- Organiation Job Post CK Editor -->
-			<script>
-				CKEDITOR.replace( 'post_information' );	
-			</script>
-
-			<script>
-				CKEDITOR.replace( 'company_info' );	
-			</script>
-			<script>
-				CKEDITOR.replace( 'update_bio' );	
-			</script>
-
-
-			<!-- Rating Prtoduct -->
-			<script>
-
-				CKEDITOR.replace( 'rating_pro' );
-				// var j = 'Enter Your Reviews About This Products!';
-				// CKEDITOR.instances['rating_pro'].setData();
-			</script>
-
 
 			<script>
 				lightGallery(document.getElementById('aniimated-thumbnials'), {
@@ -825,300 +683,6 @@
 						pausevideo: false,
 					});
 				});
-			</script>
-
-		<script type="text/javascript">
-				$('#map_full_width_one').gmap3({
-					map: {
-						options: {
-							zoom: 5,
-							center: [41.785091, -73.968285],
-							mapTypeControl: true,
-							mapTypeControlOptions: {
-								style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-							},
-							mapTypeId: "style1",
-							mapTypeControlOptions: {
-								mapTypeIds: [google.maps.MapTypeId.ROADMAP, "style1"]
-							},
-							navigationControl: true,
-							scrollwheel: false,
-							streetViewControl: true
-						}
-					},
-					marker: {
-						latLng: [40.785091, -73.968285],
-						options: {animation:google.maps.Animation.BOUNCE, icon: 'assets/img/marker.png' }
-					},
-					styledmaptype: {
-						id: "style1",
-						options: {
-							name: "Style 1"
-						},
-
-					}
-				});
-
-			</script>
-
-
-
-
-			<script type="text/javascript">
-
-
-				<?php 
-
-				$id = 	Session::get('id');
-				$user_edu=DB::table('add_user_eductions')->where('candidate_id', $id)->get()->count();
-				$user_exp=DB::table('add_user_experiences')->where('candidate_id', $id)->get()->count();
-				$user_pro=DB::table('add_user_projects')->where('candidate_id', $id)->get()->count();
-				$user_skill=DB::table('add_user_skills')->where('candidate_id', $id)->get()->count();
-				$user_lanaguage=DB::table('add_user_languages')->where('candidate_id', $id)->get()->count();
-				$user_hobbies=DB::table('add_user_hobbies')->where('candidate_id', $id)->get()->count();
-
-
-
-
-				?>	
-
-				var ctx = document.getElementById("piechart");
-				var myChart = new Chart(ctx, {
-					type: 'pie',
-					data: {
-						labels: ["Eduction", "Experience", "Project", "Skills", "Languages", "Hobbies"],
-						datasets: [{
-							data: [{{$user_edu}},{{$user_exp}},{{$user_pro}},{{$user_skill}},{{$user_lanaguage}},{{$user_hobbies}}],
-							backgroundColor: [
-							'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)',
-							'rgba(75, 192, 192, 0.2)',
-							'rgba(153, 102, 255, 0.2)',
-							'rgba(255, 159, 64, 0.2)'
-							],
-							borderColor: [
-							'rgba(255,99,132,1)',
-							'rgba(54, 162, 235, 1)',
-							'rgba(255, 206, 86, 1)',
-							'rgba(75, 192, 192, 1)',
-							'rgba(153, 102, 255, 1)',
-							'rgba(255, 159, 64, 1)'
-							],
-							borderWidth: 1
-						}]
-					},
-					options: {
-						scales: {
-							yAxes: [{
-								ticks: {
-									beginAtZero:true
-								}
-							}]
-						}
-					}
-				});
-
-
-				var ctx = document.getElementById("linechart");
-				var myChart = new Chart(ctx, {
-					type: 'bar',
-					data: {
-						labels: ["User Resume info"],
-						datasets: [{
-							label: 'Eduction',
-							data: [{{$user_edu}}],
-							backgroundColor: [
-							'rgba(255, 99, 132, 0.2)'
-							],
-							borderColor: [
-							'rgba(255,99,132,1)'
-							],
-							borderWidth: 1
-						},{
-							label: 'Experience',
-							data: [{{$user_exp}}],
-							backgroundColor: [
-							'rgba(54, 162, 235, 0.2)'
-							],
-							borderColor: [
-							'rgba(54, 162, 235, 1)'
-							],
-							borderWidth: 1
-						},{
-							label: 'Project',
-							data: [{{$user_pro}}],
-							backgroundColor: [
-							'rgba(255, 206, 86, 0.2)'
-							],
-							borderColor: [
-							'rgba(255, 206, 86, 1)'
-							],
-							borderWidth: 1
-						},{
-							label: 'Skills',
-							data: [{{$user_skill}}],
-							backgroundColor: [
-							'rgba(75, 192, 192, 0.2)'
-							],
-							borderColor: [
-							'rgba(75, 192, 192, 1)'
-							],
-							borderWidth: 1
-						},{
-							label: 'Languages',
-							data: [{{$user_lanaguage}}],
-							backgroundColor: [
-							'rgba(153, 102, 255, 0.2)'
-							],
-							borderColor: [
-							'rgba(153, 102, 255, 1)'
-							],
-							borderWidth: 1
-						},{
-							label: 'Hobbies',
-							data: [{{$user_hobbies}}],
-							backgroundColor: [
-							'rgba(255, 159, 64, 0.2)'
-							],
-							borderColor: [
-							'rgba(255, 159, 64, 1)'
-							],
-							borderWidth: 1
-						}
-						]
-					},
-					options: {
-						scales: {
-							yAxes: [{
-								ticks: {
-									beginAtZero:true
-								}
-							}]
-						}
-					}
-				});
-
-
-				function strengthMeter() {
-
-					<?php 
-					
-					$id = 	(Session::get('id') ? Session::get('id') : "0");
-					$law_rule = 1;
-
-					$user_edu=DB::table('user_profile_strength')->where([
-						['candidate_id','=',[$id]],
-						['education_category','=',[$law_rule]],
-					])->first();
-
-					$user_exp=DB::table('user_profile_strength')->where([
-						['candidate_id','=',[$id]],
-						['experience_category','=',[$law_rule]],
-					])->first();
-
-
-					$user_pro=DB::table('user_profile_strength')->where([
-						['candidate_id','=',[$id]],
-						['project_category','=',[$law_rule]],
-					])->first();
-
-
-					$user_skill=DB::table('user_profile_strength')->where([
-						['candidate_id','=',[$id]],
-						['skill_category','=',[$law_rule]],
-					])->first();
-
-
-
-					$user_hobbey=DB::table('user_profile_strength')->where([
-						['candidate_id','=',[$id]],
-						['hobbies_category','=',[$law_rule]],
-					])->first();
-
-					$edu_data = ($user_edu ? $user_edu->education_value : "0");
-					$exp_data = ($user_exp ? $user_exp->experience_value : "0");
-					$pro_data = ($user_pro ? $user_pro->project_value : "0");
-					$sk_data = ($user_skill ? $user_skill->skill_value : "0");
-					$hob_data = ($user_hobbey ? $user_hobbey->hobbies_value : "0");
-
-
-					$total_strength = $edu_data+$exp_data+$pro_data+$sk_data+$hob_data;
-
-					?>
-
-					var chart = bb.generate({
-						data: {
-							columns: [
-							["Profile-Strength-Meter", 91.4]
-							],
-							type: "gauge",
-							onclick: function(d, i) {
-								console.log("onclick", d, i);
-							},
-							onover: function(d, i) {
-								console.log("onover", d, i);
-							},
-							onout: function(d, i) {
-								console.log("onout", d, i);
-							}
-						},
-						gauge: {},
-						color: {
-							pattern: [
-							"#FF0000",
-							"#F97600",
-							"#1FB6FF",
-							"#60B044"
-							],
-							threshold: {
-								values: [
-								30,
-								60,
-								80,
-								100
-								]
-							}
-						},
-						size: {
-							height: 180
-						},
-						bindto: "#GaugeChart"
-					});
-
-					setTimeout(function() {
-						chart.load({
-							columns: [["Profile-Strength-Meter", 10]]
-						});
-					}, 1000);
-
-					setTimeout(function() {
-						chart.load({
-							columns: [["Profile-Strength-Meter", 50]]
-						});
-					}, 2000);
-
-					setTimeout(function() {
-						chart.load({
-							columns: [["Profile-Strength-Meter", 70]]
-						});
-					}, 3000);
-
-					setTimeout(function() {
-						chart.load({
-							columns: [["Profile-Strength-Meter", 2]]
-						});
-					}, 4000);
-
-					setTimeout(function() {
-						chart.load({
-							columns: [["Profile-Strength-Meter",{{$total_strength}}]]
-						});
-					}, 5000);
-
-				}
-
-
 			</script>
 
 

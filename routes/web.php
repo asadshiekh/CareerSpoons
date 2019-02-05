@@ -241,6 +241,15 @@ Route::any('applied-resume-theme/{id}',"site_controllers\UserResume@doAppliedThe
 //    UserResume Controller    //
 
 
+
+
+//    SearchUser Controller    //
+
+Route::get('all-candidates',"site_controllers\SearchUsers@showAllUsers");
+Route::get('candidate-profile/{id}',"site_controllers\SearchUsers@viewSingleCandidate");
+
+
+
 Route::get('send',"site_controllers\mail_sender@send");
 Route::get('verify-email',"site_controllers\mail_sender@hello");
 Route::get('file',"site_controllers\UserResume@index");
