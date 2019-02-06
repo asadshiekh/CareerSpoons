@@ -75,7 +75,7 @@
 							</div>
 							
 							<div class="card-body">
-							@foreach($job as $jobs)
+							<!-- @foreach($job as $jobs)
 								<article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
@@ -101,8 +101,114 @@
 									<span class="tg-themetag tg-featuretag">{{date('d M ',strtotime($jobs->created_at))}}</span>
 								</article>
 								
-							@endforeach
-								<article class="advance-search-job">
+							@endforeach -->
+					
+					<article class="advance-search-job">
+						<div class="row no-mrg">
+							@foreach($job as $jobs)
+							<div class="col-md-6 col-sm-6">
+								<div class="grid-view brows-job-list">
+								<div class="brows-job-company-img" style="width: 90px;">
+									<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="" style="max-width: 90px;" />
+								</div>
+								<div class="brows-job-position">
+									<h3><a>{{$jobs->job_title}}</a></h3>
+									<p><span><i class="fa fa-arrow-right"></i>&nbsp&nbsp({{$jobs->company_name}})</span></p>
+								</div>
+								<div class="job-position">
+									<span class="job-num"><?php 
+
+													if($jobs->total_positions>1){
+
+											echo   $jobs->total_positions.' 
+											 Positions' ;
+													}
+													else{
+														echo $jobs->total_positions.' Position' ;
+
+													}	
+
+												?></span>
+								</div>
+								<div class="brows-job-type">
+									<span class="full-time">{{$jobs->req_industry}}</span>
+								</div>
+								<ul class="grid-view-caption">
+									<li>
+										<div class="brows-job-location">
+											<p style="padding-top:10%;"><i class="fa fa-map-marker"></i>{{$jobs->company_location}}</p>
+										</div>
+									</li>
+									<li>
+										<p><a href="job-details/{{$jobs->post_id}}" class="btn advance-search" title="apply">View</a><!-- <a type="button"><i class="fa fa-eye"></i></a>--></p>
+									</li>
+								</ul>
+								<span class="tg-themetag tg-featuretag"><?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$jobs->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?></span>
+							    </div>
+											
+						    </div>
+						    @endforeach
+					    </div>
+				    </article>
+
+								<!-- <article class="advance-search-job">
 									<div class="row no-mrg">
 										<div class="col-md-6 col-sm-6">
 											<a href="job-details/{{$jobs->post_id}}" title="job Detail">
@@ -124,7 +230,7 @@
 											<a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a>
 										</div>
 									</div>
-								</article>
+								</article> -->
 								
 							</div>
 						</div>

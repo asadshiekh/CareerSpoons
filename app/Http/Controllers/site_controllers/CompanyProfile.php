@@ -858,5 +858,21 @@ public function updatePostSingleFront(Request $request){
     // }
     return $info;
   }
+  public function viewAllCompany(Request $request){
+    $org=DB::table('add_organizations')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('add_organization_social_link','add_organizations.company_id', '=', 'add_organization_social_link.organization_id')->select('add_organizations.*','add_organization_social_link.*','upload_org_img.*')->inRandomOrder()->simplePaginate(2);
+    // echo "<pre>";
+    // print_r($org);
+      return view("client_views.company_related_pages.allCompanies",['org'=>$org]);
+  }
+  public function viewCompanySingleProfile(Request $request,$id){
+    $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+    $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
+    $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
+    $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
+    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links]);
+
+  }
+
+
 
 }

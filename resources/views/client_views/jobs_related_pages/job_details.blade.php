@@ -36,7 +36,7 @@
 
 					</div>
 					<div class="row bottom-mrg mrg-0">
-						<div class="col-md-8 col-sm-8">
+						<div class="col-md-9 col-sm-9">
 
 								
 							<div class="detail-desc-caption">
@@ -54,8 +54,8 @@
 							
 							
 						</div>
-						<div class="col-md-4 col-sm-4">
-							<div class="get-touch pull-right">
+						<div class="col-md-3 col-sm-3">
+							<div class="get-touch">
 								<h4>Get in Touch</h4>
 								<ul>
 									<li><i class="fa fa-map-marker"></i><span>{{$job_detail->company_location}}</span></li>
@@ -183,7 +183,10 @@
 							
 							<div class="row row-bottom mrg-0">
 								<h2 class="detail-title">Job Responsibilities</h2>
-								<p>{{$job_detail->job_post_info}}</p>
+								<p><?php 
+								$job_detail->job_post_info=str_replace("<p>","",$job_detail->job_post_info);
+								echo $job_detail->job_post_info=str_replace("</p>","",$job_detail->job_post_info);
+								?></p>
 							</div>
 							
 							<div class="row row-bottom mrg-0">

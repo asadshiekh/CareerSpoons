@@ -90,6 +90,8 @@ Route::any('company-update-email',"site_controllers\CompanyProfile@doUpdateOrgEm
 Route::any('company-upload-image',"site_controllers\CompanyProfile@doUploadOrgImgFront");
 Route::any('fetch_company_f_area_related_majors',"site_controllers\CompanyProfile@fetchFunctionalAreaMajors");
 Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile");
+Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
+Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
 
 
 

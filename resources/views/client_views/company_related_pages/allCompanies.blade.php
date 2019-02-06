@@ -54,7 +54,7 @@
 					<!-- Manage Employee -->
 					<div class="row">
 						
-						@foreach ($candidates as $value)
+						@foreach ($org as $orgs)
 						<div class="col-md-3 col-sm-3">
 							<div class="manage-cndt">
 
@@ -76,21 +76,21 @@
 								
 								<div class="cndt-caption">
 									<div class="cndt-pic" style="margin-left: 25%;">
-										<img src="{{url('uploads/client_site/profile_pic')}}/{{$value->profile_image}}" class="img-responsive" alt="" />
+										<img src="{{url('uploads/organization_images')}}/{{$orgs->company_img}}" class="img-responsive" alt="" />
 									</div>
-									<h4>{{$value->candidate_name}}</h4>
-									<span>( {{$value->candidate_profession}} )</span>
-									<p><i>{{$value->candidate_city}}</i></p>
+									<h4>{{$orgs->company_name}}</h4>
+									<span>( {{$orgs->company_type}} )</span>
+									<p><i>{{$orgs->company_city}}</i></p>
 									<ul class="employee-social">
-										<li><a href="{{$value->candidate_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="{{$value->candidate_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="{{$value->candidate_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-										<li><a href="{{$value->candidate_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="{{$orgs->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="{{$orgs->organization_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="{{$orgs->organization_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="{{$orgs->organization_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 										
 									</ul>
 									
 								</div>
-								<a href="{{url('candidate-profile')}}/{{$value->candidate_id}}" title="" class="cndt-profile-btn">View Profile</a>
+								<a href="{{url('single-company-profile')}}/{{$orgs->company_id}}" title="" class="cndt-profile-btn">View Profile</a>
 							</div>
 						</div>
 						@endforeach
@@ -101,16 +101,10 @@
 
 					</div>
 					<div class="row">
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li> 
-							<li><a href="#">4</a></li> 
-							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
-							<li><a href="#">&raquo;</a></li> 
-						</ul>
-					</div>
+							<ul class="pagination">
+							 <h5 style="text-align:center">{{$org->links()}}</h5>
+							</ul>
+						</div>
 				</div>
 			</section>
 			<!-- Employee List End -->

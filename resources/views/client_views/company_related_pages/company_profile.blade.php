@@ -408,18 +408,13 @@
 						<article id="post-show{{$fetch_post->post_id}}">
 							<div class="brows-resume">
 								<div class="row">
-									<!-- <div class="col-md-2 col-sm-2">
-										<div class="brows-resume-pic">
-											<img src="assets/img/can-4.png" class="img-responsive" alt="" />
-										</div>
-									</div> -->
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name">
 											<h4 id="job_name{{$fetch_post->post_id}}">{{$fetch_post->job_title}}</h4>
 											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">
 											<?php
 
-											
+
 												$fetch_post->req_industry= str_replace("_"," ",$fetch_post->req_industry);
 												echo $fetch_post->req_industry;
 
