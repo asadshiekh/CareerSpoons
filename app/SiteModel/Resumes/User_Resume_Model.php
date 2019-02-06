@@ -178,7 +178,6 @@ class User_Resume_Model extends Model
 
 	public function get_candidate_general_info($candidate_id){
 
-
 		$response = DB::table('add_user_generals_info')->where('candidate_id', $candidate_id)->first();
 		return $response;
 	}
@@ -422,6 +421,18 @@ class User_Resume_Model extends Model
     public function get_temp_id($id){
     $in=DB::table('user_choose_temp')->where(['candidate_id'=>$id])->first();
     return $in;
+    }
+    public function get_user_detail($id){
+    $detail=DB::table('register_users')->where(['id'=>$id])->first();
+    return $detail;
+    }
+    public function fetch_profile_img($id){
+	$img=DB::table('user_profile_images')->where(['candidate_id'=>$id])->first();
+    return $img;
+    }
+    public function fetch_links($id){
+    $links = DB::table('add_user_social_media_links')->where(['candidate_id'=>$id])->first();
+		return $links; 	
     }
 
 

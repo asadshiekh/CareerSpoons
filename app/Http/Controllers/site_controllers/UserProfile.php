@@ -93,10 +93,9 @@ class UserProfile extends Controller
 		$obj =  new UserProfileImages();
 		$info = $obj->update_user_profile_image($request->session()->get('id'),$user_response);
 		$request->session()->forget('profile_image');
+		$request->session()->put('profile_image',$imageName);
 		
 		if($info){
-
-			$request->session()->put('profile_image',$imageName);
 			echo $imageName;
 			// return redirect('user-profile')->with('success','Your Profile Picture is Successfully Updated!');
 		}

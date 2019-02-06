@@ -183,7 +183,7 @@
 
 								<a href="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" target="_blank">
 
-									<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" class="img" alt="" />
+									<img src="{{url('uploads/client_site/profile_pic')}}/{{Session::get('profile_image')}}" class="img" alt="" />
 
 								</a>
 							</div>

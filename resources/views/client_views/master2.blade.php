@@ -669,6 +669,17 @@
 
 				});
 			</script>
+			<script>			
+
+				var typed = new Typed('#new_typed', {
+					stringsElement: '#new_typed-strings',
+					typeSpeed: 100,
+					showCursor: false,
+					startDelay: 500,
+					bindInputFocusEvents: true,
+
+				});
+			</script>
 
 			<script>
 				AOS.init();

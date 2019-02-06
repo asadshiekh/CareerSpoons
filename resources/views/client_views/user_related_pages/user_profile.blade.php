@@ -29,9 +29,9 @@
 
 			<div id="image_div">
 
-			<a href="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" target="_blank">
+			<a href="{{url('uploads/client_site/profile_pic')}}/{{Session::get('profile_image')}}" target="_blank">
 				
-			<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{Session::get('profile_image')}}" class="img" alt="" />
+			<img src="{{url('uploads/client_site/profile_pic')}}/{{Session::get('profile_image')}}" class="img" alt="" />
 				
 			</a>
 			</div>
@@ -2279,7 +2279,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			            success: function (data) {
 			                html = '<img src="'+resp+'"/>';
 			                $("#upload-demo-i").html(html);
-			                html1 = '<a href="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" target="_blank"><img src="http://careerspoons.com/uploads/client_site/profile_pic/'+data+'" /></a>';
+			                html1 = "<a href={{url('uploads/client_site/profile_pic')}}/"+data+"' target='_blank'><img src='{{url('uploads/client_site/profile_pic')}}/"+data+"' /></a>";
 			                $("#image_div").html(html1);
 			                setTimeout(
 			                	function(){
