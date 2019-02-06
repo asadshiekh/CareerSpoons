@@ -22,7 +22,7 @@
 						@if($info->verify_by_email=='1')
 						<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is Verify By Email" data-pt-animate="bounceIn">Verified Candidate</span></div>
 						@else
-						<div class="detail-status"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is not Verified By Email" data-pt-animate="shake" style="background-color: red; color: white">UnVerified Candidate</span></div>
+						<div class="detail-status"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is not Verified By Email" data-pt-animate="shake" data-pt-scheme="red" style="background-color: red; color: white">UnVerified Candidate</span></div>
 						@endif
 					</div>
 					<div class="row bottom-mrg mrg-0">
@@ -64,10 +64,10 @@
 							<div class="col-md-5 col-sm-5">
 								<ul class="detail-footer-social">
 
-									<li><a href="{{$links->candidate_fackbook}}"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="{{$links->candidate_google}}"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="{{$links->candidate_twitter}}"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="{{$links->candidate_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="{{$links->candidate_fackbook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="{{$links->candidate_google}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="{{$links->candidate_twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="{{$links->candidate_linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 									
 								</ul>
 							</div>
