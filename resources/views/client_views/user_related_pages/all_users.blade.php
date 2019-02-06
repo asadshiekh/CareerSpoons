@@ -90,7 +90,7 @@
 									</ul>
 									
 								</div>
-								<a href="#" title="" class="cndt-profile-btn">View Profile</a>
+								<a href="{{url('candidate-profile')}}/{{$value->candidate_id}}" title="" class="cndt-profile-btn">View Profile</a>
 							</div>
 						</div>
 						@endforeach
