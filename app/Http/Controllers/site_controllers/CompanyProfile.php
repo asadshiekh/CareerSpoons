@@ -872,7 +872,7 @@ public function updatePostSingleFront(Request $request){
     return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links]);
   }
   public function addReviewComments(Request $request){
-    echo "asad";
+    echo "nayab";
     //print_r($request->all());
   // $id=$request->post("x");
   // $name=$request->post("name");

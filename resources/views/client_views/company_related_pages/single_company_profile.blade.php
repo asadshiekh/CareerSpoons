@@ -224,7 +224,8 @@
 									<div class="section-title2">
 										<h3>Comments (2)</h3>
 									</div>
-									<form>
+									<form action="/review-comments" method="post">
+										{{ csrf_field() }}
 									<div class="col-md-6 col-sm-6">
 										<input type="text" class="form-control" name="u_name" id="u_name" placeholder="Your Name">
 									</div>
@@ -236,7 +237,7 @@
 									</div>
                                     <?php if(Session::get("login_status") == "Active"){
                                     ?>
-									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment('{{$fetch_company->company_id}}');">submit now</button>
+									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment();">submit now</button>
                                     <?php }else{ ?>
                                     <button class="btn btn-success btn-comment" style="pointer-events: none;" disabled="disabled">First Sign In to post a Comment</button>
 
@@ -379,14 +380,14 @@
 
 			<!-- Freelancer Detail End -->
 <script type="text/javascript">
-function add_review_comment(x){
-	alert(x);
+function add_review_comment(){
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+ 	alert(CSRF_TOKEN);
  //  var name= $("#u_name").val();
  //  var email= $("#u_email").val();
  //  var comment= $("#u_comment").val();
  // alert("name ="+name+" email ="+email+"comment ="+comment);
- $.post("review-comments",{_token:CSRF_TOKEN,x:x},function(data){
+ $.post("/review-comments",{_token:CSRF_TOKEN},function(data){
    alert(data);
  });
 }

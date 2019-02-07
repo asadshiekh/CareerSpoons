@@ -92,7 +92,9 @@ Route::any('fetch_company_f_area_related_majors',"site_controllers\CompanyProfil
 Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile");
 Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
 Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
-Route::any('review-comments',"site_controllers\CompanyProfile@addReviewComments");
+
+
+Route::any('/review-comments',"site_controllers\CompanyProfile@addReviewComments");
 
 
 
