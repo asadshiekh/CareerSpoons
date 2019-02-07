@@ -869,29 +869,42 @@ public function updatePostSingleFront(Request $request){
     $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
     $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
-    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links]);
+    $us_id=$request->session()->get('id');
+    $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->count();
+    if($fetch_comments>0){
+    $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->inRandomOrder()->get();
+     }
+     //$fetch_comments=DB::table('reviews_comments')get();
+
+    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments]);
   }
   public function addReviewComments(Request $request){
-    echo "nayab";
-    //print_r($request->all());
-  // $id=$request->post("x");
-  // $name=$request->post("name");
-  // $email=$request->post("email");
-  // $comment=$request->post("comment");
-  // $u_id=$request->session()->get('id');
-  // $current_date = date("Y.m.d h:i:s");
+    // echo "nayab";
+    // print_r($request->all());
+  $id=$request->post("x");
+  $name=$request->post("name");
+  $email=$request->post("email");
+  $comment=$request->post("comment");
+  $u_id=$request->session()->get('id');
+  $current_date = date("Y.m.d h:i:s");
   
-  // $comments=array(
-  //   'user_id'=>$u_id,
-  //   '$user_name'=>$name,
-  //   '$user_email'=>$email,
-  //   '$user_comment'=>$comment,
-  //   '$company_id'=>$id,
-  //   'created_at'=>$current_date,
-  //   'updated_at'=>$current_date
+  $comments=array(
+    'user_id'=>$u_id,
+    'user_name'=>$name,
+    'user_email'=>$email,
+    'user_comments'=>$comment,
+    'company_id'=>$id,
+    'created_at'=>$current_date,
+    'updated_at'=>$current_date
+  );
+   //print_r($comments);
+  $user_data=DB::table('user_profile_images')->where(['candidate_id'=>$u_id])->first();
+  $user_img=$user_data->profile_image;
+   if(DB::table('reviews_comments')->insert($comments)){
+     echo $user_img;
+    }
+  
 
-  // );
-  // print_r($comments);
    }
 
 

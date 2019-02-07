@@ -218,11 +218,14 @@
 						</div>
 						</div>
 						 <?php if(!Session::get("company_id")){
+						 	$u_id=Session::get("id");
+						 	 $data=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->count();
+  									if($data<=0){
                                     ?>
 						<div class="row no-mrg">
 								<div class="comments-form"> 
 									<div class="section-title2">
-										<h3>Comments (2)</h3>
+										<h3>Comments</h3>
 									</div>
 									<form action="/review-comments" method="post">
 										{{ csrf_field() }}
@@ -237,7 +240,7 @@
 									</div>
                                     <?php if(Session::get("login_status") == "Active"){
                                     ?>
-									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment();">submit now</button>
+									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment('{{$fetch_company->company_id}}');">submit now</button>
                                     <?php }else{ ?>
                                     <button class="btn btn-success btn-comment" style="pointer-events: none;" disabled="disabled">First Sign In to post a Comment</button>
 
@@ -245,7 +248,7 @@
 									</form>
 								</div>
 						</div>
-						<?php  } ?>
+						<?php  } } ?>
 
 
 
@@ -267,55 +270,57 @@
 								</div>
 							
 							<div class="row">
-								
+								<span id="reviews_c"></span>
 								<!-- Single Review -->
+								
+							   <?php if(Session::get("id")){
+						 	   $u_id=Session::get("id");
+						 	   $data=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->count();
+  									if($data>0){
+  										$data1=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->first();
+  										$user_img=DB::table('user_profile_images')->where(['candidate_id'=>$u_id])->select('profile_image')->first();
+                                    ?>
 								<div class="review-list">
-									<div class="review-thumb">
-										<img src="{{url('public/client_assets/img/client-1.jpg')}}" class="img-responsive img-circle" alt="" />
+									<div class="review-thumb" style="width: 95px;">
+										<img src="{{url('uploads/client_site/profile_pic')}}/{{$user_img->profile_image}}" class="img-responsive img-circle" style="border solid 3px grey;" alt="" />
 									</div>
+									
 									<div class="review-detail">
-										<h4>Daniel Luke<span>3 days ago</span></h4>
-										<span class="re-designation">Web Developer</span>
-										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et .</p>
+
+										<h4 class="col-sm-8">{{$data1->user_name}}</h4>
+										<span class="col-sm-4" style="font-size: 12px; font-family: Georgia,Regular">3 days ago</span>
+										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$data1->user_email}})</span>
+										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$data1->user_comments}}.</p>
+										<p class="col-sm-12" style="text-align: right;margin-top: 0px;margin-bottom: 0px;">
+											<a href="#" data-toggle="tooltip" title="Edit" style="color: green;font-size: 20px;"><i class="fa fa-edit"></i></a>&nbsp&nbsp|&nbsp&nbsp
+											<a href="#" data-toggle="tooltip" title="Delete" style="color: red;font-size: 20px;"><i class="fa fa-trash-o"></i></a>
+										
+									</p>
+									</div>
+
+								</div>
+								<hr/>
+								<?php }else{
+									echo "<h4 style='font-family:Georgia,regular;font-size14px;'> No Reviews </h4>"
+								}
+							} ?>
+								@if($fetch_comments)
+								@foreach($fetch_comments as $comm)
+								<div class="review-list">
+									<div class="review-thumb" style="width: 95px;">
+										<img src="{{url('uploads/client_site/profile_pic')}}/{{$comm->profile_image}}" class="img-responsive img-circle" style="border solid 3px grey;" alt="" />
+									</div>
+									
+									<div class="review-detail">
+
+										<h4 class="col-sm-8">{{$comm->user_name}}</h4>
+										<span class="col-sm-4" style="font-size: 12px; font-family: Georgia,Regular">3 days ago</span>
+										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$comm->user_email}})</span>
+										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$comm->user_comments}}.</p>
 									</div>
 								</div>
-								
-								<!-- Single Review -->
-								<div class="review-list">
-									<div class="review-thumb">
-										<img src="{{url('public/client_assets/img/client-2.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="review-detail">
-										<h4>Daniel Luke<span>3 days ago</span></h4>
-										<span class="re-designation">Web Developer</span>
-										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
-									</div>
-								</div>
-								
-								<!-- Single Review -->
-								<div class="review-list">
-									<div class="review-thumb">
-										<img src="{{url('public/client_assets/img/client-3.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="review-detail">
-										<h4>Daniel Luke<span>3 days ago</span></h4>
-										<span class="re-designation">Web Developer</span>
-										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis .</p>
-									</div>
-								</div>
-								
-								<!-- Single Review -->
-								<div class="review-list">
-									<div class="review-thumb">
-										<img src="{{url('public/client_assets/img/client-4.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="review-detail">
-										<h4>Daniel Luke<span>3 days ago</span></h4>
-										<span class="re-designation">Web Developer</span>
-										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum fuga.</p>
-									</div>
-								</div>
-								
+								@endforeach
+								@endif
 							</div>
 							
 						</div>
@@ -380,15 +385,15 @@
 
 			<!-- Freelancer Detail End -->
 <script type="text/javascript">
-function add_review_comment(){
+function add_review_comment(x){
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
- 	alert(CSRF_TOKEN);
- //  var name= $("#u_name").val();
- //  var email= $("#u_email").val();
- //  var comment= $("#u_comment").val();
+  var name= $("#u_name").val();
+  var email= $("#u_email").val();
+  var comment= $("#u_comment").val();
  // alert("name ="+name+" email ="+email+"comment ="+comment);
- $.post("/review-comments",{_token:CSRF_TOKEN},function(data){
-   alert(data);
+ $.post("{{url('review-comments')}}",{_token:CSRF_TOKEN,x:x,name:name,email:email,comment:comment},function(data){
+   swal('Your Review Added Successfully Thanks For Your Review!','success');
+   $("#reviews_c").after("<div class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/"+data+"' class='img-responsive img-circle'/></div><div class='review-detail'><h4>"+name+"<span  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span></h4><span class='re-designation' style='font-size: 12px;'>"+email+"</span><p style='font-family: Georgia,Regular;margin-top: 8px;'>"+comment+".</p></div></div>");
  });
 }
 </script>
