@@ -217,6 +217,8 @@
 							</ul>
 						</div>
 						</div>
+						 <?php if(!Session::get("company_id")){
+                                    ?>
 						<div class="row no-mrg">
 								<div class="comments-form"> 
 									<div class="section-title2">
@@ -224,24 +226,25 @@
 									</div>
 									<form>
 									<div class="col-md-6 col-sm-6">
-										<input type="text" class="form-control" placeholder="Your Name">
+										<input type="text" class="form-control" name="u_name" id="u_name" placeholder="Your Name">
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="email" class="form-control" placeholder="Your Email">
-									</div>
-									<div class="col-md-6 col-sm-6">
-										<input type="text" class="form-control" placeholder="Your Mobile">
-									</div>
-									<div class="col-md-6 col-sm-6">
-										<input type="text" class="form-control" placeholder="Subject">
+										<input type="email" class="form-control" name="u_email" id="u_email" placeholder="Your Email">
 									</div>
 									<div class="col-md-12 col-sm-12">
-										<textarea class="form-control" placeholder="Comment"></textarea>
+										<textarea class="form-control" placeholder="Comment" name="u_comment" id="u_comment"></textarea>
 									</div>
-									<button class="thm-btn btn-comment" type="submit">submit now</button>
+                                    <?php if(Session::get("login_status") == "Active"){
+                                    ?>
+									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment('{{$fetch_company->company_id}}');">submit now</button>
+                                    <?php }else{ ?>
+                                    <button class="btn btn-success btn-comment" style="pointer-events: none;" disabled="disabled">First Sign In to post a Comment</button>
+
+                                    <?php } ?>
 									</form>
 								</div>
-							</div>
+						</div>
+						<?php  } ?>
 
 
 
@@ -375,6 +378,17 @@
 			</section>
 
 			<!-- Freelancer Detail End -->
-
-
-			@endsection
+<script type="text/javascript">
+function add_review_comment(x){
+	alert(x);
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+ //  var name= $("#u_name").val();
+ //  var email= $("#u_email").val();
+ //  var comment= $("#u_comment").val();
+ // alert("name ="+name+" email ="+email+"comment ="+comment);
+ $.post("review-comments",{_token:CSRF_TOKEN,x:x},function(data){
+   alert(data);
+ });
+}
+</script>
+@endsection

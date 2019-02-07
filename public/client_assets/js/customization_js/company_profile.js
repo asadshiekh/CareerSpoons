@@ -208,3 +208,4 @@ function select_functional_area_majors(){
 
   });
 }
+

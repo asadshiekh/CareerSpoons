@@ -859,7 +859,7 @@ public function updatePostSingleFront(Request $request){
     return $info;
   }
   public function viewAllCompany(Request $request){
-    $org=DB::table('add_organizations')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('add_organization_social_link','add_organizations.company_id', '=', 'add_organization_social_link.organization_id')->select('add_organizations.*','add_organization_social_link.*','upload_org_img.*')->inRandomOrder()->simplePaginate(2);
+    $org=DB::table('add_organizations')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('add_organization_social_link','add_organizations.company_id', '=', 'add_organization_social_link.organization_id')->select('add_organizations.*','add_organization_social_link.*','upload_org_img.*')->inRandomOrder()->simplePaginate(3);
     // echo "<pre>";
     // print_r($org);
       return view("client_views.company_related_pages.allCompanies",['org'=>$org]);
@@ -870,8 +870,29 @@ public function updatePostSingleFront(Request $request){
     $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
     return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links]);
-
   }
+  public function addReviewComments(Request $request){
+    echo "asad";
+    //print_r($request->all());
+  // $id=$request->post("x");
+  // $name=$request->post("name");
+  // $email=$request->post("email");
+  // $comment=$request->post("comment");
+  // $u_id=$request->session()->get('id');
+  // $current_date = date("Y.m.d h:i:s");
+  
+  // $comments=array(
+  //   'user_id'=>$u_id,
+  //   '$user_name'=>$name,
+  //   '$user_email'=>$email,
+  //   '$user_comment'=>$comment,
+  //   '$company_id'=>$id,
+  //   'created_at'=>$current_date,
+  //   'updated_at'=>$current_date
+
+  // );
+  // print_r($comments);
+   }
 
 
 
