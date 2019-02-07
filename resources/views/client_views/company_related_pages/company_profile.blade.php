@@ -684,7 +684,40 @@
 		<div id="reviews" class="tab-pane fade">
 			<div class="inbox-body inbox-widget">
 				<h3>Company Reviews and Comments</h3>
+		</div>
+
+		<?php 
+
+		$id = 	Session::get('company_id');
+		$org_reviews = DB::table('organization_reviews')->where('organization_id',$id)->first();
+		
+		if($org_reviews->review_description){
+
+		}
+		else{
+
+			$org_reviews->review_description = "Enter Your Reviews About This Products!";
+		}
+
+		?>
+		<form action="{{url('')}}" method="post">	
+			<br/>
+			<div class="col-sm-12">
+				<label style="display:block">Rate out of 5</label>
+				<div id="rateYo" style="display:inline-block;"></div>
+				<div class="counter" style="display:inline-block;"></div>
 			</div>
+
+			<div class="col-sm-12">
+			<br/>
+				<textarea name="rating_pro" id="rating_pro">{{$org_reviews->review_description}}</textarea>
+			</div>
+			<div class="col-sm-12">
+				<button type="button" onclick="" class="update-btn">Rate Product</button>
+			</div>
+			<br>
+		</form>
+
 		</div>
 		<!-- End Message -->
 

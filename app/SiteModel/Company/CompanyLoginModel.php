@@ -14,4 +14,11 @@ class CompanyLoginModel extends Model
 		])->first();
 		return $info;
 	}
+
+	public function get_organization_review_data($organization_id){
+
+		$data = DB::table('organization_reviews')->where('organization_id',$organization_id)->first();
+		return $data; 
+		
+	}
 }

@@ -197,6 +197,7 @@
 
 		$id = 	Session::get('id');
 		$candidate_reviews = DB::table('candidate_reviews')->where('candidate_id', $id)->first();
+		
 		if($candidate_reviews->review_description){
 
 		}

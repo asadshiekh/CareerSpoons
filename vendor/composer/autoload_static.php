@@ -426,6 +426,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Controllers\\admin_controllers\\user_controllers\\RegisteredUsers' => __DIR__ . '/../..' . '/app/Http/Controllers/admin_controllers/user_controllers/RegisteredUsers.php',
         'App\\Http\\Controllers\\site_controllers\\CompanyEmailVerification' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/CompanyEmailVerification.php',
         'App\\Http\\Controllers\\site_controllers\\CompanyProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/CompanyProfile.php',
+        'App\\Http\\Controllers\\site_controllers\\SearchUsers' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SearchUsers.php',
         'App\\Http\\Controllers\\site_controllers\\SiteCompany' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteCompany.php',
         'App\\Http\\Controllers\\site_controllers\\SiteCompanyLogin' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteCompanyLogin.php',
         'App\\Http\\Controllers\\site_controllers\\SiteController' => __DIR__ . '/../..' . '/app/Http/Controllers/site_controllers/SiteController.php',

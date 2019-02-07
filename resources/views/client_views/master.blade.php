@@ -84,7 +84,7 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 						<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
-						<li><a href="pricing.html"><i class="fas fa-city"></i>Companies</a></li>
+						<li><a href="{{url('search-company')}}"><i class="fas fa-city"></i>Companies</a></li>
 						<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
 						@if(Session::has('user_status'))
 						<li class="nav-item dropdown">
@@ -601,15 +601,23 @@
 			</style>
 			
 			<script>
-				
+					
+				<?php 
+					if(Session::get('candidate_rating')){
+						$review = Session::get('candidate_rating');
+					}
+
+					else{
+						$review = Session::get('organization_rating');
+					}
+				?>	
+
 				$("#rateYo").rateYo({
-					rating:{{Session::get('candidate_rating')}},
-					onChange: function (rating, rateYoInstance) {
+					rating:{{$review}},
+					onChange: function (rating, rateYoInstance){
 
 						$(this).next().text(rating);
 					}
-
-
 				});
 
 			</script>

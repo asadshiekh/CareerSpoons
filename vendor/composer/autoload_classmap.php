@@ -30,6 +30,7 @@ return array(
     'App\\Http\\Controllers\\admin_controllers\\user_controllers\\RegisteredUsers' => $baseDir . '/app/Http/Controllers/admin_controllers/user_controllers/RegisteredUsers.php',
     'App\\Http\\Controllers\\site_controllers\\CompanyEmailVerification' => $baseDir . '/app/Http/Controllers/site_controllers/CompanyEmailVerification.php',
     'App\\Http\\Controllers\\site_controllers\\CompanyProfile' => $baseDir . '/app/Http/Controllers/site_controllers/CompanyProfile.php',
+    'App\\Http\\Controllers\\site_controllers\\SearchUsers' => $baseDir . '/app/Http/Controllers/site_controllers/SearchUsers.php',
     'App\\Http\\Controllers\\site_controllers\\SiteCompany' => $baseDir . '/app/Http/Controllers/site_controllers/SiteCompany.php',
     'App\\Http\\Controllers\\site_controllers\\SiteCompanyLogin' => $baseDir . '/app/Http/Controllers/site_controllers/SiteCompanyLogin.php',
     'App\\Http\\Controllers\\site_controllers\\SiteController' => $baseDir . '/app/Http/Controllers/site_controllers/SiteController.php',

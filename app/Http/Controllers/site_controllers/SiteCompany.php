@@ -48,8 +48,12 @@ class SiteCompany extends Controller
           'created_at' => $current_date
         );
 
+		 //Initialized Table of Social Links
 		 DB::table('add_organization_social_link')->insert($company_social_links);
-     		
+     	
+     	//Initialized Table of Review System
+		 DB::table('organization_reviews')->insert($company_social_links);
+
 
     	if($company_info){
             $picture_up=array(
