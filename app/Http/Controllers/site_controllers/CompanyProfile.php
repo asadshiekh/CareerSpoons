@@ -860,13 +860,13 @@ public function updatePostSingleFront(Request $request){
     return $info;
   }
   public function viewAllCompany(Request $request){
-    $org=DB::table('add_organizations')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('add_organization_social_link','add_organizations.company_id', '=', 'add_organization_social_link.organization_id')->select('add_organizations.*','add_organization_social_link.*','upload_org_img.*')->inRandomOrder()->simplePaginate(3);
-    // echo "<pre>";
-    // print_r($org);
+      $obj = new CompanyProfileModel();
+      $org=$obj->fetch_all_companies();
       return view("client_views.company_related_pages.allCompanies",['org'=>$org]);
   }
   public function viewCompanySingleProfile(Request $request,$id){
     $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+    $fetch_img=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
     $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
     $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
@@ -877,7 +877,7 @@ public function updatePostSingleFront(Request $request){
      }
      //$fetch_comments=DB::table('reviews_comments')get();
 
-    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments]);
+    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments,'fetch_img'=>$fetch_img]);
   }
   public function addReviewComments(Request $request){
     // echo "nayab";
@@ -899,10 +899,8 @@ public function updatePostSingleFront(Request $request){
     'updated_at'=>$current_date
   );
    //print_r($comments);
-  $user_data=DB::table('user_profile_images')->where(['candidate_id'=>$u_id])->first();
-  $user_img=$user_data->profile_image;
    if(DB::table('reviews_comments')->insert($comments)){
-     echo $user_img;
+     echo $last=DB::getPdo()->lastInsertId();
     }
   
 
@@ -937,6 +935,68 @@ public function updatePostSingleFront(Request $request){
    
 
    }
+
+   public function deleteReviewComments(Request $request,$id){
+    //$id=$request->post("id");
+   $for= DB::table('reviews_comments')->where(['comment_id'=>$id])->first();
+   $c_id=$for->company_id;
+    if(DB::table('reviews_comments')->where(['comment_id'=>$id])->delete()){
+    return redirect('single-company-profile/'.$c_id)->with('success',' Review Deleted Successfully!');
+    }else{
+      return redirect('single-company-profile/'.$c_id)->with('error',' Something Wents Wrong Plz Try Again!');
+    }
+  }
+  public function modelReviewComments(Request $request){
+   $id=$request->post("id");
+   $info=DB::table('reviews_comments')->where(['comment_id'=>$id])->first();
+   echo '  <!-- Modal -->
+   <div class="modal fade" id="myModalcomment" role="dialog">
+   <div class="modal-dialog modal-md">
+   <div class="modal-content">
+   <div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal">&times;</button>
+   <h4 class="modal-title">Edit Your Comment Here..</h4>
+   </div>
+   <div class="modal-body" style="padding:5%;padding-top:10%;padding-bottom:15%;">
+   <form>
+   <div class="col-md-6 col-sm-6">
+   <input type="text" class="form-control" name="n_name" id="n_name" placeholder="Your Name" value="'.$info->user_name.'">
+   </div>
+   <div class="col-md-6 col-sm-6">
+   <input type="email" class="form-control" name="n_email" id="n_email" placeholder="Your Email" value="'.$info->user_email.'">
+   </div>
+   <div class="col-md-12 col-sm-12">
+   <textarea class="form-control" placeholder="Comment" name="n_comment" id="n_comment">'.$info->user_comments.'</textarea>
+   </div>
+   <div class="col-md-12 col-sm-12">
+   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   <button type="button" onclick="save_updates('.$id.');" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+   </div>
+      </form>
+   </div>
+
+   </div>
+   </div>
+   </div>
+   </div>';
+ }
+
+ public function editReviewComments(Request $request){
+  $current_date = date("Y.m.d h:i:s");
+  $id= $request->post("id");
+  $name= $request->post("n");
+  $email= $request->post("e");
+  $comment= $request->post("c");
+  $update_arr=array(
+    'user_name'=>$name,
+    'user_email'=>$email,
+    'user_comments'=>$comment,
+    'updated_at'=>$current_date
+  );
+  if(DB::table('reviews_comments')->where(['comment_id'=>$id])->update($update_arr)){
+   echo "yes";
+  }
+ }
 
 
 

@@ -6,7 +6,7 @@
 					
 					<div class="col-md-8">
 						<div class="left-side-container">
-							<div class="freelance-image"><a href="company-detail.html"><img src="{{url('public/client_assets/img/can-5.jpg')}}" class="img-responsive img-circle" alt=""></a></div>
+							<div class="freelance-image"><a href="company-detail.html"><img src="{{url('uploads/organization_images')}}/{{$fetch_img->company_img}}" class="img-responsive img-circle" alt=""></a></div>
 							<div class="header-details">
 								<h4>{{$fetch_company->company_name}}</h4>
 								<p>(<?php
@@ -222,7 +222,7 @@
 						 	 $data=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->count();
   									if($data<=0){
                                     ?>
-						<div class="row no-mrg">
+						<div class="row no-mrg" id="comment-div">
 								<div class="comments-form"> 
 									<div class="section-title2">
 										<h3>Comments</h3>
@@ -280,20 +280,20 @@
   										$data1=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->first();
   										$user_img=DB::table('user_profile_images')->where(['candidate_id'=>$u_id])->select('profile_image')->first();
                                     ?>
-								<div class="review-list">
+								<div class="review-list" id="personal_comment">
 									<div class="review-thumb" style="width: 95px;">
 										<img src="{{url('uploads/client_site/profile_pic')}}/{{$user_img->profile_image}}" class="img-responsive img-circle" style="border solid 3px grey;" alt="" />
 									</div>
 									
 									<div class="review-detail">
 
-										<h4 class="col-sm-8">{{$data1->user_name}}</h4>
+										<h4 class="col-sm-8" id="name-user">{{$data1->user_name}}</h4>
 										<span class="col-sm-4" style="font-size: 12px; font-family: Georgia,Regular">3 days ago</span>
-										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$data1->user_email}})</span>
-										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$data1->user_comments}}.</p>
+										<span class="re-designation col-sm-12" style="font-size: 12px;" id="email-user">({{$data1->user_email}})</span>
+										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;" id="comment-user">{{$data1->user_comments}}.</p>
 										<p class="col-sm-12" style="text-align: right;margin-top: 0px;margin-bottom: 0px;">
-											<a href="#" data-toggle="tooltip" title="Edit" style="color: green;font-size: 20px;"><i class="fa fa-edit"></i></a>&nbsp&nbsp|&nbsp&nbsp
-											<a href="#" data-toggle="tooltip" title="Delete" style="color: red;font-size: 20px;"><i class="fa fa-trash-o"></i></a>
+											<a type="button" onclick="edit_model('{{$data1->comment_id}}');" data-toggle="tooltip" title="Edit" style="color: green;font-size: 20px;"><i class="fa fa-edit"></i></a>&nbsp&nbsp|&nbsp&nbsp
+											<a href="{{url('delete-review-comments')}}/{{$data1->comment_id}}" data-toggle="tooltip" title="Delete" style="color: red;font-size: 20px;"><i class="fa fa-trash-o"></i></a>
 										
 									</p>
 									</div>
@@ -352,7 +352,7 @@
 													</div>
 												</div>
 												<div class="popular-jobs-box-extra">
-													<ul class="employee-social">
+												<ul class="employee-social">
 										<li><a href="{{$fetch_org_links->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
 										<li><a href="{{$fetch_org_links->organization_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
 										<li><a href="{{$fetch_org_links->organization_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
@@ -382,19 +382,62 @@
 					
 				</div>
 			</section>
+			<div id="comment-model-div"></div>
 
 			<!-- Freelancer Detail End -->
 <script type="text/javascript">
 function add_review_comment(x){
+  
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
   var name= $("#u_name").val();
   var email= $("#u_email").val();
   var comment= $("#u_comment").val();
+  var m="'"+x+"'";
  // alert("name ="+name+" email ="+email+"comment ="+comment);
  $.post("{{url('review-comments')}}",{_token:CSRF_TOKEN,x:x,name:name,email:email,comment:comment},function(data){
    swal('Your Review Added Successfully Thanks For Your Review!','success');
-   $("#reviews_c").after("<div class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/"+data+"' class='img-responsive img-circle'/></div><div class='review-detail'><h4>"+name+"<span  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span></h4><span class='re-designation' style='font-size: 12px;'>"+email+"</span><p style='font-family: Georgia,Regular;margin-top: 8px;'>"+comment+".</p></div></div>");
+   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8'>"+name+"</h4><span class='col-sm-4'  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model('"+m+"');' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
  });
+ $("#comment-div").hide();
+}
+// function delete_comment(id){
+// alert(id);
+// var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+// $.post("{{url('delete-review-comments')}}",{_token:CSRF_TOKEN,id:id},function(data){
+// 	if(data == "yes"){
+//      swal('Your Review Deleted!','success');
+//      $("#personal_comment").hide();
+//      $("#comment-div").show();
+// 	}else{
+//      swal('Something Wents Wrong Plz Try Again!','error');
+// 	}
+// });
+// }
+
+function edit_model(id){
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("{{url('model-review-comments')}}",{_token:CSRF_TOKEN,id:id},function(data){
+	$("#comment-model-div").html(data);
+	$("#myModalcomment").modal("show");
+});
+}
+
+function save_updates(id){
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+var n=$("#n_name").val();
+var e=$("#n_email").val();
+var c=$("#n_comment").val();
+$.post("{{url('edit-review-comments')}}",{_token:CSRF_TOKEN,id:id,n:n,e:e,c:c},function(data){
+	if(data == "yes"){
+		$("#name-user").html(n);
+		$("#email-user").html(e);
+		$("#comment-user").html(c);
+		swal('Comment Successfully Update!','success');
+	}else{
+		swal('Try again Something Wents Wrong!','error');
+	}
+	
+});
 }
 </script>
 @endsection

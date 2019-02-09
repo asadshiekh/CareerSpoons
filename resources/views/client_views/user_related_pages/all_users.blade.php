@@ -53,6 +53,12 @@
 					
 					<!-- Manage Employee -->
 					<div class="row">
+					<?php 
+                    if($candidates===0){ ?>
+                    
+                        <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
+                    
+                    <?php }else{ ?>
 						
 						@foreach ($candidates as $value)
 						<div class="col-md-3 col-sm-3">
@@ -94,6 +100,7 @@
 							</div>
 						</div>
 						@endforeach
+					<?php } ?>
 
 
 
@@ -102,14 +109,17 @@
 					</div>
 					<div class="row">
 						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li> 
-							<li><a href="#">4</a></li> 
-							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
-							<li><a href="#">&raquo;</a></li> 
-						</ul>
+							 <h5 style="text-align:center">
+							 	<?php 
+								if($candidates>0){ 
+
+									echo $candidates->links();
+
+								}	
+								?>
+							 	
+							 </h5>
+							</ul>
 					</div>
 				</div>
 			</section>

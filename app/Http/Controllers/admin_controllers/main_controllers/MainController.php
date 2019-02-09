@@ -205,5 +205,25 @@ public function aboutUsFormSend(Request $request){
        return view('admin_views/main_views/product_reviews');
   }   
 
+  function doFetchReviews(Request $request){
+     $name= $request->post("x");
+     if($name == "candidates"){
+      $info= DB::table('candidate_reviews')->get();
+        if($info->count()<=0){
+        return $info = $info->count();
+        }else{
+        return $info;
+        }
+     }else{
+        $info= DB::table('organization_reviews')->get();
+        if($info->count()<=0){
+        return $info = $info->count();
+        }else{
+        return $data = $info;
+        }
+     }
+     
+
+  }
 
 }
