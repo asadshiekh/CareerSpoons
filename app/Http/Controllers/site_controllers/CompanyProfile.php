@@ -5,6 +5,7 @@ namespace App\Http\Controllers\site_controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Job\JobModel;
+use App\SiteModel\Company\CompanyProfileModel;
 use DB;
 
 class CompanyProfile extends Controller
@@ -904,6 +905,36 @@ public function updatePostSingleFront(Request $request){
      echo $user_img;
     }
   
+
+   }
+
+
+
+   public function addCompanyRating(Request $request){
+
+    $current_date = date("Y.m.d h:i:s");
+    $request->rating_description=str_ireplace('<p>','',$request->rating_description);
+    $request->rating_description=str_ireplace('</p>','',$request->rating_description);
+
+    $company_response = array(
+      'rating_points' => $request->rating,
+      'review_description' => $request->rating_description,
+      'updated_at' => $current_date
+    );
+    
+    $obj =  new CompanyProfileModel();
+    $info = $obj->company_update_reviews($request->session()->get('company_id'),$company_response); 
+
+    if($info){
+        $request->session()->forget('organization_rating');
+      $request->session()->put('organization_rating',$request->rating);
+        echo "yes";
+    } 
+    else{
+
+
+    }    
+   
 
    }
 

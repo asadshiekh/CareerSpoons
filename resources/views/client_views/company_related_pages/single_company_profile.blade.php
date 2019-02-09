@@ -300,9 +300,9 @@
 
 								</div>
 								<hr/>
-								<?php }else{
-									echo "<h4 style='font-family:Georgia,regular;font-size14px;'> No Reviews </h4>"
-								}
+								<?php }else{?>
+									<h4> No Reviews </h4>
+								<?php }
 							} ?>
 								@if($fetch_comments)
 								@foreach($fetch_comments as $comm)

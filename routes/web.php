@@ -93,8 +93,9 @@ Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompany
 Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
 Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
 
-
 Route::any('/review-comments',"site_controllers\CompanyProfile@addReviewComments");
+
+Route::any('company-rating',"site_controllers\CompanyProfile@addCompanyRating");
 
 
 
@@ -461,11 +462,15 @@ Route::any('view-about-us',"admin_controllers\main_controllers\MainController@vi
 Route::any('about-us-form-send',"admin_controllers\main_controllers\MainController@aboutUsFormSend");
 
 
-
 // FAQ (Frequently Asked Question)
 Route::any('view-faq-page',"admin_controllers\main_controllers\MainController@viewFrequentAskedQuestion");
 Route::any('do_post_faq',"admin_controllers\main_controllers\MainController@doPostFaq");
 Route::any('delete-faq/{id}',"admin_controllers\main_controllers\MainController@doDeleteFaq");
+
+// Product Reviews
+
+Route::any('product-reviews',"admin_controllers\main_controllers\MainController@viewProductReview");
+
 
 //CV work
 Route::any('view-cv-manage-page',"admin_controllers\cv_controllers\ManageResumeTemplate@viewCVManagePage");

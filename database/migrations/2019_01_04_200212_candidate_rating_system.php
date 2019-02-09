@@ -18,6 +18,7 @@ class CandidateRatingSystem extends Migration
             $table->string('candidate_id');
             $table->string('rating_points')->default('0');
             $table->longText('review_description')->nullable($value = true);
+            $table->boolean('review_status')->default('1');
             $table->timestamps();
         });
     }

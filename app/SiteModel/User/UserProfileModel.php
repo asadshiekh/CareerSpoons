@@ -30,7 +30,7 @@ class UserProfileModel extends Model
 	public function get_all_candidate_reviews(){
 
 		$info=DB::select(DB::raw("SELECT * FROM candidate_reviews,register_users,user_profile_images WHERE 
-			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id && candidate_reviews.rating_points>=3.5 ORDER BY RAND()  LIMIT 5"));
+			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id && candidate_reviews.rating_points>=3 ORDER BY RAND()  LIMIT 5"));
 		return $info;
 	}
 

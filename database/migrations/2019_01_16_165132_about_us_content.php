@@ -22,6 +22,19 @@ class AboutUsContent extends Migration
             $table->string('about_video');
             $table->timestamps();
         });
+
+        $current_date = date("Y.m.d h:i:s");
+        DB::table('About_us_content')->insert(
+        array(
+            'about_qoute' => 'If opportunity doesn’t knock, build a door',
+            'about_address' => 'Office New DHA, Phase VIII Park View',
+            'about_email' => 'careerspoons@gmail.com',
+            'about_no' => '0334-9974743',
+            'about_video' => '1.mp4',
+            'created_at' => $current_date,
+        )
+        );
+
     }
 
     /**

@@ -197,7 +197,13 @@ public function aboutUsFormSend(Request $request){
       return redirect('view-faq-page')->with('error','Something Wrong To Delete Faq');
     }
     
-  } 
+  }
+
+
+  function viewProductReview(Request $request){
+
+       return view('admin_views/main_views/product_reviews');
+  }   
 
 
 }

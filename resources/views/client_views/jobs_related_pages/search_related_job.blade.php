@@ -75,37 +75,18 @@
 							</div>
 							
 							<div class="card-body">
-							<!-- @foreach($job as $jobs)
-								<article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="job-details/{{$jobs->post_id}}" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="job-details/{{$jobs->post_id}}" title="Job Dtail"><h4>{{$jobs->job_title}}</h4></a>
-												<span>{{$jobs->company_name}}</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>{{$jobs->company_location}}</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a>
-										</div>
-									</div>
-									<span class="tg-themetag tg-featuretag">{{date('d M ',strtotime($jobs->created_at))}}</span>
-								</article>
-								
-							@endforeach -->
+
 					
 					<article class="advance-search-job">
 						<div class="row no-mrg">
-							@foreach($job as $jobs)
+
+					<?php 
+                    if($job===0){ ?>
+                    
+                        <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
+                    
+                    <?php }else{
+                    foreach ($job as $jobs) { ?>
 							<div class="col-md-6 col-sm-6">
 								<div class="grid-view brows-job-list">
 								<div class="brows-job-company-img" style="width: 90px;">
@@ -204,50 +185,25 @@
 							    </div>
 											
 						    </div>
-						    @endforeach
+						   <?php }} ?>
 					    </div>
 				    </article>
 
-								<!-- <article class="advance-search-job">
-									<div class="row no-mrg">
-										<div class="col-md-6 col-sm-6">
-											<a href="job-details/{{$jobs->post_id}}" title="job Detail">
-												<div class="advance-search-img-box">
-													<img src="assets/img/com-1.jpg" class="img-responsive" alt="">
-												</div>
-											</a>
-											<div class="advance-search-caption">
-												<a href="new-job-detail.html" title="Job Dtail"><h4>Web Designer</h4></a>
-												<span>Autodesk Ltd</span>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4">
-											<div class="advance-search-job-locat">
-												<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-											</div>
-										</div>
-										<div class="col-md-2 col-sm-2">
-											<a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a>
-										</div>
-									</div>
-								</article> -->
+								
 								
 							</div>
 						</div>
 						
-						<!-- <div class="row">
-							<ul class="pagination">
-								
-								<li><a href="#">&laquo;</a></li>
-								<li class="active"><a>{{$job->currentPage()}}</a></li>
-								<li><a href="{{$job->links()}}">2</a></li>
-								<li><a href="#">&raquo;</a></li>
-								
-							</ul>
-						</div> -->
+						
 						<div class="row">
 							<ul class="pagination">
-							 <h5 style="text-align:center">{{$job->links()}}</h5>
+								<h5 style="text-align:center"><?php 
+								if($job>0){ 
+
+									echo $job->links();
+
+								}	
+								?></h5>
 							</ul>
 						</div>
 						

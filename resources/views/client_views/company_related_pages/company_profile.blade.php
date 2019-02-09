@@ -713,7 +713,7 @@
 				<textarea name="rating_pro" id="rating_pro">{{$org_reviews->review_description}}</textarea>
 			</div>
 			<div class="col-sm-12">
-				<button type="button" onclick="" class="update-btn">Rate Product</button>
+				<button type="button" onclick="company_review();" class="update-btn">Rate Product</button>
 			</div>
 			<br>
 		</form>

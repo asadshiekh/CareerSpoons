@@ -602,24 +602,29 @@
 			
 			<script>
 					
-				<?php 
-					if(Session::get('candidate_rating')){
-						$review = Session::get('candidate_rating');
-					}
-
-					else{
-						$review = Session::get('organization_rating');
-					}
-				?>	
+			@if (Session::has('candidate_rating'))	
 
 				$("#rateYo").rateYo({
-					rating:{{$review}},
+					rating:{{Session::get('candidate_rating')}},
+					fullStar: true,
 					onChange: function (rating, rateYoInstance){
 
 						$(this).next().text(rating);
 					}
 				});
 
+			@elseif (Session::has('organization_rating'))
+
+			$("#rateYo").rateYo({
+					rating:{{Session::get('organization_rating')}},
+					fullStar: true,
+					onChange: function (rating, rateYoInstance){
+
+						$(this).next().text(rating);
+					}
+				});
+
+			@endif
 			</script>
 
 			<script>

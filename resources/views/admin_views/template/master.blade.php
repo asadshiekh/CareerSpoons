@@ -124,7 +124,8 @@
                   </ul>
                 </li> 
   <li><a href="{{url('view-registered-users')}}"><i class="fa fa-circle-o"></i>View Registered Users</a></li>
-  <li><a href="{{url('view-cv-manage-page')}}"><i class="fa fa-circle-o"></i>Add Resume</a></li>  
+  <li><a href="{{url('view-cv-manage-page')}}"><i class="fa fa-circle-o"></i>Add Resume</a></li>
+  <li><a href="{{url('product-reviews')}}"><i class="fa fa-circle-o"></i>Product Reviews</a></li>   
   <li><a href="{{url('view-about-us')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
   <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>
   <li><a href="{{url('view-faq-page')}}"><i class="fa fa-circle-o"></i>FAQ</a></li>            
