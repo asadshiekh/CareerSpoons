@@ -51,7 +51,7 @@
             
            </script>
             @endif
-           <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+           <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width:100%">
             <thead>
               <tr id="type-tr">
                  <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  

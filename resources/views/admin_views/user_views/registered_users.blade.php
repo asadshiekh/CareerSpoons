@@ -41,7 +41,7 @@
             <p class="text-muted font-13 m-b-30">
 
             </p>
-            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
               <thead>
                 <tr>
                  <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  

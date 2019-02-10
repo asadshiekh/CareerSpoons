@@ -477,7 +477,8 @@ Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTe
 // Product Reviews
 
 Route::any('product-reviews',"admin_controllers\main_controllers\MainController@viewProductReview");
-Route::any('do-fetch-reviews',"admin_controllers\main_controllers\MainController@doFetchReviews");
+Route::any('candidate-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeCandidateReviewStatus");
+Route::any('organization-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeOrganizationReviewStatus");
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

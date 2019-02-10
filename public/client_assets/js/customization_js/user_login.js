@@ -13,10 +13,18 @@ function user_login(){
 				setTimeout(
 					function(){
 
-						swal('Login Successfully!','','success');
+
+						Swal.fire({
+							type: 'success',
+							title: 'Login Successfully!',
+							showConfirmButton: false,
+							timer: 1500
+						});
+
+						//swal('Login Successfully!','','success');
 
 					},
-					1000
+					1200
 					);
 
 				setTimeout(

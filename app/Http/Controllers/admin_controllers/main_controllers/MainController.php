@@ -123,6 +123,7 @@ public function viewAboutUs(){
 }
 
 public function aboutUsFormSend(Request $request){
+ 
  $file = $request->file('video');
  $filename = $file->getClientOriginalName();
  $path ='uploads/aboutus_video';
@@ -202,28 +203,80 @@ public function aboutUsFormSend(Request $request){
 
   function viewProductReview(Request $request){
 
-       return view('admin_views/main_views/product_reviews');
+    $candidate_reviews = DB::table('candidate_reviews')->join('register_users','candidate_reviews.candidate_id', '=', 'register_users.id')->select('candidate_reviews.*', 'register_users.*')->get();
+    
+    if($candidate_reviews->count()>0){
+      
+    }
+    else{
+      $candidate_reviews  = $candidate_reviews->count();
+    } 
+
+  $organization_reviews = DB::table('organization_reviews')->join('add_organizations','organization_reviews.organization_id', '=', 'add_organizations.company_id')->select('organization_reviews.*', 'add_organizations.*')->get();
+    
+    if($organization_reviews->count()>0){
+      
+    }
+    else{
+       $organization_reviews  = $organization_reviews->count();
+    }
+
+    // echo "<pre>";
+    // dd($organization_reviews);
+
+
+       return view('admin_views/main_views/product_reviews',['candidate_reviews'=>$candidate_reviews,'organization_reviews'=>$organization_reviews]);
   }   
 
-  function doFetchReviews(Request $request){
-     $name= $request->post("x");
-     if($name == "candidates"){
-      $info= DB::table('candidate_reviews')->get();
-        if($info->count()<=0){
-        return $info = $info->count();
-        }else{
-        return $info;
-        }
-     }else{
-        $info= DB::table('organization_reviews')->get();
-        if($info->count()<=0){
-        return $info = $info->count();
-        }else{
-        return $data = $info;
-        }
-     }
-     
+  function doChangeCandidateReviewStatus(Request $request){
+    $status = $request->post("val");
+    $candidate_id = $request->post("id");
+
+    $current_date = date("Y.m.d h:i:s");
+    $user_response = array(
+      'review_status' => $status,
+      'created_at' => $current_date
+    );
+
+    $data = DB::table('candidate_reviews')->where('candidate_id',$candidate_id)->update($user_response);
+
+    if($data){
+
+      echo "yes";
+    }
+
+    else{
+
+    }
+    
 
   }
+
+
+
+  public function doChangeOrganizationReviewStatus(Request $request){
+
+    $status = $request->post("val");
+    $organization_id = $request->post("id");
+
+    $current_date = date("Y.m.d h:i:s");
+    $user_response = array(
+      'review_status' => $status,
+      'created_at' => $current_date
+    );
+
+    $data = DB::table('organization_reviews')->where('organization_id',$organization_id)->update($user_response);
+
+    if($data){
+
+      echo "yes";
+    }
+
+    else{
+
+    }
+
+  }
+
 
 }

@@ -49,41 +49,143 @@
                   <i class="fa fa-asterisk"></i>
                 </div>
                 <select id="choose_review" name="choose_review" class="form-control" onchange="do_change(this.value);">
+                   <option hidden selected disabled>Choose Category</option>
                   <option value="candidates">Candidates</option>
-                  <option value="organizations">Oragizations</option>
+                  <option value="organizations">Organizations</option>
                 </select>
               </div>
             </div>
            </form>
-          <p class="text-muted font-13 m-b-30" style="font-size: 20px;font-weight: 400;font-family: Georgia,Regular;margin-bottom: 2%;margin-top: 3%;">
-           Reviews
-            </p>
-          <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+
+          <div id="candidate_review">
+            <p class="text-muted font-13 m-b-30" style="font-size: 20px;font-weight: 400;font-family: Georgia,Regular;margin-bottom: 2%;margin-top: 3%;">
+             Candidate Reviews
+           </p>
+
+            <table id="candidate-review-table" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
               <thead>
-                <tr> 
-                 <th>Name</th>
-                 <th>Email</th>
-                 <th>Phone No</th>
-                 <th>Reply Status</th>               
-                 <th>Action</th>
-               </tr>
-             </thead>
-             <tbody>
-            <tr> 
-            
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
+                <tr>
+                  <th>ID</th>
+                  <th>Candidate Name</th>
+                  <th>Rating</th>
+                  <th>Rating Description</th>
+                  <th>Visibility Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+               @foreach ($candidate_reviews as $value)
+                <tr>
+                  <td>{{$value->id}}</td>
+                  <td>{{$value->candidate_name}}</td>
+                  <td>
+                   <span class="glyphicon glyphicon-star"></span>
+                   <span class="glyphicon glyphicon-star-empty"></span>
+                 </td>
+                  <td><?php
+
+                    if(empty($value->review_description)){
+                        echo "No Review Description";
+                    }
+
+                    else{
+                      echo $value->review_description;
+                    }
+                    
+                  ?></td>
+                  <td id="status-td-candidate-review">
+                    <?php 
+                        if($value->review_status=="1"){
+
+                          echo "<span style='color:green'>Active</span>";
+                        }
+
+                        else{
+
+                          echo "<span style='color:red'>Block</span>";
+                        }
+                    ?>
+
+
+                  </td>
+                  <td><select id="candidate_review_status" onchange="change_candidate_review_status(this.value,{{$value->candidate_id}});">
+                      <option selected="selected" disabled="disabled" hidden="hidden">Select Status</option>
+                       <option value="1">Active</option>
+                       <option value="0">Block</option>
+                     </select></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+
+          <div id="organization_review">
+            <p class="text-muted font-13 m-b-30" style="font-size: 20px;font-weight: 400;font-family: Georgia,Regular;margin-bottom: 2%;margin-top: 3%;">
+             Organization Reviews
+           </p>
+
+            <table id="organization-review-table"  class="table table-striped table-bordered bulk_action">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Organization Name</th>
+                  <th>Rating</th>
+                  <th>Rating Description</th>
+                  <th>Visibility Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+               @foreach ($organization_reviews as $value)
+                <tr>
+                  <td>{{$value->id}}</td>
+                  <td>{{$value->company_name}}</td>
+                  <td>
+                    <span class="glyphicon glyphicon-star"></span>
+                   <span class="glyphicon glyphicon-star-empty"></span>
+                  </td>
+                  <td>
+                    <?php
+
+                    if(empty($value->review_description)){
+                        echo "No Review Description";
+                    }
+
+                    else{
+                      echo $value->review_description;
+                    }
+                    
+                  ?>
+                  </td>
+                  <td id="status-td-organization-review">
+                      
+                      <?php 
+                        if($value->review_status=="1"){
+
+                          echo "<span style='color:green'>Active</span>";
+                        }
+
+                        else{
+
+                          echo "<span style='color:red'>Block</span>";
+                        }
+                    ?>
+
+                  </td>
+                   <td>
+                     <select id="organization_review_status" onchange="change_orgization_review_status(this.value,{{$value->organization_id}});">
+                      <option selected="selected" disabled="disabled" hidden="hidden">Select Status</option>
+                       <option value="1">Active</option>
+                       <option value="0">Block</option>
+                     </select>
+                   </td>
+                </tr>
+                 @endforeach
            
-            <td><a type="button"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Message" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a type="button"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Reply" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a></td>
-          </tr>
-          
-
-        </tbody>
-      </table>
-
-    
+              </tbody>
+            </table>
+          </div>
       <!--  -->
     
       <!-- End Content-->
@@ -95,36 +197,138 @@
 </div>
 </div>
 </div>
-<!--model-->
-<div id="model_view_message"></div>
-<div id="model_reply_message"></div>
-<div id="view_user_model"></div>
-<div  id="exampleModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Update User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="edit_text">
-      </div>
 
-    </div>
-  </div>
-</div>
-<!--/model-->
 
 <script>
 function do_change(x){
-  alert(x);
-  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-  $.post("do-fetch-reviews",{_token:CSRF_TOKEN,x:x},function(data){
-    alert(data);
 
-});
+  if(x=="candidates"){
+   $("#organization_review").hide();
+   $("#candidate_review").show();
+ }
+
+ else if(x=="organizations"){
+
+   $("#organization_review").show();
+   $("#candidate_review").hide();
+ }
+
 }
+
+
+function change_candidate_review_status(val,id){
+
+ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("candidate-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},function(data){
+
+      if(data=="yes"){
+
+      if(val=="1"){
+
+        setTimeout(
+          function(){
+
+            swal('Review Status is Visible On Site!','','success');
+
+          },
+          500
+          );
+
+        $("#status-td-candidate-review").html("<span style='color:green;>Active</span>");
+
+      }else{
+
+        setTimeout(
+          function(){
+
+            swal('Review Status is Blocked!','','success');
+
+          },
+          500
+          );
+        $("#status-td-candidate-review").html("<span style='color:red;text-align:center'>Block</span>");
+
+      }
+
+      }
+      else{
+
+        setTimeout(
+          function(){
+
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Connection Failed!!',
+              footer: '<a href>Why do I have this issue?</a>'
+            })
+          },
+          1000
+          );
+
+      }
+
+  });
+
+}
+
+function change_orgization_review_status(val,id){
+
+
+   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$.post("organization-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},function(data){
+
+      if(data=="yes"){
+
+      if(val=="1"){
+
+        setTimeout(
+          function(){
+
+            swal('Review Status is Visible On Site!','','success');
+
+          },
+          500
+          );
+
+         $("#status-td-organization-review").html("<span style='color:green;text-align:center'>Active</span>");
+      }else{
+
+        setTimeout(
+          function(){
+
+            swal('Review Status is Blocked!','','success');
+
+          },
+          500
+          );
+        $("#status-td-organization-review").html("<span style='color:red;text-align:center'>Block</span>");
+
+      }
+
+      }
+      else{
+
+        setTimeout(
+          function(){
+
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Connection Failed!!',
+              footer: '<a href>Why do I have this issue?</a>'
+            })
+          },
+          1000
+          );
+
+      }
+
+  });
+
+}
+
+
 </script>
 @endsection
 

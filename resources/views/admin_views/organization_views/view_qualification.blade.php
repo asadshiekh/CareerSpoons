@@ -50,7 +50,7 @@
            </script>
             @endif
               
-                <table id="myQual" class="table table-striped table-bordered bulk_action">
+                <table id="myQual" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
 
                   <thead>
                     <tr id="qual-tr">

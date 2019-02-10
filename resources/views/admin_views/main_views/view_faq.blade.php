@@ -71,7 +71,7 @@
             <hr>
            <!-- End Content -->
             <br>
-        <table id="faq_datatable" class="table table-striped table-bordered bulk_action">
+        <table id="faq_datatable" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
               <thead>
                 <tr>
                  <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  

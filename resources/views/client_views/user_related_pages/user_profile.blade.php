@@ -572,7 +572,7 @@
 <div class="candidate_eduction" id="candidate_eduction">
 	<h3>Eduction-Info</h3>
 	<br>
-	<table id="myEduction" class="display">
+	<table id="myEduction" class="display responsive no-wrap" style="width:100%"> 
 		<thead>
 			<tr>
 				<th>Degree Title</th>
@@ -611,7 +611,7 @@
 <div class="candidate_experience" id="candidate_experience">
 	<h3>Experenice-Info</h3>
 	<br/>
-	<table id="userExperience" class="display">
+	<table id="userExperience" class="display responsive no-wrap" style="width:100%">
 		<thead>
 			<tr>
 				<th>Job Title</th>
@@ -647,7 +647,7 @@
 <div class="candidate_project" id="candidate_project">
 	<h3>Project Info</h3>
 	<br/>
-	<table id="userProject" class="display">
+	<table id="userProject" class="display responsive no-wrap" style="width:100%">
 		<thead>
 			<tr>
 				<th>Project Title</th>
@@ -681,7 +681,7 @@
 <div class="candidate_skill" id="candidate_skill">
 	<h3>Your Skills</h3>
 	<br/>
-	<table id="userSkills" class="display">
+	<table id="userSkills" class="display responsive no-wrap" style="width:100%">
 		<thead>
 			<tr>
 				<th style="text-align: center;">Skill Name</th>
@@ -710,7 +710,7 @@
 <div class="candidate_languages" id="candidate_languages">
 	<h3>Your Languages</h3>
 	<br/>
-	<table id="userLanguage" class="display">
+	<table id="userLanguage" class="display responsive no-wrap" style="width:100%">
 		<thead>
 			<tr>
 				<th style="text-align: center;">User Language</th>
@@ -736,7 +736,7 @@
 <div class="candidate_hobbies" id="candidate_hobbies">
 	<h3>Your Hobbies</h3>
 	<br/>
-	<table id="userHobbies" class="display">
+	<table id="userHobbies" class="display responsive no-wrap" style="width:100%">
 		<thead>
 			<tr>
 				<th style="text-align: center;">Hobbies</th>

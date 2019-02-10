@@ -48,6 +48,8 @@
   <link rel="stylesheet" href="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.css">
   <!-- bootstrap toggle -->
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <!-- data table Responsive -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
   
 </head>
 
@@ -297,12 +299,21 @@
   <script src="//gitcdn.link/repo/wintercounter/Protip/master/protip.min.js"></script>
   <!-- bootstrap toogle -->
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <!-- data table Responsive -->
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
 
   <script type="text/javascript">
     $( document ).ready(function() {
 
-      $('#myEduction').DataTable();
+      $('#myEduction').DataTable({
+     scrollY: 300,
+      });
        $.protip();
+
+       $("#organization_review").hide();
+       $("#candidate_review").hide();
+    
     });
     
   </script>
@@ -391,4 +402,11 @@
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   }) 
+</script>
+
+<script type="text/javascript">
+  
+  $('#candidate-review-table').DataTable();
+ $('#organization-review-table').DataTable();
+
 </script>

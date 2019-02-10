@@ -54,8 +54,8 @@
 	<!-- Video Pop Up -->
 		<link rel="stylesheet" href="{{url('public/client_assets/css/video_css/videopopup.css')}}">
 
-
-
+	<!-- data table Responsive -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
 	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 
@@ -581,7 +581,8 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 			<!-- Video Pop Up -->
 			<script src="{{url('public/client_assets/js/video_js/videopopup.js')}}"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+			<!-- data table Responsive -->
+			<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 			
 
 			<style type="text/css">
