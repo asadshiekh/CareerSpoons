@@ -887,6 +887,10 @@ public function updatePostSingleFront(Request $request){
        $fetch_similar=$fetch_similar->count();
     }
 
+
+    //dd($fetch_similar);
+
+
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
     $us_id=$request->session()->get('id');
     $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->count();

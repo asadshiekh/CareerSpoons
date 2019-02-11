@@ -347,7 +347,14 @@
 									
 									<!-- Single Freelancer & Premium job -->
 									
-									@foreach($fetch_similar as $fetch_s)
+				<?php 
+                    if($fetch_similar===0){ ?>
+                    
+                        <h4 style="color:red;text-align:center;font-size:17px">  No Similar Company Found!</h4>
+                    
+                    <?php }else{
+                    foreach ($fetch_similar as $fetch_s) { ?>
+
 									<div class="freelance-box">
 										<div class="popular-jobs-container">
 											<div class="popular-jobs-box">
@@ -376,7 +383,7 @@
 											<a href="{{url('single-company-profile')}}/{{$fetch_s->company_id}}" class="btn btn-popular-jobs bt-1">View Detail</a>
 										</div>
 									</div>
-									@endforeach
+									<?php }} ?>
 									
 									
 							
@@ -400,13 +407,15 @@ function add_review_comment(x){
   var name= $("#u_name").val();
   var email= $("#u_email").val();
   var comment= $("#u_comment").val();
-  var m="'"+x+"'";
+  //var m="'"+x+"'";
   //alert(m);
   //var n_degree_title = '"'+degree_title+  '"';
  // alert("name ="+name+" email ="+email+"comment ="+comment);
  $.post("{{url('review-comments')}}",{_token:CSRF_TOKEN,x:x,name:name,email:email,comment:comment},function(data){
+
    swal('Your Review Added Successfully Thanks For Your Review!','success');
-   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8'>"+name+"</h4><span class='col-sm-4'  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model("+m+");' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
+   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8'>"+name+"</h4><span class='col-sm-4' style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_m("+x+");' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
+ 
  });
  $("#comment-div").hide();
 }
@@ -423,6 +432,13 @@ function add_review_comment(x){
 // 	}
 // });
 // }
+
+function edit_m(id){
+
+	alert(id);
+	//var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	edit_model(id);
+}
 
 function edit_model(id){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -449,5 +465,7 @@ $.post("{{url('edit-review-comments')}}",{_token:CSRF_TOKEN,id:id,n:n,e:e,c:c},f
 	
 });
 }
+
+
 </script>
 @endsection
