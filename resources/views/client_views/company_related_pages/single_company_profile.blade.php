@@ -76,6 +76,7 @@
 								<!-- <a href="company-detail.html" class="cl-success"><span><i class="fa fa-building"></i>App Developer</span></a>
 								<span><i class="fa fa-map-marker"></i>United Kingdom</span> -->
 							</div>
+						<?php if($fetch_posts>0){ ?>
 						@foreach($fetch_posts as $fetch_post)	
 						<article id="post-show{{$fetch_post->post_id}}">
 							<div class="brows-resume">
@@ -211,9 +212,15 @@
 							<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
 						</article>
 						@endforeach
+					<?php }else{
+						echo "<p style='text-align:center;color:red;'><span>No Post Yet !! </span></p>";
+					} ?>
+
 						<div class="row">
 							<ul class="pagination">
+								<?php if($fetch_posts>0){ ?>
 							 <h5 style="text-align:center">{{$fetch_posts->links()}}</h5>
+							<?php }?>
 							</ul>
 						</div>
 						</div>
@@ -300,11 +307,9 @@
 
 								</div>
 								<hr/>
-								<?php }else{?>
-									<h4> No Reviews </h4>
 								<?php }
-							} ?>
-								@if($fetch_comments)
+							} 
+								if($fetch_comments){ ?>
 								@foreach($fetch_comments as $comm)
 								<div class="review-list">
 									<div class="review-thumb" style="width: 95px;">
@@ -320,7 +325,9 @@
 									</div>
 								</div>
 								@endforeach
-								@endif
+								<?php }else if($fetch_comments<=0){
+                                  echo "<p style='text-align:center;'><span style='color:red;'>No Comments</span></p>";
+							    }?>
 							</div>
 							
 						</div>
@@ -339,6 +346,7 @@
 								<div class="grid-slide-2">
 									
 									<!-- Single Freelancer & Premium job -->
+									
 									@foreach($fetch_similar as $fetch_s)
 									<div class="freelance-box">
 										<div class="popular-jobs-container">
@@ -393,10 +401,12 @@ function add_review_comment(x){
   var email= $("#u_email").val();
   var comment= $("#u_comment").val();
   var m="'"+x+"'";
+  //alert(m);
+  //var n_degree_title = '"'+degree_title+  '"';
  // alert("name ="+name+" email ="+email+"comment ="+comment);
  $.post("{{url('review-comments')}}",{_token:CSRF_TOKEN,x:x,name:name,email:email,comment:comment},function(data){
    swal('Your Review Added Successfully Thanks For Your Review!','success');
-   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8'>"+name+"</h4><span class='col-sm-4'  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model('"+m+"');' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
+   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8'>"+name+"</h4><span class='col-sm-4'  style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model("+m+");' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
  });
  $("#comment-div").hide();
 }

@@ -15,6 +15,7 @@ class SiteController extends Controller
 
   $obj =  new UserProfileModel();
   $get_reviews = $obj->get_all_candidate_reviews();
+  $org_reviews = $obj->get_all_org_reviews();
   $obj1 = new ClientSiteModel();
   $get_cities = $obj1->get_all_cities();
   $get_AccountingFinance = $obj1->get_all_accounting_jobs();
@@ -29,7 +30,7 @@ class SiteController extends Controller
    //echo "<pre>";
    //print_r($get_AccountingFinance);
 
-  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications]);
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews]);
  }
 
  public function viewContactUs(){

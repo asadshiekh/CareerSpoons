@@ -79,8 +79,14 @@
                   <td>{{$value->id}}</td>
                   <td>{{$value->candidate_name}}</td>
                   <td>
+                    <?php $n=5-$value->rating_points; ?>
+                   <?php for($i=1;$i<=$value->rating_points;$i++){ ?>
                    <span class="glyphicon glyphicon-star"></span>
+                   <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <?php } ?>
+
+                 
                  </td>
                   <td><?php
 
@@ -142,8 +148,12 @@
                   <td>{{$value->id}}</td>
                   <td>{{$value->company_name}}</td>
                   <td>
-                    <span class="glyphicon glyphicon-star"></span>
+                    <?php $n=5-$value->rating_points; ?>
+                   <?php for($i=1;$i<=$value->rating_points;$i++){ ?>
+                   <span class="glyphicon glyphicon-star"></span>
+                   <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <?php } ?>
                   </td>
                   <td>
                     <?php
@@ -234,7 +244,7 @@ $.post("candidate-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},funct
           500
           );
 
-        $("#status-td-candidate-review").html("<span style='color:green;>Active</span>");
+         $("#status-td-candidate-review").html("<span style='color:green;text-align:center'>Active</span>");
 
       }else{
 

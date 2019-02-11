@@ -24,7 +24,13 @@ class JobModel extends Model
 
 	public function fetch_job_details($id){
      $detail=DB::table('organization_posts')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->join('upload_org_img','organization_posts.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->where(['organization_posts.post_id'=>$id])->first();
-			return $detail;
+			
+			if($detail->count()>0){
+            return $detail;
+        }
+        else{
+            return $detail->count();
+        }
 	}
 
 

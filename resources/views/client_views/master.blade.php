@@ -628,20 +628,7 @@
 			@endif
 			</script>
 
-			<script>
-			<?php
-			$info=DB::select(DB::raw("SELECT * FROM candidate_reviews,register_users,user_profile_images WHERE 
-			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id ")); ?>
-
-
-				<?php foreach($info as  $row): ?>
-					$("#candidate_rateYo{{$row->id}}").rateYo({
-						rating: <?php echo $row->rating_points?>,
-						readOnly: true,
-						starWidth: "20px"
-					});
-				<?php endforeach; ?>  
-			</script>
+			
 
 
 			<script>

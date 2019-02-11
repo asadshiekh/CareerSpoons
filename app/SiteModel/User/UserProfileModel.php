@@ -33,7 +33,11 @@ class UserProfileModel extends Model
 			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id && candidate_reviews.rating_points>=3 ORDER BY RAND()  LIMIT 5"));
 		return $info;
 	}
-
+    public function get_all_org_reviews(){
+    	$info=DB::select(DB::raw("SELECT * FROM organization_reviews,add_organizations,upload_org_img WHERE 
+			organization_reviews.id=add_organizations.company_id && organization_reviews.id=upload_org_img.company_id && organization_reviews.rating_points>=3 ORDER BY RAND()  LIMIT 5"));
+		return $info;
+    }
 
 	// Select * FROM product,product_ids,product_colors WHERE product.Product_id=product_ids.Product_id &&  product.Product_id=product_colors.Product_id && product.Product_id='$id' GROUP BY product.Product_id
 

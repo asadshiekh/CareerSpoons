@@ -567,26 +567,60 @@
 		</div>
 		<!--/row-->
 		<div class="row">
-			<div id="client-testimonial-slider" class="owl-carousel">
 
+			<div id="client-testimonial-slider" class="owl-carousel">
+                <?php if(Session::get("id")){ ?>
 				@foreach ($get_reviews as $row)
 				<div class="client-testimonial">
+								<div class="pic">
+									<img src="{{url('uploads/client_site/profile_pic')}}/{{$row->profile_image}}" alt="">
+								</div>
+								<p class="client-description">
+									{{$row->review_description}}.
+								</p>
+								<h3 class="client-testimonial-title">{{$row->candidate_name}}</h3>
+								<ul class="client-testimonial-rating">
+									<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$row->rating_points}}" data-pt-animate="swing">
+									<?php $n=5-$row->rating_points; ?>
+								<?php for($i=1;$i<=$row->rating_points;$i++){ ?>
+									<li class="fa fa-star"></li>
+
+								<?php }for($i=1;$i<=$n;$i++){?>
+									<li class="fa fa-star-o"></li>
+
+								<?php } ?>
+							</span>
+								</ul>
+							</div>
+				@endforeach
+				<?php }else{ ?>
+                @foreach ($org_reviews as $org)
+				<div class="client-testimonial">
 					<div class="pic">
-						<img src="http://careerspoons.com/uploads/client_site/profile_pic/{{$row->profile_image}}" alt="">
+						<img src="{{url('uploads/organization_images')}}/{{$org->company_img}}" alt="">
 					</div>
 					<p class="client-description">
-						{{$row->review_description}}.
+						<?php $org->company_info =str_replace("<p>"," ",$org->company_info);
+						echo $org->company_info =str_replace("</p>"," ",$org->company_info);  ?> ..
 					</p>
-					<h3 class="client-testimonial-title">{{$row->candidate_name}}</h3>
+					<h3 class="client-testimonial-title">{{$org->company_name}}</h3>
 
-					<div class="detail" style="margin-left: 33%">
-						<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$row->rating_points}}" data-pt-animate="swing">
-							<div id="candidate_rateYo{{$row->id}}"></div>
+					<div class="detail">
+						<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$org->rating_points}}" data-pt-animate="swing">
+							<?php $n=5-$org->rating_points; ?>
+								<?php for($i=1;$i<=$org->rating_points;$i++){ ?>
+									<li class="fa fa-star"></li>
+
+								<?php }for($i=1;$i<=$n;$i++){?>
+									<li class="fa fa-star-o"></li>
+
+								<?php } ?>
 						</span>
 					</div>
 
 				</div>
 				@endforeach
+					<?php } ?>
 
 
 

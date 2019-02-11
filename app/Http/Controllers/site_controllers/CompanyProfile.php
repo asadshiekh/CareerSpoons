@@ -843,6 +843,12 @@ public function updatePostSingleFront(Request $request){
     $id=$request->session()->get('company_id');
     $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
     $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
+    if($fetch_posts->count()>0){
+       $fetch_posts=$fetch_posts;
+    }else{
+       $fetch_posts=$fetch_posts->count();
+    }
+
     $about=DB::table('about_us_content')->first();
     return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts]);
 
@@ -868,12 +874,25 @@ public function updatePostSingleFront(Request $request){
     $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
     $fetch_img=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
     $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
+    if($fetch_posts->count()>0){
+       $fetch_posts=$fetch_posts;
+    }else{
+       $fetch_posts=$fetch_posts->count();
+    }
+
     $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
+    if($fetch_similar->count()>0){
+       $fetch_similar=$fetch_similar;
+    }else{
+       $fetch_similar=$fetch_similar->count();
+    }
+
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
     $us_id=$request->session()->get('id');
     $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->count();
+
     if($fetch_comments>0){
-    $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->inRandomOrder()->get();
+     $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->inRandomOrder()->get();
      }
      //$fetch_comments=DB::table('reviews_comments')get();
 
