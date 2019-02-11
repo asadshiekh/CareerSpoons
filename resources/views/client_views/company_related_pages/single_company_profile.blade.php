@@ -237,10 +237,10 @@
 									<form action="/review-comments" method="post">
 										{{ csrf_field() }}
 									<div class="col-md-6 col-sm-6">
-										<input type="text" class="form-control" name="u_name" id="u_name" placeholder="Your Name">
+										<input type="text" class="form-control" name="u_name" id="u_name" placeholder="Your Name" value="<?php if(Session::get("candidate_name")){echo Session::get("candidate_name");}?>" disabled>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="email" class="form-control" name="u_email" id="u_email" placeholder="Your Email">
+										<input type="email" class="form-control" name="u_email" id="u_email" placeholder="Your Email" value="<?php if(Session::get("user_email")){echo Session::get("user_email");}?>" disabled>
 									</div>
 									<div class="col-md-12 col-sm-12">
 										<textarea class="form-control" placeholder="Comment" name="u_comment" id="u_comment"></textarea>
@@ -249,7 +249,7 @@
                                     ?>
 									<button class="thm-btn btn-comment" type="button" onclick="add_review_comment('{{$fetch_company->company_id}}');">submit now</button>
                                     <?php }else{ ?>
-                                    <button class="btn btn-success btn-comment" style="pointer-events: none;" disabled="disabled">First Sign In to post a Comment</button>
+                                    <button class="thm-btn btn-success btn-comment" style="pointer-events: none;" disabled="disabled">First Sign In to post a Comment</button>
 
                                     <?php } ?>
 									</form>
@@ -294,8 +294,65 @@
 									
 									<div class="review-detail">
 
-										<h4 class="col-sm-8" id="name-user">{{$data1->user_name}}</h4>
-										<span class="col-sm-4" style="font-size: 12px; font-family: Georgia,Regular">3 days ago</span>
+										<h4 class="col-sm-7" id="name-user">{{$data1->user_name}}</h4>
+										<span class="col-sm-5" style="font-size: 12px; font-family: Georgia,Regular"><span class="cand-status"><i class="far fa-clock"></i> <?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$data1->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?></span></span>
 										<span class="re-designation col-sm-12" style="font-size: 12px;" id="email-user">({{$data1->user_email}})</span>
 										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;" id="comment-user">{{$data1->user_comments}}.</p>
 										<p class="col-sm-12" style="text-align: right;margin-top: 0px;margin-bottom: 0px;">
@@ -308,8 +365,14 @@
 								</div>
 								<hr/>
 								<?php }
-							} 
-								if($fetch_comments){ ?>
+							    } 
+								if($fetch_comments===0){
+									if(!Session::get("id")){
+									 echo "<p style='text-align:center;'><span style='color:red;' id='comm-id'>No Comments</span></p>";
+									}
+								 }else{
+                                 
+							    ?>
 								@foreach($fetch_comments as $comm)
 								<div class="review-list">
 									<div class="review-thumb" style="width: 95px;">
@@ -318,16 +381,71 @@
 									
 									<div class="review-detail">
 
-										<h4 class="col-sm-8">{{$comm->user_name}}</h4>
-										<span class="col-sm-4" style="font-size: 12px; font-family: Georgia,Regular">3 days ago</span>
+										<h4 class="col-sm-7">{{$comm->user_name}}</h4>
+										<span class="col-sm-5" style="font-size: 12px; font-family: Georgia,Regular"><span class="cand-status"><i class="far fa-clock"></i> <?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$comm->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?></span></span>
 										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$comm->user_email}})</span>
 										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$comm->user_comments}}.</p>
 									</div>
 								</div>
 								@endforeach
-								<?php }else if($fetch_comments<=0){
-                                  echo "<p style='text-align:center;'><span style='color:red;'>No Comments</span></p>";
-							    }?>
+								<?php }?>
 							</div>
 							
 						</div>
@@ -414,10 +532,11 @@ function add_review_comment(x){
  // alert("name ="+name+" email ="+email+"comment ="+comment);
  $.post("{{url('review-comments')}}",{_token:CSRF_TOKEN,x:x,name:name,email:email,comment:comment},function(data){
    swal('Your Review Added Successfully Thanks For Your Review!','success');
-   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-8' id='n_name'>"+name+"</h4><span class='col-sm-4' style='font-size: 12px; font-family: Georgia,Regular'>3 days ago</span><span class='re-designation col-sm-12' style='font-size: 12px;' id='n_email'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12' id='n_comment'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model("+data+");' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
+   $("#reviews_c").after("<div id='personal_comment' class='review-list'><div class='review-thumb'  style='width: 95px;'><img src='{{url('uploads/client_site/profile_pic')}}/{{Session::get("profile_image")}}' class='img-responsive img-circle'/></div><div class='review-detail'><h4 class='col-sm-7' id='name-user'>"+name+"</h4><span class='col-sm-5' style='font-size: 12px; font-family: Georgia,Regular'>Just Now</span><span class='re-designation col-sm-12' style='font-size: 12px;' id='email-user'>("+email+")</span><p style='font-family: Georgia,Regular;margin-top: 8px;' class='col-sm-12' id='comment-user'>"+comment+".</p><p class='col-sm-12' style='text-align: right;margin-top: 0px;margin-bottom: 0px;'><a type='button' onclick='edit_model("+data+");' data-toggle='tooltip' title='Edit' style='color: green;font-size: 20px;'><i class='fa fa-edit'></i></a>&nbsp&nbsp|&nbsp&nbsp<a href='{{url('delete-review-comments')}}/"+data+"' data-toggle='tooltip' title='Delete' style='color: red;font-size: 20px;'><i class='fa fa-trash-o'></i></a></p></div></div>");
  
  });
  $("#comment-div").hide();
+ $("#comm-id").hide();
 }
 // function delete_comment(id){
 // alert(id);
