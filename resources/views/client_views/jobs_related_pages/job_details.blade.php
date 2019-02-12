@@ -70,17 +70,16 @@
 						<div class="detail pannel-footer">
 							<div class="col-md-5 col-sm-5">
 								<ul class="detail-footer-social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+									<li><a href="{{$job_detail->organization_fackbook}}"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="{{$job_detail->organization_google}}"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="{{$job_detail->organization_twitter}}"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="{{$job_detail->organization_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
 								</ul>
 							</div>
 							<div class="col-md-7 col-sm-7">
 								<div class="detail-pannel-footer-btn pull-right">
 									<a href="#" class="footer-btn grn-btn" title="">Apply Now</a>
-									<a href="#" class="footer-btn blu-btn" title="">View Company</a>
+									<a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}" class="footer-btn blu-btn" title="">View Company</a>
 								</div>
 							</div>
 						</div>

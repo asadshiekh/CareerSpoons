@@ -35,11 +35,10 @@
 						</div>
 						<div class="right-side-detail">
 							<ul class="social-info">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-								<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							    <li><a href="{{$fetch_org_links->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="{{$fetch_org_links->organization_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="{{$fetch_org_links->organization_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="{{$fetch_org_links->organization_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -76,7 +75,11 @@
 								<!-- <a href="company-detail.html" class="cl-success"><span><i class="fa fa-building"></i>App Developer</span></a>
 								<span><i class="fa fa-map-marker"></i>United Kingdom</span> -->
 							</div>
-						<?php if($fetch_posts>0){ ?>
+						<?php if($fetch_posts===0){
+						
+						echo "<p style='text-align:center;color:red;'><span>No Post Yet !! </span></p>";
+					
+						}else{ ?>
 						@foreach($fetch_posts as $fetch_post)	
 						<article id="post-show{{$fetch_post->post_id}}">
 							<div class="brows-resume">
@@ -212,13 +215,12 @@
 							<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
 						</article>
 						@endforeach
-					<?php }else{
-						echo "<p style='text-align:center;color:red;'><span>No Post Yet !! </span></p>";
-					} ?>
+					<?php } ?>
 
 						<div class="row">
 							<ul class="pagination">
-								<?php if($fetch_posts>0){ ?>
+								<?php if($fetch_posts===0){ 
+								}else{?>
 							 <h5 style="text-align:center">{{$fetch_posts->links()}}</h5>
 							<?php }?>
 							</ul>
@@ -486,10 +488,10 @@
 												</div>
 												<div class="popular-jobs-box-extra">
 												<ul class="employee-social">
-										<li><a href="{{$fetch_org_links->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="{{$fetch_org_links->organization_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="{{$fetch_org_links->organization_twitter}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-										<li><a href="{{$fetch_org_links->organization_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="{{$fetch_s->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="{{$fetch_s->organization_twitter}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="{{$fetch_s->organization_google}}" title="" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="{{$fetch_s->organization_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 										
 									</ul>
 													<p><?php

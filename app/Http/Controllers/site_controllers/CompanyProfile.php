@@ -879,8 +879,8 @@ public function updatePostSingleFront(Request $request){
     }else{
        $fetch_posts=$fetch_posts->count();
     }
-
-    $fetch_similar=DB::table('Add_organizations')->where('company_id','!=',$id)->get();
+    $fetch_indus=$fetch_company->company_industry;
+    $fetch_similar=DB::table('Add_organizations')->join('add_organization_social_link','Add_organizations.company_id','=','add_organization_social_link.organization_id')->where('Add_organizations.company_id','!=',$id)->where(['Add_organizations.company_industry'=>$fetch_indus])->select('Add_organizations.*','add_organization_social_link.*')->get();
     if($fetch_similar->count()>0){
        $fetch_similar=$fetch_similar;
     }else{

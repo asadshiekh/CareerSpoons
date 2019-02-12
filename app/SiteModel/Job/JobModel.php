@@ -8,11 +8,12 @@ use DB;
 class JobModel extends Model
 {
     //fetch jobs function
-	public function fetch_all_jobs(){
+	public function fetch_all_jobs($date){
 
-		$jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->inRandomOrder()->simplePaginate(2);
+		$jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->where('organization_posts.post_status','!=','Block')->inRandomOrder()->simplePaginate(6);
 
 		if($jobs->count()>0){
+
             return $jobs;
         }
         else{
@@ -23,14 +24,14 @@ class JobModel extends Model
 	}
 
 	public function fetch_job_details($id){
-     $detail=DB::table('organization_posts')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->join('upload_org_img','organization_posts.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->where(['organization_posts.post_id'=>$id])->first();
-			
-			if($detail->count()>0){
-            return $detail;
-        }
-        else{
-            return $detail->count();
-        }
+     $detail=DB::table('organization_posts')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->join('upload_org_img','organization_posts.company_id', '=', 'upload_org_img.company_id')->join('add_organization_social_link','organization_posts.company_id','=','add_organization_social_link.organization_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*','add_organization_social_link.*')->where(['organization_posts.post_id'=>$id])->first();
+			return $detail;
+			// if($detail->count()>0){
+   //          return $detail;
+   //      }
+   //      else{
+   //          return $detail->count();
+   //      }
 	}
 
 

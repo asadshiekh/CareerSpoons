@@ -87,14 +87,14 @@
                     
                     <?php }else{
                     foreach ($job as $jobs) { ?>
-							<div class="col-md-6 col-sm-6">
+							<div class="col-md-4 col-sm-4">
 								<div class="grid-view brows-job-list">
 								<div class="brows-job-company-img" style="width: 90px;">
 									<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="" style="max-width: 90px;" />
 								</div>
 								<div class="brows-job-position">
 									<h3><a>{{$jobs->job_title}}</a></h3>
-									<p><span><i class="fa fa-arrow-right"></i>&nbsp&nbsp({{$jobs->company_name}})</span></p>
+									<p><span><i class="fa fa-arrow-right"></i>&nbsp&nbsp<a href="job-details/{{$jobs->post_id}}" >({{$jobs->company_name}})</span></a></p>
 								</div>
 								<div class="job-position">
 									<span class="job-num"><?php 

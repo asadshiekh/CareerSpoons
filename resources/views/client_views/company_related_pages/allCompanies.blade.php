@@ -84,7 +84,7 @@
 									<div class="cndt-pic" style="margin-left: 25%;">
 										<img src="{{url('uploads/organization_images')}}/{{$orgs->company_img}}" class="img-responsive" alt="" />
 									</div>
-									<h4>{{$orgs->company_name}}</h4>
+									<h4><a href="{{url('single-company-profile')}}/{{$orgs->company_id}}" title="view company">{{$orgs->company_name}}</a></h4>
 									<span>( {{$orgs->company_type}} )</span>
 									<p><i>{{$orgs->company_city}}</i></p>
 									<ul class="employee-social">
