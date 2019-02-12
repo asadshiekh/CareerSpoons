@@ -569,19 +569,74 @@
 		<div class="row">
 
 			<div id="client-testimonial-slider" class="owl-carousel">
-                <?php if(Session::get("id")){ ?>
-				@foreach ($get_reviews as $row)
+                
+					<?php if(Session::has("company_id")){ 	
+
+	if($org_reviews===0){ ?>
+
+		<div class="container">
+					<div class="row">
+				<h4 style="color:red;text-align:center;font-size:17px"> No Company Review Found</h4>
+			</div>
+		</div>
+
+	<?php }else{ ?>
+
+				@foreach ($org_reviews as $org)
 				<div class="client-testimonial">
 								<div class="pic">
-									<img src="{{url('uploads/client_site/profile_pic')}}/{{$row->profile_image}}" alt="">
+									<img src="{{url('uploads/organization_images')}}/{{$org->company_img}}" alt="">
 								</div>
 								<p class="client-description">
-									{{$row->review_description}}.
+									<?php $org->company_info =str_replace("<p>"," ",$org->company_info);
+									echo $org->company_info =str_replace("</p>"," ",$org->company_info);  ?> ..
 								</p>
-								<h3 class="client-testimonial-title">{{$row->candidate_name}}</h3>
+								<h3 class="client-testimonial-title">{{$org->company_name}}</h3>
 								<ul class="client-testimonial-rating">
-									<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$row->rating_points}}" data-pt-animate="swing">
-									<?php $n=5-$row->rating_points; ?>
+									<span class="protip" data-pt-position="bottom" data-pt-size="small"  data-pt-scheme="leaf" data-pt-gravity="bottom 0 12;" data-pt-title="Rating is {{$org->rating_points}}" data-pt-animate="swing">
+							<?php $n=5-$org->rating_points; 
+								 for($i=1;$i<=$org->rating_points;$i++){ ?>
+									<li class="fa fa-star"></li>
+
+								<?php }for($i=1;$i<=$n;$i++){?>
+									<li class="fa fa-star-o"></li>
+
+								<?php } ?>
+						</span>
+								</ul>
+							</div>
+				@endforeach
+				<?php }}else{ 
+
+				if($get_reviews===0){ ?>
+
+					<div class="container">
+					<div class="row">
+
+							<h4 style="color:red;text-align:center;font-size:17px">  No Candidate Review Found </h4>
+					</div>
+				</div>
+
+				<?php }else{ ?>
+                @foreach ($get_reviews as $row)
+				<div class="client-testimonial">
+					<div class="pic">
+						<img src="{{url('uploads/client_site/profile_pic')}}/{{$row->profile_image}}" alt="">
+					</div>
+					<p class="client-description">
+
+						<?php 
+						 	$row->review_description =str_replace("<p>"," ",$row->review_description);
+						 echo $row->review_description =str_replace("</p>"," ",$row->review_description); 
+						 ?>
+						
+					</p>
+					<h3 class="client-testimonial-title">{{$row->candidate_name}}</h3>
+
+					<div class="detail">
+						<ul class="client-testimonial-rating">
+							<span class="protip" data-pt-position="bottom" data-pt-size="small" data-pt-scheme="leaf" data-pt-gravity="bottom 0 12;" data-pt-title="Rating is {{$row->rating_points}}" data-pt-animate="swing">
+								<?php $n=5-$row->rating_points; ?>
 								<?php for($i=1;$i<=$row->rating_points;$i++){ ?>
 									<li class="fa fa-star"></li>
 
@@ -590,38 +645,12 @@
 
 								<?php } ?>
 							</span>
-								</ul>
-							</div>
-				@endforeach
-				<?php }else{ ?>
-                @foreach ($org_reviews as $org)
-				<div class="client-testimonial">
-					<div class="pic">
-						<img src="{{url('uploads/organization_images')}}/{{$org->company_img}}" alt="">
-					</div>
-					<p class="client-description">
-						<?php $org->company_info =str_replace("<p>"," ",$org->company_info);
-						echo $org->company_info =str_replace("</p>"," ",$org->company_info);  ?> ..
-					</p>
-					<h3 class="client-testimonial-title">{{$org->company_name}}</h3>
-
-					<div class="detail">
-						<span class="protip" data-pt-scheme="leaf" data-pt-gravity="bottom 50 40; top 0 15" data-pt-title="Rating is {{$org->rating_points}}" data-pt-animate="swing">
-							<?php $n=5-$org->rating_points; ?>
-								<?php for($i=1;$i<=$org->rating_points;$i++){ ?>
-									<li class="fa fa-star"></li>
-
-								<?php }for($i=1;$i<=$n;$i++){?>
-									<li class="fa fa-star-o"></li>
-
-								<?php } ?>
-						</span>
+						</ul>
 					</div>
 
 				</div>
 				@endforeach
-					<?php } ?>
-
+					<?php }} ?>
 
 
 			</div>
@@ -629,146 +658,7 @@
 	</section>
 	<!-- testimonial section End -->
 
-	<!-- pricing Section Start -->
-<!-- 		<section class="pricing">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="main-heading">
-							<p>Top Freelancer</p>
-							<h2>Hire Expert <span>Freelancer</span></h2>
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="row">
-					
-					
-					<div class="col-md-4 col-sm-6">
-						<div class="freelance-container style-2">
-							<div class="freelance-box">
-								<span class="freelance-status">Available</span>
-								<h4 class="flc-rate">$17/hr</h4>
-								<div class="freelance-inner-box">
-									<div class="freelance-box-thumb">
-										<img src="{{url('public/client_assets/img/can-5.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="freelance-box-detail">
-										<h4>Agustin L. Smith</h4>
-										<span class="location">Australia</span>
-									</div>
-									<div class="rattings">
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star-half fill"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<div class="freelance-box-extra">
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
-									<ul>
-										<li>Php</li>
-										<li>Android</li>
-										<li>Html</li>
-										<li class="more-skill bg-primary">+3</li>
-									</ul>
-								</div>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-default">View Detail</a>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-info">View Detail</a>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class="col-md-4 col-sm-6">
-						<div class="freelance-container style-2">
-							<div class="freelance-box">
-								<span class="freelance-status bg-warning">At Work</span>
-								<h4 class="flc-rate">$22/hr</h4>
-								<div class="freelance-inner-box">
-									<div class="freelance-box-thumb">
-										<img src="{{url('public/client_assets/img/can-5.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="freelance-box-detail">
-										<h4>Delores R. Williams</h4>
-										<span class="location">United States</span>
-									</div>
-									<div class="rattings">
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star-half fill"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<div class="freelance-box-extra">
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
-									<ul>
-										<li>Php</li>
-										<li>Android</li>
-										<li>Html</li>
-										<li class="more-skill bg-primary">+3</li>
-									</ul>
-								</div>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-default">View Detail</a>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-info">View Detail</a>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class="col-md-4 col-sm-6">
-						<div class="freelance-container style-2">
-							<div class="freelance-box">
-								<span class="freelance-status">Available</span>
-								<h4 class="flc-rate">$19/hr</h4>
-								<div class="freelance-inner-box">
-									<div class="freelance-box-thumb">
-										<img src="{{url('public/client_assets/img/can-5.jpg')}}" class="img-responsive img-circle" alt="" />
-									</div>
-									<div class="freelance-box-detail">
-										<h4>Daniel Disroyer</h4>
-										<span class="location">Bangladesh</span>
-									</div>
-									<div class="rattings">
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star fill"></i>
-										<i class="fa fa-star-half fill"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<div class="freelance-box-extra">
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui.</p>
-									<ul>
-										<li>Php</li>
-										<li>Android</li>
-										<li>Html</li>
-										<li class="more-skill bg-primary">+3</li>
-									</ul>
-								</div>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-default">View Detail</a>
-								<a href="freelancer-detail.html" class="btn btn-freelance-two bg-info">View Detail</a>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-				
-				
-				<div class="row">
-					<div class="col-md-12 col-sm-12">
-						<div class="text-center">
-							<a href="freelancers-2.html" class="btn btn-primary">Load More</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</section> -->
-		<!-- End Pricing Section -->
+
 		
 		<!-- Download app Section Start -->
 		<section class="download-app" style="background-image:url('public/client_assets/img/banner-7.jpg');">
@@ -780,7 +670,7 @@
 					<div class="app-content">
 						<h2>Download Our Best Apps</h2>
 						<h4>Best oppertunity in your hand</h4>
-						<p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet. Suspendisse et sapien varius, pellentesque dui non, semper orci. Curabitur blandit, diam ut ornare ultricies.</p>
+						<p>Description......</p>
 						<a href="#" class="btn call-btn"><i class="fa fa-apple"></i>Download</a>
 						<a href="#" class="btn call-btn"><i class="fa fa-android"></i>Download</a>
 					</div>

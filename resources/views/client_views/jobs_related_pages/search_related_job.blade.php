@@ -198,10 +198,11 @@
 						<div class="row">
 							<ul class="pagination">
 								<h5 style="text-align:center"><?php 
-								if($job>0){ 
+								if($job===0){ 
 
+
+								}else{
 									echo $job->links();
-
 								}	
 								?></h5>
 							</ul>

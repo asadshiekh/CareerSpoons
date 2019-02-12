@@ -29,17 +29,39 @@ class UserProfileModel extends Model
 
 	public function get_all_candidate_reviews(){
 
-		$info=DB::select(DB::raw("SELECT * FROM candidate_reviews,register_users,user_profile_images WHERE 
-			candidate_reviews.candidate_id=register_users.id && candidate_reviews.candidate_id=user_profile_images.candidate_id && candidate_reviews.rating_points>=3 ORDER BY RAND()  LIMIT 5"));
-		return $info;
+		
+		$info=DB::table('candidate_reviews')->join('register_users','candidate_reviews.candidate_id', '=', 'register_users.id')->join('user_profile_images','register_users.id', '=', 'user_profile_images.candidate_id')->select('candidate_reviews.*', 'register_users.*','user_profile_images.*')->where([
+			['candidate_reviews.rating_points','>=','3'],
+			['candidate_reviews.review_status','=','1']
+			])->inRandomOrder()->limit(10)->get();
+
+		 if($info->count()>0){
+            return $info;
+        }
+        else{
+            return $info->count();
+        }
+	
 	}
     public function get_all_org_reviews(){
-    	$info=DB::select(DB::raw("SELECT * FROM organization_reviews,add_organizations,upload_org_img WHERE 
-			organization_reviews.id=add_organizations.company_id && organization_reviews.id=upload_org_img.company_id && organization_reviews.rating_points>=3 ORDER BY RAND()  LIMIT 5"));
-		return $info;
+
+
+		$info=DB::table('organization_reviews')->join('add_organizations','organization_reviews.organization_id','=','add_organizations.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.org_img_id')->select('organization_reviews.*', 'add_organizations.*','upload_org_img.*')->where([
+			['organization_reviews.rating_points','>=','3'],
+			['organization_reviews.review_status','=','1']
+			])->inRandomOrder()->limit(10)->get();
+
+        if($info->count()>0){
+            return $info;
+        }
+        else{
+            return $info->count();
+        }
+
+        
+
     }
 
-	// Select * FROM product,product_ids,product_colors WHERE product.Product_id=product_ids.Product_id &&  product.Product_id=product_colors.Product_id && product.Product_id='$id' GROUP BY product.Product_id
 
 
 	public function update_phone_status($candidate_id,$user_response){

@@ -71,6 +71,7 @@
                   <th>Rating Description</th>
                   <th>Visibility Status</th>
                   <th>Action</th>
+                  <th>Viewed</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,11 +81,13 @@
                   <td>{{$value->candidate_name}}</td>
                   <td>
                     <?php $n=5-$value->rating_points; ?>
+                    <span class="protip" data-pt-scheme="blue" data-pt-position="top" data-pt-title="Rating is {{$value->rating_points}}" data-pt-size="small">
                    <?php for($i=1;$i<=$value->rating_points;$i++){ ?>
                    <span class="glyphicon glyphicon-star"></span>
                    <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
                     <?php } ?>
+                  </span>
 
                  
                  </td>
@@ -99,7 +102,7 @@
                     }
                     
                   ?></td>
-                  <td id="status-td-candidate-review">
+                  <td id="status-td-candidate-review{{ $value->id }}">
                     <?php 
                         if($value->review_status=="1"){
 
@@ -119,6 +122,7 @@
                        <option value="1">Active</option>
                        <option value="0">Block</option>
                      </select></td>
+                     <td style="text-align:center;"> <a href="#DemoModal2" data-toggle="modal" onclick='viewed_status("<?php echo $value->review_description?>");' ><span class="protip"data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Review Status" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -131,7 +135,7 @@
              Organization Reviews
            </p>
 
-            <table id="organization-review-table"  class="table table-striped table-bordered bulk_action">
+            <table id="organization-review-table"  class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -140,6 +144,7 @@
                   <th>Rating Description</th>
                   <th>Visibility Status</th>
                   <th>Action</th>
+                  <th>Viewed</th>
                 </tr>
               </thead>
               <tbody>
@@ -149,11 +154,13 @@
                   <td>{{$value->company_name}}</td>
                   <td>
                     <?php $n=5-$value->rating_points; ?>
+                    <span class="protip" data-pt-scheme="blue" data-pt-position="top" data-pt-title="Rating is {{$value->rating_points}}" data-pt-size="small">
                    <?php for($i=1;$i<=$value->rating_points;$i++){ ?>
                    <span class="glyphicon glyphicon-star"></span>
                    <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
                     <?php } ?>
+                  </span>
                   </td>
                   <td>
                     <?php
@@ -168,7 +175,7 @@
                     
                   ?>
                   </td>
-                  <td id="status-td-organization-review">
+                  <td id="status-td-organization-review{{ $value->id }}">
                       
                       <?php 
                         if($value->review_status=="1"){
@@ -184,12 +191,14 @@
 
                   </td>
                    <td>
-                     <select id="organization_review_status" onchange="change_orgization_review_status(this.value,{{$value->organization_id}});">
+                  <select id="organization_review_status" onchange="change_orgization_review_status(this.value,{{$value->organization_id}});">
                       <option selected="selected" disabled="disabled" hidden="hidden">Select Status</option>
                        <option value="1">Active</option>
                        <option value="0">Block</option>
                      </select>
                    </td>
+                   <td style="text-align:center;">
+                    <a href="#DemoModal2" data-toggle="modal" onclick='viewed_status("<?php echo $value->review_description?>");' ><span class="protip"data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Review Status" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></td>
                 </tr>
                  @endforeach
            
@@ -207,6 +216,37 @@
 </div>
 </div>
 </div>
+
+
+
+<div id="DemoModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Check Review Status</h4>
+        <div class="col-sm-6 col-md-offset-4" id="loading-spin">
+          <i id="i" style="font-size:100px"></i>
+        </div>
+        <div class="col-sm-6 col-md-offset-4" id="loading-true">
+          <i id="tru" style="font-size:100px; color: #38b75e"></i>
+        </div>
+      </div>
+      <div class="modal-body" id="modal-content">
+        <label>Review Description:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-yelp"></i>
+          </div>
+          <input type="text" disabled placeholder="Description" class="form-control" name="review_description" id="review_description">
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
 
 
 <script>
@@ -244,7 +284,7 @@ $.post("candidate-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},funct
           500
           );
 
-         $("#status-td-candidate-review").html("<span style='color:green;text-align:center'>Active</span>");
+         $("#status-td-candidate-review"+id).html("<span style='color:green;text-align:center'>Active</span>");
 
       }else{
 
@@ -256,7 +296,7 @@ $.post("candidate-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},funct
           },
           500
           );
-        $("#status-td-candidate-review").html("<span style='color:red;text-align:center'>Block</span>");
+        $("#status-td-candidate-review"+id).html("<span style='color:red;text-align:center'>Block</span>");
 
       }
 
@@ -301,7 +341,7 @@ $.post("organization-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},fu
           500
           );
 
-         $("#status-td-organization-review").html("<span style='color:green;text-align:center'>Active</span>");
+         $("#status-td-organization-review"+id).html("<span style='color:green;text-align:center'>Active</span>");
       }else{
 
         setTimeout(
@@ -312,7 +352,7 @@ $.post("organization-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},fu
           },
           500
           );
-        $("#status-td-organization-review").html("<span style='color:red;text-align:center'>Block</span>");
+        $("#status-td-organization-review"+id).html("<span style='color:red;text-align:center'>Block</span>");
 
       }
 
@@ -336,6 +376,11 @@ $.post("organization-reviews-change-status",{_token:CSRF_TOKEN,val:val,id:id},fu
 
   });
 
+}
+
+function viewed_status(a){
+
+  $("#review_description").val(a);
 }
 
 
