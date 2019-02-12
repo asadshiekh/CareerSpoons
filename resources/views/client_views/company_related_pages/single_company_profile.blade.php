@@ -214,16 +214,13 @@
 							</div>
 							<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
 						</article>
+						 <?php $post_counter = $fetch_post->post_id; ?>
+						 <?php $organization_id = $fetch_post->company_id; ?>
 						@endforeach
 					<?php } ?>
 
 						<div class="row">
-							<ul class="pagination">
-								<?php if($fetch_posts===0){ 
-								}else{?>
-							 <h5 style="text-align:center">{{$fetch_posts->links()}}</h5>
-							<?php }?>
-							</ul>
+								<a class="btn btn-success btn_more" id="btn_more" onclick="load_more_data('{{$post_counter}}','{{$organization_id}}');">Load More</a>
 						</div>
 						</div>
 						 <?php if(!Session::get("company_id")){
@@ -581,6 +578,28 @@ $.post("{{url('edit-review-comments')}}",{_token:CSRF_TOKEN,id:id,n:n,e:e,c:c},f
 });
 }
 
+
+function load_more_data(id,org_id){
+
+	var last_post_id = id;
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	alert(CSRF_TOKEN);
+	alert(last_post_id);
+	alert(org_id);
+	$('#btn_more').html("Loading....");
+
+	          $.ajax({
+              url:"/load-jobs-by-company",
+              method:"POST",
+              data:{_token:CSRF_TOKEN,last_post_id:last_post_id,org_id:org_id},
+              dataType:"text",
+              success:function(data){
+               	
+               	alert(data);
+              },
+            });
+
+}
 
 </script>
 @endsection

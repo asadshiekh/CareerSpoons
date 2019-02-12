@@ -870,15 +870,19 @@ public function updatePostSingleFront(Request $request){
       $org=$obj->fetch_all_companies();
       return view("client_views.company_related_pages.allCompanies",['org'=>$org]);
   }
+  
+
   public function viewCompanySingleProfile(Request $request,$id){
+      
+      $obj = new CompanyProfileModel();
+      
     $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
     $fetch_img=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
-    $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
-    if($fetch_posts->count()>0){
-       $fetch_posts=$fetch_posts;
-    }else{
-       $fetch_posts=$fetch_posts->count();
-    }
+    
+    // Fetch All Details
+    $fetch_posts=$obj->fetch_company_all_post($id);
+    $post_counter = ' ';
+        
     $fetch_indus=$fetch_company->company_industry;
     $fetch_similar=DB::table('Add_organizations')->join('add_organization_social_link','Add_organizations.company_id','=','add_organization_social_link.organization_id')->where('Add_organizations.company_id','!=',$id)->where(['Add_organizations.company_industry'=>$fetch_indus])->select('Add_organizations.*','add_organization_social_link.*')->get();
     if($fetch_similar->count()>0){
@@ -900,8 +904,22 @@ public function updatePostSingleFront(Request $request){
      }
      //$fetch_comments=DB::table('reviews_comments')get();
 
-    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments,'fetch_img'=>$fetch_img]);
+    return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'$post_counter'=>$post_counter,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments,'fetch_img'=>$fetch_img]);
   }
+
+
+  public function loadCompanyJobs(Request $request){
+
+      $obj = new CompanyProfileModel();
+      $last_post_id  = $request->last_post_id;
+      $company_id  = $request->org_id;
+      $info = $obj->fetch_remaining_post($last_post_id,$company_id);
+
+      echo '';
+
+  }
+
+
   public function addReviewComments(Request $request){
     // echo "nayab";
     // print_r($request->all());

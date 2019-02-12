@@ -86,8 +86,20 @@
                         <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
                     
                     <?php }else{
-                    foreach ($job as $jobs) { ?>
-							<div class="col-md-4 col-sm-4">
+                    foreach ($job as $jobs) { 
+                    		date_default_timezone_set("Asia/Karachi");
+                    		 $post_date = strtotime($jobs->post_visibility_date); 
+               				//echo "  ----  ";
+ 	                   		$timenow = date('Y-m-d');
+            				$timestamp = strtotime($timenow);
+                   		    //echo "id " .$jobs->post_id ."=";
+                    		if($post_date<$timestamp){
+                    			
+                    		}
+                    		else{ ?>
+
+                    			
+                    		<div class="col-md-4 col-sm-4">
 								<div class="grid-view brows-job-list">
 								<div class="brows-job-company-img" style="width: 90px;">
 									<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="" style="max-width: 90px;" />
@@ -185,7 +197,11 @@
 							    </div>
 											
 						    </div>
-						   <?php }} ?>
+
+
+
+
+						   <?php }}} ?>
 					    </div>
 				    </article>
 
