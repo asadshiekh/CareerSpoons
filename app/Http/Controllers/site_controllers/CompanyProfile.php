@@ -914,8 +914,146 @@ public function updatePostSingleFront(Request $request){
       $last_post_id  = $request->last_post_id;
       $company_id  = $request->org_id;
       $info = $obj->fetch_remaining_post($last_post_id,$company_id);
+      if($info === 0){
+        echo "no";
+      }else{
+        foreach($info as $fetch_post){
+      echo '<article id="post-show'.$fetch_post->post_id.'">
+              <div class="brows-resume">
+                <div class="row">
+                  
+                  <div class="col-md-4 col-sm-4">
+                    <div class="brows-resume-name">
+                      <h4 id="job_name'.$fetch_post->post_id.'">'.$fetch_post->job_title.'</h4>
+                      <span class="brows-resume-designation">( <i id="industry-td'.$fetch_post->post_id.'">';
+                      
+                        
+                        $fetch_post->req_industry= str_replace("_"," ",$fetch_post->req_industry);
+                        echo $fetch_post->req_industry;
 
-      echo '';
+                      echo '</i>)</span>
+
+                      <span class="cand-status"><i class="far fa-clock"></i>'; 
+
+                        // $this->load->helper('date');
+
+                        //client created date get from database
+                      $date=$fetch_post->created_at; 
+
+                        // Declare timestamps
+                      $last = new DateTime($date);
+                      $now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+                         // Find difference
+                      $interval = $last->diff($now);
+                        // Store in variable to be used for calculation etc
+                      $years = (int)$interval->format('%Y');
+                      $months = (int)$interval->format('%m');
+                      $days = (int)$interval->format('%d');
+                      $hours = (int)$interval->format('%H');
+                      $minutes = (int)$interval->format('%i');
+                                      //   $now = date('Y-m-d H:i:s');
+                      if($years > 1)
+                      {
+                        echo $years.' Years Ago.' ;
+                      }
+                      else if($years == 1)
+                      {
+                      echo $years.' Year Ago.' ;
+                      }
+                      else if($months > 1)
+                      {
+                        echo $months.' Months Ago.' ;
+                      }
+                      else if($months == 1)
+                      {
+                        echo $months.' Month Ago.' ;
+                      }
+                      else if($days > 1)
+                      {
+                        echo $days.' Days Ago.' ;
+                      }
+                      else if($days == 1)
+                      {
+                        echo $days.' Day Ago.' ;
+                      }
+                      else if($hours > 1)
+                      {
+                        echo  $hours.' Hours Ago.' ;
+                      }
+                      else if($hours == 1)
+                      {
+                        echo  $hours.' Hour Ago.' ;
+
+                      }
+                      else
+                      {
+                        echo $minutes.' Minutes Ago.' ;
+                      }
+
+                      
+                    echo '</span>
+
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-4">
+                    <div class="brows-resume-name">
+                      <span><i class="fas fa-user-plus" id="position-td'.$fetch_post->post_id.'">&nbsp; ';
+                        
+
+                          if($fetch_post->total_positions>1){
+
+                      echo   $fetch_post->total_positions.' 
+                       Positions' ;
+                          }
+                          else{
+                            echo $fetch_post->total_positions.' Position' ;
+
+                          } 
+
+                        
+                        echo '</i></span>
+                    </div>
+                  </div>
+
+                                  
+
+                  <div class="col-md-4 col-sm-4">
+                    <div class="brows-resume-name" style="text-align: center;">
+                      <span><i class="fa fa-yelp"></i>
+                      Exp. 
+                        <span id="exp-td'.$fetch_post->post_id.'">'.$fetch_post->job_experience.' Year</span></span>
+                    </div>
+                  </div>
+
+                  
+
+                </div>
+                <div class="row extra-mrg row-skill">
+                  <div class="browse-resume-skills">
+                    <div class="col-md-9 col-sm-9">
+                      <div class="br-resume" id="skill-tags">';
+                       
+                        $str_tag=explode(",", $fetch_post->job_skills);
+                        $count_skill= count($str_tag);
+                                                 for($i=0;$i<$count_skill;$i++){
+                                                  echo "<span>".$str_tag[$i]."</span>";
+                                                 }
+                         
+                        
+                      echo '</div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_post_private('.$fetch_post->post_id.');" style="height: 25px;padding-top: 1px;">view</button></span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <span class="tg-themetag tg-featuretag"><b>Posted At: '. date('d M',strtotime($fetch_post->created_at)) .' </b></span>
+            </article>';
+          }
+          }
 
   }
 

@@ -589,7 +589,7 @@ function load_more_data(id,org_id){
 	$('#btn_more').html("Loading....");
 
 	          $.ajax({
-              url:"/load-jobs-by-company",
+              url:"load-jobs-by-company",
               method:"POST",
               data:{_token:CSRF_TOKEN,last_post_id:last_post_id,org_id:org_id},
               dataType:"text",
