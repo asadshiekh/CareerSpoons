@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\site_controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Job\JobModel;
 use App\SiteModel\Company\CompanyProfileModel;
 use DB;
+use Carbon\Carbon;
+
 
 class CompanyProfile extends Controller
 {
@@ -933,11 +934,60 @@ public function updatePostSingleFront(Request $request){
 
                       echo '</i>)</span>
 
-                      <span class="cand-status"><i class="far fa-clock"></i>'; 
+                      <span class="cand-status"><i class="far fa-clock"></i> '; 
 
                         // $this->load->helper('date');
                         //client created date get from database
-                      echo $date=$fetch_post->created_at; 
+                       $date=$fetch_post->created_at;
+                         $now= Carbon::now();
+                         $dat=Carbon::parse($date);
+                     
+                       $days= $dat->diffInDays($now);
+                       $hours= $dat->diffInHours($now);
+                       $months= $dat->diffInMonths($now);
+                       $years= $dat->diffInYears($now);
+                       $minutes= $dat->diffInMinutes($now);
+                      if($years > 1)
+                      {
+                        echo $years.' Years Ago.' ;
+                      }
+                      else if($years == 1)
+                      {
+                      echo $years.' Year Ago.' ;
+                      }
+                      else if($months > 1)
+                      {
+                        echo $months.' Months Ago.' ;
+                      }
+                      else if($months == 1)
+                      {
+                        echo $months.' Month Ago.' ;
+                      }
+                      else if($days > 1)
+                      {
+                        echo $days.' Days Ago.' ;
+                      }
+                      else if($days == 1)
+                      {
+                        echo $days.' Day Ago.' ;
+                      }
+                      else if($hours > 1)
+                      {
+                        echo  $hours.' Hours Ago.' ;
+                      }
+                      else if($hours == 1)
+                      {
+                        echo  $hours.' Hour Ago.' ;
+
+                      }
+                      else
+                      {
+                        echo $minutes.' Minutes Ago.' ;
+                      }
+                        
+
+
+                       
                     echo '</span>
 
                     </div>
