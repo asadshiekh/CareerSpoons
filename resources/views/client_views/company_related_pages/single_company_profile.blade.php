@@ -80,6 +80,7 @@
 						echo "<p style='text-align:center;color:red;'><span>No Post Yet !! </span></p>";
 					
 						}else{ ?>
+							<div id="load-article">
 						@foreach($fetch_posts as $fetch_post)	
 						<article id="post-show{{$fetch_post->post_id}}">
 							<div class="brows-resume">
@@ -217,11 +218,13 @@
 						 <?php $post_counter = $fetch_post->post_id; ?>
 						 <?php $organization_id = $fetch_post->company_id; ?>
 						@endforeach
+						  </div>
 					<?php } ?>
 
-						<div class="row">
+						<div class="row" id="load-row">
 								<a class="btn btn-success btn_more" id="btn_more" onclick="load_more_data('{{$post_counter}}','{{$organization_id}}');">Load More</a>
 						</div>
+						<span id="load-span"></span>
 						</div>
 						 <?php if(!Session::get("company_id")){
 						 	$u_id=Session::get("id");
@@ -583,19 +586,34 @@ function load_more_data(id,org_id){
 
 	var last_post_id = id;
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	alert(CSRF_TOKEN);
-	alert(last_post_id);
-	alert(org_id);
+//	alert(CSRF_TOKEN);
+//	alert(last_post_id);
+//	alert(org_id);
 	$('#btn_more').html("Loading....");
 
 	          $.ajax({
-              url:"load-jobs-by-company",
+              url:"/load-jobs-by-company",
               method:"POST",
               data:{_token:CSRF_TOKEN,last_post_id:last_post_id,org_id:org_id},
               dataType:"text",
               success:function(data){
                	
-               	alert(data);
+               	if(data != "0"){
+
+               	//alert(data);
+               	$("#load-row").hide();
+               	$("#load-article").append(data);
+
+               	}
+               	else if(data == "0"){
+               		$("#load-row").hide();
+               		$("#load-span").html("<h5 style='color:red;text-align:center'>No More Record Found</h5>");
+
+               	}
+               	
+
+
+
               },
             });
 

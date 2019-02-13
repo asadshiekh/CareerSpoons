@@ -26,9 +26,9 @@ class CompanyProfileModel extends Model
         $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->limit(2)->get();
         if($fetch_posts->count()>0){
             return $fetch_posts;
-     }else{
-         $fetch_posts=$fetch_posts->count();
-     }
+        }else{
+           return $fetch_posts->count();
+       }
  }
 
 
@@ -38,7 +38,7 @@ class CompanyProfileModel extends Model
         if($fetch_posts->count()>0){
             return $fetch_posts;
      }else{
-         $fetch_posts=$fetch_posts->count();
+         return $fetch_posts->count();
      }    
  }
 

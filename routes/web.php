@@ -93,7 +93,7 @@ Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompany
 Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
 Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
 Route::any('company-rating',"site_controllers\CompanyProfile@addCompanyRating");
-Route::any('load-jobs-by-company',"site_controllers\CompanyProfile@loadCompanyJobs");
+Route::any('/load-jobs-by-company',"site_controllers\CompanyProfile@loadCompanyJobs");
 
 
 //Comments

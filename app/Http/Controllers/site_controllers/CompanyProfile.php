@@ -915,7 +915,7 @@ public function updatePostSingleFront(Request $request){
       $company_id  = $request->org_id;
       $info = $obj->fetch_remaining_post($last_post_id,$company_id);
       if($info === 0){
-        echo "no";
+          return "0";
       }else{
         foreach($info as $fetch_post){
       echo '<article id="post-show'.$fetch_post->post_id.'">
@@ -936,61 +936,8 @@ public function updatePostSingleFront(Request $request){
                       <span class="cand-status"><i class="far fa-clock"></i>'; 
 
                         // $this->load->helper('date');
-
                         //client created date get from database
-                      $date=$fetch_post->created_at; 
-
-                        // Declare timestamps
-                      $last = new DateTime($date);
-                      $now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
-                         // Find difference
-                      $interval = $last->diff($now);
-                        // Store in variable to be used for calculation etc
-                      $years = (int)$interval->format('%Y');
-                      $months = (int)$interval->format('%m');
-                      $days = (int)$interval->format('%d');
-                      $hours = (int)$interval->format('%H');
-                      $minutes = (int)$interval->format('%i');
-                                      //   $now = date('Y-m-d H:i:s');
-                      if($years > 1)
-                      {
-                        echo $years.' Years Ago.' ;
-                      }
-                      else if($years == 1)
-                      {
-                      echo $years.' Year Ago.' ;
-                      }
-                      else if($months > 1)
-                      {
-                        echo $months.' Months Ago.' ;
-                      }
-                      else if($months == 1)
-                      {
-                        echo $months.' Month Ago.' ;
-                      }
-                      else if($days > 1)
-                      {
-                        echo $days.' Days Ago.' ;
-                      }
-                      else if($days == 1)
-                      {
-                        echo $days.' Day Ago.' ;
-                      }
-                      else if($hours > 1)
-                      {
-                        echo  $hours.' Hours Ago.' ;
-                      }
-                      else if($hours == 1)
-                      {
-                        echo  $hours.' Hour Ago.' ;
-
-                      }
-                      else
-                      {
-                        echo $minutes.' Minutes Ago.' ;
-                      }
-
-                      
+                      echo $date=$fetch_post->created_at; 
                     echo '</span>
 
                     </div>
@@ -1052,7 +999,12 @@ public function updatePostSingleFront(Request $request){
               </div>
               <span class="tg-themetag tg-featuretag"><b>Posted At: '. date('d M',strtotime($fetch_post->created_at)) .' </b></span>
             </article>';
+            $post_counter = $fetch_post->post_id; 
+            $organization_id = $fetch_post->company_id;
           }
+          echo '<div class="row" id="load-row">
+                <a class="btn btn-success btn_more" id="btn_more" onclick="load_more_data('.$post_counter.','.$organization_id.');">Load More</a>
+            </div>';
           }
 
   }
