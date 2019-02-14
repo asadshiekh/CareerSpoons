@@ -94,7 +94,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</div>
-										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="03349974743" required="required">
+										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(0334) 9974743" required="required">
 									</div>
 								</div>
 							</div>
@@ -167,6 +167,9 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 				<!-- Passsword Strength Checker -->
 				<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
+				<!-- Passsword Strength Checker -->
+				<script src="{{url('public/client_assets/js/placeholder/superplaceholder.min.js')}}"></script>
+
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
@@ -191,6 +194,48 @@
 						}
 					});
 
+				</script>
+
+				<script type="text/javascript">
+
+					const instance = superplaceholder({
+						el: document.querySelector('#candidate_name'),
+						sentences: [ 'Muhammad Asad Afzal', 'Syeda Nayab Zahra'],
+						options:{
+							loop: true,
+							letterDelay:50,
+							sentenceDelay:1000,
+							//onBlurAction: superplaceholder.Actions.[START|NOTHING|STOP]
+						}
+					});
+					superplaceholder({
+						el: document.querySelector('#user_email'),
+						sentences: ['asadshiekh9@gmail.com'],
+					});
+
+					const instance_password = superplaceholder({
+						el: document.querySelector('#password-field'),
+						sentences: [ '1 Special Character', '1 Upper Alphabet', 'Eg. Chess-1234'],
+						options: {
+							loop: true,
+							letterDelay: 50,
+							sentenceDelay: 500,
+							onFocusAction:superplaceholder.Actions.STOP,
+							onBlurAction: superplaceholder.Actions.START,
+						}
+					});
+
+					const instance_number = superplaceholder({
+						el: document.querySelector('#phone_number'),
+						sentences: ['(0334) 9974743'],
+						options: {
+							letterDelay: 100,
+							sentenceDelay: 1000,
+						}
+					});
+
+					instance_password.start();
+					instance_number.start();
 				</script>
 
 				<script>

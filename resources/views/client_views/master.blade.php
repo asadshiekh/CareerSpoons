@@ -583,6 +583,9 @@
 			<script src="{{url('public/client_assets/js/video_js/videopopup.js')}}"></script>
 			<!-- data table Responsive -->
 			<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+			<!-- Count UP -->
+			<script src="{{url('public/client_assets/js//countup/countUp.min.js')}}"></script>
+			
 			
 
 			<style type="text/css">
@@ -1167,7 +1170,16 @@
 					$("#social_links_update_button").prop("disabled",true);
 					$("#social_links_update_button").attr("aria-disabled",true);; 
 
+					var options = {
+						  useEasing: true, 
+						  useGrouping: true, 
+						  separator: ',', 
+						  decimal: '.', 
+						  suffix: '+' 
+					};
 
+						var c = new CountUp("counter",0,7000,0,6,options);
+						c.start();
 				});
 			</script>
 

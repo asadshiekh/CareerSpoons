@@ -4,10 +4,10 @@
 			<div class="clearfix"></div>
 			
 			<!-- Title Header Start -->
-			<section class="inner-header-title no-br advance-header-title" style="background-image:url(public/client_assets/img/banner-10.jpg);">
+			<section class="inner-header-title no-br advance-header-title" style="background-image:url(public/client_assets/img/banner-14.jpeg);">
 				<div class="container">
 					<h2><span>Work There.</span> Find the dream job</h2>
-					<p><span>704</span> new job in the last <span>7</span> days.</p>
+					<p style="margin-bottom:20px"><span>704</span> new job in the last <span>7</span> days.</p>
 				</div>
 			</section>
 			<div class="clearfix"></div>

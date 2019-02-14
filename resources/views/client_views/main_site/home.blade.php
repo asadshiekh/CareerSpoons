@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="banner-caption">
 			<div class="col-md-12 col-sm-12 banner-text">
-				<h1>7,000+ Browse Jobs</h1>
+				<h1><span style="color:white;" id="counter"></span> Browse Jobs</h1>
 				<form class="form-horizontal" action="{{url('search-jobs')}}">
 					<div class="col-md-4 no-padd">
 						<div class="input-group">
