@@ -48,7 +48,7 @@
 								<div class="row mrg-0">
 									<div class="col-md-4 col-sm-4">
 										<select class="selectpicker form-control" multiple title="Job Type">
-										  <option>Full Time</option>
+										  <option>Full Timessss</option>
 										  <option>Part Time</option>
 										  <option>Freelancer</option>
 										  <option>Internship</option>
