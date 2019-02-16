@@ -48,7 +48,7 @@
 								<div class="row mrg-0">
 									<div class="col-md-4 col-sm-4">
 										<select class="selectpicker form-control" multiple title="Job Type">
-										  <option>Full Timessss</option>
+										  <option>Full Times</option>
 										  <option>Part Time</option>
 										  <option>Freelancer</option>
 										  <option>Internship</option>
@@ -234,218 +234,145 @@
 					<!-- Sidebar Start -->
 					<div class="col-md-3 col-sm-12">
 						<div class="sidebar right-sidebar">
-
+                            <h2 class="title" style="text-align: center; font-size: 16px;"><i class="fa fa-arrow-right"></i> &nbsp<u>Filter Your Search</u></h2>
 							<div class="side-widget">
-								<h2 class="side-widget-title">Compensation</h2>
-								<div class="widget-text padd-0">
+								<h2 class="side-widget-title">City</h2>
+								<div class="widget-text padd-0" id="city">
 									<ul>
 										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="1">
-												<label for="1"></label>
-											</span>
-											Under $10,000
-											<span class="pull-right">102</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="2">
-												<label for="2"></label>
-											</span>
-											$10,000 - $15,000
-											<span class="pull-right">78</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="3">
-												<label for="3"></label>
-											</span>
-											$15,000 - $20,000
-											<span class="pull-right">12</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="4">
-												<label for="4"></label>
-											</span>
-											$20,000 - $30,000
-											<span class="pull-right">85</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="5">
-												<label for="5"></label>
-											</span>
-											$30,000 - $40,000
-											<span class="pull-right">307</span>
-										</li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="side-widget">
-								<h2 class="side-widget-title"><a href="#designation" data-toggle="collapse">Designation<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
-								<div class="widget-text padd-0 collapse" id="designation">
-									<ul>
-										<li>
-											<span class="custom-checkbox">
+											<select class="form-control">
+												<option selected disabled hidden>Select City</option>
+												<option>Lahore</option>
+												<option>Karachi</option>
+												<option>Islamabad</option>
+											</select>
+											<!-- <span class="custom-checkbox">
 												<input type="checkbox" id="1">
 												<label for="1"></label>
 											</span>
 											Web Designer
-											<span class="pull-right">102</span>
+											<span class="pull-right">102</span> -->
 										</li>
 										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="2">
-												<label for="2"></label>
-											</span>
-											Php Developer
-											<span class="pull-right">78</span>
-										</li>
 										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="3">
-												<label for="3"></label>
-											</span>
-											Project Manager
-											<span class="pull-right">12</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="4">
-												<label for="4"></label>
-											</span>
-											Human Resource
-											<span class="pull-right">85</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="5">
-												<label for="5"></label>
-											</span>
-											CMS Developer
-											<span class="pull-right">307</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="6">
-												<label for="6"></label>
-											</span>
-											App Developer
-											<span class="pull-right">256</span>
-										</li>
 									</ul>
 								</div>
 							</div>
-							
 							<div class="side-widget">
-								<h2 class="side-widget-title"><a href="#job-location" data-toggle="collapse">Location<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
-								<div class="widget-text padd-0 collapse" id="job-location">
+								<h2 class="side-widget-title">Functional Area</h2>
+								<div class="widget-text padd-0" id="area">
 									<ul>
 										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="1">
-												<label for="1"></label>
-											</span>
-											Mohali
-											<span class="pull-right">102</span>
+											<select class="form-control">
+												<option selected disabled hidden>Select Functional Area</option>
+												<option>IT</option>
+												<option>Accounts</option>
+												<option>Law</option>
+											</select>
+											
 										</li>
 										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="2">
-												<label for="2"></label>
-											</span>
-											Chandigarh
-											<span class="pull-right">78</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="3">
-												<label for="3"></label>
-											</span>
-											Chennai
-											<span class="pull-right">12</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="4">
-												<label for="4"></label>
-											</span>
-											Delhi
-											<span class="pull-right">85</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="5">
-												<label for="5"></label>
-											</span>
-											Noida
-											<span class="pull-right">307</span>
-										</li>
-										
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="6">
-												<label for="6"></label>
-											</span>
-											Chhatisgarh
-											<span class="pull-right">256</span>
-										</li>
 										
 									</ul>
 								</div>
 							</div>
 							
 							<div class="side-widget">
-								<h2 class="side-widget-title"><a href="#job-type" data-toggle="collapse">Job type<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
-								<div class="widget-text padd-0 collapse" id="job-type">
+								<h2 class="side-widget-title">Industry</h2>
+								<div class="widget-text padd-0" id="indus">
 									<ul>
 										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="1">
-												<label for="1"></label>
-											</span>
-											Full Time
-											<span class="pull-right">102</span>
+											<select class="form-control">
+												<option selected disabled hidden>Select Industry</option>
+												<option>Food</option>
+												<option>Institutional</option>
+												
+											</select>
+											
 										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="2">
-												<label for="2"></label>
-											</span>
-											Part Time
-											<span class="pull-right">78</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="3">
-												<label for="3"></label>
-											</span>
-											Internship
-											<span class="pull-right">12</span>
-										</li>
-										<li>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="4">
-												<label for="4"></label>
-											</span>
-											Freelancer
-											<span class="pull-right">85</span>
-										</li>
+										
+										
+										
 									</ul>
 								</div>
 							</div>
 							<div class="side-widget">
+								<h2 class="side-widget-title">Qualification</h2>
+								<div class="widget-text padd-0" id="qual">
+									<ul>
+										<li>
+											<select class="form-control">
+												<option selected disabled hidden>Select Qualification Level</option>
+												<option>Matric</option>
+												<option>Bechulars</option>
+												
+											</select>
+											
+										</li>
+										
+										
+										
+									</ul>
+								</div>
+							</div>
+							<div class="side-widget">
+								<h2 class="side-widget-title">Experience Level</h2>
+								<div class="widget-text padd-0" id="exp">
+									<ul>
+										<li>
+											<select class="form-control">
+												<option selected disabled hidden>Select Experience Level</option>
+												<option>fresh</option>
+												<option>less then one year</option>
+												
+											</select>
+											
+										</li>
+										
+										
+										
+									</ul>
+								</div>
+							</div>
+							
+							<div class="side-widget">
+								<h2 class="side-widget-title">Job type</h2>
+								<div class="widget-text padd-0" id="job-type">
+									<ul>
+										<li>
+											<select class="form-control">
+												<option selected disabled hidden>Select Job Type</option>
+												<option>Part time</option>
+												<option>Full Time</option>
+												<option>All types</option>
+											</select>
+										</li>
+										
+									</ul>
+								</div>
+							</div>
+							<div class="side-widget">
+								<h2 class="side-widget-title">Job Shift</h2>
+								<div class="widget-text padd-0" id="job-shift">
+									<ul>
+										<li>
+											<select class="form-control">
+												<option selected disabled hidden>Select Job Shift</option>
+												<option>Morning Shift</option>
+												<option>Night Shift</option>
+												<option>Evening Shift</option>
+												<option>All Shifts</option>
+											</select>
+										</li>
+										
+									</ul>
+								</div>
+							</div>
+							<div style="margin-bottom:10%;">
+								<button class="btn btn-success" style="width: 100%;font-weight: bold;">Filter</button>
+								
+							</div>
+<!-- 							<div class="side-widget">
 								<h2 class="side-widget-title">Job Alert</h2>
 								<div class="job-alert">
 									<div class="widget-text">
@@ -465,7 +392,7 @@
 										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
 									</div>
 								</div>
-							</div>
+							</div> -->
 							
 						</div>
 					</div>
