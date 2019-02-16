@@ -21,14 +21,13 @@
 							<input type="text" class="form-control" placeholder="Skills, Designations, Keyword">
 						</div>
 						<div class="col-md-3 col-sm-6">
-							<input type="text" class="form-control" placeholder="Searc By location">
+							<input type="text" class="form-control" placeholder="location Or City">
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<select class="form-control">
-							  <option>By Category</option>
+							  <option>Functional Area</option>
 							  <option>Information Technology</option>
-							  <option>Mechanical</option>
-							  <option>Hardware</option>
+							  
 							</select>
 						</div>
 						<div class="col-md-3 col-sm-6">
