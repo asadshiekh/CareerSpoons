@@ -17,18 +17,19 @@ class JobModel extends Model
           
   //   })->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
 
-
+   if(($area && $city && $title==" ") || ($area==" " && $city && $title) || ($area && $city==" " && $title)){
     $jobs= DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('job_preferences','add_organizations.company_id','=','job_preferences.company_id')->select('add_organizations.*','organization_posts.*','job_preferences.*')
             ->where('organization_posts.post_status', '!=', 'Block')
-            ->Where(function($query) use ($area) 
+            ->orWhere(function($query) use ($area,$city) 
             {
-                  $query->orWhere('organization_posts.functional_area', '=',$area);
+                  $query->Where('job_preferences.city', '=',$city)
+                   ->Where('organization_posts.functional_area', '=',$area);
                  
             })
             
            ->get();
 
-
+   }
 		if($jobs->count()>0){
 
             return $jobs;
