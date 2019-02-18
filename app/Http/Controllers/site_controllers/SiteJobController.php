@@ -11,30 +11,24 @@ class SiteJobController extends Controller
 {
     public function viewRelatedJobSearch(Request $request){
 
-        $obj = new JobModel();
-        $job = $obj->fetch_all_jobs();
-        $area = $obj->get_functional_area();
-        $city = $obj->get_cities();
-        $qual = $obj->get_qual();
-        $indus = $obj->get_indus();
-        if($request->post("title")){
-            $title=$request->post("title");
-        }else{
-            $title="Null";
-        }
-        if($request->post("city")){
-            $city=$request->post("city");
-        }else{
-            $city="Null";
-        }
-        if($request->post("area")){
-            $area=$request->post("area");
-        }else{
-            $area="Null";
-        }
-        
+
+        $title = !empty($request->title) ? $request->title : " ";
+        $city = !empty($request->city) ? $request->city :  " ";
+        $area = !empty($request->area) ? $request->area : " ";
        
-       // return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area]);
+
+        $obj = new JobModel();
+        $job = $obj->fetch_all_jobs($title,$city,$area);
+        
+        echo "<pre>";
+        print_r($job);
+        //$area = $obj->get_functional_area();
+        //$city = $obj->get_cities();
+        //$qual = $obj->get_qual();
+        //$indus = $obj->get_indus();
+        
+   // return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area]);
+    
     }
 
 

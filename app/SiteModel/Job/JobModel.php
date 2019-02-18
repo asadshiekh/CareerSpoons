@@ -8,9 +8,26 @@ use DB;
 class JobModel extends Model
 {
     //fetch jobs function
-	public function fetch_all_jobs(){
+	public function fetch_all_jobs($title,$city,$area){
 
-		$jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*')->where('organization_posts.post_status','!=','Block')->orderBy('post_id','desc')->simplePaginate(6);
+
+		// $jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','add_organizations.company_id','=','job_preferences.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->orWhere(function($jobs)
+  //     {
+  //   $jobs->where('organization_posts.job_title','=',$title)->where('organization_posts.functional_area','=',$area)->where('job_preferences.city','=',$city);
+          
+  //   })->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+
+
+    $jobs= DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('job_preferences','add_organizations.company_id','=','job_preferences.company_id')->select('add_organizations.*','organization_posts.*','job_preferences.*')
+            ->where('organization_posts.post_status', '!=', 'Block')
+            ->Where(function($query) use ($area) 
+            {
+                  $query->orWhere('organization_posts.functional_area', '=',$area);
+                 
+            })
+            
+           ->get();
+
 
 		if($jobs->count()>0){
 
@@ -19,6 +36,8 @@ class JobModel extends Model
         else{
             return $jobs->count();
         }
+
+   // return $title;
 
 
 	}
