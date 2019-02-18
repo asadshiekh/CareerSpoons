@@ -8,24 +8,31 @@
 		<div class="banner-caption">
 			<div class="col-md-12 col-sm-12 banner-text">
 				<h1><span style="color:white;" id="counter"></span> Browse Jobs</h1>
-				<form class="form-horizontal" action="{{url('search-jobs')}}">
+				<form class="form-horizontal" action="{{url('search-jobs')}}" method="post">
+					@csrf
 					<div class="col-md-4 no-padd">
 						<div class="input-group">
-							<input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies">
+							<input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies" name="title">
 						</div>
 					</div>
 					<div class="col-md-3 no-padd">
 						<div class="input-group">
-							<input type="text" class="form-control right-bor" placeholder="Search By Location..">
+							<select id="city" class="form-control" name="city">
+								<option disabled="disabled" selected="selected" hidden="hidden">Choose City</option>
+							@foreach($get_cities as $get_cities)
+								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+								
+								@endforeach
+							</select>
 						</div>
 					</div>
 
 					<div class="col-md-3 no-padd">
 						<div class="input-group">
-							<select id="choose-city" class="form-control">
-								<option disabled="disabled" selected="selected" hidden="hidden">Choose City</option>
-							@foreach($get_cities as $get_cities)
-								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+							<select id="area" class="form-control" name="area">
+								<option disabled="disabled" selected="selected" hidden="hidden">Choose Functional Area</option>
+							@foreach($get_areas as $area)
+								<option value="{{$area->area_title}}">{{$area->area_title}}</option>
 								
 								@endforeach
 							</select>

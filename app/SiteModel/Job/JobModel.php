@@ -52,6 +52,42 @@ class JobModel extends Model
         
 
 		}
+    public function get_functional_area(){
+      $area=DB::table('Add_functionalarea')->get();
+        if($area->count()>0){
+            return $area;
+        }
+        else{
+            return $area->count();
+        }
+    }
+    public function get_cities(){
+      $cty=DB::table('Add_cities')->get();
+        if($cty->count()>0){
+            return $cty;
+        }
+        else{
+            return $cty->count();
+        }
+    }
+    public function get_qual(){
+      $qual=DB::table('Add_qualification')->get();
+        if($qual->count()>0){
+            return $qual;
+        }
+        else{
+            return $qual->count();
+        }
+    }
+public function get_indus(){
+      $indus=DB::table('company_industries')->get();
+        if($indus->count()>0){
+            return $indus;
+        }
+        else{
+            return $indus->count();
+        }
+    }
 
 	
 

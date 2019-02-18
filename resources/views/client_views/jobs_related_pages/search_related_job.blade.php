@@ -25,9 +25,17 @@
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<select class="form-control">
-							  <option>Functional Area</option>
-							  <option>Information Technology</option>
-							  
+							  <option hidden disabled selected>Select Functional Area</option>
+							  <?php if($area === 0){
+
+							  }else{ 
+							  	foreach ($area as $areas) {
+							  	
+							  	?>
+
+							  <option value="{{$areas->area_title}}">
+							  	<?php echo $areas->area_title=str_replace("_"," ",$areas->area_title); ?></option>
+							  <?php } }?>
 							</select>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -242,10 +250,17 @@
 										<li>
 											<select class="form-control">
 												<option selected disabled hidden>Select City</option>
-												<option>Lahore</option>
-												<option>Karachi</option>
-												<option>Islamabad</option>
-											</select>
+												<?php if($city === 0){
+
+												}else{ 
+													foreach ($city as $cty) {
+
+														?>
+
+														<option value="{{$cty->company_city_name}}">
+															<?php echo $cty->company_city_name=str_replace("_"," ",$cty->company_city_name); ?></option>
+														<?php } }?>
+													</select>
 											<!-- <span class="custom-checkbox">
 												<input type="checkbox" id="1">
 												<label for="1"></label>
@@ -265,9 +280,16 @@
 										<li>
 											<select class="form-control">
 												<option selected disabled hidden>Select Functional Area</option>
-												<option>IT</option>
-												<option>Accounts</option>
-												<option>Law</option>
+												<?php if($area1 === 0){
+
+												}else{ 
+													foreach ($area1 as $a1) {
+
+														?>
+
+														<option value="{{$a1->area_title}}">
+															<?php echo $a1->area_title=str_replace("_"," ",$a1->area_title); ?></option>
+														<?php } }?>
 											</select>
 											
 										</li>
@@ -284,8 +306,17 @@
 										<li>
 											<select class="form-control">
 												<option selected disabled hidden>Select Industry</option>
-												<option>Food</option>
-												<option>Institutional</option>
+												<?php if($indus === 0){
+
+												}else{ 
+													foreach ($indus as $industry) {
+
+														?>
+
+														<option value="{{$industry->company_industry_name}}">
+															<?php echo $industry->company_industry_name=str_replace("_"," ",$industry->company_industry_name); ?></option>
+														<?php } }?>
+												
 												
 											</select>
 											
@@ -303,9 +334,16 @@
 										<li>
 											<select class="form-control">
 												<option selected disabled hidden>Select Qualification Level</option>
-												<option>Matric</option>
-												<option>Bechulars</option>
-												
+												<?php if($qual === 0){
+
+												}else{ 
+													foreach ($qual as $q) {
+
+														?>
+
+														<option value="{{$q->qualification_title}}">
+															<?php echo $q->qualification_title=str_replace("_"," ",$q->qualification_title); ?></option>
+														<?php } }?>
 											</select>
 											
 										</li>
@@ -322,8 +360,13 @@
 										<li>
 											<select class="form-control">
 												<option selected disabled hidden>Select Experience Level</option>
-												<option>fresh</option>
-												<option>less then one year</option>
+												<option value="fresh">Fresh</option>
+												<option value="1">one year</option>
+												<option value="2">two year</option>
+												<option value="3">three year</option>
+												<option value="4">four year</option>
+												<option value="5">five year</option>
+												<option value="5+">More then Five year</option>
 												
 											</select>
 											

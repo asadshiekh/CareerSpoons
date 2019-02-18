@@ -18,6 +18,7 @@ class SiteController extends Controller
   $org_reviews = $obj->get_all_org_reviews();
   $obj1 = new ClientSiteModel();
   $get_cities = $obj1->get_all_cities();
+  $get_areas = $obj1->get_all_area();
   $get_AccountingFinance = $obj1->get_all_accounting_jobs();
   $get_Automotive = $obj1->get_all_automotive_jobs();
   $get_business = $obj1->get_all_business_jobs();
@@ -30,7 +31,7 @@ class SiteController extends Controller
    //echo "<pre>";
    //print_r($get_AccountingFinance);
 
-  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews]);
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas]);
  }
 
  public function viewContactUs(){
