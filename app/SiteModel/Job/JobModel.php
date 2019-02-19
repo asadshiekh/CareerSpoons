@@ -95,7 +95,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
         $jobe->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','=',$fexp);
       }
       if($fqual){
-        $jobe->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualifications','=',$fqual);
+        $jobe->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualification','=',$fqual);
        
       }
       if($ftype){
@@ -105,13 +105,13 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
         $jobe->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.job_shift','=',$fshift);
       }
 
-       $jobe=$jobe->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
-        if($jobe->count()>0){
+       $jobes=$jobe->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+        if($jobes->count()>0){
 
-            return $jobe;
+            return $jobes;
         }
         else{
-            return $jobe->count();
+            return $jobes->count();
         }
 
 

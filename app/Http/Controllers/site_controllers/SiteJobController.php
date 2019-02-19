@@ -49,7 +49,7 @@ class SiteJobController extends Controller
         $qual = $obj->get_qual();
         $indus = $obj->get_indus();
 
-        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area]);
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city]);
 
 
     }
