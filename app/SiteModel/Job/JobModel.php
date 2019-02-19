@@ -21,13 +21,14 @@ if($title || $city || $area){
 
 $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
       if($title){
-      $jobs->Where('organization_posts.job_title','=',$title);
+      $jobs->Where('organization_posts.job_title','like','%'.$title.'%');
       }
       if($area){
         $jobs->Where('organization_posts.functional_area','=',$area);
       }
       if($city){
-        $jobs->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('job_preferences.*')->Where('job_preferences.city','=',$city);
+        $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$city);
+        
       }
 
        $job=$jobs->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
@@ -76,47 +77,49 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
   public function fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift){
     if($fcity || $farea || $findus || $fexp || $fqual || $ftype || $fshift){
      
-     $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+     $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
       if($fcity){
-        $jobs->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('job_preferences.*')->Where('job_preferences.city','=',$fcity);
+         $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$fcity);
+       
       }
       if($farea){
-        $jobs->Where('organization_posts.functional_area','=',$farea);
+        $jobe->Where('organization_posts.functional_area','=',$farea);
       }
       if($findus){
-        $jobs->Where('organization_posts.req_industry','=',$findus);
+        $jobe->Where('organization_posts.req_industry','=',$findus);
       }
       if($fexp){
-        $jobs->Where('organization_posts.job_experience','=',$fexp);
+        $jobe->Where('organization_posts.job_experience','=',$fexp);
       }
       if($fqual){
-        $jobs->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('job_req_qualifications.*')->Where('job_req_qualifications.req_qualifications','=',$fqual);
+        $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualifications','=',$fqual);
+       
       }
       if($ftype){
-        $jobs->Where('job_preferences.job_type','=',$ftype);
+        $jobe->Where('job_preferences.job_type','=',$ftype);
       }
       if($fshift){
-        $jobs->Where('job_preferences.job_shift','=',$fshift);
+        $jobe->Where('job_preferences.job_shift','=',$fshift);
       }
 
-       $job=$jobs->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
-        if($job->count()>0){
+       $jobe=$jobe->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+        if($jobe->count()>0){
 
-            return $job;
+            return $jobe;
         }
         else{
-            return $job->count();
+            return $jobe->count();
         }
 
 
     }else{
-      $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
-        if($jobs->count()>0){
+      $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+        if($jobe->count()>0){
 
-            return $jobs;
+            return $jobe;
         }
         else{
-            return $jobs->count();
+            return $jobe->count();
         }
 
     }
