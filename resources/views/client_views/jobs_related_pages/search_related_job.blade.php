@@ -374,7 +374,7 @@
 												<option value="3">three year</option>
 												<option value="4">four year</option>
 												<option value="5">five year</option>
-												<option value="5+">More then Five year</option>
+												<option value="6">More then Five year</option>
 												
 											</select>
 											
@@ -394,7 +394,7 @@
 												<option selected disabled hidden>Select Job Type</option>
 												<option value="Part Time">Part Time</option>
 												<option value="Full Time">Full Time</option>
-												<option value="none">All types</option>
+												
 											</select>
 										</li>
 										
