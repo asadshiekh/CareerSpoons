@@ -16,15 +16,22 @@
 			<!-- bottom form section start -->
 			<section class="bottom-search-form">
 				<div class="container">
-					<form class="bt-form" action="{{url('search-jobs')}}">
+					<form class="form-horizontal" action="{{url('search-jobs')}}" method="post">
+				  {{ csrf_field() }}
 						<div class="col-md-3 col-sm-6">
-							<input type="text" class="form-control" placeholder="Skills, Designations, Keyword">
+							<input type="text" class="form-control right-bor" placeholder="Skills, Designations, Companies" name="title">
 						</div>
 						<div class="col-md-3 col-sm-6">
-							<input type="text" class="form-control" placeholder="location Or City">
+							<select id="city" class="form-control" name="city">
+								<option disabled="disabled" selected="selected" hidden="hidden">Choose City</option>
+							@foreach($get_cities as $get_cities)
+								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
+								
+								@endforeach
+							</select>
 						</div>
 						<div class="col-md-3 col-sm-6">
-							<select class="form-control">
+							<select class="form-control" name="area">
 							  <option hidden disabled selected>Select Functional Area</option>
 							  <?php if($area === 0){
 
@@ -243,12 +250,14 @@
 					<div class="col-md-3 col-sm-12">
 						<div class="sidebar right-sidebar">
                             <h2 class="title" style="text-align: center; font-size: 16px;"><i class="fa fa-arrow-right"></i> &nbsp<u>Filter Your Search</u></h2>
+                        <form action="{{url('filter-search')}}" method="post">
+                        	@csrf
 							<div class="side-widget">
 								<h2 class="side-widget-title">City</h2>
 								<div class="widget-text padd-0" id="city">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_city" id="f_city">
 												<option selected disabled hidden>Select City</option>
 												<?php if($city === 0){
 
@@ -278,7 +287,7 @@
 								<div class="widget-text padd-0" id="area">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_area">
 												<option selected disabled hidden>Select Functional Area</option>
 												<?php if($area1 === 0){
 
@@ -298,13 +307,12 @@
 									</ul>
 								</div>
 							</div>
-							
 							<div class="side-widget">
 								<h2 class="side-widget-title">Industry</h2>
 								<div class="widget-text padd-0" id="indus">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_indus">
 												<option selected disabled hidden>Select Industry</option>
 												<?php if($indus === 0){
 
@@ -332,7 +340,7 @@
 								<div class="widget-text padd-0" id="qual">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_qual">
 												<option selected disabled hidden>Select Qualification Level</option>
 												<?php if($qual === 0){
 
@@ -358,7 +366,7 @@
 								<div class="widget-text padd-0" id="exp">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_exp">
 												<option selected disabled hidden>Select Experience Level</option>
 												<option value="fresh">Fresh</option>
 												<option value="1">one year</option>
@@ -377,17 +385,16 @@
 									</ul>
 								</div>
 							</div>
-							
 							<div class="side-widget">
 								<h2 class="side-widget-title">Job type</h2>
 								<div class="widget-text padd-0" id="job-type">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_type">
 												<option selected disabled hidden>Select Job Type</option>
-												<option>Part time</option>
-												<option>Full Time</option>
-												<option>All types</option>
+												<option value="Part Time">Part Time</option>
+												<option value="Full Time">Full Time</option>
+												<option value="none">All types</option>
 											</select>
 										</li>
 										
@@ -399,12 +406,11 @@
 								<div class="widget-text padd-0" id="job-shift">
 									<ul>
 										<li>
-											<select class="form-control">
+											<select class="form-control" name="f_shift">
 												<option selected disabled hidden>Select Job Shift</option>
-												<option>Morning Shift</option>
-												<option>Night Shift</option>
-												<option>Evening Shift</option>
-												<option>All Shifts</option>
+												<option value="Morning Shift">Morning Shift</option>
+												<option value="Night Shift">Night Shift</option>
+												<option value="Evening Shift">Evening Shift</option>
 											</select>
 										</li>
 										
@@ -415,6 +421,7 @@
 								<button class="btn btn-success" style="width: 100%;font-weight: bold;">Filter</button>
 								
 							</div>
+						</form>
 <!-- 							<div class="side-widget">
 								<h2 class="side-widget-title">Job Alert</h2>
 								<div class="job-alert">

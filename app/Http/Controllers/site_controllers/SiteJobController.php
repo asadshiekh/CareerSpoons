@@ -12,23 +12,46 @@ class SiteJobController extends Controller
     public function viewRelatedJobSearch(Request $request){
 
 
-        $title = !empty($request->title) ? $request->title : " ";
-        $city = !empty($request->city) ? $request->city :  " ";
-        $area = !empty($request->area) ? $request->area : " ";
-       
+        // $title = !empty($request->title) ? $request->title : " ";
+        // $city = !empty($request->city) ? $request->city :  " ";
+        // $area = !empty($request->area) ? $request->area : " ";
+       $title = $request->title;
+       $city = $request->city;
+       $area =$request->area;
 
         $obj = new JobModel();
         $job = $obj->fetch_all_jobs($title,$city,$area);
         
-        echo "<pre>";
-        print_r($job);
-        //$area = $obj->get_functional_area();
-        //$city = $obj->get_cities();
-        //$qual = $obj->get_qual();
-        //$indus = $obj->get_indus();
+        // echo "<pre>";
+        // print_r($job);
+        $area = $obj->get_functional_area();
+        $city = $obj->get_cities();
+        $qual = $obj->get_qual();
+        $indus = $obj->get_indus();
         
-   // return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area]);
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city]);
     
+    }
+    public function viewFilterJobSearch(Request $request){
+        $fcity = $request->f_city;
+        $farea = $request->f_area;
+        $findus = $request->f_indus;
+        $fexp = $request->f_exp;
+        $fqual = $request->f_qual;
+        $ftype = $request->f_type;
+        $fshift = $request->f_shift;
+
+        $obj = new JobModel();
+        $job = $obj->fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift);
+
+        $area = $obj->get_functional_area();
+        $city = $obj->get_cities();
+        $qual = $obj->get_qual();
+        $indus = $obj->get_indus();
+
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area]);
+
+
     }
 
 
