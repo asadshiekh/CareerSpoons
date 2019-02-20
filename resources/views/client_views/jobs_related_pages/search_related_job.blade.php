@@ -119,7 +119,7 @@
 									<img src="uploads/organization_images/{{$jobs->company_img}}" class="img-responsive" alt="" style="max-width: 90px;" />
 								</div>
 								<div class="brows-job-position">
-									<h3><a>{{$jobs->job_title}}</a></h3>
+									<h5 style="height: 50px;"><a>{{$jobs->job_title}}</a></h5>
 									<p><span><i class="fa fa-arrow-right"></i>&nbsp&nbsp<a href="job-details/{{$jobs->post_id}}" >({{$jobs->company_name}})</span></a></p>
 								</div>
 								<div class="job-position">
