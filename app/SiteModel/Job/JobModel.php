@@ -34,6 +34,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
         $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block');
       }
 
+
        $job=$jobs->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
       
 
