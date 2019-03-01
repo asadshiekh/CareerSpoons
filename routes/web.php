@@ -260,6 +260,7 @@ Route::any('applied-resume-theme/{id}',"site_controllers\UserResume@doAppliedThe
 
 Route::get('all-candidates',"site_controllers\SearchUsers@showAllUsers");
 Route::get('candidate-profile/{id}',"site_controllers\SearchUsers@viewSingleCandidate");
+Route::any('filter-user',"site_controllers\SearchUsers@FilterUsers");
 
 
 

@@ -118,9 +118,71 @@
 					</div>
                       
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="background-color: white;">
 							<h4>Filter User</h4>
-							
+							<form action="{{url('filter-user')}}" method="post">
+								@csrf
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp City</label>
+								<select class="form-control" name="selected_city" id="selected_city">
+									<option hidden disabled selected>Select City</option>
+									@foreach($city as $c)
+									<option value="{{$c->company_city_name}}">{{$c->company_city_name}}</option>
+									@endforeach
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Gender</label>
+								<select class="form-control" name="selected_gender" id="selected_gender">
+									<option hidden disabled selected>Select Gender</option>
+									<option value="Male">Male</option>
+									<option value="female">Female</option>
+
+
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Career Level</label>
+								<select class="form-control" name="selected_career" id="selected_career">
+								   <option hidden disabled selected>Select Career Level</option>
+								   <option value="Entry Level">Entry Level</option>
+	                               <option value="Intermediate">Intermediate</option>
+	                               <option value="Experienced Professional">Experienced Professional</option>
+	                               <option value="Department Head">Department Head</option>
+	                               <option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Qualification</label>
+								<select class="form-control" name="selected_qual" id="selected_qual">
+									<option hidden disabled selected>Select Qualification</option>
+									@foreach($qual as $q)
+									<option value="{{$q->qualification_title}}">{{$q->qualification_title}}</option>
+									@endforeach
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Industry</label>
+								<select class="form-control" name="selected_indus" id="selected_indus">
+									<option hidden disabled selected>Select Industry</option>
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<button class="btn btn-success" type="submit"> Filter User </button>
+                                <br/><br/><br/>
+							</div>
+						</form>
 						</div>
 					</div>
 					
