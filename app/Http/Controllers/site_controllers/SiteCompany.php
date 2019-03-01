@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SiteModel\Company\CompanyRegisteration;
 use App\Mail\Site_Mail\Company_Mail\Company_Registeration;
 use App\SiteModel\ClientSite\ClientSiteModel;
+use App\SiteModel\Company\CompanyProfileModel;
 use Mail;
 use DB;
 class SiteCompany extends Controller
@@ -75,6 +76,15 @@ class SiteCompany extends Controller
 
 		//Send User Mail For Verification
        Mail::send(new Company_Registeration());
+	}
+
+	public function filterCompanies(Request $request){
+     $name=$request->post("company_name");
+     $city=$request->post("company_city");
+      $obj = new CompanyProfileModel();
+      $org=$obj->fetch_all_filter_companies($name,$city);
+      $fetch_citi=DB::table('Add_cities')->get();
+      return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi]);
 	}
 
 }

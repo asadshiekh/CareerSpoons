@@ -17,7 +17,7 @@
 			<section class="manage-employee gray">
 				<div class="container">
 					<!-- search filter -->
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div class="search-filter">
 							
@@ -48,11 +48,12 @@
 								
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- search filter End -->
 					
 					<!-- Manage Employee -->
 					<div class="row">
+						<div class="col-sm-9">
 					<?php 
                     if($candidates===0){ ?>
                     
@@ -61,7 +62,7 @@
                     <?php }else{ ?>
 						
 						@foreach ($candidates as $value)
-						<div class="col-md-3 col-sm-3">
+						<div class="col-md-4 col-sm-4">
 							<div class="manage-cndt">
 
 							<div class="pull-right">
@@ -100,18 +101,12 @@
 							</div>
 						</div>
 						@endforeach
-					<?php } ?>
-
-
-
-						
-
-					</div>
+					<?php } ?>	
 					<div class="row">
 						<ul class="pagination">
 							 <h5 style="text-align:center">
 							 	<?php 
-								if($candidates>0){ 
+								if($candidates===0){ 
 
 									echo $candidates->links();
 
@@ -121,6 +116,15 @@
 							 </h5>
 							</ul>
 					</div>
+                      
+						</div>
+						<div class="col-sm-3">
+							<h4>Filter User</h4>
+							
+						</div>
+					</div>
+					
+
 				</div>
 			</section>
 			<!-- Employee List End -->

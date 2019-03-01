@@ -20,19 +20,41 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div class="search-filter">
-							
-								<div class="col-md-4 col-sm-5">
+								<form action="{{url('filter-companies')}}" method="post">
+							   @csrf
+								<div class="col-md-4 col-sm-4">
 									<div class="filter-form">
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Search…">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-default">Go</button>
-											</span>
+										<div class="input-group col-sm-12">
+											<input type="text" class="form-control" placeholder="Search by Company Name…" name="company_name" id="company_name" /><!-- <span class="input-group-btn">
+												<button type="button" class="btn btn-default"><i class="fa fa-title"></i></button>
+											</span>  -->
 										</div>
 									</div>
 								</div>
-									
-								<div class="col-md-8 col-sm-7">
+								<div class="col-md-4 col-sm-4">
+									<div class="filter-form">
+										<div class="input-group col-sm-12">
+											
+											<select name="company_city" id="company_city" class="form-control">
+												<option hidden disabled selected>Select City</option>
+												@foreach($fetch_citi as $citi)
+												<option value="{{$citi->company_city_name}}">{{$citi->company_city_name}}</option>
+												@endforeach
+											</select>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="filter-form">
+										<div class="input-group">
+											<button type="submit" class="btn btn-success">Search</button>
+											
+										</div>
+									</div>
+								</div>
+								</form>	
+								<!-- <div class="col-md-8 col-sm-7">
 									<div class="short-by pull-right">
 										Short By
 										<div class="dropdown">
@@ -44,7 +66,7 @@
 										</ul>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								
 							</div>
 						</div>

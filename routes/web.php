@@ -94,7 +94,7 @@ Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
 Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
 Route::any('company-rating',"site_controllers\CompanyProfile@addCompanyRating");
 Route::any('load-jobs-by-company',"site_controllers\CompanyProfile@loadCompanyJobs");
-
+Route::any('filter-companies',"site_controllers\SiteCompany@filterCompanies");
 
 //Comments
 Route::any('/review-comments',"site_controllers\CompanyProfile@addReviewComments");
