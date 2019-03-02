@@ -18,6 +18,30 @@ class AddCompanyCity extends Migration
             $table->string('company_city_name');
             $table->timestamps();
         });
+
+
+        $current_date = date("Y.m.d h:i:s");
+        DB::table('Add_cities')->insert(
+        array(
+            'company_city_name' => 'Lahore',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Add_cities')->insert(
+        array(
+            'company_city_name' => 'Karachi',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Add_cities')->insert(
+        array(
+            'company_city_name' => 'Islamabad',
+            'created_at' => $current_date,
+        )
+        );
+
     }
 
     /**

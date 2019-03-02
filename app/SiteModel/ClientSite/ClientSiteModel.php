@@ -24,6 +24,18 @@ class ClientSiteModel extends Model
     	return $major;
     }
 
+    public function get_all_qualification(){
+
+        $qualification=DB::table('add_qualification')->get();
+        return $qualification;
+    }
+
+    public function get_all_indutries(){
+
+        $indutries=DB::table('company_industries')->get();
+        return $indutries;
+    }
+
     public function get_all_accounting_jobs(){
 
         $response = DB::table('organization_posts')->where('req_industry','Accounting_&_Finance')->get();
@@ -140,6 +152,7 @@ class ClientSiteModel extends Model
         return $cities;
 
     }
+
 
 
 

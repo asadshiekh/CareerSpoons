@@ -18,6 +18,67 @@ class AddCompanyIndustry extends Migration
             $table->string('company_industry_name');            
             $table->timestamps();
         });
+
+
+        $current_date = date("Y.m.d h:i:s");
+        DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Accounting_&_Finance',
+            'created_at' => $current_date,
+        )
+        );
+
+         DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Automotive',
+            'created_at' => $current_date,
+        )
+        );
+
+          DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Business',
+            'created_at' => $current_date,
+        )
+        );
+
+           DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Education_Training',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Healthcare',
+            'created_at' => $current_date,
+        )
+        );
+
+          DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Restaurant_&_Food',
+            'created_at' => $current_date,
+        )
+        );
+
+           DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Transportation',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Company_industries')->insert(
+        array(
+            'company_industry_name' => 'Telecommunications',
+            'created_at' => $current_date,
+        )
+        );
+
+       
+
     }
 
     /**

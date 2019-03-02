@@ -18,6 +18,35 @@ class AddQualification extends Migration
             $table->string('qualification_title');
             $table->timestamps();
         });
+
+        $current_date = date("Y.m.d h:i:s");
+        DB::table('Add_qualification')->insert(
+        array(
+            'qualification_title' => 'Matric',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Add_qualification')->insert(
+        array(
+            'qualification_title' => 'Intermediate',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Add_qualification')->insert(
+        array(
+            'qualification_title' => 'Bachelor',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Add_qualification')->insert(
+        array(
+            'qualification_title' => 'Masters',
+            'created_at' => $current_date,
+        )
+        );
     }
 
     /**

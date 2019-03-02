@@ -18,6 +18,29 @@ class CreateCompanyType extends Migration
             $table->string('company_type_name');
             $table->timestamps();
         });
+
+         $current_date = date("Y.m.d h:i:s");
+          DB::table('Company_types')->insert(
+        array(
+            'company_type_name' => 'Private',
+            'created_at' => $current_date,
+        )
+        );
+
+           DB::table('Company_types')->insert(
+        array(
+            'company_type_name' => 'Public',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('Company_types')->insert(
+        array(
+            'company_type_name' => 'NGO',
+            'created_at' => $current_date,
+        )
+        );
+
     }
 
     /**

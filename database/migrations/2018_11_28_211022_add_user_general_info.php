@@ -25,8 +25,9 @@ class AddUserGeneralInfo extends Migration
             $table->string('candidate_website')->nullable($value = true);
             $table->string('candidate_gender')->nullable($value = true);
             $table->string('candidate_career_level')->nullable($value = true);
-            $table->string('candidate_degree_level')->nullable($value = true);
-             $table->longText('candidate_resume_details')->nullable($value = true);
+            $table->string('candidate_qualification')->nullable($value = true);
+            $table->string('candidate_industries')->nullable($value = true);
+            $table->longText('candidate_resume_details')->nullable($value = true);
             $table->timestamps();
         });
     }

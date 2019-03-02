@@ -412,7 +412,14 @@
 			<li><span>Gender:</span>{{$user_general_info->candidate_gender}}</li>
 			<li><span>Web-Address:</span>{{$user_general_info->candidate_website}}</li>
 			<li><span>Career-Level:</span>{{$user_general_info->candidate_career_level}}</li>
-			<li><span>Degree-Level:</span>{{$user_general_info->candidate_degree_level}}</li>
+			<li><span>Candidate-Qualification:</span>{{$user_general_info->candidate_qualification}}</li>
+			<li><span>Candidate-Industries:</span><?php
+
+			$user_general_info->candidate_industries= str_replace("_"," ",$user_general_info->candidate_industries);
+			echo $user_general_info->candidate_industries;
+				
+				?>
+			</li>
 			<li><span>Your Address:</span>{{$user_general_info->candidate_location}}</li>
 			@endforeach
 		</ul>
@@ -1560,7 +1567,6 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>City</label>
 		<select class="form-control input-lg" name="candidate_city">
 			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
-
 			@foreach($get_cities1 as $value)
 			<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 			@endforeach
@@ -1583,7 +1589,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<label>Website-Link</label>
 		<input type="text"  name="website_link" value="{{$user_general_info->candidate_website}}" class="form-control">
 	</div>
-	<div class="col-md-6 col-sm-6">
+	<div class="col-md-4 col-sm-4">
 		<label>Career Level</label>
 		<select class="form-control input-lg" name="candidate_career_level">
 			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_career_level}}</option>
@@ -1594,14 +1600,30 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			<option>Gm / CEO / Country Head</option>
 		</select>
 	</div>
-	<div class="col-md-6 col-sm-6">
-		<label>Degree Level</label>
-		<select class="form-control input-lg" name="candidate_degree_level" id="degree_level">
-			<option value="{{$user_general_info->candidate_degree_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_degree_level}}</option>
-			@foreach($get_degree1 as $value)
-			<option value="{{$value->degree_title}}">{{$value->degree_title}}</option>
-			@endforeach
-			
+	<div class="col-md-4 col-sm-4">
+		<label>Qualification Level</label>
+		<select class="form-control input-lg" name="candidate_qualification">
+			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_qualification}}</option>
+			@foreach($get_qualification as $value)
+			<option value="{{$value->qualification_title}}"><?php
+				
+				$value->qualification_title= str_replace("_"," ",$value->qualification_title);
+			echo $value->qualification_title;
+			?></option>
+			@endforeach		
+		</select>
+	</div>
+	<div class="col-md-4 col-sm-4">
+		<label>Candidate Industries</label>
+		<select class="form-control input-lg" name="candidate_industries">
+			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_industries}}</option>
+			@foreach($get_industries as $value)
+			<option value="{{$value->company_industry_name}}"><?php 
+			$value->company_industry_name= str_replace("_"," ",$value->company_industry_name);
+			echo $value->company_industry_name;
+			?></option>
+			@endforeach	
+		
 		</select>
 	</div>
 	<div class="col-sm-12">

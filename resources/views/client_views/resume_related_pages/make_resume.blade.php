@@ -160,7 +160,7 @@
 
 
 
-					<div class="col-md-6 col-sm-6">
+<!-- 					<div class="col-md-6 col-sm-6">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
 							<select class="form-control input-lg" name="candidate_degree_level">
@@ -171,7 +171,48 @@
 								
 							</select>
 						</div>	
+					</div> -->
+
+
+					<div class="col-md-6 col-sm-6">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fas fa-university"></i></span>
+							<select class="form-control input-lg" name="candidate_Qualification">
+								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Qualification</option>
+								@foreach($get_qualification as $value)
+								<option><?php
+
+								$value->qualification_title= str_replace("_"," ",$value->qualification_title);
+								echo $value->qualification_title;
+
+									?>
+								</option>
+								@endforeach
+							</select>
+						</div>	
 					</div>
+
+					<div class="col-md-12 col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fas fa-university"></i></span>
+							<select class="form-control input-lg" name="candidate_Indutries">
+								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Indutries</option>
+								@foreach($get_indutries as $value)
+								<option><?php 
+								
+								$value->company_industry_name= str_replace("_"," ",$value->company_industry_name);
+								echo $value->company_industry_name;
+
+								?>	
+								</option>
+								
+								@endforeach
+							</select>
+						</div>	
+					</div>
+
+
+
 				</div>
 
 				<div class="row bottom-mrg extra-mrg">

@@ -18,7 +18,9 @@ class UserResume extends Controller
 		$get_degree1=$obj->get_all_degree_level();
 		$get_majors=$obj->get_all_majors();
 		$get_area=$obj->get_all_area();
-		return view('client_views.resume_related_pages.make_resume',['get_cities'=>$get_cities,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'get_area'=>$get_area]);
+		$get_qualification=$obj->get_all_qualification();
+		$get_indutries=$obj->get_all_indutries();
+		return view('client_views.resume_related_pages.make_resume',['get_cities'=>$get_cities,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'get_area'=>$get_area,'get_qualification'=>$get_qualification,'get_indutries'=>$get_indutries]);
 	}
 
 	public function uploadResume(Request $request){
@@ -401,6 +403,10 @@ class UserResume extends Controller
 		$request->editor1=str_ireplace('<p>','',$request->editor1);
 		$request->editor1=str_ireplace('</p>','',$request->editor1);
 
+		$request->candidate_Qualification=str_ireplace(' ','_',$request->candidate_Qualification);
+		
+		$request->candidate_Indutries=str_ireplace(' ','_',$request->candidate_Indutries);
+		
 		$dateOfBirth = $request->candidate_dob;
 		$today = date("Y-m-d");
 		$diff = date_diff(date_create($dateOfBirth), date_create($today));
@@ -416,7 +422,8 @@ class UserResume extends Controller
 			'candidate_website' => $request->candidate_website,
 			'candidate_gender' => $request->candidate_gender,
 			'candidate_career_level' => $request->candidate_career_level,
-			'candidate_degree_level' => $request->candidate_degree_level,
+			'candidate_qualification' => $request->candidate_Qualification,
+			'candidate_industries' => $request->candidate_Indutries,
 			'candidate_resume_details' => $request->editor1,
 			'created_at' => $current_date
 		);
@@ -715,11 +722,16 @@ class UserResume extends Controller
 			$request->candidate_career_level = $response->candidate_career_level;
 		}
 
+		if($request->candidate_qualification==null){
 
-		if($request->candidate_degree_level==null){
-
-			$request->candidate_degree_level = $response->candidate_degree_level;
+		$request->candidate_qualification = $response->candidate_qualification;
 		}
+
+		if($request->candidate_industries==null){
+
+			$request->candidate_industries = $response->candidate_industries;
+		}
+
 
 		$request->profile_Address=str_ireplace('<p>','',$request->profile_Address);
 		$request->profile_Address=str_ireplace('</p>','',$request->profile_Address);    
@@ -733,7 +745,8 @@ class UserResume extends Controller
 			'candidate_gender' =>$request->candidate_gender,
 			'candidate_website' => $request->website_link,
 			'candidate_career_level' => $request->candidate_career_level,
-			'candidate_degree_level' => $request->candidate_degree_level,
+			'candidate_qualification' => $request->candidate_qualification,
+			'candidate_industries' => $request->candidate_industries,
 			'candidate_location' => $request->profile_Address,
 			'updated_at' => $updated_date
 		);
