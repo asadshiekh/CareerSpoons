@@ -126,7 +126,7 @@
 								<br/>
 								<label>&nbsp City</label>
 								<select class="form-control" name="selected_city" id="selected_city">
-									<option hidden disabled selected>Select City</option>
+									<option hidden selected value=" <?php if($cit){echo $cit;} ?> "><?php if($cit){echo $cit;}else{echo 'Select City';} ?></option>
 									@foreach($city as $c)
 									<option value="{{$c->company_city_name}}">{{$c->company_city_name}}</option>
 									@endforeach
@@ -137,7 +137,7 @@
 								<br/>
 								<label>&nbsp Gender</label>
 								<select class="form-control" name="selected_gender" id="selected_gender">
-									<option hidden disabled selected>Select Gender</option>
+									<option hidden selected value="<?php if($gender){echo $gender;} ?>"><?php if($gender){echo $gender;}else{echo 'Select Gender';} ?></option>
 									<option value="Male">Male</option>
 									<option value="female">Female</option>
 
@@ -149,7 +149,7 @@
 								<br/>
 								<label>&nbsp Career Level</label>
 								<select class="form-control" name="selected_career" id="selected_career">
-								   <option hidden disabled selected>Select Career Level</option>
+								   <option hidden selected value="<?php if($career){echo $career;} ?>"><?php if($career){echo $career;}else{echo 'Select Career Level';} ?></option>
 								   <option value="Entry Level">Entry Level</option>
 	                               <option value="Intermediate">Intermediate</option>
 	                               <option value="Experienced Professional">Experienced Professional</option>
@@ -162,7 +162,7 @@
 								<br/>
 								<label>&nbsp Qualification</label>
 								<select class="form-control" name="selected_qual" id="selected_qual">
-									<option hidden disabled selected>Select Qualification</option>
+									<option hidden  selected value="<?php if($quali){echo $quali;} ?>"><?php if($quali){echo $quali;}else{echo 'Select Qualification';} ?></option>
 									@foreach($qual as $q)
 									<option value="{{$q->qualification_title}}">{{$q->qualification_title}}</option>
 									@endforeach
@@ -173,7 +173,10 @@
 								<br/>
 								<label>&nbsp Industry</label>
 								<select class="form-control" name="selected_indus" id="selected_indus">
-									<option hidden disabled selected>Select Industry</option>
+									<option hidden selected value="<?php if($indus){echo $indus;} ?>"><?php if($indus){echo $indus;}else{echo 'Select Industry';} ?></option>
+									@foreach($industry as $in)
+									<option value="{{$in->company_industry_name}}">{{$in->company_industry_name}}</option>
+									@endforeach
 								</select>
 
 							</div>

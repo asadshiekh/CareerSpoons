@@ -870,7 +870,9 @@ public function updatePostSingleFront(Request $request){
       $obj = new CompanyProfileModel();
       $org=$obj->fetch_all_companies();
       $fetch_citi=DB::table('Add_cities')->get();
-      return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi]);
+      $name='';
+      $city='';
+      return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi,'name'=>$name,'city'=>$city]);
   }
   
 

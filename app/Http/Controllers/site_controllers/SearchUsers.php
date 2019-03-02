@@ -11,6 +11,11 @@ class SearchUsers extends Controller
 {
     
     public function showAllUsers(){
+    $cit='';
+    $gender='';
+    $career='';
+    $quali='';
+    $indus='';
 
     	 $candidates= DB::table('register_users')->join('user_profile_images','register_users.id', '=', 'user_profile_images.candidate_id')->join('add_user_generals_info','register_users.id', '=', 'add_user_generals_info.id')->join('add_user_social_media_links','register_users.id', '=', 'add_user_social_media_links.candidate_id')->select('register_users.*','user_profile_images.*','add_user_generals_info.*','add_user_social_media_links.*')->get();
          if($candidates->count()>0){
@@ -26,7 +31,7 @@ class SearchUsers extends Controller
          $industry=DB::table('Company_industries')->get();
          $degree=DB::table('Add_degreelevel')->get();
          $qual=DB::table('Add_qualification')->get();
-    	return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city]);
+    	return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus]);
     }
 
     public function viewSingleCandidate(Request $request,$id){
@@ -48,19 +53,20 @@ class SearchUsers extends Controller
 
     public function FilterUsers(Request $request){
 
-    $city=$request->post('selected_city');
+    $cit=$request->post('selected_city');
     $gender=$request->post('selected_gender');
     $career=$request->post('selected_career');
-    $qual=$request->post('selected_qual');
+    $quali=$request->post('selected_qual');
+    $indus=$request->post('selected_indus');
     
     $obj = new SearchUserModel();
-    $candidates = $obj->do_filter_search($city,$gender,$career,$qual);
+    $candidates = $obj->do_filter_search($cit,$gender,$career,$quali,$indus);
          $city=DB::table('Add_cities')->get();
          $industry=DB::table('Company_industries')->get();
          $degree=DB::table('Add_degreelevel')->get();
          $qual=DB::table('Add_qualification')->get();
          // echo "<pre>";
          // print_r($candidates);
-         return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city]);
+         return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus]);
     }
 }

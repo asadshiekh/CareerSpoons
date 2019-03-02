@@ -25,7 +25,7 @@
 								<div class="col-md-4 col-sm-4">
 									<div class="filter-form">
 										<div class="input-group col-sm-12">
-											<input type="text" class="form-control" placeholder="Search by Company Name…" name="company_name" id="company_name" /><!-- <span class="input-group-btn">
+											<input type="text" class="form-control" placeholder="Search by Company Name…" name="company_name" id="company_name"  value="<?php if($name){echo $name;} ?>" /><!-- <span class="input-group-btn">
 												<button type="button" class="btn btn-default"><i class="fa fa-title"></i></button>
 											</span>  -->
 										</div>
@@ -36,7 +36,7 @@
 										<div class="input-group col-sm-12">
 											
 											<select name="company_city" id="company_city" class="form-control">
-												<option hidden disabled selected>Select City</option>
+												<option hidden selected value="<?php if($city){echo $city ;} ?>"><?php if($city){echo $city;}else{echo 'Select City';} ?></option>
 												@foreach($fetch_citi as $citi)
 												<option value="{{$citi->company_city_name}}">{{$citi->company_city_name}}</option>
 												@endforeach
