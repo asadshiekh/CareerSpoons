@@ -106,7 +106,7 @@
 						<ul class="pagination">
 							 <h5 style="text-align:center">
 							 	<?php 
-								if($candidates===0){ 
+								if($candidates != "0"){ 
 
 
 								}else{
