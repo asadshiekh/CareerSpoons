@@ -108,8 +108,9 @@
 							 	<?php 
 								if($candidates===0){ 
 
-									echo $candidates->links();
 
+								}else{
+									echo $candidates->links();
 								}	
 								?>
 							 	

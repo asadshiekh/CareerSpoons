@@ -16,11 +16,19 @@ class SiteJobController extends Controller
         // $city = !empty($request->city) ? $request->city :  " ";
         // $area = !empty($request->area) ? $request->area : " ";
        $title = $request->title;
-       $city = $request->city;
-       $area =$request->area;
+       $citi = $request->city;
+       $areas =$request->area;
+       $f_city="";
+       $f_area="";
+       $f_indus="";
+       $f_qual="";
+       $f_exp="";
+       $f_type="";  
+       $f_shift="";     
+
 
         $obj = new JobModel();
-        $job = $obj->fetch_all_jobs($title,$city,$area);
+        $job = $obj->fetch_all_jobs($title,$citi,$areas);
         
         // echo "<pre>";
         // print_r($job);
@@ -29,7 +37,7 @@ class SiteJobController extends Controller
         $qual = $obj->get_qual();
         $indus = $obj->get_indus();
         
-        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city]);
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$f_city,'f_area'=>$f_area,'f_indus'=>$f_indus,'f_qual'=>$f_qual,'f_exp'=>$f_exp,'f_type'=>$f_type,'f_shift'=>$f_shift]);
     
     }
     public function viewFilterJobSearch(Request $request){
@@ -50,7 +58,7 @@ class SiteJobController extends Controller
         $indus = $obj->get_indus();
         // echo "<pre>";
         // print_r($job);
-        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city]);
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$fcity,'f_area'=>$farea,'f_indus'=>$findus,'f_qual'=>$fqual,'f_exp'=>$fexp,'f_type'=>$ftype,'f_shift'=>$fshift]);
 
 
     }
