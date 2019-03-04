@@ -26,7 +26,7 @@ class SearchUserModel extends Model
                  $candidate->where('add_user_generals_info.candidate_industries','like',$indus);
             }
 
-	         $candidates=$candidate->simplePaginate(6);;
+	         $candidates=$candidate->simplePaginate(6);
 	         if($candidates->count()>0){
 	           return $candidates=$candidates;
 	         }
