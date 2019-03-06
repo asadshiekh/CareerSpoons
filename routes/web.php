@@ -102,8 +102,19 @@ Route::any('delete-review-comments/{id}',"site_controllers\CompanyProfile@delete
 Route::any('model-review-comments',"site_controllers\CompanyProfile@modelReviewComments");
 Route::any('edit-review-comments',"site_controllers\CompanyProfile@editReviewComments");
 
+
 //   CompanyEmailVerification Controller //
 /*---------------------------------------------------------------------------------------*/
+
+
+//Company [Payment Controller]
+
+Route::get('company-basic-payment-method',"site_controllers\CompanyPayment@viewCheckoutPaymentMethod");
+Route::post('buy-package-basic',"site_controllers\CompanyPayment@doCompanyBuyPackage");
+
+//Company [Payment Controller]
+
+
 
 
 

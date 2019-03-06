@@ -1,0 +1,13 @@
+
+000 webhost sign up and login
+careerspoons@gmail.com
+B19148ABChess1234
+
+
+
+database name =  id8583373_careerspoons
+user    name   = id8583373_careerspoons
+
+password      =   B19148ABChess1234
+
+

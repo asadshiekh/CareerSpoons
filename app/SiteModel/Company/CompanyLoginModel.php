@@ -21,4 +21,10 @@ class CompanyLoginModel extends Model
 		return $data; 
 		
 	}
+
+	public function get_company_availed_packages_details($organization_id){
+
+		$data = DB::table('company_availed_packages')->where('company_id',$organization_id)->first();
+		return $data; 
+	}
 }

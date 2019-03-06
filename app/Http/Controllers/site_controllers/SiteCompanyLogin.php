@@ -32,7 +32,8 @@ class SiteCompanyLogin extends Controller
 
 		if($info){
 
-			$info2 = $obj->get_organization_review_data($info->company_id);
+		$info2 = $obj->get_organization_review_data($info->company_id);
+		$info3 = $obj->get_company_availed_packages_details($info->company_id);
 
 			if($info->org_activation == "Active"){
 				$company_data=array(
@@ -50,6 +51,7 @@ class SiteCompanyLogin extends Controller
 				"registeration_process"=>$info->registeration_process,
 				"company_status"=>$info->org_activation,
 				"organization_rating"=>$info2->rating_points,
+				"company_package_status"=>$info3->company_package_status,
 				"login_status"=>'Active',
 			);
 			$request->session()->put($company_data);

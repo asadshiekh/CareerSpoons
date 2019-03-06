@@ -108,6 +108,13 @@
 						<li><a data-toggle="tab" href="#setting">Settings</a></li>
 						<li><a data-toggle="tab" href="#insights">Insights</a></li>
 						<li><a data-toggle="tab" href="#reviews">Reviews</a></li>
+						<?php 
+						if(Session::get('company_package_status')=='0'){
+						?>
+						<li><a data-toggle="tab" href="#company_packages">Packages</a></li>
+						<?php }else{ ?>
+						<li><a data-toggle="tab" href="#Advertisement_Logo">Advertisement Logo</a></li>
+						<?php } ?>	
 					</ul>
 							
 							<!-- Start Bio Sec -->
@@ -134,228 +141,222 @@
 								</form>
 								<!-- End Bio Sec -->
 							<!-- Start All Sec -->
-							
-								<div id="info" class="tab-pane fade">
-									<h3>Information About You</h3>
-									<ul class="job-detail-des">
-										 <li><span>Company Name:</span>{{$fetch_org->company_name}}</li>
-				                      <li><span>Company Type:</span>{{$fetch_org->company_type}}</li>
-				                      <li><span>City:</span>{{$fetch_org->company_city}}</li>
-				                      <li><span>Branch Name:</span>{{$fetch_org->company_branch}}</li>
-				                      <li><span>Phone:</span>{{$fetch_org->company_phone}}</li>
-				                      <li><span>Website:</span>{{$fetch_org->company_website}}</li>
-				                      <li><span>Employees:</span>{{$fetch_org->company_employees}}</li>
-				                      <li><span>Industry:</span>
+<div id="info" class="tab-pane fade">
+	<h3>Information About You</h3>
+	<ul class="job-detail-des">
+		<li><span>Company Name:</span>{{$fetch_org->company_name}}</li>
+		<li><span>Company Type:</span>{{$fetch_org->company_type}}</li>
+		<li><span>City:</span>{{$fetch_org->company_city}}</li>
+		<li><span>Branch Name:</span>{{$fetch_org->company_branch}}</li>
+		<li><span>Phone:</span>{{$fetch_org->company_phone}}</li>
+		<li><span>Website:</span>{{$fetch_org->company_website}}</li>
+		<li><span>Employees:</span>{{$fetch_org->company_employees}}</li>
+		<li><span>Industry:</span>
+		<?php
+		$fetch_org->company_industry= str_replace("_"," ",$fetch_org->company_industry);
+		echo $fetch_org->company_industry;
+	?></li>
+	
+	<li><span>Since:</span>{{$fetch_org->company_since}}</li>
+	<li><span>CNIC:</span>{{$fetch_org->company_cnic}}</li>
+	<li><span>Location:</span>{{$fetch_org->company_location}}</li>
+	
+</ul>
+<div class="col-sm-12">
+	<button type="submit" data-toggle="modal" data-target="#updatedetailfront" title="edit" class="update-btn">Update Info</button>
+</div>
+<br>
+</div>
+<!-- End info Sec -->
 
-				                      	<?php
-				                      	 $fetch_org->company_industry= str_replace("_"," ",$fetch_org->company_industry);
-				                      	 echo $fetch_org->company_industry;
-				                      	?></li>
-				                      
-				                      <li><span>Since:</span>{{$fetch_org->company_since}}</li>
-				                      <li><span>CNIC:</span>{{$fetch_org->company_cnic}}</li>
-				                      <li><span>Location:</span>{{$fetch_org->company_location}}</li>
-										
-									</ul>
-									 <div class="col-sm-12">
-				                      	<button type="submit" data-toggle="modal" data-target="#updatedetailfront" title="edit" class="update-btn">Update Info</button>
-				                      </div>
-				                      <br>
-								</div>
-								<!-- End info Sec -->
-								
-								<!-- Start new posts Sec -->
-								<div id="new-job" class="tab-pane fade">
-									<h3>New Job Post</h3>
-									<form method="post" action="{{url('front-org-post-job')}}">
-										@csrf
-										<div class="edit-pro">
-											<div class="col-md-4 col-sm-6">
-												<label>Job Title</label>
-												<input type="text" class="form-control" placeholder="Enter Title" name="posted_job_title" id="posted_job_title">
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Skills</label>
-												<input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="skill_tags" id="skill_tags">
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Functional Area</label>
-												<select class="form-control" name="req_functional_area" id="req_functional_area" onchange="select_functional_area_majors();">
-													<option disabled="disabled" hidden="hidden" selected="selected">Select Required Functional area</option>
-													@foreach($area as $area)
-        											<option id="industry-option" value="{{$area->area_title}}"><?php
-
-        												
-        												$area->area_title= str_replace("_"," ",$area->area_title);
-														echo $area->area_title
-
-        											?>
-        												
-        											</option>
-        											@endforeach
-												</select>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Majors</label>
-												<select class="form-control" name="selected_majors" id="selected_majors">
-													<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Majors</option>
-
-
-													
-												</select>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Industry</label>
-												<select class="form-control" name="req_industry" id="req_industry">
-													<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Industry</option>
-													@foreach($industry1 as $industry1)
-        											<option id="industry-option" value="{{$industry1->company_industry_name}}">
-        												<?php
-        											
-        								$industry1->company_industry_name= str_replace("_"," ",$industry1->company_industry_name);
-				                      	 echo $industry1->company_industry_name;
-        												
-        												?>
-        											</option>
-        											@endforeach
-												</select>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Career Level</label>
-												<select class="form-control" name="req_career_level" id="req_career_level">
-													<option disabled="disabled" hidden="hidden">Select Required Career level</option>
-													<option value="Entry Level">Entry Level</option>
-													<option value="Intermediate">Intermediate</option>
-													<option value="Experienced Professional">Experienced Professional</option>
-													<option value="Department Head">Department Head</option>
-													<option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
-												</select>
-											</div>
-										<div class="bgg col-md-12">
-											<div class="col-md-3 col-sm-6">
-												<label>Where You need Employee</label>
-												<select class="form-control" name="selected_city[]" id="selected_city[]">
-													<option disabled="disabled" hidden="hidden" selected="selected">Select City</option>
-													@foreach($fetch_city as $fetch_city)
-													<option value="{{$fetch_city->company_city_name}}">{{$fetch_city->company_city_name}}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="col-md-3 col-sm-6">
-												<label>Job Type</label>
-												<select class="form-control" name="selected_type[]" id="selected_type[]">
-													<option disabled="disabled" hidden="hidden" selected="selected">Select Type of Job</option>
-													<option value="Full Time">Full Time</option>
-                                					<option value="Part Time">Part Time</option>
-												</select>
-											</div>
-											<div class="col-md-3 col-sm-6">
-												<label>Job Shift</label>
-												<select class="form-control" name="selected_shift[]" id="selected_shift[]">
-													<option disabled="disabled" hidden="hidden" selected="selected">Select Shift of Job</option>
-													<option value="Morning Shift">Morning Shift</option>
-					                                <option value="Night Shift">Night Shift</option>
-					                                <option value="Evening Shift">Evening Shift</option>
-												</select>
-											</div>
-											<div class=" col-md-3 col-sm-6">
-				                            <label>ADD</label>
-				                            <div class="input-group">
-											<button type="button" class="btn btn-primary" id="butn" onclick="addCityPreferenceAreafields();"><i class="fa fa-plus"></i></button>
-				                            </div>
-					                        </div>
-					                        <div class="clearfix"></div>
-					                        <div id="content"></div>
-										</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Year of Experience Required</label>
-												<input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Total positions</label>
-												 <input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" />
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Working Hours</label>
-												<input id="working_hour" name="working_hour" type="number" class="form-control" placeholder="Enter hours in Numbers" />
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Minimum Salary:</label>
-												<input id="min_salary" name="min_salary" type="number" class="form-control" placeholder="just Enter Amount"/>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Maximum Salary:</label>
-												<input id="max_salary" name="max_salary" type="number" class="form-control" placeholder="just Enter Amount" />
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Last Apply Date</label>
-												<input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Post visibility Date:</label>
-												<input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Gender Preferences</label>
-												<select name="selected_gender" class="form-control" id="selected_gender">
-					                            <option hidden="hidden" disabled="disabled" selected="selected">Select gender</option>
-					                            <option value="Male">Male</option>
-					                            <option value="Female">Female</option>
-					                            <option value="None">None</option>
-					                          </select>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label>Prefered Age Group</label>
-												<select name="prefered_age" class="form-control" id="prefered_age">
-					                            <option hidden disabled="disabled" selected="selected">Select Age GroupYou Required</option>
-					                            <option value="under 20">Under 20</option>
-					                            <option value="20 to 30">20 to 30</option>
-					                            <option value="30 to 40">30 to 40</option>
-					                            <option value="40 to 50">40 to 50</option>
-					                            <option value="Above 50">Above 50</option>
-					                          </select>
-											</div>
-										<div class="bgg col-md-12">
-											<div class="col-md-4 col-sm-4">
-												<label>Required Qualification</label>
-												<select name="selected_qualificaltion[]" class="form-control" id="selected_qualificaltion[]">
-					                            <option hidden disabled="disabled" selected="selected">Select Required Qualification</option>
-					                            @foreach($qual as $qual)
-        											<option id="industry-option" value="{{$qual->qualification_title}}">{{$qual->qualification_title}}</option>
-        											@endforeach
-					                          </select>
-											</div>
-											<div class="col-md-4 col-sm-4">
-												<label>Required Degree Level</label>
-												<select name="req_degree[]" class="form-control" id="req_degree[]">
-					                            <option hidden disabled="disabled" selected="selected">Select Required Degree Level</option>
-					                            @foreach($degree as $degree)
-        											<option id="industry-option" value="{{$degree->degree_title}}">{{$degree->degree_title}}</option>
-        											@endforeach
-					                          </select>
-											</div>
-											<div class="col-sm-4 col-md-4">
-				                          	<label>ADD</label>
-				                          	<div class="input-group">
-											<button type="button" class="btn btn-primary btn-xs" id="butn" onclick="add_qual_front_area();"><i class="fa fa-plus"></i></button>
-				                            </div>
-				                      		</div>
-				                       		<div class="clearfix"></div>
-				                       		<div id="content_qual"></div>	
-										</div> 
-										<div class="col-md-12 col-sm-12">
-												<label>Information About Post</label>
-												<textarea class="form-control" id="post_information" name="post_information" class="post_information"></textarea>
-											</div>
-											
-											<div class="col-sm-12">
-												<button type="submit" class="update-btn">ADD Post</button>
-											</div>
-										</div>
-										
-									</form>
-								</div>
-								<!-- End Address Sec -->
+<!-- Start new posts Sec -->
+<div id="new-job" class="tab-pane fade">
+<h3>New Job Post</h3>
+<form method="post" action="{{url('front-org-post-job')}}">
+	@csrf
+	<div class="edit-pro">
+		<div class="col-md-4 col-sm-6">
+			<label>Job Title</label>
+			<input type="text" class="form-control" placeholder="Enter Title" name="posted_job_title" id="posted_job_title">
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Skills</label>
+			<input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="skill_tags" id="skill_tags">
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Functional Area</label>
+			<select class="form-control" name="req_functional_area" id="req_functional_area" onchange="select_functional_area_majors();">
+				<option disabled="disabled" hidden="hidden" selected="selected">Select Required Functional area</option>
+				@foreach($area as $area)
+				<option id="industry-option" value="{{$area->area_title}}"><?php
+						
+						$area->area_title= str_replace("_"," ",$area->area_title);
+								echo $area->area_title
+					?>
+					
+				</option>
+				@endforeach
+			</select>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Majors</label>
+			<select class="form-control" name="selected_majors" id="selected_majors">
+				<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Majors</option>
+				
+			</select>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Industry</label>
+			<select class="form-control" name="req_industry" id="req_industry">
+				<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Industry</option>
+				@foreach($industry1 as $industry1)
+				<option id="industry-option" value="{{$industry1->company_industry_name}}">
+					<?php
+					
+					$industry1->company_industry_name= str_replace("_"," ",$industry1->company_industry_name);
+					echo $industry1->company_industry_name;
+					
+					?>
+				</option>
+				@endforeach
+			</select>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Career Level</label>
+			<select class="form-control" name="req_career_level" id="req_career_level">
+				<option disabled="disabled" hidden="hidden">Select Required Career level</option>
+				<option value="Entry Level">Entry Level</option>
+				<option value="Intermediate">Intermediate</option>
+				<option value="Experienced Professional">Experienced Professional</option>
+				<option value="Department Head">Department Head</option>
+				<option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
+			</select>
+		</div>
+		<div class="bgg col-md-12">
+			<div class="col-md-3 col-sm-6">
+				<label>Where You need Employee</label>
+				<select class="form-control" name="selected_city[]" id="selected_city[]">
+					<option disabled="disabled" hidden="hidden" selected="selected">Select City</option>
+					@foreach($fetch_city as $fetch_city)
+					<option value="{{$fetch_city->company_city_name}}">{{$fetch_city->company_city_name}}</option>
+					@endforeach
+				</select>
+			</div>
+			<div class="col-md-3 col-sm-6">
+				<label>Job Type</label>
+				<select class="form-control" name="selected_type[]" id="selected_type[]">
+					<option disabled="disabled" hidden="hidden" selected="selected">Select Type of Job</option>
+					<option value="Full Time">Full Time</option>
+					<option value="Part Time">Part Time</option>
+				</select>
+			</div>
+			<div class="col-md-3 col-sm-6">
+				<label>Job Shift</label>
+				<select class="form-control" name="selected_shift[]" id="selected_shift[]">
+					<option disabled="disabled" hidden="hidden" selected="selected">Select Shift of Job</option>
+					<option value="Morning Shift">Morning Shift</option>
+					<option value="Night Shift">Night Shift</option>
+					<option value="Evening Shift">Evening Shift</option>
+				</select>
+			</div>
+			<div class=" col-md-3 col-sm-6">
+				<label>ADD</label>
+				<div class="input-group">
+					<button type="button" class="btn btn-primary" id="butn" onclick="addCityPreferenceAreafields();"><i class="fa fa-plus"></i></button>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div id="content"></div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Year of Experience Required</label>
+			<input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Total positions</label>
+			<input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" />
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Working Hours</label>
+			<input id="working_hour" name="working_hour" type="number" class="form-control" placeholder="Enter hours in Numbers" />
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Minimum Salary:</label>
+			<input id="min_salary" name="min_salary" type="number" class="form-control" placeholder="just Enter Amount"/>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Maximum Salary:</label>
+			<input id="max_salary" name="max_salary" type="number" class="form-control" placeholder="just Enter Amount" />
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Last Apply Date</label>
+			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Post visibility Date:</label>
+			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Gender Preferences</label>
+			<select name="selected_gender" class="form-control" id="selected_gender">
+				<option hidden="hidden" disabled="disabled" selected="selected">Select gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="None">None</option>
+			</select>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<label>Prefered Age Group</label>
+			<select name="prefered_age" class="form-control" id="prefered_age">
+				<option hidden disabled="disabled" selected="selected">Select Age GroupYou Required</option>
+				<option value="under 20">Under 20</option>
+				<option value="20 to 30">20 to 30</option>
+				<option value="30 to 40">30 to 40</option>
+				<option value="40 to 50">40 to 50</option>
+				<option value="Above 50">Above 50</option>
+			</select>
+		</div>
+		<div class="bgg col-md-12">
+			<div class="col-md-4 col-sm-4">
+				<label>Required Qualification</label>
+				<select name="selected_qualificaltion[]" class="form-control" id="selected_qualificaltion[]">
+					<option hidden disabled="disabled" selected="selected">Select Required Qualification</option>
+					@foreach($qual as $qual)
+					<option id="industry-option" value="{{$qual->qualification_title}}">{{$qual->qualification_title}}</option>
+					@endforeach
+				</select>
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<label>Required Degree Level</label>
+				<select name="req_degree[]" class="form-control" id="req_degree[]">
+					<option hidden disabled="disabled" selected="selected">Select Required Degree Level</option>
+					@foreach($degree as $degree)
+					<option id="industry-option" value="{{$degree->degree_title}}">{{$degree->degree_title}}</option>
+					@endforeach
+				</select>
+			</div>
+			<div class="col-sm-4 col-md-4">
+				<label>ADD</label>
+				<div class="input-group">
+					<button type="button" class="btn btn-primary btn-xs" id="butn" onclick="add_qual_front_area();"><i class="fa fa-plus"></i></button>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div id="content_qual"></div>
+		</div>
+		<div class="col-md-12 col-sm-12">
+			<label>Information About Post</label>
+			<textarea class="form-control" id="post_information" name="post_information" class="post_information"></textarea>
+		</div>
+		
+		<div class="col-sm-12">
+			<button type="submit" class="update-btn">ADD Post</button>
+		</div>
+	</div>
+	
+</form>
+</div>
+<!-- End Address Sec -->
 
 
 
@@ -672,15 +673,15 @@
 		</div>
 		<!-- End Friend List -->
 
-		<!-- Start Message -->
+		<!--Company Insight -->
 		<div id="insights" class="tab-pane fade">
 			<div class="inbox-body inbox-widget">
 				<h3>Company views</h3>
 			</div>
 		</div>
-		<!-- End Message -->
+		<!-- Company Insight -->
 
-		<!-- Start Message -->
+		<!-- Company Review -->
 		<div id="reviews" class="tab-pane fade">
 			<div class="inbox-body inbox-widget">
 				<h3>Company Reviews and Comments</h3>
@@ -719,7 +720,138 @@
 		</form>
 
 		</div>
-		<!-- End Message -->
+		<!-- Company Review -->
+
+
+		<!-- Company Package -->
+		<div id="company_packages" class="tab-pane fade">
+			<div class="inbox-body inbox-widget">
+				<div class="row">
+					<div class="col-sm-8">
+					<h3>Company Packages</h3>
+					</div>
+					<div class="col-sm-4">
+					<img src="{{url('public/client_assets/img/stripe_3.png')}}" class="img-responsive payment-img" alt="" height="400" width="500" style="border-radius:0px">
+					</div>
+				</div>
+				<br>
+				
+				<div class="row">
+				<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header">
+								<div class="pr-plan">
+									<h4>Free</h4>
+								</div>
+								<div class="pr-price">
+									<h3><sub style="color:white">Already Availed</sub></h3>
+								</div>
+							</div>
+							<div class="pr-features">
+								<ul>
+									<li>Unlimited featured jobs.</li>
+									<li>Free view of Applicants Profiles/Resumes</li>
+									<li>Free view of Applicants Profiles/Resumes</li>
+									<li>----------</li>
+									<li>----------</li>
+									<li>----------</li>
+								</ul>
+							</div>
+							<div class="pr-buy-button">
+								<a href="#" class="pr-btn active" title="Price Button">More Details</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header active">
+								<div class="pr-plan">
+									<h4>Basic</h4>
+								</div>
+								<div class="pr-price">
+									<h3><sub style="color:white">1,000 Rupees</sub></h3>
+								</div>
+							</div>
+							<div class="pr-features">
+								<ul>
+									<li>Instant list of candidates matching your requirements.</li>
+									<li>Advertisement of your company’s logo on our main page.</li>
+									<li>Unlimited featured jobs.</li>
+									<li>Free view of Applicants Profiles/Resumes</li>
+									<li>Free view of Applicants Profiles/Resumes</li>
+									
+									
+								</ul>
+							</div>
+							<div class="pr-buy-button">
+								<!-- <a href="{{url('company-basic-payment-method')}}" class="pr-btn active" title="Price Button">Get Started</a> -->
+							<form action="buy-package-basic" method="POST">
+									{{ csrf_field() }}
+									<script
+									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									data-key="{{ env('STRIPE_KEY') }}"
+									data-amount="100000"
+									data-name="CareerSpoons"
+									data-description="Purchase Basic Package"
+									data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+									data-locale="auto"
+									data-currency="pkr">
+								</script>
+							</form>
+
+
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header">
+								<div class="pr-plan">
+									<h4>Premium</h4>
+								</div>
+								<div class="pr-price">
+									<h3><sub style="color:white">Coming Soon<sub></h3>
+								</div>
+							</div>
+							<div class="pr-features">
+								<ul>
+									<li>----------</li>
+									<li>----------</li>
+									<li>----------</li>
+									<li>----------</li>
+									<li>----------</li>
+									<li>----------</li>
+								</ul>
+							</div>
+							<div class="pr-buy-button">
+								<a href="#" class="pr-btn active" title="Price Button">More Details</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- Company Package -->
+
+
+		<!-- Advertisement -->
+		<div id="Advertisement_Logo" class="tab-pane fade">
+			
+			<div class="inbox-body inbox-widget">
+				<h3>Advertisement Company Logo</h3>
+			</div>
+
+
+		</div>
+		<!-- Advertisement  -->
+
+
+
+
 
 	</div>
 	<!-- Start All Sec -->

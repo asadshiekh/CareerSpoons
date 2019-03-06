@@ -50,6 +50,15 @@ class SiteCompany extends Controller
           'created_at' => $current_date
         );
 
+		 $company_current_package = array(
+				'company_id' => $lastInsertId,
+				'package_id' => '1',			
+				'created_at' =>$current_date
+			);
+
+		 	//Initialized Table of Company _availed_packages
+		DB::table('company_availed_packages')->insert($company_current_package);
+
 		 //Initialized Table of Social Links
 		 DB::table('add_organization_social_link')->insert($company_social_links);
      	
