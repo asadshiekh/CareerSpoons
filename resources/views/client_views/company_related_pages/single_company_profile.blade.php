@@ -650,51 +650,50 @@ function load_more_data(id,org_id){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ &callback=initMap" async defer></script>
+
 <script>
-				var x,y;
+				var v,w;
 			function initMap() {
-				var pageURL = window.location.href;
-				var id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-				
-				
-				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-				 $.post("{{url('fetch-city-single')}}",{_token:CSRF_TOKEN,id:id},function(data){
- 
-				//alert(data);
-				var strn = data.split(" ");
-				 x=strn[0];
-				 y=strn[1];
+			   var pageURL = window.location.href;
+			var id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');	
+			   $.post("{{url('fetch-city-s')}}",{_token:CSRF_TOKEN,id:id},function(data){
+
+                 var strn = data.split(" ");
+				 v=strn[0];
+				 w=strn[1];
 				 var n=strn[2].split("_");
 				 var res=n.join(" ");
 				 //var res = str.replace("_"," ",strn[2]);
-				  // alert(res);
+				 // alert(data);
+     
+			    var Pak = {lat: parseFloat(v), lng: parseFloat(w)};
+			    //var Pak = {lat: 30.3753, lng: 69.3451};
 
-			   var Pak = {lat: parseFloat(x), lng: parseFloat(y)};
-			   // var Pak = {lat: 30.3753, lng: 69.3451};
 			    var map = new google.maps.Map(document.getElementById('map'), {
 			      center: Pak,
 			      zoom: 16
 			    });
 			   
-
-			  
 			    var marker = new google.maps.Marker({
 			          position: Pak,
 			          map: map,
-			          title: res
+			          title: "res"
 			          
 			        });
-			  //draggable: true
+			 
 			     google.maps.event.addListener(marker, 'dragend', function(marker) {
 			        var latLng = marker.latLng;
 			        // document.getElementById('lat-span').innerHTML = latLng.lat();
 			        // document.getElementById('lon-span').innerHTML = latLng.lng();
 			     });
 
-			     });
+           
+              });
+			
 			}
   
            </script>
+
 
 @endsection

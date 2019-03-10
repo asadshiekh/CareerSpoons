@@ -1134,15 +1134,14 @@
             <div id="map">
 				
 			</div>
-			<ul id="geoData" style="padding-top: 3%;">
+			<!-- <ul id="geoData" style="padding-top: 3%;">
 			    <li>Latitude: <span id="lat-span"></span></li>
 			    <li>Longitude: <span id="lon-span"></span></li>
-			</ul>
+			</ul> -->
      </div>
 	 
      <div class="modal-footer"> <!-- modal footer -->
-       <button type="button" class="btn btn-default" data-dismiss="modal">Not Now!</button>
-      <button type="button" class="btn btn-primary">Add</button>
+       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel!</button>
       </div>
 				
       </div> <!-- / .modal-content -->
@@ -1352,7 +1351,7 @@
 			          position: Pak,
 			          map: map,
 			          title: res,
-			          draggable: true
+			       
 			        });
 			  
 			     google.maps.event.addListener(marker, 'dragend', function(marker) {

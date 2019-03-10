@@ -103,7 +103,7 @@ Route::any('model-review-comments',"site_controllers\CompanyProfile@modelReviewC
 Route::any('edit-review-comments',"site_controllers\CompanyProfile@editReviewComments");
 Route::any('fetch-city',"site_controllers\CompanyProfile@dofetchingCityMap");
 Route::any('fetch-city-single',"site_controllers\CompanyProfile@dofetchingsingleCityMap");
-
+Route::any('fetch-city-s',"site_controllers\CompanyProfile@dofetchingsingleCityMap");
 
 //   CompanyEmailVerification Controller //
 /*---------------------------------------------------------------------------------------*/

@@ -503,6 +503,7 @@
 
 		<!-- Scripts
 			================================================== -->
+			 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ &callback=initMap" async defer></script>
 			<script type="text/javascript" src="{{url('public/client_assets/plugins/js/jquery.min.js')}}"></script>
 			<script type="text/javascript" src="{{url('public/client_assets/plugins/js/viewportchecker.js')}}"></script>
 			<script type="text/javascript" src="{{url('public/client_assets/plugins/js/bootstrap.min.js')}}"></script>

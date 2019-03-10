@@ -323,9 +323,9 @@
 			          position: Pak,
 			          map: map,
 			          title: res,
-			          draggable: true
+			          
 			        });
-			  
+			  // draggable: true
 			    google.maps.event.addListener(marker, 'dragend', function(marker) {
 			        var latLng = marker.latLng;
 			        // document.getElementById('lat-span').innerHTML = latLng.lat();
