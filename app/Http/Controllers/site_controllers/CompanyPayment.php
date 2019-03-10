@@ -35,6 +35,7 @@ class CompanyPayment extends Controller
 		));
 
 
+        
         $current_date = date("Y-m-d");
         $added_date=date('Y-m-d', strtotime("+30 days"));
 		$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
