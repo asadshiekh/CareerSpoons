@@ -197,16 +197,20 @@
 							<div class="row row-bottom mrg-0">
 								<div class="col-sm-12 col-md-12">
 								<h2 class="detail-title">Map Location</h2>
-								<div id="map_full_width_one" class="full-width" style="height:400px;">
+								<div id="map">
 									
-									<div id="map"></div>
+									
+								</div>
+									<!-- <ul id="geoData" style="padding-top: 3%;">
+								    <li>Latitude: <span id="lat-span"></span></li>
+								    <li>Longitude: <span id="lon-span"></span></li>
+								    </ul> -->
 									 <style type="text/css">
 			                     	#map {
 							            width: 100%;
 							            height: 400px;
 							        }
 			                     </style>
-								</div>
 								</div>
 							</div>
 							
@@ -287,12 +291,13 @@
 				</div>
 			</section>
 			<!-- Job full detail End -->
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ &callback=initMap" async defer></script>
+			
+
             <script>
-				var x,y;
+			var x,y;
 			function initMap() {
-				var pageURL = window.location.href;
-				var id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+			var pageURL = window.location.href;
+			var id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
 				
 				
 				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -305,18 +310,15 @@
 				 var n=strn[2].split("_");
 				 var res=n.join(" ");
 				 //var res = str.replace("_"," ",strn[2]);
-				  // alert(res);
-
-
-			  // var Pak = {lat: parseFloat(x), lng: parseFloat(y)};
-			   var Pak = {lat: 30.3753, lng: 69.3451};
+				 // alert(data);
+     
+			   var Pak = {lat: parseFloat(x), lng: parseFloat(y)};
+			  // var Pak = {lat: 30.3753, lng: 69.3451};
 			    var map = new google.maps.Map(document.getElementById('map'), {
 			      center: Pak,
 			      zoom: 16
 			    });
-			   
 
-			  
 			    var marker = new google.maps.Marker({
 			          position: Pak,
 			          map: map,
@@ -324,13 +326,14 @@
 			          draggable: true
 			        });
 			  
-			     google.maps.event.addListener(marker, 'dragend', function(marker) {
+			    google.maps.event.addListener(marker, 'dragend', function(marker) {
 			        var latLng = marker.latLng;
 			        // document.getElementById('lat-span').innerHTML = latLng.lat();
 			        // document.getElementById('lon-span').innerHTML = latLng.lng();
 			     });
 
 			     });
+
 			}
   
            </script>
