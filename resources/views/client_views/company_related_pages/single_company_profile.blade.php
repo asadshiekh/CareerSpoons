@@ -217,7 +217,7 @@
 						</article>
 						 <?php $post_counter = $fetch_post->post_id; ?>
 						 <?php $organization_id = $fetch_post->company_id; ?>
-						@endforeach
+						  @endforeach
 						  </div>
 					<?php } ?>
 
@@ -512,6 +512,35 @@
 							
 						</div>
 					</div>
+					<!-- Map -->
+					<div class="col-sm-12 col-md-12">
+												<!-- Similar Jobs -->
+						<div class="container-detail-box">
+						
+							<div class="row">
+								<div class="col-md-12">
+									<h4>Company Location</h4>
+								</div>
+								<div style="padding: 4%;">
+								 <div id="map">
+				
+			                     </div>
+			                    <!--  <ul id="geoData" style="padding-top: 3%;">
+								    <li>Latitude: <span id="lat-span"></span></li>
+								    <li>Longitude: <span id="lon-span"></span></li>
+								</ul> -->
+			                     <style type="text/css">
+			                     	#map {
+							            width: 100%;
+							            height: 400px;
+
+							        }
+			                     </style>
+			                 </div>
+							</div>
+						</div>
+					</div>
+					<!-- end map -->
 					
 					
 					
@@ -520,6 +549,7 @@
 			<div id="comment-model-div"></div>
 
 			<!-- Freelancer Detail End -->
+
 <script type="text/javascript">
 function add_review_comment(x){
   
@@ -620,4 +650,51 @@ function load_more_data(id,org_id){
 }
 
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ &callback=initMap" async defer></script>
+<script>
+				var x,y;
+			function initMap() {
+				var pageURL = window.location.href;
+				var id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+				
+				
+				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+				 $.post("{{url('fetch-city-single')}}",{_token:CSRF_TOKEN,id:id},function(data){
+ 
+				//alert(data);
+				var strn = data.split(" ");
+				 x=strn[0];
+				 y=strn[1];
+				 var n=strn[2].split("_");
+				 var res=n.join(" ");
+				 //var res = str.replace("_"," ",strn[2]);
+				  // alert(res);
+
+			   var Pak = {lat: parseFloat(x), lng: parseFloat(y)};
+			   // var Pak = {lat: 30.3753, lng: 69.3451};
+			    var map = new google.maps.Map(document.getElementById('map'), {
+			      center: Pak,
+			      zoom: 16
+			    });
+			   
+
+			  
+			    var marker = new google.maps.Marker({
+			          position: Pak,
+			          map: map,
+			          title: res
+			          
+			        });
+			  //draggable: true
+			     google.maps.event.addListener(marker, 'dragend', function(marker) {
+			        var latLng = marker.latLng;
+			        // document.getElementById('lat-span').innerHTML = latLng.lat();
+			        // document.getElementById('lon-span').innerHTML = latLng.lng();
+			     });
+
+			     });
+			}
+  
+           </script>
+
 @endsection

@@ -101,6 +101,8 @@ Route::any('/review-comments',"site_controllers\CompanyProfile@addReviewComments
 Route::any('delete-review-comments/{id}',"site_controllers\CompanyProfile@deleteReviewComments");
 Route::any('model-review-comments',"site_controllers\CompanyProfile@modelReviewComments");
 Route::any('edit-review-comments',"site_controllers\CompanyProfile@editReviewComments");
+Route::any('fetch-city',"site_controllers\CompanyProfile@dofetchingCityMap");
+Route::any('fetch-city-single',"site_controllers\CompanyProfile@dofetchingsingleCityMap");
 
 
 //   CompanyEmailVerification Controller //
@@ -496,6 +498,7 @@ Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTe
 Route::any('product-reviews',"admin_controllers\main_controllers\MainController@viewProductReview");
 Route::any('candidate-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeCandidateReviewStatus");
 Route::any('organization-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeOrganizationReviewStatus");
+
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){
@@ -507,6 +510,8 @@ Route::any('jango1',function(){
 	move_uploaded_file($tmp_name, $jango.$name);
 
 });
+Route::any('date-check','site_controllers\CompanyPayment@dateCheck');
+
 
 /*   End Admin Work  */
 

@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use DB;
+use Illuminate\Http\Request;
+use Session;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +16,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\date',
+
     ];
 
     /**
@@ -26,6 +30,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+      
+        $schedule->command('dele:company')->daily();
+
+        // $schedule->call(function () {
+        //     DB::table('company_availed_packages')->where('package_end_date','=',$date)->delete();
+        // })->daily();
+
+
+
     }
 
     /**

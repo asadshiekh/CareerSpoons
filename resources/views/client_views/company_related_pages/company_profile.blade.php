@@ -108,6 +108,7 @@
 						<li><a data-toggle="tab" href="#setting">Settings</a></li>
 						<li><a data-toggle="tab" href="#insights">Insights</a></li>
 						<li><a data-toggle="tab" href="#reviews">Reviews</a></li>
+						<li><a data-toggle="tab" href="#location">Location</a></li>
 						<?php 
 						if(Session::get('company_package_status')=='0'){
 						?>
@@ -685,7 +686,7 @@
 		<div id="reviews" class="tab-pane fade">
 			<div class="inbox-body inbox-widget">
 				<h3>Company Reviews and Comments</h3>
-		</div>
+		     </div>
 
 		<?php 
 
@@ -721,6 +722,23 @@
 
 		</div>
 		<!-- Company Review -->
+
+		<!--Company Location -->
+		<div id="location" class="tab-pane fade" style="border-radius: 0px;">
+			<div class="inbox-body inbox-widget">
+				<h3> Company Location</h3>
+				<p> Company location, through which users easily find you</p>
+			</div>
+
+			<button class="btn btn-lg btn btn-success"  href="#DemoModal2" data-toggle="modal"> See Location On Map</button>
+			<!-- <div id="map">
+				
+			</div>
+			<ul id="geoData">
+			    <li>Latitude: <span id="lat-span"></span></li>
+			    <li>Longitude: <span id="lon-span"></span></li>
+			</ul> -->
+		</div>
 
 
 		<!-- Company Package -->
@@ -1097,12 +1115,48 @@
   </div>
 </div>
 
+<!-- model window for map -->
+
+<!-- Modal Contents -->
+    <div id="DemoModal2" class="modal fade "> <!-- class modal and fade -->
+      
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          
+           <div class="modal-header"> <!-- modal header -->
+            <button type="button" class="close" 
+             data-dismiss="modal" aria-hidden="true">×</button>
+			 
+                    <h4 class="modal-title">Map</h4>
+           </div>
+		 
+     <div class="modal-body" style="padding: 3%;"> <!-- modal body -->
+            <div id="map">
+				
+			</div>
+			<ul id="geoData" style="padding-top: 3%;">
+			    <li>Latitude: <span id="lat-span"></span></li>
+			    <li>Longitude: <span id="lon-span"></span></li>
+			</ul>
+     </div>
+	 
+     <div class="modal-footer"> <!-- modal footer -->
+       <button type="button" class="btn btn-default" data-dismiss="modal">Not Now!</button>
+      <button type="button" class="btn btn-primary">Add</button>
+      </div>
+				
+      </div> <!-- / .modal-content -->
+      
+    </div> <!-- / .modal-dialog -->
+      
+ </div><!-- / .modal -->
 
 
 
 
 
 <style type="text/css">
+.DemoModal2{margin:20px;}
 #text-view:hover {
 	cursor:pointer;
 	color: grey;
@@ -1149,8 +1203,13 @@
 	display: block;
 	padding-top: 3%;
 }
+ #map {
+            width: 100%;
+            height: 400px;
+        }
 
 </style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ &callback=initMap" async defer></script>
 	   <script type="text/javascript">
 		$(function() {
 
@@ -1264,6 +1323,49 @@
 					$("#password-area-setting").show();
 				}
 			</script>
+
+			<script>
+				var x,y;
+			function initMap() {
+				
+				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+				$.post("fetch-city",{_token:CSRF_TOKEN},function(data){
+ 
+				
+				var strn = data.split(" ");
+				 x=strn[0];
+				 y=strn[1];
+				 var n=strn[2].split("_");
+				 var res=n.join(" ");
+				 //var res = str.replace("_"," ",strn[2]);
+				  // alert(res);
+
+			    var Pak = {lat: parseFloat(x), lng: parseFloat(y)};
+			    var map = new google.maps.Map(document.getElementById('map'), {
+			      center: Pak,
+			      zoom: 14
+			    });
+			   
+
+			  
+			    var marker = new google.maps.Marker({
+			          position: Pak,
+			          map: map,
+			          title: res,
+			          draggable: true
+			        });
+			  
+			     google.maps.event.addListener(marker, 'dragend', function(marker) {
+			        var latLng = marker.latLng;
+			        document.getElementById('lat-span').innerHTML = latLng.lat();
+			        document.getElementById('lon-span').innerHTML = latLng.lng();
+			     });
+
+			     });
+			}
+  
+           </script>
+
 
 
 @endsection

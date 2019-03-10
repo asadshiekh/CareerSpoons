@@ -909,6 +909,8 @@ public function updatePostSingleFront(Request $request){
      //$fetch_comments=DB::table('reviews_comments')get();
 
     return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'$post_counter'=>$post_counter,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments,'fetch_img'=>$fetch_img]);
+
+
   }
 
 
@@ -1182,6 +1184,43 @@ public function updatePostSingleFront(Request $request){
   }
  }
 
+public function dofetchingCityMap(Request $request){
+   $id=$request->session()->get('company_id');
+    $fetch_org=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+    $address =$fetch_org->company_location." ".$fetch_org->company_city; // Google HQ
+    $pAddr = str_replace(' ','_',$address);
+    $prepAddr = str_replace(' ','+',$address);
+    $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false&key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ');
+    // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+
+    $output= json_decode($geocode);
+    $latitude = $output->results[0]->geometry->location->lat;
+    $longitude = $output->results[0]->geometry->location->lng;
+     // echo "latitude - ".$latitude;
+     // echo "longitude - ".$longitude;
+    echo $latitude." ".$longitude." ".$pAddr;
+    
+
+}
+
+public function dofetchingsingleCityMap(Request $request){
+    $id = request()->post('id');
+    $fetch_org=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
+    $address =$fetch_org->company_location." ".$fetch_org->company_city; // Google HQ
+    $pAddr = str_replace(' ','_',$address);
+    $prepAddr = str_replace(' ','+',$address);
+    $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false&key=AIzaSyAJjtzMZotb60YwDCSgUSmsj4i4oGFZLjQ');
+    // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+
+    $output= json_decode($geocode);
+    $latitude = $output->results[0]->geometry->location->lat;
+    $longitude = $output->results[0]->geometry->location->lng;
+     // echo "latitude - ".$latitude;
+     // echo "longitude - ".$longitude;
+    echo $latitude." ".$longitude." ".$pAddr;
+    
+
+}
 
 
 }

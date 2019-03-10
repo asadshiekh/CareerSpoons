@@ -9,6 +9,7 @@ use Stripe\Customer;
 use Stripe\Charge;
 use Validator;
 use Session;
+use DB;
 
 class CompanyPayment extends Controller
 {
@@ -33,27 +34,33 @@ class CompanyPayment extends Controller
 			"description" => "Purchase the Basic Package" 
 		));
 
-		//Session::flash('success', 'Payment successful!');
-		//return back();
 
-		//echo $request->stripeToken;
-		//echo "<br/>";
-		//echo $customer->id;
-
+        $current_date = date("Y-m-d");
+        $added_date=date('Y-m-d', strtotime("+30 days"));
 		$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$company_token = substr(str_shuffle($permitted_chars), 0, 10);
 		$company_response = array(
+			'company_id' => $request->session()->get('company_id'),
 			'package_id' => '2',
 			'subscription_email' => $request->stripeEmail,
 			'company_package_number' => $company_token,
-			'package_start_date'=>
-			'package_end_date'=>
-			'company_package_status'=>'1'
-			'created_at' => $current_date,
+			'package_start_date'=>$current_date,
+			'package_end_date'=>$added_date,
+			'company_package_status'=>'1',
 			'updated_at' =>$current_date
 		);
 
-		
+		//dd($company_response);
+		DB::table('company_availed_packages')->insert($company_response);
 		return redirect('company-profile')->with('success','Congratulations You Have Purchase Our Basic Package!');
+
+    }
+
+    public function dateCheck(){
+
+    	//echo date('Y-m-d', strtotime("+30 days"));
+         echo $date=date("Y-m-d");
+    	 $info=DB::table('company_availed_packages')->where(['company_id'=>Session::get('company_id')])->first();
+         echo $info->package_end_date;
     }
 }
