@@ -678,7 +678,7 @@ function load_more_data(id,org_id){
 			    var marker = new google.maps.Marker({
 			          position: Pak,
 			          map: map,
-			          title: "res"
+			          title: res
 			          
 			        });
 			 
