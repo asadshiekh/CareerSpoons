@@ -33,6 +33,7 @@
 								
 							</div>
 						</div>
+						
 						<div class="right-side-detail">
 							<ul class="social-info">
 							    <li><a href="{{$fetch_org_links->organization_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
@@ -41,6 +42,8 @@
 								<li><a href="{{$fetch_org_links->organization_linkedin}}" title="" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 						</div>
+
+
 					</div>
 					
 					<div class="col-md-4 bl-1 br-gary">
@@ -86,7 +89,7 @@
 							<div class="brows-resume">
 								<div class="row">
 									
-									<div class="col-md-4 col-sm-4">
+									<div class="col-md-5 col-sm-5">
 										<div class="brows-resume-name">
 											<h4 id="job_name{{$fetch_post->post_id}}">{{$fetch_post->job_title}}</h4>
 											<span class="brows-resume-designation">( <i id="industry-td{{$fetch_post->post_id}}">
@@ -159,7 +162,7 @@
 										</div>
 									</div>
 									
-									<div class="col-md-4 col-sm-4">
+									<div class="col-md-3 col-sm-3">
 										<div class="brows-resume-name">
 											<span><i class="fas fa-user-plus" id="position-td{{$fetch_post->post_id}}">&nbsp; 
 												<?php 
@@ -214,16 +217,22 @@
 								</div>
 							</div>
 							<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
-						</article>
+						</article><!-- ($var > 2 ? true : false); -->
+
 						 <?php $post_counter = $fetch_post->post_id; ?>
 						 <?php $organization_id = $fetch_post->company_id; ?>
 						  @endforeach
 						  </div>
-					<?php } ?>
+
 
 						<div class="row" id="load-row">
 								<a class="btn btn-success btn_more" id="btn_more" onclick="load_more_data('{{$post_counter}}','{{$organization_id}}');">Load More</a>
 						</div>
+					
+
+					<?php } ?>
+
+
 						<span id="load-span"></span>
 						</div>
 						 <?php if(!Session::get("company_id")){

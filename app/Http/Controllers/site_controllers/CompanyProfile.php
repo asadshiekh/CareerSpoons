@@ -884,8 +884,8 @@ public function updatePostSingleFront(Request $request){
     $fetch_img=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
     
     // Fetch All Details
-    $fetch_posts=$obj->fetch_company_all_post($id);
-    $post_counter = ' ';
+    $fetch_posts=$obj->fetch_company_all_post($id);  // objects
+    $post_counter = '0';
         
     $fetch_indus=$fetch_company->company_industry;
     $fetch_similar=DB::table('Add_organizations')->join('add_organization_social_link','Add_organizations.company_id','=','add_organization_social_link.organization_id')->where('Add_organizations.company_id','!=',$id)->where(['Add_organizations.company_industry'=>$fetch_indus])->select('Add_organizations.*','add_organization_social_link.*')->get();
@@ -908,6 +908,8 @@ public function updatePostSingleFront(Request $request){
      }
      //$fetch_comments=DB::table('reviews_comments')get();
 
+
+     //dd($fetch_posts);
     return view("client_views.company_related_pages.single_company_profile",['fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'$post_counter'=>$post_counter,'fetch_similar'=>$fetch_similar,'fetch_org_links'=>$fetch_org_links,'fetch_comments'=>$fetch_comments,'fetch_img'=>$fetch_img]);
 
 

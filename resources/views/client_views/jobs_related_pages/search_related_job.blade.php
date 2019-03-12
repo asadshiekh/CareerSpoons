@@ -95,7 +95,7 @@
 						<div class="row no-mrg">
 
 					<?php 
-                    if($job===0){ ?>
+                    if($job=="0"){ ?>
                     
                         <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
                     
@@ -107,9 +107,9 @@
  	                   		$timenow = date('Y-m-d');
             				$timestamp = strtotime($timenow);
                    		    //echo "id " .$jobs->post_id ."=";
-                    		if($post_date<$timestamp){
-                    			
-                    		}
+                    		if($post_date<$timestamp){?>
+                    			<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
+                    		<?php }
                     		else{ ?>
 
                     			
