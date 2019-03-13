@@ -163,6 +163,7 @@
 						<li><a data-toggle="tab" href="#rating">Rating</a></li>
 						<!-- <li><a data-toggle="tab" href="#friends">Friends</a></li> -->
 						<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
+						<li><a data-toggle="tab" href="#applied">Applied Jobs</a></li>
 						<li><a data-toggle="tab" href="#settings">Settings</a></li>
 					</ul>
 
@@ -227,6 +228,78 @@
 		</form>
 
 	</div>
+
+	<!-- applied start -->
+<div id="applied" class="tab-pane fade">
+		<h3>Applied Jobs</h3>
+		<div id="row">
+			@foreach($applied_jobs as $applied)
+			<article class="advance-search-job">
+			<div class="row no-mrg">
+				<div class="col-md-12 col-sm-12">
+		          <div class="manage-resume-box">
+		          <div class="col-md-2 col-sm-2">
+		          <div class="manage-resume-picbox" style="width: 120px;height: 130px;">
+		          <img src="{{url('uploads/organization_images')}}/{{$applied->company_img}}" class="img-responsive" alt="" style="height: 80px;width:170px;" />
+		          </div>
+		          </div>
+		          <div class="col-md-7 col-sm-7">
+		          <h5>{{$applied->job_title}} In {{$applied->company_name}}</h5>
+		          <span>nayabzahira161@gmail.com</span>
+		          </div>
+		          <div class="col-md-3 col-sm-3">
+		          	<a href="{{url('single-company-profile')}}/{{$applied->company_id}}" class="btn btn-success" style="height:35px;padding-top:6px;width:150px;">View Company</a>
+		          </div>
+		          <div class="col-md-12 col-sm-12">
+		          	<!-- Contact Page Section Start -->
+		          	<div class="row no-mrg">
+
+						<h5><i class="fa fa-arrow-right"></i>&nbsp;<u>CV Status</u></h5>
+						
+							<div class="col-md-4 col-sm-4">
+								<div class="contact-box">
+									<i class="fas fa-paper-plane"></i>
+									<p>Applied &nbsp;<i class="fa fa-check" style="background: none;display:inline;"></i></p>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-sm-4">
+								<div class="contact-box">
+									<i class="fa fa-eye"></i>
+									<p>Viewed &nbsp;
+									<?php if($applied->view_status === "0"){?>
+										<i class="far fa-frown-open" style="background: none;display:inline;"></i>
+									<?php }else{ ?>
+										<i class="fa fa-check" style="background: none;display:inline;"></i>
+									<?php } ?>
+									</p>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-sm-4">
+								<div class="contact-box">
+									<i class="fas fa-clipboard-list"></i>
+									<p>Short listed &nbsp;
+										<?php if($applied->shortlisted === "0"){?>
+										<i class="far fa-frown-open" style="background: none;display:inline;"></i></p>
+										<?php }else{ ?>
+										<i class="fa fa-check" style="background: none;display:inline;"></i>
+									    <?php } ?>
+
+								</div>
+							</div>
+
+					</div>
+		          </div>
+		          
+		          </div>
+		          </div>
+		      </div>
+		  </article>
+		  @endforeach
+		</div>
+</div>
+	<!-- applied end -->
 
 
 

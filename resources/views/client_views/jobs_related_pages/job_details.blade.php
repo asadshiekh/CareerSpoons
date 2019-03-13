@@ -78,7 +78,24 @@
 							</div>
 							<div class="col-md-7 col-sm-7">
 								<div class="detail-pannel-footer-btn pull-right">
-									<a href="#" class="footer-btn grn-btn" title="">Apply Now</a>
+                                    <?php 
+                                    //dd($job_detail);
+                                    if(Session::get("id")){
+
+                                    $c_id=$job_detail->company_id;
+                                    $p_id=$job_detail->post_id;
+                                    
+                                    $count=DB::table('apllied_jobs')->where(['company_id'=>$c_id,'post_id'=>$p_id,'user_id'=>Session::get("id")])->count();
+                                    if($count == "0"){
+                                   	?>
+									<button id="go" type="button" class="btn btn-success" onclick="apply_now('{{$job_detail->company_id}}')">Apply Now</button>
+								<?php }else{?>
+									<button id="done" type="button" class="btn btn-success"  disabled>Applied <i class="fa fa-check"></i></button>
+								<?php } }else{?>
+
+                                    <button href="javascript:void(0)"  data-toggle="modal" data-target="#signup" type="button" class="btn btn-success">Apply Now</button>
+
+								<?php } ?>
 									<a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}" class="footer-btn blu-btn" title="">View Company</a>
 								</div>
 							</div>
@@ -291,9 +308,29 @@
 				</div>
 			</section>
 			<!-- Job full detail End -->
-			
+			 <script type="text/javascript">
+           	//$("#done").hide();
+           	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+           	function apply_now(c_id){
+            var pageURL = window.location.href;
+			var p_id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
 
-            <script>
+			$.post("{{url('apply-now')}}",{_token:CSRF_TOKEN,c_id:c_id,p_id:p_id},function(data){
+            // alert(data);
+            if(data == "yes"){
+			    swal("Success", "Applied Successfully.", "success");
+			    $("#go").hide();
+			    $("#done").show();
+
+            }else{
+            	swal("Oops", "Something Wents Wrong Plz Try Again.", "error");
+            }
+
+			});
+           	}
+           </script>
+
+ <!--            <script>
 			var x,y;
 			function initMap() {
 			var pageURL = window.location.href;
@@ -309,6 +346,10 @@
 				 y=strn[1];
 				 var n=strn[2].split("_");
 				 var res=n.join(" ");
+				 var win="<div style='height:100px;width:50px;background-color:red;'>RED</div>";
+				 
+				
+
 				 //var res = str.replace("_"," ",strn[2]);
 				 // alert(data);
      
@@ -318,25 +359,45 @@
 			      center: Pak,
 			      zoom: 16
 			    });
+			    var contentString = '<div id="content">'+
+				      '<div id="siteNotice">'+
+				      '</div>'+
+				      '<h5 id="firstHeading" class="firstHeading">'+res+'</h5>'+
+				      '<div id="bodyContent">'+
+				      '</div>'+
+				      '</div>';
 
+				  var infowindow = new google.maps.InfoWindow({
+				    content: contentString
+				  });
+				                
 			    var marker = new google.maps.Marker({
 			          position: Pak,
 			          map: map,
-			          title: res,
+			          //title: "Click on marker to see full address",
 			          
 			        });
 			  // draggable: true
+			  marker.addListener('mouseover', function() {
+			    infowindow.open(map, marker);
+			  });
+			   marker.addListener('mouseout', function() {
+			    infowindow.close(map, marker);
+			  });
+			   
 			    google.maps.event.addListener(marker, 'dragend', function(marker) {
 			        var latLng = marker.latLng;
 			        // document.getElementById('lat-span').innerHTML = latLng.lat();
 			        // document.getElementById('lon-span').innerHTML = latLng.lng();
 			     });
 
+
 			     });
 
 			}
   
-           </script>
+           </script> -->
+          
 
 			
 

@@ -434,6 +434,14 @@ class User_Resume_Model extends Model
     $links = DB::table('add_user_social_media_links')->where(['candidate_id'=>$id])->first();
 		return $links; 	
     }
+    public function get_jobs_posts($id){
+    	$a_jobs=DB::table('apllied_jobs')->join('add_organizations','add_organizations.company_id', '=', 'apllied_jobs.company_id')->join('organization_posts','organization_posts.post_id', '=', 'apllied_jobs.post_id')->join('upload_org_img','upload_org_img.company_id', '=', 'apllied_jobs.company_id')->select('add_organizations.*','upload_org_img.*','apllied_jobs.*','organization_posts.*')->where(['add_organizations.org_activation'=>'Active','apllied_jobs.user_id'=>$id])->get();
+    	if($a_jobs->count() > 0){
+           return $a_jobs;
+    	}else{
+    		return $a_jobs->count();
+    	}
+    }
 
 
 

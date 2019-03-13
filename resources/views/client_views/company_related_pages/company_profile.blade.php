@@ -527,7 +527,7 @@
 								</div>
 								<div class="row extra-mrg row-skill">
 									<div class="browse-resume-skills">
-										<div class="col-md-9 col-sm-8">
+										<div class="col-md-7 col-sm-6">
 											<div class="br-resume" id="skill-tags">
 												<?php
 												$str_tag=explode(",", $fetch_post->job_skills);
@@ -539,9 +539,13 @@
 												
 											</div>
 										</div>
-										<div class="col-md-3 col-sm-4">
+										<div class="col-md-5 col-sm-6">
 											<div class="browse-resume-exp">
-												<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view</button></span>
+												
+
+												<span class="resume-exp" style="margin-left:1%;"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Detail</button></span>
+
+												<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_applicants('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Applicants</button></span>
 											</div>
 										</div>
 									</div>
@@ -1151,6 +1155,8 @@
  </div><!-- / .modal -->
 
 
+<div id="view-user"></div>
+
 
 
 
@@ -1323,7 +1329,8 @@
 				}
 			</script>
 
-			<script>
+
+			<!-- <script>
 				var x,y;
 			function initMap() {
 				
@@ -1363,8 +1370,34 @@
 			     });
 			}
   
-           </script>
+           </script> -->
+<script type="text/javascript">
+	function view_applicants(p_id){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$.post("{{url('view-applicants')}}",{_token:CSRF_TOKEN,p_id:p_id},function(data){
+          //alert(data);
+          $("#view-user").html(data);
+          $("#users_list").modal("show");
+		});
+	}
 
+	function go(p,c,u){
+		//alert("p= "+p+"c= "+c+"u= "+u);
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$.post("{{url('change-view-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u},function(data){
+        //alert("yes");
+		});
+
+	}
+
+	function change_status(p,c,u){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$.post("{{url('change-short-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u},function(data){
+        //alert("yes");
+        swal("Success", "Candidate is short listed.", "success");
+		});
+	}
+</script>
 
 
 @endsection

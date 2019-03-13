@@ -1385,18 +1385,20 @@ class UserResume extends Controller
 
 	public function showPreviewTemplate(Request $request,$id){
       //$id=$request->post("x");
-		$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
-		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$request->session()->get('id')])->first();
-		$user_register=DB::table('register_users')->where(['id'=>$request->session()->get('id')])->first();
+		$dat=DB::table('user_choose_temp')->where(['candidate_id'=>$id])->first();
+		$data=DB::table('resume_templates')->where(['temp_id'=>$dat->temp_id])->first();
+	
+		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$id])->first();
+		$user_register=DB::table('register_users')->where(['id'=>$id])->first();
 
 		$obj =  new User_Resume_Model();
-		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
-		$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
-		$candidate_project = $obj->fetch_candidate_project_resume_details($request->session()->get('id'));
-		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
-		$hobb = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
+		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($id);
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($id);
+		$candidate_project = $obj->fetch_candidate_project_resume_details($id);
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($id);
+		$hobb = $obj->fetch_candidate_hobby_resume_details($id);
 
-		$languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
+		$languages = $obj->fetch_candidate_languages_resume_details($id);
 
 
 
@@ -1456,6 +1458,32 @@ class UserResume extends Controller
         );
         if(DB::table('user_choose_temp')->where(['candidate_id'=>$c_id])->update($template)){
         	return redirect('user-profile')->with('success','Your Resume Template is changed!');
+        }
+	}
+
+	public function dochangeviewstatus(Request $request){
+		$p_id=$request->post("p");
+		$c_id=$request->post("c");
+		$u_id=$request->post("u");
+
+		$change=array(
+			'view_status'=>"1"
+		);
+		 if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+        	echo "yes";
+        }
+	}
+
+	public function dochangeShortstatus(Request $request){
+		$p_id=$request->post("p");
+		$c_id=$request->post("c");
+		$u_id=$request->post("u");
+
+		$change=array(
+			'shortlisted'=>"1"
+		);
+		 if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+        	echo "yes";
         }
 	}
 

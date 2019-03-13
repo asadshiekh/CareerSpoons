@@ -262,7 +262,8 @@ Route::any('show-temp-preview/{id}',"site_controllers\UserResume@showPreviewTemp
 Route::any('download-candidate-pdf/{id}',"site_controllers\UserResume@doDownloadPdf");
 Route::any('get_resume/{id}',"site_controllers\UserResume@getDownloadResume");
 Route::any('applied-resume-theme/{id}',"site_controllers\UserResume@doAppliedTheme");
-
+Route::any('change-view-status',"site_controllers\UserResume@dochangeviewstatus");
+Route::any('change-short-status',"site_controllers\UserResume@dochangeShortstatus");
 
 //    UserResume Controller    //
 
@@ -283,6 +284,10 @@ Route::get('file',"site_controllers\UserResume@index");
 Route::get('hello-world',"site_controllers\UserResume@kuchkardo");
 
 
+//apply now functions
+
+Route::any('apply-now',"site_controllers\SiteJobController@doApplyNow");
+Route::any('view-applicants',"site_controllers\SiteJobController@viewApplicantsOfPost");
 
 
 
