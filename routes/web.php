@@ -264,6 +264,7 @@ Route::any('get_resume/{id}',"site_controllers\UserResume@getDownloadResume");
 Route::any('applied-resume-theme/{id}',"site_controllers\UserResume@doAppliedTheme");
 Route::any('change-view-status',"site_controllers\UserResume@dochangeviewstatus");
 Route::any('change-short-status',"site_controllers\UserResume@dochangeShortstatus");
+Route::any('revert-short-status',"site_controllers\UserResume@doRevertShortstatus");
 
 //    UserResume Controller    //
 
@@ -288,7 +289,7 @@ Route::get('hello-world',"site_controllers\UserResume@kuchkardo");
 
 Route::any('apply-now',"site_controllers\SiteJobController@doApplyNow");
 Route::any('view-applicants',"site_controllers\SiteJobController@viewApplicantsOfPost");
-
+Route::any('applicants/{id}',"site_controllers\SiteJobController@viewApplicants");
 
 
 

@@ -1487,4 +1487,18 @@ class UserResume extends Controller
         }
 	}
 
+	public function doRevertShortstatus(Request $request){
+		$p_id=$request->post("p");
+		$c_id=$request->post("c");
+		$u_id=$request->post("u");
+
+		$change=array(
+			'shortlisted'=>"0"
+		);
+		 if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+        	echo "yes";
+        }
+	}
+
+
 }

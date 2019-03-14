@@ -180,6 +180,22 @@ class SiteJobController extends Controller
         }
     }
 
+    public function viewApplicants(Request $request,$p_id){
+     $obj = new JobModel();
+        // $p_id=$request->post('p_id');
+         $c_id=$request->session()->get("company_id");
+         $info = DB::table('apllied_jobs')->where(['company_id'=>$c_id,'post_id'=>$p_id])->count();
+        if($info > 0){
+          // $applied=DB::table('apllied_jobs')->where(['company_id'=>$c_id,'post_id'=>$p_id])->get();
+          $users=$obj->fetch_users_against_post($c_id,$p_id);
+          $viewed_users=$obj->fetch_Viewed_users_against_post($c_id,$p_id);
+          $short_users=$obj->fetch_short_users_against_post($c_id,$p_id);
+          //dd($viewed_users);
+          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users]);
+        }
+
+    }
+
 
 
    

@@ -545,7 +545,9 @@
 
 												<span class="resume-exp" style="margin-left:1%;"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Detail</button></span>
 
-												<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_applicants('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Applicants</button></span>
+												<!-- <span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_applicants('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Applicants</button></span> -->
+
+												<span class="resume-exp"><a href="{{url('applicants')}}/{{$fetch_post->post_id}}" class="btn btn-success" style="height: 25px;padding-top: 1px;">view Applicants</a></span>
 											</div>
 										</div>
 									</div>
