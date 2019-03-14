@@ -143,7 +143,7 @@
 								<ul class="grid-view-caption">
 									<li>
 										<div class="brows-job-location">
-											<p style="padding-top:10%;"><i class="fa fa-map-marker"></i>{{$jobs->company_location}}</p>
+											<p style="padding-top:10%;"><i class="fa fa-map-marker"></i>{{$jobs->company_city}}</p>
 										</div>
 									</li>
 									<li>

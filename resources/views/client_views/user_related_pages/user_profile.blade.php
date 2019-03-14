@@ -233,6 +233,10 @@
 <div id="applied" class="tab-pane fade">
 		<h3>Applied Jobs</h3>
 		<div id="row">
+			<?php if($applied_jobs === 0){?>
+             <h4 style="text-align: center;color: red;">No Applied For Job</h4>
+			<?php } else{
+				?>
 			@foreach($applied_jobs as $applied)
 			<article class="advance-search-job">
 			<div class="row no-mrg">
@@ -297,6 +301,7 @@
 		      </div>
 		  </article>
 		  @endforeach
+		  <?php } ?>
 		</div>
 </div>
 	<!-- applied end -->

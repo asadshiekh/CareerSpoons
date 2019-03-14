@@ -80,7 +80,7 @@
 								<div class="detail-pannel-footer-btn pull-right">
                                     <?php 
                                     //dd($job_detail);
-                                    if(Session::get("id")){
+                                    if(Session::has("id")){
 
                                     $c_id=$job_detail->company_id;
                                     $p_id=$job_detail->post_id;

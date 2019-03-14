@@ -29,7 +29,7 @@ class UserProfile extends Controller
 		$social_link = $obj->get_candidate_social_link($request->session()->get('id'));
 		$temp_in = $obj->get_temp_id($request->session()->get('id'));
 		$applied_jobs = $obj->get_jobs_posts($request->session()->get('id'));
-		//dd($applied_jobs);
+		//dd($applied_jobs);die();
 		$templates = DB::table('resume_templates')->get();
 
 		//fetch admin site data 
