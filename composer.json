@@ -13,6 +13,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "stripe/stripe-php": "^6.30",
+        "twilio/sdk": "^5.29",
         "uxweb/sweet-alert": "^1.4",
         "zablose/captcha": "^2.0"
     },
