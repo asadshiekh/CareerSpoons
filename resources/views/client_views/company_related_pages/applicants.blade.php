@@ -228,6 +228,21 @@
         swal("Success", "Candidate is Removed From short listed.", "success");
 		});
 	}
+	function change_status(p,c,u){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$.post("{{url('change-short-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u},function(data){
+        //alert("yes");
+        swal("Success", "Candidate is short listed.", "success");
+		});
+	}
+	function go(p,c,u){
+		//alert("p= "+p+"c= "+c+"u= "+u);
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$.post("{{url('change-view-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u},function(data){
+        //alert("yes");
+		});
+
+	}
 </script>
 
 

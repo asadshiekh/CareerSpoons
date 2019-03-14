@@ -1392,13 +1392,7 @@
 
 	}
 
-	function change_status(p,c,u){
-		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-		$.post("{{url('change-short-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u},function(data){
-        //alert("yes");
-        swal("Success", "Candidate is short listed.", "success");
-		});
-	}
+	
 </script>
 
 
