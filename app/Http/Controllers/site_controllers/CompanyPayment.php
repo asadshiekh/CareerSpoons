@@ -62,7 +62,6 @@ class CompanyPayment extends Controller
 		$authToken = getenv('TWILIO_AUTH_TOKEN');
 		$twilioNumber = getenv('TWILIO_NUMBER');
 		$client = new Client($accountSid, $authToken);
-
 		if(session()->get('company_phone') == '+923349974743' || session()->get('company_phone') == '+923316272244'){
             // Use the client to do fun stuff like send text messages!
 			$client->messages->create(
@@ -75,8 +74,8 @@ class CompanyPayment extends Controller
 					'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is".$company_token."!"
 				)
 			);
-
 		}
+
 
 
 		//DB::table('company_availed_packages')->insert($company_response);
