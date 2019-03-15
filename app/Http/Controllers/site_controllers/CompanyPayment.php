@@ -109,7 +109,7 @@ $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1
 		$date = $key->package_start_date;		
 		$now= Carbon::now();
 		$dat=Carbon::parse($date);
-		$days= $dat->diffInDays($now);
+		echo $days= $dat->diffInDays($now);
 		$months= $dat->diffInMonths($now);
 		$years= $dat->diffInYears($now);
 		if($months > 0)
@@ -118,7 +118,7 @@ $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1
 
 		}else{
 			//$days=$days-3;
-            $day=(30-$days)-3;
+            $day=(30-$days);
 			echo "abi ha time ".$day;
 		}
 	}
