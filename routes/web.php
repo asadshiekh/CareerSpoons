@@ -519,6 +519,8 @@ Route::any('jango1',function(){
 Route::any('date-check','site_controllers\CompanyPayment@dateCheck');
 
 
+
+Route::any('testing','site_controllers\CompanyPayment@testing');
 /*   End Admin Work  */
 
 

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\site_controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Site_Mail\Company_Mail\Company_Payment;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
 use Twilio\Rest\Client;
 use Twilio\Jwt\ClientToken;
+use Carbon\Carbon;
 use Validator;
 use Session;
 use DB;
+use Mail;
 
 
 class CompanyPayment extends Controller
@@ -24,7 +27,6 @@ class CompanyPayment extends Controller
     public function doCompanyBuyPackage(Request $request){
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
-
 
 		$customer = Customer::create(array(
 			'email' => $request->stripeEmail,
@@ -42,8 +44,8 @@ class CompanyPayment extends Controller
         
         $current_date = date("Y-m-d");
         $added_date=date('Y-m-d', strtotime("+30 days"));
-		$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-		$company_token = substr(str_shuffle($permitted_chars), 0, 10);
+		$permitted_chars = '0123456789';
+		$company_token = substr(str_shuffle($permitted_chars), 0, 8);
 		$company_token = "P-".$company_token;
 		$company_response = array(
 			'company_id' => $request->session()->get('company_id'),
@@ -71,14 +73,16 @@ class CompanyPayment extends Controller
                  // A Twilio phone number you purchased at twilio.com/console
 					'from' => '+12019493393',
                  // the body of the text message you'd like to send
-					'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is".$company_token."!"
+					'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is ".$company_token."!"
 				)
 			);
 		}
 
+		$company_id = session()->get('company_id');
+		DB::table('company_availed_packages')->where('company_id',$company_id)->update($company_response);
 
+		Mail::send(new Company_Payment());
 
-		//DB::table('company_availed_packages')->insert($company_response);
 		return redirect('company-profile')->with('success','Congratulations You Have Purchase Our Basic Package!');
 
     }
@@ -91,4 +95,34 @@ class CompanyPayment extends Controller
     	 $info=DB::table('company_availed_packages')->where(['company_id'=>Session::get('company_id')])->first();
          echo $info->package_end_date;
     }
+
+
+    public function testing(Request $request){
+        $current_date = date("Y-m-d");	 
+        date('Y-m-d', strtotime($Date. ' + 2 days')   	
+$info=DB::table('company_availed_packages')->where(['company_package_status'=>'1'])->get();
+
+
+	foreach ($info as $key){
+		
+	 	// echo $key->package_end_date;
+	 	// echo "<br/>";
+		$date = $key->package_start_date;		
+		$now= Carbon::now();
+		$dat=Carbon::parse($date);
+		$days= $dat->diffInDays($now);
+		$months= $dat->diffInMonths($now);
+		$years= $dat->diffInYears($now);
+		if($months == 1)
+		{ 
+			echo "Month is over";
+		}else{
+            $day=29-$days;
+			echo "abi ha time ".$day;
+		}
+	}
+
+
+    }             
+
 }

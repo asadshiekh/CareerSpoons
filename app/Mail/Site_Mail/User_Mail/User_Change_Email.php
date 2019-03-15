@@ -33,6 +33,6 @@ class User_Change_Email extends Mailable
           
           return $this->from('careerspoons@gmail.com','CareerSpoons')->to($request->new_email,'to ')->subject('CareerSpoons')->markdown('client_views/mails/usermails/user_change_email')->with([
                         'UserEmail' => $request->new_email,
-                    ]);;
+                    ]);
     }
 }
