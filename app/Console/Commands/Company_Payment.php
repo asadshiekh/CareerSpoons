@@ -54,12 +54,13 @@ class Company_Payment extends Command
 
                 if($months > 0)
                 { 
-                    // echo "Month is over";
-                  DB::table('company_availed_packages')->where('company_id', $key->company_id)->update(['company_package_status'=>'0']);  
+                
+                  DB::table('company_availed_packages')->where('company_id', $key->company_id)->update(['company_package_status'=>'0']);
+                  echo "Month is over";  
 
                 }else{
-                    $days=$days-3;
-                    $day=(30-$days)-3;
+                    //$days=$days-3;
+                    $day=(30-$days);
                     //echo "abi ha time ".$day;
                     echo $key->company_id.' '."Company ".$days." Days are Still Left";
                     echo "<br/>";
