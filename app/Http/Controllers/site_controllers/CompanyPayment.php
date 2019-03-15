@@ -87,7 +87,6 @@ class CompanyPayment extends Controller
 
     }
 
-
     public function dateCheck(){
 
     	//echo date('Y-m-d', strtotime("+30 days"));

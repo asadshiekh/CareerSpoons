@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\date',
+        'App\Console\Commands\Company_Payment',
 
     ];
 
@@ -28,17 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-      
-        $schedule->command('dele:company')->daily();
-
-        // $schedule->call(function () {
-        //     DB::table('company_availed_packages')->where('package_end_date','=',$date)->delete();
-        // })->daily();
-
-
-
+        $schedule->command('Company:Payment_Availability')->dailyAt('12:00'); 
     }
 
     /**
