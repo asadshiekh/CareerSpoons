@@ -98,8 +98,8 @@ class CompanyPayment extends Controller
 
 
     public function testing(Request $request){
-        $current_date = date("Y-m-d");	 
-        date('Y-m-d', strtotime($Date. ' + 2 days')   	
+       // echo  $current_date = date("Y-m-d");	
+       //   echo date('Y-m-d', strtotime(($current_date. ' + 30 days')));  	
 $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1'])->get();
 
 
@@ -113,11 +113,13 @@ $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1
 		$days= $dat->diffInDays($now);
 		$months= $dat->diffInMonths($now);
 		$years= $dat->diffInYears($now);
-		if($months == 1)
+		if($months > 0)
 		{ 
 			echo "Month is over";
+
 		}else{
-            $day=29-$days;
+			//$days=$days-3;
+            $day=(30-$days)-3;
 			echo "abi ha time ".$day;
 		}
 	}
