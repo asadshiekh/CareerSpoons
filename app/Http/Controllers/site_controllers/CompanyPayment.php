@@ -109,12 +109,12 @@ $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1
 		$date = $key->package_start_date;		
 		$now= Carbon::now();
 		$dat=Carbon::parse($date);
-	 	$days= $dat->diffInDays($now);
+	    $days= $dat->diffInDays($now);
 		$months= $dat->diffInMonths($now);
 		$years= $dat->diffInYears($now);
 		if($months > 0)
 		{ 
-			echo "Month is over"."<br>";
+			echo "Month is over";
 
 		}else{
 			//$days=$days-3;
