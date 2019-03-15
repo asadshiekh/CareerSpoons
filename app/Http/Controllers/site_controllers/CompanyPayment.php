@@ -97,19 +97,54 @@ class CompanyPayment extends Controller
 
 
     public function testing(Request $request){
+       // echo  $current_date = date("Y-m-d");	
+       //   echo date('Y-m-d', strtotime(($current_date. ' + 30 days')));  	
+$info=DB::table('company_availed_packages')->where(['company_package_status'=>'1'])->get();
 
-    	$info=DB::table('company_availed_packages')->where(['company_id'=>Session::get('company_id')])->first();
 
+	foreach ($info as $key){
+		
+	 	// echo $key->package_end_date;
+	 	// echo "<br/>";
+		$date = $key->package_start_date;		
+		$now= Carbon::now();
+		$dat=Carbon::parse($date);
+	    $days= $dat->diffInDays($now);
+		$months= $dat->diffInMonths($now);
+		$years= $dat->diffInYears($now);
+		if($months > 0)
+		{ 
+			echo "Month is over";
 
-    	 $date1 = $info->package_start_date;
-    	 $date2 = $info->package_end_date;
-    	//$date1 = date("Y-m-d"); 
-    	//$date2 = "2009-06-26";
-    	$diff = abs(strtotime($date2) - strtotime($date1));
-    	$years = floor($diff / (365*60*60*24));
-    	$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    	$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-    	printf("%d years, %d months, %d days\n", $years, $months, $days);
+		}else{
+			//$days=$days-3;
+			echo $d=date("d",strtotime('+1 days'));
+			echo "<br/>";
+			echo $o=date('d', strtotime($date)); 
+			echo "<br/><br/><br/><br/>";
+			  
+			if($d > $o){
+				$day=($d-$o);
+				$day=30-$day;
+				
+			}else if($d == $o){
+				$cm=date("m",strtotime('+1 days'));
+				$sm=date('m', strtotime($date)); 
+				if($cm == $sm){
+                    $day=30;
+				}else{
+					$day=$d-$o;
+				}
+               
+			}
+			else{     
+				$day=($o-$d);
+			}
+
+			echo "abi ha time ".$day." days";
+		}
+	}
+
 
     }             
 
