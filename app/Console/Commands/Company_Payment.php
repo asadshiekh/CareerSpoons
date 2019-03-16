@@ -43,36 +43,55 @@ class Company_Payment extends Command
 
         if($info){
 
-            foreach ($info as $key){
+         foreach ($info as $key){
 
-                $date = $key->package_start_date;       
-                $now= Carbon::now();
-                $dat=Carbon::parse($date);
-                $days= $dat->diffInDays($now);
-                $months= $dat->diffInMonths($now);
-                $years= $dat->diffInYears($now);
+        // echo $key->package_end_date;
+        // echo "<br/>";
+            $date = $key->package_start_date;       
+            $now= Carbon::now();
+            $dat=Carbon::parse($date);
+            $days= $dat->diffInDays($now);
+            $months= $dat->diffInMonths($now);
+            $years= $dat->diffInYears($now);
+            if($months > 0)
+            { 
+                //echo "Month is over <br/>";
+                DB::table('company_availed_packages')->where(['company_id'=>$key->company_id])->update(['company_package_status'=>'0']);
 
-                if($months > 0)
-                { 
-                
-                  DB::table('company_availed_packages')->where('company_id', $key->company_id)->update(['company_package_status'=>'0']);
-                  echo "Month is over";  
+            }else{
+            //$days=$days-3;
+                 $d=date("d",strtotime('+1 days'));
+                //echo "<br/>";
+                 $o=date('d', strtotime($date)); 
+                //echo "<br/><br/><br/><br/>";
 
-                }else{
-                    //$days=$days-3;
-                    $day=(30-$days);
-                    //echo "abi ha time ".$day;
-                    echo $key->company_id.' '."Company ".$days." Days are Still Left";
-                    echo "<br/>";
+                if($d > $o){
+                    $day=($d-$o);
+                    $day=30-$day;
+
+                }else if($d == $o){
+                    $cm=date("m",strtotime('+1 days'));
+                    $sm=date('m', strtotime($date)); 
+                    if($cm == $sm){
+                        $day=30;
+                    }else{
+                        $day=$d-$o;
+                    }
+
+                }
+                else{     
+                    $day=($o-$d);
                 }
 
-
+                //echo "abi ha time ".$day." days <br/>";
+                echo "Cron Automatically Handel All Your Companies Payment Package Availability";
             }
         }
-        else{
-
-                echo "No Company Found Who Availed The Package Yet";
-        }
-
     }
+    else{
+
+        echo "No Company Found Who Availed The Package Yet";
+    }
+
+}
 }

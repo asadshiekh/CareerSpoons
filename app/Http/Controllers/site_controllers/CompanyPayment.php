@@ -118,10 +118,10 @@ $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1
 
 		}else{
 			//$days=$days-3;
-			echo $d=date("d",strtotime('+1 days'));
-			echo "<br/>";
-			echo $o=date('d', strtotime($date)); 
-			echo "<br/><br/><br/><br/>";
+			 $d=date("d",strtotime('+1 days'));
+			//echo "<br/>";
+		     $o=date('d', strtotime($date)); 
+			//echo "<br/><br/><br/><br/>";
 			  
 			if($d > $o){
 				$day=($d-$o);
