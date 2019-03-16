@@ -12,7 +12,7 @@
 			
 
 
- <section class="full-detail-description full-detail gray-bg">
+ <section class="full-detail-description full-detail gray-bg" style="margin-top: 5%;">
             <div class="container">
                 <div class="col-md-12 col-sm-12">
                     <div class="full-card">
@@ -43,8 +43,23 @@
 							Shortlisted ({{$short_users->count()}})
 							<?php } ?>
 					    </a></li>
-						<li><a data-toggle="tab" href="#inter">For Interview</a></li>
-						<li><a data-toggle="tab" href="#rejected">Rejected</a></li>
+					    <li><a data-toggle="tab" href="#sele_for_inter">
+					    
+					     <?php if($app_users === 0){?>
+                            Applicants for Interview (0)
+							 <?php }else{ ?>
+							Applicants for Interview ({{$app_users->count()}})
+							<?php } ?>
+					    </a></li>
+						<li><a data-toggle="tab" href="#inter">
+						
+						 <?php if($call_users === 0){?>
+                            Candidate Results (0)
+							 <?php }else{ ?>
+							Candidate Results ({{$short_users->count()}})
+							<?php } ?>
+					    </a></li>
+						
 						
 					</ul>
 							
@@ -179,13 +194,67 @@
 							          <div class="col-md-3 col-sm-3">
 							         
 							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
-							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;" onclick="">Call For Interview <i class="fa fa-phone"></i></button>
+							          <?php  if($us->message === "0"){?>
+							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;" onclick="send_message('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Call For Interview <i class="fa fa-phone"></i></button>
+							          <?php }else{?>
+							           <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;" disabled>Message Send <i class="fa fa-check"></i></button>
+							           <?php }?>
+							          <!-- data-toggle="modal" data-target="#interview" -->
 							       
 							          </div>
 							          <div class="col-md-2 col-sm-2">
-							          
+							          <?php  if($us->message === "0"){
+							          ?>
 							          <button data-toggle="tooltip" title="Remove from Shortlist" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="change_short_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Remove</button>
+							      <?php } ?>
 							          </div>
+							          </div>
+							          </div>
+							           @endforeach
+							       <?php } ?>
+							          </div>
+                                     <!-- end row -->
+								</div>
+								<!--  Applicants selected for interview -->
+
+								<div id="sele_for_inter" class="tab-pane fade" style="min-height: 500px;">
+									<h3>Applicants Selected for Interview</h3>
+									
+									<!-- start row -->
+									 <div class="row">
+									 	<?php if($app_users === 0){?>
+                                            <h4 style="color: red;text-align: center;">No USers selected for interview</h4>
+									 	<?php }else{ ?>
+							          @foreach($app_users as $us)
+							          <div class="col-md-12 col-sm-12" id="user-short-{{$us->id}}">
+							          <div class="manage-resume-box">
+							          <div class="col-md-3 col-sm-3">
+							          <div class="manage-resume-picbox" style="height: 100px;width: 105px;border:solid 5px #e1e1e1;">
+							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
+							          </div>
+							          </div>
+							          <div class="col-md-4 col-sm-4">
+							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
+							          <span>{{$us->user_email}}</span>
+							          </div>
+							          <div class="col-md-3 col-sm-3" id="btn-inter">
+							         
+							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
+							           <?php  if($us->interview_status === "1"){?>
+							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;" disabled>Interview Conducted<i class="fa fa-check"></i></button>
+							          <?php }if($us->interview_status === "0"){?>
+							          	 <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Interview Pending <i class="far fa-frown-open"></i></button>
+							           <?php }?>
+							          
+							          </div>
+							          <div class="col-sm-2 col-md-2">
+							          <select class="form-control" onchange="change_inter_status(this.value,'{{$p_id}}','{{$c_id}}','{{$us->id}}');" style="margin-top: 20px;">
+							          		<option selected>Select Status</option>
+							          		<option value="conducted">Conducted</option>
+							          		<option value="pending">pending</option>
+							          	</select>
+							          </div>
+							         
 							          </div>
 							          </div>
 							           @endforeach
@@ -197,16 +266,52 @@
 								<!-- Interviewed Applicants -->
 
 								<div id="inter" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Applicants for Interview</h3>
-									<p></p>
+									<h3>Applicants Result</h3>
+									
+									<!-- start row -->
+									 <div class="row">
+									 	<?php if($call_users === 0){?>
+                                            <h4 style="color: red;text-align: center;">No USers selected for interview</h4>
+									 	<?php }else{ ?>
+							          @foreach($call_users as $us)
+							          <div class="col-md-12 col-sm-12" id="user-short-{{$us->id}}">
+							          <div class="manage-resume-box">
+							          <div class="col-md-3 col-sm-3">
+							          <div class="manage-resume-picbox" style="height: 100px;width: 105px;border:solid 5px #e1e1e1;">
+							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
+							          </div>
+							          </div>
+							          <div class="col-md-4 col-sm-4">
+							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
+							          <span>{{$us->user_email}}</span>
+							          </div>
+							          <div class="col-md-3 col-sm-3" id="btn-data">
+							         
+							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
+							           <?php  if($us->selected === "1"){?>
+							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;" disabled>Selected<i class="fa fa-check"></i></button>
+							          <?php }if($us->rejected === "1"){?>
+							          	 <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Rejected <i class="far fa-frown-open"></i></button>
+							           <?php }?>
+							          
+							          </div>
+							          <div class="col-sm-2 col-md-2">
+							          <select class="form-control" onchange="change_sr(this.value,'{{$p_id}}','{{$c_id}}','{{$us->id}}');" style="margin-top: 20px;">
+							          		<option selected>Select Status</option>
+							          		<option value="selected">Selected</option>
+							          		<option value="rejected">Rejected</option>
+							          	</select>
+							          </div>
+							         
+							          </div>
+							          </div>
+							           @endforeach
+							       <?php } ?>
+							          </div>
+                                     <!-- end row -->
 								</div>
 
-								<!-- rejected Applicants -->
-
-								<div id="rejected" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Rejected Applicants</h3>
-									<p></p>
-								</div>
+								
 
 
 							</div>
@@ -217,6 +322,45 @@
 			</div>
 </section>
 
+<!-- model window for map -->
+
+<!-- Modal Contents -->
+    <div id="interview" class="modal fade "> <!-- class modal and fade -->
+      
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          
+           <div class="modal-header"> <!-- modal header -->
+            <button type="button" class="close" 
+             data-dismiss="modal" aria-hidden="true">×</button>
+			 
+                    <h4 class="modal-title">Message to call Him/Her for Interview</h4>
+           </div>
+		 <form>
+		     		
+		     <div class="modal-body" style="padding: 3%;"> <!-- modal body -->
+		     	
+		     		<div class="row">
+		     			<div class="col-sm-12">
+		     			<label>Enter Message</label>
+		     			<textarea type="text" name="message" id="message" class="form-control" rows="3"></textarea>
+		     			</div>
+		     		</div>
+		     	
+		            
+		     </div>
+	 
+     <div class="modal-footer"> <!-- modal footer -->
+       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel!</button>
+       <button type="button" class="btn btn-success" id="send-btn">send!</button>
+      </div>
+      </form>
+				
+      </div> <!-- / .modal-content -->
+      
+    </div> <!-- / .modal-dialog -->
+      
+ </div><!-- / .modal -->
 
 <script type="text/javascript">
 	function change_short_status(p,c,u) {
@@ -243,6 +387,56 @@
 		});
 
 	}
+	function send_message(p,c,u){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		$("#interview").modal("show");
+       
+           
+		    document.getElementById("send-btn").onclick = function fun() {
+			        //alert("hello");
+			        var msg= $("#message").val();
+			       $.post("{{url('send-messg-interview')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u,msg:msg},function(data){
+			        //alert(data);
+			        swal("Success", "Msg Send Successfully.", "success");
+			        $("#interview").modal("close");
+					});
+			    }
+
+			
+	}
+	function change_sr(v,p,c,u){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		// alert(v);
+			  	$.post("{{url('change-SR-status')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u,v:v},function(data){
+			  		if(data == "yes"){
+			  		$("#btn-data").html('<button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Selected <i class="fa fa-check"></i></button>');
+
+			  		}else{
+                     $("#btn-data").html('<button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Rejected <i class="far fa-frown-open"></i></button>');
+			  		}
+                    swal("Success", "Status Change Successfully.", "success");
+                 
+		        });
+			   
+			 
+		
+	}
+	function change_inter_status(v,p,c,u){
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		// alert(v);
+			  	$.post("{{url('change-interstatus')}}",{_token:CSRF_TOKEN,p:p,c:c,u:u,v:v},function(data){
+			  		if(data == "yes"){
+			  		$("#btn-inter").html('<button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Interview Conducted <i class="fa fa-check"></i></button>');
+
+			  		}else{
+                     $("#btn-inter").html('<button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Interview Pending <i class="far fa-frown-open"></i></button>');
+			  		}
+                    swal("Success", "Status Change Successfully.", "success");
+                 
+		        });
+			   
+	}
+
 </script>
 
 

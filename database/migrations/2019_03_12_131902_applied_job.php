@@ -21,6 +21,10 @@ class AppliedJob extends Migration
             $table->string('resume_id');
             $table->string('view_status');
             $table->string('shortlisted');
+            $table->string('interview_status');
+            $table->string('message');
+            $table->string('selected');
+            $table->string('rejected');
             $table->timestamps();
         });
     }

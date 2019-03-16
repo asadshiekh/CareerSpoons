@@ -290,6 +290,9 @@ Route::get('hello-world',"site_controllers\UserResume@kuchkardo");
 Route::any('apply-now',"site_controllers\SiteJobController@doApplyNow");
 Route::any('view-applicants',"site_controllers\SiteJobController@viewApplicantsOfPost");
 Route::any('applicants/{id}',"site_controllers\SiteJobController@viewApplicants");
+Route::any('send-messg-interview',"site_controllers\SiteJobController@sendMessageInterview");
+Route::any('change-SR-status',"site_controllers\SiteJobController@changeSRstatus");
+Route::any('change-interstatus',"site_controllers\SiteJobController@changeInterstatus");
 
 
 

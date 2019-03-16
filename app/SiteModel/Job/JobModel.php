@@ -104,6 +104,22 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
         return $user->count();
        }
   }
+  public function fetch_called_users_against_post($c_id,$p_id){
+       $user= DB::table('apllied_jobs')->join('register_users','register_users.id', '=', 'apllied_jobs.user_id')->join('user_profile_images','user_profile_images.candidate_id', '=', 'apllied_jobs.user_id')->join('user_choose_temp','user_choose_temp.candidate_id', '=', 'apllied_jobs.user_id')->select('apllied_jobs.*','register_users.*','user_profile_images.*')->where('register_users.user_activation_status','=','1')->where(['apllied_jobs.company_id'=>$c_id,'apllied_jobs.post_id'=>$p_id,'apllied_jobs.view_status'=>"1",'apllied_jobs.shortlisted'=>"1",'apllied_jobs.interview_status'=>"1"])->where('apllied_jobs.shortlisted','!=','0')->get();
+        if($user->count() > 0){
+       return $user;
+       }else{
+        return $user->count();
+       }
+  }
+ public function  fetch_app_users_against_post ($c_id,$p_id){
+       $user= DB::table('apllied_jobs')->join('register_users','register_users.id', '=', 'apllied_jobs.user_id')->join('user_profile_images','user_profile_images.candidate_id', '=', 'apllied_jobs.user_id')->join('user_choose_temp','user_choose_temp.candidate_id', '=', 'apllied_jobs.user_id')->select('apllied_jobs.*','register_users.*','user_profile_images.*')->where('register_users.user_activation_status','=','1')->where(['apllied_jobs.company_id'=>$c_id,'apllied_jobs.post_id'=>$p_id,'apllied_jobs.view_status'=>"1",'apllied_jobs.shortlisted'=>"1"])->where('apllied_jobs.shortlisted','!=','0')->get();
+        if($user->count() > 0){
+       return $user;
+       }else{
+        return $user->count();
+       }
+  }
 
   public function fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift){
     if($fcity || $farea || $findus || $fexp || $fqual || $ftype || $fshift){

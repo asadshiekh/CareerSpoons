@@ -100,7 +100,11 @@ class SiteJobController extends Controller
             'post_id' => $p_id,
             'resume_id' => $r_id,
             'view_status' => "0",
-            'shortlisted' => "0"
+            'shortlisted' => "0",
+            'interview_status' => "0",
+            'message' => "0",
+            'selected' => "0",
+            'rejected' => "0"
              );
         //print_r($apply);
         
@@ -190,10 +194,74 @@ class SiteJobController extends Controller
           $users=$obj->fetch_users_against_post($c_id,$p_id);
           $viewed_users=$obj->fetch_Viewed_users_against_post($c_id,$p_id);
           $short_users=$obj->fetch_short_users_against_post($c_id,$p_id);
+          $call_users=$obj->fetch_called_users_against_post($c_id,$p_id);
+          $app_users=$obj->fetch_app_users_against_post($c_id,$p_id);
           //dd($viewed_users);
-          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users]);
+          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users]);
         }
 
+    }
+    public function sendMessageInterview(Request $request){
+      $p_id=$request->post("p");
+      $c_id=$request->post("c");
+      $u_id=$request->post("u");
+      echo $msg=$request->post("msg");
+
+      $change=array(
+        'message'=>$msg
+      );
+       if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+            echo "yes";
+          }
+    }
+    public function changeSRstatus(Request $request){
+      $p_id=$request->post("p");
+      $c_id=$request->post("c");
+      $u_id=$request->post("u");
+      $val=$request->post("v");
+      if($val == "selected"){
+        $change=array(
+        'selected'=>"1",
+        'rejected'=>"0",
+        );
+      }else{
+       $change=array(
+        'selected'=>"0",
+        'rejected'=>"1",
+      );
+     }
+       if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+           if($val == "selected"){
+            echo "yes";
+          }else{
+            echo "no";
+            
+          }
+          }
+    }
+
+    public function changeInterstatus(Request $request){
+       $p_id=$request->post("p");
+      $c_id=$request->post("c");
+      $u_id=$request->post("u");
+      $val=$request->post("v");
+      if($val == "conducted"){
+        $change=array(
+        'interview_status'=>"1"
+        );
+      }else{
+       $change=array(
+        'interview_status'=>"0"
+      );
+     }
+       if(DB::table('apllied_jobs')->where(['company_id'=>$c_id,'user_id'=>$u_id, 'post_id'=>$p_id])->update($change)){
+           if($val == "conducted"){
+            echo "yes";
+          }else{
+            echo "no";
+            
+          }
+          }
     }
 
 
