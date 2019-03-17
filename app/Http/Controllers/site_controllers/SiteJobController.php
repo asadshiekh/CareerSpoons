@@ -4,6 +4,7 @@ namespace App\Http\Controllers\site_controllers;
 
 use Illuminate\Http\Request;
 use App\SiteModel\Job\JobModel;
+use App\SiteModel\ClientSite\ClientSiteModel;
 use App\Http\Controllers\Controller;
 use DB;
 
@@ -196,8 +197,18 @@ class SiteJobController extends Controller
           $short_users=$obj->fetch_short_users_against_post($c_id,$p_id);
           $call_users=$obj->fetch_called_users_against_post($c_id,$p_id);
           $app_users=$obj->fetch_app_users_against_post($c_id,$p_id);
-          //dd($viewed_users);
-          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users]);
+          $match_users=$obj->fetch_match_users_against_post($c_id,$p_id);
+          $obj1 =  new ClientSiteModel();
+          $city=$obj1->get_all_cities();
+          $qual=$obj1->get_all_qualification();
+          $industry=$obj1->get_all_indutries();
+          $cit='';
+          $gender='';
+          $career='';
+          $quali='';
+          $indus='';
+                //dd($viewed_users);
+          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
         }
 
     }
@@ -262,6 +273,34 @@ class SiteJobController extends Controller
             
           }
           }
+    }
+
+    public function doFilterApplicants(Request $request,$p_id){
+       $c_id=$request->session()->get("company_id");
+         $info = DB::table('apllied_jobs')->where(['company_id'=>$c_id,'post_id'=>$p_id])->count();
+        if($info > 0){
+    $cit=$request->post('selected_city');
+    $gender=$request->post('selected_gender');
+    $career=$request->post('selected_career');
+    $quali=$request->post('selected_qual');
+    $indus=$request->post('selected_indus');
+    
+    $obj = new JobModel();
+    $users = $obj->do_filter_search($p_id,$c_id,$cit,$gender,$career,$quali,$indus);
+    //dd($users);
+         $city=DB::table('Add_cities')->get();
+         $industry=DB::table('Company_industries')->get();
+         $degree=DB::table('Add_degreelevel')->get();
+         $qual=DB::table('Add_qualification')->get();
+          $viewed_users=$obj->fetch_Viewed_users_against_post($c_id,$p_id);
+          $short_users=$obj->fetch_short_users_against_post($c_id,$p_id);
+          $call_users=$obj->fetch_called_users_against_post($c_id,$p_id);
+          $app_users=$obj->fetch_app_users_against_post($c_id,$p_id);
+          $match_users=$obj->fetch_match_users_against_post($c_id,$p_id);
+         // echo "<pre>";
+         // print_r($candidates);
+         return view('client_views.company_related_pages.applicants',['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
+       }
     }
 
 

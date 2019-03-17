@@ -12,7 +12,7 @@
 			
 
 
- <section class="full-detail-description full-detail gray-bg" style="margin-top: 5%;">
+ <section class="full-detail-description full-detail gray-bg" style="margin-top: 5%;" id="uls">
             <div class="container">
                 <div class="col-md-12 col-sm-12">
                     <div class="full-card">
@@ -20,7 +20,7 @@
 
 					<ul class="nav nav-tabs" id="simple-design-tab">
 						<li class="active">
-							<a  data-toggle="tab" href="#all">
+							<a data-toggle="tab" href="#all" onclick="ref_all();">
 							<?php if($users === 0){?>
                               All Applicants (0)
 							 <?php }else{ ?>
@@ -28,7 +28,7 @@
 						      <?php } ?>
 					       </a>
 					    </li>
-						<li><a data-toggle="tab" href="#viewed">
+						<li><a data-toggle="tab" href="#viewed" onclick="ref_viewed();">
 							<?php if($viewed_users === 0){?>
                                 Viewed Applicants (0) 
 							 <?php }else{ ?>
@@ -36,14 +36,14 @@
 							<?php } ?>
 							 </a>
 						</li>
-						<li><a data-toggle="tab" href="#short">
+						<li><a data-toggle="tab" href="#short" onclick="ref_short();">
                              <?php if($short_users === 0){?>
                             Shortlisted (0)
 							 <?php }else{ ?>
 							Shortlisted ({{$short_users->count()}})
 							<?php } ?>
 					    </a></li>
-					    <li><a data-toggle="tab" href="#sele_for_inter">
+					    <li><a data-toggle="tab" href="#sele_for_inter" onclick="ref_sele();">
 					    
 					     <?php if($app_users === 0){?>
                             Applicants for Interview (0)
@@ -51,12 +51,20 @@
 							Applicants for Interview ({{$app_users->count()}})
 							<?php } ?>
 					    </a></li>
-						<li><a data-toggle="tab" href="#inter">
+						<li><a data-toggle="tab" href="#inter" onclick="ref_inter();">
 						
 						 <?php if($call_users === 0){?>
                             Candidate Results (0)
 							 <?php }else{ ?>
-							Candidate Results ({{$short_users->count()}})
+							Candidate Results ({{$call_users->count()}})
+							<?php } ?>
+					    </a></li>
+					    <li><a data-toggle="tab" href="#matched">
+					    	
+					    	<?php if($match_users === 0){?>
+                            Matched Candidate (0)
+							 <?php }else{ ?>
+							Matched Candidate ({{$match_users->count()}})
 							<?php } ?>
 					    </a></li>
 						
@@ -70,10 +78,11 @@
 									<h3>All Applicants</h3>
 									<!-- start row -->
 									 <div class="row">
-									<?php if($users === 0){?>
+									
+									  <div class="col-md-9 col-sm-9">
+									  	<?php if($users === 0){?>
                                             <h4 style="color: red;text-align: center;">No Users</h4>
 									 	<?php }else{ ?>
-									  <div class="col-md-9 col-sm-9">
 								          @foreach($users as $us)
 								          <div class="col-md-12 col-sm-12">
 									          <div class="manage-resume-box">
@@ -95,33 +104,84 @@
 										            </div>
 										            <div class="col-md-2 col-sm-2">
 												        <?php if($us->view_status === "1"){?>
-												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
+												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
 												        <?php }else{ ?>
-												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View</a>
+												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View</a>
 												        <?php } ?>
 										            </div>
 									          </div>
 								          </div>
 								          @endforeach
+								           <?php } ?>
 							          </div>
 							          <div class="col-md-3 col-sm-3">
 							          	<div style="border:solid 1px #e1e1e1;padding:5%;font-size: 12px;min-height: 450px;box-shadow: 0px 3px 15px -4px;">
 							          	<h5 style="text-align: center;margin-bottom: 15%;"><u>Filter User CVs</u></h5>
-							          	<form>
-							          		<label>Select Gender</label>
-							          		<select class="form-control">
-							          			<option>Select Gender</option>
-							          		</select>
+							          	<form action="{{url('filter-applicants')}}/{{$p_id}}" method="post">
+							          		@csrf
+							          		<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp City</label>
+								<select class="form-control" name="selected_city" id="selected_city">
+									<option hidden selected value=" <?php if($cit){echo $cit;} ?> "><?php if($cit){echo $cit;}else{echo 'Select City';} ?></option>
+									@foreach($city as $c)
+									<option value="{{$c->company_city_name}}">{{$c->company_city_name}}</option>
+									@endforeach
+								</select>
 
-							          		<label>Select Gender</label>
-							          		<select class="form-control">
-							          			<option>Select Gender</option>
-							          		</select>
-							          		<button type="button" class="btn btn-success" style="height:30px;padding-top:2px;width:150px;margin-top: 25px;margin-left: 18%;">Filter</button>
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Gender</label>
+								<select class="form-control" name="selected_gender" id="selected_gender">
+									<option hidden selected value="<?php if($gender){echo $gender;} ?>"><?php if($gender){echo $gender;}else{echo 'Select Gender';} ?></option>
+									<option value="Male">Male</option>
+									<option value="female">Female</option>
+
+
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Career Level</label>
+								<select class="form-control" name="selected_career" id="selected_career">
+								   <option hidden selected value="<?php if($career){echo $career;} ?>"><?php if($career){echo $career;}else{echo 'Select Career Level';} ?></option>
+								   <option value="Entry Level">Entry Level</option>
+	                               <option value="Intermediate">Intermediate</option>
+	                               <option value="Experienced Professional">Experienced Professional</option>
+	                               <option value="Department Head">Department Head</option>
+	                               <option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Qualification</label>
+								<select class="form-control" name="selected_qual" id="selected_qual">
+									<option hidden  selected value="<?php if($quali){echo $quali;} ?>"><?php if($quali){echo $quali;}else{echo 'Select Qualification';} ?></option>
+									@foreach($qual as $q)
+									<option value="{{$q->qualification_title}}">{{$q->qualification_title}}</option>
+									@endforeach
+								</select>
+
+							</div>
+							<div class="input-group col-sm-12">
+								<br/>
+								<label>&nbsp Industry</label>
+								<select class="form-control" name="selected_indus" id="selected_indus">
+									<option hidden selected value="<?php if($indus){echo $indus;} ?>"><?php if($indus){echo $indus;}else{echo 'Select Industry';} ?></option>
+									@foreach($industry as $in)
+									<option value="{{$in->company_industry_name}}">{{$in->company_industry_name}}</option>
+									@endforeach
+								</select>
+
+							</div>
+							          		<button type="submit" class="btn btn-success" style="height:30px;padding-top:2px;width:150px;margin-top: 25px;margin-left: 18%;">Filter</button>
 							          	</form>
 							          	</div>
 							          </div>
-							       <?php } ?>
+							      
 							          </div>
                                      <!-- end row -->
 
@@ -144,20 +204,20 @@
 							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
 							          </div>
 							          </div>
-							          <div class="col-md-4 col-sm-4">
+							          <div class="col-md-5 col-sm-5">
 							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
 							          <span>{{$us->user_email}}</span>
 							          </div>
-							          <div class="col-md-3 col-sm-3">
+							          <div class="col-md-2 col-sm-2">
 							         <?php  if($us->shortlisted === "1"){?>
 							            <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button>
 							         <?php  }else{ ?>
-							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;width:150px;margin-top: 25px;" onclick="change_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Short List</button>
+							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;width:100%;margin-top: 25px;" onclick="change_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Short List</button>
 							          <?php    } ?>
 							          </div>
 							          <div class="col-md-2 col-sm-2">
 							          <?php  if($us->shortlisted === "1"){?>
-							          	 <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
+							          	 <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width:100%" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
 							          <?php }else{ ?>
 							          <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View</a>
 							       <?php }?>
@@ -187,15 +247,15 @@
 							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
 							          </div>
 							          </div>
-							          <div class="col-md-4 col-sm-4">
+							          <div class="col-md-5 col-sm-5">
 							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
 							          <span>{{$us->user_email}}</span>
 							          </div>
-							          <div class="col-md-3 col-sm-3">
+							          <div class="col-md-2 col-sm-2">
 							         
 							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
 							          <?php  if($us->message === "0"){?>
-							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;" onclick="send_message('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Call For Interview <i class="fa fa-phone"></i></button>
+							          <button title="Msg to inform his/her for interview" type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width:100%" onclick="send_message('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Inform</button>
 							          <?php }else{?>
 							           <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;" disabled>Message Send <i class="fa fa-check"></i></button>
 							           <?php }?>
@@ -205,7 +265,7 @@
 							          <div class="col-md-2 col-sm-2">
 							          <?php  if($us->message === "0"){
 							          ?>
-							          <button data-toggle="tooltip" title="Remove from Shortlist" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;" onclick="change_short_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Remove</button>
+							          <button data-toggle="tooltip" title="Remove from Shortlist" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width:100%" onclick="change_short_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Remove</button>
 							      <?php } ?>
 							          </div>
 							          </div>
@@ -281,11 +341,11 @@
 							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
 							          </div>
 							          </div>
-							          <div class="col-md-4 col-sm-4">
+							          <div class="col-md-5 col-sm-5">
 							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
 							          <span>{{$us->user_email}}</span>
 							          </div>
-							          <div class="col-md-3 col-sm-3" id="btn-data">
+							          <div class="col-md-2 col-sm-2" id="btn-data">
 							         
 							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
 							           <?php  if($us->selected === "1"){?>
@@ -297,10 +357,54 @@
 							          </div>
 							          <div class="col-sm-2 col-md-2">
 							          <select class="form-control" onchange="change_sr(this.value,'{{$p_id}}','{{$c_id}}','{{$us->id}}');" style="margin-top: 20px;">
-							          		<option selected>Select Status</option>
+							          		<option selected hidden disabled>Select Status</option>
 							          		<option value="selected">Selected</option>
 							          		<option value="rejected">Rejected</option>
 							          	</select>
+							          </div>
+							         
+							          </div>
+							          </div>
+							           @endforeach
+							       <?php } ?>
+							          </div>
+                                     <!-- end row -->
+								</div>
+
+								<!-- Interviewed Applicants -->
+
+								<div id="matched" class="tab-pane fade" style="min-height: 500px;">
+									<h3>Matched Candidates</h3>
+									
+									<!-- start row -->
+									 <div class="row">
+									 	<?php if($match_users === 0){?>
+                                            <h4 style="color: red;text-align: center;">No USers selected for interview</h4>
+									 	<?php }else{ ?>
+							          @foreach($match_users as $us)
+							          <div class="col-md-12 col-sm-12" id="user-short-{{$us->id}}">
+							          <div class="manage-resume-box">
+							          <div class="col-md-3 col-sm-3">
+							          <div class="manage-resume-picbox" style="height: 100px;width: 105px;border:solid 5px #e1e1e1;">
+							          <img src="{{url('uploads/client_site/profile_pic')}}/{{$us->profile_image}}" class="img-responsive" alt="" />
+							          </div>
+							          </div>
+							          <div class="col-md-5 col-sm-5">
+							          <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
+							          <span>{{$us->user_email}}</span>
+							          </div>
+							          <div class="col-md-2 col-sm-2" id="btn-data">
+							         
+							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
+							           <?php  if($us->selected === "1"){?>
+							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;" disabled>Selected<i class="fa fa-check"></i></button>
+							          <?php }if($us->rejected === "1"){?>
+							          	 <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Rejected <i class="far fa-frown-open"></i></button>
+							           <?php }?>
+							          
+							          </div>
+							          <div class="col-sm-2 col-md-2">
+							          <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;">View</a>
 							          </div>
 							         
 							          </div>
@@ -436,7 +540,22 @@
 		        });
 			   
 	}
-
+    function ref_all(){
+    	$("#all").load(location.href+" #all>*","");
+    }
+	function ref_viewed(){
+		//$("#viewed").load();
+		$("#viewed").load(location.href+" #viewed>*","");
+		}
+    function ref_sele(){
+        $("#sele_for_inter").load(location.href+" #sele_for_inter>*","");
+    }
+    function ref_short(){
+        $("#short").load(location.href+" #short>*","");
+    }
+    function ref_inter(){
+    	$("#inter").load(location.href+" #inter>*","");
+    }
 </script>
 
 

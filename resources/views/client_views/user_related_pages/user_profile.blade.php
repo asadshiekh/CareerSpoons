@@ -247,30 +247,47 @@
 		          <img src="{{url('uploads/organization_images')}}/{{$applied->company_img}}" class="img-responsive" alt="" style="height: 80px;width:170px;" />
 		          </div>
 		          </div>
-		          <div class="col-md-7 col-sm-7">
+		          <div class="col-md-6 col-sm-6">
 		          <h5>{{$applied->job_title}} In {{$applied->company_name}}</h5>
-		          <span>nayabzahira161@gmail.com</span>
+		          <span>{{$applied->company_email}}</span>
 		          </div>
-		          <div class="col-md-3 col-sm-3">
-		          	<a href="{{url('single-company-profile')}}/{{$applied->company_id}}" class="btn btn-success" style="height:35px;padding-top:6px;width:150px;">View Company</a>
+		          
+		          <div class="col-md-2 col-sm-2">
+		          	<?php if($applied->message){
+                        $candy=Session::get('candidate_name');
+
+		          		?>
+		          		<div class="contact-box">
+                      <button type="button" onclick="view_msg_notify('{{$applied->message}}','{{$applied->company_name}}','{{$candy}}','{{$applied->company_location}}');" style="background: none;border:none;"><img src="{{url('uploads/client_site/img/bells.gif')}}" style="height: 45px;width: 50px;margin-top: 0px;margin-left: 80%;"></button>
+                  </div>
+		          	<?php }  ?>
+		          </div>
+		          <div class="col-md-2 col-sm-2">
+		          	<a href="{{url('single-company-profile')}}/{{$applied->company_id}}" class="btn btn-success" style="height:35px;padding-top:6px;width:150px;float: right;">View Company</a>
 		          </div>
 		          <div class="col-md-12 col-sm-12">
 		          	<!-- Contact Page Section Start -->
 		          	<div class="row no-mrg">
-
-						<h5><i class="fa fa-arrow-right"></i>&nbsp;<u>CV Status</u></h5>
-						
-							<div class="col-md-4 col-sm-4">
+                        <div class="col-md-12 col-sm-12">
+                        <span id="hide{{$applied->id}}" style="display: none;">
+						<h5><button type="button" style="background-color: white;border:none;" onclick="hide_cv_status('{{$applied->id}}');"><i class="fa fa-arrow-right"></i>&nbsp;<u>CV Status</u>&nbsp;&nbsp; <i class="fas fa-angle-up"></i></button></h5>
+					   </span>
+					   <span id="show{{$applied->id}}">
+						<h5><button type="button" style="background-color: white;border:none;" onclick="show_cv_status('{{$applied->id}}');"><i class="fa fa-arrow-right"></i>&nbsp;<u>CV Status</u>&nbsp;&nbsp; <i class="fas fa-angle-down"></i></button></h5>
+					   </span>
+					   </div>
+					  
+						<div id="status_bar{{$applied->id}}" style="display: none;">
+							<div class="col-md-2 col-sm-2">
 								<div class="contact-box">
 									<i class="fas fa-paper-plane"></i>
-									<p>Applied &nbsp;<i class="fa fa-check" style="background: none;display:inline;"></i></p>
+									<p>Applied <br/><i class="fa fa-check" style="background: none;display:inline;"></i></p>
 								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4">
+							</div>							
+							<div class="col-md-2 col-sm-2">
 								<div class="contact-box">
 									<i class="fa fa-eye"></i>
-									<p>Viewed &nbsp;
+									<p>Viewed <br/>
 									<?php if($applied->view_status === "0"){?>
 										<i class="far fa-frown-open" style="background: none;display:inline;"></i>
 									<?php }else{ ?>
@@ -278,12 +295,11 @@
 									<?php } ?>
 									</p>
 								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4">
+							</div>	
+							<div class="col-md-2 col-sm-2">
 								<div class="contact-box">
 									<i class="fas fa-clipboard-list"></i>
-									<p>Short listed &nbsp;
+									<p>Shortlisted <br/>
 										<?php if($applied->shortlisted === "0"){?>
 										<i class="far fa-frown-open" style="background: none;display:inline;"></i></p>
 										<?php }else{ ?>
@@ -292,6 +308,43 @@
 
 								</div>
 							</div>
+							<div class="col-md-2 col-sm-2">
+								<div class="contact-box">
+									<i class="far fa-handshake"></i>
+									<p>Interview <br/>
+										<?php if($applied->interview_status === "0"){?>
+										<i class="far fa-frown-open" style="background: none;display:inline;"></i></p>
+										<?php }else{ ?>
+										<i class="fa fa-check" style="background: none;display:inline;"></i>
+									    <?php } ?>
+
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<div class="contact-box">
+									<i class="fas fa-check-square"></i>
+									<p>Selected <br/>
+										<?php if($applied->selected === "0"){?>
+										<i class="far fa-frown-open" style="background: none;display:inline;"></i></p>
+										<?php }else{ ?>
+										<i class="fa fa-check" style="background: none;display:inline;"></i>
+									    <?php } ?>
+
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<div class="contact-box">
+									<i class="fas fa-skull"></i>
+									<p>Rejected <br/>
+										<?php if($applied->rejected === "0"){?>
+										<i class="far fa-frown-open" style="background: none;display:inline;"></i></p>
+										<?php }else{ ?>
+										<i class="fa fa-check" style="background: none;display:inline;"></i>
+									    <?php } ?>
+
+								</div>
+							</div>
+						</div>
 
 					</div>
 		          </div>
@@ -2325,7 +2378,43 @@ data-dismiss="modal" aria-hidden="true">×</button>
 </div><!-- / .modal -->
 
 
-
+<!-- Modal Contents for message -->
+    <div id="message" class="modal fade "> <!-- class modal and fade -->
+      
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          
+           <div class="modal-header"> <!-- modal header -->
+            <button type="button" class="close" 
+             data-dismiss="modal" aria-hidden="true">×</button>
+			 
+                    <h4 class="modal-title">Message</h4>
+           </div>
+		 <form>
+		     		
+		     <div class="modal-body"style="padding: 3%;width: 100%;min-height: 200px;background-color: #e1e1e1;font-family: georgia regular;"> <!-- modal body -->
+		     	
+		     		<div class="row">
+		     			<div class="col-sm-12">
+		     			<div id="msg-label" style="margin-bottom: 3%;"></div>
+		     			<div  id="msg-text" style="background-color: white;padding: 5%;"></div>
+		     			<div id="msg-add"  style="margin-top: 5%;"></div>
+		     			</div>
+		     		</div>
+		     	
+		            
+		     </div>
+	 
+     <div class="modal-footer"> <!-- modal footer -->
+       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel!</button>
+      </div>
+      </form>
+				
+      </div> <!-- / .modal-content -->
+      
+    </div> <!-- / .modal-dialog -->
+      
+ </div><!-- / .modal -->
 
 
 
@@ -2491,6 +2580,25 @@ slider.oninput = function() {
 }
 </script>
 <script type="text/javascript">
+
+	function hide_cv_status(id){
+		//alert(id);
+		$("#status_bar"+id).hide();
+		$("#hide"+id).hide();
+		$("#show"+id).show();
+	}
+	function show_cv_status(id){
+		//alert(id);
+		$("#status_bar"+id).show();
+		$("#hide"+id).show();
+		$("#show"+id).hide();
+	}
+	function view_msg_notify(msg,c_name,candy,loc){
+      $("#message").modal("show");
+      $("#msg-text").html(msg);
+      $("#msg-label").html("<b>To: </b>"+candy+"<br/><b>From:</b> "+c_name);
+      $("#msg-add").html("<b>Company location:</b> "+loc);
+	}
 </script>
 
 
