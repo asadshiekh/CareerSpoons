@@ -124,7 +124,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
     $qwery=DB::table('organization_posts')->where(['post_id'=>$p_id])->first();
     $indus=$qwery->req_industry;
     $title=$qwery->job_title;
-    $user= DB::table('apllied_jobs')->join('register_users','register_users.id', '=', 'apllied_jobs.user_id')->join('user_profile_images','user_profile_images.candidate_id', '=', 'apllied_jobs.user_id')->join('user_choose_temp','user_choose_temp.candidate_id', '=', 'apllied_jobs.user_id')->join('organization_posts','organization_posts.post_id', '=', 'apllied_jobs.post_id')->select('apllied_jobs.*','register_users.*','user_profile_images.*','organization_posts.*','user_choose_temp.*')->where('register_users.user_activation_status','=','1')->where(['organization_posts.req_industry'=>$indus])->where('organization_posts.job_title','like',$title)->get();
+    $user= DB::table('apllied_jobs')->join('register_users','register_users.id', '=', 'apllied_jobs.user_id')->join('user_profile_images','user_profile_images.candidate_id', '=', 'apllied_jobs.user_id')->join('user_choose_temp','user_choose_temp.candidate_id', '=', 'apllied_jobs.user_id')->join('organization_posts','organization_posts.post_id', '=', 'apllied_jobs.post_id')->join('add_user_generals_info','apllied_jobs.user_id', '=', 'add_user_generals_info.id')->select('apllied_jobs.*','register_users.*','user_profile_images.*','organization_posts.*','user_choose_temp.*','add_user_generals_info.*')->where('register_users.user_activation_status','=','1')->where(['add_user_generals_info.candidate_industries'=>$indus])->where('organization_posts.job_title','like',$title)->get();
      if($user->count() > 0){
      return $user;
      }else{
