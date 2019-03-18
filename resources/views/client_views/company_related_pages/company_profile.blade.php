@@ -101,14 +101,14 @@
 
 					<ul class="nav nav-tabs" id="simple-design-tab">
 						<li class="active"><a  data-toggle="tab" href="#bios">Bio</a></li>
-						<li><a data-toggle="tab" href="#info">Info</a></li>
-						<li><a data-toggle="tab" href="#new-job">New-Job-Post</a></li>
-						<li><a data-toggle="tab" href="#total-posts">Total-Posts</a></li>
-						<li><a data-toggle="tab" href="#social_media">Social-Media</a></li>
-						<li><a data-toggle="tab" href="#setting">Settings</a></li>
-						<li><a data-toggle="tab" href="#insights">Insights</a></li>
-						<li><a data-toggle="tab" href="#reviews">Reviews</a></li>
-						<li><a data-toggle="tab" href="#location">Location</a></li>
+						<li><a data-toggle="tab" href="#info" onclick="ref_info();">Info</a></li>
+						<li><a data-toggle="tab" href="#new-job" onclick="ref_new();">New-Job-Post</a></li>
+						<li><a data-toggle="tab" href="#total-posts" onclick="ref_total();">Total-Posts</a></li>
+						<li><a data-toggle="tab" href="#social_media" onclick="ref_media();">Social-Media</a></li>
+						<li><a data-toggle="tab" href="#setting" onclick="ref_setting();">Settings</a></li>
+						<li><a data-toggle="tab" href="#insights" onclick="ref_insight();">Insights</a></li>
+						<li><a data-toggle="tab" href="#reviews" onclick="ref_reviews();">Reviews</a></li>
+						<li><a data-toggle="tab" href="#location" onclick="ref_loc();">Location</a></li>
 						<?php 
 						if(Session::get('company_package_status')=='0'){
 						?>
@@ -1392,6 +1392,34 @@
 
 	}
 
+	
+</script>
+<script type="text/javascript">
+	
+	function ref_info(){
+    $("#info").load(location.href+" #info>*","");
+	}
+	function ref_new(){
+	$("#new-job").load(location.href+" #new-job>*","");
+	}
+	function ref_total(){
+	$("#total-posts").load(location.href+" #total-posts>*","");
+	}
+	function ref_media(){
+	$("#social_media").load(location.href+" #social_media>*","");
+	}
+	// function ref_setting(){
+	// $("#setting").load(location.href+" #setting>*","");
+	// }
+	function ref_insight(){
+	$("#insights").load(location.href+" #insights>*","");
+	}
+	// function ref_reviews(){
+	// $("#reviews").load(location.href+" #reviews>*","");
+	// }
+	function ref_loc(){
+	$("#location").load(location.href+" #location>*","");
+	}
 	
 </script>
 

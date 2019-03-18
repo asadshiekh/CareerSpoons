@@ -21,51 +21,50 @@
 					<ul class="nav nav-tabs" id="simple-design-tab">
 						<li class="active">
 							<a data-toggle="tab" href="#all" onclick="ref_all();">
-							<?php if($users === 0){?>
+							All Applicants	
+							<!-- <?php// if($users === 0){?>
                               All Applicants (0)
-							 <?php }else{ ?>
+							 <?php// }else{ ?>
 						      All Applicants ({{$users->count()}})
-						      <?php } ?>
+						      <?php //} ?> -->
 					       </a>
 					    </li>
 						<li><a data-toggle="tab" href="#viewed" onclick="ref_viewed();">
-							<?php if($viewed_users === 0){?>
+							Viewed Applicants
+							<!-- <?php //if($viewed_users === 0){?>
                                 Viewed Applicants (0) 
-							 <?php }else{ ?>
+							 <?php // }else{ ?>
 							    Viewed Applicants ({{$viewed_users->count()}})
-							<?php } ?>
+							<?php //} ?> -->
 							 </a>
 						</li>
 						<li><a data-toggle="tab" href="#short" onclick="ref_short();">
-                             <?php if($short_users === 0){?>
+							Shortlisted
+                             <!-- <?php // if($short_users === 0){?>
                             Shortlisted (0)
-							 <?php }else{ ?>
+							 <?php // }else{ ?>
 							Shortlisted ({{$short_users->count()}})
-							<?php } ?>
+							<?php //} ?> -->
 					    </a></li>
 					    <li><a data-toggle="tab" href="#sele_for_inter" onclick="ref_sele();">
-					    
-					     <?php if($app_users === 0){?>
+					        Applicants for Interview
+					    <!--  <?php // if($app_users === 0){?>
                             Applicants for Interview (0)
-							 <?php }else{ ?>
+							 <?php // }else{ ?>
 							Applicants for Interview ({{$app_users->count()}})
-							<?php } ?>
+							<?php //} ?> -->
 					    </a></li>
 						<li><a data-toggle="tab" href="#inter" onclick="ref_inter();">
-						
-						 <?php if($call_users === 0){?>
+						     Candidate Results
+						 <!-- <?php // if($call_users === 0){?>
                             Candidate Results (0)
-							 <?php }else{ ?>
+							 <?php // }else{ ?>
 							Candidate Results ({{$call_users->count()}})
-							<?php } ?>
+							<?php //} ?> -->
 					    </a></li>
 					    <li><a data-toggle="tab" href="#matched">
+					    	Matched Candidate
 					    	
-					    	<?php if($match_users === 0){?>
-                            Matched Candidate (0)
-							 <?php }else{ ?>
-							Matched Candidate ({{$match_users->count()}})
-							<?php } ?>
 					    </a></li>
 						
 						
@@ -75,7 +74,13 @@
 							<div class="tab-content">
 
 								<div id="all" class="tab-pane fade in active" style="min-height: 500px;">
-									<h3>All Applicants</h3>
+									<h3>All Applicants 
+										<?php if($users === 0){?>
+			                             (0)
+										 <?php }else{ ?>
+									      ({{$users->count()}})
+									      <?php } ?>
+									  </h3>
 									<!-- start row -->
 									 <div class="row">
 									
@@ -190,7 +195,12 @@
 								<!-- Viewed Applicants -->
 
 								<div id="viewed" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Viewed Applicants</h3>
+									<h3>Viewed Applicants
+									 <?php if($viewed_users === 0){?>
+		                               (0) 
+									 <?php  }else{ ?>
+									    ({{$viewed_users->count()}})
+									 <?php } ?></h3>
 									<!-- start row -->
 									 <div class="row">
 									 <?php if($viewed_users === 0){?>
@@ -233,7 +243,14 @@
 								<!-- Shortlisted Applicants -->
 
 								<div id="short" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Short listed Applicants</h3>
+									<h3>Short listed Applicants
+									<?php if($short_users === 0){?>
+		                               (0) 
+									 <?php  }else{ ?>
+									    ({{$short_users->count()}})
+									 <?php } ?>
+									 	
+									 </h3>
 									<!-- start row -->
 									 <div class="row">
 									 	<?php if($short_users === 0){?>
@@ -278,7 +295,13 @@
 								<!--  Applicants selected for interview -->
 
 								<div id="sele_for_inter" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Applicants Selected for Interview</h3>
+									<h3>Applicants Selected for Interview
+                                    <?php if($app_users === 0){?>
+		                               (0) 
+									 <?php  }else{ ?>
+									    ({{$app_users->count()}})
+									 <?php } ?>
+									</h3>
 									
 									<!-- start row -->
 									 <div class="row">
@@ -326,7 +349,14 @@
 								<!-- Interviewed Applicants -->
 
 								<div id="inter" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Applicants Result</h3>
+									<h3>Applicants Result
+									<?php if($call_users === 0){?>
+		                               (0) 
+									 <?php  }else{ ?>
+									    ({{$call_users->count()}})
+									 <?php } ?>
+									 	
+									 </h3>
 									
 									<!-- start row -->
 									 <div class="row">
@@ -374,7 +404,14 @@
 								<!-- Interviewed Applicants -->
 
 								<div id="matched" class="tab-pane fade" style="min-height: 500px;">
-									<h3>Matched Candidates</h3>
+									<h3>Matched Candidates
+										<?php if($match_users === 0){?>
+		                               (0) 
+									 <?php  }else{ ?>
+									    ({{$match_users->count()}})
+									 <?php } ?>
+									 	
+									 </h3>
 									
 									<!-- start row -->
 									 <div class="row">
