@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Resumes\User_Resume_Model;
 use App\SiteModel\ClientSite\ClientSiteModel;
+use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\User\UserRegisteration;
 use DB;
 use PDF;
@@ -778,10 +779,45 @@ class UserResume extends Controller
 
 	public function candidateJobMatchCriteria(Request $request){
 
-		echo "<pre>";
-		print_r($request->candidate_skill);
-	   // The Data is in Array PHP
+		// echo "<pre>";
+		// print_r($request->all());
 
+		
+
+		//dd($request->candidate_skill_criteria);
+		  //$primary_skill = implode(" ",$skills);
+		 // $primary_skill  = str_replace(" ",",",$primary_skill);
+
+		//dd($primary_skill);		
+		$created_at = date("Y.m.d h:i:s");
+		$user_response = array(
+			'desired_designation' => $request->candidate_dd,
+			'functional_criteria' => $request->candidate_crteria_function_area,
+			'major_criteria' => $request->candidate_crteria_major,
+			'preferred_city' => $request->candidate_criteria_city,
+			'total_experience' =>$request->candidate_criteria_Experience,
+			'expected_salary' => $request->candidate_criteria_salary,
+			'job_type_criteria' => $request->candidate_criteria_job_type,
+			'candidate_primary_skill' => $request->candidate_skill_criteria[0],
+			'updated_at' => $created_at,	
+		);
+
+		$obj =  new UserProfileModel();
+       $data = $obj->do_update_candidate_criteria($user_response,$request->session()->get('id'));
+
+       if($data){
+
+       	return redirect('user-profile')->with('success','Your Job Criteria Successfully Updated!');	
+       }
+
+       else{
+
+       	return redirect('user-profile')->with('error','Not Updated Something Went Wrong!');	
+       }
+
+
+
+		
 	}
 
 

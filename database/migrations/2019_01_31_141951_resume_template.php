@@ -23,6 +23,25 @@ class ResumeTemplate extends Migration
             $table->string('template_folder');
             $table->timestamps();
         });
+
+
+        $current_date = date("Y.m.d h:i:s");
+        DB::table('resume_templates')->insert(
+        array(
+            'temp_title' => 'Ionic',
+            'temp_info' => 'This is Ionic',
+            'index_page' => 'resume.blade.php',
+            'css_page' => 'style.css',
+            'cover_img' => 'image.PNG',
+            'template_folder' => '902524166',
+            'created_at' => $current_date,
+        )
+        );
+
+
+
+
+
     }
 
     /**

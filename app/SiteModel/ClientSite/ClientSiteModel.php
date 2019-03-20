@@ -153,6 +153,12 @@ class ClientSiteModel extends Model
 
     }
 
+    public function get_job_match_criteria($candidate_id){
+
+         $response = DB::table('candidate_job_match_criteria')->where('candidate_id',$candidate_id)->get();
+         return $response;       
+    }
+
 
 
 

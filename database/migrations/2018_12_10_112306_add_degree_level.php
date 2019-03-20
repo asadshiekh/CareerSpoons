@@ -13,11 +13,44 @@ class AddDegreeLevel extends Migration
      */
     public function up()
     {
-        Schema::create('Add_degreelevel', function (Blueprint $table) {
+        Schema::create('add_degreelevel', function (Blueprint $table) {
              $table->increments('degree_id');
             $table->string('degree_title');
             $table->timestamps();
         });
+
+
+         $current_date = date("Y.m.d h:i:s");
+        DB::table('add_degreelevel')->insert(
+        array(
+            'degree_title' => 'FA',
+            'created_at' => $current_date,
+        )
+        );
+
+        DB::table('add_degreelevel')->insert(
+        array(
+            'degree_title' => 'BA',
+            'created_at' => $current_date,
+        )
+        );
+
+
+        DB::table('add_degreelevel')->insert(
+        array(
+            'degree_title' => 'FSC',
+            'created_at' => $current_date,
+        )
+        );  
+
+
+        DB::table('add_degreelevel')->insert(
+        array(
+            'degree_title' => 'ICOM',
+            'created_at' => $current_date,
+        )
+        );    
+
     }
 
     /**

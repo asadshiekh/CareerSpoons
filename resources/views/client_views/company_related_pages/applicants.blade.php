@@ -22,51 +22,28 @@
 						<li class="active">
 							<a data-toggle="tab" href="#all" onclick="ref_all();">
 							All Applicants	
-							<!-- <?php// if($users === 0){?>
-                              All Applicants (0)
-							 <?php// }else{ ?>
-						      All Applicants ({{$users->count()}})
-						      <?php //} ?> -->
+							
 					       </a>
 					    </li>
 						<li><a data-toggle="tab" href="#viewed" onclick="ref_viewed();">
 							Viewed Applicants
-							<!-- <?php //if($viewed_users === 0){?>
-                                Viewed Applicants (0) 
-							 <?php // }else{ ?>
-							    Viewed Applicants ({{$viewed_users->count()}})
-							<?php //} ?> -->
 							 </a>
 						</li>
 						<li><a data-toggle="tab" href="#short" onclick="ref_short();">
 							Shortlisted
-                             <!-- <?php // if($short_users === 0){?>
-                            Shortlisted (0)
-							 <?php // }else{ ?>
-							Shortlisted ({{$short_users->count()}})
-							<?php //} ?> -->
-					    </a></li>
+                              </a></li>
 					    <li><a data-toggle="tab" href="#sele_for_inter" onclick="ref_sele();">
 					        Applicants for Interview
-					    <!--  <?php // if($app_users === 0){?>
-                            Applicants for Interview (0)
-							 <?php // }else{ ?>
-							Applicants for Interview ({{$app_users->count()}})
-							<?php //} ?> -->
+					   
 					    </a></li>
 						<li><a data-toggle="tab" href="#inter" onclick="ref_inter();">
 						     Candidate Results
-						 <!-- <?php // if($call_users === 0){?>
-                            Candidate Results (0)
-							 <?php // }else{ ?>
-							Candidate Results ({{$call_users->count()}})
-							<?php //} ?> -->
+
 					    </a></li>
 					    <li><a data-toggle="tab" href="#matched">
 					    	Matched Candidate
 					    	
 					    </a></li>
-						
 						
 					</ul>
 							

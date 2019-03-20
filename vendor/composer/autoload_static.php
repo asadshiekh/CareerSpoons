@@ -415,7 +415,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
     );
 
     public static $classMap = array (
-        'App\\Console\\Commands\\date' => __DIR__ . '/../..' . '/app/Console/Commands/date.php',
+        'App\\Console\\Commands\\Company_Payment' => __DIR__ . '/../..' . '/app/Console/Commands/Company_Payment.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -468,6 +468,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Site_Request\\User_Register_Validation' => __DIR__ . '/../..' . '/app/Http/Requests/Site_Request/User_Register_Validation.php',
         'App\\Mail\\Admin_Mail\\User_Mail\\Reply_Contact_Us' => __DIR__ . '/../..' . '/app/Mail/Admin_Mail/User_Mail/Reply_Contact_Us.php',
+        'App\\Mail\\Site_Mail\\Company_Mail\\Company_Payment' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/Company_Mail/Company_Payment.php',
         'App\\Mail\\Site_Mail\\Company_Mail\\Company_Registeration' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/Company_Mail/Company_Registeration.php',
         'App\\Mail\\Site_Mail\\User_Mail\\User_Change_Email' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Change_Email.php',
         'App\\Mail\\Site_Mail\\User_Mail\\User_Contact_Us' => __DIR__ . '/../..' . '/app/Mail/Site_Mail/User_Mail/User_Contact_Us.php',

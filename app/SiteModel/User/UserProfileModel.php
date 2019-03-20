@@ -13,6 +13,20 @@ class UserProfileModel extends Model
 		return $data;     
 	}
 
+
+	public function do_initialized_job_match_criteria($user_response3){
+
+	$data = DB::table('candidate_job_match_criteria')->insert($user_response3);
+		return $data;     
+	}
+
+
+	public function do_update_candidate_criteria($user_response,$candidate_id){
+
+		$data = DB::table('candidate_job_match_criteria')->where('candidate_id',$candidate_id)->update($user_response);
+		return $data; 
+	}
+
 	public function update_reviews($candidate_id,$user_response){
 
 		$data = DB::table('candidate_reviews')->where('candidate_id',$candidate_id)->update($user_response);
@@ -117,6 +131,17 @@ class UserProfileModel extends Model
 		return $data;
 		
 	}
+
+	public function get_matched_jobs($candidate_id){
+
+		$info = DB::table('candidate_job_match_criteria')->join('add_user_generals_info','add_user_generals_info.candidate_id', '=', 'candidate_job_match_criteria.candidate_id')->join('organization_posts','add_user_generals_info.candidate_industries', '=', 'organization_posts.req_industry')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->where('organization_posts.job_title','Like','%candidate_job_match_criteria.desired_designation%')->where(['candidate_job_match_criteria.candidate_id'=>$candidate_id])->select('candidate_job_match_criteria.*','add_user_generals_info.*','add_organizations.*','organization_posts.*')->get();
+
+		return $info;
+	}
+
+	// $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+
+
 
 
 }

@@ -364,6 +364,11 @@
 
 
 <div id="job_criteria" class="tab-pane fade">
+
+<div class="row">
+
+<div class="col-md-8 col-sm-6">
+
 <h3>Job Match Criteria </h3>
 <form action="{{url('user_job_match_criteria')}}" method="post">
 {{ csrf_field() }}
@@ -371,10 +376,18 @@
 <div class="edit-pro">
 <br>	
 
+
+@foreach ($get_job_match as $val)
+<div class="col-md-4 col-sm-6">
+<label>Desired Designation</label>
+<input type="text" name="candidate_dd"  class="form-control" placeholder="Desired Designation" value="{{$val->desired_designation}}">
+</div>
+
 <div class="col-md-4 col-sm-6">
 <label>Functional Area</label>
-<select class="form-control input-lg" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Functional Area</option>
+<select class="form-control input-lg" name="candidate_crteria_function_area" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
+	
+	<option value="" selected="selected" hidden="hidden"><?php if($val->functional_criteria){echo $val->functional_criteria;}else{echo "Select Functional Area";} ?></option>
 	@foreach($get_area as $value)
 	<option value="{{$value->area_title}}">
 		<?php
@@ -390,17 +403,8 @@
 
 <div class="col-md-4 col-sm-6">
 <label>Select Majors</label>
-<select class="form-control input-lg" id="candidate_majors_area">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Majors</option>
-	
-</select>
-</div>
-
-
-<div class="col-md-4 col-sm-6">
-<label>Desired Designation</label>
-<select class="form-control input-lg" id="desired_designation">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Designation</option>
+<select class="form-control input-lg" name="candidate_crteria_major"  id="candidate_majors_area">
+	<option value="" disabled="disabled" selected="selected" hidden="hidden"><?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?></option>
 	
 </select>
 </div>
@@ -420,67 +424,49 @@
 
 
 <div class="col-md-4 col-sm-6">
-<label>Minimum Experience</label>
-<select class="form-control input-lg" id="candidate_experience_level">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Experience</option>
-	<option>Data</option>
-</select>
-</div>
-
-<div class="col-md-4 col-sm-6">
-<label>Minimum Expected Salary</label>
-<select class="form-control input-lg" id="candidate_salary">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Expected Salary</option>
-	<option>Data</option>
-</select>
-</div>
-
-<div class="col-md-4 col-sm-6">
 <label>Preferred Job City</label>
-<select class="form-control input-lg" id="candidate_preferred_city">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
+<select class="form-control input-lg" name="candidate_criteria_city"  id="candidate_criteria_city">
+	<option value=""  selected="selected" hidden="hidden"><?php if($val->preferred_city){echo $val->preferred_city;}else{echo "Select Job City";} ?></option>
 	@foreach($get_cities as $value)
 	<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 	@endforeach
 </select>
 </div>
 
+
+
 <div class="col-md-4 col-sm-6">
+<label>Minimum Experience</label>
+<select class="form-control input-lg" name="candidate_criteria_Experience" id="candidate_experience_level">
+	<option value=""  selected="selected" hidden="hidden"><?php if($val->total_experience){echo $val->total_experience;}else{echo "Select Experience";} ?></option>
+	<option>Data</option>
+</select>
+</div>
+
+<div class="col-md-4 col-sm-6">
+<label>Minimum Expected Salary</label>
+<input type="text" value="{{$val->expected_salary}}" class="form-control" name="candidate_criteria_salary" placeholder="25000">
+</div>
+
+<div class="col-md-12 col-sm-6">
 <label>Job Type</label>
-<select class="form-control input-lg" id="candidate_job_type">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Job Type</option>
+<select class="form-control input-lg" name="candidate_criteria_job_type" id="candidate_job_type">
+	<option value=""  selected="selected" hidden="hidden"><?php if($val->job_type_criteria){echo $val->job_type_criteria;}else{echo "Select Job Type";} ?></option>
 	<option value="full time">Full Time</option>
 	<option value="part time">Part Time</option>
+	<option value="part time">Internship</option>
 </select>
 </div>
 
-<!-- <div class="col-md-12 col-sm-12">
-<label>Primary Skill</label>
- <input class="form-control input-lg" list="functional_area" name="candidate_skill_category" placeholder="Select Functional Area" id="candidate_skill_category" oninput="fun();">
-  <datalist id="functional_area">
-    <option value="Internet Explorer">
-    <option value="Firefox">
-    <option value="Chrome">
-    <option value="Opera">
-    <option value="Safari">
-  </datalist>
-</div>
-
-
-<div class="col-md-12 col-sm-12">
-<label>Primary Skill</label>
- <select class="form-control input-lg"  multiple data-role="tagsinput" name="candidate_skill[]" id="skilltags">
- 
-</select>
-</div> -->
-
-
-<div class="col-md-12 col-sm-12">
+<div class="col-md-12 col-sm-6">
 <label style="display:block">Primary Skill</label>
-<select class="form-control input-lg"  multiple data-role="tagsinput" name="candidate_skill[]" id="skilltags">
- <option value=""></option>
-</select>
+<input type="text" value="<?php if($val->candidate_primary_skill){echo $val->candidate_primary_skill;}else{echo "Enter Skills";} ?>" class="form-control input-lg" multiple data-role="tagsinput" name="candidate_skill_criteria[]" id="skilltags"/>
+
+<!-- $primary_skill = explode(',',$val->candidate_primary_skill);-->
+
+ 
 </div>
+@endforeach
 
 
 
@@ -491,6 +477,45 @@
 </div>
 </div>
 </form>	
+</div>
+
+<div class="col-md-4 col-sm-6">
+
+<h4 style="text-align: center;font-style:bolder">Your Job Match Criteria </h4>
+
+	<ul class="job-detail-des">
+			@foreach ($get_job_match as $value)
+			<li><span>D.D:</span>
+				{{$value->desired_designation ? $value->desired_designation  : 'Not Set Yet'}}
+			</li>
+			<li><span>Functional Area:</span>
+				{{$value->functional_criteria ? $value->functional_criteria  : 'Not Set Yet'}}
+			</li>
+			<li><span>Select Majors:</span>
+				{{$value->major_criteria ? $value->major_criteria  : 'Not Set Yet' }}
+			</li>
+			<li><span>Preferred Job City:</span>
+				{{$value->preferred_city ? $value->preferred_city  : 'Not Set Yet' }}
+			</li>
+			<li><span>Total Experience:</span>
+				{{$value->total_experience ? $value->total_experience  : 'Not Set Yet' }}</li>
+			<li><span>Expected Salary:</span>
+				{{$value->expected_salary ? $value->expected_salary  : 'Not Set Yet' }}
+			</li>
+			<li><span>Job Type:</span>
+				{{$value->job_type_criteria ? $value->job_type_criteria  : 'Not Set Yet' }}
+			</li>
+			<li><span>Primary Skill:</span>
+				{{$value->candidate_primary_skill ? $value->candidate_primary_skill  : 'Not Set Yet' }}
+			</li>
+			@endforeach
+		</ul>
+
+</div>
+
+</div> 
+<!-- End Row -->
+
 </div>
 
 <!--  -->
@@ -903,6 +928,10 @@
 <!-- Start Job List -->
 <div id="matches-job" class="tab-pane fade">
 	<h3>Matches-job 122 new job</h3>
+
+
+
+
 	<div class="row">
 		<article class="advance-search-job">
 			<div class="row no-mrg">
@@ -919,7 +948,6 @@
 				</div>
 				<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
 			</div>
-			<span class="tg-themetag tg-featuretag">Premium</span>
 		</article>
 		
 		<article class="advance-search-job">

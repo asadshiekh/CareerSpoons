@@ -69,9 +69,9 @@ class SiteUser extends Controller
        $data = $obj3->do_initialized_user_profile_image_table_with_default_values($user_response3);
 
       //Initialized Table of User Review sYSTEM
-
         $obj4 =  new UserProfileModel();
         $data = $obj4->do_initialized_review($user_response3);
+        $data1 = $obj4->do_initialized_job_match_criteria($user_response3);
 
 
     	 if($user_info){
