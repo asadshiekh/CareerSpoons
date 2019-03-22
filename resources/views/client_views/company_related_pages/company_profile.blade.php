@@ -930,9 +930,16 @@
         									<label>Industry:</label>
         										<select name="selected_industry" class="form-control" placeholder="select industry" id="selected_industry">
         											<option id="industry-option" disabled="disabled" selected="selected">Select Industry</option>
-        											@foreach($industry as $industry)
-        											<option id="industry-option" value="{{$industry->company_industry_name}}">{{$industry->company_industry_name}}</option>
-        											@endforeach
+        											<?php foreach($industry as $industry){?>
+        											<option id="industry-option" value="{{$industry->company_industry_name}}">
+        											<?php
+
+        											$industry->company_industry_name= str_replace("_"," ",$industry->company_industry_name);
+											echo $industry->company_industry_name;
+
+        									
+        											?></option>
+        											<?php } ?>
         										</select>
         								</div>
         							<!-- Operating Since -->

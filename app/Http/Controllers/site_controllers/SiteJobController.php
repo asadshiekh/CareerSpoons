@@ -67,9 +67,18 @@ class SiteJobController extends Controller
     }
 
 
-    public function viewAllJobSearch(){
-        $obj = new JobModel();
-    	return view('client_views.jobs_related_pages.all_jobs');
+    public function viewAllJobSearch(Request $request,$get_industry){
+      $obj = new JobModel();
+      $city = $obj->get_cities();
+      $indus = $obj->get_indus();
+      
+      // if(empty($get_industry)){
+      //   $job_selected_industry = $obj->search_selected_industry(); 
+      // } 
+      // else{
+        
+      // }
+    	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus]);
     }
 
     public function viewjobDetail($id){

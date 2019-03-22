@@ -18,7 +18,7 @@
 						
 						<div class="detail-pic">
 							<img src="../uploads/organization_images/{{$job_detail->company_img}}" class="img" alt="" />
-							<a href="#" class="detail-edit" title="edit" ><i class="fas fa-shield-alt"></i></a>
+							<a href="#" class="detail-edit" title="Company Profile Image" ><i class="fas fa-shield-alt"></i></a>
 						</div>
 
 
@@ -40,8 +40,9 @@
 
 								
 							<div class="detail-desc-caption">
-								<h4 style="padding-bottom: 3%;">{{$job_detail->company_name}}</h4>
-								<span class="designation">{{$job_detail->company_type}} Company</span>
+								<h4 style="border-bottom:3px double black;display:inline;"><a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}"> 
+									{{$job_detail->company_name}}</a></h4>
+								<span style="padding-top: 3%; display:block;" class="designation">{{$job_detail->company_type}} Company</span>
 
 								<p><?php $job_detail->company_info= str_replace("<p>"," ",$job_detail->company_info);
 								$job_detail->company_info= str_replace("</p>"," ",$job_detail->company_info);
@@ -207,7 +208,23 @@
 							
 							<div class="row row-bottom mrg-0">
 							<h2 class="detail-title">Required Skills</h2>
-							<p>{{$job_detail->job_skills}}</p>
+							<p>
+								<!-- {{$job_detail->job_skills}} -->
+
+							<div class="apply-job-detail">
+								
+								<ul class="skills">
+									<?php  
+									$skill = explode(',',$job_detail->job_skills);
+									foreach ($skill as $key => $value){
+									?>
+									<li>{{$value}}</li>
+									<?php } ?>
+								</ul>
+							</div>
+
+
+							</p>
 							
 							</div>
 							

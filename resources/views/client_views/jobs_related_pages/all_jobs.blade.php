@@ -18,41 +18,44 @@
 						<div class="wrap-search-filter">
 							<form>
 								<div class="col-md-3 col-sm-6">
-                                   <input type="text" class="form-control" placeholder="Location: City, State, Zip">
+                                   <select class="form-control" name="company_industry" title="Industries">
+									  <option disabled selected hidden >Select Industry</option>
+									  <?php
+									 	foreach ($industry as $indus) { 
+									 	$value=str_replace("_"," ",$indus->company_industry_name);
+									 	?>
+
+									 	<option value="{{$indus->company_industry_name}}">{{$value}}</option>
+
+									 <?php } ?>
+									</select>
 								</div>
 								
 								<div class="col-md-3 col-sm-6">
-									<select class="selectpicker form-control" multiple title="All Categories">
-									  <option>Information Technology</option>
-									  <option>Mechanical</option>
-									  <option>Hardware</option>
-									</select>
+									<select class="form-control" name="select_career_level" title="Career-Level">
+									 <option disabled selected hidden >Select Career Level</option>
+									 <option value="Entry_Level">Entry Level</option>
+									 <option value="Intermediate">Intermediate</option>
+									 <option value="Experienced_Professional">Experienced Professional</option>
+									 <option value="Department_Head">Department Head</option>
+									 <option value="CEO">GM / CEO</option>
 
+									</select>
+								</div>
+
+								<div class="col-md-3 col-sm-6">
+									<select class="form-control" name="company_city" title="City">
+									  <option disabled selected hidden >Select City</option>
+									   <?php
+									  foreach ($cities as $cty) { ?>
+									  <option><?php echo $cty->company_city_name ?></option>
+										
+									<?php }	?>
+									</select>
 								</div>
 								
-								<div class="col-md-6 col-sm-12">
-									<div class="job-types">
-										<label>
-											<input type="checkbox" class="full-time check-option checkbox" CHECKED />
-											Full Time
-										</label>
-										
-										<label>
-											<input type="checkbox" class="part-time check-option checkbox" />
-											Part Time
-										</label>
-										
-										<label>
-											<input type="checkbox" class="freelancer check-option checkbox" />
-											Freelancer
-										</label>
-										
-										<label>
-											<input type="checkbox" class="internship check-option checkbox" />
-											Internship
-										</label>
-										
-									</div>
+								<div class="col-md-3 col-sm-6">
+									<button class="btn btn-success" style="width: 100%;font-weight: bold;">Filter</button>
 								</div>
 								
 							</form>
@@ -84,7 +87,7 @@
 								</div>
 								<div class="col-md-2 col-sm-2">
 									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
+										<a href="job-detail.html" class="btn btn-success">View Details</a>
 									</div>
 								</div>
 							</div>
@@ -92,194 +95,7 @@
 						</article>
 					</div>
 				
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Compensation Analyst</h3></a>
-										<p>
-											<span>Google</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$810 - 900</span>
-											<span class="job-type bg-trans-warning cl-warning">Part Time</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Investment Banker</h3></a>
-										<p>
-											<span>Honda</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$800 - 910</span>
-											<span class="job-type bg-trans-primary cl-primary">Freelancer</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-							<span class="tg-themetag tg-featuretag">Premium</span>
-						</article>
-					</div>
-					
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Financial Analyst</h3></a>
-										<p>
-											<span>Microsoft</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$580 - 600</span>
-											<span class="job-type bg-trans-success cl-success">Full Time</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Service Representative</h3></a>
-										<p>
-											<span>Autodesk</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$800 - 900</span>
-											<span class="job-type bg-trans-denger cl-danger">Enternship</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Chief Executive Officer</h3></a>
-										<p>
-											<span>Google</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$510 - 700</span>
-											<span class="job-type bg-trans-success cl-success">Full Time</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-							<span class="tg-themetag tg-featuretag">Premium</span>
-						</article>
-					</div>
-					
-					<div class="item-click">
-						<article>
-							<div class="brows-job-list">
-								<div class="col-md-1 col-sm-2 small-padding">
-									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt="" /></a>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-5">
-									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Administrative Manager</h3></a>
-										<p>
-											<span>Honda</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$700 - 800</span>
-											<span class="job-type bg-trans-warning cl-warning">Part Time</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-2">
-									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-default">Apply Now</a>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					
+
 					<!--row-->
 					<div class="row">
 						<ul class="pagination">

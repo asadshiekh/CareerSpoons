@@ -173,7 +173,7 @@
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
-						$("#phone_number").mask("(0399) 999-9999");
+						$("#phone_number").mask("(9999)-9999999");
 						//$.mask.definitions['#'] = $.mask.definitions['9'];
 						//$.mask.definitions['9'] = null; 
 						//+7 ([000]) [000]-[0000]
@@ -227,7 +227,7 @@
 
 					const instance_number = superplaceholder({
 						el: document.querySelector('#phone_number'),
-						sentences: ['(0334) 9974743'],
+						sentences: ['(0334)-9974743'],
 						options: {
 							letterDelay: 100,
 							sentenceDelay: 1000,

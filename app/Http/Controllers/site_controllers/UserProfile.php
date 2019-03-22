@@ -46,9 +46,9 @@ class UserProfile extends Controller
 
 
 
-		$object1 =  new UserProfileModel();
-		$get_candidate_matched_jobs=$object1->get_matched_jobs($request->session()->get('id'));
-		dd($get_candidate_matched_jobs);
+		//$object1 =  new UserProfileModel();
+		//$get_candidate_matched_jobs=$object1->get_matched_jobs($request->session()->get('id'));
+		//dd($get_candidate_matched_jobs);
 
 		// Fetch Eduction of User Number
 		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates,'temp_in'=>$temp_in,'get_qualification'=>$get_qualification,'get_industries'=>$get_industries,'applied_jobs'=>$applied_jobs,'get_job_match'=>$get_job_match_criteria]);

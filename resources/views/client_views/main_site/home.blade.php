@@ -365,7 +365,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Accounting & Finance</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Accounting_&_Finance">Accounting & Finance</a></h4>
 							<p><?php 
 
 							if($get_AccountingFinance===0){
@@ -390,7 +390,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Automotive Jobs</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Automotive">Automotive Jobs</a></h4>
 							<p><?php 
 
 							if($get_Automotive===0){
@@ -415,7 +415,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Business</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Business">Business</a></h4>
 							<p><?php 
 
 							if($get_business===0){
@@ -440,7 +440,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Education Training</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Education_Training">Education Training</a></h4>
 							<p><?php 
 
 							if($get_eduction===0){
@@ -464,7 +464,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Healthcare</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Healthcare">Healthcare</a></h4>
 							<p><?php 
 							
 							if($get_healthcare===0){
@@ -489,7 +489,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Restaurant & Food</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Restaurant_&_Food">Restaurant & Food</a></h4>
 							<p><?php 
 							
 							if($get_RestaurantFood===0){
@@ -514,7 +514,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Transportation</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Transportation">Transportation</a></h4>
 							<p> 
 							<?php 
 							
@@ -540,7 +540,7 @@
 						</div>
 
 						<div class="category-detail category-desc-text">
-							<h4> <a href="browse-jobs-grid.html">Telecommunications</a></h4>
+							<h4> <a href="{{url('all-jobs')}}/Telecommunications">Telecommunications</a></h4>
 							<p><?php 
 							
 							if($get_Telecommunications===0){

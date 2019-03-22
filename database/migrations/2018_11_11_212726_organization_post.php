@@ -31,7 +31,7 @@ class OrganizationPost extends Migration
             $table->string('post_visibility_date');
             $table->string('selected_gender');
             $table->string('prefered_age');
-            $table->string('job_post_info'); 
+            $table->longText('job_post_info'); 
             $table->string('post_status'); 
            
             $table->timestamps();
