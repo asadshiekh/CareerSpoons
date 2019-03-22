@@ -22,7 +22,6 @@
 						</div>
 
 
-
 						<div class="detail-status">
 							<span>
 							<?php

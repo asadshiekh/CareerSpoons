@@ -16,7 +16,8 @@
 					<!-- Company Searrch Filter End -->
 					<div class="row extra-mrg">
 						<div class="wrap-search-filter">
-							<form>
+							<form action="{{url('search-by-industry')}}" method="POST">
+								 {{ csrf_field() }}
 								<div class="col-md-3 col-sm-6">
                                    <select class="form-control" name="company_industry" title="Industries">
 									  <option disabled selected hidden >Select Industry</option>
@@ -55,7 +56,7 @@
 								</div>
 								
 								<div class="col-md-3 col-sm-6">
-									<button class="btn btn-success" style="width: 100%;font-weight: bold;">Filter</button>
+									<button type="submit" class="btn btn-success" style="width: 100%;font-weight: bold;">Filter</button>
 								</div>
 								
 							</form>
@@ -64,6 +65,16 @@
 					<!-- Company Searrch Filter End -->
 					
 					<div class="item-click">
+
+						<?php 
+						if($search_results=="0"){ ?>
+
+							<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
+
+						<?php }else{
+
+					  foreach ($search_results as $val) { ?>
+
 						<article>
 							<div class="brows-job-list">
 								<div class="col-md-1 col-sm-2 small-padding">
@@ -93,21 +104,27 @@
 							</div>
 							<span class="tg-themetag tg-featuretag">Premium</span>
 						</article>
+					<?php } ?>
+					
 					</div>
 				
 
 					<!--row-->
 					<div class="row">
 						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
+
+							{{ $search_results->links() }}
+							<!-- <li><a href="#">&laquo;</a></li>
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li> 
 							<li><a href="#">4</a></li> 
 							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
-							<li><a href="#">&raquo;</a></li> 
+							<li><a href="#">&raquo;</a></li>  -->
 						</ul>
 					</div>
+
+					<?php } ?>
 					<!-- /.row-->
 				</div>
 			</section>

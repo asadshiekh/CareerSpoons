@@ -164,6 +164,7 @@ Route::get('logout',"site_controllers\SiteUserLogin@logout")->middleware('CheckU
 Route::any('search-jobs',"site_controllers\SiteJobController@viewRelatedJobSearch");
 Route::any('filter-search',"site_controllers\SiteJobController@viewFilterJobSearch");
 Route::get('all-jobs/{industry?}',"site_controllers\SiteJobController@viewAllJobSearch");
+Route::any('search-by-industry',"site_controllers\SiteJobController@searchByIndustry");
 Route::get('job-details/{id}',"site_controllers\SiteJobController@viewjobDetail");
 
 

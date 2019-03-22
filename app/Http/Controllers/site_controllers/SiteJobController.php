@@ -67,18 +67,33 @@ class SiteJobController extends Controller
     }
 
 
-    public function viewAllJobSearch(Request $request,$get_industry){
+    public function viewAllJobSearch(Request $request){
+      $get_industry=$request->segment(2);
       $obj = new JobModel();
       $city = $obj->get_cities();
       $indus = $obj->get_indus();
+      // if($get_industry){}else{}
       
-      // if(empty($get_industry)){
-      //   $job_selected_industry = $obj->search_selected_industry(); 
-      // } 
-      // else{
-        
-      // }
-    	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus]);
+      $search_result = $obj->get_select_industry_jobs($get_industry);
+      
+      // dd($search_result);
+    	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result]);
+    }
+
+
+    public function searchByIndustry(Request $request){
+
+      $get_indus = $request->company_industry;
+      $get_career = $request->select_career_level;
+      $get_city = $request->company_city;
+
+      $obj = new JobModel();
+      $city = $obj->get_cities();
+      $indus = $obj->get_indus();
+      $search_result = $obj->filter_result_by_industry($get_indus,$get_career,$get_city);
+
+      return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result]);
+    
     }
 
     public function viewjobDetail($id){

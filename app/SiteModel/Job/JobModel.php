@@ -308,4 +308,59 @@ public function get_indus(){
            }
       }
     }
+
+
+    public function get_select_industry_jobs($get_industry){
+
+     if($get_industry){
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->paginate(1);
+
+    if($info->count()>0){
+       return $info;
+     }
+     else{
+       return  $info = $info->count();
+     }
+
+   }else{
+     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->get();
+
+     if($info->count()>0){
+       return $info;
+     }
+     else{
+       return  $info = $info->count();
+     }
+     
+   }
+
+ }
+
+
+    public function filter_result_by_industry($get_indus,$get_career,$get_city){
+
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+
+
+      if($get_indus){
+        $info->where(['organization_posts.req_industry'=>$get_indus]);
+      }
+      if($get_career){
+        $info->where(['organization_posts.req_career_level'=>$get_career]);
+      }
+      if($get_city){
+        $info->where(['add_organizations.company_city'=>$get_city]);
+      }
+       
+
+     if($info->count()>0){
+       return $info->paginate(2);
+     }
+     else{
+       return  $info = $info->count();
+     }
+
+  }    
+
+
 }
