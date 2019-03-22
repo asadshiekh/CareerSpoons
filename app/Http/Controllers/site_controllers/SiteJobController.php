@@ -61,7 +61,7 @@ class SiteJobController extends Controller
         $indus = $obj->get_indus();
         // echo "<pre>";
         // print_r($job);
-        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$fcity,'f_area'=>$farea,'f_indus'=>$findus,'f_qual'=>$fqual,'f_exp'=>$fexp,'f_type'=>$ftype,'f_shift'=>$fshift]);
+       return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$fcity,'f_area'=>$farea,'f_indus'=>$findus,'f_qual'=>$fqual,'f_exp'=>$fexp,'f_type'=>$ftype,'f_shift'=>$fshift]);
 
 
     }

@@ -21,17 +21,17 @@ if($title || $city || $area){
 
 $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id');
       if($title){
-      $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_title','like','%'.$title.'%');
+      $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_title','like','%'.$title.'%');
       }
       if($area){
-        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.functional_area','=',$area);
+        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.functional_area','=',$area);
       }
       if($city){
 
         $jobs->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->Where('job_preferences.city','=',$city)->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block');
       }
       if($title=" " && $area=" " && $city=" "){
-        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block');
+        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
       }
 
 
@@ -134,44 +134,44 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
   }
   public function fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift){
     if($fcity || $farea || $findus || $fexp || $fqual || $ftype || $fshift){
-     
-     $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id');
+    // echo $fshift;
+     $jobee= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id');
       if($fcity){
-         $jobe->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$fcity);
+         $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$fcity);
        
       }
       if($farea){
-        $jobe->Where('organization_posts.functional_area','=',$farea)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('organization_posts.functional_area','like',$farea)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
       }
       if($findus){
-        $jobe->Where('organization_posts.req_industry','=',$findus)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('organization_posts.req_industry','=',$findus)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
       }
       
       if($fexp == "1" || $fexp == "2" || $fexp == "3" || $fexp == "4" || $fexp == "5"){
-        $jobe->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','=',$fexp);
+        $jobee->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','=',$fexp);
       }
       if($fexp == "6"){
-        $jobe->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','>','5');
+        $jobee->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','>','5');
       }
       if($fqual){
-        $jobe->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualification','=',$fqual);
+        $jobee->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualification','=',$fqual);
        
       }
-      if($fcity && $ftype){
-        $jobe->Where('job_preferences.job_type','=',$ftype);
-      }
+      // if($fcity && $ftype){
+      //   $jobee->Where('job_preferences.job_type','=',$ftype);
+      // }
       if($ftype){
-        $jobe->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_type','=',$ftype)->where('organization_posts.post_status','!=','Block');
+        $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_type','=',$ftype)->where('organization_posts.post_status','!=','Block');
       }
 
       if($fshift){
-        $jobe->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_shift','=',$fshift)->where('organization_posts.post_status','!=','Block');
+        $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_shift','=',$fshift)->where('organization_posts.post_status','!=','Block');
       }
-      if($fcity && $fshift){
-        $jobe->Where('job_preferences.job_shift','=',$fshift);
-      }
+      // if($fcity && $fshift){
+      //   $jobee->Where('job_preferences.job_shift','=',$fshift);
+      // }
 
-       $jobe=$jobe->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+       $jobe=$jobee->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
         if($jobe->count()>0){
 
             return $jobe;

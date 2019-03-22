@@ -258,7 +258,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_city" id="f_city">
-												<option selected hidden value="<?php if($f_city){echo $f_city;} ?>"><?php if($f_city){echo $f_city;}else{echo 'Select City';} ?></option>
+												<?php if($f_city){?>
+												<option selected hidden value="{{$f_city}}">{{$f_city}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select City</option>
+                                                 <?php } ?>
 												<?php if($city === 0){
 
 												}else{ 
@@ -288,7 +292,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_area">
-												<option selected hidden value="<?php if($f_area){echo $f_area;} ?>"><?php if($f_area){echo $f_area;}else{echo 'Select Functional Area';} ?></option>
+												<?php if($f_area){?>
+												<option selected hidden value="{{$f_area}}">{{$f_area}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Functional area</option>
+                                                 <?php } ?>
 												<?php if($area1 === 0){
 
 												}else{ 
@@ -313,7 +321,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_indus">
-												<option selected hidden value="<?php if($f_indus){echo $f_indus;} ?>"><?php if($f_indus){echo $f_indus;}else{echo 'Select Industry';} ?></option>
+												<?php if($f_indus){?>
+												<option selected hidden value="{{$f_indus}}">{{$f_indus}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Industry</option>
+                                                 <?php } ?>
 												<?php if($indus === 0){
 
 												}else{ 
@@ -341,7 +353,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_qual">
-												<option selected hidden value="<?php if($f_qual){echo $f_qual;} ?>"><?php if($f_qual){echo $f_qual;}else{echo 'Select Qualification Level';} ?></option>
+												<?php if($f_qual){?>
+												<option selected hidden value="{{$f_qual}}">{{$f_qual}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Qualification</option>
+                                                 <?php } ?>
 												<?php if($qual === 0){
 
 												}else{ 
@@ -367,7 +383,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_exp">
-												<option selected hidden value="<?php if($f_exp){echo $f_exp;} ?>"><?php if($f_exp){echo $f_exp;}else{echo 'Select Experience Level';} ?></option>
+												<?php if($f_exp){?>
+												<option selected hidden value="{{$f_exp}}">{{$f_exp}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Experience</option>
+                                                 <?php } ?>
 												<option value="fresh">Fresh</option>
 												<option value="1">one year</option>
 												<option value="2">two year</option>
@@ -391,7 +411,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_type">
-												<option selected hidden value="<?php if($f_type){echo $f_type;} ?>"><?php if($f_type){echo $f_type;}else{echo 'Select Job Type';} ?></option>
+												<?php if($f_type){?>
+												<option selected hidden value="{{$f_type}}">{{$f_type}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Job Type</option>
+                                                 <?php } ?>
 												<option value="Part Time">Part Time</option>
 												<option value="Full Time">Full Time</option>
 												
@@ -407,7 +431,11 @@
 									<ul>
 										<li>
 											<select class="form-control" name="f_shift">
-												<option selected hidden value="<?php if($f_shift){echo $f_shift;}else{echo 'Select Job Type';} ?>"><?php if($f_shift){echo $f_shift;}else{echo 'Select Job Shift';} ?></option>
+												<?php if($f_shift){?>
+												<option selected hidden value="{{$f_shift}}">{{$f_shift}}</option>
+                                                 <?php }else{ ?>
+                                                 	<option selected hidden disabled>Select Job shift</option>
+                                                 <?php } ?>
 												<option value="Morning Shift">Morning Shift</option>
 												<option value="Night Shift">Night Shift</option>
 												<option value="Evening Shift">Evening Shift</option>
