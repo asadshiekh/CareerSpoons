@@ -159,6 +159,26 @@ class ClientSiteModel extends Model
          return $response;       
     }
 
+    public function get_all_matched_jobs($u_id){
+       $qwery=DB::table('candidate_job_match_criteria')->where(['candidate_id'=>$u_id])->first();
+        $q=DB::table('add_user_generals_info')->where(['candidate_id'=>$u_id])->first();
+    $indus=$q->candidate_industries;
+    $title=$qwery->desired_designation;
+    $exp=$qwery->total_experience;
+    $area=$qwery->functional_criteria;
+    $major=$qwery->major_criteria;
+    $city=$qwery->preferred_city;
+    $jobs=DB::table('organization_posts')->join('add_organizations','organization_posts.company_id', '=', 'add_organizations.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','job_preferences.post_id', '=', 'organization_posts.post_id')->where('organization_posts.job_title','like',$title)->where('organization_posts.req_industry','like',$indus)->where('organization_posts.job_experience','like',$exp)->where('organization_posts.functional_area','=',$area)->where('organization_posts.req_major','=',$major)->where('job_preferences.city','=',$city)->select('organization_posts.*','add_organizations.*','upload_org_img.*','job_preferences.*')->get();
+
+     if($jobs->count() > 0){
+     return $jobs;
+     }else{
+     return $jobs->count();
+     }
+
+    
+    }
+
 
 
 

@@ -933,57 +933,32 @@
 
 
 	<div class="row">
+		<?php if($get_match_use_jobs === 0){ ?>
+         <h4 style="text-align: center;color: red;"> No Match jobs found</h4>
+		<?php }else{ ?>
+		@foreach($get_match_use_jobs as $match)
 		<article class="advance-search-job">
 			<div class="row no-mrg">
 				<div class="col-md-6 col-sm-6">
 					<a href="new-job-detail.html" title="job Detail">
-						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt=""></div>
+						<div class="advance-search-img-box"><img src="{{url('uploads/organization_images')}}/{{$match->company_img}}" class="img-responsive" alt=""></div>
 					</a>
-					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Google Ltd</span></div>
+					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>{{$match->job_title}}</h4></a><span>{{$match->company_name}}</span></div>
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<div class="advance-search-job-locat">
-						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+						<p><i class="fa fa-map-marker"></i>{{$match->company_location}}</p>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
+				<div class="col-md-2 col-sm-2"><a href="{{url('job-details')}}/{{$match->post_id}}" class="btn advance-search" title="view">View</a></div>
 			</div>
 		</article>
-		
-		<article class="advance-search-job">
-			<div class="row no-mrg">
-				<div class="col-md-6 col-sm-6">
-					<a href="new-job-detail.html" title="job Detail">
-						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt=""></div>
-					</a>
-					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>CEO &amp; Manager</h4></a><span>Twitter</span></div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="advance-search-job-locat">
-						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-					</div>
-				</div>
-				<div class="col-md-2 col-sm-2"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="btn advance-search" title="apply">Apply</a></div>
-			</div>
-		</article>
-		<article class="advance-search-job">
-			<div class="row no-mrg">
-				<div class="col-md-6 col-sm-6">
-					<a href="new-job-detail.html" title="job Detail">
-						<div class="advance-search-img-box"><img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt=""></div>
-					</a>
-					<div class="advance-search-caption"><a href="new-job-detail.html" title="Job Dtail"><h4>Product Designer</h4></a><span>Microsoft Ltd</span></div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="advance-search-job-locat">
-						<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-					</div>
-				</div>
-				<div class="col-md-2 col-sm-2"><a href="#" class="btn applied advance-search" title="applied"><i class="fa fa-check" aria-hidden="true"></i>Applied</a></div>
-			</div>
-		</article>
+		@endforeach
+	<?php }?>
+			
 	</div>
-	<div class="row">
+
+	<!-- <div class="row">
 		<ul class="pagination">
 			<li><a href="#">«</a></li>
 			<li class="active"><a href="#">1</a></li>
@@ -993,7 +968,7 @@
 			<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
 			<li><a href="#">»</a></li>
 		</ul>
-	</div>
+	</div> -->
 </div>
 <!-- End Job List -->
 

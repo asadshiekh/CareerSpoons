@@ -338,6 +338,8 @@
 			    $("#go").hide();
 			    $("#done").show();
 
+            }else if(data == "no"){
+            	swal("Oops", "This Job is not about Your Field.", "error");
             }else{
             	swal("Oops", "Something Wents Wrong Plz Try Again.", "error");
             }

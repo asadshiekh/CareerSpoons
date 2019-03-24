@@ -116,6 +116,12 @@ class SiteJobController extends Controller
         $p_id=$request->post('p_id');
         //echo $c_id." ".$p_id;
         $u_id=$request->session()->get("id");
+        $u_in=DB::table('add_user_generals_info')->where(['candidate_id'=>$u_id])->first();
+        $p_in=DB::table('organization_posts')->where(['post_id'=>$p_id])->first();
+        $post_indus=$p_in->req_industry;
+        $user_indus=$u_in->candidate_industries;
+
+        if($post_indus == $user_indus){
         $resume=DB::table('user_choose_temp')->where(['candidate_id'=>$u_id])->first();
         $r_id=$resume->temp_id;
 
@@ -136,6 +142,10 @@ class SiteJobController extends Controller
         if(DB::table('apllied_jobs')->insert($apply)){
         echo "yes";
         }
+      }else{
+        echo "no";
+      }
+
     }
 
     function viewApplicantsOfPost(Request $request){
@@ -231,7 +241,7 @@ class SiteJobController extends Controller
           $career='';
           $quali='';
           $indus='';
-                //dd($viewed_users);
+               // dd($match_users);
           return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
         }
 
@@ -240,7 +250,7 @@ class SiteJobController extends Controller
       $p_id=$request->post("p");
       $c_id=$request->post("c");
       $u_id=$request->post("u");
-      echo $msg=$request->post("msg");
+      $msg=$request->post("msg");
 
       $change=array(
         'message'=>$msg
@@ -323,7 +333,8 @@ class SiteJobController extends Controller
           $match_users=$obj->fetch_match_users_against_post($c_id,$p_id);
          // echo "<pre>";
          // print_r($candidates);
-         return view('client_views.company_related_pages.applicants',['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
+          //dd($match_users);
+        return view('client_views.company_related_pages.applicants',['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
        }
     }
 

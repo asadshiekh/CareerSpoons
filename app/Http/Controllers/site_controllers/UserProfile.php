@@ -43,7 +43,7 @@ class UserProfile extends Controller
 		$get_qualification=$obj1->get_all_qualification();
 		$get_industries=$obj1->get_all_indutries();
 		$get_job_match_criteria=$obj1->get_job_match_criteria($request->session()->get('id'));
-
+        $get_match_use_jobs=$obj1->get_all_matched_jobs($request->session()->get('id'));
 
 
 		//$object1 =  new UserProfileModel();
@@ -51,7 +51,8 @@ class UserProfile extends Controller
 		//dd($get_candidate_matched_jobs);
 
 		// Fetch Eduction of User Number
-		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates,'temp_in'=>$temp_in,'get_qualification'=>$get_qualification,'get_industries'=>$get_industries,'applied_jobs'=>$applied_jobs,'get_job_match'=>$get_job_match_criteria]);
+		//dd($get_match_use_jobs);
+		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates,'temp_in'=>$temp_in,'get_qualification'=>$get_qualification,'get_industries'=>$get_industries,'applied_jobs'=>$applied_jobs,'get_job_match'=>$get_job_match_criteria,'get_match_use_jobs'=>$get_match_use_jobs]);
 	}
 
 

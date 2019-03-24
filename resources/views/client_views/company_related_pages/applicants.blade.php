@@ -410,11 +410,7 @@
 							          <div class="col-md-2 col-sm-2" id="btn-data">
 							         
 							          <!-- <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button> -->
-							           <?php  if($us->selected === "1"){?>
-							          <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;" disabled>Selected<i class="fa fa-check"></i></button>
-							          <?php }if($us->rejected === "1"){?>
-							          	 <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;"  disabled>Rejected <i class="far fa-frown-open"></i></button>
-							           <?php }?>
+							         
 							          
 							          </div>
 							          <div class="col-sm-2 col-md-2">
