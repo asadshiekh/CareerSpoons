@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\ClientSite\ClientSiteModel;
+use App\SiteModel\Job\JobModel;
 use App\Mail\Site_Mail\User_Mail\User_Contact_Us;
 use Alert;
 use DB;
@@ -27,11 +28,16 @@ class SiteController extends Controller
   $get_RestaurantFood = $obj1->get_all_RestaurantFood();
   $get_Transportation = $obj1->get_all_Transportation();
   $get_Telecommunications = $obj1->get_all_Telecommunications();
-  
+    
+  $obj3 = new JobModel();
+  $random_jobs = $obj3->get_all_random_jobs();
    //echo "<pre>";
    //print_r($get_AccountingFinance);
 
-  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas]);
+
+  //dd($random_jobs);
+
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas,'random_jobs'=>$random_jobs]);
  }
 
  public function viewContactUs(){

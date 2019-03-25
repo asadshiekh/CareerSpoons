@@ -100,239 +100,129 @@
 		<!--Browse Job In Grid-->
 		<div class="row extra-mrg">
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="part-time">Part Time</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+
+			<?php 
+			
+			if($random_jobs=="0"){?>
+
+				<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Jobs Not Found </h4>
+			
+			<?php }else{ 
+
+			foreach ($random_jobs as $val) { 
+
+				date_default_timezone_set("Asia/Karachi");
+				$post_date = strtotime($val->post_visibility_date); 
+
+				$timenow = date('Y-m-d');
+				$timestamp = strtotime($timenow);
+                   		   
+				if($post_date<$timestamp){?>
+					<!-- <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4> -->
+				<?php }
+				else{ ?>
+
 
 			<!-- Single Job Grid -->
 			<div class="col-md-3 col-sm-6">
 				<div class="grid-view brows-job-list">
 					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-2.jpg')}}" class="img-responsive" alt="" />
+						<img src="uploads/organization_images/{{$val->company_img}}" class="img-responsive" alt="" />
 					</div>
 					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
+						<h3><a href="job-detail.html">{{$val->job_title}}</a></h3>
+						<p><span>{{$val->company_name}}</span></p>
 					</div>
 					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="freelanc">Freelancer</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-					<span class="tg-themetag tg-featuretag">Premium</span>
-				</div>
-			</div>
+						<span class="job-num"><?php 
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-3.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="enternship">Enternship</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+													if($val->total_positions>1){
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-4.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="full-time">Full Time</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+											echo   $val->total_positions.' 
+											 Positions' ;
+													}
+													else{
+														echo $val->total_positions.' Position' ;
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-5.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="part-time">Part Time</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-					<span class="tg-themetag tg-featuretag">Premium</span>
-				</div>
-			</div>
+													}	
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-6.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
+												?></span>
 					</div>
 					<div class="brows-job-type">
-						<span class="full-time">Full Time</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+						<span class="full-time">
+							
+							<?php 
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-7.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="freelanc">Freelancer</span>
-					</div>
-					<ul class="grid-view-caption">
-						<li>
-							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-							</div>
-						</li>
-						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-						</li>
-					</ul>
-				</div>
-			</div>
+							$date=$val->created_at; 
 
-			<!-- Single Job Grid -->
-			<div class="col-md-3 col-sm-6">
-				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
-						<img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" />
-					</div>
-					<div class="brows-job-position">
-						<h3><a href="job-detail.html">Web Developer</a></h3>
-						<p><span>Google</span></p>
-					</div>
-					<div class="job-position">
-						<span class="job-num">5 Position</span>
-					</div>
-					<div class="brows-job-type">
-						<span class="enternship">Enternship</span>
+  											// Declare timestamps
+							$last = new DateTime($date);
+							$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+							$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+							$years = (int)$interval->format('%Y');
+							$months = (int)$interval->format('%m');
+							$days = (int)$interval->format('%d');
+							$hours = (int)$interval->format('%H');
+							$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+							if($years > 1)
+							{
+								echo $years.' Years Ago.' ;
+							}
+							else if($years == 1)
+							{
+								echo $years.' Year Ago.' ;
+							}
+							else if($months > 1)
+							{
+								echo $months.' Months Ago.' ;
+							}
+							else if($months == 1)
+							{
+								echo $months.' Month Ago.' ;
+							}
+							else if($days > 1)
+							{
+								echo $days.' Days Ago.' ;
+							}
+							else if($days == 1)
+							{
+								echo $days.' Day Ago.' ;
+							}
+							else if($hours > 1)
+							{
+								echo  $hours.' Hours Ago.' ;
+							}
+							else if($hours == 1)
+							{
+								echo  $hours.' Hour Ago.' ;
+
+							}
+							else
+							{
+								echo $minutes.' Minutes Ago.' ;
+							}
+
+							?>
+
+						</span>
 					</div>
 					<ul class="grid-view-caption">
 						<li>
 							<div class="brows-job-location">
-								<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+								<p style="display:block;padding-top:15px;"><i class="fa fa-map-marker"></i>{{$val->company_city}}</p>
 							</div>
 						</li>
 						<li>
-							<p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
+							<p><a href="job-details/{{$val->post_id}}" class="btn advance-search" title="apply">View</a></p>
 						</li>
 					</ul>
 				</div>
 			</div>
+		<?php }}} ?>
+
 
 		</div>
 		<!--/.Browse Job In Grid-->

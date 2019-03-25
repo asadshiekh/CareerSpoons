@@ -113,7 +113,14 @@
 					<div class="row">
 						<ul class="pagination">
 
+
+							<?php 
+						if($search_results=="0"){}else{ ?>
+
 							{{ $search_results->links() }}
+
+						<?php } ?>
+
 							<!-- <li><a href="#">&laquo;</a></li>
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>

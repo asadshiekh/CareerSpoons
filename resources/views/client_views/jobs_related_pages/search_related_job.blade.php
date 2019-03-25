@@ -108,7 +108,7 @@
             				$timestamp = strtotime($timenow);
                    		    //echo "id " .$jobs->post_id ."=";
                     		if($post_date<$timestamp){?>
-                    			<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
+                    			<!-- <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4> -->
                     		<?php }
                     		else{ ?>
 

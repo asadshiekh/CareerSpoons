@@ -159,7 +159,7 @@
 						<li><a data-toggle="tab" href="#resume_templates">Templates</a></li>
 						<li><a data-toggle="tab" href="#job_criteria">Job-Criteria</a></li>
 						<li><a data-toggle="tab" href="#matches-job">Matches-Job</a></li>
-						<li><a data-toggle="tab" href="#profile_meter">Profile-Insight</a></li>
+						<li><a data-toggle="tab" href="#profile_meter" onclick="ref_profile_meter();">Profile-Insight</a></li>
 						<li><a data-toggle="tab" href="#rating">Rating</a></li>
 						<!-- <li><a data-toggle="tab" href="#friends">Friends</a></li> -->
 						<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
@@ -437,10 +437,10 @@
 
 <div class="col-md-4 col-sm-6">
 <label>Minimum Experience</label>
-<select class="form-control input-lg" name="candidate_criteria_Experience" id="candidate_experience_level">
-	<option value=""  selected="selected" hidden="hidden"><?php if($val->total_experience){echo $val->total_experience;}else{echo "Select Experience";} ?></option>
-	<option>Data</option>
-</select>
+
+<input type="number" name="candidate_criteria_Experience" id="candidate_experience_level"  class="form-control" placeholder="Total Experience`" value="{{$val->total_experience}}">
+
+
 </div>
 
 <div class="col-md-4 col-sm-6">
@@ -2602,6 +2602,17 @@ slider.oninput = function() {
       $("#msg-label").html("<b>To: </b>"+candy+"<br/><b>From:</b> "+c_name);
       $("#msg-add").html("<b>Company location:</b> "+loc);
 	}
+
+function ref_profile_meter(){
+
+
+	$("#profile_meter").load(location.href+" #profile_meter>*","");
+	
+	// $("#pie_charts").hide();
+	// $("#line_charts").hide();
+	// $("#ProfileStrengthMeter").hide();
+}
+
 </script>
 
 

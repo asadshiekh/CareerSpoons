@@ -321,7 +321,7 @@ public function get_indus(){
     public function get_select_industry_jobs($get_industry){
 
      if($get_industry){
-      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->paginate(1);
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->paginate(2);
 
     if($info->count()>0){
        return $info;
@@ -331,7 +331,7 @@ public function get_indus(){
      }
 
    }else{
-     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->get();
+     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->paginate(2);
 
      if($info->count()>0){
        return $info;
@@ -368,7 +368,23 @@ public function get_indus(){
        return  $info = $info->count();
      }
 
+  }
+
+
+  public function get_all_random_jobs(){
+
+    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->limit(8)->get();
+    if($jobs->count()>0){
+
+      return $jobs;
+    }
+    else{
+      return $jobs->count();
+    }
+
   }    
+
+
 
 
 }
