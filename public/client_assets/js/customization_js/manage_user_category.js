@@ -69,14 +69,14 @@ function change_category(){
 
 function change_candidate_charts_view(){
 
-
 	var x =  document.getElementById('candidate_chart_view').value;
 
 	if(x=="Bar"){
-
+     
 		$("#line_charts").show();
 		$("#pie_charts").hide();
 		$("#ProfileStrengthMeter").hide();	
+		
 		
 	}
 
@@ -85,6 +85,7 @@ function change_candidate_charts_view(){
 		$("#line_charts").hide();
 		$("#pie_charts").show();
 		$("#ProfileStrengthMeter").hide();	
+		
 	}
 
 	else if(x=="Profile-Strength-Meter"){
