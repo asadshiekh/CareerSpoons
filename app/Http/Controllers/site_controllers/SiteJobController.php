@@ -76,7 +76,7 @@ class SiteJobController extends Controller
       
       $search_result = $obj->get_select_industry_jobs($get_industry);
       
-      // dd($search_result);
+      //dd($search_result);
     	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result]);
     }
 

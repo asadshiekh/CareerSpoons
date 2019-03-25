@@ -73,21 +73,47 @@
 
 						<?php }else{
 
-					  foreach ($search_results as $val) { ?>
+					  foreach ($search_results as $val) { 
+
+					  	date_default_timezone_set("Asia/Karachi");
+					  	$post_date = strtotime($val->post_visibility_date); 
+
+					  	$timenow = date('Y-m-d');
+					  	$timestamp = strtotime($timenow);
+
+					  	if($post_date<$timestamp){?>
+
+					  	<?php }
+					  	else{ ?>
 
 						<article>
 							<div class="brows-job-list">
 								<div class="col-md-1 col-sm-2 small-padding">
 									<div class="brows-job-company-img">
-										<a href="job-detail.html"><img src="{{url('public/client_assets/img/com-1.jpg')}}" class="img-responsive" alt="" /></a>
+										<a href="job-detail.html">
+											<img src="uploads/organization_images/{{$val->company_img}}" class="img-responsive" alt="" />
+										</a>
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-5">
 									<div class="brows-job-position">
-										<a href="job-detail.html"><h3>Senior front-end Developer</h3></a>
+										<a href="job-detail.html"><h3>{{$val->job_title}}</h3></a>
 										<p>
-											<span>Autodesk</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$750 - 800</span>
-											<span class="job-type cl-success bg-trans-success">Full Time</span>
+											<span>{{$val->company_name}}</span><span class="brows-job-sallery"><i class="fas fa-user-plus"></i><?php 
+											if($val->total_positions>1){
+
+												echo   $val->total_positions.' 
+												Positions' ;
+											}
+											else{
+												echo $val->total_positions.' Position' ;
+
+											}	
+											?></span>
+											<span class="job-type cl-success bg-trans-success">
+											<?php echo $val->req_industry=str_replace("_"," ",$val->req_industry); ?>
+
+											</span>
 										</p>
 									</div>
 								</div>
@@ -98,14 +124,69 @@
 								</div>
 								<div class="col-md-2 col-sm-2">
 									<div class="brows-job-link">
-										<a href="job-detail.html" class="btn btn-success">View Details</a>
+										<!-- <a href="job-detail.html" class="btn btn-success">View Details</a> -->
+										<a href="job-details/{{$val->post_id}}" class="btn advance-search" title="apply">View</a>
 									</div>
 								</div>
 							</div>
-							<span class="tg-themetag tg-featuretag">Premium</span>
+							<span class="tg-themetag tg-featuretag">								
+							<?php 
+
+							$date=$val->created_at;   											
+							$last = new DateTime($date);
+							$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 
+							$interval = $last->diff($now);
+    									
+							$years = (int)$interval->format('%Y');
+							$months = (int)$interval->format('%m');
+							$days = (int)$interval->format('%d');
+							$hours = (int)$interval->format('%H');
+							$minutes = (int)$interval->format('%i');
+                                
+							if($years > 1)
+							{
+								echo $years.' Years Ago.' ;
+							}
+							else if($years == 1)
+							{
+								echo $years.' Year Ago.' ;
+							}
+							else if($months > 1)
+							{
+								echo $months.' Months Ago.' ;
+							}
+							else if($months == 1)
+							{
+								echo $months.' Month Ago.' ;
+							}
+							else if($days > 1)
+							{
+								echo $days.' Days Ago.' ;
+							}
+							else if($days == 1)
+							{
+								echo $days.' Day Ago.' ;
+							}
+							else if($hours > 1)
+							{
+								echo  $hours.' Hours Ago.' ;
+							}
+							else if($hours == 1)
+							{
+								echo  $hours.' Hour Ago.' ;
+
+							}
+							else
+							{
+								echo $minutes.' Minutes Ago.' ;
+							}
+
+							?>
+
+							</span>
 						</article>
-					<?php } ?>
-					
+					<?php }} ?>
 					</div>
 				
 

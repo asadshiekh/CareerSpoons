@@ -757,6 +757,7 @@
 				}); 
 			</script>
 
+
 			<script>
 				$(function() {
 					$('#toggle-two').bootstrapToggle({
@@ -777,12 +778,10 @@
 
 						if(value==true){
 
-
 							$("#candidate_facebook_social_link").prop('disabled',false);
 							$("#candidate_google_social_link").prop('disabled',false);
 							$("#candidate_twitter_social_link").prop('disabled',false);
 							$("#candidate_linkedin_social_link").prop('disabled',false);
-
 							$("#social_links_update_button").prop("disabled",false);
 						}
 
@@ -792,17 +791,16 @@
 							$("#candidate_google_social_link").prop('disabled',true);
 							$("#candidate_twitter_social_link").prop('disabled',true);
 							$("#candidate_linkedin_social_link").prop('disabled',true);
-
-						$("#social_links_update_button").prop("disabled",true);
+							$("#social_links_update_button").prop("disabled",true);
 
 
 						}
 
 					})
 				})
+				
 			</script>
-
-
+				
 			
 
 			<script>			
@@ -881,8 +879,6 @@
 				$user_skill=DB::table('add_user_skills')->where('candidate_id', $id)->get()->count();
 				$user_lanaguage=DB::table('add_user_languages')->where('candidate_id', $id)->get()->count();
 				$user_hobbies=DB::table('add_user_hobbies')->where('candidate_id', $id)->get()->count();
-
-
 
 
 				?>	
@@ -1169,7 +1165,9 @@
 					$("#candidate_linkedin_social_link").prop('disabled', true);
 
 					$("#social_links_update_button").prop("disabled",true);
-					$("#social_links_update_button").attr("aria-disabled",true);; 
+					$("#social_links_update_button").attr("aria-disabled",true);
+
+					
 
 					var options = {
 						  useEasing: true, 

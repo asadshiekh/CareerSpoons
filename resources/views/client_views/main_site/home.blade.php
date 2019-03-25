@@ -126,7 +126,7 @@
 			<!-- Single Job Grid -->
 			<div class="col-md-3 col-sm-6">
 				<div class="grid-view brows-job-list">
-					<div class="brows-job-company-img">
+					<div class="brows-job-company-img">						
 						<img src="uploads/organization_images/{{$val->company_img}}" class="img-responsive" alt="" />
 					</div>
 					<div class="brows-job-position">
@@ -135,18 +135,16 @@
 					</div>
 					<div class="job-position">
 						<span class="job-num"><?php 
+						if($val->total_positions>1){
 
-													if($val->total_positions>1){
+							echo   $val->total_positions.' 
+							Positions' ;
+						}
+						else{
+							echo $val->total_positions.' Position' ;
 
-											echo   $val->total_positions.' 
-											 Positions' ;
-													}
-													else{
-														echo $val->total_positions.' Position' ;
-
-													}	
-
-												?></span>
+						}	
+						?></span>
 					</div>
 					<div class="brows-job-type">
 						<span class="full-time">

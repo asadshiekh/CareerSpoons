@@ -72,12 +72,14 @@ function change_candidate_charts_view(){
 	var x =  document.getElementById('candidate_chart_view').value;
 
 	if(x=="Bar"){
-     
+
+
 		$("#line_charts").show();
 		$("#pie_charts").hide();
 		$("#ProfileStrengthMeter").hide();	
-		
-		
+		// $("#linechart").load(location.href+"#linechart*","");
+
+
 	}
 
 	else if(x=="Pie"){

@@ -26,8 +26,8 @@
   </a>
 
   <form class="form-inline">
-  	<a class="btn btn-outline-primary my-2 my-sm-0" href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}" style="color:white;margin-right:5px">Download PDF</a>
-  	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a>
+  	<!-- <a class="btn btn-outline-primary my-2 my-sm-0" href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}" style="color:white;margin-right:5px">Download PDF</a>
+  	<a  href="{{url('user-profile')}}" class="btn btn-outline-primary my-2 my-sm-0" style="color:white">Go Back</a> -->
   </form>
 
 </nav>
@@ -43,8 +43,17 @@
 			<h2 class="quickFade delayThree">({{$general_info->candidate_profession}})</h2>
 		</div>
 		<div id="intro">
+
 			<p style="margin-bottom:0px;"><i class="fas fa-envelope"></i>{{$user_register->user_email}}</p>
-			<p><i class="fas fa-phone"></i>{{$user_register->phone_number}}</p>
+			<?php
+			if($user_register->current_number_status == '1'){?>
+
+				<p><i class="fas fa-phone"></i>{{$user_register->phone_number}}</p>
+
+			<?php }else{  ?>
+				<p><i class="fas fa-city"></i>{{$general_info->candidate_city}}</p>
+			<?php } ?>
+
 		</div>	
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>

@@ -39,14 +39,27 @@
 
 								
 							<div class="detail-desc-caption">
-								<h4 style="border-bottom:3px double black;display:inline;"><a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}"> 
-									{{$job_detail->company_name}}</a></h4>
-								<span style="padding-top: 3%; display:block;" class="designation">{{$job_detail->company_type}} Company</span>
 
-								<p><?php $job_detail->company_info= str_replace("<p>"," ",$job_detail->company_info);
-								$job_detail->company_info= str_replace("</p>"," ",$job_detail->company_info);
-								 ?>
-									{{$job_detail->company_info}}.</p>
+							<h3>{{$job_detail->job_title}} </h3>
+
+						<span style="border-bottom:3px double black;display:inline;" class="designation"><a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}">  {{$job_detail->company_name}} </a></span>
+
+						<p>
+								<?php 
+
+								if(empty($job_detail->company_info)){
+									
+									echo "<span style='color:red;padding-top:10px;display:inline-block;'> Company Details Not Given By the Company Yet </span>";
+								}else{
+
+									$job_detail->company_info=str_replace("<p>"," ",$job_detail->company_info);
+									echo $job_detail->company_info=str_replace("</p>"," ",$job_detail->company_info);
+								}
+
+								
+								?>
+
+								</p>
 								
 							</div>
 								
@@ -58,9 +71,32 @@
 							<div class="get-touch">
 								<h4>Get in Touch</h4>
 								<ul>
-									<li><i class="fa fa-map-marker"></i><span>{{$job_detail->company_location}}</span></li>
+									<li><i class="fa fa-map-marker"></i><span>
+										<?php	
+										if(empty($job_detail->company_location)){
+											echo "<span style='color:red'> Not Given Yet </span>";
+										}else{
+											echo $job_detail->company_location; 
+										}	?>
+
+									</span></li>
 									<li><i class="fa fa-envelope"></i><span>{{$job_detail->company_email}}</span></li>
-									<li><i class="fa fa-globe"></i><span>{{$job_detail->company_website}}</span></li>
+									
+									<li><i class="fa fa-globe"></i><span>
+
+									<?php
+
+									if($job_detail->company_website == 'www.example.com'){
+											echo "<span style='color:red'> Not Given Yet </span>";
+										}else{
+											echo $job_detail->company_website; 
+										}									
+										
+										?>
+
+									</span></li>
+
+
 									<li><i class="fa fa-phone"></i><span>{{$job_detail->company_phone}}</span></li>
 								</ul>
 							</div>

@@ -367,8 +367,8 @@
 <h3>Manage Social Links</h3>
 </div>
 <div class="col-md-2  col-md-offset-4">	
-<input type="checkbox" id="toggle-two" data-onstyle="success" data-offstyle="danger">
-</div>
+<!-- <input id="toggle-demo" type="checkbox" data-toggle="toggle">-->
+ </div>
 <br>
 <form action="update-company-social-links" method="post">
 {{ csrf_field() }}
@@ -1429,6 +1429,7 @@
 	}
 	
 </script>
+
 
 
 @endsection

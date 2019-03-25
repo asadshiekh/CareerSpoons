@@ -297,6 +297,7 @@
 			z-index:3;
 			border: 1px solid red;
 			top:24px;
+			padding: 5px;
 		}
 
 	</style>

@@ -23,8 +23,8 @@
       </div>
       <div id="nav-but">
       <button type="button" id="nav-buttons" onclick="top_bar('{{$data->temp_id}}');" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button>
-      <a href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}">link</a>
-        <a id="nav-buttons" href="{{url('user-profile')}}" class="navbar-brand">Go Back</a>
+      <!-- <a href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}">link</a>
+      <a id="nav-buttons" href="{{url('user-profile')}}" class="navbar-brand">Go Back</a> -->
     </div>
     </div>
 
