@@ -2,9 +2,14 @@
 @section('content')
 			
 			<!-- Title Header Start -->
-			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-10.jpg);">
+			<section class="inner-header-title" style="background-image:url({{url('public/client_assets/img/banner-10.jpg')}});">
 				<div class="container">
-					<h1>Browse Jobs</h1>
+					<h1><?php if(Request::segment(2)){
+						$u=str_replace("_"," ",Request::segment(2))?>
+                     {{ $u }}
+					<?php }else{
+						echo "Browse Jobs";
+					}?></h1>
 				</div>
 			</section>
 			<div class="clearfix"></div>

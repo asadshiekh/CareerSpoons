@@ -7,7 +7,7 @@
 <head>
 <!-- Basic Page Needs
 	================================================== -->
-	<title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
+	<title><?php if($page_title){echo $page_title;}else{echo "CareerSpoons";} ?></title>
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -96,7 +96,7 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspYour Profile</a></li>
 								<li><a class="dropdown-item" href="#CandidateSetting" data-toggle="modal" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspSetting</a></li>		
-								<li><a class="dropdown-item" href="{{url('logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
+								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
 						@elseif (Session::has('company_status'))
@@ -602,6 +602,9 @@
 				top:8px;
 				left:5px;
 			}
+			#btn-log{
+				cursor: pointer;
+			}
 
 			</style>
 			
@@ -759,6 +762,21 @@
 
 				function closeRightMenu() {
 					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+			<script type="text/javascript">
+				function logout_all(){
+					//alert("yes");
+					var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+					var l = window.location;
+
+					var base_url = l.protocol + "//" + l.host + "/logout";
+					
+					$.post(base_url,{_token:CSRF_TOKEN},function(data){
+						if(data == "yes"){
+							window.location.replace(window.location);
+						}
+					 });
 				}
 			</script>
 		</div>

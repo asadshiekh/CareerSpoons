@@ -16,7 +16,7 @@ class SiteUser extends Controller
 
 
     public function viewRegisterUser(){
-
+      
     	return view('client_views.user_related_pages.user_registeration');
     }
 

@@ -17,8 +17,9 @@ class SiteCompany extends Controller
 		$obj1 = new ClientSiteModel();
 		$get_cities = $obj1->get_all_cities();
 		$get_types = $obj1->get_all_types();
+		$page_title="CareerSpoons - Company Registeration";
 		
-		return view('client_views.company_related_pages.company_registeration',['get_cities'=>$get_cities,'get_types'=>$get_types]);
+		return view('client_views.company_related_pages.company_registeration',['get_cities'=>$get_cities,'get_types'=>$get_types,'page_title'=>$page_title]);
 	}
 
 	public function doRegisterCompany(Request $request){
@@ -94,7 +95,8 @@ class SiteCompany extends Controller
       $obj = new CompanyProfileModel();
       $org=$obj->fetch_all_filter_companies($name,$city);
       $fetch_citi=DB::table('Add_cities')->get();
-      return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi,'name'=>$name,'city'=>$city]);
+      $page_title = "CareerSpoons - Filter Companies";
+      return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi,'name'=>$name,'city'=>$city,'page_title'=>$page_title]);
 	}
 
 }

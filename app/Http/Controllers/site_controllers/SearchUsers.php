@@ -31,7 +31,8 @@ class SearchUsers extends Controller
          $industry=DB::table('Company_industries')->get();
          $degree=DB::table('Add_degreelevel')->get();
          $qual=DB::table('Add_qualification')->get();
-    	return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus]);
+         $page_title="CareerSpoons - Candidates";
+    	return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'page_title'=>$page_title]);
     }
 
     public function viewSingleCandidate(Request $request,$id){
@@ -48,7 +49,8 @@ class SearchUsers extends Controller
         $candidate_skill = $obj->fetch_candidate_skill_resume_details($id);
         $img = $obj->fetch_profile_img($id);
         $links = $obj->fetch_links($id);
-    	return view('client_views.user_related_pages.single_candidate_profile',['info'=>$info,'general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill,'img'=>$img,'links'=>$links]);
+        $page_title="CareerSpoons - ".$general_info->candidate_name;
+    	return view('client_views.user_related_pages.single_candidate_profile',['info'=>$info,'general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill,'img'=>$img,'links'=>$links,'page_title'=>$page_title]);
     }
 
     public function FilterUsers(Request $request){
@@ -67,6 +69,7 @@ class SearchUsers extends Controller
          $qual=DB::table('Add_qualification')->get();
          // echo "<pre>";
          // print_r($candidates);
-         return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus]);
+         $page_title="CareerSpoons - Filter Candidates";
+         return view('client_views.user_related_pages.all_users',['candidates'=>$candidates,'industry'=>$industry,'degree'=> $degree,'qual'=>$qual,'city'=>$city,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'page_title'=>$page_title]);
     }
 }

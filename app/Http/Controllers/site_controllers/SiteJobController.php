@@ -40,7 +40,8 @@ class SiteJobController extends Controller
         
 
         //dd($job);
-        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$f_city,'f_area'=>$f_area,'f_indus'=>$f_indus,'f_qual'=>$f_qual,'f_exp'=>$f_exp,'f_type'=>$f_type,'f_shift'=>$f_shift]);
+        $page_title="CareerSpoons - Jobs";
+        return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$f_city,'f_area'=>$f_area,'f_indus'=>$f_indus,'f_qual'=>$f_qual,'f_exp'=>$f_exp,'f_type'=>$f_type,'f_shift'=>$f_shift,'page_title'=>$page_title]);
     
     }
     public function viewFilterJobSearch(Request $request){
@@ -61,7 +62,8 @@ class SiteJobController extends Controller
         $indus = $obj->get_indus();
         // echo "<pre>";
         // print_r($job);
-       return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$fcity,'f_area'=>$farea,'f_indus'=>$findus,'f_qual'=>$fqual,'f_exp'=>$fexp,'f_type'=>$ftype,'f_shift'=>$fshift]);
+        $page_title="CareerSpoons - Filter Jobs";
+       return view('client_views.jobs_related_pages.search_related_job',['job'=>$job,'area'=>$area,'city'=>$city,'qual'=>$qual,'indus'=>$indus,'area1'=>$area,'get_cities'=>$city,'f_city'=>$fcity,'f_area'=>$farea,'f_indus'=>$findus,'f_qual'=>$fqual,'f_exp'=>$fexp,'f_type'=>$ftype,'f_shift'=>$fshift,'page_title'=>$page_title]);
 
 
     }
@@ -77,7 +79,8 @@ class SiteJobController extends Controller
       $search_result = $obj->get_select_industry_jobs($get_industry);
       
       //dd($search_result);
-    	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result]);
+      $page_title="CareerSpoons - All Jobs";
+    	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result,'page_title'=>$page_title]);
     }
 
 
@@ -86,13 +89,18 @@ class SiteJobController extends Controller
       $get_indus = $request->company_industry;
       $get_career = $request->select_career_level;
       $get_city = $request->company_city;
+      if($get_indus){
+        $get_i= $get_indus;
+      }else{
+       $get_i= "jobs";
+      }
 
       $obj = new JobModel();
       $city = $obj->get_cities();
       $indus = $obj->get_indus();
       $search_result = $obj->filter_result_by_industry($get_indus,$get_career,$get_city);
-
-      return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result]);
+      $page_title="CareerSpoons - ".$get_i;
+      return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result,'page_title'=>$page_title]);
     
     }
 
@@ -108,7 +116,8 @@ class SiteJobController extends Controller
         
  // echo "<pre>";
  // print_r($job_detail);
-        return view('client_views.jobs_related_pages.job_details',['job_detail'=>$job_detail,'job_req'=>$job_req,'job_p'=>$job_p,'job_similar'=>$job_similar]);   
+        $page_title="CareerSpoons - Job Detail";
+        return view('client_views.jobs_related_pages.job_details',['job_detail'=>$job_detail,'job_req'=>$job_req,'job_p'=>$job_p,'job_similar'=>$job_similar,'page_title'=>$page_title]);   
     }
 
     function doApplyNow(Request $request){
@@ -242,7 +251,8 @@ class SiteJobController extends Controller
           $quali='';
           $indus='';
                // dd($match_users);
-          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
+          $page_title="CareerSpoons - Applicants";
+          return view("client_views.company_related_pages.applicants",['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users,'page_title'=>$page_title]);
         }
 
     }
@@ -334,7 +344,8 @@ class SiteJobController extends Controller
          // echo "<pre>";
          // print_r($candidates);
           //dd($match_users);
-        return view('client_views.company_related_pages.applicants',['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users]);
+          $page_title="CareerSpoons - Filter Applicants";
+        return view('client_views.company_related_pages.applicants',['users'=>$users,'p_id'=>$p_id,'c_id'=>$c_id,'viewed_users'=>$viewed_users,'short_users'=>$short_users,'call_users'=>$call_users,'app_users'=>$app_users,'city'=>$city,'qual'=>$qual,'industry'=>$industry,'cit'=>$cit,'gender'=>$gender,'career'=>$career,'quali'=>$quali,'indus'=>$indus,'match_users'=>$match_users,'page_title'=>$page_title]);
        }
     }
 

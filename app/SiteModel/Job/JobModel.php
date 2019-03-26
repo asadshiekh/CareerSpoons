@@ -66,7 +66,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
 
    // return $title;
   }else{
-    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id', '=', 'job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
         if($jobs->count()>0){
 
             return $jobs;

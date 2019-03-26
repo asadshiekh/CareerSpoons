@@ -20,8 +20,8 @@ use Mail;
 class CompanyPayment extends Controller
 {
     public function viewCheckoutPaymentMethod(Request $request){
-
-    	return view('client_views.company_related_pages.checkout');
+        $page_title="CareerSpoons - Checkout";
+    	return view('client_views.company_related_pages.checkout',['page_title'=>$page_title]);
     }
 
     public function doCompanyBuyPackage(Request $request){

@@ -52,7 +52,8 @@ class UserProfile extends Controller
 
 		// Fetch Eduction of User Number
 		//dd($get_match_use_jobs);
-		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates,'temp_in'=>$temp_in,'get_qualification'=>$get_qualification,'get_industries'=>$get_industries,'applied_jobs'=>$applied_jobs,'get_job_match'=>$get_job_match_criteria,'get_match_use_jobs'=>$get_match_use_jobs]);
+		$page_title="CareerSpoons - User Profile";
+		return view('client_views.user_related_pages.user_profile',['candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'candidate_project' => $candidate_project,'candidate_skill' => $candidate_skill,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'general_info' => $general_info,'social_link' => $social_link,'get_area'=>$get_area,'get_cities'=>$get_cities,'get_cities1'=>$get_cities1,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'templates'=>$templates,'temp_in'=>$temp_in,'get_qualification'=>$get_qualification,'get_industries'=>$get_industries,'applied_jobs'=>$applied_jobs,'get_job_match'=>$get_job_match_criteria,'get_match_use_jobs'=>$get_match_use_jobs,'page_title'=>$page_title]);
 	}
 
 
@@ -69,8 +70,8 @@ class UserProfile extends Controller
 		$candidate_languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
 		$candidate_hobbies = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
 		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
-
-		return view('client_views.user_related_pages.user_public_profile',['general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill]);
+        $page_title="CareerSpoons - ".$general_info->candidate_name;
+		return view('client_views.user_related_pages.user_public_profile',['general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill,'page_title'=>$page_title]);
 
 	}
 

@@ -12,6 +12,7 @@ use DB;
 use App\Mail\Site_Mail\User_Mail\User_Forget_Password;
 use Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Routing\UrlGenerator;
 class SiteUserLogin extends Controller
 {
   public function viewUserLogin(){
@@ -187,7 +188,8 @@ public function logout(Request $request){
         //$email = $request->session()->get('email');
   $request->session()->flush();
   $request->session()->forget('email_status');
-  return redirect('/');
+  echo "yes";
+ // return redirect('/');
 }
 
 

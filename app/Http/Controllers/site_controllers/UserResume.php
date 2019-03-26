@@ -21,7 +21,8 @@ class UserResume extends Controller
 		$get_area=$obj->get_all_area();
 		$get_qualification=$obj->get_all_qualification();
 		$get_indutries=$obj->get_all_indutries();
-		return view('client_views.resume_related_pages.make_resume',['get_cities'=>$get_cities,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'get_area'=>$get_area,'get_qualification'=>$get_qualification,'get_indutries'=>$get_indutries]);
+		$page_title="CareerSpoons - User Resume";
+		return view('client_views.resume_related_pages.make_resume',['get_cities'=>$get_cities,'get_degree'=>$get_degree,'get_degree1'=>$get_degree1,'get_majors'=>$get_majors,'get_area'=>$get_area,'get_qualification'=>$get_qualification,'get_indutries'=>$get_indutries,'page_title'=>$page_title]);
 	}
 
 	public function uploadResume(Request $request){
@@ -1443,8 +1444,8 @@ class UserResume extends Controller
 		$folder_name=$data->template_folder;
 		$index_p=str_ireplace('.blade.php','',$index_p);
 
-
-		return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages]);
+        $page_title="CareerSpoons - Resume";
+		return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages,'page_title'=>$page_title]);
 	}
 
 

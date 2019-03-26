@@ -13,7 +13,7 @@ use Mail;
 class SiteController extends Controller
 {
   public function viewHome(){
-
+  $page_title="CareerSpoons - Home";
   $obj =  new UserProfileModel();
   $get_reviews = $obj->get_all_candidate_reviews();
   $org_reviews = $obj->get_all_org_reviews();
@@ -37,12 +37,12 @@ class SiteController extends Controller
 
   //dd($random_jobs);
 
-  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas,'random_jobs'=>$random_jobs]);
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas,'random_jobs'=>$random_jobs,'page_title'=>$page_title]);
  }
 
  public function viewContactUs(){
-
-   return view('client_views.main_site.contact_us');
+   $page_title="CareerSpoons - Contact Us";
+   return view('client_views.main_site.contact_us',['page_title'=>$page_title]);
  }
 
  public function doContactUs(Request $request){
@@ -86,9 +86,9 @@ public function dosendEmailContactUs(Request $request){
 }
 
 public function viewFaq(){
-
+ $page_title="CareerSpoons - Contact Us";
 $faq=DB::table('frequently_asked_questions')->get();
- return view('client_views.main_site.faq',['faq'=>$faq]);
+ return view('client_views.main_site.faq',['faq'=>$faq,'page_title'=>$page_title]);
 }
 
 public function viewPageNotFound(){
@@ -96,7 +96,8 @@ public function viewPageNotFound(){
     //Alert::message('Robots are working!');
     //alert()->error('Error Message', 'Optional Title');
   $about=DB::table('about_us_content')->first();
-  return view('client_views.main_site.page_not_found',['about'=>$about]);
+  $page_title="CareerSpoons - Not Found";
+  return view('client_views.main_site.page_not_found',['about'=>$about,'page_title'=>$page_title]);
 }
 
 public function view_session(Request $request){
@@ -108,7 +109,8 @@ public function view_session(Request $request){
 
 public function viewAboutUs(){
   $about=DB::table('about_us_content')->first();
-  return view('client_views.main_site.about_us',['about'=>$about]);
+  $page_title="CareerSpoons - About Us";
+  return view('client_views.main_site.about_us',['about'=>$about,'page_title'=>$page_title]);
 }
 
 

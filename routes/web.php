@@ -153,7 +153,7 @@ Route::any('send-candidate-email',"site_controllers\SiteUserLogin@sendCandidateF
 
 });
 
-Route::get('logout',"site_controllers\SiteUserLogin@logout")->middleware('CheckUserProfile');
+Route::any('logout',"site_controllers\SiteUserLogin@logout")->middleware('CheckUserProfile');
 //   Site User End-Work //
 
 

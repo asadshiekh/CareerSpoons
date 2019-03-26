@@ -10,7 +10,7 @@ class SiteCompanyLogin extends Controller
 {
 
 	public function viewCompanyLogin(){
-
+        
 		return view('client_views.company_related_pages.company_login');
 	}
 
