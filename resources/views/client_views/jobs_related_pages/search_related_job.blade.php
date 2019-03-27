@@ -143,7 +143,7 @@
 								<ul class="grid-view-caption">
 									<li>
 										<div class="brows-job-location">
-											<p style="padding-top:10%;"><i class="fa fa-map-marker"></i>{{$jobs->city}}</p>
+											<p style="padding-top:10%;"><i class="fa fa-map-marker"></i><?php if ( empty ( $jobs->city ) ) {echo $jobs->company_city;}else{echo $jobs->city;}?></p>
 											
 										</div>
 									</li>

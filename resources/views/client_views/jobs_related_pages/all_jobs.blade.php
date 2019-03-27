@@ -124,7 +124,15 @@
 								</div>
 								<div class="col-md-3 col-sm-3">
 									<div class="brows-job-location">
-										<p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+										<p><i class="fa fa-map-marker"></i>
+											<?php 
+											 $i=$val->post_id;
+											 $q=DB::table('job_preferences')->where(['post_id'=>$i])->select('job_preferences.*')->get();
+											 foreach ($q as $qry) {
+											 	echo "<span style='display:inline;border:solid 1px #50C761;padding:2%;border-radius:10px;margin-right:10px;font-size:12px;'>".$qry->city."</span>";
+											 }
+											?>
+									</p>
 									</div>
 								</div>
 								<div class="col-md-2 col-sm-2">

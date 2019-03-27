@@ -19,19 +19,19 @@ if($title || $city || $area){
 
 
 
-$jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id');
+$jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*');
       if($title){
-      $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_title','like','%'.$title.'%');
+      $jobs->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_title','like','%'.$title.'%');
       }
       if($area){
-        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.functional_area','=',$area);
+        $jobs->where('organization_posts.post_status','!=','Block')->Where('organization_posts.functional_area','=',$area);
       }
       if($city){
 
-        $jobs->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->Where('job_preferences.city','=',$city)->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block');
+        $jobs->Where('job_preferences.city','=',$city)->where('organization_posts.post_status','!=','Block');
       }
       if($title=" " && $area=" " && $city=" "){
-        $jobs->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+        $jobs->where('organization_posts.post_status','!=','Block');
       }
 
 
@@ -143,23 +143,23 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
   public function fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift){
     if($fcity || $farea || $findus || $fexp || $fqual || $ftype || $fshift){
     // echo $fshift;
-     $jobee= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id');
+     $jobee= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id');
       if($fcity){
-         $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$fcity);
+         $jobee->where('organization_posts.post_status','!=','Block')->Where('job_preferences.city','=',$fcity);
        
       }
       if($farea){
-        $jobee->Where('organization_posts.functional_area','like',$farea)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('organization_posts.functional_area','like',$farea)->where('organization_posts.post_status','!=','Block');
       }
       if($findus){
-        $jobee->Where('organization_posts.req_industry','=',$findus)->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('organization_posts.req_industry','=',$findus)->where('organization_posts.post_status','!=','Block');
       }
       
       if($fexp == "1" || $fexp == "2" || $fexp == "3" || $fexp == "4" || $fexp == "5"){
-        $jobee->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','=',$fexp);
+        $jobee->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','=',$fexp);
       }
       if($fexp == "6"){
-        $jobee->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','>','5');
+        $jobee->where('organization_posts.post_status','!=','Block')->Where('organization_posts.job_experience','>','5');
       }
       if($fqual){
         $jobee->join('job_req_qualifications','organization_posts.post_id','=','job_req_qualifications.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_req_qualifications.*')->where('organization_posts.post_status','!=','Block')->Where('job_req_qualifications.req_qualification','=',$fqual);
@@ -169,17 +169,19 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
       //   $jobee->Where('job_preferences.job_type','=',$ftype);
       // }
       if($ftype){
-        $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_type','=',$ftype)->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('job_preferences.job_type','=',$ftype)->where('organization_posts.post_status','!=','Block');
       }
 
       if($fshift){
-        $jobee->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->Where('job_preferences.job_shift','=',$fshift)->where('organization_posts.post_status','!=','Block');
+        $jobee->Where('job_preferences.job_shift','=',$fshift)->where('organization_posts.post_status','!=','Block');
       }
       // if($fcity && $fshift){
       //   $jobee->Where('job_preferences.job_shift','=',$fshift);
       // }
 
+
        $jobe=$jobee->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+        // dd($jobe);die();
         if($jobe->count()>0){
 
             return $jobe;
@@ -347,17 +349,17 @@ public function get_indus(){
 
     public function filter_result_by_industry($get_indus,$get_career,$get_city){
 
-      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block');
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->where('organization_posts.post_status','!=','Block');
 
 
       if($get_indus){
-        $info->where(['organization_posts.req_industry'=>$get_indus]);
+        $info->where(['organization_posts.req_industry'=>$get_indus])->select('organization_posts.*','upload_org_img.*','add_organizations.*');
       }
       if($get_career){
-        $info->where(['organization_posts.req_career_level'=>$get_career]);
+        $info->where(['organization_posts.req_career_level'=>$get_career])->select('organization_posts.*','upload_org_img.*','add_organizations.*');
       }
       if($get_city){
-        $info->where(['add_organizations.company_city'=>$get_city]);
+        $info->join('job_preferences','job_preferences.post_id', '=', 'organization_posts.post_id')->where(['job_preferences.city'=>$get_city])->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*');
       }
        
 
