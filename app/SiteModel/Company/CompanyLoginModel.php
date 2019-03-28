@@ -27,4 +27,11 @@ class CompanyLoginModel extends Model
 		$data = DB::table('company_availed_packages')->where('company_id',$organization_id)->first();
 		return $data; 
 	}
+
+
+	public function get_company_advertise_logo_details($organization_id){
+
+		$data = DB::table('company_advertised_logo')->where('company_id',$organization_id)->first();
+		return $data;
+	}
 }

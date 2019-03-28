@@ -209,14 +209,25 @@ class AdminOrganization extends Controller
 				'created_at' =>$current_date
 			);
 
+			 $company_advertised_logo = array(
+				'company_id' => $id,	
+				'created_at' =>$current_date
+			);
+
+
 			//Initialized Table of Company _availed_packages
 		DB::table('company_availed_packages')->insert($company_current_package);
 
-			//Initialized Table of Social Links
-			DB::table('add_organization_social_link')->insert($company_social_links);
+		//Initialized Table of Social Links
+		DB::table('add_organization_social_link')->insert($company_social_links);
+
+		//Initialized Table of Review System
+		DB::table('organization_reviews')->insert($company_social_links);
 
 			//Initialized Table of Review System
-			DB::table('organization_reviews')->insert($company_social_links);
+		DB::table('company_advertised_logo')->insert($company_advertised_logo);
+		
+
 		}
 		
 

@@ -138,7 +138,12 @@
 												?></span>
 								</div>
 								<div class="brows-job-type">
-									<span class="full-time">{{$jobs->req_industry}}</span>
+									<span class="full-time">
+										<?php  
+									$jobs->req_industry= str_replace("_"," ",$jobs->req_industry);
+									echo $jobs->req_industry;
+									?>
+									</span>
 								</div>
 								<ul class="grid-view-caption">
 									<li>

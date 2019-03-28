@@ -1227,5 +1227,40 @@ public function dofetchingsingleCityMap(Request $request){
 
 }
 
+public function uploadCompanyLogo(Request $request){
+
+    $data= $request->session()->get('company_name');
+    $file = $request->file('upload_company_logo');
+    $new_name = $data.'.'.rand().'.'.$file->getClientOriginalName();
+    $destination='uploads/company_advertised_logo/';
+    $file->move($destination,$new_name);
+    $current_date = date("Y.m.d h:i:s");
+    
+
+    $company_id =  $request->session()->get('company_id');
+  
+    $company_response = array(
+      'company_logo' => $new_name,
+      'company_logo_submitted' => '1',
+      'created_at' => $current_date
+    );  
+
+    $obj = new CompanyProfileModel();
+    $info=$obj->update_company_profile_advertise_logo($company_id,$company_response); 
+
+    if($info){
+
+      $request->session()->forget("company_adverised_logo");
+      $request->session()->put("company_adverised_logo","1");
+      return redirect('company-profile')->with('success','Your Logo is  Uploaded Successfully!');
+    }
+
+    else{
+
+      return redirect('company-profile')->with('return','File Not Upload Successfully!');
+    }
+
+}
+
 
 }

@@ -61,4 +61,11 @@ class CompanyProfileModel extends Model
  }
 
 
+ public function update_company_profile_advertise_logo($company_id,$company_response){
+
+    $data = DB::table('company_advertised_logo')->where('company_id',$company_id)->update($company_response);
+    return $data;
+ }
+
+
 }

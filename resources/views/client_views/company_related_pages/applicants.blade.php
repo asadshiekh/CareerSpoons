@@ -96,6 +96,11 @@
 								          @endforeach
 								           <?php } ?>
 							          </div>
+
+
+							          <?php
+							          if(Session::get('company_package_status')=='1'){
+										?>
 							          <div class="col-md-3 col-sm-3">
 							          	<div style="border:solid 1px #e1e1e1;padding:5%;font-size: 12px;min-height: 450px;box-shadow: 0px 3px 15px -4px;">
 							          	<h5 style="text-align: center;margin-bottom: 15%;"><u>Filter User CVs</u></h5>
@@ -163,6 +168,16 @@
 							          	</form>
 							          	</div>
 							          </div>
+
+							      <?php }else{ ?>
+							      	 <div class="col-md-3 col-sm-3">
+							      	<div class="alert alert-info">
+							      		<strong>Note *</strong> Purchase Package to Avail Resume Sorting System.
+							      	</div>
+							      </div>
+
+							      <?php }?>
+
 							      
 							          </div>
                                      <!-- end row -->

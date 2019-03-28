@@ -867,6 +867,50 @@
 			
 			<div class="inbox-body inbox-widget">
 				<h3>Advertisement Company Logo</h3>
+				<br>
+
+			
+				<?php 
+		
+				if(Session::get('company_adverised_logo')=='0'){
+					                                             ?>
+				<form action="{{url('upload-company-logo')}}" method="post" enctype="multipart/form-data">
+					{{ csrf_field() }}
+				<div class="col-xs-12 col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<a id="text-view" type="button" class="form-control"><input type="file" name="upload_company_logo"></a>
+						<div class="input-group-addon">
+							<i class="fa fa-image"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<button type="submit" class="update-btn">Upload logo</button>
+				</div>
+				</form>
+				<br>
+
+			<?php }else if(Session::get('company_package_status')=='1'){?>
+
+				<table id="company_logo" class="display responsive no-wrap" style="width:100%">
+					<thead>
+						<tr>
+							<th style="text-align: center;">Company</th>
+							<th style="text-align: center;">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>asad</td>
+							<td>asad</td>
+						</tr>
+					</tbody>
+				</table>
+
+			<?php } ?>
+
+			
+
 			</div>
 
 

@@ -745,7 +745,6 @@
 				CKEDITOR.replace( 'update_bio' );	
 			</script>
 
-
 			<!-- Rating Prtoduct -->
 			<script>
 
@@ -1148,6 +1147,7 @@
 					$('#userSkills').DataTable();
 					$('#userLanguage').DataTable();
 					$('#userHobbies').DataTable();
+					$('#company_logo').DataTable();
 
 					// Data Tables Show and Hide
 					$("#candidate_eduction").hide();
