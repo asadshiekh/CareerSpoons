@@ -66,8 +66,7 @@ class SiteUserLogin extends Controller
    echo "yes";
 
 
-           //return redirect('user-forgot-password')->with('success','We Have Send You Email Check Your Email To Proceed further');
-
+//return redirect('user-forgot-password')->with('success','We Have Send You Email Check Your Email To Proceed further');
  }
 
  else{
@@ -75,7 +74,6 @@ class SiteUserLogin extends Controller
   echo "no";
 
         //return redirect('user-forgot-password')->with('error','No Email Found Sorry!');
-
 }
 
 

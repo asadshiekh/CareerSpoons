@@ -48,7 +48,17 @@ Route::get('company-login',"site_controllers\SiteCompanyLogin@viewCompanyLogin")
 Route::any('do-company-login',"site_controllers\SiteCompanyLogin@doCompanyLogin");
 Route::get('company-forgot-password',"site_controllers\SiteCompanyLogin@viewCompanyForgotPassword");
 
+Route::any('verify-company-email',"site_controllers\SiteCompanyLogin@VerifyCompanyEmail");
+
+Route::any('send-company-forget-email',"site_controllers\SiteCompanyLogin@sendCompanyForgetEmail");
+
+Route::get('create-company-password',"site_controllers\SiteCompanyLogin@viewCreateNewPassword");
+
+Route::any('update-company-forget-password',"site_controllers\SiteCompanyLogin@updateCompanyFogretPassword");
+
 });
+
+
 Route::get('company-logout',"site_controllers\SiteCompanyLogin@companyLogout")->middleware('CheckCompanyProfile');
 
 //   Site Company Login End-Work //

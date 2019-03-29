@@ -29,10 +29,15 @@ class CompanyProfile extends Controller
         $data=$fetch_org;
         $fetch_post=DB::table('organization_posts')->where(['company_id'=>$id])->get();
         $fetch_pic=DB::table('upload_org_img')->where(['company_id'=>$id])->first();
+
         $fetch_links=DB::table('add_organization_social_link')->where(['organization_id'=>$request->session()->get('company_id')])->first();
+
+      $fetch_company_advertise_logo=DB::table('company_advertised_logo')->where(['company_id'=>$request->session()->get('company_id')])->first();        
+
         $page_title="careerSpoons - ".$fetch_org->company_name;
+
         
-    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post,'fetch_links'=>$fetch_links,'data'=>$data,'fetch_up_indus'=>$fetch_up_indus,'fetch_up_city'=>$fetch_up_city,'fetch_up_type'=>$fetch_up_type,'fetch_links'=>$fetch_links,'page_title'=>$page_title]);
+    	return view('client_views.company_related_pages.company_profile',['fetch_city'=>$fetch_city,'fetch_org'=>$fetch_org,'fetch_pic'=>$fetch_pic,'industry'=>$industry,'industry1'=>$industry,'degree'=>$degree,'major'=>$major,'area'=>$area,'qual'=>$qual,'fetch_post'=>$fetch_post,'fetch_links'=>$fetch_links,'data'=>$data,'fetch_up_indus'=>$fetch_up_indus,'fetch_up_city'=>$fetch_up_city,'fetch_up_type'=>$fetch_up_type,'fetch_links'=>$fetch_links,'advertise_logo'=>$fetch_company_advertise_logo,'page_title'=>$page_title]);
     }
     public function PreferencesCitiesData(){
       $city=DB::table('Add_cities')->get();

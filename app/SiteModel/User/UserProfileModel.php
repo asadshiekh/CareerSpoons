@@ -113,11 +113,10 @@ class UserProfileModel extends Model
 		return $data; 
 	}
 
-	public function check_user_password($candidate_id,$candidate_email,$candidate_password){
+	public function check_user_password($candidate_id,$candidate_password){
 
 
 		$info=DB::table('register_users')->select('*')->where([
-			['user_email','=',[$candidate_email]],
 			['password','=',[$candidate_password]],
 			['id','=',[$candidate_id]],
 		])->first();

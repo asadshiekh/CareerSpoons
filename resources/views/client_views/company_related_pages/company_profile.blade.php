@@ -105,17 +105,18 @@
 						<li><a data-toggle="tab" href="#new-job" onclick="ref_new();">New-Job-Post</a></li>
 						<li><a data-toggle="tab" href="#total-posts" onclick="ref_total();">Total-Posts</a></li>
 						<li><a data-toggle="tab" href="#social_media" onclick="ref_media();">Social-Media</a></li>
-						<li><a data-toggle="tab" href="#setting" onclick="ref_setting();">Settings</a></li>
-						<li><a data-toggle="tab" href="#insights" onclick="ref_insight();">Insights</a></li>
-						<li><a data-toggle="tab" href="#reviews" onclick="ref_reviews();">Reviews</a></li>
 						<li><a data-toggle="tab" href="#location" onclick="ref_loc();">Location</a></li>
+						<li><a data-toggle="tab" href="#insights" onclick="ref_insight();">Insights</a></li>
 						<?php 
 						if(Session::get('company_package_status')=='0'){
 						?>
 						<li><a data-toggle="tab" href="#company_packages">Packages</a></li>
 						<?php }else{ ?>
 						<li><a data-toggle="tab" href="#Advertisement_Logo">Advertisement Logo</a></li>
-						<?php } ?>	
+						<?php } ?>
+						<li><a data-toggle="tab" href="#reviews" onclick="ref_reviews();">Reviews</a></li>
+						<li><a data-toggle="tab" href="#setting" onclick="ref_setting();">Settings</a></li>
+	
 					</ul>
 							
 							<!-- Start Bio Sec -->
@@ -866,7 +867,13 @@
 		<div id="Advertisement_Logo" class="tab-pane fade">
 			
 			<div class="inbox-body inbox-widget">
+				<div class='col-md-10'>
 				<h3>Advertisement Company Logo</h3>
+				</div>
+				<div class='col-md-2'>
+					<h3>
+					<span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 5; bottom 0 15" data-pt-title="You can Upload Your Logo and Then Wait for the Admin Response Your Logo Will Be Published Soon" data-pt-animate="bounceIn"><i class="fas fa-info-circle" style="height:50px;width:40px;color:lightblue" ></i></span></h3>	
+				</div>
 				<br>
 
 			
@@ -895,14 +902,30 @@
 				<table id="company_logo" class="display responsive no-wrap" style="width:100%">
 					<thead>
 						<tr>
-							<th style="text-align: center;">Company</th>
-							<th style="text-align: center;">Action</th>
+							<th style="text-align: center;">Company Name</th>
+							<th style="text-align: center;">Company Logo</th>
+							<th style="text-align: center;">Logo Current Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>asad</td>
-							<td>asad</td>
+							<td style="text-align: center;"><?php echo Session::get('company_name')?></td>
+							<td><img style="border-radius:0px" height="100" width="70" src="{{url('uploads/client_site/company_advertised_logo')}}/{{$advertise_logo->company_logo}}"></td>
+							<td style="text-align: center;">
+									
+									<?php 
+
+									if($advertise_logo->company_logo_status=='0'){
+										echo "<span style='color:orange;font-size:16px;font-weight:bolder'>Pending</span>";
+										}
+
+										else{
+											echo "<span style='color:green;font-size:16px;font-weight:bolder'>Published</span>";
+										}
+
+									?>
+
+							</td>
 						</tr>
 					</tbody>
 				</table>

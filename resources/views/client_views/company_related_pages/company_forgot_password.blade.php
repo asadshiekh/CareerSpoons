@@ -7,10 +7,10 @@
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
-			<input type="email" class="form-control" placeholder="Enter Company Email">
+			<input type="email" id="company_email" class="form-control" placeholder="Enter Company Email">
 		</div>
 	</div>
-	<button class="btn btn-login" type="submit">Submit</button>
+	<button class="btn btn-login" id="verify_button" type="button" onclick="verifycompanyEmail()">Submit</button>
 	<span><a href="{{url('company-login')}}">Back to Login</a></span>
 </form>
 

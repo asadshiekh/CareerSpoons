@@ -89,14 +89,14 @@ function change_email_setting(){
 			}
 
 
-			else if(data=="2"){
+			else if(data=="yes2"){
 
-					setTimeout(
+				setTimeout(
  				function(){
 
  					swal({
  						type: 'error',
- 						title: 'Email Already Exist',
+ 						title: 'Change Email its Already Exist...',
  						text: 'Connection Failed!!',
  						footer: '<a href>Why do I have this issue?</a>'
  					})
@@ -105,17 +105,18 @@ function change_email_setting(){
  				);
 
  			notyf.alert('Something Went Worng Plz Try Again');
+			
 
 			}
 
-			else if(data=="3"){
+			else if(data=="yes3"){
 
 				setTimeout(
  				function(){
 
  					swal({
  						type: 'error',
- 						title: 'Something Went Wrong...',
+ 						title: 'Password Not Matched...',
  						text: 'Connection Failed!!',
  						footer: '<a href>Why do I have this issue?</a>'
  					})

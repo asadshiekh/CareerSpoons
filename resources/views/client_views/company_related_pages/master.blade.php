@@ -89,8 +89,13 @@
 				<!-- Custom Js -->
 				<script src="{{url('public/client_assets/js/custom.js')}}"></script>
 				<script src="{{url('public/client_assets/js/jQuery.style.switcher.js')}}"></script>
+				<!-- Notify Javascript -->
+				<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
 				<!-- Customization Company Login -->
 				<script src="{{url('public/client_assets/js/customization_js/company_login.js')}}"></script>
+
+				<script src="{{url('public/client_assets/js/customization_js/company_forget_password.js')}}"></script>
+
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();

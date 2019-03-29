@@ -190,12 +190,13 @@
 							<h3 class="widgettitle widget-title">All Categories</h3>
 							<div class="textwidget">
 								<ul class="footer-navigation">
-									<li><a href="manage-company.html" title="">Front-end Design</a></li>
-									<li><a href="manage-company.html" title="">Android Developer</a></li>
-									<li><a href="manage-company.html" title="">CMS Development</a></li>
-									<li><a href="manage-company.html" title="">PHP Development</a></li>
-									<li><a href="manage-company.html" title="">IOS Developer</a></li>
-									<li><a href="manage-company.html" title="">Iphone Developer</a></li>
+									<li><a href="{{url('all-jobs')}}/Accounting_&_Finance" title="">Accounting & Finance</a></li>
+									<li><a href="{{url('all-jobs')}}/Automotive" title="">Automotive</a></li>
+									<li><a href="{{url('all-jobs')}}/Education_Training" title="">Education Training</a></li>
+									<li><a href="{{url('all-jobs')}}/Healthcare" title="">Healthcare</a></li>
+									<li><a href="{{url('all-jobs')}}/Restaurant_&_Food" title="">Restaurant & Food</a></li>
+									<li><a href="{{url('all-jobs')}}/Telecommunications" title="">IT & Computer Science </a></li>
+									
 								</ul>
 							</div>
 						</div>

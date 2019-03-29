@@ -332,18 +332,19 @@ class UserProfile extends Controller
 		$password  = $request->password;
 
 		$obj =  new UserProfileModel();
-		$info = $obj->check_user_password($request->session()->get('id'),$request->session()->get('user_email'),$password);
+		$info = $obj->check_user_password($request->session()->get('id'),$password);
 
 		if($info){
 
-			//print_r($info);
 
-			if($info->user_email==$new_email){
+			if($info->user_email==$request->new_email){
 
-				echo "2";
+				echo "yes2";
 			}
 
-			$user_response = array(
+			else{
+
+				$user_response = array(
 				'user_email' => $new_email,
 				'verify_by_email' => '0'
 			);
@@ -356,11 +357,13 @@ class UserProfile extends Controller
 			$request->session()->put('user_email',$new_email);
 			echo "yes";
 
+			}
+
 		}	
 
 		else{
 
-			echo "3";
+			echo "yes3";
 		}
 
 	}

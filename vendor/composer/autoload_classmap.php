@@ -71,6 +71,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\SiteModel\\ClientSite\\ClientSiteModel' => $baseDir . '/app/SiteModel/ClientSite/ClientSiteModel.php',
+    'App\\SiteModel\\Company\\CompanyForgetPassword' => $baseDir . '/app/SiteModel/Company/CompanyForgetPassword.php',
     'App\\SiteModel\\Company\\CompanyLoginModel' => $baseDir . '/app/SiteModel/Company/CompanyLoginModel.php',
     'App\\SiteModel\\Company\\CompanyProfileModel' => $baseDir . '/app/SiteModel/Company/CompanyProfileModel.php',
     'App\\SiteModel\\Company\\CompanyRegisteration' => $baseDir . '/app/SiteModel/Company/CompanyRegisteration.php',

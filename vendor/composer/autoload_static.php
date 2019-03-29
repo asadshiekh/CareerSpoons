@@ -480,6 +480,7 @@ class ComposerStaticInitf94783680c4bbf0efc2d869f83e12063
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\SiteModel\\ClientSite\\ClientSiteModel' => __DIR__ . '/../..' . '/app/SiteModel/ClientSite/ClientSiteModel.php',
+        'App\\SiteModel\\Company\\CompanyForgetPassword' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyForgetPassword.php',
         'App\\SiteModel\\Company\\CompanyLoginModel' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyLoginModel.php',
         'App\\SiteModel\\Company\\CompanyProfileModel' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyProfileModel.php',
         'App\\SiteModel\\Company\\CompanyRegisteration' => __DIR__ . '/../..' . '/app/SiteModel/Company/CompanyRegisteration.php',
