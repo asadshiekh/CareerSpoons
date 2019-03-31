@@ -101,34 +101,54 @@ public function updateCandidatePassword(Request $request){
  $current_Time = date('h:i a', $now);
 
  $create_password = $request->new_password;
- $lastInsertId  =  Session::get('lastInsertId');
- $candidate_email  =  Session::get('CandidateUniqueEmail');
+ $lastInsertId    =  (Session::has('lastInsertId') ? Session::get('lastInsertId') : '0');
+ $candidate_email = (Session::has('CandidateUniqueEmail') ? Session::get('CandidateUniqueEmail') : 'abc@abc.com');
 
 
  $obj =  new UserForgetPassword();
  $response = $obj->get_all_details_of_forget_password($candidate_email,$lastInsertId);
 
 
- if($current_date == $response->current_date_year &&  $current_Time<=$response->expire_time  && $current_Time>=$response->start_time){
+ if($response){
+
+  if($response->verfication_link=='0'){
+
+   if($current_date == $response->current_date_year &&  $current_Time<=$response->expire_time  && $current_Time>=$response->start_time){
+
+    $info = $obj->update_verification_link($candidate_email,$create_password,$lastInsertId);
+
+    echo "yes";
+
+  }
 
 
-  $info = $obj->update_verification_link($candidate_email,$create_password,$lastInsertId);
+ else{
+
   $request->session()->forget('lastInsertId');
   $request->session()->forget('CandidateUniqueEmail');
+  echo "yes2";
+}
+
+}
 
 
-  echo "yes";
-         //return redirect('user-login')->with('password_updated','Your Password Is Updated');
+else if($response->verfication_link=='1'){
+
+   $request->session()->forget('lastInsertId');
+   $request->session()->forget('CandidateUniqueEmail');
+   echo "yes3";
+
+ }
+
+
 }
 
 else{
 
-  $request->session()->forget('lastInsertId');
-  $request->session()->forget('CandidateUniqueEmail');
-  echo "no";
-     //return redirect('user-forgot-password')->with('error','Sorry Link Is Expired Try Again');
-
+  echo "yes4";
 }
+
+
 }
 
 

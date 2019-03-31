@@ -84,25 +84,65 @@ $("#password-field").attr('disabled','disabled');
 
 
 
-			else{
+		else if(data=="yes2"){
 
+			setTimeout(
+				function(){
+
+					swal({
+						type: 'error',
+						title: 'You Run Out Of Your Time!..',
+						text: ' Plz Try Again Connection Failed!!',
+						footer: '<a href>Why do I have this issue?</a>'
+					})
+				},
+				1000
+				);
+
+
+		}
+
+
+
+		if(data=="yes3"){
 
 
 			setTimeout(
-					function(){
+				function(){
 
-						swal({
-							type: 'error',
-							title: 'You Run Out Of Tour Time!..',
-							text: ' Plz Try Again Connection Failed!!',
-							footer: '<a href>Why do I have this issue?</a>'
-						})
-					},
-					1000
-					);
+					swal({
+						type: 'error',
+						title: 'Sorry You Already Update Your Password!..',
+						text:  'If You Dont Remember Your Password Try Forget Password Again',
+						footer: '<a href>Why do I have this issue?</a>'
+					})
+				},
+				1000
+				);
+
+		}
 
 
-			}
+		if(data=="yes4"){
+
+			setTimeout(
+				function(){
+
+					swal({
+						type: 'error',
+						title: 'This Link is Expire',
+						text:  'For More Queries Check FAQs',
+						footer: '<a href>Why do I have this issue?</a>'
+					})
+				},
+				1000
+				);
+
+		}
+
+
+
+
 
 	});
 

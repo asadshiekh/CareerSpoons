@@ -88,29 +88,52 @@ class SiteCompanyLogin extends Controller
 		$now = time();
 		$current_Time = date('h:i a', $now);
 		$create_password = $request->new_password;
-		$lastInsertId  =  Session::get('lastCompanyInsertId');
-		$company_email  =  Session::get('CompanyUniqueEmail');
+		$lastInsertId  =  (Session::has('lastCompanyInsertId') ? Session::get('lastCompanyInsertId') : '0');
+		$company_email  = (Session::has('CompanyUniqueEmail') ? Session::get('CompanyUniqueEmail') : 'abc@abc.com');
+		
 
 		$obj =  new CompanyForgetPassword();
 		$response = $obj->get_all_details_of_forget_password($company_email,$lastInsertId);
 
-		if($current_date == $response->current_date_year &&  $current_Time<=$response->expire_time  && $current_Time>=$response->start_time){
 
-			$info = $obj->update_verification_link($company_email,$create_password,$lastInsertId);
-			$request->session()->forget('lastCompanyInsertId');
-			$request->session()->forget('CompanyUniqueEmail');
+	if($response){	
 
+		if($response->verfication_link=='0'){
 
-			echo "yes";
+			if($current_date == $response->current_date_year &&  $current_Time<=$response->expire_time  && $current_Time>=$response->start_time){
+
+				$info = $obj->update_verification_link($company_email,$create_password,$lastInsertId);
+				
+				echo "yes";
+
+			}
+
+			else{
+
+				$request->session()->forget('lastCompanyInsertId');
+				$request->session()->forget('CompanyUniqueEmail');
+				echo "yes2";
+			}
 
 		}
 
-		else{
+		else if($response->verfication_link=='1'){
 
 			$request->session()->forget('lastCompanyInsertId');
 			$request->session()->forget('CompanyUniqueEmail');
-			
+			echo "yes3";
 		}
+
+
+	}
+
+	else{
+
+
+		echo "yes4";
+	}
+
+
 
 
 	}
