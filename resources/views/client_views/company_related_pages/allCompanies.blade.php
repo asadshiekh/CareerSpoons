@@ -6,7 +6,7 @@
 				<div class="container">
 					
 					<h2>Hire The Best UI Specialists</h2>
-					<p>Work with the world’s best talent on Upwork — the top freelancing website trusted by over 5 million businesses.</p>
+					<p>Work with the world’s best talent on Upwork — the top freelancing website trusted by over 5 million businesses..</p>
 					
 				</div>
 			</section>
