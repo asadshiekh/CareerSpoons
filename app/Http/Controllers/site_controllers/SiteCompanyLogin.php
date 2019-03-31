@@ -118,16 +118,16 @@ class SiteCompanyLogin extends Controller
 
 	public function doCompanyLogin(Request $request){
 
-
+       
 		$company_email = $request->company_email;
 		$company_password = $request->company_password;
 
 		$obj =  new CompanyloginModel();
 		$info = $obj->do_login_company($company_email,$company_password);
-
-
+      
+       
 		if($info){
-
+          
 		$info2 = $obj->get_organization_review_data($info->company_id);
 		$info3 = $obj->get_company_availed_packages_details($info->company_id);
 		$info4 = $obj->get_company_advertise_logo_details($info->company_id);
@@ -154,6 +154,7 @@ class SiteCompanyLogin extends Controller
 				"login_status"=>'Active',
 			);
 			$request->session()->put($company_data);
+			 print_r($info);die();
 			echo "yes";	
 			}else{
 				echo "nups";
