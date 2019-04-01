@@ -31,13 +31,14 @@ class SiteController extends Controller
     
   $obj3 = new JobModel();
   $random_jobs = $obj3->get_all_random_jobs();
+  $logo=DB::table('advertised_logos')->get();
    //echo "<pre>";
    //print_r($get_AccountingFinance);
 
 
   //dd($random_jobs);
 
-  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas,'random_jobs'=>$random_jobs,'page_title'=>$page_title]);
+  return view('client_views.main_site.home',['get_reviews' => $get_reviews,'get_cities'=>$get_cities,'get_AccountingFinance'=>$get_AccountingFinance,'get_Automotive'=>$get_Automotive,'get_business'=>$get_business,'get_eduction'=>$get_eduction,'get_healthcare'=>$get_healthcare,'get_RestaurantFood'=>$get_RestaurantFood,'get_Transportation'=>$get_Transportation,'get_Telecommunications'=>$get_Telecommunications,'org_reviews'=>$org_reviews,'get_areas'=>$get_areas,'random_jobs'=>$random_jobs,'page_title'=>$page_title,'logo'=>$logo]);
  }
 
  public function viewContactUs(){

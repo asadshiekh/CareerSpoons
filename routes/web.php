@@ -522,6 +522,9 @@ Route::any('product-reviews',"admin_controllers\main_controllers\MainController@
 Route::any('candidate-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeCandidateReviewStatus");
 Route::any('organization-reviews-change-status',"admin_controllers\main_controllers\MainController@doChangeOrganizationReviewStatus");
 
+// Logo Orders
+Route::any('logo-orders',"admin_controllers\organization_controllers\org_logo_orders@viewLogoOrders");
+Route::any('upload-logo',"admin_controllers\organization_controllers\org_logo_orders@uploadAdvertisedLogo");
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

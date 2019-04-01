@@ -52,30 +52,20 @@
 	<div class="company-brand">
 		<div class="container">
 			<div id="company-brands" class="owl-carousel">
+				<?php foreach($logo as $log):
+                $post_date = $log->display_end_date; 
+
+				$timenow = date('Y.m.d');
+				if($post_date<$timenow){?>
+					<!-- <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4> -->
+				<?php }
+				else{
+					?>
 				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/microsoft-home.png')}}" class="img-responsive" alt="" />
+					<img src="{{url('uploads/company_add_logo/')}}/{{$log->company_logo}}" class="img-responsive" alt="" />
 				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/img-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/paypal-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/serv-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/xerox-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/yahoo-home.png')}}" class="img-responsive" alt="" />
-				</div>
-				<div class="brand-img">
-					<img src="{{url('public/client_assets/img/mothercare-home.png')}}" class="img-responsive" alt="" />
-				</div>
+				<?php } endforeach; ?>
+				
 			</div>
 		</div>
 	</div>
