@@ -20,7 +20,7 @@
 	</div>
 
 
-	<button class="btn btn-login" type="button" onclick="company_page_login();">Login</button>
+	<button class="btn btn-login" type="button" onclick="company_login();">Login</button>
 	<span>You Have No Account? <a href="{{url('company-registeration')}}"> Create An Account</a></span>
 	<span><a href="{{url('company-forgot-password')}}"> Forgot Password</a></span>
 </form>

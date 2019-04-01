@@ -141,55 +141,51 @@ class SiteCompanyLogin extends Controller
 
 	public function doCompanyLogin(Request $request){
 
-       
+
 		$company_email = $request->company_email;
 		$company_password = $request->company_password;
 
 		$obj =  new CompanyloginModel();
 		$info = $obj->do_login_company($company_email,$company_password);
-      
-       
-		if($info){
-          
-		$info2 = $obj->get_organization_review_data($info->company_id);
-		$info3 = $obj->get_company_availed_packages_details($info->company_id);
-		$info4 = $obj->get_company_advertise_logo_details($info->company_id);
 
+
+		if($info){
+
+			$info2 = $obj->get_organization_review_data($info->company_id);
+			$info3 = $obj->get_company_availed_packages_details($info->company_id);
+			$info4 = $obj->get_company_advertise_logo_details($info->company_id);
 
 			if($info->org_activation == "Active"){
 				$company_data=array(
-				"company_id"=>$info->company_id,
-				"company_name"=>$info->company_name,
-				"company_email"=>$info->company_email,
-				"company_branch"=>$info->company_branch,
-				"company_phone"=>$info->company_phone,
-				"company_website"=>$info->company_website,
-				"company_since"=>$info->company_since,
-				"company_location"=>$info->company_location,
-				"company_cnic"=>$info->company_cnic,
-				"company_info"=>$info->company_info,
-				"email_status"=>$info->verify_by_email,
-				"registeration_process"=>$info->registeration_process,
-				"company_status"=>$info->org_activation,
-				"organization_rating"=>$info2->rating_points,
-				"company_package_status"=>$info3->company_package_status,
-				"company_adverised_logo"=>$info4->company_logo_submitted,
-				"login_status"=>'Active',
-			);
-			$request->session()->put($company_data);
-			 print_r($info);die();
-			echo "yes";	
+					"company_id"=>$info->company_id,
+					"company_name"=>$info->company_name,
+					"company_email"=>$info->company_email,
+					"company_branch"=>$info->company_branch,
+					"company_phone"=>$info->company_phone,
+					"company_website"=>$info->company_website,
+					"company_since"=>$info->company_since,
+					"company_location"=>$info->company_location,
+					"company_cnic"=>$info->company_cnic,
+					"company_info"=>$info->company_info,
+					"email_status"=>$info->verify_by_email,
+					"registeration_process"=>$info->registeration_process,
+					"company_status"=>$info->org_activation,
+					"organization_rating"=>$info2->rating_points,
+					"company_package_status"=>$info3->company_package_status,
+					"company_adverised_logo"=>$info4->company_logo_submitted,
+					"login_status"=>'Active',
+				);
+				 $request->session()->put($company_data);
+				echo "yes";
 			}else{
 				echo "nups";
 			}
-			
 
 		}
 
 		else{
 
 			echo "no";
-
 		}
 
 	}
