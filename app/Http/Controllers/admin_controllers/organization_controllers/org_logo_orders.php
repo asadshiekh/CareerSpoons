@@ -10,7 +10,7 @@ class org_logo_orders extends Controller
 {
     public function viewLogoOrders()
     {  
-     $orders=DB::table('company_advertised_logo')->get();
+     $orders=DB::table('company_advertised_logo')->where('company_logo_submitted','1')->get();
      return view('admin_views/organization_views/view_logo_orders',['orders'=>$orders]);
     }
 

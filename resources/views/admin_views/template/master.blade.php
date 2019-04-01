@@ -118,7 +118,8 @@
                         <li><a href="{{url('view-qualification')}}">View Qualification</a></li>
                         <li><a href="{{url('view-majors')}}">View Major Qualification</a></li>
                         <li><a href="{{url('view-functional-area')}}">View Functional Area</a></li>
-                        <li><a href="{{url('view-degree-level')}}">View Degree Level</a></li>                           
+                        <li><a href="{{url('view-degree-level')}}">View Degree Level</a></li> 
+                        <li><a href="{{url('logo-orders')}}">Company Logo Orders</a></li>                           
                       </ul>
                     </li>
                   </ul>
