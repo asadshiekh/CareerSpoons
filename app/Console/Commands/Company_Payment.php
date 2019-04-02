@@ -39,7 +39,7 @@ class Company_Payment extends Command
      */
     public function handle()
     {
-        $info=DB::table('company_availed_packages')->where(['company_package_status'=>'1'])->get();
+        $info=DB::table('company_availed_packages')->join('company_advertised_logo','company_availed_packages.company_id', '=','company_advertised_logo.company_id')->select('company_availed_packages.*','company_advertised_logo.*')->where(['company_package_status'=>'1'])->get();
 
         if($info){
 
@@ -55,9 +55,26 @@ class Company_Payment extends Command
             $years= $dat->diffInYears($now);
             if($months > 0)
             { 
-                //echo "Month is over <br/>";
-                DB::table('company_availed_packages')->where(['company_id'=>$key->company_id])->update(['company_package_status'=>'0']);
 
+                //echo "Month is over <br/>";
+
+                $current_date = date("Y.m.d h:i:s");
+                $user_response12 = array(
+                    'company_id' => $key->company_id,
+                    'package_id' => $key->package_id,
+                    'subscription_email' => $key->subscription_email,
+                    'company_package_number' => $key->company_package_number,
+                    'package_start_date' => $key->package_start_date,
+                    'package_end_date' => $key->package_end_date,
+                    'company_logo' => $key->company_logo,
+                    'created_at' => $current_date,
+                );
+
+            DB::table('availed_package_records')->insert($availed_package_records);
+
+            DB::table('company_availed_packages')->where(['company_id'=>$key->company_id])->update(['company_package_status'=>'0']);
+
+                
             }else{
             //$days=$days-3;
                  $d=date("d",strtotime('+1 days'));

@@ -18,7 +18,7 @@ class CompanyAvailedPackage extends Migration
             $table->string('company_id');
             $table->string('package_id');
             $table->string('subscription_email')->nullable($value = true);
-            $table->string('company_package_number')->nullable($value = true);;
+            $table->string('company_package_number')->nullable($value = true);
             $table->string('package_start_date')->nullable($value = true);
             $table->string('package_end_date')->nullable($value = true);
             $table->boolean('company_package_status')->default('0');

@@ -541,6 +541,8 @@ Route::any('date-check','site_controllers\CompanyPayment@dateCheck');
 
 
 Route::any('testing','site_controllers\CompanyPayment@testing');
+
+Route::any('test','site_controllers\Testing@test');
 /*   End Admin Work  */
 
 

@@ -60,23 +60,20 @@ class CompanyPayment extends Controller
 
 		//dd($company_response);
 
-		$accountSid = getenv('TWILIO_ACCOUNT_SID');
-		$authToken = getenv('TWILIO_AUTH_TOKEN');
-		$twilioNumber = getenv('TWILIO_NUMBER');
-		$client = new Client($accountSid, $authToken);
-		if(session()->get('company_phone') == '+923349974743' || session()->get('company_phone') == '+923316272244'){
-            // Use the client to do fun stuff like send text messages!
-			$client->messages->create(
-            // the number you'd like to send the message to
-				$request->session()->get('company_phone'),
-				array(
-                 // A Twilio phone number you purchased at twilio.com/console
-					'from' => '+12019493393',
-                 // the body of the text message you'd like to send
-					'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is ".$company_token."!"
-				)
-			);
-		}
+		// $accountSid = getenv('TWILIO_ACCOUNT_SID');
+		// $authToken = getenv('TWILIO_AUTH_TOKEN');
+		// $twilioNumber = getenv('TWILIO_NUMBER');
+		// $client = new Client($accountSid, $authToken);
+		// if(session()->get('company_phone') == '+923349974743' || session()->get('company_phone') == '+923316272244'){
+  //           // Use the client to do fun stuff like send text messages!
+		// 	$client->messages->create(
+  //           	$request->session()->get('company_phone'),
+		// 		array(
+  //           		'from' => '+12019493393',
+  //           		'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is ".$company_token."!",
+		// 		)
+		// 	);
+		// }
 
 		$company_id = session()->get('company_id');
 		DB::table('company_availed_packages')->where('company_id',$company_id)->update($company_response);
