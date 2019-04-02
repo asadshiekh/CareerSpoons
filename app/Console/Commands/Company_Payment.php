@@ -70,10 +70,19 @@ class Company_Payment extends Command
                     'created_at' => $current_date,
                 );
 
-            DB::table('availed_package_records')->insert($availed_package_records);
+                DB::table('availed_package_records')->insert($user_response12);
 
-            DB::table('company_availed_packages')->where(['company_id'=>$key->company_id])->update(['company_package_status'=>'0']);
+                $user_response123 = array(
+                    'company_logo' => Null,
+                    'company_logo_status' => '0',
+                    'company_logo_submitted' => '0',
+                    'updated_at' => $current_date,
+                );
 
+                 DB::table('company_availed_packages')->where(['company_id'=>$key->company_id])->update(['company_package_status'=>'0']);
+
+                
+                DB::table('company_advertised_logo')->where(['company_id'=>$key->company_id])->update($user_response123);
                 
             }else{
             //$days=$days-3;

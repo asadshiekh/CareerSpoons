@@ -58,27 +58,30 @@ class CompanyPayment extends Controller
 			'updated_at' =>$current_date
 		);
 
-		//dd($company_response);
-
-		// $accountSid = getenv('TWILIO_ACCOUNT_SID');
-		// $authToken = getenv('TWILIO_AUTH_TOKEN');
-		// $twilioNumber = getenv('TWILIO_NUMBER');
-		// $client = new Client($accountSid, $authToken);
-		// if(session()->get('company_phone') == '+923349974743' || session()->get('company_phone') == '+923316272244'){
-  //           // Use the client to do fun stuff like send text messages!
-		// 	$client->messages->create(
-  //           	$request->session()->get('company_phone'),
-		// 		array(
-  //           		'from' => '+12019493393',
-  //           		'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is ".$company_token."!",
-		// 		)
-		// 	);
-		// }
+		$accountSid = getenv('TWILIO_ACCOUNT_SID');
+		$authToken = getenv('TWILIO_AUTH_TOKEN');
+		$twilioNumber = getenv('TWILIO_NUMBER');
+		$client = new Client($accountSid, $authToken);
+		if(session()->get('company_phone') == '+923349974743' || session()->get('company_phone') == '+923316272244'){
+			$client->messages->create(
+            	$request->session()->get('company_phone'),
+				array(
+            	'from' => '+12019493393',
+            	'body' => "Congratulations You Have Successfully Purchased Our Package and Your Package ID is ".$company_token."!",
+				)
+			);
+		}
 
 		$company_id = session()->get('company_id');
 		DB::table('company_availed_packages')->where('company_id',$company_id)->update($company_response);
 
 		Mail::send(new Company_Payment());
+
+		$request->session()->forget('company_package_status');
+		$request->session()->forget('company_adverised_logo');
+
+		$request->session()->put('company_package_status','1');
+		$request->session()->put('company_adverised_logo','0');
 
 		return redirect('company-profile')->with('success','Congratulations You Have Purchase Our Basic Package!');
 

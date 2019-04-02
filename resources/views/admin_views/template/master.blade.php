@@ -50,6 +50,10 @@
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   <!-- data table Responsive -->
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <!-- data tables-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <!-- data table Button -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
   
 </head>
 
@@ -309,6 +313,24 @@
   <!-- data table Responsive -->
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
+   <!-- data table button -->
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+     <!-- data table button -->
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+
+     <!-- data table button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  
+     <!-- data table button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+     <!-- data table button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+     <!-- data table button -->
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
 
   <script type="text/javascript">
     $( document ).ready(function() {
@@ -333,7 +355,41 @@
 </script>
 
 <script type="text/javascript">
-  $('#faq_datatable').DataTable();
+  $('#faq_datatable').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: [ 1, 2, 3 ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [ 1, 2, 3 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Title plus file name',
+                messageTop: 'description',
+                download: 'open',
+                exportOptions: {
+                    columns: [ 1, 2, 3 ]
+                }
+            },
+            {
+                extend: 'print',
+                messageTop: 'Hello World',
+                exportOptions: {
+                    columns: [ 1, 2, 3 ]
+                }
+            },
+            
+        ]
+    });
 </script>
 <script type="text/javascript">
    

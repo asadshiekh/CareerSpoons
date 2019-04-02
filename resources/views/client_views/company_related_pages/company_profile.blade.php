@@ -897,7 +897,7 @@
 				</form>
 				<br>
 
-			<?php }else if(Session::get('company_package_status')=='1'){?>
+			<?php }else if(Session::get('company_adverised_logo')=='1'){?>
 
 				<table id="company_logo" class="display responsive no-wrap" style="width:100%">
 					<thead>

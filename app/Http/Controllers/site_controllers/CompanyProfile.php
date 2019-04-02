@@ -1236,8 +1236,8 @@ public function uploadCompanyLogo(Request $request){
 
     $data= $request->session()->get('company_name');
     $file = $request->file('upload_company_logo');
-    $new_name = $data.'.'.rand().'.'.$file->getClientOriginalName();
-    $destination='uploads/company_advertised_logo/';
+    $new_name = $data.'.'.rand();
+    $destination='uploads/client_site/company_advertised_logo/';
     $file->move($destination,$new_name);
     $current_date = date("Y.m.d h:i:s");
     
