@@ -524,7 +524,11 @@ Route::any('organization-reviews-change-status',"admin_controllers\main_controll
 
 // Logo Orders
 Route::any('logo-orders',"admin_controllers\organization_controllers\org_logo_orders@viewLogoOrders");
+Route::any('company-pkg-record',"admin_controllers\organization_controllers\org_logo_orders@viewPkgRecord");
 Route::any('upload-logo',"admin_controllers\organization_controllers\org_logo_orders@uploadAdvertisedLogo");
+
+
+
 //test work
 Route::any('jango','admin_controllers\Dashboard@jango');
 Route::any('jango1',function(){

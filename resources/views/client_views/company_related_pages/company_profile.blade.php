@@ -898,7 +898,41 @@
 				<br>
 
 			<?php }else if(Session::get('company_adverised_logo')=='1'){?>
+                <p style="color:red;font-size: 14px;"><?php
+               $c_id=$advertise_logo->company_id;
+               $dat=DB::table("advertised_logos")->where(['company_id'=>$c_id])->orderBy('id','desc')->first();
+                 // dd($dat);
+                  $da=$dat->display_start_date; 
+                  $da=str_replace(".","-",$da);  
+       // echo "<br/>";
+  				  $d=date("d",strtotime('+0 days'));
+               // echo "<br/>";
+                  $o=date('d', strtotime($da)); 
+               // echo "<br/><br/><br/><br/>";
 
+                if($d > $o){
+                    $day=($d-$o);
+                    $day=30-$day;
+
+                }else if($d == $o){
+                    $cm=date("m",strtotime('+0 days'));
+                    $sm=date('m', strtotime($da)); 
+                    if($cm == $sm){
+                        $day=30;
+                    }else{
+                         $day=$d-$o;
+                    }
+
+                }
+                else{     
+                    $day=($o-$d);
+                }
+
+               echo $day." Days Remaining";
+											
+
+
+                 ?></p>
 				<table id="company_logo" class="display responsive no-wrap" style="width:100%">
 					<thead>
 						<tr>

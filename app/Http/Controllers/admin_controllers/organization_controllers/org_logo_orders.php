@@ -51,4 +51,10 @@ class org_logo_orders extends Controller
    
 
     }
+
+
+    public function viewPkgRecord(){
+     $records=DB::table('availed_package_records')->get();
+     return view('admin_views/organization_views/company_package_record',['records'=>$records]);
+    }
 }

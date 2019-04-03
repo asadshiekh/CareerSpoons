@@ -39,7 +39,7 @@ class Company_Payment extends Command
      */
     public function handle()
     {
-        $info=DB::table('company_availed_packages')->join('company_advertised_logo','company_availed_packages.company_id', '=','company_advertised_logo.company_id')->select('company_availed_packages.*','company_advertised_logo.*')->where(['company_package_status'=>'1'])->get();
+        $info=DB::table('company_availed_packages')->join('company_advertised_logo','company_availed_packages.company_id', '=','company_advertised_logo.company_id')->join('advertised_logos','company_availed_packages.company_id', '=','advertised_logos.company_id')->select('company_availed_packages.*','company_advertised_logo.*','advertised_logos.*')->where(['company_package_status'=>'1'])->get();
 
         if($info){
 
@@ -47,7 +47,8 @@ class Company_Payment extends Command
 
         // echo $key->package_end_date;
         // echo "<br/>";
-            $date = $key->package_start_date;       
+            $date = $key->display_start_date; 
+            $date=str_replace(".","-",$date);    
             $now= Carbon::now();
             $dat=Carbon::parse($date);
             $days= $dat->diffInDays($now);
