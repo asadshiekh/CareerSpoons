@@ -50,7 +50,7 @@
                 </script>
                 @endif
 
-                <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
+                <table id="functionalAreaTable" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
 
                   <thead>
                     <tr id="area-tr">

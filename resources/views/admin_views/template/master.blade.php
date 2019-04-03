@@ -351,7 +351,46 @@
   $('#myEduction').DataTable();
 </script>
 <script type="text/javascript">
-  $('#myQual').DataTable();
+  $('#myQual').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "Contact Us Reply Message's",
+                messageTop: 'The Details of All User Which is Replyed By the Admin or  Moderator',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+               title: "Contact Us Reply Message's",
+                messageTop: 'The Details of All User Which is Replyed By the Admin or  Moderator',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "Contact Us Reply Message's",
+                messageTop: 'The Details of All User Which is Replyed By the Admin or  Moderator',
+                download: 'open',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4]
+                }
+            },
+            {
+                extend: 'print',
+                title: "Contact Us Reply Message's",
+                messageTop: 'The Details of All User Which is Replyed By the Admin or  Moderator',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4]
+                }
+            },
+            
+        ]
+    });
 </script>
 
 <script type="text/javascript">
@@ -361,20 +400,24 @@
         buttons: [
             {
                 extend: 'csvHtml5',
+                title: "FAQ's",
+                messageTop: 'FAQs originated in Usenet groups as a way to answer questions about the rules of the service',
                 exportOptions: {
                     columns: [ 1, 2, 3 ]
                 }
             },
             {
                 extend: 'excelHtml5',
+                title: "FAQ's",
+                messageTop: 'FAQs originated in Usenet groups as a way to answer questions about the rules of the service',
                 exportOptions: {
                     columns: [ 1, 2, 3 ]
                 }
             },
             {
                 extend: 'pdfHtml5',
-                title: 'Title plus file name',
-                messageTop: 'description',
+                title: "FAQ's",
+                messageTop: 'FAQs originated in Usenet groups as a way to answer questions about the rules of the service',
                 download: 'open',
                 exportOptions: {
                     columns: [ 1, 2, 3 ]
@@ -382,7 +425,8 @@
             },
             {
                 extend: 'print',
-                messageTop: 'Hello World',
+                title: "FAQ's",
+                messageTop: 'FAQs originated in Usenet groups as a way to answer questions about the rules of the service',
                 exportOptions: {
                     columns: [ 1, 2, 3 ]
                 }
@@ -469,7 +513,251 @@
 
 <script type="text/javascript">
   
-  $('#candidate-review-table').DataTable();
- $('#organization-review-table').DataTable();
+  $('#candidate-review-table').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "Candidate Review's",
+                messageTop: "These Candidate's Reviews Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "Candidate Review's",
+                messageTop: "These Candidate's Reviews Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "Candidate Review's",
+                messageTop: "These Candidate's Reviews Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                download: 'open',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'print',
+                title: "Candidate Review's",
+                messageTop: "These Candidate's Reviews Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            
+        ]
+    });
+ $('#organization-review-table').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "Organization Review's",
+                messageTop: "These Organization Review's Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "Organization Review's",
+                messageTop: "These Organization Review's Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "Organization Review's",
+                messageTop: "These Organization Review's Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                download: 'open',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'print',
+                title: "Organization Review's",
+                messageTop: "These Organization Review's Help Our Website To Make Sure That it Provide Helpfull Service Or Not",
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4 ]
+                }
+            },
+            
+        ]
+    });
+
+ $('#register-organization-table').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "All Registed Organization's",
+                messageTop: "All Registed Organization's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "All Registed Organization's",
+                messageTop: "All Registed Organization's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "All Registed Organization's",
+                messageTop: "All Registed Organization's So Far",
+                download: 'open',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            {
+                extend: 'print',
+                title: "All Registed Organization's",
+                messageTop: "All Registed Organization's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            
+        ]
+    });
+
+
+  $('#register-user-table').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "All Registed User's",
+                messageTop: "All Registed User's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "All Registed User's",
+                messageTop: "All Registed User's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "All Registed User's",
+                messageTop: "All Registed User's So Far",
+                download: 'open',
+                exportOptions: {
+                    columns: [1, 2, 3, 4 ]
+                }
+            },
+            {
+                extend: 'print',
+                title: "All Registed User's",
+                messageTop: "All Registed User's So Far",
+                exportOptions: {
+                    columns: [1, 2, 3, 4 ]
+                }
+            },
+            
+        ]
+    });
+
+    $('#functionalAreaTable').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "Functional Area",
+                messageTop: "List OF Functional Area",
+                exportOptions: {
+                    columns: [1]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "Functional Area",
+                messageTop: "List OF Functional Area",
+                exportOptions: {
+                    columns: [1]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "Functional Area",
+                messageTop: "List OF Functional Area",
+                download: 'open',
+                exportOptions: {
+                    columns: [1]
+                }
+            },
+            {
+                extend: 'print',
+                title: "Functional Area",
+                messageTop: "List OF Functional Area",
+                exportOptions: {
+                    columns: [1]
+                }
+            },
+            
+        ]
+    });
+
+
+        $('#functionalMajorAreaTable').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                title: "Functional Area & Related Majors",
+                messageTop: "List OF Functional Area and Related Majors",
+                exportOptions: {
+                    columns: [1, 2]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: "Functional Area & Related Majors",
+                messageTop: "List OF Functional Area and Related Majors",
+                exportOptions: {
+                    columns: [1, 2]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: "Functional Area & Related Majors",
+                messageTop: "List OF Functional Area and Related Majors",
+                download: 'open',
+                exportOptions: {
+                    columns: [1, 2]
+                }
+            },
+            {
+                extend: 'print',
+                title: "Functional Area & Related Majors",
+                messageTop: "List OF Functional Area and Related Majors",
+                exportOptions: {
+                    columns: [1, 2]
+                }
+            },
+            
+        ]
+    });
 
 </script>

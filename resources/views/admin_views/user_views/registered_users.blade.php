@@ -22,7 +22,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2 style="font-family:'italic',bold">All Registed Organization<small style="font-family:'italic',bold">Here... </small></h2>
+            <h2 style="font-family:'italic',bold">All Registed User's<small style="font-family:'italic',bold">Here... </small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class=""><i class="fa fa-dashboard"></i></a>
               </li>
@@ -41,7 +41,7 @@
             <p class="text-muted font-13 m-b-30">
 
             </p>
-            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
+            <table id="register-user-table" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width: 100%">
               <thead>
                 <tr>
                  <th><input type="checkbox" id="check-all" class="flat"> Select All </th>  

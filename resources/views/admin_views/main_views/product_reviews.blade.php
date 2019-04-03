@@ -80,13 +80,15 @@
                   <td>{{$value->id}}</td>
                   <td>{{$value->candidate_name}}</td>
                   <td>
-                    <?php $n=5-$value->rating_points; ?>
+                    <?php 
+
+                    $n=5-$value->rating_points; ?>
                     <span class="protip" data-pt-scheme="blue" data-pt-position="top" data-pt-title="Rating is {{$value->rating_points}}" data-pt-size="small">
                    <?php for($i=1;$i<=$value->rating_points;$i++){ ?>
                    <span class="glyphicon glyphicon-star"></span>
                    <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <?php } ?>
+                    <?php echo "(".$value->rating_points.")";  } ?>
                   </span>
 
                  
@@ -159,7 +161,7 @@
                    <span class="glyphicon glyphicon-star"></span>
                    <?php }for($i=1;$i<=$n;$i++){?>
                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <?php } ?>
+                    <?php  } echo "(".$value->rating_points.")";  ?>
                   </span>
                   </td>
                   <td>
