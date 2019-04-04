@@ -79,10 +79,10 @@
               <h2 style="font-family: georgia;font-size: 14px;"><?php if(session()->has('admin_name')){
                 //echo session()->get('admin_name');
 
-              $str=session()->get('admin_name');
-              $str=explode(" ",$str);
-              echo $str[0];
-            
+                $str=session()->get('admin_name');
+                $str=explode(" ",$str);
+                echo $str[0];
+
 
               }else{
                 echo "No Name";
@@ -104,46 +104,57 @@
                   </ul> -->
                 </li>
 
+                <!-- n -->
+                <li><a><i class="fa fa-circle-o"></i> Organization <span class="fa fa-chevron-down"></span></a>
 
-                <li><a><i class="fa fa-edit"></i> Organization <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a>Add<span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="{{url('add-organization')}}">Add Organization</a></li>
-                      </ul>
-                    </li>
-                    <li><a>View<span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
+                    <li><a href="{{url('view-organization')}}">View Organization</a></li>
+                     <?php if(Session::get('account_right') != 'analytics'){?>
+                    <li><a href="{{url('add-organization')}}">Add Organization</a></li>
+                  <?php } ?>
 
-                        <li><a href="{{url('view-organization')}}">View Organization</a></li>
-                        <li><a href="{{url('company-type')}}">View Types</a></li>
-                        <li><a href="{{url('view-industries')}}">View Industries</a></li>
-                        <li><a href="{{url('view-cities')}}">View Cities</a></li> 
-                        <li><a href="{{url('view-qualification')}}">View Qualification</a></li>
-                        <li><a href="{{url('view-majors')}}">View Major Qualification</a></li>
-                        <li><a href="{{url('view-functional-area')}}">View Functional Area</a></li>
-                        <li><a href="{{url('view-degree-level')}}">View Degree Level</a></li> 
-                        <li><a href="{{url('logo-orders')}}">Company Logo Orders</a></li>
-                         <li><a href="{{url('company-pkg-record')}}">Company Package Records</a></li>                           
-                      </ul>
-                    </li>
+                  </ul>
+                </li>
+                <!-- n -->
+                <li><a><i class="fa fa-circle-o"></i> ADD Details <span class="fa fa-chevron-down"></span></a>
+
+                  <ul class="nav child_menu">
+                    <li><a href="{{url('company-type')}}">View Types</a></li>
+                    <li><a href="{{url('view-industries')}}">View Industries</a></li>
+                    <li><a href="{{url('view-cities')}}">View Cities</a></li> 
+                    <li><a href="{{url('view-qualification')}}">View Qualification</a></li>
+                    <li><a href="{{url('view-majors')}}">View Major Qualification</a></li>
+                    <li><a href="{{url('view-functional-area')}}">View Functional Area</a></li>
+                    <li><a href="{{url('view-degree-level')}}">View Degree Level</a></li>                            
+                    
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-circle-o"></i> Orders & Records <span class="fa fa-chevron-down"></span></a>
+
+                  <ul class="nav child_menu">
+
+                    <li><a href="{{url('logo-orders')}}">Company Logo Orders</a></li>
+                    <li><a href="{{url('company-pkg-record')}}">Company Package Records</a></li>                           
+                    
                   </ul>
                 </li>
 
-                <li><a><i class="fa fa-home"></i> CMS <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-circle-o"></i> CMS <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-<li><a href="{{url('view-registered-users')}}"><i class="fa fa-circle-o"></i>View Registered Users</a></li>
-  <li><a href="{{url('view-cv-manage-page')}}"><i class="fa fa-circle-o"></i>Add Resume</a></li>
-  <li><a href="{{url('product-reviews')}}"><i class="fa fa-circle-o"></i>Product Reviews</a></li>   
-  <li><a href="{{url('view-about-us')}}"><i class="fa fa-circle-o"></i>About Us</a></li> 
-  <li><a href="{{url('view-contactus-page')}}"><i class="fa fa-circle-o"></i>Contact  Us</a></li>
-  <li><a href="{{url('view-faq-page')}}"><i class="fa fa-circle-o"></i>FAQ</a></li>            
-  
+                    <li><a href="{{url('view-registered-users')}}">View Registered Users</a></li>
+                    <?php if(Session::get('account_right') != 'analytics'){?>
+                    <li><a href="{{url('view-cv-manage-page')}}">Add Resume</a></li>
+                  <?php } ?>
+                    <li><a href="{{url('product-reviews')}}">Product Reviews
+                    <li><a href="{{url('view-contactus-page')}}">Contact  Us</a></li>
+                 
+                    <li><a href="{{url('view-faq-page')}}">FAQ</a></li>            
+
                   </ul>
                 </li>
 
 
-            
+
 
               </ul>
             </div>

@@ -360,6 +360,7 @@ Route::any('filter-applicants/{id}',"site_controllers\SiteJobController@doFilter
 /*    Admin Work   */
 //session
 Route::get('view-admin-session',"admin_controllers\AdminLogin@viewSession");
+Route::get('404',"admin_controllers\main_controllers\MainController@view404");
 //
 Route::get('admin-login',"admin_controllers\AdminLogin@viewLoginPage");
 Route::post('do-admin-login',"admin_controllers\AdminLogin@doAdminLogin");
@@ -388,15 +389,17 @@ Route::any('change-employee-status','admin_controllers\admin_profile\AdminProfil
 
 
 //organization routes
-Route::get('add-organization',"admin_controllers\organization_controllers\AdminOrganization@addOrganizationForm");
+Route::get('add-organization',"admin_controllers\organization_controllers\AdminOrganization@addOrganizationForm")->middleware('Analyst');
 
 Route::get('view-organization',"admin_controllers\organization_controllers\AdminOrganization@viewRegistedOrganization");
-Route::post('delete-check-org',"admin_controllers\organization_controllers\AdminOrganization@deleteCheckOrg");
-Route::post('delete-org',"admin_controllers\organization_controllers\AdminOrganization@deleteOrganization");
-Route::any('update-org-form',"admin_controllers\organization_controllers\AdminOrganization@updateOrganization");
-Route::any('update-company-data',"admin_controllers\organization_controllers\AdminOrganization@updateCompanyData");
-Route::any('register-company',"admin_controllers\organization_controllers\AdminOrganization@addCompanyForm");
-Route::any('change-org-status',"admin_controllers\organization_controllers\AdminOrganization@changeOrgStatus");
+
+Route::post('delete-check-org',"admin_controllers\organization_controllers\AdminOrganization@deleteCheckOrg")->middleware('Analyst');
+Route::post('delete-org',"admin_controllers\organization_controllers\AdminOrganization@deleteOrganization")->middleware('Analyst');
+Route::any('update-org-form',"admin_controllers\organization_controllers\AdminOrganization@updateOrganization")->middleware('Analyst');
+Route::any('update-company-data',"admin_controllers\organization_controllers\AdminOrganization@updateCompanyData")->middleware('Analyst');
+Route::any('register-company',"admin_controllers\organization_controllers\AdminOrganization@addCompanyForm")->middleware('Analyst');
+
+Route::any('change-org-status',"admin_controllers\organization_controllers\AdminOrganization@changeOrgStatus")->middleware('Analyst');
 
 
 //City
@@ -514,7 +517,8 @@ Route::any('delete-faq/{id}',"admin_controllers\main_controllers\MainController@
 
 //CV work
 Route::any('view-cv-manage-page',"admin_controllers\cv_controllers\ManageResumeTemplate@viewCVManagePage");
-Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTemplate@addResumeTemp");
+
+Route::any('do-add-resume-temp',"admin_controllers\cv_controllers\ManageResumeTemplate@addResumeTemp")->middleware('Analyst');
 
 // Product Reviews
 

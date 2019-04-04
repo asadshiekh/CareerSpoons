@@ -15,13 +15,21 @@ class AdminProfile extends Controller
      */
    public function viewAdminProfile(Request $request)
     {
+
         $username=$request->session()->get('admin_username');
         $email=$request->session()->get('admin_email');
         $phone=$request->session()->get('admin_phone');
         $id=$request->session()->get('account_id');
 
         $ad_info=DB::table('Admin_account')->where(['admin_username'=>$username])->first();
+        if($ad_info->account_right == "superadmin"){
         $em_info=DB::table('Admin_account')->where('account_right','!=', 'superadmin')->get();
+          }
+        elseif($ad_info->account_right == "admin"){
+        $em_info=DB::table('Admin_account')->where('account_right','!=', 'admin')->where('account_right','!=', 'admin')->get();
+        }else{
+        $em_info=DB::table('Admin_account')->where(['account_right' => 'analytics','account_right' => 'editor'])->get();
+        }
         $ad_img=DB::table('Admin_img')->where('admin_id','=', $id)->first();
         
         return view('admin_views/admin_profile/admin_pro',['ad_info'=>$ad_info,'em_info'=>$em_info,'ad_img'=>$ad_img]);

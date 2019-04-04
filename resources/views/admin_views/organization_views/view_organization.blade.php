@@ -52,7 +52,9 @@
                   <table id="register-organization-table" class="table table-striped table-bordered bulk_action responsive no-wrap" style="width:100%">
                     <thead>
                       <tr>
-                       <th><input type="checkbox" id="select-all" class="flat"> Select All </th>  
+                        <?php if(Session::get('account_right') != 'analytics'){?>
+                       <th><input type="checkbox" id="select-all" class="flat"> Select All </th>
+                       <?php }?>  
                        <th>Company Name</th>
                        <th>Company Type</th>
                        <th>Email</th>
@@ -66,7 +68,9 @@
                    <tbody>
                     @foreach($organizations as $organizations)
                     <tr id="org-tr{{$organizations->company_id}}"> 
+                      <?php if(Session::get('account_right') != 'analytics'){?>
                      <th><input type="checkbox" name="check_all_org[]" class="flat" value="{{$organizations->company_id}}"></th> 
+                   <?php } ?>
                      <td id="org-n{{$organizations->company_id}}">
                       <a href="organization-profile/{{$organizations->company_id}}" style="text-decoration: none;border-bottom:2px double #0c0;">{{$organizations->company_name}}</a></td>
                      <td id="org-t{{$organizations->company_id}}">{{$organizations->company_type}}</td>
@@ -84,18 +88,25 @@
                        <option value="Active">Active</option>
                        <option value="Block">Block</option>
                      </select></td>
-                     <td><a onclick="update_organizaion('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a href="organization-profile/{{$organizations->company_id}}"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></a></td>
+                     <td>
+                      <?php if(Session::get('account_right') != 'analytics'){?>
+                      <a onclick="update_organizaion('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="delete_org('{{$organizations->company_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> |<?php }?>
+                       <a href="organization-profile/{{$organizations->company_id}}"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Organization" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></a></td>
                    </tr>
                    @endforeach
 
                  </tbody>
                  <tfoot>
                   <tr>
+                  
                    <td colspan="9">
+                    <?php if(Session::get('account_right') != 'analytics'){?>
+
                     <?php  $query=DB::table('Add_organizations')->get()->count();
                     if($query>0) {?>
                       <button type="submit" class="btn btn-success" style="background-color: #2A3F54;">Delete</button>
                     <?php }?>
+                  <?php } ?>
 
              <!-- 
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Add New City?</button> -->

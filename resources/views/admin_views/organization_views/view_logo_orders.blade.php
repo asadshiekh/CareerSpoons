@@ -50,7 +50,9 @@
                  <th>Company Name</th>                
                  <th>Company Logo</th>
                  <th>Company Logo status</th>
+                 <?php if(Session::get('account_right') != 'analytics'){?>
                  <th>Upload logo for advertisement</th>
+               <?php } ?>
              </tr>
            </thead>
            <tbody>
@@ -63,6 +65,7 @@
                 ?></td>
                <td><img src="{{url('uploads/client_site/company_advertised_logo')}}/{{$orders->company_logo}}" height="60px" width="40px" /></td>
                <td id="state{{$orders->company_advertise_id}}"><?php if($orders->company_logo_status == "0"){echo "<span style='color:red;'>Pending</span>";}else{echo "<span style='color:green;'>Uploaded</span>";} ?></td>
+               <?php if(Session::get('account_right') != 'analytics'){?>
                <td style="text-align:center;" id="btn-state{{$orders->company_advertise_id}}">
                 <?php if($orders->company_logo_status == "0"){?>
                 <span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -14; bottom 0 5" data-pt-title="Upload company edited logo on main Page of CareerSpoons" data-pt-animate="flipInX" data-pt-size="small"><a class="btn btn-success" onclick="publish_logo('{{$orders->company_advertise_id}}','{{$name}}','{{$orders->company_id}}','{{$orders->company_advertise_id}}');">Publish Logo</a></span>
@@ -70,6 +73,8 @@
                 <span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -14; bottom 0 5" data-pt-title="logo uploaded on Your site" data-pt-animate="flipInX" data-pt-size="small"><a class="btn btn-success" disabled>Logo Uploaded</a></span>
                 <?php  }?>
               </td>
+            <?php } ?>
+
            </tr>
            @endforeach
            

@@ -130,10 +130,13 @@
 
                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Total Posts</a>
                          </li>
+                          <?php if(Session::get('account_right') != 'analytics'){?>
                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Post Job</a>
                          </li>
+
                          <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Password Setting</a>
                          </li>
+                       <?php }?>
                          <li role="presentation" class=""><a href="#tab_content5" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">Company info</a>
                          </li>
                          <li role="presentation" class=""><a href="#tab_content6" role="tab" id="profile-tab5" data-toggle="tab" aria-expanded="false">Insights </a>
@@ -172,7 +175,8 @@
                                     
                                   </td>
                                   <td class="vertical-align-mid">
-                                    <a onclick="del_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a onclick="update_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> | <a onclick="view_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-eye"></i></span></a>
+                                    <?php if(Session::get('account_right') != 'analytics'){?>
+                                    <a onclick="del_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Delete Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-trash"></i></span></a> | <a onclick="update_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Update Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-pencil"></i></span></a> |<?php } ?> <a onclick="view_post('{{$org_post->post_id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Post" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-eye"></i></span></a>
 
                                   </td>
                                 </tr>
@@ -183,6 +187,9 @@
                           </div>
 
                         </div>
+                        <!-- new post -->
+
+                        <?php if(Session::get('account_right') != 'analytics'){?>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                           <div class="box-header">
                             <h3 class="box-title text-center" id="heading-head" style="font-family:'Courier New', Courier, monospace">New Post</h3>
@@ -543,6 +550,10 @@
 
                 </div>
 
+              
+
+                <!-- end new post -->
+
                 <!---------------------third content---------------------->
                 <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
                   <div id="first-part">
@@ -663,6 +674,8 @@
                   </div>
 
                 </div>
+
+                <?php } ?>
                 <!---------------------end third content---------------------->
                 <!---------------------forth content---------------------->
                 <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">

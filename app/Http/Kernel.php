@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'CheckComapnyLogin' => \App\Http\Middleware\SiteMiddleware\Company\CompanyLoginCheck::class,
         'CheckCompanyProfile' => \App\Http\Middleware\SiteMiddleware\Company\CompanyProfileCheck::class,
         'CheckCompanyEmailVerify' => \App\Http\Middleware\SiteMiddleware\Company\CheckCompanyEmailVerify::class,
+        'Analyst' => \App\Http\Middleware\AdminMiddleware\Roles\Analyst::class,
     ];
 }

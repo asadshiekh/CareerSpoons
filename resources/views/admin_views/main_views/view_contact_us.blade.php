@@ -63,7 +63,11 @@
                <td style="color: red;">Waiting for Reply
               </td>
            
-            <td><a type="button" onclick="view_message('{{$contact->id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Message" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a> | <a type="button" onclick="reply_message('{{$contact->id}}','{{$contact->candidate_name}}','{{$contact->candidate_email}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Reply" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-mail-reply"></i></span></a></td>
+            <td><a type="button" onclick="view_message('{{$contact->id}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Message" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a> | 
+              <?php if(Session::get('account_right') != 'analytics'){?>
+              <a type="button" onclick="reply_message('{{$contact->id}}','{{$contact->candidate_name}}','{{$contact->candidate_email}}');"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="Reply" data-pt-animate="flipInX" data-pt-size="small"><i class="fa fa-mail-reply"></i></span></a>
+            <?php } ?>
+            </td>
           </tr>
           @endforeach
           

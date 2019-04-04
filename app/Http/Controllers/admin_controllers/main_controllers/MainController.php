@@ -278,5 +278,9 @@ public function aboutUsFormSend(Request $request){
 
   }
 
+  public function view404(){
+    return view("admin_views/main_views/404");
+  }
+
 
 }

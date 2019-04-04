@@ -195,7 +195,9 @@
                         <i class="fa fa-external-link"></i>
                       </div>
                       <select class="form-control" name="employee_right" id="employee_right" >
+                        <?php if(Session::get('account_right') == 'superadmin'){?>
                         <option class="form-control" value="admin">Admin</option>
+                       <?php } ?>
                         <option class="form-control" value="editor">Editor</option>
                         <option class="form-control" value="analytics">Analytics</option>
                       </select>
