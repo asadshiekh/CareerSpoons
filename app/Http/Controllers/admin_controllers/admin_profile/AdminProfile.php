@@ -26,7 +26,7 @@ class AdminProfile extends Controller
         $em_info=DB::table('Admin_account')->where('account_right','!=', 'superadmin')->get();
           }
         elseif($ad_info->account_right == "admin"){
-        $em_info=DB::table('Admin_account')->where('account_right','!=', 'admin')->where('account_right','!=', 'admin')->get();
+        $em_info=DB::table('Admin_account')->where('account_right','!=', 'superadmin')->where('account_right','!=', 'admin')->get();
         }else{
         $em_info=DB::table('Admin_account')->where(['account_right' => 'analytics','account_right' => 'editor'])->get();
         }
