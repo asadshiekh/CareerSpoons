@@ -386,6 +386,9 @@ Route::any('edit-single-employee',"admin_controllers\admin_profile\AdminProfile@
 Route::any('edit-detail-employee',"admin_controllers\admin_profile\AdminProfile@editDetailProfile");
 Route::any('do-crop','admin_controllers\admin_profile\AdminProfile@doImgCrop');
 Route::any('change-employee-status','admin_controllers\admin_profile\AdminProfile@changeStatus');
+Route::any('change-employee-status','admin_controllers\admin_profile\AdminProfile@changeStatus');
+Route::any('send-custom-mail','admin_controllers\admin_profile\AdminProfile@doSendCustomMial');
+Route::any('send-cus-mail','admin_controllers\admin_profile\AdminProfile@doSendCusMial');
 
 
 //organization routes

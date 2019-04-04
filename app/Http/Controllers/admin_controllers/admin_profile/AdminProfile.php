@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin_controllers\admin_profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Admin_Mail\Custom_Email\CustomEmail;
+use Mail;
 use DB;
 
 class AdminProfile extends Controller
@@ -436,7 +438,32 @@ public function doImgCrop(Request $request){
   }
  }
 
+ //custom mail function
 
+ public function doSendCustomMial(Request $request){
+  $to=$request->to;
+  $from=$request->from;
+  $text=$request->text;
+  $right=$request->session()->get('account_right');
+  $sender=$request->session()->get('admin_email');
+  $data=array(
+    'to_email'=>$to,
+    'mail_text'=>$text,
+    'sender_email'=>$sender,
+    'sender_role'=>$right
+  );
+  if(DB::table('admin_custom_inquiry_mails')->insert($data)){
+    echo "yes";
+  }
+ }
+
+
+//custom mail send function
+
+ public function doSendCusMial(Request $request){
+
+  Mail::send(new CustomEmail());
+ }
 
 
 

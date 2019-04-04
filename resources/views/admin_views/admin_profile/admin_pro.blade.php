@@ -399,18 +399,30 @@
               </div>
               <div class="box-body">
                 <form>
-                  <label>Select type of Mail:</label>
+                  <div class="col-sm-6 col-sm-offset-3">
+                  <label>To:</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-envelope-o"></i>
                     </div>
-                    <select type="text" class="form-control" name="employee_name" id="employee_name" placeholder="Enter Full Name">
-                      <option class="form-control" value="complained">Complained</option>
-                      <option class="form-control" value="complained">Complained</option>
-                      <option class="form-control" value="complained">Complained</option>
-
-                    </select> 
+                   <input type="email" name="to_email" id="to_email" class="form-control" placeholder="Enter Recipient Email"> 
                   </div>
+                  <label>From:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-envelope-o"></i>
+                    </div>
+                   <input type="email" name="from_email" id="from_email" class="form-control" value="careerspoons@gmail.com" disabled> 
+                  </div>
+                  <label>Text:</label>
+                  <div class="input-group col-sm-12">
+                  <textarea type="text" class="form-control" rows="5" cols="8" id="text_email">Enter Text here...</textarea>
+                  </div>
+                  <div class="input-group">
+                  <button type="button" class="btn btn-success" onclick="send_custom_email();">Send</button>
+                  </div>
+
+                </div>
                 </form>
               </div>
 
@@ -840,6 +852,23 @@
     });
 
     
+  </script>
+  <script type="text/javascript">
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    function send_custom_email(){
+      var to=$("#to_email").val();
+      var from=$("#from_email").val();
+      var text=$("#text_email").val();
+      $.post("{{url('send-custom-mail')}}",{_token:CSRF_TOKEN,to:to,from:from,text:text},function(data){
+           if(data == "yes"){
+            swal("Successfully!", "Email Send Successfully!", "success");
+             $.post("{{url('send-cus-mail')}}",{_token:CSRF_TOKEN,to:to,from:from,text:text},function(data){
+              // alert(data);
+             });
+           }
+      });
+
+    }
   </script>
 
 

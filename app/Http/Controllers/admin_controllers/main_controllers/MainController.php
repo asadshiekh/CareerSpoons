@@ -207,6 +207,7 @@ public function aboutUsFormSend(Request $request){
     
     if($candidate_reviews->count()>0){
       
+      
     }
     else{
       $candidate_reviews  = $candidate_reviews->count();
@@ -216,13 +217,11 @@ public function aboutUsFormSend(Request $request){
     
     if($organization_reviews->count()>0){
       
+
     }
     else{
        $organization_reviews  = $organization_reviews->count();
     }
-
-    // echo "<pre>";
-    // dd($organization_reviews);
 
 
        return view('admin_views/main_views/product_reviews',['candidate_reviews'=>$candidate_reviews,'organization_reviews'=>$organization_reviews]);

@@ -75,6 +75,7 @@
                 </tr>
               </thead>
               <tbody>
+                <?php if($candidate_reviews === 0){}else{ ?>
                @foreach ($candidate_reviews as $value)
                 <tr>
                   <td>{{$value->id}}</td>
@@ -127,6 +128,7 @@
                      <td style="text-align:center;"> <a href="#DemoModal2" data-toggle="modal" onclick='viewed_status("<?php echo $value->review_description?>");' ><span class="protip"data-pt-scheme="blue" data-pt-gravity="top 0 -5; bottom 0 5" data-pt-title="View Review Status" data-pt-animate="flipInX" data-pt-size="small"><i class="glyphicon glyphicon-eye-open"></i></span></a></td>
                 </tr>
                 @endforeach
+              <?php }?>
               </tbody>
             </table>
           </div>
