@@ -89,6 +89,14 @@ public function dosendEmailContactUs(Request $request){
 public function viewFaq(){
  $page_title="CareerSpoons - Contact Us";
 $faq=DB::table('frequently_asked_questions')->get();
+
+if($faq->count()>0){
+  
+}
+else{
+  $faq = $faq->count();
+}
+
  return view('client_views.main_site.faq',['faq'=>$faq,'page_title'=>$page_title]);
 }
 

@@ -26,8 +26,14 @@
 				<div class="tab-pane fade in active" id="home">
 					<div class="content_accordion">
 						<div class="panel-group" id="accordion">
+							<?php 
 
-							@foreach($faq as $value)
+							if($faq=="0"){?>
+
+								<h4 style="color:red;text-align:center;font-size:17px">  Sorry! No FAQ Found Yet</h4>
+							<?php }else{
+
+							foreach($faq as $value){?>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
@@ -41,7 +47,7 @@
 								</div>
 							</div>
 
-							@endforeach
+							<?php }} ?>
 
 
 								
