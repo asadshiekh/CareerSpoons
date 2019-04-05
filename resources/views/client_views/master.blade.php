@@ -247,10 +247,10 @@
 										<form class="form-inline" method="post">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="" id="user_email">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="" id="user_password">
+													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="" id="user_email" onkeyup="checkemail();"><i id="email-error"></i>
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="" id="user_password" onkeyup="checkpass()"><i id="pass-error"></i>
 													<div class="center">
-														<button type="button" id="login-btn" class="submit-btn" onclick="user_login()"> Login </button>
+														<button type="button" id="login-btn" class="submit-btn" onclick="validate_user_login();"> Login </button>
 														<span style="display: block; margin-top:40px"><a href="{{url('user-registeration')}}">Not Account Yet? Create Your Account</a></span>
 													</div>
 												</div>
@@ -264,10 +264,10 @@
 									<form class="form-inline" method="post">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="">
-												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="">
+												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="" onkeyup="checkCemail()"><i id="emailc-error"></i>
+												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="" onkeyup="checkpass()"><i id="passc-error"></i>
 												<div class="center">
-													<button type="button" onclick="company_login();" id="subscribe" class="submit-btn"> Login </button>
+													<button type="button" onclick="validate_company_login();" id="subscribe" class="submit-btn"> Login </button>
 													<span style="display: block; margin-top:40px"><a href="{{url('company-registeration')}}">Not Account Yet? Create Your Company Account</a></span>
 												</div>
 											</div>
@@ -609,6 +609,26 @@
 			}
 
 			</style>
+			<style type="text/css">
+				span{
+					padding-left: 5%;
+				}
+				.alert{
+					color: red;
+					font-size: 12px;
+				}
+				.user-danger{
+					border: solid 2px red;
+				}
+				.success{
+					color: green;
+					font-size: 12px;
+				}
+				.user-success{
+					border: solid 2px green;
+				}
+
+				</style>
 			
 			<script>
 					

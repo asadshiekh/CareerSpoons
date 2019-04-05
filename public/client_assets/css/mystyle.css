@@ -4885,8 +4885,8 @@ body.simple-bg-screen:before {
 }
 .login-screen, .signup-screen, .lost-ps-screen {
     position: relative;
-    max-width: 450px;
-    margin:12% auto 0 auto;
+    max-width: 550px;
+    margin:5% auto 0 auto;
 }
 section.login-screen-sec, section.signup-screen-sec, section.lost-ps-screen-sec {
     background: transparent;
