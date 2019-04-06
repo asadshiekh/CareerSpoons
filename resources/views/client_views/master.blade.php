@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from codeminifier.com/updated-job-stock-preview/job-stock/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 10:39:06 GMT -->
+
 <head>
 <!-- Basic Page Needs
 	================================================== -->
