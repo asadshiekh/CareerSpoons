@@ -193,7 +193,7 @@ function validate_user_login(){
 					$('input[id="user_password"]').removeClass('user-success');
 					$('input[id="user_password"]').addClass('user-danger');
 					$("#pass-error").addClass('alert');
-					$("#pass-error").text('Password is empty');
+					$("#pass-error").text('Password is required');
 				}
 
 		}else{

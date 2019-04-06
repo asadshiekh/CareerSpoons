@@ -307,6 +307,11 @@ Route::any('change-SR-status',"site_controllers\SiteJobController@changeSRstatus
 Route::any('change-interstatus',"site_controllers\SiteJobController@changeInterstatus");
 Route::any('filter-applicants/{id}',"site_controllers\SiteJobController@doFilterApplicants");
 
+//validation function
+Route::any('check-unique-email',"site_controllers\SiteUser@doCheckEmailExists");
+Route::any('check-company-email',"site_controllers\SiteCompany@doCheckCompanyEmailExists");
+
+
 
 
 
@@ -533,6 +538,8 @@ Route::any('organization-reviews-change-status',"admin_controllers\main_controll
 Route::any('logo-orders',"admin_controllers\organization_controllers\org_logo_orders@viewLogoOrders");
 Route::any('company-pkg-record',"admin_controllers\organization_controllers\org_logo_orders@viewPkgRecord");
 Route::any('upload-logo',"admin_controllers\organization_controllers\org_logo_orders@uploadAdvertisedLogo");
+
+
 
 
 

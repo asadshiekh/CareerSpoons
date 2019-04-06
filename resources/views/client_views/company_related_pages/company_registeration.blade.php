@@ -37,29 +37,30 @@
 						<form>
 
 							<div class="row">
+								<!-- <p id="name-error" style="display: inline;margin: 0px;padding: 0px;"></p><p id="email-error" style="display: inline;margin: 0px;padding: 0px;"></p> -->
 								<div class="col-xs-6">
-									<label>Company Name *</label>
+									<label style="display: inline;">Company Name *</label><p id="name-error" style="display: inline;"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
 										</div>
-										<input type="text" class="form-control" placeholder="Enter Company Name"  id="company_name">
+										<input type="text" class="form-control" placeholder="Enter Company Name"  id="company_name" onkeyup="checkname()">
 									</div>
 									<!--Error Msges -->
 								</div>
 								<div class="col-xs-6">
-									<label>Company Email *</label>
+									<label style="display: inline;">Company Email *</label><p id="email-error" style="display: inline;"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-envelope"></i>
 										</div>
-										<input type="email" class="form-control" placeholder="Enter Company Email"  id="company_email">
+										<input type="email" class="form-control" placeholder="Enter Company Email"  id="company_email" onkeyup="checkemail()">
 									</div>
 								</div>
 							</div>
 							<br/>
 							<div class="row">
-								<div class="col-xs-6">
+								<div class="col-xs-8">
 									<!-- <label>Password *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
@@ -67,18 +68,18 @@
 										</div>
 										<input type="password" class="form-control" placeholder="Password"  id="company_password">
 									</div> -->
-									<label>User Password *</label>
+									<label style="display:inline;">Password *</label><p id="pass-error" style="display: inline;"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required" onkeyup="checkpass()">
 										<div class="input-group-addon">
 											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-6" id="register">
+								<div class="col-xs-4" id="register">
 
 									<span id="result" class="field-icon_1">Password Strength Meter</span>
 
@@ -86,8 +87,10 @@
 							</div>
 							<br/>
 							<div class="row">
+								<div class="col-xs-6"><p id="city-error" style="display: inline;width: 50%;"></p></div>
+								<div class="col-xs-6"><p id="type-error" style="display: inline;width: 50%;"></p></div>
 								<div class="col-xs-6">
-									<label>City *</label>
+									<label style="display: inline;">City *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
@@ -101,7 +104,7 @@
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label>Company Type *</label>
+									<label style="display: inline;">Company Type *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-building"></i>
@@ -144,23 +147,25 @@
 							<br/>
 							<div class="row">
 								<div class="col-xs-6">
-									<label>Phone *</label>
+									<label style="display: inline;">Phone *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</div>
-										<input type="text" id="company_phone_number"  class="form-control" placeholder="03234976389" >
+										<input type="text" id="company_phone_number"  class="form-control" placeholder="03234976389" required onkeyup="checknumber();">
 									</div>
 								</div>
 								<div class="col-xs-6">
-									<label>CNIC *</label>
+									<label style="display: inline;">CNIC *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa">&#xf2c3;</i>
 										</div>
-										<input type="text" id="company_cnic" class="form-control" placeholder="35202-2608620-7">
+										<input type="text" id="company_cnic" class="form-control" placeholder="35202-2608620-7" onkeyup="checkcnic();">
 									</div>
 								</div>
+								<div class="col-xs-6">
+								<p id="phone-error" style="display: inline; width: 50%;"></p></div><div class="col-xs-6"><p style="display: inline;width: 50%;" id="cnic-error"></p></div>
 							</div>
 							<br/>
 							<!-- <div class="row">
@@ -183,7 +188,7 @@
 								</span>
 							</div>
 
-							<button class="btn btn-login" onclick="register_company();" type="button" >Create Account</button>
+							<button class="btn btn-login" onclick="company_validate();" type="button" >Create Account</button>
 							<span>Have You Account ? <a href="{{url('company-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -299,6 +304,24 @@
 			top:24px;
 			padding: 5px;
 		}
+		.alert{
+			color: red;
+			font-size: 12px;
+		}
+		/*.user-danger{
+			border: solid 2px red;
+		}*/
+		.success{
+			color: green;
+			font-size: 12px;
+		}
+		p{
+			padding-left: 2%;
+		}
+		/*.user-success{
+			border: solid 2px green;
+		}*/
+
 
 	</style>
 

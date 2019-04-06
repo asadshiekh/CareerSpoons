@@ -247,8 +247,10 @@
 										<form class="form-inline" method="post">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="" id="user_email" onkeyup="checkemail();"><i id="email-error"></i>
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="" id="user_password" onkeyup="checkpass()"><i id="pass-error"></i>
+													<span id="email-error"></span>
+													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="" id="user_email" onkeyup="checkemail();">
+													<span id="pass-error"></span>
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="" id="user_password" onkeyup="checkpass()">
 													<div class="center">
 														<button type="button" id="login-btn" class="submit-btn" onclick="validate_user_login();"> Login </button>
 														<span style="display: block; margin-top:40px"><a href="{{url('user-registeration')}}">Not Account Yet? Create Your Account</a></span>
@@ -264,8 +266,10 @@
 									<form class="form-inline" method="post">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="" onkeyup="checkCemail()"><i id="emailc-error"></i>
-												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="" onkeyup="checkpass()"><i id="passc-error"></i>
+												<span id="emailc-error"></span>
+												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="" onkeyup="checkCemail()">
+												<span id="passc-error"></span>
+												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="" onkeyup="checkpass()">
 												<div class="center">
 													<button type="button" onclick="validate_company_login();" id="subscribe" class="submit-btn"> Login </button>
 													<span style="display: block; margin-top:40px"><a href="{{url('company-registeration')}}">Not Account Yet? Create Your Company Account</a></span>
@@ -611,7 +615,7 @@
 			</style>
 			<style type="text/css">
 				span{
-					padding-left: 5%;
+					padding-left: 3%;
 				}
 				.alert{
 					color: red;

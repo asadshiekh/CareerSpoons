@@ -93,6 +93,11 @@ class SiteUser extends Controller
        Mail::send(new User_Registeration());
        
     }
+    public function doCheckEmailExists(Request $request){
+    $email= $request->email;
+        $count_email=DB::table('register_users')->where(['user_email'=>$email])->get()->count();
+        echo $count_email;
+  }
 
 
 

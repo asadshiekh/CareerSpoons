@@ -2,37 +2,31 @@
 @section('content')
 <form>
 	<div class="form-group">
-		<div class="row">
-		<div class="col-sm-9">
+       <span style="text-align: left;height: 15px;"> <i id="emailc-error"></i>
+	    </span>
 		<div class="input-group">
+
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
 			<input type="email" class="form-control" placeholder="Enter Company Email" id="company_email" onkeyup="checkcemail();">
 		</div>
-	    </div>
-		<div class="col-sm-3" style="display: inline;background: none;" id="emailc-error">
-	    </div>
-	</div>
 	</div>
 
 	<div class="form-group">
-		<div class="row">
-		<div class="col-sm-9">
+		<span style="text-align: left;height: 15px;"><i id="passc-error"></i></span>
+	    </span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>
 			</div>
 			<input type="password" class="form-control" placeholder="Password" id="company_password" onkeyup="checkpass();">
-		</div>
-	    </div>
-	    <div class="col-sm-3" style="display: inline;background: none;border:none;" id="passc-error">
-	    </div>
+	    
 	</div>
 	</div>
 
 
-	<button class="btn btn-login" type="button" onclick="validate_company_login();">Login</button>
+	<button class="btn btn-login" type="button" onclick="validate_company_login();" style="margin-top:2%;">Login</button>
 	<span>You Have No Account? <a href="{{url('company-registeration')}}"> Create An Account</a></span>
 	<span><a href="{{url('company-forgot-password')}}"> Forgot Password</a></span>
 </form>

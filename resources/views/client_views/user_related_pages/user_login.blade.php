@@ -11,41 +11,30 @@
 <form>
 	<div class="row">
 	<div class="form-group">
-		<div class="row">
-		<div class="col-sm-9">
+		<span style="text-align: left;height: 16px;"><i id="email-error"></i></span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
 			<input type="email" class="form-control" id="user_email" placeholder="Enter User Email" onkeyup="checkemail();">
 		</div>
-	    </div>
-		<div class="col-sm-3" style="display: inline;background: none;" id="email-error">
-		
-	    </div>
-	</div>
 	</div>
 
 	<div class="form-group">
-		<div class="row">
-        <div class="col-sm-9">
+	
+        <span style="text-align: left;height: 15px;"><i id="pass-error"></i></span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>
 			</div>
 			<input type="password" class="form-control" id="user_password" placeholder="Password" required="" onkeyup="checkpass();">
 		</div>
-	    </div>
-		<div class="col-sm-3" id="pass-error">
-		
-		</div>
-		</div>
 	</div>
 
 </div>
 
 
-	<button type="button" class="btn btn-login" onclick="validate_user_login();">Login</button>
+	<button type="button" class="btn btn-login" onclick="validate_user_login();" style="margin-top:2%;">Login</button>
 	<span>You Have No Account? <a href="{{url('user-registeration')}}"> Create An User Account</a></span>
 	<span><a href="{{url('user-forgot-password')}}"> Forgot Password</a></span>
 </form>

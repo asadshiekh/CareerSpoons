@@ -38,32 +38,33 @@
 						<form>
 
 							<div class="form-group">
-								<label>Full Name *</label>
+								<label style="display: inline;">Full Name * </label><p id="name-error" style="display: inline;"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</div>
-									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required>
+									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required onkeyup="checkname()">
 								</div>
 							</div>
 							<div class="form-group">
-								<label>User Email *</label>
+								<label style="display: inline;">User Email *</label><p id="email-error" style="display: inline;"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</div>
-									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required">
+									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required" onkeyup="checkemail()">
 								</div>
 							</div>
 
 							<div class="row">
+								
 								<div class="col-xs-8">
-									<label>User Password *</label>
+									<label style="display: inline;">Password *</label><p id="pass-error" style="display: inline;"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required" onkeyup="checkpass()">
 										<div class="input-group-addon">
 											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
 										</div>
@@ -78,25 +79,29 @@
 							<div class="form-group"></div>
 
 							<div class="row">
+								<!-- <p id="user-error" style="display: inline;"></p> -->
 								<div class="col-xs-6">
-									<label>Username *</label>
+									<label>Username *</label><!-- <p id="user-error" style="display: inline;"></p> -->
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required>
+										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required onkeyup="checkuser()">
 									</div>
 									<!--Error Msges -->
+
+
 								</div>
 								<div class="col-xs-6">
-									<label>Phone *</label>
+									<label>Phone *</label><!-- <p id="user-error" style="display: inline;"></p> -->
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</div>
-										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(0334) 9974743" required="required">
+										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(0334) 9974743" required="required" onkeyup="checknumber();">
 									</div>
 								</div>
+								<p id="user-error" style="display: inline;"></p><p style="display: inline;" id="phone-error"></p>
 							</div>
 							<div class="form-group"></div>
 							<div class="form-group">
@@ -106,7 +111,7 @@
 								</span>
 							</div>
 
-							<button type="button" class="btn btn-login" id="user_btn" onclick="user_registration();">Create Account</button>
+							<button type="button" class="btn btn-login" id="user_btn" onclick="user_register_validate();">Create Account</button>
 							<span>Have You Account ? <a href="{{url('user-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -270,6 +275,27 @@
 			border: 1px solid red;
 			top:12px;
 		}
+
+
+		.alert{
+			color: red;
+			font-size: 12px;
+		}
+		/*.user-danger{
+			border: solid 2px red;
+		}*/
+		.success{
+			color: green;
+			font-size: 12px;
+		}
+		p{
+			padding-left: 2%;
+		}
+		/*.user-success{
+			border: solid 2px green;
+		}*/
+
+		
 
 
 

@@ -109,4 +109,11 @@ class SiteCompany extends Controller
       return view("client_views.company_related_pages.allCompanies",['org'=>$org,'fetch_citi'=>$fetch_citi,'name'=>$name,'city'=>$city,'page_title'=>$page_title]);
 	}
 
+
+	public function doCheckCompanyEmailExists(Request $request){
+		$email= $request->email;
+        $count_email=DB::table('add_organizations')->where(['company_email'=>$email])->get()->count();
+        echo $count_email;
+	}
+
 }
