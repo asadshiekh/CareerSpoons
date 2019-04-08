@@ -45,7 +45,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</div>
-									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required>
+									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required onkeyup="checkname()">
 								</div>
 							</div>
 							<div class="form-group">
@@ -54,7 +54,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</div>
-									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required">
+									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required" onkeyup="checkemail()">
 								</div>
 							</div>
 
@@ -66,7 +66,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required" onkeyup="checkpass()">
 										<div class="input-group-addon">
 											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
 										</div>
@@ -88,7 +88,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required>
+										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required onkeyup="checkuser()">
 									</div>
 									<p id="user-error" style="display: inline; color: red"></p>
 									<!--Error Msges -->
@@ -101,7 +101,7 @@
 										<div class="input-group-addon">
 											<!-- <i class="fa fa-phone"></i> -->+92
 										</div>
-										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(334)-9974743" required="required">
+										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(334)-9974743" required="required" onkeyup="checknumber();">
 									</div>
 								</div>
 								<p id="user-error" style="display: inline;"></p><p style="display: inline;color:red" id="phone-error"></p>
@@ -109,12 +109,12 @@
 							<div class="form-group"></div>
 							<div class="form-group">
 								<span class="form-check-label" style="font-weight: 500 ; text-align: left; font-size: 13px">
-									<input class="form-check-input" type="checkbox" id="checkbox">
+									<input class="form-check-input" type="checkbox" id="checkbox" onselect="check();">
 									I Accept Terms & Conditions And Privacy Policy Of CareerSpoons.com
 								</span>
 							</div>
 
-							<button type="button" class="btn btn-login" id="user_btn" onclick="user_registration();">Create Account</button>
+							<button type="button" class="btn btn-login" id="user_btn" onclick="user_register_validate();">Create Account</button>
 							<span>Have You Account ? <a href="{{url('user-login')}}"> Login</a></span>
 						</form>
 					</div>
