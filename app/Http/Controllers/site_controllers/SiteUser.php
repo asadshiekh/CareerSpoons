@@ -9,6 +9,8 @@ use App\SiteModel\User\UserProfileImages;
 use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\Resumes\User_Resume_Model;
 use App\Mail\Site_Mail\User_Mail\User_Registeration;
+use App\Http\Requests\Client_Request\User_Registeration_Validation;
+use Validator;
 use Mail;
 use DB;
 class SiteUser extends Controller
@@ -21,6 +23,12 @@ class SiteUser extends Controller
     }
 
     public function doRegisterUser(Request $request){
+
+
+    $obj = new User_Registeration_Validation();
+    $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
+
+    if($validation->passes()){
 
     	$current_date = date("Y.m.d h:i:s");
       $current_cv_status = 0;
@@ -82,6 +90,16 @@ class SiteUser extends Controller
 
     		echo "no";
     	}
+
+
+    }
+
+    else{
+
+      return $validation->errors();
+
+      //return response()->json(['errors'=>$validation->errors()->all()]);
+    }
 
 
 

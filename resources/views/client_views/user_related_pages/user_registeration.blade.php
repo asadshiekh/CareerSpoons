@@ -25,6 +25,8 @@
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<!-- Password Strength Meter Css -->
 		<link rel="stylesheet" href="{{url('public/client_assets/css/customization_css/passwordscheck.css')}}">
+		<!-- javascript Css notify -->
+	<link rel="stylesheet" href="{{url('public/client_assets/css/notify/notyf.min.css')}}">
 
 	</head>
 	<body class="simple-bg-screen" style="background-image:url(public/client_assets/img/banner-10.jpg);">
@@ -38,33 +40,33 @@
 						<form>
 
 							<div class="form-group">
-								<label style="display: inline;">Full Name * </label><p id="name-error" style="display: inline;"></p>
+								<label style="display: inline;">Full Name * </label><p id="name-error" style="display: inline; color: red"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</div>
-									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required onkeyup="checkname()">
+									<input type="text" id="candidate_name" class="form-control" placeholder="Enter Full Name" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label style="display: inline;">User Email *</label><p id="email-error" style="display: inline;"></p>
+								<label style="display: inline;">User Email *</label><p id="email-error" style="display: inline; color:red"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</div>
-									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required" onkeyup="checkemail()">
+									<input type="email" id="user_email" class="form-control" placeholder="User Email" required="required">
 								</div>
 							</div>
 
 							<div class="row">
 								
 								<div class="col-xs-8">
-									<label style="display: inline;">Password *</label><p id="pass-error" style="display: inline;"></p>
+									<label style="display: inline;">Password *</label><p id="pass-error" style="display: inline; color:red"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
 										</div>
-										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required" onkeyup="checkpass()">
+										<input type="text" id="password-field" class="form-control" placeholder="Enter Password" required="required">
 										<div class="input-group-addon">
 											<i toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></i>
 										</div>
@@ -81,13 +83,14 @@
 							<div class="row">
 								<!-- <p id="user-error" style="display: inline;"></p> -->
 								<div class="col-xs-6">
-									<label>Username *</label><!-- <p id="user-error" style="display: inline;"></p> -->
+									<label>Username *</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required onkeyup="checkuser()">
+										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required>
 									</div>
+									<p id="user-error" style="display: inline; color: red"></p>
 									<!--Error Msges -->
 
 
@@ -96,12 +99,12 @@
 									<label>Phone *</label><!-- <p id="user-error" style="display: inline;"></p> -->
 									<div class="input-group">
 										<div class="input-group-addon">
-											<i class="fa fa-phone"></i>
+											<!-- <i class="fa fa-phone"></i> -->+92
 										</div>
-										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(0334) 9974743" required="required" onkeyup="checknumber();">
+										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(334)-9974743" required="required">
 									</div>
 								</div>
-								<p id="user-error" style="display: inline;"></p><p style="display: inline;" id="phone-error"></p>
+								<p id="user-error" style="display: inline;"></p><p style="display: inline;color:red" id="phone-error"></p>
 							</div>
 							<div class="form-group"></div>
 							<div class="form-group">
@@ -111,7 +114,7 @@
 								</span>
 							</div>
 
-							<button type="button" class="btn btn-login" id="user_btn" onclick="user_register_validate();">Create Account</button>
+							<button type="button" class="btn btn-login" id="user_btn" onclick="user_registration();">Create Account</button>
 							<span>Have You Account ? <a href="{{url('user-login')}}"> Login</a></span>
 						</form>
 					</div>
@@ -174,11 +177,13 @@
 				<script src="{{url('public/client_assets/js/customization_js/passwordscheck.js')}}"></script>
 				<!-- Passsword Strength Checker -->
 				<script src="{{url('public/client_assets/js/placeholder/superplaceholder.min.js')}}"></script>
+				<!-- Notify Javascript -->
+		<script src="{{url('public/client_assets/js/notify/notyf.min.js')}}"></script>
 
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$('#styleOptions').styleSwitcher();
-						$("#phone_number").mask("(9999)-9999999");
+						$("#phone_number").mask("(999)-9999999");
 						//$.mask.definitions['#'] = $.mask.definitions['9'];
 						//$.mask.definitions['9'] = null; 
 						//+7 ([000]) [000]-[0000]
@@ -232,7 +237,7 @@
 
 					const instance_number = superplaceholder({
 						el: document.querySelector('#phone_number'),
-						sentences: ['(0334)-9974743'],
+						sentences: ['(334)-9974743'],
 						options: {
 							letterDelay: 100,
 							sentenceDelay: 1000,
