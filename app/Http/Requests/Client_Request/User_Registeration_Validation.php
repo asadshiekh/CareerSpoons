@@ -30,10 +30,20 @@ class User_Registeration_Validation extends FormRequest
              
             "candidate_name" => 'bail|required|min:5|regex:/^[\pL\s]+$/u',
             "user_email"     => 'bail|required|regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',
-            "user_password"  => ['required' ,new User_Register_Password_Rule],
+            "user_password"  => 'required|min:8',
             "username"       => 'bail|required|min:5|regex:/^[a-zA-Z\(\) ].[a-zA-Z0-9\(\) ]+$/',
             "phone_number"   => 'required|min:13',
         ];
+
+
+        //         return [
+             
+        //     "candidate_name" => 'bail|required|min:5|regex:/^[\pL\s]+$/u',
+        //     "user_email"     => 'bail|required|regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',
+        //     "user_password"  => 'required|min:8',
+        //     "username"       => 'bail|required|min:5|regex:/^[a-zA-Z\(\) ].[a-zA-Z0-9\(\) ]+$/',
+        //     "phone_number"   => 'required|min:13',
+        // ];
 
         //"email" => ['required',new ValidEmail,new Email_Exist]
     }
@@ -42,11 +52,12 @@ class User_Registeration_Validation extends FormRequest
 
         return[
             "candidate_name.required"  => 'Name Should Not be Empty',
-            "candidate_name.min"  => 'Please Enter Atleast 5 Atleast',
+            "candidate_name.min"  => 'Please Enter Atleast 5 Letters',
             "candidate_name.regex"  => 'Contain Only Alphabets',
             "user_email.required"  => 'Email Required',
             "user_email.regex"  => 'Email Wrong Format',
             "user_password.required"  => 'Password Not be Empty',
+            "user_password.min"  => 'Please Enter Atleast 8 Characters',
             "username.required"  => 'User Name Required',
             "username.min"  => 'Enter Atleast 5 Character',
             "username.regex"  => 'Invalid Format',

@@ -119,19 +119,19 @@
       </div>
       <div class="modal-body" id="modal-content">
 
-        <label>ADD City Name:</label>
+        <label style="display: inline;">ADD City Name:</label><p id="name-error" style="display: inline;"></p>
         <div class="input-group">
           <div class="input-group-addon">
             <i class="fa fa-yelp"></i>
           </div>
-          <input type="text" placeholder="Enter city here" class="form-control" name="add_company_city" id="add_company_city">
+          <input type="text" placeholder="Enter city here" class="form-control" name="add_company_city" id="add_company_city" required onkeyup="checkname()">
         </div>
         
         <!-- <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> --> 
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" onclick="company_city_addingTable();">ADD</button>
+          <button type="button" class="btn btn-default" onclick="city_Adding_validate();">ADD</button>
         </div>
       </div>
 
@@ -174,5 +174,230 @@ function update_request(name,id){
   }
 
 </script>
+<!-- company_city_addingTable -->
+
+<script type="text/javascript">
+function checkname() {
+    var name=$("#add_company_city").val();
+    if(name != ""){
+      if(name.match("^[a-zA-Z\(\) ]+$")){
+      
+
+          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.post("fetch-unique-city",{_token:CSRF_TOKEN,name:name},function(data){
+            if(data>0){
+              $("#name-error").removeClass('success');
+              $('input[id="add_company_city"]').removeClass('user-success');
+              $('input[id="add_company_city"]').addClass('user-danger');
+              $("#name-error").addClass('alert');
+              $("#name-error").text('City name already exist');
+              
+
+            }else{
+              $('input[id="add_company_city"]').removeClass('user-danger');
+              $('input[id="add_company_city"]').addClass('user-success');
+              $("#name-error").removeClass('alert');
+              $("#name-error").addClass('success');
+              $("#name-error").text(' ');
+             
+            }
+          }); 
+
+       
+      }else{
+        $("#name-error").removeClass('success');
+        $('input[id="add_company_city"]').removeClass('user-success');
+        $('input[id="add_company_city"]').addClass('user-danger');
+        $("#name-error").addClass('alert');
+        $("#name-error").text('City name contains only Alphabet');
+      }
+    }else{
+
+      $('input[id="add_company_city"]').removeClass('user-success');
+      $('input[id="add_company_city"]').removeClass('user-danger');
+      $("#name-error").text(' ');
+
+    }
+
+  }
+
+  //name validator
+   var name_validater = function validater(name){
+      var check;
+    //for name
+
+    if(name != ""){
+
+      if(name.match("^[a-zA-Z\(\) ]+$")){
+      
+          $('input[id="add_company_city"]').removeClass('user-danger');
+          $('input[id="add_company_city"]').addClass('user-success');
+          $("#name-error").removeClass('alert');
+          $("#name-error").addClass('success');
+        
+           var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.post("fetch-unique-city",{_token:CSRF_TOKEN,name:name},function(data){
+            if(data>0){
+              $("#email-error").removeClass('success');
+              $('input[id="add_company_city"]').removeClass('user-success');
+              $('input[id="add_company_city"]').addClass('user-danger');
+              $("#email-error").addClass('alert');
+              $("#email-error").text('City name already exist');
+              check=false;
+             // alert("no");
+
+            }else{
+              $('input[id="add_company_city"]').removeClass('user-danger');
+              $('input[id="add_company_city"]').addClass('user-success');
+              $("#email-error").removeClass('alert');
+              $("#email-error").addClass('success');
+              $("#email-error").text(' ');
+             // alert("yes");
+              check=true;
+            }
+          }); 
+        
+      }else{
+        $("#name-error").removeClass('success');
+        $('input[id="add_company_city"]').removeClass('user-success');
+        $('input[id="add_company_city"]').addClass('user-danger');
+        $("#name-error").addClass('alert');
+        $("#name-error").text('City name contains only Alphabet');
+        //return false;
+        check=false;
+      }
+               ////end name       
+         //last
+     }else{
+      $("#name-error").removeClass('success');
+      $('input[id="add_company_city"]').removeClass('user-success');
+      $('input[id="add_company_city"]').addClass('user-danger');
+      $("#name-error").addClass('alert');
+      $("#name-error").text(' City Name is empty');
+      check=false;
+     }
+
+     return check;
+ }
+
+
+ //for update
+  var up_name_validater = function validater(name){
+      var check;
+    //for name
+
+    if(name != ""){
+
+      if(name.match("^[a-zA-Z\(\) ]+$")){
+      
+          $('input[id="up_company_city"]').removeClass('user-danger');
+          $('input[id="up_company_city"]').addClass('user-success');
+          $("#up-name-error").removeClass('alert');
+          $("#up-name-error").addClass('success');
+        
+           var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.post("fetch-unique-city",{_token:CSRF_TOKEN,name:name},function(data){
+            if(data>0){
+              $("#up-email-error").removeClass('success');
+              $('input[id="up_company_city"]').removeClass('user-success');
+              $('input[id="up_company_city"]').addClass('user-danger');
+              $("#up-email-error").addClass('alert');
+              $("#up-email-error").text('City name already exist');
+              check=false;
+             // alert("no");
+
+            }else{
+              $('input[id="up_company_city"]').removeClass('user-danger');
+              $('input[id="up_company_city"]').addClass('user-success');
+              $("#up-email-error").removeClass('alert');
+              $("#up-email-error").addClass('success');
+              $("#up-email-error").text(' ');
+             // alert("yes");
+              check=true;
+            }
+          }); 
+        
+      }else{
+        $("#name-error").removeClass('success');
+        $('input[id="up_company_city"]').removeClass('user-success');
+        $('input[id="up_company_city"]').addClass('user-danger');
+        $("#up-name-error").addClass('alert');
+        $("#up-name-error").text('City name contains only Alphabet');
+        //return false;up-
+        check=false;
+      }
+               ////end name       
+         //last
+     }else{
+      $("#name-error").removeClass('success');
+      $('input[id="up_company_city"]').removeClass('user-success');
+      $('input[id="up_company_city"]').addClass('user-danger');
+      $("#up-name-error").addClass('alert');
+      $("#up-name-error").text(' City Name is empty');
+      check=false;
+     }
+
+     return check;
+ }
+  //main function
+  function city_Adding_validate(){
+     var name = $("#add_company_city").val();
+     var getname=name_validater(name);
+        if(getname){
+            // yahooo();  
+            company_city_addingTable();     
+        }
+        else{
+          //alert("oh no");
+          $("#name-error").removeClass('success');
+          $('input[id="add_company_city"]').removeClass('user-success');
+          $('input[id="add_company_city"]').addClass('user-danger');
+          $("#name-error").addClass('alert');
+          $("#name-error").text('City name already exist');
+         }
+   
+  }
+   function city_updating_validate(){
+     var name = $("#up_company_city").val();
+     var getname=up_name_validater(name);
+        if(getname){
+            // yahooo();  
+           edit_city();     
+        }
+        else{
+          //alert("oh no");
+          $("#up-name-error").removeClass('success');
+          $('input[id="up_company_city"]').removeClass('user-success');
+          $('input[id="up_company_city"]').addClass('user-danger');
+          $("#up-name-error").addClass('alert');
+          $("#up-name-error").text('City name already exist');
+         }
+   
+  }
+
+  function yahooo(){
+    alert("yrs");
+  }
+</script>
+<style type="text/css">
+  .alert{
+      color: red;
+      font-size: 12px;
+    }
+    /*.user-danger{
+      border: solid 2px red;
+    }
+    .user-success{
+      border: solid 2px green;
+    }
+*/
+    .success{
+      color: green;
+      font-size: 12px;
+    }
+    .private{
+      padding-left: 1%;
+    }
+</style>
 @endsection
 

@@ -40,7 +40,7 @@
 						<form>
 
 							<div class="form-group">
-								<label style="display: inline;">Full Name * </label><p id="name-error" style="display: inline; color: red"></p>
+								<label style="display: inline;">Full Name * </label><p id="name-error" style="display: inline;"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-user"></i>
@@ -49,7 +49,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label style="display: inline;">User Email *</label><p id="email-error" style="display: inline; color:red"></p>
+								<label style="display: inline;">User Email *</label><p id="email-error" style="display: inline;"></p>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
@@ -61,7 +61,7 @@
 							<div class="row">
 								
 								<div class="col-xs-8">
-									<label style="display: inline;">Password *</label><p id="pass-error" style="display: inline; color:red"></p>
+									<label style="display: inline;">Password *</label><p id="pass-error" style="display: inline;"></p>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-lock" style="position: relative; top:5px"></i>
@@ -88,9 +88,9 @@
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character" required onkeyup="checkuser()">
+										<input type="text" id="username" class="form-control" placeholder="Enter UserName" pattern="[a-zA-Z0-9_-]{6,12}" title="Must be Alphanumeric in 6-12 character and first word should b Alphabet" required onkeyup="checkuser()">
 									</div>
-									<p id="user-error" style="display: inline; color: red"></p>
+									<p id="user-error" style="display: inline;"></p>
 									<!--Error Msges -->
 
 
@@ -104,7 +104,7 @@
 										<input type="text" name="phone" id="phone_number" class="form-control" placeholder="(334)-9974743" required="required" onkeyup="checknumber();">
 									</div>
 								</div>
-								<p id="user-error" style="display: inline;"></p><p style="display: inline;color:red" id="phone-error"></p>
+								<p id="user-error" style="display: inline;padding-left: 0px;"></p><p style="display: inline;" id="phone-error"></p>
 							</div>
 							<div class="form-group"></div>
 							<div class="form-group">

@@ -539,8 +539,8 @@ function company_validate(){
 			function returnData(read){
 				if(read =="true"){
 					if(getname && getcnic && getpass && getphone && getcity && gettype){
-						company_registration();
-						//yahooo();
+						//company_registration();
+						yahooo();
 					}
 				}
 				else{
@@ -558,6 +558,6 @@ function company_validate(){
 }
 //test fynction
 
-// function yahooo(){
-// 	alert("yes");
-// }
+function yahooo(){
+	alert("yes");
+}

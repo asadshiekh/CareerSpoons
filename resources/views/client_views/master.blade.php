@@ -214,6 +214,12 @@
 									<textarea class="form-control" id="candidate_message1" placeholder="Message"></textarea>
 									<button type="button" onclick="contactUs1();" class="btn btn-primary">Send</button>
 								</form>
+								<style type="text/css">
+									#contact_us ::placeholder{
+                                     color: white;
+                                     font-size: 10px;
+									}
+								</style>
 							</div>
 						</div>
 					</div>
@@ -1240,6 +1246,7 @@
 					 });
 				}
 			</script>
+			
 		</div>
 
 

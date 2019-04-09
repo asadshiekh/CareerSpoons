@@ -25,10 +25,10 @@ class SiteUser extends Controller
     public function doRegisterUser(Request $request){
 
 
-    $obj = new User_Registeration_Validation();
-    $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
+      $obj = new User_Registeration_Validation();
+      $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
 
-    if($validation->passes()){
+     if($validation->passes()){
 
     	$current_date = date("Y.m.d h:i:s");
       $current_cv_status = 0;
@@ -96,10 +96,10 @@ class SiteUser extends Controller
 
     else{
 
-      return $validation->errors();
+     return $validation->errors();
 
-      //return response()->json(['errors'=>$validation->errors()->all()]);
-    }
+      // return response()->json(['errors'=>$validation->errors()->all()]);
+   }
 
 
 

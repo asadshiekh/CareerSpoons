@@ -81,7 +81,7 @@ $data=DB::table('Add_cities')->where(['company_city_id'=>$city_id])->first();
   <h4 class="modal-title">Update City ?</h4>
   </div>
   <div class="modal-body" id="modal-content">
-  <label>Enter Updated Name:</label>
+  <label style="display: inline;">Enter Updated Name:</label><p id="up-name-error" style="display: inline;"></p>
   <div class="input-group">
   <div class="input-group-addon">
   <i class="fa fa-yelp"></i>
@@ -91,7 +91,7 @@ $data=DB::table('Add_cities')->where(['company_city_id'=>$city_id])->first();
   </div>
   <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-default" onclick="edit_city();">Update</button>
+  <button type="button" class="btn btn-default" onclick="city_updating_validate();">Update</button>
   </div>
   </div>
   </div>
@@ -111,6 +111,12 @@ public function updateCity(Request $request){
       if(DB::table('Add_cities')->where(['company_city_id'=>$id])->update($city_up)){
          echo "yes";
       }
+}
+
+public function doCheckCityExists(Request $request){
+ $name= $request->name;
+        $count_email=DB::table('Add_cities')->where(['company_city_name'=>$name])->get()->count();
+        echo $count_email;
 }
 
 

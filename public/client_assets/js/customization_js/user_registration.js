@@ -12,12 +12,10 @@ function user_registration(){
 	var username = $("#username").val();
 	var phone_number = $("#phone_number").val();
 	var checkbox = $('#checkbox:checked').val()?true:false;
-
-	    var cell=phone_number.replace("(","");
+	var cell=phone_number.replace("(","");
         var cell=cell.replace(")","");
         var cell=cell.replace("-","");
         var phone_number="+92"+cell;
-        //alert(new_phone);
 
 	//alert(phone_number);
 	$.post("user-registration-process",{_token:CSRF_TOKEN,candidate_name:candidate_name,user_email:user_email,
@@ -97,36 +95,36 @@ function user_registration(){
 }
 
 
-function auto_timer(){
-	swal({
-  title: 'Sweet!',
-  text: 'Modal with a custom image.',
-  imageUrl: "public/client_assets/img/random/circle.gif",
-  imageWidth: 400,
-  imageHeight: 200,
-  imageAlt: 'Custom image',
-  animation: false
-})
+// function auto_timer(){
+// 	swal({
+//   title: 'Sweet!',
+//   text: 'Modal with a custom image.',
+//   imageUrl: "public/client_assets/img/random/circle.gif",
+//   imageWidth: 400,
+//   imageHeight: 200,
+//   imageAlt: 'Custom image',
+//   animation: false
+// })
 
 
- }
+//  }
 
-function company_city_adding(){
-	var company_city = $("#add_company_city").val();
-	$.get("adding-company-city",{company_city:company_city},function(data){ 
-		if (data){
-			$("#city-option:last-child").after(data);
-			$("#myModal1 .close").click();
-			setTimeout(
-				function(){
+// function company_city_adding(){
+// 	var company_city = $("#add_company_city").val();
+// 	$.get("adding-company-city",{company_city:company_city},function(data){ 
+// 		if (data){
+// 			$("#city-option:last-child").after(data);
+// 			$("#myModal1 .close").click();
+// 			setTimeout(
+// 				function(){
 
-					swal("Successfully Created New City!", "City Added Successfully in Your DataBase!", "success");
-				},
-				1000
-				);
-		}
-	});
-}
+// 					swal("Successfully Created New City!", "City Added Successfully in Your DataBase!", "success");
+// 				},
+// 				1000
+// 				);
+// 		}
+// 	});
+// }
 
 
 
@@ -166,7 +164,7 @@ function checkname() {
 		}
 
 	}
-//backend functions for name
+// //backend functions for name
  var name_validater = function validater(name){
     	var check;
 		//for name
@@ -214,7 +212,7 @@ function checkname() {
      return check;
  }
 
-//email front validation
+// //email front validation
 function checkemail(){
     	var email=$("#user_email").val();
     	if(email != ""){
@@ -254,7 +252,7 @@ function checkemail(){
     		$("#email-error").text(' ');
     	}
     }
-//email backend function
+// //email backend function
 var validateEmail = function(elementValue) {
     	var emailPattern = /^[a-zA-Z].[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
     	return emailPattern.test(elementValue);
@@ -290,20 +288,23 @@ var email_validater = function validater(email){
 		return check;
 	}
 		var get_dbemail = function db_email(email,callback){
-
+       // alert("yes");
+        //var good;
 		$.get("check-unique-email",{email:email},function(data){
 			if(data>0){
+				
 				$("#email-error").removeClass('success');
-				$('input[id="email"]').removeClass('user-success');
-				$('input[id="email"]').addClass('user-danger');
+				$('input[id="user_email"]').removeClass('user-success');
+				$('input[id="user_email"]').addClass('user-danger');
 				$("#email-error").addClass('alert');
 				$("#email-error").text('Email already exist');
 				var good="false";
 				callback(good);
 			}
 			else{
-				$('input[id="email"]').removeClass('user-danger');
-				$('input[id="email"]').addClass('user-success');
+				
+				$('input[id="user_email"]').removeClass('user-danger');
+				$('input[id="user_email"]').addClass('user-success');
 				$("#email-error").removeClass('alert');
 				$("#email-error").addClass('success');
 				$("#email-error").text('Email Available');
@@ -312,9 +313,9 @@ var email_validater = function validater(email){
 			}
 		});
 		
-		return good;
+		//return good;
 	}
-//password frondend validation
+// //password frondend validation
 function checkpass() {
    	var pass=$("#password-field").val();
    	if(pass != ""){
@@ -348,7 +349,7 @@ function checkpass() {
    	}
 
    }
-  //backend password functions
+//   //backend password functions
   var pass_validater = function validater(pass){
 	var check;
 		//for pass
@@ -391,7 +392,7 @@ function checkpass() {
 		return check;
 	}
 
-//username front end functions
+// //username front end functions
  function checkuser(){
     	var user=$("#username").val();
     	if(user != ""){
@@ -408,6 +409,7 @@ function checkpass() {
     				$("#user-error").removeClass('alert');
     				$("#user-error").addClass('success');
     				$("#user-error").text('looking nice');
+    				
 
     			}
 
@@ -416,7 +418,7 @@ function checkpass() {
     			$('input[id="username"]').removeClass('user-success');
     			$('input[id="username"]').addClass('user-danger');
     			$("#user-error").addClass('alert');
-    			$("#user-error").text('Dont use this (- , @) & 1st word must b alphabet');
+    			$("#user-error").text('Dont use speacial character');
     		}			
     	}else{
     		$('input[id="username"]').removeClass('user-success');
@@ -424,7 +426,7 @@ function checkpass() {
     		$("#user-error").text(' ');
     	}
     }
-//backend user validation
+// //backend user validation
 
 var user_validater = function validater(user){
 		var check;
@@ -453,7 +455,7 @@ var user_validater = function validater(user){
     		$('input[id="username"]').removeClass('user-success');
     		$('input[id="username"]').addClass('user-danger');
     		$("#user-error").addClass('alert');
-    		$("#user-error").text('Dont use this (- , @) & 1st word must b alphabet');
+    		$("#user-error").text('Dont use speacial character');
     		check=false;
     	}			
 
@@ -470,13 +472,13 @@ var user_validater = function validater(user){
     return check;
 }
 
-//check cell number
+// //check cell number
 
-// var validatenumber = function(elementValue) {
+var validatenumber = function(elementValue) {
 
-//     	var phonePattern = /^\(?([0-9]{4})\).\-[0-9]{7}$/;
-//     	return phonePattern.test(elementValue);
-//     }
+    	var phonePattern = /^\(?([0-9]{4})\).\-[0-9]{7}$/;
+    	return phonePattern.test(elementValue);
+    }
     function checknumber() {
     	var phone=$("#phone_number").val();
     	//alert(phone.length);
@@ -495,7 +497,7 @@ var user_validater = function validater(user){
     			$('input[id="phone_number"]').removeClass('user-success');
     			$('input[id="phone_number"]').addClass('user-danger');
     			$("#phone-error").addClass('alert');
-    			$("#phone-error").text('please enter only digits');
+    			$("#phone-error").text('Invalid Number');
     			
     		}
 
@@ -508,7 +510,7 @@ var user_validater = function validater(user){
     	}
 
     }
-//backend function 
+// //backend function 
 var phone_validater = function validater(phone){
 	var check;
 
@@ -528,7 +530,7 @@ var phone_validater = function validater(phone){
 			$('input[id="phone_number"]').removeClass('user-success');
 			$('input[id="phone_number"]').addClass('user-danger');
 			$("#phone-error").addClass('alert');
-			$("#phone-error").text('please enter only digits');
+			$("#phone-error").text('Invalid Number');
 			check=false;
 			//[0-4]{1}.[0-9]{1}
 		}
@@ -544,6 +546,7 @@ var phone_validater = function validater(phone){
 
 	return check;
 }
+
 // //for check
    $( document ).ready(function() {
    	$('#user_btn').attr('disabled','disabled');	
@@ -558,8 +561,7 @@ var phone_validater = function validater(phone){
    		$('#user_btn').attr('disabled','disabled');	
    	}
    }
-
-//main validate function
+// //main validate function
 
 	function user_register_validate(){
 		var name=$("#candidate_name").val();
@@ -568,7 +570,7 @@ var phone_validater = function validater(phone){
 		var user =$("#username").val();
 		var phone=$("#phone_number").val();
 		
-       
+
 
 		var getname=name_validater(name);
 		var getemail=email_validater(email);
@@ -583,6 +585,7 @@ var phone_validater = function validater(phone){
 
 		if(getemail){
 			var dood = get_dbemail(email,returnData);
+			//alert(dood);
 			function returnData(read){
 				if(read =="true"){
 					if(getname && getpass && getuser && getphone){

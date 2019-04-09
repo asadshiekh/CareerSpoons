@@ -418,7 +418,8 @@ Route::post('delete-check-cities',"admin_controllers\organization_controllers\Ad
 Route::post('addtable-company-city',"admin_controllers\organization_controllers\AddOrganizationCity@addTableCompanyCity");
 Route::any('update-city',"admin_controllers\organization_controllers\AddOrganizationCity@updateCity");
 Route::any('request-update-city',"admin_controllers\organization_controllers\AddOrganizationCity@updateModelWindow");
-
+///////validate city function
+Route::any('fetch-unique-city',"admin_controllers\organization_controllers\AddOrganizationCity@doCheckCityExists");
 
 //industries
 Route::get('view-industries',"admin_controllers\organization_controllers\AddOrganizationIndustry@viewIndustriesPage");
