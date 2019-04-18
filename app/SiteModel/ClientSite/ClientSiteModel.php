@@ -41,7 +41,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Accounting_&_Finance')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -54,7 +54,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Automotive')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -67,7 +67,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Business')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -81,7 +81,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Education_Training')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -95,7 +95,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Healthcare')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -106,10 +106,10 @@ class ClientSiteModel extends Model
 
     public function get_all_RestaurantFood(){
 
-        $response = DB::table('organization_posts')->where('req_industry','Restaurant_Food')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Restaurant_&_Food')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();

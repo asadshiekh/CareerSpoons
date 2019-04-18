@@ -82,7 +82,7 @@
 		<div class="row">
 			<div class="main-heading">
 				<p>200 New Jobs</p>
-				<h2>New & Random <span>Jobs</span></h2>
+				<h2>New & Random <span style="padding-left: 1%;">Jobs</span></h2>
 			</div>
 		</div>
 		<!--/row-->
@@ -106,10 +106,10 @@
 
 				$timenow = date('Y-m-d');
 				$timestamp = strtotime($timenow);
-                   		   
-				if($post_date<$timestamp){?>
-					<!-- <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4> -->
-				<?php }
+                 $error="";  		   
+				if($post_date<$timestamp){
+				$error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>'; 
+				 }
 				else{ ?>
 
 
@@ -209,7 +209,11 @@
 					</ul>
 				</div>
 			</div>
-		<?php }}} ?>
+		<?php }
+		if($error){
+			echo $error;
+		}
+	}} ?>
 
 
 		</div>
@@ -228,7 +232,7 @@
 
 		<div class="row">
 			<div class="main-heading">
-				<h2>Browse Jobs By <span>Category</span></h2>
+				<h2>Browse Jobs By<span style="padding-left: 1%;">Category</span></h2>
 			</div>
 		</div>
 
@@ -250,7 +254,21 @@
 								echo $get_AccountingFinance;
 							}
 							else{
-								echo $get_AccountingFinance;
+								foreach ($get_AccountingFinance as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_AccountingFinance->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_AccountingFinance;
 							}
 							?>
 							 Jobs</p>
@@ -275,7 +293,21 @@
 								echo $get_Automotive;
 							}
 							else{
-								echo $get_Automotive;
+								foreach ($get_Automotive as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_Automotive->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_Automotive;
 							}
 							?>	
 							Jobs</p>
@@ -300,7 +332,21 @@
 								echo $get_business;
 							}
 							else{
-								echo $get_business;
+								foreach ($get_business as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_business->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_business;
 							}
 							?>		
 							Jobs</p>
@@ -325,7 +371,21 @@
 								echo $get_eduction;
 							}
 							else{
-								echo $get_eduction;
+								foreach ($get_eduction as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_eduction->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_eduction;
 							}
 							?>  Jobs</p>
 						</div>
@@ -349,7 +409,21 @@
 								echo $get_healthcare;
 							}
 							else{
-								echo $get_healthcare;
+								foreach ($get_healthcare as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_healthcare->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_healthcare;
 							}
 							?>
 							 Jobs</p>
@@ -374,7 +448,21 @@
 								echo $get_RestaurantFood;
 							}
 							else{
-								echo $get_RestaurantFood;
+                  
+								foreach ($get_RestaurantFood as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_RestaurantFood->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
 							}
 							?> 
 							Jobs</p>
@@ -400,7 +488,21 @@
 								echo $get_Transportation;
 							}
 							else{
-								echo $get_Transportation;
+								foreach ($get_Transportation as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_Transportation->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_Transportation;
 							}
 							?> 	
 							Jobs</p>
@@ -425,7 +527,21 @@
 								echo $get_Telecommunications;
 							}
 							else{
-								echo $get_Telecommunications;
+								foreach ($get_Telecommunications as $val) { 
+
+								date_default_timezone_set("Asia/Karachi");
+								$post_date = strtotime($val->post_visibility_date); 
+
+								$timenow = date('Y-m-d');
+								$timestamp = strtotime($timenow);
+				                $coun=$get_Telecommunications->count();
+								if($post_date<$timestamp){
+									$coun=$coun-1;
+								}
+								
+							    echo $coun;
+						        }
+								//echo $get_Telecommunications;
 							}
 							?> 	
 							Jobs</p>
@@ -447,7 +563,7 @@
 		<div class="row">
 			<div class="main-heading">
 				<p>What Say Our Client</p>
-				<h2>Our Success <span>Stories</span></h2>
+				<h2>Our Success <span style="padding-left: 1%;">Stories</span></h2>
 			</div>
 		</div>
 		<!--/row-->
