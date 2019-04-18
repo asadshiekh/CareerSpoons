@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SiteModel\Job\JobModel;
 use App\SiteModel\Company\CompanyProfileModel;
+use App\Http\Requests\Client_Request\Company_Post_Validation;
+use Validator;
 use DB;
 use Carbon\Carbon;
 
@@ -147,6 +149,11 @@ class CompanyProfile extends Controller
 
   public function frontOrgPostJob(Request $request){
       
+      $obj = new Company_Post_Validation();
+      $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
+
+      if($validation->passes()){
+
       $company_id=$request->session()->get('company_id');
       $current_date = date("Y.m.d h:i:s");
       $job_post= array(
@@ -223,6 +230,14 @@ class CompanyProfile extends Controller
         }
       }
        return redirect('company-profile')->with('success','Your  Post Successfully Added!');
+
+     }
+
+     else{
+
+      //dd($validation->errors());
+      return redirect('company-profile')->with(['p_errors' => 'Your Post Not Added Successfully!','errors' => $validation->errors()]);
+     }
 
 
   }

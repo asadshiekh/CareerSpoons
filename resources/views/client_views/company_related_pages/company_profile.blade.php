@@ -180,10 +180,24 @@
 		<div class="col-md-4 col-sm-6">
 			<label>Job Title</label>
 			<input type="text" class="form-control" placeholder="Enter Title" name="posted_job_title" id="posted_job_title">
+
+			<?php
+			if($errors->has('posted_job_title')){
+				echo($errors->first('posted_job_title',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}
+			?>
+
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label>Skills</label>
 			<input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="skill_tags" id="skill_tags">
+		
+		<?php
+			if($errors->has('skill_tags')){
+				echo($errors->first('skill_tags',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}
+			?>
+
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label>Functional Area</label>
@@ -199,6 +213,12 @@
 				</option>
 				@endforeach
 			</select>
+			<?php
+			if($errors->has('req_functional_area')){
+				echo($errors->first('req_functional_area',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}
+			?>
+
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label>Majors</label>
@@ -1508,7 +1528,7 @@
     $("#info").load(location.href+" #info>*","");
 	}
 	function ref_new(){
-	$("#new-job").load(location.href+" #new-job>*","");
+	//$("#new-job").load(location.href+" #new-job>*","");
 	}
 	function ref_total(){
 	$("#total-posts").load(location.href+" #total-posts>*","");

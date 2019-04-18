@@ -13,13 +13,14 @@
 
 @if ($message = Session::get('p_errors'))
 <script type="text/javascript">
+	var notyf = new Notyf();
 	swal({
 		type: 'error',
 		title: 'Oops...',
-		text: 'Connection Failed!!',
+		text: '{{$message}}',
 		footer: '<a href>Why do I have this issue?</a>'
 	})
-	notyf.confirm('Your changes have been successfully saved!');
+	notyf.alert('Something Went Wrong');
 </script>
 @endif
 
