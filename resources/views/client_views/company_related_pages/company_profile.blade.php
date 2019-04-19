@@ -278,7 +278,7 @@
 		</div>
 		<div class="bgg col-md-12">
 			<div class="col-md-3 col-sm-6">
-				<label style="display: inline-block;">Employee City</label><span style="display: inline;" id="city1">
+				<label style="display: inline-block;">Employee City</label><span style="display: inline;" id="city-error">
 
 					<?php
 
@@ -1800,17 +1800,27 @@
 
 // city function
 
-  var city_validater = function validater(name){
+  var city_validater = function validater(){
     	var check;
 		//for name
+		$("select[name='selected_city[]']").each(function() {
 
-	if(name){
-     }else{
-     	$("#city-error").removeClass('success');
-     	$("#city-error").addClass('alert');
-     	$("#city-error").text('Select city');
-     	check=false;
-     }
+				    if($(this).val() != null){
+				    	//alert("ya sai ha");
+				    	$("#city-error").removeClass('alert');
+     	                $("#city-error").addClass('success')
+				        $("#city-error").text(' ');
+                       check=true;
+				    }
+				    else{
+				    	$("#city-error").removeClass('success');
+     	                $("#city-error").addClass('alert')
+				        $("#city-error").text('city is empty');
+				    	//alert("ya empty ha");
+				    	check=false;
+				    }
+
+				});
 
      return check;
  }
@@ -2080,19 +2090,7 @@
 //   alert(value[key].val());
 // });
 
-$("select[name='selected_city[]']").each(function() {
 
-    if($(this).val()){
-
-    	alert("ya sai ha");
-    }
-
-    else{
-
-    	alert("ya empty ha");
-    }
-
-});
 
 
 // alert(area);
@@ -2104,7 +2102,7 @@ $("select[name='selected_city[]']").each(function() {
 		var getmajor=major_validater(major);
 		var getindus=indus_validater(indus);
 		var getcareer=career_validater(career);
-		var getcity=city_validater(city);
+		var getcity=city_validater();
 		// var gettype=name_validater(title);
 		// var getshift=name_validater(title);
 		var getexp=exp_validater(exp);
@@ -2121,11 +2119,12 @@ $("select[name='selected_city[]']").each(function() {
 		// var gettext=text_validater(text);
 
 		
-        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getlast && getData && getgender && getage){
-        	alert("sai a");
-         return true;
+        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getlast && getData && getgender && getage &&getcity){
+        	//alert("sai a");
+        	
+        
         }else{
-        	alert("galt a");
+        	//alert("galt a");
          return false;
         }
 	   
