@@ -289,7 +289,7 @@
 
 				</span>
 				<select class="form-control" name="selected_city[]" id="selected_city[]">
-					<option disabled="disabled" hidden="hidden" selected="selected">Select City</option>
+					<option disabled="disabled" value="" hidden="hidden" selected="selected">Select City</option>
 					@foreach($fetch_city as $fetch_city)
 					<option value="{{$fetch_city->company_city_name}}">{{$fetch_city->company_city_name}}</option>
 					@endforeach
@@ -2070,9 +2070,31 @@
 		var degree=$("#req_degree").val();
 		var text=CKEDITOR.instances['post_information'].getData();
 // alert(title);
-var city=$("#selected_city").val();
-alert(city);
-// alert(skills);
+//var city=$("#selected_city").val();
+//alert(city);
+
+// var x = $("select[name='selected_city[]']");
+
+// jQuery.each(x ,function(key,value) {
+//   alert(key);
+//   alert(value[key].val());
+// });
+
+$("select[name='selected_city[]']").each(function() {
+
+    if($(this).val()){
+
+    	alert("ya sai ha");
+    }
+
+    else{
+
+    	alert("ya empty ha");
+    }
+
+});
+
+
 // alert(area);
 // alert(major);
 // alert(indus);
