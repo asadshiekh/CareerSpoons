@@ -123,7 +123,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Transportation')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();
@@ -137,7 +137,7 @@ class ClientSiteModel extends Model
         $response = DB::table('organization_posts')->where('req_industry','Telecommunications')->get();
 
         if($response->count()>0){
-            return $response->count();
+            return $response;
         }
         else{
             return $response->count();

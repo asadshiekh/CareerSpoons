@@ -222,14 +222,26 @@
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Majors</label><span style="display: inline;"></span>
+			<label style="display: inline-block;">Majors</label><span style="display: inline;">
+				<?php
+			if($errors->has('req_major')){
+				echo($errors->first('req_major',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}?>
+			</span>
 			<select class="form-control" name="selected_majors" id="selected_majors">
 				<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Majors</option>
 				
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Industry</label>
+			<label style="display: inline-block;">Industry</label><span style="display: inline;">
+			<?php
+
+				if($errors->has('req_industry')){
+				echo($errors->first('req_industry',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}?>
+
+			</span>
 			<select class="form-control" name="req_industry" id="req_industry">
 				<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Industry</option>
 				@foreach($industry1 as $industry1)
@@ -245,9 +257,18 @@
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Career Level</label>
+			<label style="display: inline-block;">Career Level</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('req_career_level')){
+				echo($errors->first('req_career_level',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+
+			</span>
 			<select class="form-control" name="req_career_level" id="req_career_level">
-				<option disabled="disabled" hidden="hidden">Select Required Career level</option>
+				<option disabled="disabled" selected hidden="hidden">Select Required Career level</option>
 				<option value="Entry Level">Entry Level</option>
 				<option value="Intermediate">Intermediate</option>
 				<option value="Experienced Professional">Experienced Professional</option>
@@ -257,7 +278,16 @@
 		</div>
 		<div class="bgg col-md-12">
 			<div class="col-md-3 col-sm-6">
-				<label>Where You need Employee</label>
+				<label style="display: inline-block;">Employee City</label><span style="display: inline;">
+
+					<?php
+
+				if($errors->has('selected_city')){
+				echo($errors->first('selected_city',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+					
+
+				</span>
 				<select class="form-control" name="selected_city[]" id="selected_city[]">
 					<option disabled="disabled" hidden="hidden" selected="selected">Select City</option>
 					@foreach($fetch_city as $fetch_city)
@@ -292,35 +322,96 @@
 			<div id="content"></div>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Year of Experience Required</label>
+			<label style="display: inline-block;">Year of Experience Required</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('job_experience')){
+				echo($errors->first('job_experience',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Total positions</label>
+			<label  style="display: inline-block;">Total positions</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('total_positions')){
+				echo($errors->first('total_positions',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Working Hours</label>
+			<label style="display: inline-block;">Working Hours</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('working_hours')){
+				echo($errors->first('working_hours',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<input id="working_hour" name="working_hour" type="number" class="form-control" placeholder="Enter hours in Numbers" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Minimum Salary:</label>
+			<label style="display: inline-block;">Minimum Salary:</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('min_salary')){
+				echo($errors->first('min_salary',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<input id="min_salary" name="min_salary" type="number" class="form-control" placeholder="just Enter Amount"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Maximum Salary:</label>
+			<label style="display: inline-block;">Maximum Salary:</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('max_salary')){
+				echo($errors->first('max_salary',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<input id="max_salary" name="max_salary" type="number" class="form-control" placeholder="just Enter Amount" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Last Apply Date</label>
-			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+			<label style="display: inline-block;">Last Apply Date</label><span style="display: inline;">
+				
+				<?php
+
+				if($errors->has('last_apply_date')){
+				echo($errors->first('last_apply_date',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
+			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Post visibility Date:</label>
-			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en"/>
+			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;">
+				<?php
+
+				if($errors->has('post_visibility_date')){
+				echo($errors->first('post_visibility_date',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
+			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Gender Preferences</label>
+			<label style="display: inline-block;">Gender Preferences</label><span style="display: inline;">
+				<?php
+				if($errors->has('selected_gender')){
+				echo($errors->first('selected_gender',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<select name="selected_gender" class="form-control" id="selected_gender">
 				<option hidden="hidden" disabled="disabled" selected="selected">Select gender</option>
 				<option value="Male">Male</option>
@@ -329,7 +420,13 @@
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Prefered Age Group</label>
+			<label style="display: inline-block;">Prefered Age Group</label><span style="display: inline;">
+				
+				<?php
+				if($errors->has('prefered_age')){
+				echo($errors->first('prefered_age',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+			</span>
 			<select name="prefered_age" class="form-control" id="prefered_age">
 				<option hidden disabled="disabled" selected="selected">Select Age GroupYou Required</option>
 				<option value="under 20">Under 20</option>
@@ -368,7 +465,14 @@
 			<div id="content_qual"></div>
 		</div>
 		<div class="col-md-12 col-sm-12">
-			<label>Information About Post</label>
+			<label style="display: inline-block;">Information About Post</label><span style="display: inline;">
+				
+				<?php
+				if($errors->has('job_post_info')){
+				echo($errors->first('job_post_info',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+				}?>
+
+			</span>
 			<textarea class="form-control" id="post_information" name="post_information" class="post_information"></textarea>
 		</div>
 		

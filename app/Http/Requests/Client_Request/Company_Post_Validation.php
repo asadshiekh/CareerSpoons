@@ -24,10 +24,25 @@ class Company_Post_Validation extends FormRequest
     public function rules()
     {
         return [
-            
-             "posted_job_title" => 'bail|required',
-             "skill_tags"       => 'bail|required',
+
+            "posted_job_title" => 'bail|required',
+            "skill_tags"       => 'bail|required',
             "req_functional_area" => 'bail|required',
+            "req_major" => 'bail|required',
+            "req_industry" => 'bail|required',
+            "req_career_level" => 'bail|required',
+            "job_experience" => 'bail|required',
+            "total_positions" => 'bail|required',
+            "working_hours" => 'bail|required',
+            "min_salary" => 'bail|required',
+            "max_salary" => 'bail|required',
+            "last_apply_date" => 'bail|required',
+            "post_visibility_date" => 'bail|required',
+            "selected_gender" => 'bail|required',
+            "prefered_age" => 'bail|required',
+            "job_post_info" => 'bail|required',
+            "selected_city" => 'bail|required',
+            "selected_city.*" => 'bail|required',
         ];
     }
 
@@ -36,8 +51,22 @@ class Company_Post_Validation extends FormRequest
         return[
             
             "posted_job_title.required"  => 'Job Title is Required',
-            "skill_tags.required"  => 'skill are Required',
-            "req_functional_area.required"  => 'function are is missing',
+            "skill_tags.required"  => 'Skills are Required',
+            "req_functional_area.required"  => 'Functional Area Required',
+            "req_major.required"  => 'Majors is Missing',
+            "req_industry.required"  => 'Industry Required',
+            "req_career_level.required"  => 'Career Level Required',
+            "job_experience.required"  => 'Exerience is Missing',
+            "total_positions.required"  => 'Postions are Required',
+            "working_hours.required"  => 'Working Hours are Required',
+            "min_salary.required"  => 'Minimum Salary Required',
+            "max_salary.required"  => 'Maximum Salary Required',
+            "last_apply_date.required"  => 'Last Apply Date Required',
+            "post_visibility_date.required"  => 'Post Visibility Required',
+            "selected_gender.required"  => 'Gender is Missing',
+            "prefered_age.required"  => 'Prefered Age Required',
+            "job_post_info.required"  => 'Job Description is Required',
+            "selected_city.required"  => 'City is Required',
         ];
     }
 }
