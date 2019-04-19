@@ -43,10 +43,7 @@ class Company_Post_Validation extends FormRequest
             "job_post_info" => 'bail|required',
             
         ];
-        foreach($_POST['selected_city'] as $key => $val)
-          {
-            $rules['selected_city.'.$key] = 'required|max:10';
-          }
+
 
      return $rules;
 
@@ -72,11 +69,9 @@ class Company_Post_Validation extends FormRequest
             "selected_gender.required"  => 'Gender is Missing',
             "prefered_age.required"  => 'Prefered Age Required',
             "job_post_info.required"  => 'Job Description is Required',
+
         ];
-         foreach($_POST['selected_city'] as $key => $val)
-          {
-            $messages['selected_city.'.$key.'.required'] = 'The field labeled "Book Title '.$key.'" must be less than :max characters.';
-          }
+
           return $messages;
     }
 }

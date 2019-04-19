@@ -50,7 +50,7 @@ class User_Registeration_Validation extends FormRequest
 
     public function messages(){
 
-        return[
+        $messages =[
             "candidate_name.required"  => 'Name Should Not be Empty',
             "candidate_name.min"  => 'Please Enter Atleast 5 Letters',
             "candidate_name.regex"  => 'Contain Only Alphabets',
@@ -64,5 +64,7 @@ class User_Registeration_Validation extends FormRequest
             "phone_number.required"  => 'Phone Number Required',
             "phone_number.min"  => 'Invalid Phone Number',
         ];
+
+        return $messages;
     }
 }
