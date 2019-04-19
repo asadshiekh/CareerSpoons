@@ -102,7 +102,7 @@
 					<ul class="nav nav-tabs" id="simple-design-tab">
 						<li class="active"><a  data-toggle="tab" href="#bios">Bio</a></li>
 						<li><a data-toggle="tab" href="#info" onclick="ref_info();">Info</a></li>
-						<li><a data-toggle="tab" href="#new-job" onclick="ref_new();">New-Job-Post</a></li>
+						<li><a data-toggle="tab" href="#new-job">New-Job-Post</a></li>
 						<li><a data-toggle="tab" href="#total-posts" onclick="ref_total();">Total-Posts</a></li>
 						<li><a data-toggle="tab" href="#social_media" onclick="ref_media();">Social-Media</a></li>
 						<li><a data-toggle="tab" href="#location" onclick="ref_loc();">Location</a></li>
@@ -176,31 +176,36 @@
 <h3>New Job Post</h3>
 <form method="post" action="{{url('front-org-post-job')}}">
 	@csrf
+	
 	<div class="edit-pro">
 		<div class="col-md-4 col-sm-6">
-			<label>Job Title</label>
-			<input type="text" class="form-control" placeholder="Enter Title" name="posted_job_title" id="posted_job_title">
-
-			<?php
+			<label style="display: inline-block;">Job Title</label><span style="display: inline;"><?php
 			if($errors->has('posted_job_title')){
 				echo($errors->first('posted_job_title',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
 			}
-			?>
+			?></span>
+			<input type="text" class="form-control" placeholder="Enter Title" name="posted_job_title" id="posted_job_title">
+
+			
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Skills</label>
-			<input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="skill_tags" id="skill_tags">
-		
-		<?php
+			<label style="display: inline-block;">Skills</label><span style="display: inline;"><?php
 			if($errors->has('skill_tags')){
 				echo($errors->first('skill_tags',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
 			}
-			?>
+			?></span>
+			<input type="text" class="form-control" placeholder="Enter Skills which are Required for Job" name="skill_tags" id="skill_tags">
+		
+		
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Functional Area</label>
+			<label style="display: inline-block;">Functional Area</label><span style="display: inline;"><?php
+			if($errors->has('req_functional_area')){
+				echo($errors->first('req_functional_area',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
+			}
+			?></span>
 			<select class="form-control" name="req_functional_area" id="req_functional_area" onchange="select_functional_area_majors();">
 				<option disabled="disabled" hidden="hidden" selected="selected">Select Required Functional area</option>
 				@foreach($area as $area)
@@ -213,15 +218,11 @@
 				</option>
 				@endforeach
 			</select>
-			<?php
-			if($errors->has('req_functional_area')){
-				echo($errors->first('req_functional_area',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
-			}
-			?>
+			
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label>Majors</label>
+			<label style="display: inline-block;">Majors</label><span style="display: inline;"></span>
 			<select class="form-control" name="selected_majors" id="selected_majors">
 				<option selected="selected"  disabled="disabled" hidden="hidden">Select Required Majors</option>
 				
@@ -1549,6 +1550,28 @@
 	$("#location").load(location.href+" #location>*","");
 	}
 	
+</script>
+<script type="text/javascript">
+
+	$('a[data-toggle="tab"]').on('click', function(e) {
+	    localStorage.setItem('activeTab', $(e.target).attr('href'));
+	});
+
+	// Acá guarda el index al cual corresponde la tab. Lo podés ver en el dev tool de chrome.
+	var activeTab = localStorage.getItem('activeTab');
+
+	// En la consola te va a mostrar la pestaña donde hiciste el último click y lo
+	// guarda en "activeTab". Te dejo el console para que lo veas. Y cuando refresques
+	// el browser, va a quedar activa la última donde hiciste el click.
+
+	//alert(activeTab);
+
+	if (activeTab) {
+		
+	  $('a[href="' + activeTab + '"]').tabs(
+        {active: activeTab}
+         );
+	}
 </script>
 
 
