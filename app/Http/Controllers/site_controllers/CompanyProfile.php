@@ -217,6 +217,7 @@ class CompanyProfile extends Controller
         foreach($_POST['req_degree'] as $row){
                 //echo "Value".$row."<br/>\n";
           $degrees[] = $row;
+          
         }
         for ($i=0; $i<$val_qual ; $i++) {
                 // echo $cities[$i];

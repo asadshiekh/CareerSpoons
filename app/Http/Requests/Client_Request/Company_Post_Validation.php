@@ -23,7 +23,7 @@ class Company_Post_Validation extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
 
             "posted_job_title" => 'bail|required',
             "skill_tags"       => 'bail|required',
@@ -41,14 +41,20 @@ class Company_Post_Validation extends FormRequest
             "selected_gender" => 'bail|required',
             "prefered_age" => 'bail|required',
             "job_post_info" => 'bail|required',
-            "selected_city" => 'bail|required',
-            "selected_city.*" => 'bail|required',
+            
         ];
+        foreach($_POST['selected_city'] as $key => $val)
+          {
+            $rules['selected_city.'.$key] = 'required|max:10';
+          }
+
+     return $rules;
+
     }
 
         public function messages(){
-
-        return[
+        
+        $messages = [
             
             "posted_job_title.required"  => 'Job Title is Required',
             "skill_tags.required"  => 'Skills are Required',
@@ -66,7 +72,11 @@ class Company_Post_Validation extends FormRequest
             "selected_gender.required"  => 'Gender is Missing',
             "prefered_age.required"  => 'Prefered Age Required',
             "job_post_info.required"  => 'Job Description is Required',
-            "selected_city.required"  => 'City is Required',
         ];
+         foreach($_POST['selected_city'] as $key => $val)
+          {
+            $messages['selected_city.'.$key.'.required'] = 'The field labeled "Book Title '.$key.'" must be less than :max characters.';
+          }
+          return $messages;
     }
 }
