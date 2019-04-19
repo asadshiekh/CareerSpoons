@@ -174,12 +174,12 @@
 <!-- Start new posts Sec -->
 <div id="new-job" class="tab-pane fade">
 <h3>New Job Post</h3>
-<form method="post" action="{{url('front-org-post-job')}}">
+<form id="new_post_form" method="post" action="{{url('front-org-post-job')}}">
 	@csrf
 	
 	<div class="edit-pro">
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Job Title</label><span style="display: inline;"><?php
+			<label style="display: inline-block;">Job Title</label><span style="display: inline;" id="title-error"><?php
 			if($errors->has('posted_job_title')){
 				echo($errors->first('posted_job_title',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
 			}
@@ -190,7 +190,7 @@
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Skills</label><span style="display: inline;"><?php
+			<label style="display: inline-block;">Skills</label><span style="display: inline;" id="skill-error"><?php
 			if($errors->has('skill_tags')){
 				echo($errors->first('skill_tags',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
 			}
@@ -201,7 +201,7 @@
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Functional Area</label><span style="display: inline;"><?php
+			<label style="display: inline-block;">Functional Area</label><span style="display: inline;" id="area-error"><?php
 			if($errors->has('req_functional_area')){
 				echo($errors->first('req_functional_area',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
 			}
@@ -222,7 +222,7 @@
 
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Majors</label><span style="display: inline;">
+			<label style="display: inline-block;">Majors</label><span style="display: inline;" id="major-error">
 				<?php
 			if($errors->has('req_major')){
 				echo($errors->first('req_major',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
@@ -234,7 +234,7 @@
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Industry</label><span style="display: inline;">
+			<label style="display: inline-block;">Industry</label><span style="display: inline;" id="indus-error">
 			<?php
 
 				if($errors->has('req_industry')){
@@ -257,7 +257,7 @@
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Career Level</label><span style="display: inline;">
+			<label style="display: inline-block;">Career Level</label><span style="display: inline;" id="career-error">
 				
 				<?php
 
@@ -278,7 +278,7 @@
 		</div>
 		<div class="bgg col-md-12">
 			<div class="col-md-3 col-sm-6">
-				<label style="display: inline-block;">Employee City</label><span style="display: inline;">
+				<label style="display: inline-block;">Employee City</label><span style="display: inline;" id="city1">
 
 					<?php
 
@@ -322,7 +322,7 @@
 			<div id="content"></div>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Year of Experience Required</label><span style="display: inline;">
+			<label style="display: inline-block;">Required Experience</label><span style="display: inline;" id="exp-error">
 				
 				<?php
 
@@ -334,7 +334,7 @@
 			<input type="number" placeholder="Enter Required Experience" class="form-control" name="job_exp_req" id="job_exp_req">
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label  style="display: inline-block;">Total positions</label><span style="display: inline;">
+			<label  style="display: inline-block;">Total positions</label><span style="display: inline;" id="pos-error">
 				
 				<?php
 
@@ -346,7 +346,7 @@
 			<input id="total_positions" name="total_positions" type="number" class="form-control" placeholder="Enter in Numbers" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Working Hours</label><span style="display: inline;">
+			<label style="display: inline-block;">Working Hours</label><span style="display: inline;" id="hour-error">
 				
 				<?php
 
@@ -358,7 +358,7 @@
 			<input id="working_hour" name="working_hour" type="number" class="form-control" placeholder="Enter hours in Numbers" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Minimum Salary:</label><span style="display: inline;">
+			<label style="display: inline-block;">Minimum Salary:</label><span style="display: inline;" id="min-error">
 				
 				<?php
 
@@ -370,7 +370,7 @@
 			<input id="min_salary" name="min_salary" type="number" class="form-control" placeholder="just Enter Amount"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Maximum Salary:</label><span style="display: inline;">
+			<label style="display: inline-block;">Maximum Salary:</label><span style="display: inline;" id="max-error">
 				
 				<?php
 
@@ -382,7 +382,7 @@
 			<input id="max_salary" name="max_salary" type="number" class="form-control" placeholder="just Enter Amount" />
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Last Apply Date</label><span style="display: inline;">
+			<label style="display: inline-block;">Last Apply Date</label><span style="display: inline;" id="l-error">
 				
 				<?php
 
@@ -394,7 +394,7 @@
 			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;">
+			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;" id="p-error">
 				<?php
 
 				if($errors->has('post_visibility_date')){
@@ -405,7 +405,7 @@
 			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Gender Preferences</label><span style="display: inline;">
+			<label style="display: inline-block;">Gender Preferences</label><span style="display: inline;" id="gender-error">
 				<?php
 				if($errors->has('selected_gender')){
 				echo($errors->first('selected_gender',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
@@ -420,7 +420,7 @@
 			</select>
 		</div>
 		<div class="col-md-4 col-sm-6">
-			<label style="display: inline-block;">Prefered Age Group</label><span style="display: inline;">
+			<label style="display: inline-block;">Prefered Age Group</label><span style="display: inline;" id="age-error">
 				
 				<?php
 				if($errors->has('prefered_age')){
@@ -465,7 +465,7 @@
 			<div id="content_qual"></div>
 		</div>
 		<div class="col-md-12 col-sm-12">
-			<label style="display: inline-block;">Information About Post</label><span style="display: inline;">
+			<label style="display: inline-block;">Information About Post</label><span style="display: inline;" id="text-error">
 				
 				<?php
 				if($errors->has('job_post_info')){
@@ -1677,7 +1677,438 @@
          );
 	}
 </script>
+<script type="text/javascript">
+// name validator
+	 var name_validater = function validater(name){
+    	var check;
+		//for name
 
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+			
+			}else{
+				$("#title-error").removeClass('success');
+				$("#title-error").addClass('alert');
+				$("#title-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#title-error").removeClass('success');
+     	$("#title-error").addClass('alert');
+     	$("#title-error").text('Title Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // skill validator
+
+ 
+  var skill_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+			
+			}else{
+				$("#skill-error").removeClass('success');
+				$("#skill-error").addClass('alert');
+				$("#skill-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#skill-error").removeClass('success');
+     	$("#skill-error").addClass('alert');
+     	$("#skill-error").text('skill Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+//area validator
+  var area_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+			
+			}else{
+				$("#area-error").removeClass('success');
+				$("#area-error").addClass('alert');
+				$("#area-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#area-error").removeClass('success');
+     	$("#area-error").addClass('alert');
+     	$("#area-error").text('Plz select functional area');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //major function
+   var major_validater = function validater(name){
+    	var check;
+		//for name
+
+	if(name){
+
+			
+     }else{
+     	$("#major-error").removeClass('success');
+     	$("#major-error").addClass('alert');
+     	$("#major-error").text('major Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // indus function
+
+  var indus_validater = function validater(name){
+    	var check;
+		//for name
+
+	if(name){
+     }else{
+     	$("#indus-error").removeClass('success');
+     	$("#indus-error").addClass('alert');
+     	$("#indus-error").text('Plz select industry');
+     	check=false;
+     }
+
+     return check;
+ }
+
+// city function
+
+  var city_validater = function validater(name){
+    	var check;
+		//for name
+
+	if(name){
+     }else{
+     	$("#city-error").removeClass('success');
+     	$("#city-error").addClass('alert');
+     	$("#city-error").text('Select city');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // career function
+
+  var career_validater = function validater(name){
+    	var check;
+		//for name
+
+	if(name){
+     }else{
+     	$("#career-error").removeClass('success');
+     	$("#career-error").addClass('alert');
+     	$("#career-error").text('Select career level');
+     	check=false;
+     }
+
+     return check;
+ }
+
+// experience function
+ var exp_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[0-9\(\) ]+$")){
+			
+			}else{
+				$("#exp-error").removeClass('success');
+				$("#exp-error").addClass('alert');
+				$("#exp-error").text('Contains only integers');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp-error").removeClass('success');
+     	$("#exp-error").addClass('alert');
+     	$("#exp-error").text('Plz Enter experience');
+     	check=false;
+     }
+
+     return check;
+ }
+
+// pos function
+ var pos_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[0-9\(\) ]+$")){
+			
+			}else{
+				$("#pos-error").removeClass('success');
+				$("#pos-error").addClass('alert');
+				$("#pos-error").text('Contains only integers');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#pos-error").removeClass('success');
+     	$("#pos-error").addClass('alert');
+     	$("#pos-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // hour function
+ var hour_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[0-9\(\) ]+$")){
+			
+			}else{
+				$("#hour-error").removeClass('success');
+				$("#hour-error").addClass('alert');
+				$("#hour-error").text('Contains only integers');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#hour-error").removeClass('success');
+     	$("#hour-error").addClass('alert');
+     	$("#hour-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // min function
+ var min_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[0-9\(\) ]+$")){
+			
+			}else{
+				$("#min-error").removeClass('success');
+				$("#min-error").addClass('alert');
+				$("#min-error").text('Contains only integers');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#min-error").removeClass('success');
+     	$("#min-error").addClass('alert');
+     	$("#min-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+// max function
+ var max_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[0-9\(\) ]+$")){
+			
+			}else{
+				$("#max-error").removeClass('success');
+				$("#max-error").addClass('alert');
+				$("#max-error").text('Contains only integers');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#max-error").removeClass('success');
+     	$("#max-error").addClass('alert');
+     	$("#max-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+// l function
+ var l_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+     }else{
+     	$("#l-error").removeClass('success');
+     	$("#l-error").addClass('alert');
+     	$("#l-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ // p function
+ var p_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+     }else{
+     	$("#p-error").removeClass('success');
+     	$("#p-error").addClass('alert');
+     	$("#p-error").text('Field is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //gender function
+
+  var gender_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+     }else{
+     	$("#gender-error").removeClass('success');
+     	$("#gender-error").addClass('alert');
+     	$("#gender-error").text('please select gender');
+     	check=false;
+     }
+
+     return check;
+ }
+ //age function
+
+  var age_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+     }else{
+     	$("#age-error").removeClass('success');
+     	$("#age-error").addClass('alert');
+     	$("#age-error").text('Field is Empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+
+// main function
+	$('#new_post_form').on('submit', function(e){
+		//alert("yes");
+		var title=$("#posted_job_title").val();
+		var skills =$("#skill_tags").val();
+		var area=$("#req_functional_area").val();
+		var major=$("#selected_majors").val();
+		var indus=$("#req_industry").val();
+		var career=$("#req_career_level").val();
+		// var city=$("#selected_city").val();
+		// var type=$("#selected_type").val();
+		// var shift=$("#selected_shift").val();
+		var exp=$("#job_exp_req").val();
+		var positions=$("#total_positions").val();
+		var hour=$("#working_hour").val();
+		var min_sal=$("#min_salary").val();
+		var max_sal=$("#max_salary").val();
+		var l_date=$("#last_apply").val();
+		var p_date=$("#post_visible").val();
+		var gender=$("#selected_gender").val();
+		var age=$("#prefered_age").val();
+		var qual=$("#selected_qualificaltion").val();
+		var degree=$("#req_degree").val();
+		var text=CKEDITOR.instances['post_information'].getData();
+// alert(title);
+var city=$("#selected_city").val();
+alert(city);
+// alert(skills);
+// alert(area);
+// alert(major);
+// alert(indus);
+		var gettitle=name_validater(title);
+		var getskills=skill_validater(skills);
+		var getarea=area_validater(area);
+		var getmajor=major_validater(major);
+		var getindus=indus_validater(indus);
+		var getcareer=career_validater(career);
+		var getcity=city_validater(city);
+		// var gettype=name_validater(title);
+		// var getshift=name_validater(title);
+		var getexp=exp_validater(exp);
+		var getpos=pos_validater(positions);
+		var gethour=hour_validater(hour);
+		var getmin=min_validater(min_sal);
+		var getmax=max_validater(max_sal);
+		var getlast=l_validater(l_date);
+		var getdate=p_validater(p_date);
+		var getgender=gender_validater(gender);
+		var getage=age_validater(age);
+		// var getqual=name_validater(title);
+		// var getdegree=name_validater(title);
+		// var gettext=text_validater(text);
+
+		
+        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getlast && getData && getgender && getage){
+        	alert("sai a");
+         return true;
+        }else{
+        	alert("galt a");
+         return false;
+        }
+	   
+	    });
+</script>
 
 
 @endsection

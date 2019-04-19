@@ -44,9 +44,10 @@ class CompanyProfile extends Controller
     public function PreferencesCitiesData(){
       $city=DB::table('Add_cities')->get();
       $random_value = rand();
+     
       echo '<div id="fields'.$random_value.'">
       <div class="col-md-3 col-sm-6">
-      <label>Where You need Employee:</label>
+      <label style="display:inline-block;">Select City:</label><span style="display:inline;"></span>
       <select class="form-control" name="selected_city[]" id="selected_city[]">
       <option value="" disabled="disabled" selected="selected" hidden>Select City</option>';
       foreach($city as $city){
