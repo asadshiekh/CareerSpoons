@@ -41,7 +41,7 @@
                         	</div>
                         	<span id="typed"></span>
                             
-                            
+
                             <ul>
                                 <li><strong class="j-view">85</strong>Total Visitors</li>
                                 <li><strong class="j-applied">110</strong>Job Applied</li>
@@ -277,9 +277,12 @@
 				<option value="Gm / CEO / Country Head">Gm / CEO / Country Head</option>
 			</select>
 		</div>
-		<div class="bgg col-md-12">
-			<div class="col-md-3 col-sm-6">
-				<label style="display: inline-block;">Employee City</label><span style="display: inline;" id="city-error">
+		<div class="bgg col-md-12" id="error_bgg">
+			<div class="col-md-3 col-sm-3" id="city-error"></div>
+			<div class="col-md-3 col-sm-3" id="type-error"></div>
+			<div class="col-md-3 col-sm-3" id="shift-error"></div><div class="clearfix"></div>
+			<div class="col-md-3 col-sm-6" id="inner_bgg">
+				<label style="display: inline-block;">Employee City</label><span style="display: inline;">
 
 					<?php
 
@@ -392,7 +395,7 @@
 				}?>
 
 			</span>
-			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
+			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="m/d/Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;" id="p-error">
@@ -403,7 +406,7 @@
 				}?>
 
 			</span>
-			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
+			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en" />
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label style="display: inline-block;">Gender Preferences</label><span style="display: inline;" id="gender-error">
@@ -438,6 +441,9 @@
 			</select>
 		</div>
 		<div class="bgg col-md-12">
+			<div class="col-md-4 col-sm-4" id="qual-error"></div>
+			<div class="col-md-4 col-sm-4" id="degree-error"></div>
+			<div class="clearfix"></div>
 			<div class="col-md-4 col-sm-4">
 				<label>Required Qualification</label>
 				<select name="selected_qualificaltion[]" class="form-control" id="selected_qualificaltion[]">
@@ -1803,29 +1809,192 @@
 
   var city_validater = function validater(){
     	var check;
+    	 var child=1;
 		//for name
-		$("select[name='selected_city[]']").each(function() {
-
+		$("select[name='selected_city[]']").each(function(key) {
+                     //alert(key);
+                   
 				    if($(this).val() != null){
 				    	//alert("ya sai ha");
+				    	
 				    	$("#city-error").removeClass('alert');
      	                $("#city-error").addClass('success')
 				        $("#city-error").text(' ');
+				        
                        check=true;
 				    }
 				    else{
+				    	// alert(child);
+				    	//$('#content > div > #inner_bgg:nth-child('+child+') > span').attr('id','city-f-error'+child);
+				    	
+				    	//$('#error_bgg > #inner_bgg > span').attr('id','city-error'+child);
 				    	$("#city-error").removeClass('success');
      	                $("#city-error").addClass('alert')
-				        $("#city-error").text('city is empty');
+				        $("#city-error").text(child+' city fields is empty');
 				    	//alert("ya empty ha");
+				    	
 				    	check=false;
+				    	child=child+1;
 				    }
+				    
+
 
 				});
 
      return check;
  }
 
+ //job type validator
+ var type_validater = function validater(){
+    	var check;
+    	 var child=1;
+		//for name
+		$("select[name='selected_type[]']").each(function(key) {
+                     //alert(key);
+                   
+				    if($(this).val() != null){
+				    	//alert("ya sai ha");
+				    	
+				    	$("#type-error").removeClass('alert');
+     	                $("#type-error").addClass('success')
+				        $("#type-error").text(' ');
+				        
+                       check=true;
+				    }
+				    else{
+				    	// alert(child);
+				    	//$('#content > div > #inner_bgg:nth-child('+child+') > span').attr('id','city-f-error'+child);
+				    	
+				    	//$('#error_bgg > #inner_bgg > span').attr('id','city-error'+child);
+				    	$("#type-error").removeClass('success');
+     	                $("#type-error").addClass('alert')
+				        $("#type-error").text(child+' Job type fields is empty');
+				    	//alert("ya empty ha");
+				    	
+				    	check=false;
+				    	child=child+1;
+				    }
+				    
+
+
+				});
+
+     return check;
+ }
+
+  //job type validator
+ var shift_validater = function validater(){
+    	var check;
+    	 var child=1;
+		//for name
+		$("select[name='selected_shift[]']").each(function(key) {
+                     //alert(key);
+                   
+				    if($(this).val() != null){
+				    	//alert("ya sai ha");
+				    	
+				    	$("#shift-error").removeClass('alert');
+     	                $("#shift-error").addClass('success')
+				        $("#shift-error").text(' ');
+				        
+                       check=true;
+				    }
+				    else{
+				    	// alert(child);
+				    	//$('#content > div > #inner_bgg:nth-child('+child+') > span').attr('id','city-f-error'+child);
+				    	
+				    	//$('#error_bgg > #inner_bgg > span').attr('id','city-error'+child);
+				    	$("#shift-error").removeClass('success');
+     	                $("#shift-error").addClass('alert')
+				        $("#shift-error").text(child+' Job shift fields is empty');
+				    	//alert("ya empty ha");
+				    	
+				    	check=false;
+				    	child=child+1;
+				    }
+				    
+
+
+				});
+
+     return check;
+ }
+
+ //Qualification validator
+ var qual_validater = function validater(){
+    	var check;
+    	 var child=1;
+		//for name
+		$("select[name='selected_qualificaltion[]']").each(function(key) {
+                     //alert(key);
+                   
+				    if($(this).val() != null){
+				    	//alert("ya sai ha");
+				    	
+				    	$("#qual-error").removeClass('alert');
+     	                $("#qual-error").addClass('success')
+				        $("#qual-error").text(' ');
+				        
+                       check=true;
+				    }
+				    else{
+				    	// alert(child);
+				    	//$('#content > div > #inner_bgg:nth-child('+child+') > span').attr('id','city-f-error'+child);
+				    	
+				    	//$('#error_bgg > #inner_bgg > span').attr('id','city-error'+child);
+				    	$("#qual-error").removeClass('success');
+     	                $("#qual-error").addClass('alert')
+				        $("#qual-error").text(child+' Qualification fields is empty');
+				    	//alert("ya empty ha");
+				    	
+				    	check=false;
+				    	child=child+1;
+				    }
+				    
+
+
+				});
+
+     return check;
+ }
+
+  //Degree validator
+ var degree_validater = function validater(){
+    	var check;
+    	 var child=1;
+		//for name
+		$("select[name='req_degree[]']").each(function(key) {
+                     //alert(key);
+                   
+				    if($(this).val() != null){
+				    	//alert("ya sai ha");
+				    	
+				    	$("#degree-error").removeClass('alert');
+     	                $("#degree-error").addClass('success')
+				        $("#degree-error").text(' ');
+				        
+                       check=true;
+				    }
+				    else{
+				    	// alert(child);
+				    	//$('#content > div > #inner_bgg:nth-child('+child+') > span').attr('id','city-f-error'+child);
+				    	
+				    	//$('#error_bgg > #inner_bgg > span').attr('id','city-error'+child);
+				    	$("#degree-error").removeClass('success');
+     	                $("#degree-error").addClass('alert')
+				        $("#degree-error").text(child+' Degree fields is empty');
+				    	//alert("ya empty ha");
+				    	
+				    	check=false;
+				    	child=child+1;
+				    }
+				    
+
+
+				});
+
+     return check;
+ }
  // career function
 
   var career_validater = function validater(name){
@@ -2053,6 +2222,192 @@
 
      return check;
  }
+ 
+   var text_validater = function validater(text){
+    	var check;
+		//for name
+	if (text) {
+    	
+			check=true;
+          
+    	}else{
+    		$("#text-error").removeClass('success');
+			$("#text-error").addClass('alert');
+			$("#text-error").text('information required');
+            check=false;
+    		}
+        return check;
+	
+ }
+
+//date function last apply date
+  var date_validater = function validater(date){
+    	var check;
+	   	if(date){
+	   		var today = new Date();
+	   		var dd = today.getDate();
+			var mm = today.getMonth() + 1; //January is 0!
+			var yyyy = today.getFullYear();
+			if (dd < 10) {
+				dd = '0' + dd;
+			}
+			if (mm < 10) {
+				mm = '0' + mm;
+			}
+			today = mm + '/' + dd + '/' + yyyy;
+           // alert(today);
+
+            var newdate = new Date(today);
+
+            newdate.setDate(newdate.getDate() + 25);
+    
+		    var newdd = newdate.getDate();
+		    var newmm = newdate.getMonth() + 1;
+		    var newy = newdate.getFullYear();
+
+		   var new_one = newmm + '/' + newdd + '/' + newy;
+		  // alert(new_one);
+
+            var result=date.split('/');
+
+           
+	  		var date_month=result[0];
+	  		var date_day=result[1];
+	  		var date_year=result[2];
+
+	  		var selected_date= date_month + '/' + date_day + '/' + date_year;
+          
+             
+
+			if(date_year>=yyyy && date_month>=mm){
+				if(selected_date < today){
+					$("#l-error").addClass('alert');
+					$("#l-error").removeClass('success');
+					$("#l-error").text('invalid date');
+                    check=false;
+				}else{
+				$("#l-error").removeClass('alert');
+				$("#l-error").addClass('success');
+				$("#l-error").text(' ');
+					if(new_one < selected_date){
+                        $("#l-error").removeClass('alert');
+						$("#l-error").addClass('success');
+						$("#l-error").text(' ');
+						check=true;
+					}else{
+						
+						$("#l-error").addClass('alert');
+						$("#l-error").removeClass('success');
+						$("#l-error").text('too many days');
+	                    check=false;
+					}
+					
+				}//05/15/2019     //05/01/2019
+                   
+				// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
+    //                 $("#l-error").addClass('alert');
+				// 	$("#l-error").removeClass('success');
+				// 	$("#l-error").text('you choose too much days');
+				// 	check=false;
+				// }else{
+				// 	$("#l-error").removeClass('alert');
+				// 	$("#l-error").addClass('success');
+				// 	$("#l-error").text(' ');
+				// 	check=true;
+				// }
+				
+			}else{
+				
+				$("#l-error").addClass('alert');
+				$("#l-error").removeClass('success');
+				$("#l-error").text('invalid date');
+				check=false;
+			}
+
+	   	}else{
+	   		$("#l-error").removeClass('success');
+			$("#l-error").addClass('alert');
+			$("#l-error").text('I think you forget to select date');
+	   		check=false;
+
+	   	}
+	   	// alert(date);
+	   	return check;
+   }
+
+
+//date function visibility date
+  var visibility_date_validater = function validater(date){
+    	var check;
+	   	if(date){
+	   		var today = new Date();
+	   		var dd = today.getDate();
+			var mm = today.getMonth() + 1; //January is 0!
+			var yyyy = today.getFullYear();
+			if (dd < 10) {
+				dd = '0' + dd;
+			}
+			if (mm < 10) {
+				mm = '0' + mm;
+			}
+			today = mm + '/' + dd + '/' + yyyy;
+           // alert(today);
+
+            var newdate = new Date(today);
+
+            newdate.setDate(newdate.getDate() + 25);
+    
+		    var newdd = newdate.getDate();
+		    var newmm = newdate.getMonth() + 1;
+		    var newy = newdate.getFullYear();
+
+		   var new_one = newmm + '/' + newdd + '/' + newy;
+		  // alert(new_one);
+
+            var result=date.split('/');
+
+           
+	  		var date_month=result[0];
+	  		var date_day=result[1];
+	  		var date_year=result[2];
+          
+             
+
+			if(date_year>=yyyy && date_month>=mm && date_day>=dd){
+				$("#p-error").removeClass('alert');
+				$("#p-error").addClass('success');
+				$("#p-error").text(' ');
+
+				// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
+    //                 $("#p-error").addClass('alert');
+				// 	$("#p-error").removeClass('success');
+				// 	$("#p-error").text('you choose too much days');
+				// 	check=false;
+				// }else{
+				// 	$("#p-error").removeClass('alert');
+				// 	$("#p-error").addClass('success');
+				// 	$("#p-error").text(' ');
+				// 	check=true;
+				// }
+				
+			}else{
+				
+				$("#p-error").addClass('alert');
+				$("#p-error").removeClass('success');
+				$("#p-error").text('invalid date');
+				check=false;
+			}
+
+	   	}else{
+	   		$("#p-error").removeClass('success');
+			$("#p-error").addClass('alert');
+			$("#p-error").text('I think you forget to select date');
+	   		check=false;
+
+	   	}
+	   	// alert(date);
+	   	return check;
+   }
 
 
 
@@ -2104,28 +2459,31 @@
 		var getindus=indus_validater(indus);
 		var getcareer=career_validater(career);
 		var getcity=city_validater();
-		// var gettype=name_validater(title);
-		// var getshift=name_validater(title);
+		var gettype=type_validater();
+		var getshift=shift_validater();
 		var getexp=exp_validater(exp);
 		var getpos=pos_validater(positions);
 		var gethour=hour_validater(hour);
 		var getmin=min_validater(min_sal);
 		var getmax=max_validater(max_sal);
-		var getlast=l_validater(l_date);
-		var getdate=p_validater(p_date);
+		// var getlast=l_validater(l_date);
+		// var getdate=p_validater(p_date);
 		var getgender=gender_validater(gender);
 		var getage=age_validater(age);
-		// var getqual=name_validater(title);
-		// var getdegree=name_validater(title);
-		// var gettext=text_validater(text);
+		var getqual=qual_validater(title);
+		var getdegree=degree_validater(title);
+		var gettext=text_validater(text);
+		var getdate=date_validater(l_date);
+		var getpostdate=visibility_date_validater(p_date);
 
 		
-        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getlast && getData && getgender && getage &&getcity){
+        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getgender && getage && getcity && gettype && getshift && getqual && getdegree && getdate && getpostdate){
         	//alert("sai a");
         	
         
         }else{
         	//alert("galt a");
+        	swal("Error","Post not Upload Successfully","error");
          return false;
         }
 	   

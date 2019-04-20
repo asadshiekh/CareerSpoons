@@ -46,7 +46,7 @@ class CompanyProfile extends Controller
       $random_value = rand();
      
       echo '<div id="fields'.$random_value.'">
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6" id="inner_bgg">
       <label style="display:inline-block;">Select City:</label><span style="display:inline;"></span>
       <select class="form-control" name="selected_city[]" id="selected_city[]">
       <option value="" disabled="disabled" selected="selected" hidden>Select City</option>';
