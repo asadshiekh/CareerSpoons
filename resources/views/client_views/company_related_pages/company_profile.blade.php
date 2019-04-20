@@ -41,6 +41,7 @@
                         	</div>
                         	<span id="typed"></span>
                             
+                            
                             <ul>
                                 <li><strong class="j-view">85</strong>Total Visitors</li>
                                 <li><strong class="j-applied">110</strong>Job Applied</li>
