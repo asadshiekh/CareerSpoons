@@ -250,10 +250,12 @@
 										<form class="form-inline" method="post">
 											<div class="col-sm-12">
 												<div class="form-group">
+                                                     <span id="email-error"></span>
 													<input type="email"  name="email" class="form-control" placeholder="Enter Username" required="" id="user_email">
+													<span id="pass-error"></span>
 													<input type="password" name="password" class="form-control"  placeholder="Password" required="" id="user_password">
 													<div class="center">
-														<button type="button" id="login-btn" class="submit-btn" onclick="user_login()"> Login </button>
+														<button type="button" id="login-btn" class="submit-btn" onclick="validate_user_login()"> Login </button>
 														<span style="display: block; margin-top:40px"><a href="{{url('user-registeration')}}">Not Account Yet? Create Your Account</a></span>
 													</div>
 												</div>
@@ -267,10 +269,12 @@
 									<form class="form-inline" method="post">
 										<div class="col-sm-12">
 											<div class="form-group">
+												<span id="emailc-error"></span>
 												<input type="email"  name="email" class="form-control" id="company_email" placeholder="Company Email" required="">
+												<span id="passc-error"></span>
 												<input type="password" name="password" class="form-control" id="company_password"  placeholder="Password" required="">
 												<div class="center">
-													<button type="button" onclick="company_login();" id="subscribe" class="submit-btn"> Login </button>
+													<button type="button" onclick="validate_company_login();" id="subscribe" class="submit-btn"> Login </button>
 													<span style="display: block; margin-top:40px"><a href="{{url('company-registeration')}}">Not Account Yet? Create Your Company Account</a></span>
 												</div>
 											</div>
@@ -608,6 +612,26 @@
 			}
 
 			</style>
+			<style type="text/css">
+				span{
+					padding-left: 3%;
+				}
+				.alert{
+					color: red;
+					font-size: 12px;
+				}
+				.user-danger{
+					border: solid 2px red;
+				}
+				.success{
+					color: green;
+					font-size: 12px;
+				}
+				.user-success{
+					border: solid 2px green;
+				}
+
+				</style>
 			
 
 			<script>

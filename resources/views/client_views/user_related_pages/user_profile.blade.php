@@ -765,7 +765,8 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#AddEductionModelWindow" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Eduction" data-pt-animate="flipInX">Add Eduction</span></a></div>
+	<div class=" col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddEductionModelWindow" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Eduction" data-pt-animate="flipInX">Add Eduction</span></a></div>
+	<div class="clearfix"></div>
 	<br>
 	<br>
 	<hr>
@@ -801,7 +802,7 @@
 		</tbody>
 	</table>
 		<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#AddExperience" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Experience" data-pt-animate="flipInX">Add Experience</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddExperience" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Experience" data-pt-animate="flipInX">Add Experience</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -836,7 +837,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#AddProject" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Project" data-pt-animate="flipInX">Add Project</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddProject" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Project" data-pt-animate="flipInX">Add Project</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -864,7 +865,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#AddSkill" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Skill" data-pt-animate="flipInX">Add Skill</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddSkill" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Skill" data-pt-animate="flipInX">Add Skill</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -891,7 +892,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Languages</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Languages</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -917,7 +918,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="detail-pannel-footer-btn pull-left"><a href="#AddHobbey" data-toggle="modal" class="footer-btn blu-btn" title=""><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Hobbey" data-pt-animate="flipInX">Add Hobbey</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddHobbey" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Hobbey" data-pt-animate="flipInX">Add Hobbey</span></a></div>
 	<br>
 	<br>
 	<hr>

@@ -88,7 +88,7 @@ var use_i = l.protocol + "//" + l.host + "/user-login";
 			var valid = validateEmail(email);
 
 			if (!valid){
-				$("#email-error").text('wrong');
+				$("#email-error").text('Wrong Email');
 				$("#email-error").removeClass('success');
 				$('input[id="user_email"]').removeClass('user-success');
 				$('input[id="user_email"]').addClass('user-danger');
@@ -97,7 +97,7 @@ var use_i = l.protocol + "//" + l.host + "/user-login";
 
 			} else {
 				$("#email-error").text(' ');
-				check=true;		        
+				 check=true;		        
 
 			}			
 		}else {
@@ -114,31 +114,31 @@ var use_i = l.protocol + "//" + l.host + "/user-login";
 //function deals on front end
  
 
-  function checkemail(){
-    	var email=$("#user_email").val();
-    	if(email != ""){
-    		var valid = validateEmail(email);
+  // function checkemail(){
+  //   	var email=$("#user_email").val();
+  //   	if(email != ""){
+  //   		var valid = validateEmail(email);
 
-    		if (!valid) {
-    			$("#email-error").text('Invalid email format');
-    			$("#email-error").removeClass('success');
-    			$('input[id="email"]').removeClass('user-success');
-    			$('input[id="email"]').addClass('user-danger');
-    			$("#email-error").addClass('alert');
+  //   		if (!valid) {
+  //   			$("#email-error").text('Invalid email format');
+  //   			$("#email-error").removeClass('success');
+  //   			$('input[id="email"]').removeClass('user-success');
+  //   			$('input[id="email"]').addClass('user-danger');
+  //   			$("#email-error").addClass('alert');
 
-    		} else {
-    			$("#email-error").text('Looks Good now');
-				$('input[id="email"]').removeClass('user-danger');
-				$('input[id="email"]').addClass('user-success');
-				$("#email-error").removeClass('alert');
-				$("#email-error").addClass('success');
-    		}			
-    	}else{
-    		$('input[id="email"]').removeClass('user-success');
-    		$('input[id="email"]').removeClass('user-danger');
-    		$("#email-error").text(' ');
-    	}
-    }
+  //   		} else {
+  //   			$("#email-error").text('Looks Good now');
+		// 		$('input[id="email"]').removeClass('user-danger');
+		// 		$('input[id="email"]').addClass('user-success');
+		// 		$("#email-error").removeClass('alert');
+		// 		$("#email-error").addClass('success');
+  //   		}			
+  //   	}else{
+  //   		$('input[id="email"]').removeClass('user-success');
+  //   		$('input[id="email"]').removeClass('user-danger');
+  //   		$("#email-error").text(' ');
+  //   	}
+  //   }
     //email validation function end
 
     //password function 
@@ -196,14 +196,15 @@ function validate_user_login(){
 					$("#pass-error").text('Password is required');
 				}
 
-		}else{
-		     	//alert("oh no");
-		     	$("#email-error").removeClass('success');
-		     	$('input[id="email"]').removeClass('user-success');
-		     	$('input[id="email"]').addClass('user-danger');
-		     	$("#email-error").addClass('alert');
-		     	$("#email-error").text('Wrong Email');
-		     }
+		}
+		//else{
+		//      	//alert("oh no");
+		//      	$("#email-error").removeClass('success');
+		//      	$('input[id="email"]').removeClass('user-success');
+		//      	$('input[id="email"]').addClass('user-danger');
+		//      	$("#email-error").addClass('alert');
+		//      	$("#email-error").text('Wrong Email');
+		//      }
 
 }
 

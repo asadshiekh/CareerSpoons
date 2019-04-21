@@ -80,14 +80,14 @@ function company_login(){
     	return emailPattern.test(elementValue);
     }
     //second function 
-	var email_validater = function validater(email){
+	var email_c_validater = function validater(email){
 		var check;
 
 		if(email != ""){
 			var valid = validateEmail(email);
 
 			if (!valid){
-				$("#emailc-error").text('wrong email format');
+				$("#emailc-error").text('Wrong Email format');
 				$("#emailc-error").removeClass('success');
 				$('input[id="user_email"]').removeClass('user-success');
 				$('input[id="user_email"]').addClass('user-danger');
@@ -113,35 +113,35 @@ function company_login(){
 //function deals on front end
  
 
-  function checkCemail(){
-    	var email=$("#company_email").val();
-    	if(email != ""){
-    		var valid = validateEmail(email);
+  // function checkCemail(){
+  //   	var email=$("#company_email").val();
+  //   	if(email != ""){
+  //   		var valid = validateEmail(email);
 
-    		if (!valid) {
-    			$("#emailc-error").text('Invalid email format');
-    			$("#emailc-error").removeClass('success');
-    			$('input[id="company_email"]').removeClass('user-success');
-    			$('input[id="company_email"]').addClass('user-danger');
-    			$("#emailc-error").addClass('alert');
+  //   		if (!valid) {
+  //   			$("#emailc-error").text('Invalid email format');
+  //   			$("#emailc-error").removeClass('success');
+  //   			$('input[id="company_email"]').removeClass('user-success');
+  //   			$('input[id="company_email"]').addClass('user-danger');
+  //   			$("#emailc-error").addClass('alert');
 
-    		} else {
-    			$("#emailc-error").text('Looks Good now');
-				$('input[id="company_email"]').removeClass('user-danger');
-				$('input[id="company_email"]').addClass('user-success');
-				$("#emailc-error").removeClass('alert');
-				$("#emailc-error").addClass('success');
-    		}			
-    	}else{
-    		$('input[id="company_email"]').removeClass('user-success');
-    		$('input[id="company_email"]').removeClass('user-danger');
-    		$("#emailc-error").text(' ');
-    	}
-    }
+  //   		} else {
+  //   			$("#emailc-error").text('Looks Good now');
+		// 		$('input[id="company_email"]').removeClass('user-danger');
+		// 		$('input[id="company_email"]').addClass('user-success');
+		// 		$("#emailc-error").removeClass('alert');
+		// 		$("#emailc-error").addClass('success');
+  //   		}			
+  //   	}else{
+  //   		$('input[id="company_email"]').removeClass('user-success');
+  //   		$('input[id="company_email"]').removeClass('user-danger');
+  //   		$("#emailc-error").text(' ');
+  //   	}
+  //   }
     //email validation function end
 
     //password function 
-    var pass_validater = function validater(pass){
+    var pass_c_validater = function validater(pass){
 	var check;
 		//for pass
 		if(pass != ""){
@@ -174,8 +174,8 @@ function validate_company_login(){
 	var pass = $("#company_password").val();
 	
 	//alert("yes");
-	var getemail=email_validater(email);
-	var getpass=pass_validater(pass);
+	var getemail=email_c_validater(email);
+	var getpass=pass_c_validater(pass);
     // alert(getemail);
 
 		if(getemail){
@@ -196,14 +196,15 @@ function validate_company_login(){
 					$("#pass-error").text('Password is empty');
 				}
 
-		}else{
-		     	//alert("oh no");
-		     	$("#email-error").removeClass('success');
-		     	$('input[id="email"]').removeClass('user-success');
-		     	$('input[id="email"]').addClass('user-danger');
-		     	$("#email-error").addClass('alert');
-		     	$("#email-error").text('Wrong Email');
-		     }
+		}
+		// else{
+		//      	//alert("oh no");
+		//      	$("#email-error").removeClass('success');
+		//      	$('input[id="email"]').removeClass('user-success');
+		//      	$('input[id="email"]').addClass('user-danger');
+		//      	$("#email-error").addClass('alert');
+		//      	$("#email-error").text('Wrong Email');
+		//      }
 
 }
 // function validate_company_login(){
