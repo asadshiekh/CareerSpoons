@@ -482,3 +482,292 @@ function update_edu_data(id,edu_level,edu_major,edu_selected_result){
 
 }
 
+
+
+
+
+//validation functions
+// title_validater function
+var title_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				
+				check=true;
+				
+			}else{
+				$("#degree-error").removeClass('success');
+				$("#degree-error").addClass('alert');
+				$("#degree-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#degree-error").removeClass('success');
+     	$("#degree-error").addClass('alert');
+     	$("#degree-error").text('Degree title is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+ //qualification level validator
+
+ var level_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#qual-error").removeClass('alert');
+			$("#qual-error").addClass('success');
+			$("#qual-error").text('');
+          check=true;
+    	}else{
+    		$("#qual-error").removeClass('success');
+			$("#qual-error").addClass('alert');
+			$("#qual-error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+//ins_validater function
+var ins_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#ins-error").text(' ');
+				check=true;
+				
+			}else{
+				$("#ins-error").removeClass('success');
+				$("#ins-error").addClass('alert');
+				$("#ins-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#ins-error").removeClass('success');
+     	$("#ins-error").addClass('alert');
+     	$("#ins-error").text('Required *');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //location validator
+var loc_validater = function validater(name){
+    	var check;
+		//for name
+
+	if(name != ""){
+		$("#loc-error").text(' ');
+		check=false;
+			
+    }else{
+     	$("#loc-error").removeClass('success');
+     	$("#loc-error").addClass('alert');
+     	$("#loc-error").text('Required *');
+     	check=false;
+    }
+
+     return check;
+ }
+
+//start Date
+
+ var start_validater = function validater(start,to){
+    	var check;
+
+    	//alert(from+"  "+to);
+
+    	var date1 = start;
+        var date2 = to;
+        date1 = new Date(date1);
+		date2 = new Date(date2);
+
+		// alert(date1 + "  " +date2);
+		// date1 > date2;  //false	
+		if(date1 >= date2){
+
+			$("#dateto-error").removeClass('success');
+			$("#dateto-error").addClass('alert');
+			$("#dateto-error").text('Date Should B Greater');
+            check=false;
+		}else{
+			$("#dateto-error").text(' ');
+			check=true;
+		}
+
+	
+
+
+   //  	if (city) {
+   //  	    $("#dfrom-error").removeClass('alert');
+			// $("#dfrom-error").addClass('success');
+			// $("#dfrom-error").text('');
+   //        check=true;
+   //  	}else{
+   //  		$("#dfrom-error").removeClass('success');
+			// $("#dfrom-error").addClass('alert');
+			// $("#dfrom-error").text('Required *');
+   //          check=false;
+   //  		}
+        return check;
+        }
+
+//end Date
+
+ var end_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#dto-error").removeClass('alert');
+			$("#dto-error").addClass('success');
+			$("#dto-error").text('');
+          check=true;
+    	}else{
+    		$("#dto-error").removeClass('success');
+			$("#dto-error").addClass('alert');
+			$("#dto-error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+ //major validator
+
+ var major_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#major-error").removeClass('alert');
+			$("#major-error").addClass('success');
+			$("#major-error").text('');
+          check=true;
+    	}else{
+    		$("#major-error").removeClass('success');
+			$("#major-error").addClass('alert');
+			$("#major-error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+
+  //choose validator
+
+ var choose_validater = function validater(city){
+    	var check;
+    	var CGPA_1 = $("#candidate_CGPA").val();
+        var Percentage_1 = $("#candidate_percentage").val();
+
+    	if (city) {
+    	    $("#choose-error").removeClass('alert');
+			$("#choose-error").addClass('success');
+			$("#choose-error").text('');	
+          //check=true;
+		          if(city == "CGPA"){
+                       if (CGPA_1) {
+			    	    $("#cgpa-error").removeClass('alert');
+						$("#cgpa-error").addClass('success');
+						$("#cgpa-error").text(' ');	
+			            check=true;
+			    	   }else{
+			    		$("#cgpa-error").removeClass('success');
+						$("#cgpa-error").addClass('alert');
+						$("#cgpa-error").text('Required *');
+			            check=false;
+			    		}
+		          }else if (city == "Percentage") {
+		          	    if (Percentage_1) {
+			    	    $("#per-error").removeClass('alert');
+						$("#per-error").addClass('success');
+						$("#per-error").text(' ');	
+			            check=true;
+			    	   }else{
+			    		$("#per-error").removeClass('success');
+						$("#per-error").addClass('alert');
+						$("#per-error").text('Required *');
+			            check=false;
+			    		}
+
+		          }
+    	}else{
+    		$("#choose-error").removeClass('success');
+			$("#choose-error").addClass('alert');
+			$("#choose-error").text('Required *');
+            check=false;
+    		}
+
+        return check;
+        }
+
+      // text editor validator
+      var editor_validater = function validater(text){
+    	var check;
+
+    	if (text) {
+    	    $("#des-error").text(' ');
+			check=true;
+          
+    	}else{
+    		$("#des-error").removeClass('success');
+			$("#des-error").addClass('alert');
+			$("#des-error").text('information required');
+            check=false;
+    		}
+        return check;
+    }
+//main function of validation
+// addEduction2(2);
+
+function main_validation_edu(){
+var CGPA_1 = $("#candidate_CGPA").val();
+var Percentage_1 = $("#candidate_percentage").val();
+
+ 	var degree_title = $("#degree_title").val();
+ 	var degree_level = $("#degree_level").val();
+ 	var institute_name = $("#institute_name").val();
+ 	var institute_location = $("#institute_location").val();
+ 	var edu_start = $("#edu-start").val();
+ 	var edu_end = $("#edu-end").val();
+ 	var majors = $("#majors").val();
+ 	var selected_result = $("#edu_result").val();
+ 	var CGPA = CGPA_1;
+ 	var Percentage = Percentage_1;
+ 	var edu_description = CKEDITOR.instances['edu_description'].getData();
+
+ 	var gettitle=title_validater(degree_title);
+    var getlevel=level_validater(degree_level);
+ 	var getins=ins_validater(institute_name);
+    var getloc=loc_validater(institute_location);
+ 	var getstart=start_validater(edu_start,edu_end);
+    var getend=end_validater(edu_end);
+ 	var getmajor=major_validater(majors);
+ 	var getchoose=choose_validater(selected_result);
+ 	// var getncgpa=name_validater(CGPA);
+ 	// var getper=name_validater(Percentage);
+ 	var gettext=editor_validater(edu_description);
+
+ 	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){
+ 		yahoo();
+ 	}
+
+}
+
+function yahoo(){
+	alert("i mean it");
+}

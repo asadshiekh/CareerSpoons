@@ -1595,11 +1595,11 @@ data-dismiss="modal" aria-hidden="true">×</button>
 <form id="user_profile_add_edu">
 <div class="edit-pro">
 	<div class="col-md-4 col-sm-6">
-		<label>Degree Title</label>
+		<label style="display: inline-block;">Degree Title</label><span id="degree-error" style="display: inline;"></span>
 		<input type="text" id="degree_title" class="form-control" placeholder="Degree Title, e.g. Degree Name">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Degree Level</label>
+		<label style="display: inline-block;">Degree Level</label><span id="qual-error" style="display: inline;"></span>
 		<select class="form-control input-lg" id="degree_level">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Degree Level</option>
 			@foreach($get_degree as $get_degree)
@@ -1609,23 +1609,23 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Institute Name</label>
+		<label style="display: inline-block;">Institute Name</label><span id="ins-error" style="display: inline;"></span>
 		<input type="text" id="institute_name" class="form-control" placeholder="Institute Name">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Institute Location</label>
+		<label style="display: inline-block;">Institute Location</label><span id="loc-error" style="display: inline;"></span>
 		<input type="email" id="institute_location" class="form-control" placeholder="Institute Location: Address Details ">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Date From</label>
-		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" placeholder="12/31/2016">
+		<label style="display: inline-block;">Date From</label><span id="dfrom-error" style="display: inline;"></span>
+		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" placeholder="12/31/2016" data-dd-format="Y">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Date To</label>
+		<label style="display: inline-block;">Date To</label><span id="dateto-error" style="display: inline;"></span>
 		<input type="date" id="edu-end" data-theme="my-style" data-translate-mode="true" data-min-year="1980"  data-max-year="2020" data-large-mode="true" class="form-control" placeholder="12/31/2016" data-dd-default-date="12/31/2016">
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<label>Majors</label>
+		<label style="display: inline-block;">Majors</label><span id="major-error" style="display: inline;"></span>
 		<select class="form-control input-lg" id="majors">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">Majors</option>
 			@foreach($get_majors as $value)
@@ -1640,31 +1640,31 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<label>CGP/Percentage</label>
+		<label style="display: inline-block;">CGPA/Percentage</label><span id="choose-error" style="display: inline;"></span>
 		<select class="form-control input-lg" id="edu_result" onchange="change_fields()">
 			<option value="" disabled="disabled" selected="selected" hidden="hidden">CGPA / Percentage</option>
-			<option>CGPA</option>
-			<option>Percentage</option>
+			<option value="CGPA">CGPA</option>
+			<option value="Percentage">Percentage</option>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6" id="CGPA_fields">
-		<label>CGPA</label>
+		<label style="display: inline-block;">CGPA</label><span id="cgpa-error" style="display: inline;"></span>
 		<input type="text"  id="candidate_CGPA" class="form-control" placeholder="Enter CGPA e.g 2.0 , 3.5 etc">
 	</div>
 	<div class="col-md-4 col-sm-6" id="Percentage_fields">
-		<label>Percentage</label>
+		<label style="display: inline-block;">Percentage</label><span id="per-error" style="display: inline;"></span>
 		<input type="text" id="candidate_percentage" class="form-control"  placeholder="Enter Percentage e.g 60% , 70%">
 	</div>
 	
 	<div class="col-sm-12">
-		<label>Description</label>
+		<label style="display: inline-block;">Description</label><span id="des-error" style="display: inline;"></span>
 		<textarea name="eduction" id="edu_description">Tell Us Something about Your Eduction Experience</textarea>
 	</div>
 </div>
 </form>
 </div>
 <div class="modal-footer"> <!-- modal footer -->
-<button type="button" onclick="addEduction2(2);" class="btn btn-success">Save</button>
+<button type="button" onclick="main_validation_edu();" class="btn btn-success">Save</button>
 <button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 </div>
 </div> <!-- / .modal-content -->
