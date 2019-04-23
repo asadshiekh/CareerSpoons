@@ -802,7 +802,8 @@
 		</tbody>
 	</table>
 		<br/>
-	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddExperience" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Experience" data-pt-animate="flipInX">Add Experience</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#AddExperience" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size:12px;width: 55%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Experience" data-pt-animate="flipInX">Add Experience</span></a></div>
+	<div class="clearfix"></div>
 	<br>
 	<br>
 	<hr>
@@ -892,7 +893,7 @@
 		</tbody>
 	</table>
 	<br/>
-	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 50%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Languages</span></a></div>
+	<div class="col-sm-12 col-md-4 detail-pannel-footer-btn pull-left"><a href="#Addlanguage" data-toggle="modal" class="footer-btn blu-btn" title="" style="font-size: 12px;width: 55%;"><span class="protip" data-pt-scheme="blue" data-pt-gravity="top 0 -15; bottom 0 -15" data-pt-title="Add Another Languages" data-pt-animate="flipInX">Add Languages</span></a></div>
 	<br>
 	<br>
 	<hr>
@@ -1894,43 +1895,46 @@ data-dismiss="modal" aria-hidden="true">×</button>
 						<div class="edit-pro">
 
 							<div class="col-md-4 col-sm-6">
-								<label>Job Title</label>
+								<label style="display: inline-block;">Job Title</label><span id="exp_job-error" style="display: inline;"></span>
 								<input type="text" id="job_title" class="form-control" placeholder="Job Title">
 							</div>
 
 							<div class="col-md-4 col-sm-6">
-								<label>Company Name</label>
+								<label style="display: inline-block;">Company Name</label><span id="exp_cname-error" style="display: inline;"></span>
 								<input type="text" id="company_name" class="form-control" placeholder="Company Name">
 							</div>
 
 							<div class="col-md-4 col-sm-6">
-								<label>Referance Email</label>
+								<label style="display: inline-block;">Referance Email</label><span id="exp_email-error" style="display: inline;"></span>
 								<input type="email" id="ref_email"  class="form-control" placeholder="Reference Email">
 							</div>
 
 
 							<div class="col-md-6 col-sm-6">
-								<label>Reference Number</label>
+								<label style="display: inline-block;">Reference Number</label><span id="exp_no-error" style="display: inline;"></span>
+                                
 								<input type="text" id="exp_ref_phone"  class="form-control" placeholder="Reference Number">
+							    
 							</div>
 
 							<div class="col-md-6 col-sm-6">
-								<label>Your Position</label>
+								<label style="display: inline-block;">Your Position</label><span id="exp_pos-error" style="display: inline;"></span>
 								<input type="text" id="your_position"  class="form-control" placeholder="Position, e.g. Web Designer">
+
 							</div>
 
 							<div class="col-md-6 col-sm-6">
-								<label>Date From</label>
+								<label style="display: inline-block;">Date From</label><span id="exp_datefrom-error" style="display: inline;"></span>
 								<input type="text" id="exp-start" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
 							</div>
 
 							<div class="col-md-6 col-sm-6">
-								<label>Date To</label>
+								<label style="display: inline-block;">Date To</label><span id="exp_datetoerror" style="display: inline;"></span>
 								<input type="text" id="exp-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
 							</div>
 
 							<div class="col-sm-12">
-								<label>Description</label>
+								<label style="display: inline-block;">Description</label><span id="exp_des-error" style="display: inline;"></span>
 								<textarea name="work_history" id="project_descrption">Describe Your Experience</textarea>
 							</div>
 
@@ -1940,7 +1944,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="addExperience(2);" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_exp();" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2051,42 +2055,42 @@ data-dismiss="modal" aria-hidden="true">×</button>
 						<div class="edit-pro">
 
 							<div class="col-md-4 col-sm-6">
-							<label>Project Title</label>
+							<label style="display: inline-block;">Project Title</label><span id="pro_title_error" style="display: inline;"></span>
 							<input type="text" id="project_title" class="form-control" placeholder="Project Title">
 						</div>
 						
 						<div class="col-md-4 col-sm-6">
-							<label>Company Name</label>
+							<label style="display: inline-block;">Company Name</label><span id="pro_cname_error" style="display: inline;"></span>
 							<input type="text" id="pro_company_name" class="form-control" placeholder="Client Name">
 						</div>
 						
 						<div class="col-md-4 col-sm-6">
-							<label>Client Email</label>
+							<label style="display: inline-block;">Client Email</label><span id="pro_email_error" style="display: inline;"></span>
 							<input type="email" id="project_ref_email" class="form-control" placeholder="Client Email">
 						</div>
 						
 						<div class="col-md-6 col-sm-6">
-							<label>Client Number</label>
+							<label style="display: inline-block;">Client Number</label><span id="pro_no_error" style="display: inline;"></span>
 							<input type="text" id="project_ref_phone"  class="form-control" placeholder="Client Number">
 						</div>
 
 						<div class="col-md-6 col-sm-6">
-							<label>Your Position</label>
+							<label style="display: inline-block;">Your Position</label><span id="pro_pos_error" style="display: inline;"></span>
 							<input type="text" id="your_porject_position" class="form-control" placeholder="Your Position">
 						</div>
 
 						<div class="col-md-6 col-sm-6">
-							<label>Date From</label>
+							<label style="display: inline-block;">Date From</label><span id="pro_datefromerror" style="display: inline;"></span>
 							<input type="text" id="pro-start" class="form-control" placeholder="12/9/2019">
 						</div>
 						
 						<div class="col-md-6 col-sm-6">
-							<label>Date To</label>
+							<label style="display: inline-block;">Date To</label><span id="pro_enderror" style="display: inline;"></span>
 							<input type="text" id="pro-end" class="form-control" placeholder="12/9/2019">
 						</div>
 						
 						<div class="col-sm-12">
-							<label>Description</label>
+							<label style="display: inline-block;">Description</label><span id="pro_des_error" style="display: inline;"></span>
 							<textarea class="form-control" name="project" id="project_des" placeholder="Description"></textarea>
 						</div>
 
@@ -2097,7 +2101,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="addPro(2);" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_pro();" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2175,7 +2179,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 						<div class="edit-pro">
 
 							<div class="col-md-12 col-sm-12">
-								<label>Skill Name</label>
+								<label style="display: inline-block;">Skill Name</label><span id="skill_name_error" style="display: inline;"></span>
 								<input type="text" id="skill_name" class="form-control" placeholder="Skill Name">
 							</div>
 
@@ -2192,7 +2196,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="addnewskill(2);" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_skill();" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2271,7 +2275,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 						<div class="edit-pro">
 
 							<div class="col-md-12 col-sm-12">
-							<label>Hobbey Name</label>
+							<label style="display: inline-block;">Hobbey Name</label><span id="hobb_name_error" style="display: inline;"></span>
 							<input type="text" id="user_hobbies" class="form-control" placeholder="Hobbies eg Cricket,Football">
 						</div>
 						
@@ -2282,7 +2286,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="addnewHobbey(2);" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_hobb();" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2359,7 +2363,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 						<div class="edit-pro">
 
 							<div class="col-md-12 col-sm-12">
-							<label>Hobbey Name</label>
+							<label style="display: inline-block;">Language Name</label><span id="lang_lname_error" style="display: inline;"></span>
 							<input type="text" id="user_language" class="form-control" placeholder="Your Languages">
 						</div>
 						
@@ -2370,7 +2374,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="addnewlanguage(2);" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_language();" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>

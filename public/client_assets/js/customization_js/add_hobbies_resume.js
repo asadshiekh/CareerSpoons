@@ -290,3 +290,42 @@ $.post("update-hobbey-model-window",{_token:CSRF_TOKEN,id:id,user_hobbies:user_h
 });
 
 }
+
+
+
+//validate functions
+// addnewskill(2);
+
+
+//skill_name_validater function
+var hobb_name_validater = function validater(name){
+    	var check;
+		//for name
+	 if(name){
+				$("#hobb_name_error").removeClass('alert');
+		     	$("#hobb_name_error").addClass('success');
+		     	$("#hobb_name_error").text(' ');
+				check=true;
+				
+     }else{
+     	$("#hobb_name_error").removeClass('success');
+     	$("#hobb_name_error").addClass('alert');
+     	$("#hobb_name_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+function validate_main_hobb(){
+	//alert("yes");
+
+	var user_hobbies = $("#user_hobbies").val();
+
+	var getlang=hobb_name_validater(user_hobbies);
+
+ 	if(getlang){
+		 addnewHobbey(2);
+		 // yahoo();
+ 	}
+}

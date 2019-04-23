@@ -331,3 +331,274 @@ function do_update_experience(id){
 	});
 
 }
+
+
+
+
+
+
+
+
+//validation experience functions
+// addExperience(2);
+
+
+//job_validater function
+var job_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				
+				check=true;
+				
+			}else{
+				$("#exp_job-error").removeClass('success');
+				$("#exp_job-error").addClass('alert');
+				$("#exp_job-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp_job-error").removeClass('success');
+     	$("#exp_job-error").addClass('alert');
+     	$("#exp_job-error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+ //cname_validater function
+
+ var cname_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				
+				check=true;
+				
+			}else{
+				$("#exp_cname-error").removeClass('success');
+				$("#exp_cname-error").addClass('alert');
+				$("#exp_cname-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp_cname-error").removeClass('success');
+     	$("#exp_cname-error").addClass('alert');
+     	$("#exp_cname-error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //exp_email_validater
+var validateEmail = function(elementValue) {
+    	var emailPattern = /^[a-zA-Z].[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
+    	return emailPattern.test(elementValue);
+    }
+
+ var exp_email_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+           var valid = validateEmail(email);
+			if(valid){
+				$("#exp_email-error").text(' ');
+				check=true;
+				
+			}else{
+				$("#exp_email-error").removeClass('success');
+				$("#exp_email-error").addClass('alert');
+				$("#exp_email-error").text('Invalid format');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp_email-error").removeClass('success');
+     	$("#exp_email-error").addClass('alert');
+     	$("#exp_email-error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //exp_phone_validater function
+
+ var exp_phone_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.length == 15){
+				$("#exp_no-error").text(' ');
+				check=true;
+				
+			}else{
+				$("#exp_no-error").removeClass('success');
+				$("#exp_no-error").addClass('alert');
+				$("#exp_no-error").text('Invalid Number');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp_no-error").removeClass('success');
+     	$("#exp_no-error").addClass('alert');
+     	$("#exp_no-error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //
+
+ var position_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				
+				check=true;
+				
+			}else{
+				$("#exp_pos-error").removeClass('success');
+				$("#exp_pos-error").addClass('alert');
+				$("#exp_pos-error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#exp_pos-error").removeClass('success');
+     	$("#exp_pos-error").addClass('alert');
+     	$("#exp_pos-error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+//startDate_validater
+var startDate_validater = function validater(start,to){
+    	var check;
+  	    var date1 = start;
+        var date2 = to;
+        date1 = new Date(date1);
+		date2 = new Date(date2);
+
+		// alert(date1 + "  " +date2);
+		// date1 > date2;  //false	
+		if(date1){
+			if(date1 >= date2){
+				alert(date1 + "  " +date2);
+		
+				$("#exp_datetoerror").removeClass('success');
+				$("#exp_datetoerror").addClass('alert');
+				$("#exp_datetoerror").text('Date Should B Greater');
+	            check=false;
+			}else{
+				$("#exp_datetoerror").text(' ');
+				check=true;
+			}
+	    }else{
+	    	$("#exp_datefrom-error").removeClass('success');
+			$("#exp_datefrom-error").addClass('alert');
+			$("#exp_datefrom-error").text('Required *');
+            check=false;
+	    }
+
+        return check;
+        }
+
+//endDate_validater
+
+ var endDate_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#exp_datetoerror").removeClass('alert');
+			$("#exp_datetoerror").addClass('success');
+			$("#exp_datetoerror").text('');
+          check=true;
+    	}else{
+    		$("#exp_datetoerror").removeClass('success');
+			$("#exp_datetoerror").addClass('alert');
+			$("#exp_datetoerror").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+///editor des function
+
+var des_validater = function validater(text){
+    	var check;
+
+    	if (text) {
+    	    $("#exp_des-error").text(' ');
+			check=true;
+          
+    	}else{
+    		$("#exp_des-error").removeClass('success');
+			$("#exp_des-error").addClass('alert');
+			$("#exp_des-error").text('information required');
+            check=false;
+    		}
+        return check;
+    }
+
+function validate_main_exp(){
+	//alert("yes");
+
+	var job_title = $("#job_title").val();
+	var company_name = $("#company_name").val();
+	var ref_email = $("#ref_email").val();
+	var ref_phone = $("#exp_ref_phone").val();
+	var your_position = $("#your_position").val();
+	var exp_start = $("#exp-start").val();
+	var exp_end = $("#exp-end").val();
+	var exp_description = CKEDITOR.instances['project_descrption'].getData();
+
+	var getjob=job_validater(job_title);
+    var getcname=cname_validater(company_name);
+ 	var getemail=exp_email_validater(ref_email);
+    var getphone=exp_phone_validater(ref_phone);
+ 	var getposition=position_validater(your_position);
+    var getstart=startDate_validater(exp_start,exp_end);
+    var getend=endDate_validater(exp_end);
+ 	var getdes=des_validater(exp_description);
+
+
+ 	if(getjob && getcname && getemail && getphone && getposition && getstart && getend && getdes){
+		addExperience(2);
+ 	}
+}
+
+
+function yahoo(){
+	alert("all good");
+}

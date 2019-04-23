@@ -311,3 +311,46 @@ function update_skill(id){
 
 
 }
+
+
+//validate functions
+// addnewskill(2);
+
+
+//skill_name_validater function
+var skill_sname_validater = function validater(name){
+    	var check;
+		//for name
+	 if(name){
+				$("#skill_name_error").removeClass('alert');
+		     	$("#skill_name_error").addClass('success');
+		     	$("#skill_name_error").text(' ');
+				check=true;
+				
+     }else{
+     	$("#skill_name_error").removeClass('success');
+     	$("#skill_name_error").addClass('alert');
+     	$("#skill_name_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+function validate_main_skill(){
+	//alert("yes");
+
+	var skill_name = $("#skill_name").val();
+
+	var getskill=skill_sname_validater(skill_name);
+
+ 	if(getskill){
+		addnewskill(2);
+		// yahoo();
+ 	}
+}
+
+
+function yahoo(){
+	alert("all good");
+}
