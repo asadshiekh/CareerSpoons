@@ -331,6 +331,46 @@ function validate_main_language(){
 }
 
 
+//validate updated function
+
+
+//validate functions
+// addnewskill(2);
+
+
+//skill_name_validater function
+var up_lang_name_validater = function validater(name){
+    	var check;
+		//for name
+	 if(name){
+				$("#up_lang_lname_error").removeClass('alert');
+		     	$("#up_lang_lname_error").addClass('success');
+		     	$("#up_lang_lname_error").text(' ');
+				check=true;
+				
+     }else{
+     	$("#up_lang_lname_error").removeClass('success');
+     	$("#up_lang_lname_error").addClass('alert');
+     	$("#up_lang_lname_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+function validate_main_language_up(id){
+	//alert("yes");
+
+	var user_languages = $("#user_language").val();
+
+	var getlang=up_lang_name_validater(user_languages);
+ 	if(getlang){
+		 update_language(id);
+		 // yahoo();
+ 	}
+}
+
+
 function yahoo(){
 	alert("all good");
 }

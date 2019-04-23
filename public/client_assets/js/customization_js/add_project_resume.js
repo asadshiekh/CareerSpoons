@@ -378,7 +378,7 @@ var pro_title_validater = function validater(name){
 		if(name != ""){
 
 			if(name.match("^[a-zA-Z\(\) ]+$")){
-				
+				$("#pro_cname_error").text(' ');
 				check=true;
 				
 			}else{
@@ -411,7 +411,7 @@ var validateEmail = function(elementValue) {
 		//for name
 
 		if(name != ""){
-           var valid = validateEmail(email);
+           var valid = validateEmail(name);
 			if(valid){
 				$("#pro_email_error").text(' ');
 				check=true;
@@ -586,13 +586,291 @@ function validate_main_pro(){
     var getstart=pro_startDate_validater(pro_start,pro_end);
     var getend=pro_endDate_validater(pro_end);
  	var getdes=pro_des_validater(project_description);
-
+// alert(gettitle);
+// alert(getcname);
+// alert(getemail);
+// alert(getphone);
+// alert(getposition);
+// alert(getstart);
+// alert(getend);
+// alert(getdes);
 
  	if(gettitle && getcname && getemail && getphone && getposition && getstart && getend && getdes){
-		yahoo();
+		addPro(2);
  	}
 }
 
+
+
+//update validation function
+
+
+///validation function main
+//validation experience functions
+// addPro(2);
+
+
+//pro_title_validater function
+var up_pro_title_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#up_pro_title_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_pro_title_error").removeClass('success');
+				$("#up_pro_title_error").addClass('alert');
+				$("#up_pro_title_error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_pro_title_error").removeClass('success');
+     	$("#up_pro_title_error").addClass('alert');
+     	$("#up_pro_title_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+ //pro_cname_validater function
+
+ var up_pro_cname_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#up_pro_cname_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_pro_cname_error").removeClass('success');
+				$("#up_pro_cname_error").addClass('alert');
+				$("#up_pro_cname_error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_pro_cname_error").removeClass('success');
+     	$("#up_pro_cname_error").addClass('alert');
+     	$("#up_pro_cname_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //exp_email_validater
+var validateEmail = function(elementValue) {
+    	var emailPattern = /^[a-zA-Z].[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
+    	return emailPattern.test(elementValue);
+    }
+
+ var up_pro_email_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+           var valid = validateEmail(name);
+			if(valid){
+				$("#up_pro_email_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_pro_email_error").removeClass('success');
+				$("#up_pro_email_error").addClass('alert');
+				$("#up_pro_email_error").text('Invalid format');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_pro_email_error").removeClass('success');
+     	$("#up_pro_email_error").addClass('alert');
+     	$("#up_pro_email_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //exp_phone_validater function
+
+ var up_pro_phone_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.length == 15){
+				$("#up_pro_no_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_pro_no_error").removeClass('success');
+				$("#up_pro_no_error").addClass('alert');
+				$("#up_pro_no_error").text('Invalid Number');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_pro_no_error").removeClass('success');
+     	$("#up_pro_no_error").addClass('alert');
+     	$("#up_pro_no_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //
+
+ var up_pro_position_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#up_pro_pos_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_pro_pos_error").removeClass('success');
+				$("#up_pro_pos_error").addClass('alert');
+				$("#up_pro_pos_error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_pro_pos_error").removeClass('success');
+     	$("#up_pro_pos_error").addClass('alert');
+     	$("#up_pro_pos_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+//startDate_validater
+var up_pro_startDate_validater = function validater(start,to){
+    	var check;
+  	    var date1 = start;
+        var date2 = to;
+        date1 = new Date(date1);
+		date2 = new Date(date2);
+
+		// alert(date1 + "  " +date2);
+		// date1 > date2;  //false	
+		if(date1){
+			if(date1 >= date2){
+				//alert(date1 + "  " +date2);
+		
+				$("#up_pro_enderror").removeClass('success');
+				$("#up_pro_enderror").addClass('alert');
+				$("#up_pro_enderror").text('Date Should B Greater');
+	            check=false;
+			}else{
+				$("#up_pro_enderror").text(' ');
+				check=true;
+			}
+	    }else{
+	    	$("#up_pro_datefromerror").removeClass('success');
+			$("#up_pro_datefromerror").addClass('alert');
+			$("#up_pro_datefromerror").text('Required *');
+            check=false;
+	    }
+
+        return check;
+        }
+
+//endDate_validater
+
+ var up_pro_endDate_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#up_pro_enderror").removeClass('alert');
+			$("#up_pro_enderror").addClass('success');
+			$("#up_pro_enderror").text('');
+          check=true;
+    	}else{
+    		$("#up_pro_enderror").removeClass('success');
+			$("#up_pro_enderror").addClass('alert');
+			$("#up_pro_enderror").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+///editor des function
+
+var up_pro_des_validater = function validater(text){
+    	var check;
+
+    	if (text) {
+    	    $("#up_pro_des_error").text(' ');
+			check=true;
+          
+    	}else{
+    		$("#up_pro_des_error").removeClass('success');
+			$("#up_pro_des_error").addClass('alert');
+			$("#up_pro_des_error").text('information required');
+            check=false;
+    		}
+        return check;
+    }
+
+function validate_main_pro_up(id){
+	//alert("yes");
+
+    var project_title = $("#update_project_title").val();
+	var project_company_name = $("#update_project_company_name").val();
+	var project_ref_email = $("#update_project_ref_email").val();
+	var project_ref_phone = $("#update_project_ref_phone").val();
+	var your_porject_position = $("#update_your_porject_position").val();
+	var pro_start = $("#update-pro-start").val();
+	var pro_end = $("#update-pro-end").val();	
+	var project_description = CKEDITOR.instances['update_pro_description'].getData();
+
+	var gettitle=up_pro_title_validater(project_title);
+    var getcname=up_pro_cname_validater(project_company_name);
+ 	var getemail=up_pro_email_validater(project_ref_email);
+    var getphone=up_pro_phone_validater(project_ref_phone);
+ 	var getposition=up_pro_position_validater(your_porject_position);
+    var getstart=up_pro_startDate_validater(pro_start,pro_end);
+    var getend=up_pro_endDate_validater(pro_end);
+ 	var getdes=up_pro_des_validater(project_description);
+// alert(gettitle);
+// alert(getcname);
+// alert(getemail);
+// alert(getphone);
+// alert(getposition);
+// alert(getstart);
+// alert(getend);
+// alert(getdes);
+
+ 	if(gettitle && getcname && getemail && getphone && getposition && getstart && getend && getdes){
+		update_project(id);
+ 	}
+}
 
 function yahoo(){
 	alert("all good");

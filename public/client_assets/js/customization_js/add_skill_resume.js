@@ -351,6 +351,44 @@ function validate_main_skill(){
 }
 
 
+
+//update validate functions
+// addnewskill(2);
+
+
+//skill_name_validater function
+var up_skill_sname_validater = function validater(name){
+    	var check;
+		//for name
+	 if(name){
+				$("#up_skill_name_error").removeClass('alert');
+		     	$("#up_skill_name_error").addClass('success');
+		     	$("#up_skill_name_error").text(' ');
+				check=true;
+				
+     }else{
+     	$("#up_skill_name_error").removeClass('success');
+     	$("#up_skill_name_error").addClass('alert');
+     	$("#up_skill_name_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+function validate_main_skill_up(id){
+	//alert("yes");
+
+	var skill_name = $("#skill_name").val();
+	var skill_percentage = $("#skill_percentage").val();
+    var getskill=up_skill_sname_validater(skill_name);
+ 	if(getskill){
+		// addnewskill(2);
+		// yahoo();
+		update_skill(id);
+ 	}
+}
+
 function yahoo(){
 	alert("all good");
 }

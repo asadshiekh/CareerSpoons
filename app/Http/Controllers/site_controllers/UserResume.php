@@ -543,14 +543,14 @@ class UserResume extends Controller
 		
 		<div class="col-md-4 col-sm-6">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<label>Degree Title</label>
+		<label style="display:inline-block;">Degree Title</label><span id="up_degree_error" style="display:inline;"></span>
 		<input type="text"  value="'.$info->degree_title.'" name="update_edu_degree_title" id="update_edu_degree_title" class="form-control" placeholder="Degree Title, e.g. Degree Name">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Degree Level</label>
+		<label style="display:inline-block;">Degree Level</label><span id="up_qual_error" style="display:inline;"></span>
 		<select class="form-control input-lg" name="update_edu_degree_level" id="update_edu_degree_level">
-		<option disabled="disabled" selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>';
+		<option hidden selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>';
 		foreach($get_degree as $get_degree){
 			echo '<option value="'.$get_degree->degree_title.'">'.$get_degree->degree_title.'</option>';
 		}
@@ -558,30 +558,30 @@ class UserResume extends Controller
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Institute Name</label>
+		<label style="display:inline-block;">Institute Name</label><span id="up_ins_error" style="display:inline;"></span>
 		<input type="text" value="'.$info->Institute_name.'" name="update_edu_institue_name" id="update_edu_institue_name" class="form-control" placeholder="Institute Name">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Institute Location</label>
+		<label style="display:inline-block;">Institute Location</label><span id="up_loc_error" style="display:inline;"></span>
 		<input type="text" value="'.$info->institute_location.'" name="update_edu_institute_location" id="update_edu_institute_location" class="form-control" placeholder="Institute Location: Address Details ">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Date From</label>
+		<label style="display:inline-block;">Date From</label><span id="up_datefrom_error" style="display:inline;"></span>
 		<input type="date" value="'.$info->edu_start.'" name="update_edu_start" id="update-edu-start"  class="form-control" placeholder="+91 258 475 6859">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Date To</label>
+		<label style="display:inline-block;">Date To</label><span id="up_dateto_error" style="display:inline;"></span>
 		<input type="date" value="'.$info->edu_end.'" name="update_edu_end" id="update-edu-end"  class="form-control" placeholder="258 457 528">
 		</div>
 
 		<div class="col-md-4 col-sm-4">
-		<label>Majors</label>
+		<label style="display:inline-block;">Majors</label><span id="up_major_error" style="display:inline;"></span>
 		<select class="form-control input-lg" name="update_edu_majors" id="update_edu_majors">';
 		$info->major=str_replace("_"," ",$info->majors);
-		echo '<option disabled="disabled" selected="selected" value="'.$info->majors.'" >'.$info->major.'</option>';
+		echo '<option hidden selected="selected" value="'.$info->majors.'" >'.$info->major.'</option>';
 		foreach($get_majors as $get_majors){
 			$get_majors->major_titles=str_replace("_"," ",$get_majors->major_title);
 			echo '<option value="'.$get_majors->major_title.'">'.$get_majors->major_titles.'</option>';
@@ -590,27 +590,27 @@ class UserResume extends Controller
 		</div>
 		
 		<div class="col-md-4 col-sm-4">
-		<label>CGP/Percentage</label>
+		<label style="display:inline-block;">CGP/Percentage</label><span id="up_choose_error" style="display:inline;"></span>
 		<select class="form-control input-lg" name="update_edu_result" id="update_edu_result"  onchange="update_change_fields()" >
-		<option disabled="disabled" selected="selected" value="'.$info->selected_result.'">'.$info->selected_result.'</option>
+		<option hidden selected="selected" value="'.$info->selected_result.'">'.$info->selected_result.'</option>
 		<option>CGPA</option>
 		<option>Percentage</option>
 		</select>
 		</div>
 
 		<div class="col-md-4 col-sm-6" id="update_CGPA_fields">
-		<label>CGPA</label>
+		<label style="display:inline-block;">CGPA</label><span id="up_cgpa_error" style="display:inline;"></span>
 		<input type="text" value="'.$info->cgpa.'" name="update_edu_candidate_CGPA" id="update_edu_candidate_CGPA" class="form-control" placeholder="Enter CGPA e.g 2.0 , 3.5 etc">
 		</div>
 
 		<div class="col-md-4 col-sm-6" id="update_Percentage_fields">
-		<label>Percentage</label>
+		<label style="display:inline-block;">Percentage</label><span id="up_per_error" style="display:inline;"></span>
 		<input type="text" value="'.$info->percentage.'" name="update_edu_candidate_percentage" id="update_edu_candidate_percentage" class="form-control"  placeholder="Enter Percentage e.g 60% , 70%">
 		</div>
 		
 
 		<div class="col-sm-12">
-		<label>Description</label>
+		<label style="display:inline-block;">Description</label><span id="up_edu_deserror" style="display:inline;"></span>
 		<textarea class="form-control" name="update_description" id="update_eduction_descriptions">'.$info->edu_description.'</textarea>
 		</div>
 
@@ -620,7 +620,7 @@ class UserResume extends Controller
 		</div>
 
 		<div class="modal-footer">
-		<button type="button" onclick="update_edu_data('.$edu_id.','.$edu_level.','.$edu_majors.','.$edu_selected_result.');" class="btn btn-success">Save</button>
+		<button type="button" onclick="main_validation_up_edu('.$edu_id.','.$edu_level.','.$edu_majors.','.$edu_selected_result.');" class="btn btn-success">Save</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 		</div>
 
@@ -879,43 +879,43 @@ class UserResume extends Controller
 		<div class="edit-pro">
 
 		<div class="col-md-4 col-sm-6">
-		<label>Job Title</label>
+		<label style="display:inline-block;">Job Title</label><span id="up_exp_job-error" style="display:inline;"></span>
 		<input type="text" id="update_exp_job_title" class="form-control" placeholder="Job Title" value="'.$info->job_title.'" > 
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Company Name</label>
+		<label style="display:inline-block;">Company Name</label><span id="up_exp_cname-error" style="display:inline;"></span>
 		<input type="text" id="update_exp_company_name" class="form-control" placeholder="Company Name" value="'.$info->company_name.'">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Referance Email</label>
+		<label style="display:inline-block;">Referance Email</label><span id="up_exp_email-error" style="display:inline;"></span>
 		<input type="email" id="update_exp_referance_email" class="form-control" placeholder="dana.mathew@gmail.com" value="'.$info->ref_email.'">
 		</div>
 
 
 		<div class="col-md-6 col-sm-6">
-		<label>Reference Number</label>
+		<label style="display:inline-block;">Reference Number</label><span id="up_exp_no-error" style="display:inline;"></span>
 		<input type="text" id="update_exp_referance_number"  class="form-control" placeholder="258 457 528" value="'.$info->ref_phone.'">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Your Position</label>
+		<label style="display:inline-block;">Your Position</label><span id="up_exp_pos-error" style="display:inline;"></span><span id="" style="display:inline;"></span>
 		<input type="text" id="update_exp_your_position" class="form-control" placeholder="Position, e.g. Web Designer" value="'.$info->your_position.'">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Date From</label>
+		<label style="display:inline-block;">Date From</label><span id="up_up_exp_datefrom-error" style="display:inline;"></span>
 		<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-start"  class="form-control" placeholder="+91 258 475 6859">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Date To</label>
-		<input type="date" value="'.$info->exp_start.'" name="update_exp_start" id="update-exp-end"  class="form-control" placeholder="+91 258 475 6859">
+		<label style="display:inline-block;">Date To</label><span id="up_exp_datetoerror" style="display:inline;"></span>
+		<input type="date" value="'.$info->exp_end.'" name="update_exp_start" id="update-exp-end"  class="form-control" placeholder="+91 258 475 6859">
 		</div>
 
 		<div class="col-sm-12">
-		<label>Description</label>
+		<label style="display:inline-block;">Description</label><span id="up_exp_deserror" style="display:inline;"></span>
 		<textarea class="form-control" name="update_exp_description" id="update_exp_description" placeholder="Write Something">'.$info->exp_description.' </textarea>
 		</div>
 
@@ -1025,43 +1025,43 @@ class UserResume extends Controller
 		<div class="edit-pro">
 
 		<div class="col-md-4 col-sm-6">
-		<label>Project Title</label>
+		<label style="display:inline-block">Project Title</label><span id="up_pro_title_error" style="display:inline;"></span>
 		<input type="text" id="update_project_title" class="form-control" placeholder="Project Title" value="'.$info->project_title.'">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Company Name</label>
+		<label style="display:inline-block">Company Name</label><span id="up_pro_cname_error" style="display:inline;"></span>
 		<input type="text" id="update_project_company_name" class="form-control" placeholder="Client Name" value="'.$info->project_company_name.'">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label>Client Email</label>
+		<label style="display:inline-block">Client Email</label><span id="up_pro_email_error" style="display:inline;"></span>
 		<input type="email" id="update_project_ref_email" class="form-control" placeholder="Client Email" value="'.$info->project_ref_email.'">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Client Number</label>
+		<label style="display:inline-block">Client Number</label><span id="up_pro_no_error" style="display:inline;"></span>
 		<input type="text" id="update_project_ref_phone"  class="form-control" placeholder="Client Number" value="'.$info->project_ref_phone.'">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Your Position</label>
+		<label style="display:inline-block">Your Position</label><span id="up_pro_pos_error" style="display:inline;"></span>
 		<input type="text" id="update_your_porject_position" class="form-control" placeholder="Your Position" value="'.$info->your_porject_position.'"> 
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Date From</label>
+		<label style="display:inline-block">Date From</label><span id="up_pro_datefromerror" style="display:inline;"></span>
 		<input type="text" id="update-pro-start" class="form-control" placeholder="12/9/2019" value="'.$info->pro_start.'">
 		</div>
 
 		<div class="col-md-6 col-sm-6">
-		<label>Date To</label>
+		<label style="display:inline-block">Date To</label><span id="up_pro_enderror" style="display:inline;"></span>
 		<input type="text" id="update-pro-end" class="form-control" placeholder="12/9/2019" value="'.$info->pro_end.'">
 		</div>
 
 		<div class="col-sm-12">
-		<label>Description</label>
-		<textarea class="form-control" name="update_pro_description" id="update_pro_description" placeholder="Description">'.$info->project_title.'</textarea>
+		<label style="display:inline-block">Description</label><span id="up_pro_des_error" style="display:inline;"></span>
+		<textarea class="form-control" name="update_pro_description" id="update_pro_description" placeholder="Description">'.$info->project_description.'</textarea>
 		</div>
 
 
@@ -1071,7 +1071,7 @@ class UserResume extends Controller
 		</div>
 
 		<div class="modal-footer">
-		<button type="button" onclick="update_project('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" onclick="validate_main_pro_up('.$info->id.');" class="btn btn-success">Update</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 		</div>
 		</div>
@@ -1177,7 +1177,7 @@ class UserResume extends Controller
 		<div class="edit-pro">
 
 		<div class="col-md-12 col-sm-12">
-		<label>Skill Name</label>
+		<label style="display:inline-block;">Skill Name</label><span id="up_skill_name_error" style="display:inline;"></span>
 		<input type="text" id="skill_name" class="form-control" value="'.$info->skill_name.'" placeholder="Skill Name">
 		</div>
 
@@ -1194,7 +1194,7 @@ class UserResume extends Controller
 		</div>
 
 		<div class="modal-footer">
-		<button type="button" onclick="update_skill('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" onclick="validate_main_skill_up('.$info->id.');" class="btn btn-success">Update</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 		</div>
 		</div> 
@@ -1285,7 +1285,7 @@ class UserResume extends Controller
 		<div class="edit-pro">
 
 		<div class="col-md-12 col-sm-12">
-		<label>Hobbey Name</label>
+		<label style="display:inline-block;">Hobbey Name</label><span id="up_hobb_name_error" style="display:inline;"></span>
 		<input type="text" id="user_hobbies" class="form-control" placeholder="Hobbies eg Cricket,Football" value="'.$info->user_hobbies.'">
 		</div>
 
@@ -1296,7 +1296,7 @@ class UserResume extends Controller
 		</div>
 
 		<div class="modal-footer">
-		<button type="button" onclick="updatehobbey('.$info->id.');" class="btn btn-success">Update</button>
+		<button type="button" onclick="validate_main_hobb_up('.$info->id.');" class="btn btn-success">Update</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 		</div>
 		</div>
@@ -1375,7 +1375,7 @@ class UserResume extends Controller
 		<div class="edit-pro">
 
 		<div class="col-md-12 col-sm-12">
-		<label>Hobbey Name</label>
+		<label style="display:inline-block;">Hobbey Name</label><span id="up_lang_lname_error" style="display:inline;"></span>
 		<input type="text" id="user_language" class="form-control" placeholder="Your Languages" value="'.$info->user_language.'">
 		</div>
 
@@ -1386,7 +1386,7 @@ class UserResume extends Controller
 		</div>
 
 		<div class="modal-footer">
-		<button type="button" onclick="update_language('.$info->id.');" class="btn btn-success">Save</button>
+		<button type="button" onclick="validate_main_language_up('.$info->id.');" class="btn btn-success">Save</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 		</div>
 		</div>

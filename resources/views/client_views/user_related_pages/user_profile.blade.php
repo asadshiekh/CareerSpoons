@@ -1658,7 +1658,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 	</div>
 	
 	<div class="col-sm-12">
-		<label style="display: inline-block;">Description</label><span id="des-error" style="display: inline;"></span>
+		<label style="display: inline-block;">Description</label><span id="edu_deserror" style="display: inline;"></span>
 		<textarea name="eduction" id="edu_description">Tell Us Something about Your Eduction Experience</textarea>
 	</div>
 </div>
@@ -1934,7 +1934,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 							</div>
 
 							<div class="col-sm-12">
-								<label style="display: inline-block;">Description</label><span id="exp_des-error" style="display: inline;"></span>
+								<label style="display: inline-block;">Description</label><span id="exp_deserror" style="display: inline;"></span>
 								<textarea name="work_history" id="project_descrption">Describe Your Experience</textarea>
 							</div>
 

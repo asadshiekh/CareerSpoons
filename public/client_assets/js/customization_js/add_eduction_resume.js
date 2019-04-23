@@ -487,15 +487,16 @@ function update_edu_data(id,edu_level,edu_major,edu_selected_result){
 
 
 //validation functions
+
 // title_validater function
 var title_validater = function validater(name){
     	var check;
 		//for name
 
-		if(name != ""){
+		if(name){
 
 			if(name.match("^[a-zA-Z\(\) ]+$")){
-				
+				$("#degree-error").text(' ');
 				check=true;
 				
 			}else{
@@ -571,10 +572,10 @@ var ins_validater = function validater(name){
 var loc_validater = function validater(name){
     	var check;
 		//for name
-
-	if(name != ""){
+    
+	if(name){
 		$("#loc-error").text(' ');
-		check=false;
+		check=true;
 			
     }else{
      	$("#loc-error").removeClass('success');
@@ -720,13 +721,13 @@ var loc_validater = function validater(name){
     	var check;
 
     	if (text) {
-    	    $("#des-error").text(' ');
+    	    $("#edu_deserror").text(' ');
 			check=true;
           
     	}else{
-    		$("#des-error").removeClass('success');
-			$("#des-error").addClass('alert');
-			$("#des-error").text('information required');
+    		$("#edu_deserror").removeClass('success');
+			$("#edu_deserror").addClass('alert');
+			$("#edu_deserror").text('information required');
             check=false;
     		}
         return check;
@@ -737,7 +738,7 @@ var loc_validater = function validater(name){
 function main_validation_edu(){
 var CGPA_1 = $("#candidate_CGPA").val();
 var Percentage_1 = $("#candidate_percentage").val();
-
+alert("yed");
  	var degree_title = $("#degree_title").val();
  	var degree_level = $("#degree_level").val();
  	var institute_name = $("#institute_name").val();
@@ -761,13 +762,310 @@ var Percentage_1 = $("#candidate_percentage").val();
  	// var getncgpa=name_validater(CGPA);
  	// var getper=name_validater(Percentage);
  	var gettext=editor_validater(edu_description);
+ 
 
  	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){
- 		yahoo();
+ 		// yahoo();
+ 		addEduction2(2);
  	}
 
 }
 
+
+
+//update education 
+
+// title_validater function
+var up_title_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#up_degree_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_degree_error").removeClass('success');
+				$("#up_degree_error").addClass('alert');
+				$("#up_degree_error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_degree_error").removeClass('success');
+     	$("#up_degree_error").addClass('alert');
+     	$("#up_degree_error").text('Degree title is empty');
+     	check=false;
+     }
+
+     return check;
+ }
+
+
+ //qualification level validator
+
+ var up_level_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#up_qual_error").removeClass('alert');
+			$("#up_qual_error").addClass('success');
+			$("#up_qual_error").text('');
+          check=true;
+    	}else{
+    		$("#up_qual_error").removeClass('success');
+			$("#up_qual_error").addClass('alert');
+			$("#up_qual_error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+//ins_validater function
+var up_ins_validater = function validater(name){
+    	var check;
+		//for name
+
+		if(name != ""){
+
+			if(name.match("^[a-zA-Z\(\) ]+$")){
+				$("#up_ins_error").text(' ');
+				check=true;
+				
+			}else{
+				$("#up_ins_error").removeClass('success');
+				$("#up_ins_error").addClass('alert');
+				$("#up_ins_error").text('Contains only alphabet');
+				//return false;
+				check=false;
+			}
+               ////end name       
+         //last
+     }else{
+     	$("#up_ins_error").removeClass('success');
+     	$("#up_ins_error").addClass('alert');
+     	$("#up_ins_error").text('Required *');
+     	check=false;
+     }
+
+     return check;
+ }
+
+ //location validator
+var up_loc_validater = function validater(name){
+    	var check;
+		//for name
+    
+	if(name){
+		$("#up_loc_error").text(' ');
+		check=true;
+			
+    }else{
+     	$("#up_loc_error").removeClass('success');
+     	$("#up_loc_error").addClass('alert');
+     	$("#up_loc_error").text('Required *');
+     	check=false;
+    }
+
+     return check;
+ }
+
+//start Date
+
+ var up_start_validater = function validater(start,to){
+    	var check;
+
+    	//alert(from+"  "+to);
+
+    	var date1 = start;
+        var date2 = to;
+        date1 = new Date(date1);
+		date2 = new Date(date2);
+
+		// alert(date1 + "  " +date2);
+		// date1 > date2;  //false	
+		if(date1 >= date2){
+
+			$("#up_dateto_error").removeClass('success');
+			$("#up_dateto_error").addClass('alert');
+			$("#up_dateto_error").text('Date Should B Greater');
+            check=false;
+		}else{
+			$("#up_dateto_error").text(' ');
+			check=true;
+		}
+
+	
+
+
+   //  	if (city) {
+   //  	    $("#dfrom-error").removeClass('alert');
+			// $("#dfrom-error").addClass('success');
+			// $("#dfrom-error").text('');
+   //        check=true;
+   //  	}else{
+   //  		$("#dfrom-error").removeClass('success');
+			// $("#dfrom-error").addClass('alert');
+			// $("#dfrom-error").text('Required *');
+   //          check=false;
+   //  		}
+        return check;
+        }
+
+//end Date
+
+ var up_end_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#up_dateto_error").removeClass('alert');
+			$("#up_dateto_error").addClass('success');
+			$("#up_dateto_error").text('');
+          check=true;
+    	}else{
+    		$("#up_dateto_error").removeClass('success');
+			$("#up_dateto_error").addClass('alert');
+			$("#up_dateto_error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+ //major validator
+
+ var up_major_validater = function validater(city){
+    	var check;
+
+    	if (city) {
+    	    $("#up_major_error").removeClass('alert');
+			$("#up_major_error").addClass('success');
+			$("#up_major_error").text('');
+          check=true;
+    	}else{
+    		$("#up_major_error").removeClass('success');
+			$("#up_major_error").addClass('alert');
+			$("#up_major_error").text('Required *');
+            check=false;
+    		}
+        return check;
+        }
+
+
+  //choose validator
+
+ var up_choose_validater = function validater(city){
+    	var check;
+    	var CGPA = $("#update_edu_candidate_CGPA").val();
+	    var Percentage = $("#update_edu_candidate_percentage").val();
+
+    	if (city) {
+    	    $("#up_choose_error").removeClass('alert');
+			$("#up_choose_error").addClass('success');
+			$("#up_choose_error").text('');	
+          //check=true;
+		          if(city == "CGPA"){
+                       if (CGPA) {
+			    	    $("#up_cgpa_error").removeClass('alert');
+						$("#up_cgpa_error").addClass('success');
+						$("#up_cgpa_error").text(' ');	
+			            check=true;
+			    	   }else{
+			    		$("#up_cgpa_error").removeClass('success');
+						$("#up_cgpa_error").addClass('alert');
+						$("#up_cgpa_error").text('Required *');
+			            check=false;
+			    		}
+		          }else if (city == "Percentage") {
+		          	    if (Percentage) {
+			    	    $("#up_per_error").removeClass('alert');
+						$("#up_per_error").addClass('success');
+						$("#up_per_error").text(' ');	
+			            check=true;
+			    	   }else{
+			    		$("#up_per_error").removeClass('success');
+						$("#up_per_error").addClass('alert');
+						$("#up_per_error").text('Required *');
+			            check=false;
+			    		}
+
+		          }
+    	}else{
+    		$("#up_choose_error").removeClass('success');
+			$("#up_choose_error").addClass('alert');
+			$("#up_choose_error").text('Required *');
+            check=false;
+    		}
+
+        return check;
+        }
+
+      // text editor validator
+      var up_editor_validater = function validater(text){
+    	var check;
+
+    	if (text) {
+    	    $("#up_edu_deserror").text(' ');
+			check=true;
+          
+    	}else{
+    		$("#up_edu_deserror").removeClass('success');
+			$("#up_edu_deserror").addClass('alert');
+			$("#up_edu_deserror").text('information required');
+            check=false;
+    		}
+        return check;
+    }
+//main function of validation
+// addEduction2(2);
+
+function main_validation_up_edu(id,edu_level,edu_major,edu_selected_result){
+var CGPA = $("#update_edu_candidate_CGPA").val();
+var Percentage = $("#update_edu_candidate_percentage").val();
+// alert("yed");
+ 	var degree_title = $("#update_edu_degree_title").val();
+	var degree_level = $("#update_edu_degree_level").val();
+	var institute_name = $("#update_edu_institue_name").val();
+	var institute_location = $("#update_edu_institute_location").val();
+	var edu_start = $("#update-edu-start").val();
+	var edu_end = $("#update-edu-end").val();
+	var majors = $("#update_edu_majors").val();
+	var selected_result = $("#update_edu_result").val();
+	//alert(selected_result);
+	
+	var edu_description = $("#update_eduction_descriptions").val();
+
+ 	var gettitle=up_title_validater(degree_title);
+    var getlevel=up_level_validater(degree_level);
+ 	var getins=up_ins_validater(institute_name);
+    var getloc=up_loc_validater(institute_location);
+ 	var getstart=up_start_validater(edu_start,edu_end);
+    var getend=up_end_validater(edu_end);
+ 	var getmajor=up_major_validater(majors);
+ 	var getchoose=up_choose_validater(selected_result);
+ 	// var getncgpa=name_validater(CGPA);
+ 	// var getper=name_validater(Percentage);
+ 	var gettext=up_editor_validater(edu_description);
+// alert(gettitle);
+// alert(getlevel);
+// alert(getins);
+// alert(getloc);
+// alert(getstart);
+// alert(getend);
+// alert(getmajor);
+// alert(getchoose);
+// alert(gettext);
+ 
+
+ 	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){
+ 		// yahoo();
+ 		update_edu_data(id,edu_level,edu_major,edu_selected_result);
+ 	}
+
+}
 function yahoo(){
 	alert("i mean it");
 }

@@ -329,3 +329,46 @@ function validate_main_hobb(){
 		 // yahoo();
  	}
 }
+
+
+
+
+//validate function update
+
+//validate functions
+// addnewskill(2);
+
+
+//skill_name_validater function
+var hobb_name_validater_up = function validater(name){
+    	var check;
+		//for name
+	 if(name){
+				$("#up_hobb_name_error").removeClass('alert');
+		     	$("#up_hobb_name_error").addClass('success');
+		     	$("#up_hobb_name_error").text(' ');
+				check=true;
+				
+     }else{
+     	$("#up_hobb_name_error").removeClass('success');
+     	$("#up_hobb_name_error").addClass('alert');
+     	$("#up_hobb_name_error").text('Required * ');
+     	check=false;
+     }
+
+     return check;
+ }
+
+function validate_main_hobb_up(id){
+	//alert("yes");
+
+	var user_hobbies = $("#user_hobbies").val();
+
+	var getlang=hobb_name_validater_up(user_hobbies);
+
+ 	if(getlang){
+ 		updatehobbey(id);
+		 // addnewHobbey(2);
+		 // yahoo();
+ 	}
+}
