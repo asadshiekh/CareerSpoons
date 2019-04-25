@@ -5,7 +5,7 @@ function company_login(){
 	var company_email = $("#company_email").val();
 	var company_password = $("#company_password").val();
 
-	alert(CSRF_TOKEN+company_email+company_password);
+	// alert(CSRF_TOKEN+company_email+company_password);
 
 	var l = window.location;
 	var base_url = l.protocol + "//" + l.host + "/do-company-login";

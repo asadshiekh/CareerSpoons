@@ -562,6 +562,7 @@
 			<script src="{{url('public/client_assets/js/customization_js/candidate_setting.js')}}"></script>
 			<!--Company Profile -->
 			<script src="{{url('public/client_assets/js/customization_js/company_profile.js')}}"></script>
+			<script src="{{url('public/client_assets/js/customization_js/candidate_profile.js')}}"></script>
 			<!--Company Profile -->
 			<script src="{{url('public/client_assets/js/customization_js/job_match_criteria.js')}}"></script>
 			<!-- Typed .Js -->

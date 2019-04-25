@@ -337,7 +337,7 @@ var skill_sname_validater = function validater(name){
      return check;
  }
 
-function validate_main_skill(){
+function validate_main_skill(feel){
 	//alert("yes");
 
 	var skill_name = $("#skill_name").val();
@@ -345,7 +345,16 @@ function validate_main_skill(){
 	var getskill=skill_sname_validater(skill_name);
 
  	if(getskill){
-		addnewskill(2);
+		
+		if(feel == "well"){
+          addnewskill(2);
+		}else if(feel == "good"){
+			addSkill(1);
+          
+		}else if(feel == "sad"){
+			addSkill1(0);
+
+		}
 		// yahoo();
  	}
 }

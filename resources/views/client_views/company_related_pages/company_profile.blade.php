@@ -1693,7 +1693,9 @@
 		if(name != ""){
 
 			if(name.match("^[a-zA-Z\(\) ]+$")){
-			
+			$("#title-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#title-error").removeClass('success');
 				$("#title-error").addClass('alert');
@@ -1723,7 +1725,9 @@
 		if(name != ""){
 
 			if(name.match("^[a-zA-Z\(\) ]+$")){
-			
+			$("#skill-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#skill-error").removeClass('success');
 				$("#skill-error").addClass('alert');
@@ -1750,7 +1754,9 @@
 		if(name){
 
 			if(name.match("^[a-zA-Z\(\) ]+$")){
-			
+			$("#area-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#area-error").removeClass('success');
 				$("#area-error").addClass('alert');
@@ -1776,7 +1782,8 @@
 		//for name
 
 	if(name){
-
+         $("#major-error").text(' ');
+     	check=true;
 			
      }else{
      	$("#major-error").removeClass('success');
@@ -1795,6 +1802,8 @@
 		//for name
 
 	if(name){
+		$("#indus-error").text(' ');
+     	check=true;
      }else{
      	$("#indus-error").removeClass('success');
      	$("#indus-error").addClass('alert');
@@ -2020,6 +2029,8 @@
 		if(name != ""){
 
 			if(name.match("^[0-9\(\) ]+$")){
+				$("#exp-error").text(' ');
+				check=true;
 			
 			}else{
 				$("#exp-error").removeClass('success');
@@ -2048,7 +2059,9 @@
 		if(name != ""){
 
 			if(name.match("^[0-9\(\) ]+$")){
-			
+			$("#pos-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#pos-error").removeClass('success');
 				$("#pos-error").addClass('alert');
@@ -2076,7 +2089,9 @@
 		if(name != ""){
 
 			if(name.match("^[0-9\(\) ]+$")){
-			
+			$("#hour-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#hour-error").removeClass('success');
 				$("#hour-error").addClass('alert');
@@ -2104,7 +2119,9 @@
 		if(name != ""){
 
 			if(name.match("^[0-9\(\) ]+$")){
-			
+			$("#min-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#min-error").removeClass('success');
 				$("#min-error").addClass('alert');
@@ -2133,7 +2150,9 @@
 		if(name != ""){
 
 			if(name.match("^[0-9\(\) ]+$")){
-			
+			$("#max-error").text(' ');
+				//return false;
+				check=true;
 			}else{
 				$("#max-error").removeClass('success');
 				$("#max-error").addClass('alert');
@@ -2160,7 +2179,8 @@
 		//for name
 
 		if(name){
-
+        $("#l-error").text(' ');
+     	check=true;
      }else{
      	$("#l-error").removeClass('success');
      	$("#l-error").addClass('alert');
@@ -2177,7 +2197,8 @@
 		//for name
 
 		if(name){
-
+		$("#p-error").text(' ');
+     	check=true;
      }else{
      	$("#p-error").removeClass('success');
      	$("#p-error").addClass('alert');
@@ -2195,7 +2216,8 @@
 		//for name
 
 		if(name){
-
+		$("#gender-error").text(' ');
+     	check=true;
      }else{
      	$("#gender-error").removeClass('success');
      	$("#gender-error").addClass('alert');
@@ -2212,7 +2234,8 @@
 		//for name
 
 		if(name){
-
+		$("#age-error").text(' ');
+     	check=true;
      }else{
      	$("#age-error").removeClass('success');
      	$("#age-error").addClass('alert');
@@ -2227,7 +2250,7 @@
     	var check;
 		//for name
 	if (text) {
-    	
+    	    $("#text-error").text(' ');
 			check=true;
           
     	}else{
@@ -2377,7 +2400,7 @@
 				$("#p-error").removeClass('alert');
 				$("#p-error").addClass('success');
 				$("#p-error").text(' ');
-
+                check=true;
 				// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
     //                 $("#p-error").addClass('alert');
 				// 	$("#p-error").removeClass('success');

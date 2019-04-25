@@ -572,7 +572,7 @@ var exp_des_validater = function validater(text){
         return check;
     }
 
-function validate_main_exp(){
+function validate_main_exp(feel){
 	// alert("yes");
 
 	var job_title = $("#job_title").val();
@@ -594,7 +594,16 @@ function validate_main_exp(){
  	var getdes=exp_des_validater(exp_description);
 
  	if(getjob && getcname && getemail && getphone && getposition && getstart && getend && getdes){
-		addExperience(2);
+		if(feel == "well"){
+			addExperience(2);
+		}
+		else if(feel == "good"){
+			addExperience(1);
+		}
+		else if(feel == "sad"){
+			addExperience1(0);
+		}
+		
  	}
 }
 

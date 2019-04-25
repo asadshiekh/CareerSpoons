@@ -194,7 +194,7 @@ class SiteCompanyLogin extends Controller
 	public function companyLogout(Request $request){
 
         $request->session()->flush();
-        return redirect('/');
+        echo "yes";
     }
 
 

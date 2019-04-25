@@ -317,7 +317,7 @@ var lang_name_validater = function validater(name){
      return check;
  }
 
-function validate_main_language(){
+function validate_main_language(feel){
 	//alert("yes");
 
 	var user_languages = $("#user_language").val();
@@ -325,8 +325,18 @@ function validate_main_language(){
 	var getlang=lang_name_validater(user_languages);
  	if(getlang){
 
-		 addnewlanguage(2);
+		 // addnewlanguage(2);
 		 // yahoo();
+
+		 if(feel == "well"){
+			addnewlanguage(2);
+		 }
+		 else if(feel == "good"){
+            addLanguage(1);
+		 }
+		 else if(feel == "sad"){
+           addLanguage1(0);
+		 }
  	}
 }
 

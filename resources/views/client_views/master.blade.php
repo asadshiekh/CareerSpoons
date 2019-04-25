@@ -106,7 +106,7 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('company-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
 
-								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
+								<li><a type="button" class="dropdown-item" onclick="company_logout();" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
 
@@ -565,6 +565,7 @@
 			<script src="{{url('public/client_assets/js/customization_js/candidate_setting.js')}}"></script>
 			<!--Company Profile -->
 			<script src="{{url('public/client_assets/js/customization_js/company_profile.js')}}"></script>
+			<script src="{{url('public/client_assets/js/customization_js/candidate_profile.js')}}"></script>
 			<!--Company Profile -->
 			<script src="{{url('public/client_assets/js/customization_js/job_match_criteria.js')}}"></script>
 			<!-- Typed .Js -->
@@ -1241,7 +1242,31 @@
 					
 					$.post(base_url,{_token:CSRF_TOKEN},function(data){
 						if(data == "yes"){
+							// alert(window.location);
+							if(window.location == "http://careerspoons.com/user-profile"){
+							window.location.replace('/');
+						}else{
 							window.location.replace(window.location);
+						}
+						}
+					 });
+				}
+
+				function company_logout(){
+					
+					var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+					var l = window.location;
+
+					var base_url = l.protocol + "//" + l.host + "/company-logout";
+					
+					$.post(base_url,{_token:CSRF_TOKEN},function(data){
+						if(data == "yes"){
+							// alert(window.location);
+							if(window.location == "http://careerspoons.com/company-profile"){
+							window.location.replace('/');
+						}else{
+							window.location.replace(window.location);
+						}
 						}
 					 });
 				}

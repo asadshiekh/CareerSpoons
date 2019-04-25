@@ -735,10 +735,10 @@ var loc_validater = function validater(name){
 //main function of validation
 // addEduction2(2);
 
-function main_validation_edu(){
+function main_validation_edu(feel){
 var CGPA_1 = $("#candidate_CGPA").val();
 var Percentage_1 = $("#candidate_percentage").val();
-alert("yed");
+// alert("yed");
  	var degree_title = $("#degree_title").val();
  	var degree_level = $("#degree_level").val();
  	var institute_name = $("#institute_name").val();
@@ -766,7 +766,15 @@ alert("yed");
 
  	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){
  		// yahoo();
- 		addEduction2(2);
+ 		if(feel == "front"){
+ 			addEduction2(2);
+ 		}
+ 		else if(feel == "low"){
+ 			addEduction(1);
+ 		}else if(feel == "good"){
+            addEduction1(0);
+ 		}
+ 		
  	}
 
 }
@@ -1023,8 +1031,8 @@ var up_loc_validater = function validater(name){
 // addEduction2(2);
 
 function main_validation_up_edu(id,edu_level,edu_major,edu_selected_result){
-var CGPA = $("#update_edu_candidate_CGPA").val();
-var Percentage = $("#update_edu_candidate_percentage").val();
+// var CGPA = $("#update_edu_candidate_CGPA").val();
+// var Percentage = $("#update_edu_candidate_percentage").val();
 // alert("yed");
  	var degree_title = $("#update_edu_degree_title").val();
 	var degree_level = $("#update_edu_degree_level").val();
@@ -1034,7 +1042,7 @@ var Percentage = $("#update_edu_candidate_percentage").val();
 	var edu_end = $("#update-edu-end").val();
 	var majors = $("#update_edu_majors").val();
 	var selected_result = $("#update_edu_result").val();
-	//alert(selected_result);
+	// alert(selected_result);
 	
 	var edu_description = $("#update_eduction_descriptions").val();
 
@@ -1049,15 +1057,15 @@ var Percentage = $("#update_edu_candidate_percentage").val();
  	// var getncgpa=name_validater(CGPA);
  	// var getper=name_validater(Percentage);
  	var gettext=up_editor_validater(edu_description);
-// alert(gettitle);
-// alert(getlevel);
-// alert(getins);
-// alert(getloc);
-// alert(getstart);
-// alert(getend);
-// alert(getmajor);
-// alert(getchoose);
-// alert(gettext);
+alert(gettitle);
+alert(getlevel);
+alert(getins);
+alert(getloc);
+alert(getstart);
+alert(getend);
+alert(getmajor);
+alert(getchoose);
+alert(gettext);
  
 
  	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){

@@ -67,7 +67,7 @@
 	<!-- General Detail End -->
 
 	<!-- full detail SetionStart-->
-	<form action="{{url('add-user-resume-info')}}" method="POST">
+	<form id="can_general_form" action="{{url('add-user-resume-info')}}" method="POST">
 		{{ csrf_field() }}
 		<section class="full-detail">
 			<div class="container">
@@ -76,13 +76,15 @@
 
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_name_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input type="text" value="{{Session::get('candidate_name')}}" name="candidate_name" class="form-control" placeholder="User name">
+							<input type="text" value="{{Session::get('candidate_name')}}" name="candidate_name" id="candidate_name" class="form-control" placeholder="User name">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-envelope"></i></span>
 							<input type="text" value="{{Session::get('user_email')}}"  name="candidate_email" disabled="disabled" readonly="readonly" class="form-control" placeholder="Phone Number">
@@ -90,34 +92,38 @@
 					</div>
 
 					<div class="col-md-12 col-sm-12">
+						<span id="can_protitle_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-							<input type="text" name="candidate_profession" class="form-control" placeholder="Professional Title">
+							<input type="text" name="candidate_profession" id="candidate_profession" class="form-control" placeholder="Professional Title">
 						</div>
 					</div>
 
 
 					<div class="col-md-4 col-sm-4">
+						<span id="can_addr_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-							<input type="text" name="candidate_location" class="form-control" placeholder="Location: Your Address Full ">
+							<input type="text" name="candidate_location" id="candidate_location" class="form-control" placeholder="Location: Your Address Full ">
 						</div>	
 					</div>
 
 
 					<div class="col-md-4 col-sm-4">
+						<span id="can_DOB_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-							<input type="text" id="dob" name="candidate_dob" data-lang="en" data-large-mode="true" data-min-year="1980" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
+							<input type="text" id="candidate_dob" name="candidate_dob" data-lang="en" data-large-mode="true" data-min-year="1980" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
 						</div>	
 					</div>
 
 
 					<div class="col-md-4 col-sm-4">
+						<span id="can_city_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-flag"></i></span>
-							<select class="form-control input-lg" name="candidate_city">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select City</option>
+							<select class="form-control input-lg" name="candidate_city" id="candidate_city">
+								<option selected="selected" hidden="hidden">Select City</option>
 								@foreach($get_cities as $get_cities)
 								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
 								@endforeach
@@ -127,17 +133,19 @@
 
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_weblink_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-globe"></i></span>
-							<input type="text" name="candidate_website" class="form-control" placeholder="Website Address">
+							<input type="text" name="candidate_website" id="website_link" class="form-control" placeholder="Website Address">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_gender_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-mars"></i></span>
-							<select class="form-control input-lg" name="candidate_gender">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Gender</option>
+							<select class="form-control input-lg" id="candidate_gender" name="candidate_gender">
+								<option selected="selected" hidden="hidden">Select Gender</option>
 								<option>Male</option>
 								<option>Female</option>
 							</select>
@@ -145,10 +153,11 @@
 					</div>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_career_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
-							<select class="form-control input-lg" name="candidate_career_level">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Career Level</option>
+							<select class="form-control input-lg" name="candidate_career_level"  id="candidate_career_level">
+								<option selected="selected" hidden="hidden">Select Career Level</option>
 								<option>Entry Level</option>
 								<option>Intermediate</option>
 								<option>Experienced Professional</option>
@@ -175,10 +184,11 @@
 
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_qual_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
-							<select class="form-control input-lg" name="candidate_Qualification">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Qualification</option>
+							<select class="form-control input-lg" id="candidate_qualification" name="candidate_Qualification">
+								<option selected="selected" hidden="hidden">Select Qualification</option>
 								@foreach($get_qualification as $value)
 								<option><?php
 
@@ -193,10 +203,11 @@
 					</div>
 
 					<div class="col-md-12 col-sm-12">
+						<span id="can_indus_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
-							<select class="form-control input-lg" name="candidate_Indutries">
-								<option value="" disabled="disabled" selected="selected" hidden="hidden">Select Indutries</option>
+							<select class="form-control input-lg" name="candidate_Indutries" id="candidate_industries">
+								<option selected="selected" hidden="hidden">Select Indutries</option>
 								@foreach($get_indutries as $value)
 								<option><?php 
 								
@@ -219,31 +230,35 @@
 					<h2 class="detail-title">Social Profile</h2>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_facebook_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-							<input type="text" name="candidate_facebook_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_facebook_link" id="candidate_facebook_social_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_google_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-							<input type="text" name="candidate_google_link" class="form-control" placeholder="Profile Link">
+							<input type="text" id="candidate_google_social_link" name="candidate_google_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_twitter_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-							<input type="text" name="candidate_twitter_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_twitter_link" id="candidate_twitter_social_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 
 					<div class="col-md-6 col-sm-6">
+						<span id="can_linkedin_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
-							<input type="text" name="candidate_linkedin" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_linkedin" id="candidate_linkedin_social_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
@@ -253,7 +268,8 @@
 
 					<h2 class="detail-title">Resume Content</h2>
 					<div class="col-md-12 col-sm-12">
-						<textarea name="editor1">Your Details Example (BIO)</textarea>
+						<span id="can_bio_error" style="display: inline;"></span>
+						<textarea name="editor1" id="profile_bio"></textarea>
 					</div>	
 				</div>
 
@@ -271,16 +287,8 @@
 						<div class="multi-box">	
 							<div class="dublicat-box">
 
-
-							<!-- <div class="col-md-12 col-sm-12">
-								<input type="text" class="form-control" placeholder="School Name, e.g. Master Of Technology">
-							</div>
-
-							<div class="col-md-12 col-sm-12">
-								<input type="text" class="form-control" placeholder="Qualification, e.g. Master Of Arts">
-							</div>
-						-->
 						<div class="col-md-6 col-sm-6">
+							<span id="degree-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-user-graduate"></i></span>
 								<input type="text" id="degree_title" class="form-control" placeholder="Degree Title, e.g. Degree Name">
@@ -288,6 +296,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="qual-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-graduation-cap"></i></span>
 								<select class="form-control input-lg" id="degree_level">
@@ -301,12 +310,14 @@
 
 
 						<div class="col-md-6 col-sm-6">
+							<span id="ins-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-university"></i></span>
 								<input type="text" id="institute_name" class="form-control" placeholder="Institute Name">
 							</div>	
 						</div>
 						<div class="col-md-6 col-sm-6">
+							<span id="loc-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 								<input type="text" id="institute_location" class="form-control" placeholder="Institute Location: Address Details ">
@@ -314,6 +325,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="dfrom-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date From</span>
 								<input type="text" id="edu-start" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -321,6 +333,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="dateto-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date To</span>
 								<input type="text" id="edu-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -328,6 +341,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="major-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-book"></i></span>
 								<select class="form-control input-lg" id="majors">
@@ -340,6 +354,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="choose-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-poll"></i></span>
 								<select class="form-control input-lg" id="edu_result" onchange="change_fields()">
@@ -351,6 +366,7 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12" id="CGPA_fields">
+							<span id="cgpa-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-poll"></i></span>
 								<input type="text" id="candidate_CGPA" class="form-control" placeholder="Enter CGPA e.g 2.0 , 3.5 etc">
@@ -358,6 +374,7 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12" id="Percentage_fields">
+							<span id="per-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-poll"></i></span>
 								<input type="text" id="candidate_percentage" class="form-control"  placeholder="Enter Percentage e.g 60% , 70%">
@@ -365,14 +382,15 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12">
+							<span id="edu_deserror" style="display: inline;"></span>
 							<textarea name="eduction" id="edu_description">Tell Us Something about Your Eduction Experience</textarea>
 						</div>
 
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" onclick="addEduction(1);" class="add-field">Save & Add More</button>
-				<button type="button" onclick="addEduction1(0);" class="add-field">Save</button>
+				<button type="button" onclick="main_validation_edu('low');" class="add-field">Save & Add More</button>
+				<button type="button" onclick="main_validation_edu('good');" class="add-field">Save</button>
 			</div>
 		</form>
 	</div>
@@ -384,6 +402,7 @@
 				<div class="multi-box">	
 					<div class="dublicat-box">
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_job-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
 								<input type="text" id="job_title" class="form-control" placeholder="Job Title">
@@ -391,6 +410,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_cname-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-city"></i></span>
 								<input type="text" id="company_name" class="form-control" placeholder="Company Name">
@@ -398,6 +418,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_email-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-envelope"></i></span>
 								<input type="text" id="ref_email" class="form-control" placeholder="Reference Email">
@@ -405,6 +426,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_no-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-phone"></i></span>
 								<input type="text" id="exp_ref_phone" class="form-control" placeholder="Reference Number">
@@ -412,6 +434,7 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12">
+							<span id="exp_pos-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-level-up-alt"></i></span>
 								<input type="text" id="your_position" class="form-control" placeholder="Position, e.g. Web Designer">
@@ -419,6 +442,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_datefrom-error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date From</span>
 								<input type="text" id="exp-start" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -426,6 +450,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="exp_datetoerror" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date To</span>
 								<input type="text" id="exp-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -433,14 +458,15 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12">
+							<span id="exp_deserror" style="display: inline;"></span>
 							<textarea name="work_history" id="project_descrption">Describe Your Project</textarea>
 						</div>
 
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" onclick="addExperience(1);" class="add-field">Save & Add More</button>
-				<button type="button" onclick="addExperience1(0)" class="add-field">Save</button>
+				<button type="button" onclick="validate_main_exp('good');" class="add-field">Save & Add More</button>
+				<button type="button" onclick="validate_main_exp('sad');" class="add-field">Save</button>
 			</div>
 		</form>
 	</div>
@@ -453,6 +479,7 @@
 					<div class="dublicat-box">
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_title_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-project-diagram"></i> </span>
 								<input type="text" id="project_title" class="form-control" placeholder="Project Title">
@@ -460,6 +487,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_cname_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-city"></i></span>
 								<input type="text" id="pro_company_name" class="form-control" placeholder="Company Name">
@@ -467,6 +495,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_email_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-envelope"></i></span>
 								<input type="text" id="project_ref_email" class="form-control" placeholder="Client / Customer Email">
@@ -474,12 +503,14 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_no_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-phone"></i></span>
 								<input type="text" id="project_ref_phone" class="form-control" placeholder="Client / Customer Number">
 							</div>
 						</div>
 						<div class="col-md-12 col-sm-12">
+							<span id="pro_pos_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-level-up-alt"></i></span>
 								<input type="text" id="your_porject_position" class="form-control" placeholder="Position/Role in Project, e.g. Web Designer, Developer">
@@ -487,6 +518,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_datefromerror" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date From</span>
 								<input type="text" id="pro-start" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -494,6 +526,7 @@
 						</div>
 
 						<div class="col-md-6 col-sm-6">
+							<span id="pro_enderror" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon">Date To</span>
 								<input type="text" id="pro-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
@@ -501,15 +534,16 @@
 						</div>
 
 						<div class="col-md-12 col-sm-12">
+							<span id="pro_des_error" style="display: inline;"></span>
 							<textarea name="project" id="project_des">Description About Project</textarea>
 						</div>
 
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" onclick="addProject(1)" class="add-field">Save & Add More</button>
+				<button type="button" onclick="validate_main_pro('good');" class="add-field">Save & Add More</button>
 
-				<button type="button" onclick="addProject1(0)" class="add-field">Save</button>
+				<button type="button" onclick="validate_main_pro('sad');" class="add-field">Save</button>
 			</div>
 		</form>
 	</div>
@@ -520,8 +554,9 @@
 			<div class="extra-field-box">
 				<div class="multi-box">	
 					<div class="dublicat-box">
-
+                        <div class="col-sm-12"><span id="skill_name_error" style="display: inline;"></span></div>
 						<div class="col-md-6 col-sm-6">
+							<!-- <span id="skill_name_error" style="display: inline;"></span> -->
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-poll"></i></span>
 								<input type="text" id="skill_name" class="form-control" placeholder="Skills, e.g. Css, Html...">
@@ -542,8 +577,8 @@
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" class="add-field" onclick="addSkill(1)">Save & Add More</button>
-				<button type="button" class="add-field" onclick="addSkill1(0)">Save</button>
+				<button type="button" class="add-field" onclick="validate_main_skill('good');">Save & Add More</button>
+				<button type="button" class="add-field" onclick="validate_main_skill('sad');">Save</button>
 			</div>
 		</form>
 	</div>
@@ -557,6 +592,7 @@
 
 
 						<div class="col-md-12 col-sm-12">
+							<span id="lang_lname_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-language"></i></span>
 								<input type="text" id="user_language" class="form-control" placeholder="Languages, e.g. English Urdu Punjabi etc...">
@@ -566,8 +602,8 @@
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" onclick="addLanguage(1)"  class="add-field">Save & Add More</button>
-				<button type="button" onclick="addLanguage1(0)" class="add-field">Save</button>
+				<button type="button" onclick="validate_main_language('good');"  class="add-field">Save & Add More</button>
+				<button type="button" onclick="validate_main_language('sad');" class="add-field">Save</button>
 			</div>
 		</form>
 	</div>
@@ -581,6 +617,7 @@
 					<div class="dublicat-box">
 
 						<div class="col-md-12 col-sm-12">
+							<span id="hobb_name_error" style="display: inline;"></span>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-gamepad"></i></span>
 								<input type="text" id="user_hobbies" class="form-control" placeholder="Hobbies, e.g. Cricket Football Collection...">
@@ -590,8 +627,8 @@
 						<button type="reset" class="btn remove-field">Clear</button>
 					</div>
 				</div>									
-				<button type="button" onclick="addHobbies(1)" class="add-field">Save & Add More</button>
-				<button type="button" onclick="addHobbies1(0)" class="add-field">Save</button>
+				<button type="button" onclick="validate_main_hobb('good');" class="add-field">Save & Add More</button>
+				<button type="button" onclick="validate_main_hobb('sad');" class="add-field">Save</button>
 			</div>
 		</form>
 	</div>					

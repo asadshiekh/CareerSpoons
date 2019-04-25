@@ -317,7 +317,7 @@ var hobb_name_validater = function validater(name){
      return check;
  }
 
-function validate_main_hobb(){
+function validate_main_hobb(feel){
 	//alert("yes");
 
 	var user_hobbies = $("#user_hobbies").val();
@@ -325,8 +325,15 @@ function validate_main_hobb(){
 	var getlang=hobb_name_validater(user_hobbies);
 
  	if(getlang){
+ 		if(feel == "well"){
 		 addnewHobbey(2);
-		 // yahoo();
+		}else if(feel == "good"){
+			addHobbies(1);
+		 
+		}else if(feel == "sad"){
+			addHobbies1(0);
+
+		}
  	}
 }
 

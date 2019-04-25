@@ -171,14 +171,14 @@
 					<!-- Start All Sec -->
 <div class="tab-content">
 	<div id="about" class="tab-pane fade in active">
-		<h3>Your Bio </h3>
+		<h3 style="display: inline-block;">Your Bio </h3><span id="can_bio_error" style="display: inline;"></span>
 
 	<?php 
 	 $id = 	Session::get('id');
 	$respose = DB::table('add_user_generals_info')->where('candidate_id', $id)->first();
 	
 	?>	
-	<form action="{{url('update_candidate_resume_bio')}}" method="post">
+	<form id="can_about_form" action="{{url('update_candidate_resume_bio')}}" method="post">
 		 {{ csrf_field() }}
 
 		<textarea name="profile_bio" id="profile_bio">{{ $respose->candidate_resume_details}}</textarea>
@@ -370,7 +370,7 @@
 <div class="col-md-8 col-sm-6">
 
 <h3>Job Match Criteria </h3>
-<form action="{{url('user_job_match_criteria')}}" method="post">
+<form  id="can_jobmatch_form" action="{{url('user_job_match_criteria')}}" method="post">
 {{ csrf_field() }}
 <div class="row no-mrg">
 <div class="edit-pro">
@@ -379,12 +379,12 @@
 
 @foreach ($get_job_match as $val)
 <div class="col-md-4 col-sm-6">
-<label>Desired Designation</label>
-<input type="text" name="candidate_dd"  class="form-control" placeholder="Desired Designation" value="{{$val->desired_designation}}">
+<label style="display:block">Desired Designation</label><span id="can_dd_error" style="display: inline;"></span>
+<input type="text" name="candidate_dd" id="candidate_dd"  class="form-control" placeholder="Desired Designation" value="{{$val->desired_designation}}">
 </div>
 
 <div class="col-md-4 col-sm-6">
-<label>Functional Area</label>
+<label style="display:block">Functional Area</label><span id="can_farea_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_crteria_function_area" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
 	
 	<option value="" selected="selected" hidden="hidden"><?php if($val->functional_criteria){echo $val->functional_criteria;}else{echo "Select Functional Area";} ?></option>
@@ -402,9 +402,9 @@
 
 
 <div class="col-md-4 col-sm-6">
-<label>Select Majors</label>
+<label style="display:block">Select Majors</label><span id="can_majo_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_crteria_major"  id="candidate_majors_area">
-	<option value="" disabled="disabled" selected="selected" hidden="hidden"><?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?></option>
+	<option value="" selected="selected" hidden="hidden"><?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?></option>
 	
 </select>
 </div>
@@ -424,7 +424,7 @@
 
 
 <div class="col-md-4 col-sm-6">
-<label>Preferred Job City</label>
+<label style="display:block">Preferred Job City</label><span id="can_cty_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_criteria_city"  id="candidate_criteria_city">
 	<option value=""  selected="selected" hidden="hidden"><?php if($val->preferred_city){echo $val->preferred_city;}else{echo "Select Job City";} ?></option>
 	@foreach($get_cities as $value)
@@ -436,7 +436,7 @@
 
 
 <div class="col-md-4 col-sm-6">
-<label>Minimum Experience</label>
+<label style="display:block">Minimum Experience</label><span id="can_minexp_error" style="display: inline;"></span>
 
 <input type="number" name="candidate_criteria_Experience" id="candidate_experience_level"  class="form-control" placeholder="Total Experience`" value="{{$val->total_experience}}">
 
@@ -444,12 +444,12 @@
 </div>
 
 <div class="col-md-4 col-sm-6">
-<label>Minimum Expected Salary</label>
-<input type="text" value="{{$val->expected_salary}}" class="form-control" name="candidate_criteria_salary" placeholder="25000">
+<label style="display:block">Minimum Expected Salary</label><span id="can_minsal_error" style="display: inline;"></span>
+<input type="text" value="{{$val->expected_salary}}" class="form-control" name="candidate_criteria_salary" id="candidate_criteria_salary" placeholder="25000">
 </div>
 
 <div class="col-md-12 col-sm-6">
-<label>Job Type</label>
+<label style="display:block">Job Type</label><span id="can_typ_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_criteria_job_type" id="candidate_job_type">
 	<option value=""  selected="selected" hidden="hidden"><?php if($val->job_type_criteria){echo $val->job_type_criteria;}else{echo "Select Job Type";} ?></option>
 	<option value="full time">Full Time</option>
@@ -459,7 +459,7 @@
 </div>
 
 <div class="col-md-12 col-sm-6">
-<label style="display:block">Primary Skill</label>
+<label style="display:block">Primary Skill</label><span id="can_skil_error" style="display: inline;"></span>
 <input type="text" value="<?php if($val->candidate_primary_skill){echo $val->candidate_primary_skill;}else{echo "Enter Skills";} ?>" class="form-control input-lg" multiple data-role="tagsinput" name="candidate_skill_criteria[]" id="skilltags"/>
 
 <!-- $primary_skill = explode(',',$val->candidate_primary_skill);-->
@@ -666,23 +666,23 @@
 <input type="checkbox" id="toggle-two" data-onstyle="success" data-offstyle="danger">
 </div>
 <br>
-<form action="update-social-links" method="post">
+<form id="can_social_form" action="update-social-links" method="post">
 {{ csrf_field() }}
 <div class="edit-pro">
 <div class="col-md-6 col-sm-12">
-<label>Facebook</label>
+<label style="display: inline-block;">Facebook</label><span id="can_facebook_error" style="display: inline;"></span>
 <input type="text" class="form-control" name="candidate_facebook_link" value="{{$social_link->candidate_fackbook}}" id="candidate_facebook_social_link" placeholder="Facebook Social Link">
 </div>
 <div class="col-md-6 col-sm-12">
-<label>Google</label>
+<label style="display: inline-block;">Google</label><span id="can_google_error" style="display: inline;"></span>
 <input type="text" class="form-control" name="candidate_google_link" value="{{$social_link->candidate_google}}" id="candidate_google_social_link" placeholder="Google Plus Social Link">
 </div>
 <div class="col-md-6 col-sm-12">
-<label>Twitter</label>
+<label style="display: inline-block;">Twitter</label><span id="can_twitter_error" style="display: inline;"></span>
 <input type="text" class="form-control" name="candidate_twitter_link" value="{{$social_link->candidate_twitter}}" id="candidate_twitter_social_link" placeholder="Twitter Social Link">
 </div>
 <div class="col-md-6 col-sm-12">
-<label>Linkedin</label>
+<label style="display: inline-block;">Linkedin</label><span id="can_linkedin_error" style="display: inline;"></span>
 <input type="text" class="form-control" name="candidate_linkedin" value="{{$social_link->candidate_linkedin}}" id="candidate_linkedin_social_link"  placeholder="Linkedin Social Link">
 </div>
 <div class="col-sm-12">
@@ -1665,7 +1665,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 </form>
 </div>
 <div class="modal-footer"> <!-- modal footer -->
-<button type="button" onclick="main_validation_edu();" class="btn btn-success">Save</button>
+<button type="button" onclick="main_validation_edu('front');" class="btn btn-success">Save</button>
 <button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 </div>
 </div> <!-- / .modal-content -->
@@ -1685,24 +1685,24 @@ data-dismiss="modal" aria-hidden="true">×</button>
 data-dismiss="modal" aria-hidden="true">×</button>
 <h4 class="modal-title">Edit Personal Info</h4>
 </div>
-<form action="{{url('update_candidate_Personal_Info')}}" method="post">
+<form id="adr_info_form" action="{{url('update_candidate_Personal_Info')}}" method="post">
  {{ csrf_field() }}
 <div class="modal-body"> <!-- modal body -->
 <div class="row no-mrg">
 <div class="edit-pro">
 	@foreach ($general_info as $user_general_info)
 	<div class="col-md-4 col-sm-6">
-		<label>Full Name</label>
+		<label style="display: inline-block;">Full Name</label><span id="can_name_error" style="display: inline;"> </span>
 		<input type="text" name="candidate_name" id="candidate_name" value="{{$user_general_info->candidate_name}}" class="form-control">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Professional-Title</label>
+		<label style="display: inline-block;">Professional-Title</label><span id="can_protitle_error" style="display: inline;"> </span>
 		<input type="text" id="candidate_profession" name="candidate_profession" class="form-control" value="{{$user_general_info->candidate_profession}}">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>City</label>
-		<select class="form-control input-lg" name="candidate_city">
-			<option value="{{$user_general_info->candidate_city}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_city}}</option>
+		<label style="display: inline-block;">City</label><span id="can_city_error" style="display: inline;"> </span>
+		<select class="form-control input-lg" name="candidate_city" id="candidate_city">
+			<option value="{{$user_general_info->candidate_city}}" hidden selected="selected">{{$user_general_info->candidate_city}}</option>
 			@foreach($get_cities1 as $value)
 			<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 			@endforeach
@@ -1710,25 +1710,25 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>DOB</label>
+		<label style="display: inline-block;">DOB</label><span id="can_DOB_error" style="display: inline;"> </span>
 		<input type="text" value="{{$user_general_info->candidate_dob}}" id="update_dob" name="candidate_dob" class="form-control">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Gender</label>
-		<select class="form-control input-lg" name="candidate_gender">
-			<option value="{{$user_general_info->candidate_gender}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_gender}}</option>
+		<label style="display: inline-block;">Gender</label><span id="can_gender_error" style="display: inline;"> </span>
+		<select class="form-control input-lg" name="candidate_gender" id="candidate_gender">
+			<option value="{{$user_general_info->candidate_gender}}" hidden selected="selected">{{$user_general_info->candidate_gender}}</option>
 			<option>Male</option>
 			<option>Female</option>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label>Website-Link</label>
-		<input type="text"  name="website_link" value="{{$user_general_info->candidate_website}}" class="form-control">
+		<label style="display: inline-block;">Website-Link</label><span id="can_weblink_error" style="display: inline;"> </span>
+		<input type="text"  name="website_link"  id="website_link" value="{{$user_general_info->candidate_website}}" class="form-control">
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<label>Career Level</label>
-		<select class="form-control input-lg" name="candidate_career_level">
-			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_career_level}}</option>
+		<label style="display: inline-block;">Career Level</label><span id="can_career_error" style="display: inline;"> </span>
+		<select class="form-control input-lg" name="candidate_career_level" id="candidate_career_level">
+			<option value="{{$user_general_info->candidate_career_level}}" hidden selected="selected">{{$user_general_info->candidate_career_level}}</option>
 			<option>Entry Level</option>
 			<option>Intermediate</option>
 			<option>Experienced Professional</option>
@@ -1737,9 +1737,9 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<label>Qualification Level</label>
-		<select class="form-control input-lg" name="candidate_qualification">
-			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_qualification}}</option>
+		<label style="display: inline-block;">Qualification Level</label><span id="can_qual_error" style="display: inline;"> </span>
+		<select class="form-control input-lg" name="candidate_qualification" id="candidate_qualification">
+			<option value="{{$user_general_info->candidate_career_level}}" hidden selected="selected">{{$user_general_info->candidate_qualification}}</option>
 			@foreach($get_qualification as $value)
 			<option value="{{$value->qualification_title}}"><?php
 				
@@ -1750,9 +1750,9 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<label>Candidate Industries</label>
-		<select class="form-control input-lg" name="candidate_industries">
-			<option value="{{$user_general_info->candidate_career_level}}" disabled="disabled" selected="selected">{{$user_general_info->candidate_industries}}</option>
+		<label style="display: inline-block;">Candidate Industries</label><span id="can_indus_error" style="display: inline;"> </span>
+		<select class="form-control input-lg" name="candidate_industries" id="candidate_industries">
+			<option value="{{$user_general_info->candidate_career_level}}" hidden selected="selected">{{$user_general_info->candidate_industries}}</option>
 			@foreach($get_industries as $value)
 			<option value="{{$value->company_industry_name}}"><?php 
 			$value->company_industry_name= str_replace("_"," ",$value->company_industry_name);
@@ -1763,8 +1763,8 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		</select>
 	</div>
 	<div class="col-sm-12">
-		<label>Location/Address</label>
-		<textarea name="profile_Address" id="profile_Address">{{$user_general_info->	candidate_location}}</textarea>
+		<label style="display: inline-block;">Location/Address</label><span  id="can_addr_error" style="display: inline;"> </span>
+		<input type="text" name="profile_Address" id="candidate_location" value="{{$user_general_info->candidate_location}}">
 	</div>
 
 	@endforeach
@@ -1944,7 +1944,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="validate_main_exp();" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_exp('well');" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2101,7 +2101,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="validate_main_pro();" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_pro('well');" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2196,7 +2196,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="validate_main_skill();" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_skill('well');" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2286,7 +2286,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="validate_main_hobb();" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_hobb('well');" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>
@@ -2374,7 +2374,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 			</div>
 
 			<div class="modal-footer"> <!-- modal footer -->
-				<button type="button" onclick="validate_main_language();" class="btn btn-success">Save</button>
+				<button type="button" onclick="validate_main_language('well');" class="btn btn-success">Save</button>
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Close!</button>
 				<!-- <button type="button" class="btn btn-primary">Download</button> -->
 			</div>

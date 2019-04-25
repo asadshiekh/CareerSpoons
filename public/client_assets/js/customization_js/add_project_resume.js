@@ -566,7 +566,7 @@ var pro_des_validater = function validater(text){
         return check;
     }
 
-function validate_main_pro(){
+function validate_main_pro(feel){
 	//alert("yes");
 
 	var project_title = $("#project_title").val();
@@ -596,7 +596,16 @@ function validate_main_pro(){
 // alert(getdes);
 
  	if(gettitle && getcname && getemail && getphone && getposition && getstart && getend && getdes){
-		addPro(2);
+		
+		if(feel == "well"){
+		   addPro(2);	
+		}
+		else if(feel == "good"){
+           addProject(1);
+		}
+		else if(feel == "sad"){
+			addProject1(0);
+		}
  	}
 }
 

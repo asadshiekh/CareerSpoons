@@ -59,7 +59,7 @@ Route::any('update-company-forget-password',"site_controllers\SiteCompanyLogin@u
 });
 
 
-Route::get('company-logout',"site_controllers\SiteCompanyLogin@companyLogout")->middleware('CheckCompanyProfile');
+Route::any('company-logout',"site_controllers\SiteCompanyLogin@companyLogout")->middleware('CheckCompanyProfile');
 
 //   Site Company Login End-Work //
 
