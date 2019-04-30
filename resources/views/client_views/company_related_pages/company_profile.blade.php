@@ -124,14 +124,9 @@
 							<div class="tab-content">
 
 								<div id="bios" class="tab-pane fade in active">
-									<h3>You Bio</h3>
-									<p><!-- <?php
-				                      // $fetch_org->company_info  = str_ireplace('<p>','',$fetch_org->company_info);
-				                      // echo $fetch_org->company_info  = str_ireplace('</p>','',$fetch_org->company_info);
-
-				                      ?> -->
-				                     
-										<form method="post" action="update-bio-front">
+									<h3 style="display: inline-block;">You Bio</h3><span id="comp_bio_error" style="display: inline;"></span>
+									<p>
+										<form id="com_bio_form" method="post" action="update-bio-front">
 				                      	@csrf
 				                      	<textarea name="update_bio" id="update_bio">{{$fetch_org->company_info}}</textarea>
 									
@@ -841,7 +836,7 @@
 		}
 
 		?>
-		<form action="{{url('')}}" method="post">	
+		<form  action="{{url('')}}" method="post">	
 			<br/>
 			<div class="col-sm-12">
 				<label style="display:block">Rate out of 5</label>
@@ -851,10 +846,11 @@
 
 			<div class="col-sm-12">
 			<br/>
+			<span id="company_review_error" style="display: inline;"></span>
 				<textarea name="rating_pro" id="rating_pro">{{$org_reviews->review_description}}</textarea>
 			</div>
 			<div class="col-sm-12">
-				<button type="button" onclick="company_review();" class="update-btn">Rate Product</button>
+				<button type="button" onclick="review_validation();" class="update-btn">Rate Product</button>
 			</div>
 			<br>
 		</form>
@@ -1232,14 +1228,14 @@
         </div>
         <div class="modal-body" id="modal-content">
         	<div class="row" style="padding: 5%;">
-        		<form action="{{url('update-org-info-front')}}" method="post">
+        		<form id="company_info_form" action="{{url('update-org-info-front')}}" method="post">
         		@csrf
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Name:</label>
+        			<label style="display: inline-block;">Company Name:</label><span id="company_cname_error" style="display: inline;"></span>
         			<input class="form-control" placeholder="Enter Company Name" name="new_company_name" id="new_company_name" value="{{$data->company_name}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company type:</label>
+        			<label style="display: inline-block;">Company type:</label><span id="company_ctype_error" style="display: inline;"></span>
         			<select name="new_selected_company_type" class="form-control" placeholder="select no of Employees" id="new_selected_company_type">
 					<option id="type-option" value="{{$data->company_type}}" selected="selected" hidden="hidden" readonly="readonly">{{$data->company_type}}</option>
 					@foreach($fetch_up_type as $do_type)
@@ -1248,7 +1244,7 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>City:</label>
+        			<label style="display: inline-block;">City:</label><span id="company_cty_error" style="display: inline;"></span>
         			<select name="new_selected_city" class="form-control" placeholder="select city" id="new_selected_city">
 					<option id="city-option" value="{{$data->company_city}}"  selected="selected" hidden="hidden" readonly="readonly">{{$data->company_city}}</option>
                     @foreach($fetch_up_city as $do_city)
@@ -1258,19 +1254,19 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Branch Name OR Code:</label>
+        			<label style="display: inline-block;">Branch Name OR Code:</label><span id="company_code_error" style="display: inline;"></span>
         			<input type="text" class="form-control" placeholder="Enter Branch Name or Code" name="new_company_branch_name" id="new_company_branch_name" value="{{$data->company_branch}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Phone no:</label>
+        			<label style="display: inline-block;">Company Phone no:</label><span id="company_phone_error" style="display: inline;"></span>
         			<input type="text" placeholder="Enter Phone No" class="form-control" name="new_company_phone" id="new_company_phone" value="{{$data->company_phone}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Website Link:</label>
+        			<label style="display: inline-block;">Company Website Link:</label><span id="company_weblink_error" style="display: inline;"></span>
         			<input type="link" placeholder="Insert Website Link Here" class="form-control" name="new_company_website" id="new_company_website" value="{{$data->company_website}}" />
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Employees:</label>
+        			<label style="display: inline-block;">Company Employees:</label><span id="company_emp_error" style="display: inline;"></span>
         			<select class="form-control" id="new_selected_employees" name="new_selected_employees">
 					<option value="{{$data->company_employees}}" hidden="hidden" readonly="readonly" selected="selected">{{$data->company_employees}}</option>
 					<option value="Start Up">Start Up</option>
@@ -1283,7 +1279,7 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company Industry</label>
+        			<label style="display: inline-block;">Company Industry</label><span id="company_ind_error" style="display: inline;"></span>
         			<select name="new_selected_industry" class="form-control" placeholder="select industry" id="new_selected_industry">
 					<option id="industry-option" selected="selected" value="{{$data->company_industry}}" hidden="hidden" readonly="readonly">{{$data->company_industry}}</option>
 					@foreach($fetch_up_indus as $do_indus)
@@ -1301,12 +1297,12 @@
 					</select>
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company since:</label>
+        			<label style="display: inline-block;">Company since:</label><span id="company_since_error" style="display: inline;"></span>
         			<input type="date" class="form-control" name="new_company_since" id="new_company_since"  data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="{{$data->company_since}}" data-default-date="{{$data->company_since}}" />
         			<!-- <input type="date" data-default-date="{{$data->company_since}}" id="new_company_since" name="new_company_since" class="form-control" data-min-year="1970" data-max-year="2030"> -->
         		</div>
         		<div class="col-md-6 col-sm-6">
-        			<label>Company location OR Address</label>
+        			<label style="display: inline-block;">Company location OR Address</label><span id="company_loc_error" style="display: inline;"></span>
         			<input id="new_company_location" name="new_company_location" class="form-control" placeholder="Enter Address Here" value="{{$data->company_location}}" />
         		</div>
 

@@ -219,10 +219,11 @@
 
 			<div class="col-sm-12">
 			<br/>
+			<span id="candy_review_error" style="display: inline;"></span>
 				<textarea name="rating_pro" id="rating_pro">{{$candidate_reviews->review_description}}</textarea>
 			</div>
 			<div class="col-sm-12">
-				<button type="button" onclick="review();" class="update-btn">Rate Product</button>
+				<button type="button" onclick="candy_review_validation();" class="update-btn">Rate Product</button>
 			</div>
 			<br>
 		</form>
@@ -387,7 +388,7 @@
 <label style="display:block">Functional Area</label><span id="can_farea_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_crteria_function_area" id="candidate_functional_area" onchange="candidate_select_major_onchange()">
 	
-	<option value="" selected="selected" hidden="hidden"><?php if($val->functional_criteria){echo $val->functional_criteria;}else{echo "Select Functional Area";} ?></option>
+	<option value="<?php if($val->functional_criteria){echo $val->functional_criteria;}else{echo "Select Functional Area";} ?>" selected="selected" hidden="hidden"><?php if($val->functional_criteria){echo $val->functional_criteria;}else{echo "Select Functional Area";} ?></option>
 	@foreach($get_area as $value)
 	<option value="{{$value->area_title}}">
 		<?php
@@ -404,7 +405,7 @@
 <div class="col-md-4 col-sm-6">
 <label style="display:block">Select Majors</label><span id="can_majo_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_crteria_major"  id="candidate_majors_area">
-	<option value="" selected="selected" hidden="hidden"><?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?></option>
+	<option value="<?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?>" selected="selected" hidden="hidden"><?php if($val->major_criteria){echo $val->major_criteria;}else{echo "Select Major";} ?></option>
 	
 </select>
 </div>
@@ -426,7 +427,7 @@
 <div class="col-md-4 col-sm-6">
 <label style="display:block">Preferred Job City</label><span id="can_cty_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_criteria_city"  id="candidate_criteria_city">
-	<option value=""  selected="selected" hidden="hidden"><?php if($val->preferred_city){echo $val->preferred_city;}else{echo "Select Job City";} ?></option>
+	<option value="<?php if($val->preferred_city){echo $val->preferred_city;}else{echo "Select Job City";} ?>"  selected="selected" hidden="hidden"><?php if($val->preferred_city){echo $val->preferred_city;}else{echo "Select Job City";} ?></option>
 	@foreach($get_cities as $value)
 	<option value="{{$value->company_city_name}}">{{$value->company_city_name}}</option>
 	@endforeach
@@ -451,7 +452,7 @@
 <div class="col-md-12 col-sm-6">
 <label style="display:block">Job Type</label><span id="can_typ_error" style="display: inline;"></span>
 <select class="form-control input-lg" name="candidate_criteria_job_type" id="candidate_job_type">
-	<option value=""  selected="selected" hidden="hidden"><?php if($val->job_type_criteria){echo $val->job_type_criteria;}else{echo "Select Job Type";} ?></option>
+	<option value="<?php if($val->job_type_criteria){echo $val->job_type_criteria;}else{echo "Select Job Type";} ?>"  selected="selected" hidden="hidden"><?php if($val->job_type_criteria){echo $val->job_type_criteria;}else{echo "Select Job Type";} ?></option>
 	<option value="full time">Full Time</option>
 	<option value="part time">Part Time</option>
 	<option value="part time">Internship</option>
@@ -547,13 +548,6 @@
 </div>
 
 </div>	
-
-
-	
-
-
-
-
 
 	<!-- End About Sec -->
 	<!-- Start Address Sec -->
@@ -1764,7 +1758,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 	</div>
 	<div class="col-sm-12">
 		<label style="display: inline-block;">Location/Address</label><span  id="can_addr_error" style="display: inline;"> </span>
-		<input type="text" name="profile_Address" id="candidate_location" value="{{$user_general_info->candidate_location}}">
+		<input class="form-control" type="text" name="profile_Address" id="candidate_location" value="{{$user_general_info->candidate_location}}">
 	</div>
 
 	@endforeach

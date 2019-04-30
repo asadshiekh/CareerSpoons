@@ -265,3 +265,277 @@ function company_review(){
           
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+// validate form company bio
+// can_general_form function validation
+
+var company_Bio_validater = function validater(value){
+      var check;
+      
+  if(value != ""){
+      $("#comp_bio_error").text(' ');
+        check=true;
+      }else{
+        $("#comp_bio_error").removeClass('success');
+        $("#comp_bio_error").addClass('alert');
+        $("#comp_bio_error").text('Required * ');
+        check=false;
+      }
+     return check;
+ }
+
+$('#com_bio_form').on('submit', function(e){
+ // alert("yes");
+      var company_Bio = CKEDITOR.instances['update_bio'].getData();
+
+      var getBio=company_Bio_validater(company_Bio);
+
+      // alert(getBio);
+
+      if(getBio){
+        return true;
+      }else{
+        swal("Error"," Bio Not Updated","error");
+        return false;
+      }
+      
+});
+
+///////////////////////////////////////////////////////////////////////////
+// company info validation
+
+var comp_cname_validater = function validator(name){
+  var check;
+    //for name
+
+    if(name != ""){
+
+      if(name.match("^[a-zA-Z\(\) ]+$")){
+        $("#company_cname_error").text(' ');
+           check=true;
+      }else{
+        $("#company_cname_error").removeClass('success');
+        $("#company_cname_error").addClass('alert');
+        $("#company_cname_error").text('Contains only alphabet');
+        //return false;
+        check=false;
+      }
+               ////end name       
+         //last
+     }else{
+      $("#company_cname_error").removeClass('success');
+      $("#company_cname_error").addClass('alert');
+      $("#company_cname_error").text('Required *');
+      check=false;
+     }
+
+     return check;
+}
+
+//profession validation function
+var comp_ctype_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_ctype_error").text(' ');
+      check=true;
+    }else{
+      $("#company_ctype_error").removeClass('success');
+      $("#company_ctype_error").addClass('alert');
+      $("#company_ctype_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_city_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_cty_error").text(' ');
+      check=true;
+    }else{
+      $("#company_cty_error").removeClass('success');
+      $("#company_cty_error").addClass('alert');
+      $("#company_cty_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_branch_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_code_error").text(' ');
+      check=true;
+    }else{
+      $("#company_code_error").removeClass('success');
+      $("#company_code_error").addClass('alert');
+      $("#company_code_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_phone_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_phone_error").text(' ');
+      check=true;
+    }else{
+      $("#company_phone_error").removeClass('success');
+      $("#company_phone_error").addClass('alert');
+      $("#company_phone_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_web_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_weblink_error").text(' ');
+      check=true;
+    }else{
+      $("#company_weblink_error").removeClass('success');
+      $("#company_weblink_error").addClass('alert');
+      $("#company_weblink_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_employee_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_emp_error").text(' ');
+      check=true;
+    }else{
+      $("#company_emp_error").removeClass('success');
+      $("#company_emp_error").addClass('alert');
+      $("#company_emp_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_indus_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_ind_error").text(' ');
+      check=true;
+    }else{
+      $("#company_ind_error").removeClass('success');
+      $("#company_ind_error").addClass('alert');
+      $("#company_ind_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_since_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_since_error").text(' ');
+      check=true;
+    }else{
+      $("#company_since_error").removeClass('success');
+      $("#company_since_error").addClass('alert');
+      $("#company_since_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+//profession validation function
+var comp_loc_validater =function validator(name){
+var check;
+    //for name
+
+  if(name != ""){
+    $("#company_loc_error").text(' ');
+      check=true;
+    }else{
+      $("#company_loc_error").removeClass('success');
+      $("#company_loc_error").addClass('alert');
+      $("#company_loc_error").text('Required');
+      check=false;
+    }
+
+     return check;
+}
+
+$('#company_info_form').on('submit', function(e){
+  // alert("yws");
+      var company_cname = $("#new_company_name").val();
+      var company_ctype = $("#new_selected_company_type").val();
+      var selected_city = $("#new_selected_city").val();
+      var company_branch = $("#new_company_branch_name").val();
+      var company_phone = $("#new_company_phone").val();
+      var company_website = $("#new_company_website").val();
+      var selected_employees = $("#new_selected_employees").val();
+      var selected_industry = $("#new_selected_industry").val();
+      var company_since = $("#new_company_since").val();
+      var company_location = $("#new_company_location").val();
+
+      var getcname=comp_cname_validater(company_cname);
+      var getctype=comp_ctype_validater(company_ctype);
+      var getcity=comp_city_validater(selected_city);
+      var getbranch=comp_branch_validater(company_branch);
+      var getphone=comp_phone_validater(company_phone);
+      var getweb=comp_web_validater(company_website);
+      var getemp=comp_employee_validater(selected_employees);
+      var getindus=comp_indus_validater(selected_industry);
+      var getsince=comp_since_validater(company_since);
+      var getloc=comp_loc_validater(company_location);
+
+      if(getcname && getctype && getcity && getbranch && getphone && getweb && getemp && getindus && getsince && getloc){
+        return true;
+      }else{
+        swal("Error"," Data Not Updated","error");
+        return false;
+      }
+});
+
+
+///////////////////////////////////////

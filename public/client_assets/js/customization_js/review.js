@@ -59,3 +59,38 @@
 	}
 
 
+////////////////////////////////////////////////////////////////////////////
+
+
+var company_review_validater = function validater(value){
+      var check;
+      
+  if(value != ""){
+      $("#company_review_error").text(' ');
+        check=true;
+      }else{
+        $("#company_review_error").removeClass('success');
+        $("#company_review_error").addClass('alert');
+        $("#company_review_error").text('Required * ');
+        check=false;
+      }
+     return check;
+ }
+
+function review_validation(){
+ // alert("yes");
+      var company_Bio = CKEDITOR.instances['rating_pro'].getData();
+
+      var getReview=company_review_validater(company_Bio);
+
+      // alert(getBio);
+
+      if(getReview){
+      	company_review();
+        //return true;
+      }else{
+        swal("Error"," Review Not Updated","error");
+       // return false;
+      }
+      
+}

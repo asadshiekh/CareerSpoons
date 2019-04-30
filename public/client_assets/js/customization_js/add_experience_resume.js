@@ -349,7 +349,7 @@ var exp_job_validater = function validater(name){
 		//for name
 
 		if(name != ""){
-
+                // alert(name);
 			if(name.match("^[a-zA-Z\(\) ]+$")){
 				$("#exp_job-error").text(' ');
 				check=true;
@@ -515,7 +515,7 @@ var exp_startDate_validater = function validater(start,to){
 		// date1 > date2;  //false	
 		if(date1){
 			if(date1 >= date2){
-				alert(date1 + "  " +date2);
+				// alert(date1 + "  " +date2);
 		
 				$("#exp_datetoerror").removeClass('success');
 				$("#exp_datetoerror").addClass('alert');
@@ -583,7 +583,7 @@ function validate_main_exp(feel){
 	var exp_start = $("#exp-start").val();
 	var exp_end = $("#exp-end").val();
 	var exp_description = CKEDITOR.instances['project_descrption'].getData();
-// alert(ref_email);
+   
 	var getjob=exp_job_validater(job_title);
     var getcname=exp_cname_validater(company_name);
  	var getemail=exp_email_validater(ref_email);
@@ -592,7 +592,7 @@ function validate_main_exp(feel){
     var getstart=exp_startDate_validater(exp_start,exp_end);
     var getend=exp_endDate_validater(exp_end);
  	var getdes=exp_des_validater(exp_description);
-
+// alert(feel);
  	if(getjob && getcname && getemail && getphone && getposition && getstart && getend && getdes){
 		if(feel == "well"){
 			addExperience(2);
@@ -626,7 +626,7 @@ function validate_main_exp(feel){
 
 
 //job_validater function
-var exp_job_validater = function validater(name){
+var up_exp_job_validater = function validater(name){
     	var check;
 		//for name
 
@@ -658,7 +658,7 @@ var exp_job_validater = function validater(name){
 
  //cname_validater function
 
- var exp_cname_validater = function validater(name){
+ var up_exp_cname_validater = function validater(name){
     	var check;
 		//for name
 
@@ -688,17 +688,17 @@ var exp_job_validater = function validater(name){
  }
 
  //exp_email_validater
-var validateEmail = function(elementValue) {
+var up_validateEmail = function(elementValue) {
     	var emailPattern = /^[a-zA-Z].[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
     	return emailPattern.test(elementValue);
     }
 
- var exp_email_validater = function validater(name){
+ var up_exp_email_validater = function validater(name){
     	var check;
 		//for name
 
 		if(name){
-           var valid = validateEmail(name);
+           var valid = up_validateEmail(name);
            //alert(valid);
 			if(valid){
 				$("#up_exp_email-error").text(' ');
@@ -725,7 +725,7 @@ var validateEmail = function(elementValue) {
 
  //exp_phone_validater function
 
- var exp_phone_validater = function validater(name){
+ var up_exp_phone_validater = function validater(name){
     	var check;
 		//for name
 
@@ -756,7 +756,7 @@ var validateEmail = function(elementValue) {
 
  //
 
- var exp_position_validater = function validater(name){
+ var up_exp_position_validater = function validater(name){
     	var check;
 		//for name
 
@@ -786,7 +786,7 @@ var validateEmail = function(elementValue) {
  }
 
 //startDate_validater
-var exp_startDate_validater = function validater(start,to){
+var up_exp_startDate_validater = function validater(start,to){
     	var check;
   	    var date1 = start;
         var date2 = to;
@@ -797,7 +797,7 @@ var exp_startDate_validater = function validater(start,to){
 		// date1 > date2;  //false	
 		if(date1){
 			if(date1 >= date2){
-				alert(date1 + "  " +date2);
+				// alert(date1 + "  " +date2);
 		
 				$("#up_exp_datetoerror").removeClass('success');
 				$("#up_exp_datetoerror").addClass('alert');
@@ -819,7 +819,7 @@ var exp_startDate_validater = function validater(start,to){
 
 //endDate_validater
 
- var exp_endDate_validater = function validater(city){
+ var up_exp_endDate_validater = function validater(city){
     	var check;
 
     	if (city) {
@@ -838,7 +838,7 @@ var exp_startDate_validater = function validater(start,to){
 
 ///editor des function
 
-var exp_des_validater = function validater(text){
+var up_exp_des_validater = function validater(text){
     	var check;
 
     	if (text) {
@@ -866,14 +866,14 @@ function validate_main_up_exp(id){
 	var exp_end = $("#update-exp-end").val();
 	var exp_description = CKEDITOR.instances['update_exp_description'].getData();
 // alert(ref_email);
-	var getjob=exp_job_validater(job_title);
-    var getcname=exp_cname_validater(company_name);
- 	var getemail=exp_email_validater(ref_email);
-    var getphone=exp_phone_validater(ref_phone);
- 	var getposition=exp_position_validater(your_position);
-    var getstart=exp_startDate_validater(exp_start,exp_end);
-    var getend=exp_endDate_validater(exp_end);
- 	var getdes=exp_des_validater(exp_description);
+	var getjob=up_exp_job_validater(job_title);
+    var getcname=up_exp_cname_validater(company_name);
+ 	var getemail=up_exp_email_validater(ref_email);
+    var getphone=up_exp_phone_validater(ref_phone);
+ 	var getposition=up_exp_position_validater(your_position);
+    var getstart=up_exp_startDate_validater(exp_start,exp_end);
+    var getend=up_exp_endDate_validater(exp_end);
+ 	var getdes=up_exp_des_validater(exp_description);
 
  	if(getjob && getcname && getemail && getphone && getposition && getstart && getend && getdes){
 		// addExperience(2);

@@ -198,7 +198,8 @@ var function1 =  function validator(){
 			var candidate_industries =  $("#candidate_industries").val();
 			
 		    var candidate_location = $("#candidate_location").val();
-
+          // alert(candidate_name);
+          // alert(candidate_gender);
 
 			var getname=can_name_validater(candidate_name);
 			var getprofession=can_pro_validater(candidate_profession);
@@ -564,3 +565,41 @@ $('#can_general_form').on('submit', function(e){
 	}
 	
 });
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+// candidate review
+
+var candy_review_validater = function validater(value){
+      var check;
+      
+  if(value != ""){
+      $("#candy_review_error").text(' ');
+        check=true;
+      }else{
+        $("#candy_review_error").removeClass('success');
+        $("#candy_review_error").addClass('alert');
+        $("#candy_review_error").text('Required * ');
+        check=false;
+      }
+     return check;
+ }
+
+function candy_review_validation(){
+ // alert("yes");
+      var company_Bio = CKEDITOR.instances['rating_pro'].getData();
+
+      var getReview=candy_review_validater(company_Bio);
+
+      // alert(getBio);
+
+      if(getReview){
+      	review();
+        //return true;
+      }else{
+        swal("Error"," Review Not Updated","error");
+       // return false;
+      }
+      
+}

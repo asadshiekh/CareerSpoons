@@ -674,6 +674,10 @@
 			<script>
 				$('#dob').dateDropper();
 			</script>
+			
+			<script>
+				$('#candidate_dob').dateDropper();
+			</script>
 
 			<script>
 				$('#update_dob').dateDropper();
@@ -762,9 +766,9 @@
 			</script>
 
 			<!-- User Profile Update Address Ck Editor -->
-			<script>
+			<!-- <script>
 				CKEDITOR.replace( 'profile_Address' );	
-			</script>
+			</script> -->
             <!-- Organiation Job Post CK Editor -->
 			<script>
 				CKEDITOR.replace( 'post_information' );	

@@ -123,7 +123,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-flag"></i></span>
 							<select class="form-control input-lg" name="candidate_city" id="candidate_city">
-								<option selected="selected" hidden="hidden">Select City</option>
+								<option value="" selected="selected" hidden="hidden">Select City</option>
 								@foreach($get_cities as $get_cities)
 								<option value="{{$get_cities->company_city_name}}">{{$get_cities->company_city_name}}</option>
 								@endforeach
@@ -145,9 +145,9 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-mars"></i></span>
 							<select class="form-control input-lg" id="candidate_gender" name="candidate_gender">
-								<option selected="selected" hidden="hidden">Select Gender</option>
-								<option>Male</option>
-								<option>Female</option>
+								<option value="" selected="selected" hidden="hidden">Select Gender</option>
+								<option value="male">Male</option>
+								<option value="femaile">Female</option>
 							</select>
 						</div>	
 					</div>
@@ -157,12 +157,12 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
 							<select class="form-control input-lg" name="candidate_career_level"  id="candidate_career_level">
-								<option selected="selected" hidden="hidden">Select Career Level</option>
-								<option>Entry Level</option>
-								<option>Intermediate</option>
-								<option>Experienced Professional</option>
-								<option>Department Head</option>
-								<option>Gm / CEO / Country Head</option>
+								<option value="" selected="selected" hidden="hidden">Select Career Level</option>
+								<option value="Entry Level">Entry Level</option>
+								<option value="Intermediate">Intermediate</option>
+								<option value="Experienced Professional">Experienced Professional</option>
+								<option value="Department Head">Department Head</option>
+								<option value="Gm/CEO/Country Head">Gm / CEO / Country Head</option>
 							</select>
 						</div>	
 					</div>
@@ -188,9 +188,14 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
 							<select class="form-control input-lg" id="candidate_qualification" name="candidate_Qualification">
-								<option selected="selected" hidden="hidden">Select Qualification</option>
+								<option value="" selected="selected" hidden="hidden">Select Qualification</option>
 								@foreach($get_qualification as $value)
-								<option><?php
+								<option value="<?php
+
+								$value->qualification_title= str_replace("_"," ",$value->qualification_title);
+								echo $value->qualification_title;
+
+									?>"><?php
 
 								$value->qualification_title= str_replace("_"," ",$value->qualification_title);
 								echo $value->qualification_title;
@@ -207,9 +212,14 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fas fa-university"></i></span>
 							<select class="form-control input-lg" name="candidate_Indutries" id="candidate_industries">
-								<option selected="selected" hidden="hidden">Select Indutries</option>
+								<option value="" selected="selected" hidden="hidden">Select Indutries</option>
 								@foreach($get_indutries as $value)
-								<option><?php 
+								<option value="<?php 
+								
+								$value->company_industry_name= str_replace("_"," ",$value->company_industry_name);
+								echo $value->company_industry_name;
+
+								?>"><?php 
 								
 								$value->company_industry_name= str_replace("_"," ",$value->company_industry_name);
 								echo $value->company_industry_name;
