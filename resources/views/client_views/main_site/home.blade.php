@@ -93,11 +93,12 @@
 
 			<?php 
 			
-			if($random_jobs=="0"){?>
+			if($random_jobs===0){?>
 
 				<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Jobs Not Found </h4>
 			
 			<?php }else{ 
+				 $error=""; 
 
 			foreach ($random_jobs as $val) { 
 
@@ -106,7 +107,7 @@
 
 				$timenow = date('Y-m-d');
 				$timestamp = strtotime($timenow);
-                 $error="";  		   
+                 		   
 				if($post_date<$timestamp){
 				$error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>'; 
 				 }
@@ -210,10 +211,12 @@
 				</div>
 			</div>
 		<?php }
-		if($error){
+		
+	}
+	if($error){
 			echo $error;
 		}
-	}} ?>
+} ?>
 
 
 		</div>
