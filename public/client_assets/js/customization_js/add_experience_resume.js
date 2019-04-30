@@ -508,12 +508,20 @@ var exp_startDate_validater = function validater(start,to){
     	var check;
   	    var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
 		if(date1){
+
+			if(date1 >= date0){
+				$("#exp_datefrom-error").removeClass('success');
+				$("#exp_datefrom-error").addClass('alert');
+				$("#exp_datefrom-error").text('Invalid date');
+	            check=false;
+		    }
 			if(date1 >= date2){
 				// alert(date1 + "  " +date2);
 		
@@ -790,12 +798,19 @@ var up_exp_startDate_validater = function validater(start,to){
     	var check;
   	    var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
 		if(date1){
+			if(date1 >= date0){
+				$("#up_exp_datefrom-error").removeClass('success');
+				$("#up_exp_datefrom-error").addClass('alert');
+				$("#up_exp_datefrom-error").text('Invalid date');
+	            check=false;
+		    }
 			if(date1 >= date2){
 				// alert(date1 + "  " +date2);
 		

@@ -1924,7 +1924,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 
 							<div class="col-md-6 col-sm-6">
 								<label style="display: inline-block;">Date To</label><span id="exp_datetoerror" style="display: inline;"></span>
-								<input type="text" id="exp-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-max-year="2019" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
+								<input type="text" id="exp-end" data-lang="en" data-large-mode="true" data-min-year="1990" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="" placeholder="11/25/2018">
 							</div>
 
 							<div class="col-sm-12">

@@ -92,10 +92,11 @@
 
 
 			<?php 
-			$error=" "; 
+			 
 			if($random_jobs===0){
 
 				$error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>';
+				echo $error;
 			
 			 }else{ 
 
@@ -109,11 +110,9 @@
 				$timestamp = strtotime($timenow);
                  		   
 				if($post_date<$timestamp){
-				$error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>'; 
+				// $error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>'; 
 				 }
 				else{ ?>
-
-
 			<!-- Single Job Grid -->
 			<div class="col-md-3 col-sm-6">
 				<div class="grid-view brows-job-list">
@@ -215,9 +214,7 @@
 	}
 	
 } 
-if($error){
-echo $error;
-}?>
+?>
 
 
 		</div>

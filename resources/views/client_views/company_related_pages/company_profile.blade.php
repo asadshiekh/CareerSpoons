@@ -390,7 +390,7 @@
 				}?>
 
 			</span>
-			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="m/d/Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en"/>
+			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="m/d/Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en" onkeyup="check_date();" />
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;" id="p-error">
@@ -2354,73 +2354,82 @@
 	   	return check;
    }
 
+function check_date(){
+	alert(yes);
+}
 
 //date function visibility date
-  var visibility_date_validater = function validater(date){
+  var visibility_date_validater = function validater(date,l_date){
     	var check;
 	   	if(date){
-	   		var today = new Date();
-	   		var dd = today.getDate();
-			var mm = today.getMonth() + 1; //January is 0!
-			var yyyy = today.getFullYear();
-			if (dd < 10) {
-				dd = '0' + dd;
-			}
-			if (mm < 10) {
-				mm = '0' + mm;
-			}
-			today = mm + '/' + dd + '/' + yyyy;
-           // alert(today);
+	   		var thisday = new Date();
+            var nextdate=l_date.setDate(l_date.getDate() + 1);
+	   		// alert(nextdate);
+	   		datenext = new Date(nextdate);
+	   		alert(datenext);
+	   		var p_date=$("#post_visible").value(datenext);
+	   		
+	  //  		var dd = today.getDate();
+			// var mm = today.getMonth() + 1; //January is 0!
+			// var yyyy = today.getFullYear();
+			// if (dd < 10) {
+			// 	dd = '0' + dd;
+			// }
+			// if (mm < 10) {
+			// 	mm = '0' + mm;
+			// }
+			// today = mm + '/' + dd + '/' + yyyy;
+   //         // alert(today);
 
-            var newdate = new Date(today);
+   //          var newdate = new Date(today);
 
-            newdate.setDate(newdate.getDate() + 25);
+   //          newdate.setDate(newdate.getDate() + 25);
     
-		    var newdd = newdate.getDate();
-		    var newmm = newdate.getMonth() + 1;
-		    var newy = newdate.getFullYear();
+		 //    var newdd = newdate.getDate();
+		 //    var newmm = newdate.getMonth() + 1;
+		 //    var newy = newdate.getFullYear();
 
-		   var new_one = newmm + '/' + newdd + '/' + newy;
-		  // alert(new_one);
+		 //   var new_one = newmm + '/' + newdd + '/' + newy;
+		 //  // alert(new_one);
 
-            var result=date.split('/');
+   //          var result=date.split('/');
 
            
-	  		var date_month=result[0];
-	  		var date_day=result[1];
-	  		var date_year=result[2];
+	  // 		var date_month=result[0];
+	  // 		var date_day=result[1];
+	  // 		var date_year=result[2];
           
              
 
-			if(date_year>=yyyy && date_month>=mm && date_day>=dd){
-				$("#p-error").removeClass('alert');
-				$("#p-error").addClass('success');
-				$("#p-error").text(' ');
-                check=true;
-				// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
-    //                 $("#p-error").addClass('alert');
-				// 	$("#p-error").removeClass('success');
-				// 	$("#p-error").text('you choose too much days');
-				// 	check=false;
-				// }else{
-				// 	$("#p-error").removeClass('alert');
-				// 	$("#p-error").addClass('success');
-				// 	$("#p-error").text(' ');
-				// 	check=true;
-				// }
+			// if(date_year>=yyyy && date_month>=mm && date_day>=dd){
+			// 	$("#p-error").removeClass('alert');
+			// 	$("#p-error").addClass('success');
+			// 	$("#p-error").text(' ');
+   //              check=true;
+			// 	// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
+   //  //                 $("#p-error").addClass('alert');
+			// 	// 	$("#p-error").removeClass('success');
+			// 	// 	$("#p-error").text('you choose too much days');
+			// 	// 	check=false;
+			// 	// }else{
+			// 	// 	$("#p-error").removeClass('alert');
+			// 	// 	$("#p-error").addClass('success');
+			// 	// 	$("#p-error").text(' ');
+			// 	// 	check=true;
+			// 	// }
 				
-			}else{
+			// }else{
 				
-				$("#p-error").addClass('alert');
-				$("#p-error").removeClass('success');
-				$("#p-error").text('invalid date');
-				check=false;
-			}
+			// 	$("#p-error").addClass('alert');
+			// 	$("#p-error").removeClass('success');
+			// 	$("#p-error").text('invalid date');
+			// 	check=false;
+			// }
 
 	   	}else{
 	   		$("#p-error").removeClass('success');
 			$("#p-error").addClass('alert');
-			$("#p-error").text('I think you forget to select date');
+			$("#p-error").text('forget to select date?');
 	   		check=false;
 
 	   	}
@@ -2493,7 +2502,7 @@
 		var getdegree=degree_validater(title);
 		var gettext=text_validater(text);
 		var getdate=date_validater(l_date);
-		var getpostdate=visibility_date_validater(p_date);
+		var getpostdate=visibility_date_validater(p_date,l_date);
 
 		
         if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getgender && getage && getcity && gettype && getshift && getqual && getdegree && getdate && getpostdate){

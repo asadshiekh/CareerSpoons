@@ -596,11 +596,18 @@ var loc_validater = function validater(name){
 
     	var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
+		if(date1 >= date0){
+			$("#dfrom-error").removeClass('success');
+			$("#dfrom-error").addClass('alert');
+			$("#dfrom-error").text('Invalid date');
+            check=false;
+		}
 		if(date1 >= date2){
 
 			$("#dateto-error").removeClass('success');
@@ -891,11 +898,19 @@ var up_loc_validater = function validater(name){
 
     	var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
+		// alert(date0);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
+		if(date1 >= date0){
+			$("#up_datefrom_error").removeClass('success');
+			$("#up_datefrom_error").addClass('alert');
+			$("#up_datefrom_error").text('Invalid date');
+            check=false;
+		}
 		if(date1 >= date2){
 
 			$("#up_dateto_error").removeClass('success');
@@ -1057,15 +1072,15 @@ function main_validation_up_edu(id,edu_level,edu_major,edu_selected_result){
  	// var getncgpa=name_validater(CGPA);
  	// var getper=name_validater(Percentage);
  	var gettext=up_editor_validater(edu_description);
-alert(gettitle);
-alert(getlevel);
-alert(getins);
-alert(getloc);
-alert(getstart);
-alert(getend);
-alert(getmajor);
-alert(getchoose);
-alert(gettext);
+// alert(gettitle);
+// alert(getlevel);
+// alert(getins);
+// alert(getloc);
+// alert(getstart);
+// alert(getend);
+// alert(getmajor);
+// alert(getchoose);
+// alert(gettext);
  
 
  	if(gettitle && getlevel && getins && getloc && getstart && getend && getmajor && getchoose && gettext){
