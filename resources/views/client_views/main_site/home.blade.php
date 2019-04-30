@@ -92,13 +92,13 @@
 
 
 			<?php 
-			
-			if($random_jobs===0){?>
+			$error=" "; 
+			if($random_jobs===0){
 
-				<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Jobs Not Found </h4>
+				$error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>';
 			
-			<?php }else{ 
-				 $error=""; 
+			 }else{ 
+
 
 			foreach ($random_jobs as $val) { 
 
@@ -213,10 +213,11 @@
 		<?php }
 		
 	}
-	if($error){
-			echo $error;
-		}
-} ?>
+	
+} 
+if($error){
+echo $error;
+}?>
 
 
 		</div>
