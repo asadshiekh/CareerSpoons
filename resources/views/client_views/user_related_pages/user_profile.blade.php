@@ -733,7 +733,7 @@
 		<thead>
 			<tr>
 				<th>Degree Title</th>
-				<th>Degree Level</th>
+				<th>Qualification Level</th>
 				<th>Institute Name</th>
 				<th>Institute Location</th>
 				<th>Majors</th>
@@ -1518,7 +1518,7 @@
 						</div>
 						
 						<div class="col-md-4 col-sm-6">
-							<label>Degree Level</label>
+							<label>Qualification Level</label>
 							<input type="text" id="viewed_edu_degree_level" readonly="readonly" class="form-control" placeholder="Else">
 						</div>
 						
@@ -1594,11 +1594,11 @@ data-dismiss="modal" aria-hidden="true">×</button>
 		<input type="text" id="degree_title" class="form-control" placeholder="Degree Title, e.g. Degree Name">
 	</div>
 	<div class="col-md-4 col-sm-6">
-		<label style="display: inline-block;">Degree Level</label><span id="qual-error" style="display: inline;"></span>
+		<label style="display: inline-block;">Qualification Level</label><span id="qual-error" style="display: inline;"></span>
 		<select class="form-control input-lg" id="degree_level">
-			<option value="" disabled="disabled" selected="selected" hidden="hidden">Degree Level</option>
-			@foreach($get_degree as $get_degree)
-			<option value="{{$get_degree->degree_title}}">{{$get_degree->degree_title}}</option>
+			<option value="" disabled="disabled" selected="selected" hidden="hidden">Qualification Level</option>
+			@foreach($get_qualification as $get_quali)
+			<option value="{{$get_quali->qualification_title}}">{{$get_quali->qualification_title}}</option>
 			@endforeach
 			
 		</select>
@@ -1613,7 +1613,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<label style="display: inline-block;">Date From</label><span id="dfrom-error" style="display: inline;"></span>
-		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true"  class="form-control" placeholder="12/31/2016" data-dd-format="Y">
+		<input type="date" id="edu-start" data-theme="my-style" data-translate-mode="true"  data-min-year="1980"  data-max-year="2020" data-large-mode="true" class="form-control" placeholder="12/31/2016" data-dd-format="Y">
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<label style="display: inline-block;">Date To</label><span id="dateto-error" style="display: inline;"></span>

@@ -526,6 +526,7 @@ class UserResume extends Controller
 		$obj1 = new ClientSiteModel();	
 		$get_degree=$obj1->get_all_degree_level();
 		$get_majors=$obj1->get_all_majors();
+		$get_qualification=$obj1->get_all_qualification();
 		echo '
 		<div id="UpdateEductionModelWindow" class="modal fade"> 
 		<div class="modal-dialog modal-lg">
@@ -548,11 +549,11 @@ class UserResume extends Controller
 		</div>
 
 		<div class="col-md-4 col-sm-6">
-		<label style="display:inline-block;">Degree Level</label><span id="up_qual_error" style="display:inline;"></span>
+		<label style="display:inline-block;">Qualification Level</label><span id="up_qual_error" style="display:inline;"></span>
 		<select class="form-control input-lg" name="update_edu_degree_level" id="update_edu_degree_level">
 		<option hidden selected="selected" value="'.$info->degree_level.'">'.$info->degree_level.'</option>';
-		foreach($get_degree as $get_degree){
-			echo '<option value="'.$get_degree->degree_title.'">'.$get_degree->degree_title.'</option>';
+		foreach($get_qualification as $get_quali){
+			echo '<option value="'.$get_quali->qualification_title.'">'.$get_quali->qualification_title.'</option>';
 		}
 		echo '</select>
 		</div>
@@ -569,12 +570,12 @@ class UserResume extends Controller
 
 		<div class="col-md-4 col-sm-6">
 		<label style="display:inline-block;">Date From</label><span id="up_datefrom_error" style="display:inline;"></span>
-		<input type="date" value="'.$info->edu_start.'" name="update_edu_start" id="update-edu-start"  class="form-control" placeholder="+91 258 475 6859">
+		<input type="text"  data-dd-default-date="'.$info->edu_start.'"  name="update_edu_start" id="update-edu-start"  class="form-control">
 		</div>
 
 		<div class="col-md-4 col-sm-6">
 		<label style="display:inline-block;">Date To</label><span id="up_dateto_error" style="display:inline;"></span>
-		<input type="date" value="'.$info->edu_end.'" name="update_edu_end" id="update-edu-end"  class="form-control" placeholder="258 457 528">
+		<input type="text" data-dd-default-date="'.$info->edu_end.'"  name="update_edu_end" id="update-edu-end"  class="form-control">
 		</div>
 
 		<div class="col-md-4 col-sm-4">
