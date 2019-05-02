@@ -256,6 +256,7 @@
 							}
 							else{
 								$coun = " ";
+								$coun=$get_AccountingFinance->count();
 								foreach ($get_AccountingFinance as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -263,7 +264,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_AccountingFinance->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -296,6 +297,7 @@
 							}
 							else{
 								$coun = " ";
+								$coun=$get_Automotive->count();
 								foreach ($get_Automotive as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -303,7 +305,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_Automotive->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -337,6 +339,7 @@
 							}
 							else{
 								$coun=" ";
+								$coun=$get_business->count();
 								foreach ($get_business as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -344,7 +347,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_business->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -378,6 +381,7 @@
 							}
 							else{
 								$coun = " ";
+								$coun=$get_eduction->count();
 								foreach ($get_eduction as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -385,7 +389,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_eduction->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -417,6 +421,7 @@
 							}
 							else{
 								$coun = " ";
+								$coun=$get_healthcare->count();
 								foreach ($get_healthcare as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -424,7 +429,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_healthcare->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -457,6 +462,7 @@
 							}
 							else{
                                 $coun = " ";
+                                $coun=$get_RestaurantFood->count();
 								foreach ($get_RestaurantFood as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -464,7 +470,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_RestaurantFood->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -498,6 +504,7 @@
 							}
 							else{
 								$coun =" ";
+								$coun=$get_Transportation->count();
 								foreach ($get_Transportation as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -505,7 +512,7 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_Transportation->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
 								}
@@ -537,7 +544,8 @@
 								echo $get_Telecommunications;
 							}
 							else{
-								$coun = " ";
+								$couns = " ";
+								$coun=$get_Telecommunications->count();
 								foreach ($get_Telecommunications as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -545,9 +553,11 @@
 
 								$timenow = date('Y-m-d');
 								$timestamp = strtotime($timenow);
-				                $coun=$get_Telecommunications->count();
+				                
 								if($post_date<$timestamp){
 									$coun=$coun-1;
+									$couns=$coun;
+									// echo $couns;
 								}
 								
 							    // echo $coun;
