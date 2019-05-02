@@ -255,6 +255,7 @@
 								echo $get_AccountingFinance;
 							}
 							else{
+								$coun = " ";
 								foreach ($get_AccountingFinance as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -267,9 +268,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
-								//echo $get_AccountingFinance;
+								echo $coun;
 							}
 							?>
 							 Jobs</p>
@@ -294,6 +295,7 @@
 								echo $get_Automotive;
 							}
 							else{
+								$coun = " ";
 								foreach ($get_Automotive as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -306,9 +308,10 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
 								//echo $get_Automotive;
+								echo $coun;
 							}
 							?>	
 							Jobs</p>
@@ -333,6 +336,7 @@
 								echo $get_business;
 							}
 							else{
+								$coun=" ";
 								foreach ($get_business as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -345,9 +349,10 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
 								//echo $get_business;
+								echo $coun;
 							}
 							?>		
 							Jobs</p>
@@ -372,6 +377,7 @@
 								echo $get_eduction;
 							}
 							else{
+								$coun = " ";
 								foreach ($get_eduction as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -384,9 +390,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
-								//echo $get_eduction;
+								echo $coun;
 							}
 							?>  Jobs</p>
 						</div>
@@ -410,6 +416,7 @@
 								echo $get_healthcare;
 							}
 							else{
+								$coun = " ";
 								foreach ($get_healthcare as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -422,9 +429,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
-								//echo $get_healthcare;
+								echo $coun;
 							}
 							?>
 							 Jobs</p>
@@ -449,7 +456,7 @@
 								echo $get_RestaurantFood;
 							}
 							else{
-                  
+                                $coun = " ";
 								foreach ($get_RestaurantFood as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -462,8 +469,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
+						        echo $coun;
 							}
 							?> 
 							Jobs</p>
@@ -489,6 +497,7 @@
 								echo $get_Transportation;
 							}
 							else{
+								$coun =" ";
 								foreach ($get_Transportation as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -501,9 +510,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
-								//echo $get_Transportation;
+								echo $coun;
 							}
 							?> 	
 							Jobs</p>
@@ -528,6 +537,7 @@
 								echo $get_Telecommunications;
 							}
 							else{
+								$coun = " ";
 								foreach ($get_Telecommunications as $val) { 
 
 								date_default_timezone_set("Asia/Karachi");
@@ -540,9 +550,9 @@
 									$coun=$coun-1;
 								}
 								
-							    echo $coun;
+							    // echo $coun;
 						        }
-								//echo $get_Telecommunications;
+								echo $coun;
 							}
 							?> 	
 							Jobs</p>

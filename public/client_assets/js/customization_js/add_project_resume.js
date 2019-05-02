@@ -502,13 +502,20 @@ var pro_startDate_validater = function validater(start,to){
     	var check;
   	    var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
 		if(date1){
-			if(date1 >= date2){
+			if(date1 >= date0){
+				$("#pro_datefromerror").removeClass('success');
+				$("#pro_datefromerror").addClass('alert');
+				$("#pro_datefromerror").text('Invalid date');
+	            check=false;
+		    }
+			else if(date1 >= date2){
 				//alert(date1 + "  " +date2);
 		
 				$("#pro_enderror").removeClass('success');
@@ -783,13 +790,20 @@ var up_pro_startDate_validater = function validater(start,to){
     	var check;
   	    var date1 = start;
         var date2 = to;
+        date0 = new Date();
         date1 = new Date(date1);
 		date2 = new Date(date2);
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
 		if(date1){
-			if(date1 >= date2){
+			if(date1 >= date0){
+				$("#up_pro_datefromerror").removeClass('success');
+				$("#up_pro_datefromerror").addClass('alert');
+				$("#up_pro_datefromerror").text('Invalid date');
+	            check=false;
+		    }
+			else if(date1 >= date2){
 				//alert(date1 + "  " +date2);
 		
 				$("#up_pro_enderror").removeClass('success');

@@ -514,7 +514,7 @@ var exp_startDate_validater = function validater(start,to){
 
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
-		if(date1){
+		  if(date1){
 
 			if(date1 >= date0){
 				$("#exp_datefrom-error").removeClass('success');
@@ -522,7 +522,7 @@ var exp_startDate_validater = function validater(start,to){
 				$("#exp_datefrom-error").text('Invalid date');
 	            check=false;
 		    }
-			if(date1 >= date2){
+			else if(date1 >= date2){
 				// alert(date1 + "  " +date2);
 		
 				$("#exp_datetoerror").removeClass('success');
@@ -533,6 +533,7 @@ var exp_startDate_validater = function validater(start,to){
 				$("#exp_datetoerror").text(' ');
 				check=true;
 			}
+
 	    }else{
 	    	$("#exp_datefrom-error").removeClass('success');
 			$("#exp_datefrom-error").addClass('alert');
@@ -805,15 +806,8 @@ var up_exp_startDate_validater = function validater(start,to){
 		// alert(date1 + "  " +date2);
 		// date1 > date2;  //false	
 		if(date1){
-			if(date1 >= date0){
-				$("#up_exp_datefrom-error").removeClass('success');
-				$("#up_exp_datefrom-error").addClass('alert');
-				$("#up_exp_datefrom-error").text('Invalid date');
-	            check=false;
-		    }
 			if(date1 >= date2){
 				// alert(date1 + "  " +date2);
-		
 				$("#up_exp_datetoerror").removeClass('success');
 				$("#up_exp_datetoerror").addClass('alert');
 				$("#up_exp_datetoerror").text('Date Should B Greater');

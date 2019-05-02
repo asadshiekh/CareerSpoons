@@ -608,7 +608,7 @@ var loc_validater = function validater(name){
 			$("#dfrom-error").text('Invalid date');
             check=false;
 		}
-		if(date1 >= date2){
+		else if(date1 >= date2){
 
 			$("#dateto-error").removeClass('success');
 			$("#dateto-error").addClass('alert');
@@ -911,7 +911,7 @@ var up_loc_validater = function validater(name){
 			$("#up_datefrom_error").text('Invalid date');
             check=false;
 		}
-		if(date1 >= date2){
+		else if(date1 >= date2){
 
 			$("#up_dateto_error").removeClass('success');
 			$("#up_dateto_error").addClass('alert');
