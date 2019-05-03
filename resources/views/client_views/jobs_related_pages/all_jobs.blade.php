@@ -72,25 +72,18 @@
 					<div class="item-click">
 
 						<?php 
-						if($search_results=="0"){ ?>
+						if($search_results===0){ ?>
 
 							<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>
 
 						<?php }else{
 
 					  foreach ($search_results as $val) { 
-
-					  	date_default_timezone_set("Asia/Karachi");
-					  	$post_date = strtotime($val->post_visibility_date); 
-
-					  	$timenow = date('Y-m-d');
-					  	$timestamp = strtotime($timenow);
-
-					  	if($post_date<$timestamp){?>
-
-					  	<?php }
-					  	else{ ?>
-
+                        // echo "<pre>";
+                        // print_r($val);
+                        // echo "</pre>";
+					  	 ?>
+                         
 						<article>
 							<div class="brows-job-list">
 								<div class="col-md-1 col-sm-2 small-padding">
@@ -199,7 +192,7 @@
 
 							</span>
 						</article>
-					<?php }} ?>
+					<?php } ?>
 					</div>
 				
 

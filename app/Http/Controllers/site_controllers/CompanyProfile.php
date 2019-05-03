@@ -150,6 +150,7 @@ class CompanyProfile extends Controller
 
   public function frontOrgPostJob(Request $request){
       
+      $post_date = strtotime($request->post('post_visibility_date'));
       $obj = new Company_Post_Validation();
       $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
 
@@ -171,7 +172,7 @@ class CompanyProfile extends Controller
         'min_salary' => $request->post('min_salary'), 
         'max_salary' => $request->post('max_salary'), 
         'last_apply_date' => $request->post('last_apply_date'), 
-        'post_visibility_date' => $request->post('post_visibility_date'),
+        'post_visibility_date' => $post_date,
         'selected_gender' => $request->post('selected_gender'), 
         'prefered_age' => $request->post('prefered_age'),
         'job_post_info' =>$request->post('post_information'),

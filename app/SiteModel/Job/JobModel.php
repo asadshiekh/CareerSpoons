@@ -3,6 +3,7 @@
 namespace App\SiteModel\Job;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon;
 use DB;
 
 class JobModel extends Model
@@ -319,11 +320,15 @@ public function get_indus(){
       }
     }
 
-
+   
     public function get_select_industry_jobs($get_industry){
+      date_default_timezone_set("Asia/Karachi");
+      //$post_date = strtotime($val->post_visibility_date); 
+      $timenow = date('Y-m-d');
+      $timestamp = strtotime($timenow);
 
      if($get_industry){
-      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->paginate(2);
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(5);
 
     if($info->count()>0){
        return $info;
@@ -350,7 +355,7 @@ public function get_indus(){
     public function filter_result_by_industry($get_indus,$get_career,$get_city){
 
       $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->where('organization_posts.post_status','!=','Block');
-
+       
 
       if($get_indus){
         $info->where(['organization_posts.req_industry'=>$get_indus])->select('organization_posts.*','upload_org_img.*','add_organizations.*');
@@ -364,7 +369,7 @@ public function get_indus(){
        
 
      if($info->count()>0){
-       return $info->paginate(2);
+       return $info->paginate(9);
      }
      else{
        return  $info = $info->count();

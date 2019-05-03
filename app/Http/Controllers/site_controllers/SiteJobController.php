@@ -81,6 +81,7 @@ class SiteJobController extends Controller
       
       //dd($search_result);
       $page_title="CareerSpoons - All Jobs";
+       // dd($search_result);
     	return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result,'page_title'=>$page_title]);
     }
 
@@ -100,10 +101,8 @@ class SiteJobController extends Controller
       $city = $obj->get_cities();
       $indus = $obj->get_indus();
       $search_result = $obj->filter_result_by_industry($get_indus,$get_career,$get_city);
-      echo "<pre>";
-      print_r($search_result);
-      echo "</pre>";die();
-      $page_title="CareerSpoons - ".$get_i;
+          $page_title="CareerSpoons - ".$get_i;
+          
       return view('client_views.jobs_related_pages.all_jobs',['cities'=>$city,'industry'=>$indus,'search_results'=>$search_result,'page_title'=>$page_title]);
     
     }
