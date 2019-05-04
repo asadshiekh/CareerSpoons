@@ -35,7 +35,7 @@
 										<span class="designation">
 										<?php 
 											if(empty($general_info->candidate_profession)){
-												echo "<span style='color:red'> Profession Not Set Yet </span>";
+												echo "<p style='color:red'> Profession Not Set Yet </p>";
 											}
 											else{
 												echo $general_info->candidate_profession;
