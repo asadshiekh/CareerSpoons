@@ -65,10 +65,39 @@
 							<div class="get-touch">
 								<h4>Get in Touch</h4>
 								<ul>
-									<li><i class="fa fa-map-marker"></i><span>{{$general_info->candidate_city}}, {{$general_info->candidate_location}}</span></li>
+									<li><i class="fa fa-map-marker"></i>
+									<span>
+									<?php
+
+									if(empty($general_info->candidate_location)){
+
+										echo $general_info->candidate_city , $general_info->candidate_location;
+									}
+									else{
+
+										echo "<h5 style='color:red;display:inline-block'>Location Not Set Yet</h5>";
+									} 
+
+									?>
+									</span>
+									</li>
 									<li><i class="fa fa-envelope"></i><span>{{$info->user_email}}</span></li>
 									
-									<li><i class="fas fa-birthday-cake"></i><span>{{$general_info->candidate_dob}} , <b>{{$general_info->candidate_age}}</b> Year Old</span></li>
+									<li><i class="fas fa-birthday-cake"></i>
+
+										<span>
+											<?php
+												if(empty($general_info->candidate_dob)){
+
+													echo '<p style="color:red;display:inline-block">Age Not Set Yet</p>';
+												}
+												else{
+												echo $general_info->candidate_dob , 
+												$general_info->candidate_age.'Year Old';
+												}
+											 ?>
+										</span>
+									</li>
 								</ul>
 							</div>
 						</div>
