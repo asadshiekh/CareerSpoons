@@ -86,8 +86,24 @@
 										<img src="{{url('uploads/client_site/profile_pic')}}/{{$value->profile_image}}" class="img-responsive" alt="" />
 									</div>
 									<h4>{{$value->candidate_name}}</h4>
-									<span>( {{$value->candidate_profession}} )</span>
-									<p><i>{{$value->candidate_city}}</i></p>
+									<span>(<?php  
+										if(empty($value->candidate_profession)){
+											echo "Profession Not Set";
+										}	
+										else{
+
+										   echo $value->candidate_profession;
+										}
+									 ?> )</span>
+									<p><i>(<?php  
+										if(empty($value->candidate_city)){
+											echo "City Not Set";
+										}	
+										else{
+
+										   echo $value->candidate_city;
+										}
+									 ?> )</i></p>
 									<ul class="employee-social">
 										<li><a href="{{$value->candidate_fackbook}}" title="" target="_blank"><i class="fa fa-facebook"></i></a></li>
 										<li><a href="{{$value->candidate_google}}" title="" target="_blank"><i class="fa fa-twitter"></i></a></li>

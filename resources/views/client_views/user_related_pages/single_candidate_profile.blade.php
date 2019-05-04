@@ -31,8 +31,28 @@
 								<div id="new_typed-strings">
 									<div class="contains_heading" style="font-size: 6px">
 										<h4>{{$general_info->candidate_name}}</h4>
-										<span class="designation">{{$general_info->	candidate_profession}}</span>
-										<p>{{$general_info->candidate_website}}</p>
+										
+										<span class="designation">
+										<?php 
+											if(empty($general_info->candidate_profession)){
+												echo "<span style='color:red'> Profession Not Set Yet </span>";
+											}
+											else{
+												echo $general_info->candidate_profession;
+											}
+										?>
+										</span>
+										
+										<p><?php 
+
+										if(empty($general_info->candidate_website)){
+
+										}else{
+											echo $general_info->candidate_website; 
+										}
+
+										?></p>
+									
 									</div>
 								</div>
 
