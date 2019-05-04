@@ -71,11 +71,11 @@
 
 									if(empty($general_info->candidate_location)){
 
-										echo $general_info->candidate_city , $general_info->candidate_location;
+										echo "<h5 style='color:red;display:inline-block'>Location Not Set Yet</h5>";
 									}
 									else{
 
-										echo "<h5 style='color:red;display:inline-block'>Location Not Set Yet</h5>";
+										echo $general_info->candidate_city , $general_info->candidate_location;
 									} 
 
 									?>
