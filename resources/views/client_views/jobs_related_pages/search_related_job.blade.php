@@ -101,16 +101,7 @@
                     
                     <?php }else{
                     foreach ($job as $jobs) { 
-                    		date_default_timezone_set("Asia/Karachi");
-                    		 $post_date = strtotime($jobs->post_visibility_date); 
-               				//echo "  ----  ";
- 	                   		$timenow = date('Y-m-d');
-            				$timestamp = strtotime($timenow);
-                   		    //echo "id " .$jobs->post_id ."=";
-                    		if($post_date<$timestamp){?>
-                    			<!-- <h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4> -->
-                    		<?php }
-                    		else{ ?>
+                    		?>
 
                     			
                     		<div class="col-md-4 col-sm-4">
@@ -221,7 +212,7 @@
 
 
 
-						   <?php }}} ?>
+						   <?php }} ?>
 					    </div>
 				    </article>
 

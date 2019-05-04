@@ -12,6 +12,9 @@ class JobModel extends Model
 	public function fetch_all_jobs($title,$city,$area){
 
 if($title || $city || $area){
+  date_default_timezone_set("Asia/Karachi");
+  $timenow = date('Y-m-d');
+  $timestamp = strtotime($timenow);
 		// $jobs=DB::table('add_organizations')->join('organization_posts','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','add_organizations.company_id','=','job_preferences.company_id')->select('add_organizations.*', 'organization_posts.*','upload_org_img.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->orWhere(function($jobs)
   //     {
   //   $jobs->where('organization_posts.job_title','=',$title)->where('organization_posts.functional_area','=',$area)->where('job_preferences.city','=',$city);
@@ -36,7 +39,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
       }
 
 
-       $job=$jobs->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+       $job=$jobs->where('organization_posts.post_visibility_date','>',$timestamp)->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
       
 
 
@@ -67,7 +70,10 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
 
    // return $title;
   }else{
-    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id', '=', 'job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+    date_default_timezone_set("Asia/Karachi");
+  $timenow = date('Y-m-d');
+  $timestamp = strtotime($timenow);
+    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id', '=', 'job_preferences.post_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*','job_preferences.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
         if($jobs->count()>0){
 
             return $jobs;
@@ -142,6 +148,9 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
    
   }
   public function fetch_filter_jobs($fcity,$farea,$findus,$fexp,$fqual,$ftype,$fshift){
+  date_default_timezone_set("Asia/Karachi");
+  $timenow = date('Y-m-d');
+  $timestamp = strtotime($timenow);
     if($fcity || $farea || $findus || $fexp || $fqual || $ftype || $fshift){
     // echo $fshift;
      $jobee= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->join('job_preferences','organization_posts.post_id','=','job_preferences.post_id');
@@ -181,7 +190,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
       // }
 
 
-       $jobe=$jobee->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+       $jobe=$jobee->where('organization_posts.post_visibility_date','>',$timestamp)->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
         // dd($jobe);die();
         if($jobe->count()>0){
 
@@ -193,7 +202,7 @@ $jobs= DB::table('organization_posts')->join('add_organizations','add_organizati
 
 
     }else{
-      $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
+      $jobe= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->orderBy('organization_posts.post_id','desc')->simplePaginate(6);
         if($jobe->count()>0){
 
             return $jobe;
@@ -338,7 +347,7 @@ public function get_indus(){
      }
 
    }else{
-     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->paginate(2);
+     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(2);
 
      if($info->count()>0){
        return $info;
@@ -353,8 +362,12 @@ public function get_indus(){
 
 
     public function filter_result_by_industry($get_indus,$get_career,$get_city){
+      date_default_timezone_set("Asia/Karachi");
+      //$post_date = strtotime($val->post_visibility_date); 
+      $timenow = date('Y-m-d');
+      $timestamp = strtotime($timenow);
 
-      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->where('organization_posts.post_status','!=','Block');
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp);
        
 
       if($get_indus){
@@ -379,8 +392,10 @@ public function get_indus(){
 
 
   public function get_all_random_jobs(){
-
-    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->orderBy('organization_posts.post_id','desc')->limit(8)->get();
+    date_default_timezone_set("Asia/Karachi");
+        $timenow = date('Y-m-d');
+        $timestamp = strtotime($timenow);
+    $jobs= DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->orderBy('organization_posts.post_id','desc')->limit(8)->get();
     if($jobs->count()>0){
 
       return $jobs;

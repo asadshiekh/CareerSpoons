@@ -103,16 +103,7 @@
 
 			foreach ($random_jobs as $val) { 
 
-				date_default_timezone_set("Asia/Karachi");
-				$post_date = strtotime($val->post_visibility_date); 
-
-				$timenow = date('Y-m-d');
-				$timestamp = strtotime($timenow);
-                 		   
-				if($post_date<$timestamp){
-				// $error= '<h4 style="color:red;text-align:center;font-size:17px">  Sorry! Record Not Found </h4>'; 
-				 }
-				else{ ?>
+				 ?>
 			<!-- Single Job Grid -->
 			<div class="col-md-3 col-sm-6">
 				<div class="grid-view brows-job-list">
@@ -211,7 +202,7 @@
 			</div>
 		<?php }
 		
-	}
+	
 	
 } 
 ?>

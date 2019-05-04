@@ -676,6 +676,7 @@ public function updatePostSingleFront(Request $request){
 
    public function doPostUpdateFront(Request $request){
      $current_date = date("Y.m.d h:i:s");
+      $post_date = strtotime($request->post('post_visibility_date'));
     $j_post= array(
       'job_title' => $request->post('u_posted_job_title'), 
       'job_skills' => $request->post('u_skill_tags'), 
@@ -689,7 +690,7 @@ public function updatePostSingleFront(Request $request){
       'min_salary' => $request->post('min_salary'), 
       'max_salary' => $request->post('max_salary'), 
       'last_apply_date' => $request->post('last_apply_date'), 
-      'post_visibility_date' => $request->post('post_visibility_date'),
+      'post_visibility_date' =>  $post_date,
       'selected_gender' => $request->post('selected_gender'), 
       'prefered_age' => $request->post('prefered_age'),
       'job_post_info' =>$request->post('user_info'),
