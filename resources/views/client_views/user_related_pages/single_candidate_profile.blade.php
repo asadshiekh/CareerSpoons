@@ -34,8 +34,7 @@
 									</div>
 								</div>
 								<span id="new_typed"></span>
-										
-										<span class="designation">
+										<span class="designation" style="padding-left:0%">
 										<?php 
 											if(empty($general_info->candidate_profession)){
 												echo "<h5 style='color:red'> Profession Not Set Yet </h5>";
@@ -55,8 +54,6 @@
 										}
 
 										?></p>
-								
-							
 							</div>
 							<div class="detail-desc-skill">
 								@foreach ($get_candidate_skill_just_six as $skill)
