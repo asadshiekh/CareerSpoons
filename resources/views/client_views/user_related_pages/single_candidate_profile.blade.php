@@ -56,9 +56,7 @@
 
 										?></p>
 								
-								
-								
-								<br>
+							
 							</div>
 							<div class="detail-desc-skill">
 								@foreach ($get_candidate_skill_just_six as $skill)
