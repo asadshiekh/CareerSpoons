@@ -10,6 +10,7 @@ use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\Resumes\User_Resume_Model;
 use App\Mail\Site_Mail\User_Mail\User_Registeration;
 use App\Http\Requests\Client_Request\Company_Post_Validation;
+use App\Http\Requests\Client_Request\User_Registeration_Validation;
 use Validator;
 use Mail;
 use DB;
