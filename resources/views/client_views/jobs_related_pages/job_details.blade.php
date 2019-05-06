@@ -42,7 +42,7 @@
 
 							<h3>{{$job_detail->job_title}} </h3>
 
-						<span style="border-bottom:3px double black;display:inline;" class="designation"><a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}">  {{$job_detail->company_name}} </a></span>
+						<span style="border-bottom:3px double black;display:inline;padding-left: 0px;" class="designation"><a href="{{url('single-company-profile')}}/{{$job_detail->company_id}}">  {{$job_detail->company_name}} </a></span>
 
 						<p>
 								<?php 

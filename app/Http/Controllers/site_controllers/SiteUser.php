@@ -59,6 +59,7 @@ class SiteUser extends Controller
        
        $user_response2 = array(
           'candidate_id' => $lastInsertId,
+          'candidate_name'=> $request->candidate_name,
           'created_at' => $current_date
         );
        $obj2 =  new User_Resume_Model();

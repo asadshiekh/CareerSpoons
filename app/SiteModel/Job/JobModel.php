@@ -337,7 +337,7 @@ public function get_indus(){
       $timestamp = strtotime($timenow);
 
      if($get_industry){
-      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(5);
+      $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.req_industry','=',$get_industry)->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(10);
 
     if($info->count()>0){
        return $info;
@@ -347,7 +347,7 @@ public function get_indus(){
      }
 
    }else{
-     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(2);
+     $info = DB::table('organization_posts')->join('add_organizations','add_organizations.company_id', '=', 'organization_posts.company_id')->join('upload_org_img','add_organizations.company_id', '=', 'upload_org_img.company_id')->select('organization_posts.*','upload_org_img.*','add_organizations.*')->where('organization_posts.post_status','!=','Block')->where('organization_posts.post_visibility_date','>',$timestamp)->paginate(10);
 
      if($info->count()>0){
        return $info;

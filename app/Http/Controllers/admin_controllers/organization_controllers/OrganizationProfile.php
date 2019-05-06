@@ -228,7 +228,8 @@ class OrganizationProfile extends Controller
     {
 
       $current_date = date("Y.m.d h:i:s");
-      $post_date = strtotime($request->post('post_visibility_date'));
+      $post_dat = $request->post('last_apply_date');
+      $post_date=(strtotime($post_dat. ' + 1 days'));
       $job_post= array(
         'company_id' => $request->post('org_id'),
         'job_title' => $request->post('posted_job_title'), 
@@ -577,7 +578,7 @@ class OrganizationProfile extends Controller
       <input id="modal_last_date" name="last_apply_date" type="date" class="form-control" placeholder="select date" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" data-default-date="'.$job->last_apply_date.'"/>
       </div>
       </div>
-      <!-- Search Result Title-->
+      <!-- Search Result Title
       <div class="form-group col-sm-6">
       <label>Post visibility Date:</label>
       <div class="input-group">
@@ -589,7 +590,7 @@ class OrganizationProfile extends Controller
 
 
       </div>
-      </div>
+      </div>-->
       <!-- Search Result Title-->
       <div class="form-group col-sm-6">
       <label>Gender Preferences:</label>
@@ -712,7 +713,8 @@ class OrganizationProfile extends Controller
    }
 
    public function doUpdatePostData(Request $request){
-    $post_date = strtotime($request->post('post_visibility_date'));
+    $post_dat = $request->post('last_apply_date');
+    $post_date=(strtotime($post_dat. ' + 1 days'));
     $current_date = date("Y.m.d h:i:s");
     $j_post= array(
       'job_title' => $request->post('u_posted_job_title'), 

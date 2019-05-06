@@ -262,7 +262,7 @@
 											</div>
 										</div>
 										<div class="col-md-3 col-sm-3">
-											<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view</button></span>
+											<a class="btn btn-success" href="{{url('job-details')}}/{{$fetch_post->post_id}}"  style="height: 25px;padding-top: 1px;">view</a>
 										</div>
 										
 									</div>

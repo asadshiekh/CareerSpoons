@@ -43,9 +43,14 @@
                             
 
                             <ul>
-                                <li><strong class="j-view">85</strong>Total Visitors</li>
-                                <li><strong class="j-applied">110</strong>Job Applied</li>
-                                <li><strong class="j-shared">120</strong>Invitation</li>
+                                <li><strong class="j-view">0</strong>Total Visitors</li>
+                                <li></li>
+                                <li><strong class="j-shared">
+                                <?php $cout_post=DB::table('organization_posts')->where(['company_id'=>$fetch_org->company_id])->count(); 
+                                echo $cout_post; ?>
+                               
+                                
+                                </strong>Total Posts</li>
                             </ul>
 
 
@@ -670,8 +675,11 @@
 												<span class="resume-exp" style="margin-left:1%;"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Detail</button></span>
 
 												<!-- <span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_applicants('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view Applicants</button></span> -->
-
+                                                <?php $count=DB::table('apllied_jobs')->where(['post_id'=>$fetch_post->post_id])->count();
+                                                // echo $count;
+                                                if($count === 0){}else{  ?>
 												<span class="resume-exp"><a href="{{url('applicants')}}/{{$fetch_post->post_id}}" class="btn btn-success" style="height: 25px;padding-top: 1px;">view Applicants</a></span>
+												<?php } ?>
 											</div>
 										</div>
 									</div>
@@ -682,7 +690,7 @@
 
 			    </div>
 				@endforeach	
-			<div class="row">
+			<!-- <div class="row">
 				<ul class="pagination">
 					<li><a href="#">«</a></li>
 					<li class="active"><a href="#">1</a></li>
@@ -692,7 +700,7 @@
 					<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
 					<li><a href="#">»</a></li>
 				</ul>
-			</div>
+			</div> -->
 
 			</div>
 		</div>
@@ -1745,19 +1753,11 @@
 
 		if(name){
 
-			if(name.match("^[a-zA-Z\(\) ]+$")){
+			
 			$("#area-error").text(' ');
 				//return false;
 				check=true;
-			}else{
-				$("#area-error").removeClass('success');
-				$("#area-error").addClass('alert');
-				$("#area-error").text('Contains only alphabet');
-				//return false;
-				check=false;
-			}
-               ////end name       
-         //last
+			
      }else{
      	$("#area-error").removeClass('success');
      	$("#area-error").addClass('alert');
@@ -2003,6 +2003,8 @@
 		//for name
 
 	if(name){
+		$("#career-error").text(' ');
+				check=true;
      }else{
      	$("#career-error").removeClass('success');
      	$("#career-error").addClass('alert');
@@ -2308,63 +2310,6 @@
 	   		datenext = new Date(nextdate);
 	   		alert(datenext);
 	   		var p_date=$("#post_visible").value(datenext);
-	   		
-	  //  		var dd = today.getDate();
-			// var mm = today.getMonth() + 1; //January is 0!
-			// var yyyy = today.getFullYear();
-			// if (dd < 10) {
-			// 	dd = '0' + dd;
-			// }
-			// if (mm < 10) {
-			// 	mm = '0' + mm;
-			// }
-			// today = mm + '/' + dd + '/' + yyyy;
-   //         // alert(today);
-
-   //          var newdate = new Date(today);
-
-   //          newdate.setDate(newdate.getDate() + 25);
-    
-		 //    var newdd = newdate.getDate();
-		 //    var newmm = newdate.getMonth() + 1;
-		 //    var newy = newdate.getFullYear();
-
-		 //   var new_one = newmm + '/' + newdd + '/' + newy;
-		 //  // alert(new_one);
-
-   //          var result=date.split('/');
-
-           
-	  // 		var date_month=result[0];
-	  // 		var date_day=result[1];
-	  // 		var date_year=result[2];
-          
-             
-
-			// if(date_year>=yyyy && date_month>=mm && date_day>=dd){
-			// 	$("#p-error").removeClass('alert');
-			// 	$("#p-error").addClass('success');
-			// 	$("#p-error").text(' ');
-   //              check=true;
-			// 	// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
-   //  //                 $("#p-error").addClass('alert');
-			// 	// 	$("#p-error").removeClass('success');
-			// 	// 	$("#p-error").text('you choose too much days');
-			// 	// 	check=false;
-			// 	// }else{
-			// 	// 	$("#p-error").removeClass('alert');
-			// 	// 	$("#p-error").addClass('success');
-			// 	// 	$("#p-error").text(' ');
-			// 	// 	check=true;
-			// 	// }
-				
-			// }else{
-				
-			// 	$("#p-error").addClass('alert');
-			// 	$("#p-error").removeClass('success');
-			// 	$("#p-error").text('invalid date');
-			// 	check=false;
-			// }
 
 	   	}else{
 	   		$("#p-error").removeClass('success');
@@ -2443,7 +2388,24 @@
 		var gettext=text_validater(text);
 		var getdate=date_validater(l_date);
 		// var getpostdate=visibility_date_validater(p_date,l_date);
+// alert(getdate);
+// alert(gettext);
+// alert(getdegree);
+// alert(getqual);
+// alert(getage);
+// alert(getgender);
+// alert(getmax);
 
+// alert(getmin);
+// alert(gethour);
+// alert(getpos);
+// alert(getexp);
+// alert(getshift);
+// alert(gettype);
+// alert(getshift);
+// alert(getcareer);
+// alert(getindus);
+// alert(getmajor);
 		
         if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getgender && getage && getcity && gettype && getshift && getqual && getdegree && getdate && gettext){
         	//alert("sai a");

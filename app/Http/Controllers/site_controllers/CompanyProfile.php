@@ -150,7 +150,8 @@ class CompanyProfile extends Controller
 
   public function frontOrgPostJob(Request $request){
       
-      $post_date = strtotime($request->post('post_visibility_date'));
+       $post_dat = $request->post('last_apply_date');
+      $post_date=(strtotime($post_dat. ' + 1 days'));
       $obj = new Company_Post_Validation();
       $validation = Validator::make($request->all(),$obj->rules(),$obj->messages());
 
@@ -563,10 +564,10 @@ public function updatePostSingleFront(Request $request){
                         <label>Last Apply Date</label>
                         <input type="text" id="last_apply" name="last_apply_date"  class="form-control" placeholder="11/25/2018" data-theme="my-style" data-format="F S- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="'.$job->last_apply_date.'"/>
                       </div>
-                      <div class="col-md-4 col-sm-6">
+                      <!--<div class="col-md-4 col-sm-6">
                         <label>Post visibility Date:</label>
                         <input type="text" class="form-control" id="post_visible" name="post_visibility_date" placeholder="select date" data-theme="my-style" data-format="F S- Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en" value="'.$job->post_visibility_date.'"/>
-                      </div>
+                      </div>-->
                       <div class="col-md-4 col-sm-6">
                         <label>Gender Preferences</label>
                         <select name="selected_gender" class="form-control" id="selected_gender">
@@ -676,7 +677,8 @@ public function updatePostSingleFront(Request $request){
 
    public function doPostUpdateFront(Request $request){
      $current_date = date("Y.m.d h:i:s");
-      $post_date = strtotime($request->post('post_visibility_date'));
+      $post_dat = $request->post('last_apply_date');
+      $post_date=(strtotime($post_dat. ' + 1 days'));
     $j_post= array(
       'job_title' => $request->post('u_posted_job_title'), 
       'job_skills' => $request->post('u_skill_tags'), 

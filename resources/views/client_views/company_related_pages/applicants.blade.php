@@ -77,19 +77,20 @@
 											            <h5 style="margin-top: 25px;">{{$us->candidate_name}}</h5>
 											            <span>{{$us->user_email}}</span>
 										            </div>
-										            <div class="col-md-3 col-sm-3">
+										            <div class="col-md-2 col-sm-2">
 											       <!-- <?php // if($us->shortlisted === "1"){?>
 											            <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;background-color:white;color:green;margin-top: 25px;">Short Listed <i class="fa fa-check" disabled></i></button>
 												        <?php//  }else{ ?>
 												        <button type="button" class="btn btn-success" style="height:30px;padding-top:2px;width:150px;margin-top: 25px;" onclick="change_status('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Short List</button>
 												        <?php //   } ?> -->
 										            </div>
-										            <div class="col-md-2 col-sm-2">
+										            <div class="col-md-3 col-sm-3">
 												        <?php if($us->view_status === "1"){?>
 												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
 												        <?php }else{ ?>
 												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View</a>
 												        <?php } ?>
+												        <a href="{{url('candidate-profile')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;">View Profile</a>
 										            </div>
 									          </div>
 								          </div>

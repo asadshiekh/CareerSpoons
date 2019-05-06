@@ -1,8 +1,10 @@
 function change_phone_status(x){
-
+   // alert("yes");
+   var l = window.location;
+   var base_url = l.protocol + "//" + l.host + "/change_phone_mode";
 	var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	$.post("change_phone_mode",{_token:CSRF_TOKEN,x:x},function(data){
+	$.post(base_url,{_token:CSRF_TOKEN,x:x},function(data){
 
 		if(data=="yes"){
 			if(x=="1"){
@@ -66,8 +68,10 @@ function change_email_setting(){
 	var password = $("#password_email").val();
 
 	//alert(new_email+password);
+	var l = window.location;
+   var base_url = l.protocol + "//" + l.host + "/change-candidate-email";
 
-	$.post("change-candidate-email",{_token:CSRF_TOKEN,new_email:new_email,password:password},function(data){
+	$.post(base_url,{_token:CSRF_TOKEN,new_email:new_email,password:password},function(data){
 
 			if(data=="yes"){
 
@@ -141,8 +145,9 @@ function change_password(){
 	var current_password = $("#new_password").val();
 	var new_password = $("#password-field").val();
  	//alert(current_password+new_password);
-
- 	$.post("candidate-change-password-from-pofile",{_token:CSRF_TOKEN,current_password:current_password,new_password:new_password},function(data){
+   var l = window.location;
+   var base_url = l.protocol + "//" + l.host + "/candidate-change-password-from-pofile";
+ 	$.post(base_url,{_token:CSRF_TOKEN,current_password:current_password,new_password:new_password},function(data){
 
  		if(data=="yes"){
 
@@ -213,8 +218,9 @@ function change_password(){
 
  		var notyf = new Notyf();
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
- 	$.post("delete-candidate-account-preminently",{_token:CSRF_TOKEN},function(data){
+   var l = window.location;
+   var base_url = l.protocol + "//" + l.host + "/delete-candidate-account-preminently";
+ 	$.post(base_url,{_token:CSRF_TOKEN},function(data){
 
  		if(data=="yes"){
 

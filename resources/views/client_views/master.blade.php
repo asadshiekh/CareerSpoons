@@ -1243,11 +1243,13 @@
 					var l = window.location;
 
 					var base_url = l.protocol + "//" + l.host + "/logout";
-					
+					var pro = l.protocol + "//" + l.host + "/user-profile";
+					var mak = l.protocol + "//" + l.host + "/make-user-resume";
+                    // alert(mak);
 					$.post(base_url,{_token:CSRF_TOKEN},function(data){
 						if(data == "yes"){
 							// alert(window.location);
-							if(window.location == "http://careerspoons.com/user-profile"){
+							if(window.location == pro || window.location == mak){
 							window.location.replace('/');
 						}else{
 							window.location.replace(window.location);

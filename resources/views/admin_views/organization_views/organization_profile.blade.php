@@ -433,7 +433,7 @@
                         </div>
                       </div>
                       <!-- Search Result Title-->
-                      <div class="form-group col-sm-6">
+                     <!--  <div class="form-group col-sm-6">
                         <label>Post visibility Date:</label>
                         <div class="input-group">
                           <div class="input-group-addon">
@@ -444,7 +444,7 @@
 
 
                         </div>
-                      </div>
+                      </div> -->
                       <!-- Search Result Title-->
                       <div class="form-group col-sm-6">
                         <label>Gender Preferences:</label>
@@ -712,9 +712,9 @@
 
                       ?></p></li>
                       <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span><a class="btn btn-default" href="{{url('uploads/organization_documents')}}<?php echo '/'.$org_page->company_document;?>" target="_blank">view Document</a></li>
-                      <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>
+                      <!-- <li><span style="display: block; padding-bottom: 3%;">Organization Document:</span>
 
-                        <a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li>
+                        <a class="word" href="http://docs.google.com/gview?url=uploads/organization_documents<?php echo '/'.$org_page->company_document;?>&embedded=true">document view !!</a></li> -->
 
                       </ul>
 

@@ -505,6 +505,20 @@ var cnic_validater = function validater(cnic){
         return check;
     }
 
+//for check
+ $( document ).ready(function() {
+   	$('#company_btn').attr('disabled','disabled');	
+   });
+   $( "input[type=checkbox]" ).on( "click", check );
+   function check(){
+   	var checkon=$("#check").val();
+   	if ($('#checkbox').is(":checked")){
+   		$('#company_btn').removeAttr('disabled');
+   	}
+   	else{
+   		$('#company_btn').attr('disabled','disabled');	
+   	}
+   }
 /////company validation main function
 function company_validate(){
 	//alert("yes");
@@ -539,8 +553,8 @@ function company_validate(){
 			function returnData(read){
 				if(read =="true"){
 					if(getname && getcnic && getpass && getphone && getcity && gettype){
-						//company_registration();
-						yahooo();
+						register_company();
+						// yahooo();
 					}
 				}
 				else{

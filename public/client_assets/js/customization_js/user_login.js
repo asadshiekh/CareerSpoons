@@ -7,8 +7,7 @@ function user_login(){
 var l = window.location;
 var base_url = l.protocol + "//" + l.host + "/do-user-login";
 var use_i = l.protocol + "//" + l.host + "/user-login";
-var use_m = l.protocol + "//" + l.host + "/make-user-resume";
-//alert(base_url);
+// alert(use_m);
 	$.post(base_url,{_token:CSRF_TOKEN,user_email:user_email,user_password:user_password},function(data){ 
 
 		if(data =="yes"){				
@@ -34,7 +33,7 @@ var use_m = l.protocol + "//" + l.host + "/make-user-resume";
 				setTimeout(
 					function(){
 
-						if(window.location == use_i || window.location == use_m){
+						if(window.location == use_i){
                          window.location.replace("/");
 						}
                         else{

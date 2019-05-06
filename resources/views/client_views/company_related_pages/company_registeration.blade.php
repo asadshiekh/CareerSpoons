@@ -188,7 +188,7 @@
 								</span>
 							</div>
 
-							<button class="btn btn-login" onclick="company_validate();" type="button" >Create Account</button>
+							<button class="btn btn-login" onclick="company_validate();" type="button" id="company_btn">Create Account</button>
 							<span>Have You Account ? <a href="{{url('company-login')}}"> Login</a></span>
 						</form>
 					</div>
