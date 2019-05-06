@@ -18,6 +18,8 @@ class SearchUsers extends Controller
     $indus='';
 
     	 $candidates= DB::table('register_users')->join('user_profile_images','register_users.id', '=', 'user_profile_images.candidate_id')->join('add_user_generals_info','register_users.id', '=', 'add_user_generals_info.id')->join('add_user_social_media_links','register_users.id', '=', 'add_user_social_media_links.candidate_id')->select('register_users.*','user_profile_images.*','add_user_generals_info.*','add_user_social_media_links.*')->simplePaginate(6);
+         // dd($candidates);
+         // die();
          if($candidates->count()>0){
            $candidates=$candidates;
          }
