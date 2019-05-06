@@ -54,9 +54,9 @@ class User_Resume_Model extends Model
 		return $data; 
 	}
 
-	public function add_user_social_media($user_response_2){
+	public function update_user_social_media($user_response_2,$candidate_id){
 
-		$data = DB::table('add_user_social_media_links')->insert($user_response_2);
+		$data = DB::table('add_user_social_media_links')->where('candidate_id',$candidate_id)->update($user_response_2);
 		return $data; 
 	}
 

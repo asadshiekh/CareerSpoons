@@ -74,6 +74,7 @@ class SiteUser extends Controller
           'created_at' => $current_date
         );
 
+
        $obj3 =  new UserProfileImages();
        $data = $obj3->do_initialized_user_profile_image_table_with_default_values($user_response3);
 
@@ -81,6 +82,7 @@ class SiteUser extends Controller
         $obj4 =  new UserProfileModel();
         $data = $obj4->do_initialized_review($user_response3);
         $data1 = $obj4->do_initialized_job_match_criteria($user_response3);
+        $data2 = $obj4->do_initialized_user_candidate_links($user_response3);
 
 
     	 if($user_info){

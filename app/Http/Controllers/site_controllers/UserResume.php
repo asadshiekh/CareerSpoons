@@ -432,12 +432,11 @@ class UserResume extends Controller
 
 
 		$user_response_2 = array(
-			'candidate_id' => $request->session()->get('id'),
 			'candidate_fackbook' => $request->candidate_facebook_link,
 			'candidate_google' => $request->candidate_google_link,
 			'candidate_twitter' => $request->candidate_twitter_link,
 			'candidate_linkedin' => $request->candidate_linkedin,
-			'created_at' => $current_date
+			'updated_at' => $current_date
 		);
 
         $template=array(
@@ -453,7 +452,7 @@ class UserResume extends Controller
    
 		$obj =  new User_Resume_Model();
 		$info = $obj->add_user_general($user_response,$request->session()->get('id'));
-		$info1 = $obj->add_user_social_media($user_response_2);
+		$info1 = $obj->update_user_social_media($user_response_2,$request->session()->get('id'));
 
 		if($info){
 

@@ -27,6 +27,12 @@ class UserProfileModel extends Model
 		return $data; 
 	}
 
+	public function do_initialized_user_candidate_links($user_response3){
+		
+		$data = DB::table('add_user_social_media_links')->insert($user_response3);
+		return $data;
+	}
+
 	public function update_reviews($candidate_id,$user_response){
 
 		$data = DB::table('candidate_reviews')->where('candidate_id',$candidate_id)->update($user_response);
