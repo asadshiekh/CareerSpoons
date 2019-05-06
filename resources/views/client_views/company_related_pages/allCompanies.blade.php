@@ -5,8 +5,8 @@
 			<section class="inner-header-page">
 				<div class="container">
 					
-					<h2>Hire The Best UI Specialists</h2>
-					<p>Work with the world’s best talent on Upwork — the top freelancing website trusted by over 5 million businesses..</p>
+					<h2>I never dreamed about success, I worked for it</h2>
+					<p>Work with the world’s best talent on Upwork — Join Best and trusted Companies to explore Your Career with trusted businesses.</p>
 					
 				</div>
 			</section>

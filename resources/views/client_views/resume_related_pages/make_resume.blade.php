@@ -240,35 +240,35 @@
 					<h2 class="detail-title">Social Profile</h2>
 
 					<div class="col-md-6 col-sm-6">
-						<span id="can_facebook_error" style="display: inline;"></span>
+						<!-- <span id="can_facebook_error" style="display: inline;"></span> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-							<input type="text" name="candidate_facebook_link" id="candidate_facebook_social_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_facebook_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
-						<span id="can_google_error" style="display: inline;"></span>
+						<!-- <span id="can_google_error" style="display: inline;"></span> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-							<input type="text" id="candidate_google_social_link" name="candidate_google_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_google_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 					<div class="col-md-6 col-sm-6">
-						<span id="can_twitter_error" style="display: inline;"></span>
+						<!-- <span id="can_twitter_error" style="display: inline;"></span> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-							<input type="text" name="candidate_twitter_link" id="candidate_twitter_social_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_twitter_link" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 
 
 					<div class="col-md-6 col-sm-6">
-						<span id="can_linkedin_error" style="display: inline;"></span>
+						<!-- <span id="can_linkedin_error" style="display: inline;"></span> -->
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
-							<input type="text" name="candidate_linkedin" id="candidate_linkedin_social_link" class="form-control" placeholder="Profile Link">
+							<input type="text" name="candidate_linkedin" class="form-control" placeholder="Profile Link">
 						</div>	
 					</div>
 

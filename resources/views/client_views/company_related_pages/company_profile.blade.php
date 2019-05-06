@@ -392,17 +392,13 @@
 			</span>
 			<input type="date" id="last_apply" name="last_apply_date"  class="form-control" data-theme="my-style" data-format="m/d/Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en" onkeyup="check_date();" />
 		</div>
-		<div class="col-md-4 col-sm-6">
+		<!-- <div class="col-md-4 col-sm-6">
 			<label style="display: inline-block;">Post visibility Date:</label><span style="display: inline;" id="p-error">
-				<?php
-
-				if($errors->has('post_visibility_date')){
-				echo($errors->first('post_visibility_date',"<span style='color:red;font-size:10px;margin-top:0px;padding-top:0px'>* :message</span>"));
-				}?>
+				
 
 			</span>
 			<input type="date" class="form-control" id="post_visible" name="post_visibility_date" data-theme="my-style" data-format="S F- Y" data-large-mode="true" data-min-year="2019" data-max-year="2020" data-translate-mode="true" data-lang="en" />
-		</div>
+		</div> -->
 		<div class="col-md-4 col-sm-6">
 			<label style="display: inline-block;">Gender Preferences</label><span style="display: inline;" id="gender-error">
 				<?php
@@ -2260,89 +2256,35 @@
  }
 
 //date function last apply date
-  var date_validater = function validater(date){
+  var date_validater = function validater(dates){
     	var check;
-	   	if(date){
+	   	if(dates){
 	   		var today = new Date();
-	   		var dd = today.getDate();
-			var mm = today.getMonth() + 1; //January is 0!
-			var yyyy = today.getFullYear();
-			if (dd < 10) {
-				dd = '0' + dd;
-			}
-			if (mm < 10) {
-				mm = '0' + mm;
-			}
-			today = mm + '/' + dd + '/' + yyyy;
-           // alert(today);
-
-            var newdate = new Date(today);
-
-            newdate.setDate(newdate.getDate() + 25);
-    
-		    var newdd = newdate.getDate();
-		    var newmm = newdate.getMonth() + 1;
-		    var newy = newdate.getFullYear();
-
-		   var new_one = newmm + '/' + newdd + '/' + newy;
-		  // alert(new_one);
-
-            var result=date.split('/');
-
-           
-	  		var date_month=result[0];
-	  		var date_day=result[1];
-	  		var date_year=result[2];
-
-	  		var selected_date= date_month + '/' + date_day + '/' + date_year;
-          
-             
-
-			if(date_year>=yyyy && date_month>=mm){
-				if(selected_date < today){
-					$("#l-error").addClass('alert');
-					$("#l-error").removeClass('success');
-					$("#l-error").text('invalid date');
-                    check=false;
-				}else{
-				$("#l-error").removeClass('alert');
+	   		var newtoday=today.setDate(today.getDate());
+	   		var thedat=new Date(dates);
+	   		var datesnew=thedat.setDate(thedat.getDate());
+	   		var newdate=today.setDate(today.getDate() + 15);
+	   		// alert(newtoday+"  "+newdate);
+	   		// alert(datesnew);
+	   		if(datesnew >= newdate){
+	   			$("#l-error").addClass('alert');
+				$("#l-error").removeClass('success');
+				$("#l-error").text('Too many days');
+	            check=false;
+	   		}
+	   		else if(newtoday >= datesnew){
+	   			$("#l-error").addClass('alert');
+				$("#l-error").removeClass('success');
+				$("#l-error").text('invalid Date');
+	            check=false;
+	   		}else{
+	   			$("#l-error").removeClass('alert');
 				$("#l-error").addClass('success');
 				$("#l-error").text(' ');
-					if(new_one < selected_date){
-                        $("#l-error").removeClass('alert');
-						$("#l-error").addClass('success');
-						$("#l-error").text(' ');
-						check=true;
-					}else{
-						
-						$("#l-error").addClass('alert');
-						$("#l-error").removeClass('success');
-						$("#l-error").text('too many days');
-	                    check=false;
-					}
-					
-				}//05/15/2019     //05/01/2019
-                   
-				// if(date_day>=newdd && date_month>=newmm && date_year>=newy){
-    //                 $("#l-error").addClass('alert');
-				// 	$("#l-error").removeClass('success');
-				// 	$("#l-error").text('you choose too much days');
-				// 	check=false;
-				// }else{
-				// 	$("#l-error").removeClass('alert');
-				// 	$("#l-error").addClass('success');
-				// 	$("#l-error").text(' ');
-				// 	check=true;
-				// }
-				
-			}else{
-				
-				$("#l-error").addClass('alert');
-				$("#l-error").removeClass('success');
-				$("#l-error").text('invalid date');
-				check=false;
-			}
-
+				check=true;
+	   		}
+	   	
+       
 	   	}else{
 	   		$("#l-error").removeClass('success');
 			$("#l-error").addClass('alert');
@@ -2354,9 +2296,7 @@
 	   	return check;
    }
 
-function check_date(){
-	alert(yes);
-}
+
 
 //date function visibility date
   var visibility_date_validater = function validater(date,l_date){
@@ -2457,7 +2397,7 @@ function check_date(){
 		var min_sal=$("#min_salary").val();
 		var max_sal=$("#max_salary").val();
 		var l_date=$("#last_apply").val();
-		var p_date=$("#post_visible").val();
+		// var p_date=$("#post_visible").val();
 		var gender=$("#selected_gender").val();
 		var age=$("#prefered_age").val();
 		var qual=$("#selected_qualificaltion").val();
@@ -2494,18 +2434,18 @@ function check_date(){
 		var gethour=hour_validater(hour);
 		var getmin=min_validater(min_sal);
 		var getmax=max_validater(max_sal);
-		// var getlast=l_validater(l_date);
-		// var getdate=p_validater(p_date);
+									// var getlast=l_validater(l_date);
+									// var getdate=p_validater(p_date);
 		var getgender=gender_validater(gender);
 		var getage=age_validater(age);
 		var getqual=qual_validater(title);
 		var getdegree=degree_validater(title);
 		var gettext=text_validater(text);
 		var getdate=date_validater(l_date);
-		var getpostdate=visibility_date_validater(p_date,l_date);
+		// var getpostdate=visibility_date_validater(p_date,l_date);
 
 		
-        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getgender && getage && getcity && gettype && getshift && getqual && getdegree && getdate && getpostdate){
+        if(gettitle && getskills && getarea && getmajor && getindus && getcareer && getexp && getpos && gethour && getmin && getmax && getgender && getage && getcity && gettype && getshift && getqual && getdegree && getdate && gettext){
         	//alert("sai a");
         	
         

@@ -555,10 +555,10 @@ $('#can_general_form').on('submit', function(e){
 	// alert("yes");
 	var getf1=function1();
 	var getf2=function2();
-	var getf3=function3();
+	//var getf3=function3();
 	// alert(getf1 + " "+getf2 +" "+getf3);
 	
-	if(getf1 && getf2 && getf3){
+	if(getf1 && getf2){
 		return true;
 	}else{
 		return false;

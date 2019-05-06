@@ -86,7 +86,7 @@
 					<div class="collapse navbar-collapse" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 							<li><a href="{{url('all-jobs')}}"><i class="fa fa-spinner fa-pulse"></i>All Jobs</a></li>
-						<li><a href="pricing.html"><i class="fas fa-city"></i>Companies</a></li>
+						<li><a href="{{url('search-company')}}"><i class="fas fa-city"></i>Companies</a></li>
 						<li><a href="pricing.html"><i class="fas fa-file-signature"></i>Create Resume</a></li>
 						@if(Session::has('user_status'))
 						<li class="nav-item dropdown">
@@ -96,7 +96,7 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('user-profile')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspYour Profile</a></li>
 								<li><a class="dropdown-item" href="#CandidateSetting" data-toggle="modal" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspSetting</a></li>		
-								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
+								<li><a class="dropdown-item" onclick="logout_all();" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
 						@elseif (Session::has('company_status'))
@@ -107,7 +107,7 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{url('company-profile')}}" style="text-align:left;"><i class="fas fa-city"></i>&nbsp&nbsp&nbsp&nbspProfile</a></li>
 
-								<li><a class="dropdown-item" href="{{url('company-logout')}}" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
+								<li><a class="dropdown-item" onclick="company_logout();" style="text-align:left;"><i class="fas fa-sign-out-alt"></i>&nbsp&nbsp&nbsp&nbspLogout</a></li>
 							</ul>
 						</li>
 
@@ -801,6 +801,25 @@
 					$.post(base_url,{_token:CSRF_TOKEN},function(data){
 						if(data == "yes"){
 							window.location.replace(window.location);
+						}
+					 });
+				}
+
+				function company_logout(){
+					
+					var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+					var l = window.location;
+
+					var base_url = l.protocol + "//" + l.host + "/company-logout";
+					
+					$.post(base_url,{_token:CSRF_TOKEN},function(data){
+						if(data == "yes"){
+							// alert(window.location);
+							if(window.location == "http://careerspoons.com/company-profile"){
+							window.location.replace('/');
+						}else{
+							window.location.replace(window.location);
+						}
 						}
 					 });
 				}
