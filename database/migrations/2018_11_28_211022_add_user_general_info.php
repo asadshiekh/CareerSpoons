@@ -16,7 +16,6 @@ class AddUserGeneralInfo extends Migration
         Schema::create('Add_User_Generals_info', function (Blueprint $table) {
             $table->increments('id');
             $table->string('candidate_id');
-            $table->string('candidate_name')->nullable($value = true);
             $table->string('candidate_profession')->nullable($value = true);
             $table->string('candidate_city')->nullable($value = true);
             $table->string('candidate_location')->nullable($value = true);

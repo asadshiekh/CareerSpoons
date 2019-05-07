@@ -79,7 +79,7 @@
 						<span id="can_name_error" style="display: inline;"></span>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input type="text" value="{{Session::get('candidate_name')}}" name="candidate_name" id="candidate_name" class="form-control" placeholder="User name">
+							<input type="text" value="{{Session::get('candidate_name')}}" name="candidate_name" id="candidate_name" class="form-control" placeholder="User name" disabled>
 						</div>	
 					</div>
 

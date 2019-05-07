@@ -33,7 +33,7 @@ class AddOrganization extends Migration
             $table->string('company_cnic');
             $table->longText('company_info')->nullable($value = "No info Yet");
             $table->string('company_document')->default('Not Yet Have Any Document');
-
+            $table->string('company_verify_status')->default('0');
             $table->timestamps();
         });
     }

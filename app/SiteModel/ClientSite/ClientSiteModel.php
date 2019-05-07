@@ -37,8 +37,11 @@ class ClientSiteModel extends Model
     }
 
     public function get_all_accounting_jobs(){
+         date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Accounting_&_Finance')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Accounting_&_Finance')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -50,8 +53,11 @@ class ClientSiteModel extends Model
     }
 
     public function get_all_automotive_jobs(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Automotive')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Automotive')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -63,8 +69,11 @@ class ClientSiteModel extends Model
 
 
     public function get_all_business_jobs(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Business')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Business')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -76,9 +85,12 @@ class ClientSiteModel extends Model
 
 
     public function get_all_education_jobs(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
 
-        $response = DB::table('organization_posts')->where('req_industry','Education_Training')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Education_Training')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -91,8 +103,11 @@ class ClientSiteModel extends Model
 
 
     public function get_all_healthcare_jobs(){
+         date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Healthcare')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Healthcare')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -105,8 +120,11 @@ class ClientSiteModel extends Model
 
 
     public function get_all_RestaurantFood(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Restaurant_&_Food')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Restaurant_&_Food')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -119,8 +137,11 @@ class ClientSiteModel extends Model
 
 
     public function get_all_Transportation(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Transportation')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Transportation')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;
@@ -133,8 +154,11 @@ class ClientSiteModel extends Model
 
 
     public function get_all_Telecommunications(){
+        date_default_timezone_set("Asia/Karachi");
+          $timenow = date('Y-m-d');
+          $timestamp = strtotime($timenow);
 
-        $response = DB::table('organization_posts')->where('req_industry','Telecommunications')->get();
+        $response = DB::table('organization_posts')->where('req_industry','Telecommunications')->where('post_visibility_date','>',$timestamp)->get();
 
         if($response->count()>0){
             return $response;

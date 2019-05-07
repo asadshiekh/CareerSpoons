@@ -881,8 +881,16 @@ public function updatePostSingleFront(Request $request){
     }
 
     $about=DB::table('about_us_content')->first();
+    $us_id=$request->session()->get('id');
+    $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->count();
+
+    if($fetch_comments>0){
+     $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->inRandomOrder()->get();
+     }
+     //
+
     $page_title="CareerSpoons - ".$fetch_company->company_name;
-    return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'company_social_links'=>$fetch_company_social_links,'page_title'=>$page_title]);
+    return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'company_social_links'=>$fetch_company_social_links,'page_title'=>$page_title,'fetch_comments'=>$fetch_comments]);
 
   }
 

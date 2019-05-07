@@ -246,22 +246,23 @@
 								echo $get_AccountingFinance;
 							}
 							else{
-								$coun = " ";
 								$coun=$get_AccountingFinance->count();
-								foreach ($get_AccountingFinance as $val) { 
+								// $coun = " ";
+								// $coun=$get_AccountingFinance->count();
+								// foreach ($get_AccountingFinance as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
+							 //    // echo $coun;
+						  //       }
 								echo $coun;
 							}
 							?>
@@ -287,23 +288,24 @@
 								echo $get_Automotive;
 							}
 							else{
-								$coun = " ";
 								$coun=$get_Automotive->count();
-								foreach ($get_Automotive as $val) { 
+								// $coun = " ";
+								// $coun=$get_Automotive->count();
+								// foreach ($get_Automotive as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
-								//echo $get_Automotive;
+							 //    // echo $coun;
+						  //       }
+								// //echo $get_Automotive;
 								echo $coun;
 							}
 							?>	
@@ -329,23 +331,24 @@
 								echo $get_business;
 							}
 							else{
-								$coun=" ";
 								$coun=$get_business->count();
-								foreach ($get_business as $val) { 
+								// $coun=" ";
+								// $coun=$get_business->count();
+								// foreach ($get_business as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
-								//echo $get_business;
+							 //    // echo $coun;
+						  //       }
+								// //echo $get_business;
 								echo $coun;
 							}
 							?>		
@@ -371,22 +374,23 @@
 								echo $get_eduction;
 							}
 							else{
-								$coun = " ";
 								$coun=$get_eduction->count();
-								foreach ($get_eduction as $val) { 
+								// $coun = " ";
+								// $coun=$get_eduction->count();
+								// foreach ($get_eduction as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
+							 //    // echo $coun;
+						  //       }
 								echo $coun;
 							}
 							?>  Jobs</p>
@@ -411,22 +415,23 @@
 								echo $get_healthcare;
 							}
 							else{
-								$coun = " ";
-								$coun=$get_healthcare->count();
-								foreach ($get_healthcare as $val) { 
+								 $coun=$get_healthcare->count();
+								// $coun = " ";
+								// $coun=$get_healthcare->count();
+								// foreach ($get_healthcare as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
+							 //    // echo $coun;
+						  //       }
 								echo $coun;
 							}
 							?>
@@ -452,22 +457,23 @@
 								echo $get_RestaurantFood;
 							}
 							else{
-                                $coun = " ";
-                                $coun=$get_RestaurantFood->count();
-								foreach ($get_RestaurantFood as $val) { 
+								$coun=$get_RestaurantFood->count();
+        //                         $coun = " ";
+        //                         $coun=$get_RestaurantFood->count();
+								// foreach ($get_RestaurantFood as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
+							 //    // echo $coun;
+						  //       }
 						        echo $coun;
 							}
 							?> 
@@ -494,22 +500,22 @@
 								echo $get_Transportation;
 							}
 							else{
-								$coun =" ";
+								// $coun =" ";
 								$coun=$get_Transportation->count();
-								foreach ($get_Transportation as $val) { 
+								// foreach ($get_Transportation as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// }
 								
-							    // echo $coun;
-						        }
+							 //    // echo $coun;
+						  //       }
 								echo $coun;
 							}
 							?> 	
@@ -535,25 +541,26 @@
 								echo $get_Telecommunications;
 							}
 							else{
-								$couns = " ";
-								$coun=$get_Telecommunications->count();
-								foreach ($get_Telecommunications as $val) { 
+								echo $get_Telecommunications->count();
+								// $couns = " ";
+								// $coun=$get_Telecommunications->count();
+								// foreach ($get_Telecommunications as $val) { 
 
-								date_default_timezone_set("Asia/Karachi");
-								$post_date = strtotime($val->post_visibility_date); 
+								// date_default_timezone_set("Asia/Karachi");
+								// $post_date = strtotime($val->post_visibility_date); 
 
-								$timenow = date('Y-m-d');
-								$timestamp = strtotime($timenow);
+								// $timenow = date('Y-m-d');
+								// $timestamp = strtotime($timenow);
 				                
-								if($post_date<$timestamp){
-									$coun=$coun-1;
-									$couns=$coun;
-									// echo $couns;
-								}
+								// if($post_date<$timestamp){
+								// 	$coun=$coun-1;
+								// 	$couns=$coun;
+								// 	// echo $couns;
+								// }
 								
-							    // echo $coun;
-						        }
-								echo $coun;
+							 //    // echo $coun;
+						  //       }
+								// // echo $coun;
 							}
 							?> 	
 							Jobs</p>

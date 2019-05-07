@@ -111,7 +111,9 @@
                     <li><a href="{{url('view-organization')}}">View Organization</a></li>
                      <?php if(Session::get('account_right') != 'analytics'){?>
                     <li><a href="{{url('add-organization')}}">Add Organization</a></li>
+                    <li><a href="{{url('organization-documents')}}">Verify Organization</a></li>
                   <?php } ?>
+                  
 
                   </ul>
                 </li>

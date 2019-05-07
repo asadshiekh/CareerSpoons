@@ -555,7 +555,7 @@
 		<h3>Gerneral Info</h3>
 		<ul class="job-detail-des">
 			@foreach ($general_info as $user_general_info)
-			<li><span>Full-Name:</span>{{$user_general_info->candidate_name}}</li>
+			<li><span>Full-Name:</span>{{Session::get('candidate_name')}}</li>
 			<li><span>Professional-Title:</span>{{$user_general_info->candidate_profession}}</li>
 			<li><span>Region:</span>{{$user_general_info->candidate_city}}</li>
 			<li><span>DOB:</span>{{$user_general_info->candidate_dob}}</li>
@@ -1687,7 +1687,7 @@ data-dismiss="modal" aria-hidden="true">×</button>
 	@foreach ($general_info as $user_general_info)
 	<div class="col-md-4 col-sm-6">
 		<label style="display: inline-block;">Full Name</label><span id="can_name_error" style="display: inline;"> </span>
-		<input type="text" name="candidate_name" id="candidate_name" value="{{$user_general_info->candidate_name}}" class="form-control">
+		<input type="text" name="candidate_name" id="candidate_name" value="{{Session::get('candidate_name')}}" class="form-control">
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<label style="display: inline-block;">Professional-Title</label><span id="can_protitle_error" style="display: inline;"> </span>

@@ -409,6 +409,11 @@ Route::any('register-company',"admin_controllers\organization_controllers\AdminO
 
 Route::any('change-org-status',"admin_controllers\organization_controllers\AdminOrganization@changeOrgStatus")->middleware('Analyst');
 
+//organization verify
+
+Route::any('organization-documents',"admin_controllers\organization_controllers\AdminOrganization@viewOrgDocument")->middleware('Analyst');
+Route::any('admin-change-OrgState',"admin_controllers\organization_controllers\AdminOrganization@doChangeOrgVerifyStatus")->middleware('Analyst');
+
 
 //City
 Route::get('view-cities',"admin_controllers\organization_controllers\AddOrganizationCity@viewCitiesPage");
@@ -539,7 +544,6 @@ Route::any('organization-reviews-change-status',"admin_controllers\main_controll
 Route::any('logo-orders',"admin_controllers\organization_controllers\org_logo_orders@viewLogoOrders");
 Route::any('company-pkg-record',"admin_controllers\organization_controllers\org_logo_orders@viewPkgRecord");
 Route::any('upload-logo',"admin_controllers\organization_controllers\org_logo_orders@uploadAdvertisedLogo");
-
 
 
 

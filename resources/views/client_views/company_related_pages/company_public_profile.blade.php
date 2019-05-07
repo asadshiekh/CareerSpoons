@@ -406,7 +406,7 @@
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-3">
-										<span class="resume-exp"><button type="button" class="btn btn-success" onclick="view_post_private('{{$fetch_post->post_id}}');" style="height: 25px;padding-top: 1px;">view</button></span>
+										<span class="resume-exp"><a href="{{('job-details')}}/{{$fetch_post->post_id}}" class="btn btn-success" style="height: 25px;padding-top: 1px;">view</button></span>
 									</div>
 									
 								</div>
@@ -437,64 +437,186 @@
 				<div class="col-md-5 col-sm-5">
 					<!-- Similar Jobs -->
 					<div class="container-detail-box">
-					
-						<div class="apply-job-header">
-								<h4>Reviews</h4>
-							</div>
 						
-						<div class="row">
+							<div class="apply-job-header">
+									<h4>Reviews</h4>
+								</div>
 							
-							<!-- Single Review -->
-							<div class="review-list">
-								<div class="review-thumb">
-									<img src="{{url('public/client_assets/img/client-1.jpg')}}" class="img-responsive img-circle" alt="" />
+							<div class="row">
+								<span id="reviews_c"></span>
+								<!-- Single Review -->
+								
+							   <?php if(Session::get("id")){
+						 	   $u_id=Session::get("id");
+						 	   $data=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->count();
+  									if($data>0){
+  										$data1=DB::table('reviews_comments')->where(['company_id'=>$fetch_company->company_id,'user_id'=>$u_id,])->first();
+  										$user_img=DB::table('user_profile_images')->where(['candidate_id'=>$u_id])->select('profile_image')->first();
+                                    ?>
+								<div class="review-list" id="personal_comment">
+									<div class="review-thumb" style="width: 95px;">
+										<img src="{{url('uploads/client_site/profile_pic')}}/{{$user_img->profile_image}}" class="img-responsive img-circle" style="border solid 3px grey;" alt="" />
+									</div>
+									
+									<div class="review-detail">
+
+										<h4 class="col-sm-7" id="name-user">{{$data1->user_name}}</h4>
+										<span class="col-sm-5" style="font-size: 12px; font-family: Georgia,Regular"><span class="cand-status"><i class="far fa-clock"></i> <?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$data1->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?></span></span>
+										<span class="re-designation col-sm-12" style="font-size: 12px;" id="email-user">({{$data1->user_email}})</span>
+										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;" id="comment-user">{{$data1->user_comments}}.</p>
+										<p class="col-sm-12" style="text-align: right;margin-top: 0px;margin-bottom: 0px;">
+											<a type="button" onclick="edit_model('{{$data1->comment_id}}');" data-toggle="tooltip" title="Edit" style="color: green;font-size: 20px;"><i class="fa fa-edit"></i></a>&nbsp&nbsp|&nbsp&nbsp
+											<a href="{{url('delete-review-comments')}}/{{$data1->comment_id}}" data-toggle="tooltip" title="Delete" style="color: red;font-size: 20px;"><i class="fa fa-trash-o"></i></a>
+										
+									</p>
+									</div>
+
 								</div>
-								<div class="review-detail">
-									<h4>Daniel Luke<span>3 days ago</span></h4>
-									<span class="re-designation">Web Developer</span>
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et .</p>
+								<hr/>
+								<?php }
+							    } 
+								if($fetch_comments===0){
+									if(!Session::get("id")){
+									 echo "<p style='text-align:center;'><span style='color:red;' id='comm-id'>No Comments</span></p>";
+									}
+								 }else{
+                                 
+							    ?>
+								@foreach($fetch_comments as $comm)
+								<div class="review-list">
+									<div class="review-thumb" style="width: 95px;">
+										<img src="{{url('uploads/client_site/profile_pic')}}/{{$comm->profile_image}}" class="img-responsive img-circle" style="border solid 3px grey;" alt="" />
+									</div>
+									
+									<div class="review-detail">
+
+										<h4 class="col-sm-7">{{$comm->user_name}}</h4>
+										<span class="col-sm-5" style="font-size: 12px; font-family: Georgia,Regular"><span class="cand-status"><i class="far fa-clock"></i> <?php 
+
+   											// $this->load->helper('date');
+
+    										//client created date get from database
+											$date=$comm->created_at; 
+
+  											// Declare timestamps
+											$last = new DateTime($date);
+											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
+   											 // Find difference
+											$interval = $last->diff($now);
+    										// Store in variable to be used for calculation etc
+											$years = (int)$interval->format('%Y');
+											$months = (int)$interval->format('%m');
+											$days = (int)$interval->format('%d');
+											$hours = (int)$interval->format('%H');
+											$minutes = (int)$interval->format('%i');
+                                 			//   $now = date('Y-m-d H:i:s');
+											if($years > 1)
+											{
+												echo $years.' Years Ago.' ;
+											}
+											else if($years == 1)
+											{
+											echo $years.' Year Ago.' ;
+											}
+											else if($months > 1)
+											{
+												echo $months.' Months Ago.' ;
+											}
+											else if($months == 1)
+											{
+												echo $months.' Month Ago.' ;
+											}
+											else if($days > 1)
+											{
+												echo $days.' Days Ago.' ;
+											}
+											else if($days == 1)
+											{
+												echo $days.' Day Ago.' ;
+											}
+											else if($hours > 1)
+											{
+												echo  $hours.' Hours Ago.' ;
+											}
+											else if($hours == 1)
+											{
+												echo  $hours.' Hour Ago.' ;
+
+											}
+											else
+											{
+												echo $minutes.' Minutes Ago.' ;
+											}
+
+											?></span></span>
+										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$comm->user_email}})</span>
+										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$comm->user_comments}}.</p>
+										<span class="col-sm-12"></span>
+
+									</div>
 								</div>
-							</div>
-							
-							<!-- Single Review -->
-							<div class="review-list">
-								<div class="review-thumb">
-									<img src="{{url('public/client_assets/img/client-2.jpg')}}" class="img-responsive img-circle" alt="" />
-								</div>
-								<div class="review-detail">
-									<h4>Daniel Luke<span>3 days ago</span></h4>
-									<span class="re-designation">Web Developer</span>
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
-								</div>
-							</div>
-							
-							<!-- Single Review -->
-							<div class="review-list">
-								<div class="review-thumb">
-									<img src="{{url('public/client_assets/img/client-3.jpg')}}" class="img-responsive img-circle" alt="" />
-								</div>
-								<div class="review-detail">
-									<h4>Daniel Luke<span>3 days ago</span></h4>
-									<span class="re-designation">Web Developer</span>
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis .</p>
-								</div>
-							</div>
-							
-							<!-- Single Review -->
-							<div class="review-list">
-								<div class="review-thumb">
-									<img src="{{url('public/client_assets/img/client-4.jpg')}}" class="img-responsive img-circle" alt="" />
-								</div>
-								<div class="review-detail">
-									<h4>Daniel Luke<span>3 days ago</span></h4>
-									<span class="re-designation">Web Developer</span>
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum fuga.</p>
-								</div>
+								@endforeach
+								<?php }?>
 							</div>
 							
 						</div>
-						
-					</div>
 				</div>
 				
 				

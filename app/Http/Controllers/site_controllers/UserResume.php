@@ -415,7 +415,6 @@ class UserResume extends Controller
 		$age = $diff->format('%y');
 		$current_date = date("Y.m.d h:i:s");
 		$user_response = array(
-			'candidate_name' => $request->candidate_name,
 			'candidate_profession' => $request->candidate_profession,
 			'candidate_city' => $request->candidate_city,
 			'candidate_location' => $request->candidate_location,
@@ -457,10 +456,9 @@ class UserResume extends Controller
 		if($info){
 
             
-			$obj1 =  new UserRegisteration();
-			$resume_response = $obj1->update_candidate_name($request->candidate_name,$request->session()->get('id'));
-			$request->session()->forget('candidate_name');
-			session(['candidate_name' => $request->candidate_name]);
+			// $obj1 =  new UserRegisteration();
+			// $resume_response = $obj1->update_candidate_name($request->candidate_name,$request->session()->get('id'));
+			
 			$request->session()->forget('cv_status');
 			$user_obj =  new UserRegisteration();
 			$info = $user_obj->update_user_resumeStatus($request->session()->get('id'));
@@ -740,7 +738,6 @@ class UserResume extends Controller
 
 		$updated_date = date("Y.m.d h:i:s");
 		$user_response = array(
-			'candidate_name' => $request->candidate_name,
 			'candidate_profession' => $request->candidate_profession,
 			'candidate_city' => $request->candidate_city,
 			'candidate_dob' => $request->candidate_dob,

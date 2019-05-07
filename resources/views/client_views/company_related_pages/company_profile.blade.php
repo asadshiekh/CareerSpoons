@@ -22,9 +22,8 @@
                     	<img src="{{url('uploads/organization_images/')}}/{{$fetch_pic->company_img}}" class="img" alt="" />
                         </div>
                     	<a data-toggle="modal" data-target="#uploadOrganization_profile" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
-
-
-                    <div class="detail-status"><span>Active Now</span></div>
+                   
+                     <div class="detail-status"><?php if($fetch_org->company_verify_status == "0"){ ?><span style="background-color:red;color: white;">Unverified</span><?php }else{ ?><span >Verified</span><?php } ?></div>
                 
 
                 </div>
@@ -1131,22 +1130,22 @@
         			</div>
         			<div class="modal-body"> <!-- modal body -->
         				<div class="row no-mrg">
-        					<form method="post" action="{{url('adding-org-information')}}" enctype="Multipart/form-data">
+        					<form method="post" action="{{url('adding-org-information')}}" enctype="Multipart/form-data" id="CompanyInfoForm">
         						@csrf
         						<div class="edit-pro" style="padding: 5%;">
         							<input type="hidden" name="id" value="{{$fetch_org->company_id}}">
         							<div class="col-md-6 col-sm-12">
-        								<label>Branch Name or Code</label>
+        								<label style="display: inline-block;">Branch Name or Code</label><span id="c_branch_error" style="display: inline;"></span>
         								<input type="text" id="company_branch_name" name="company_branch_name" class="form-control" placeholder="Enter Branch name or code here">
         							</div>
         							<!-- Website link -->
         							<div class="col-md-6 col-sm-12">
-        								<label>Website Link:</label>
+        								<label style="display: inline-block;">Website Link:</label><span id="c_weblink_error" style="display: inline;"></span>
         									<input type="link" placeholder="Insert Website Link Here" class="form-control" name="company_website" id="company_website">
         							</div>
         							<!-- No of Employees-->
         							<div class="col-md-6 col-sm-12">
-        								<label>No of Employees:</label>
+        								<label style="display: inline-block;">No of Employees:</label><span id="c_cemployee_error" style="display: inline;"></span>
         									<select class="form-control" id="selected_employees" name="selected_employees">
         										<option value="" disabled="disabled" selected="selected">Select No of Employees</option>
         										<option value="Start Up">Start Up</option>
@@ -1160,7 +1159,7 @@
         								</div>
         								<!-- Industry -->
         								<div class="col-md-6 col-sm-12">
-        									<label>Industry:</label>
+        									<label style="display: inline-block;">Industry:</label><span id="c_cindustry_error" style="display: inline;"></span>
         										<select name="selected_industry" class="form-control" placeholder="select industry" id="selected_industry">
         											<option id="industry-option" disabled="disabled" selected="selected">Select Industry</option>
         											<?php foreach($industry as $industry){?>
@@ -1177,26 +1176,27 @@
         								</div>
         							<!-- Operating Since -->
         							<div class="col-md-6 col-sm-12">
-        								<label>Operating Since:</label>
+        								<label style="display: inline-block;">Operating Since:</label><span id="c_csince_error" style="display: inline;"></span>
         									<input type="date" class="form-control" name="company_s" id="company_s" placeholder="11/25/2018" data-theme="my-style" data-format="S F, Y" data-large-mode="true" data-min-year="1970" data-max-year="2030" data-translate-mode="true" data-lang="en">
         								</div>
 
         								<!-- Address-->
         								<div class="col-md-6 col-sm-12">
-        								<label>Location or Address:</label>
+        								<label style="display: inline-block;">Location or Address:</label><span id="c_caddr_error" style="display: inline;"></span>
         								<input id="company_location" name="company_location" class="form-control" placeholder="Enter Address Here"/>
         								</div>
 
         								<!--  for Verification-->
-        								<div class="col-md-6 col-sm-12">
-        									<label>Gournment verification document:</label>
+        								<div class="col-md-12 col-sm-12">
+        									<label style="display: inline-block;">Gournment verification document:</label><span id="c_cdocument_error" style="display: inline;"></span>
+        									<br/>
         									<span class="btn btn-success btn-file" style="width: 180px;margin-bottom: 3%;">
         										<i id="btn-up">Browse..</i><input type="file" name="company_doc" id="company_doc" >
         									</span>
         								</div>
         									<!-- About Company -->
         									<div class="col-md-12 col-sm-12">
-        										<label>About Company (atleast  20 words):</label>
+        										<label style="display: inline-block;">About Company (atleast  20 words):</label><span id="c_cinfo_error" style="display: inline;"></span>
         											<textarea id="company_info" name="company_info" class="form-control"  placeholder="Enter Some Info About Your Company Here...."></textarea>
         									</div>
         						</div>		

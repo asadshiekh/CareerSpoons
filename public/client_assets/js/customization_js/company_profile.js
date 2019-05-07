@@ -539,3 +539,186 @@ $('#company_info_form').on('submit', function(e){
 
 
 ///////////////////////////////////////
+// branch_comp_validater function
+var branch_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_branch_error").text("");
+      check=true;
+    }else{
+      $("#c_branch_error").removeClass('success');
+      $("#c_branch_error").addClass('alert');
+      $("#c_branch_error").text("Required");
+      check=false;
+    }
+return check;
+}
+// weblink_comp_validater function
+var weblink_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_weblink_error").text("");
+      check=true;
+    }else{
+      $("#c_weblink_error").removeClass('success');
+      $("#c_weblink_error").addClass('alert');
+      $("#c_weblink_error").text("Required");
+      check=false;
+    }
+return check;
+}
+
+// emp_comp_validater function
+var emp_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_cemployee_error").text("");
+      check=true;
+    }else{
+      $("#c_cemployee_error").removeClass('success');
+      $("#c_cemployee_error").addClass('alert');
+      $("#c_cemployee_error").text("Required");
+      check=false;
+    }
+return check;
+}
+
+
+// ind_comp_validater function
+var ind_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_cindustry_error").text("");
+      check=true;
+    }else{
+      $("#c_cindustry_error").removeClass('success');
+      $("#c_cindustry_error").addClass('alert');
+      $("#c_cindustry_error").text("Required");
+      check=false;
+    }
+return check;
+}
+
+// sin_comp_validater function
+var sin_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_csince_error").text("");
+      check=true;
+    }else{
+      $("#c_csince_error").removeClass('success');
+      $("#c_csince_error").addClass('alert');
+      $("#c_csince_error").text("Required");
+      check=false;
+    }
+return check;
+}
+
+// addr_comp_validater function
+var addr_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_caddr_error").text("");
+      check=true;
+    }else{
+      $("#c_caddr_error").removeClass('success');
+      $("#c_caddr_error").addClass('alert');
+      $("#c_caddr_error").text("Required");
+      check=false;
+    }
+return check;
+}
+
+// doc_comp_validater function
+var doc_comp_validater = function validator(FileUploadPath){
+  var check;
+ 
+    if (FileUploadPath == '') {
+      $("#c_cdocument_error").removeClass('success');
+      $("#c_cdocument_error").addClass('alert');
+      $("#c_cdocument_error").text("Image Required");
+      check=false;
+
+    } else {
+      var Extension = FileUploadPath.substring(
+        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+//The file uploaded is an image
+
+if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+  || Extension == "jpeg" || Extension == "jpg") {
+
+// To Display
+
+
+    $("#c_cdocument_error").text(" ");
+    check=true;
+  
+
+} 
+
+//The file upload is NOT an image
+else {
+  // alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+      $("#c_cdocument_error").removeClass('success');
+      $("#c_cdocument_error").addClass('alert');
+      $("#c_cdocument_error").text("Only Allow document in Picture form");
+      check=false;
+}
+}
+
+
+
+return check;
+}
+
+// info_comp_validater function
+var info_comp_validater = function validator(name){
+    var check;
+    if(name){
+      $("#c_cinfo_error").text("");
+      check=true;
+    }else{
+      $("#c_cinfo_error").removeClass('success');
+      $("#c_cinfo_error").addClass('alert');
+      $("#c_cinfo_error").text("Required");
+      check=false;
+    }
+return check;
+}
+//main function validation
+
+$('#CompanyInfoForm').on('submit', function(e){
+  // alert("yes");
+      var company_branch = $("#company_branch_name").val();
+      var company_website = $("#company_website").val();
+      var selected_employee = $("#selected_employees").val();
+      var company_indus = $("#selected_industry").val();
+      var company_since = $("#company_s").val();
+      var company_loc = $("#company_location").val();
+      var selected_doc = $("#company_doc").val();
+      var selected_info = CKEDITOR.instances['company_info'].getData();
+
+      var getbranch=branch_comp_validater(company_branch);
+      var getweblink=weblink_comp_validater(company_website);
+      var getemp=emp_comp_validater(selected_employee);
+      var getindus=ind_comp_validater(company_indus);
+      var getsince=sin_comp_validater(company_since);
+      var geloc=addr_comp_validater(company_loc);
+      
+      var getinfo=info_comp_validater(selected_info);
+
+      var fuData = document.getElementById('company_doc');
+        var FileUploadPath = fuData.value;
+        var getdoc=doc_comp_validater(FileUploadPath);
+
+      // alert(getbranch);alert(getweblink);alert(getemp);
+      if(getbranch && getweblink && getemp && getindus && getsince && getloc && getdoc && getinfo){
+        return true;
+      }else{
+      return false;
+      swal("error","Failed to Upload Data","error");
+    }
+
+});
+

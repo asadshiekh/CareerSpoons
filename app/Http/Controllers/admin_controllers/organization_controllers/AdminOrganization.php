@@ -481,6 +481,25 @@ class AdminOrganization extends Controller
 	}
 
 
+	public function viewOrgDocument(){
+		$orgs=DB::table('add_organizations')->orderBy('company_verify_status','asc')->get();
+		return view('admin_views/organization_views/verify_organization',['orgs'=>$orgs]);
+	}
+
+	public function doChangeOrgVerifyStatus(Request $request){
+       // echo "nayab";
+        $state=$request->post('x');
+        $ids=$request->post('ids');
+
+        $org_status=array(
+			'company_verify_status'=>$state
+		);
+		if(DB::table('Add_organizations')->where(['company_id'=>$ids])->update($org_status)){
+			echo $state;
+		}
+	}
+
+
 }
 
 
