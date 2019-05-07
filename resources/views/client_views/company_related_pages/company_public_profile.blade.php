@@ -177,7 +177,11 @@
 							?>)</p>
 							<ul>
 								<li><img class="flag" src="assets/img/gb.svg" alt="">Pakistan</li>
+								<?php if($fetch_company->company_verify_status == "0"){?>
+                                <li><div style="background-color: red;padding: 2%;border-radius: 11%;color: white;padding-left: 13%;padding-right: 13%;font-weight: bold;">UnVerified</div></li>
+								<?php }else{ ?>
 								<li><div class="verified-action">Verified</div></li>
+							<?php } ?>
 							</ul>
 						</div>
 					</div>
@@ -280,6 +284,10 @@
 							<!-- <a href="company-detail.html" class="cl-success"><span><i class="fa fa-building"></i>App Developer</span></a>
 							<span><i class="fa fa-map-marker"></i>United Kingdom</span> -->
 						</div>
+						<?php if($fetch_posts === 0){
+							echo "<span style='color:red;'>No Post Yet!</span>";
+						} else{?>
+						
 					@foreach($fetch_posts as $fetch_post)	
 					<article id="post-show{{$fetch_post->post_id}}">
 						<div class="brows-resume">
@@ -415,9 +423,10 @@
 						<span class="tg-themetag tg-featuretag"><b>Posted At: {{ date('d M',strtotime($fetch_post->created_at)) }} </b></span>
 					</article>
 					@endforeach
+				<?php } ?>
 					<div class="row">
 						<ul class="pagination">
-						 <h5 style="text-align:center">{{$fetch_posts->links()}}</h5>
+						 <h5 style="text-align:center"><?php if($fetch_posts===0){}else{echo $fetch_posts->links();} ?></h5>
 						</ul>
 					</div>
 					</div>
