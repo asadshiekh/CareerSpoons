@@ -871,6 +871,9 @@ public function updatePostSingleFront(Request $request){
     $id=$request->session()->get('company_id');
     $fetch_company=DB::table('Add_organizations')->where(['company_id'=>$id])->first();
     $fetch_posts=DB::table('organization_posts')->where(['company_id'=>$id])->simplePaginate(1);
+
+    $fetch_company_social_links=DB::table('add_organization_social_link')->where(['organization_id'=>$id])->first();
+
     if($fetch_posts->count()>0){
        $fetch_posts=$fetch_posts;
     }else{
@@ -879,7 +882,7 @@ public function updatePostSingleFront(Request $request){
 
     $about=DB::table('about_us_content')->first();
     $page_title="CareerSpoons - ".$fetch_company->company_name;
-    return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'page_title'=>$page_title]);
+    return view('client_views.company_related_pages.company_public_profile',['about'=>$about,'fetch_company'=>$fetch_company,'fetch_posts'=>$fetch_posts,'company_social_links'=>$fetch_company_social_links,'page_title'=>$page_title]);
 
   }
 

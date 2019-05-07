@@ -186,20 +186,32 @@
 						<div class="header-details">
 							<!-- <h4>{{$fetch_company->company_name}}</h4>-->
 							<p><?php 
+
+							if(empty($fetch_company->company_info)){
+
+								echo "<span style='color:red'> Company Details Not Given By the Company Yet </span>";
+							}
+							else{
+
 							$fetch_company->company_info=str_replace("<p>"," ",$fetch_company->company_info);
 							echo $fetch_company->company_info=str_replace("</p>"," ",$fetch_company->company_info);
-							?></p> 
+							}
+
+
+							?>
+								
+
+							</p> 
 						
 							
 						</div>
 					</div>
 					<div class="right-side-detail">
 						<ul class="social-info">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li><a href="{{$company_social_links->organization_fackbook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="{{$company_social_links->organization_twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="{{$company_social_links->	organization_linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="{{$company_social_links->	organization_google}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -207,14 +219,46 @@
 				<div class="col-md-4 bl-1 br-gary">
 					<div class="right-side-detail">
 						<ul>
-							<li><span class="detail-info">Website:</span>{{$fetch_company->company_website}}</li>
-							<li><span class="detail-info">Location:</span>{{$fetch_company->company_location}}</li>
-							<li><span class="detail-info">City:</span>{{$fetch_company->company_city}}</li>
-							<li><span class="detail-info">Phone no:</span>{{$fetch_company->company_phone}}</li>
-							<li><span class="detail-info">Email:</span>{{$fetch_company->company_email}}</li>
-							<li><span class="detail-info">Branch:</span>{{$fetch_company->company_branch}}</li>
-							<li><span class="detail-info">No of Employees:</span>{{$fetch_company->company_employees}}</li>
-						</ul>
+								<li><span class="detail-info">Website:</span><?php
+								if($fetch_company->company_website == 'www.example.com'){
+									echo "<span style='color:red'> Not Given Yet </span>";
+								}else{
+									echo $fetch_company->company_website; 
+								}									
+								?></li>
+								<li><span class="detail-info">Location:</span><?php 
+
+								if(empty($fetch_company->company_location)){
+									echo "<span style='color:red'> Not Given Yet </span>";
+								}else{
+									echo $fetch_company->company_location; 
+								}	
+
+								?></li>
+								<li><span class="detail-info">City:</span>{{$fetch_company->company_city}}</li>
+								<li><span class="detail-info">Phone no:</span>{{$fetch_company->company_phone}}</li>
+								<li><span class="detail-info">Email:</span>{{$fetch_company->company_email}}</li>
+								<li><span class="detail-info">Branch:</span>
+								<?php
+
+									if(empty($fetch_company->company_branch)){
+									echo "<span style='color:red'> Not Given Yet </span>";
+								}else{
+									echo $fetch_company->company_branch; 
+								}	
+
+								?></li>
+								<li><span class="detail-info">No of Employees:</span><?php 
+
+								if($fetch_company->company_employees=='0'){
+									echo "<span style='color:red'> Not Given Yet </span>";
+								}
+								else{
+									echo $fetch_company->company_employees;
+								}
+
+								?></li>
+							</ul>
 						
 					</div>
 				</div>
