@@ -1426,11 +1426,12 @@ class UserResume extends Controller
 	}
 
 	public function showPreviewTemplate(Request $request,$id){
+		$com_id=$request->session()->get('id');
       //$id=$request->post("x");
-		$dat=DB::table('user_choose_temp')->where(['candidate_id'=>$id])->first();
+		$dat=DB::table('user_choose_temp')->where(['candidate_id'=>$com_id])->first();
 		//dd($dat);
 		
-		$data=DB::table('resume_templates')->where(['temp_id'=>$dat->temp_id])->first();
+		$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
 	
 		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$id])->first();
 		$user_register=DB::table('register_users')->where(['id'=>$id])->first();
