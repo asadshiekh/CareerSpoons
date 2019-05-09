@@ -811,11 +811,12 @@
 					var l = window.location;
 
 					var base_url = l.protocol + "//" + l.host + "/company-logout";
+					var pub = l.protocol + "//" + l.host + "/company-public-profile";
 					
 					$.post(base_url,{_token:CSRF_TOKEN},function(data){
 						if(data == "yes"){
 							// alert(window.location);
-							if(window.location == "http://careerspoons.com/company-profile"){
+							if(window.location == "http://careerspoons.com/company-profile" || window.location == pub){
 							window.location.replace('/');
 						}else{
 							window.location.replace(window.location);
