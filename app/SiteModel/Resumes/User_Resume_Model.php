@@ -176,6 +176,12 @@ class User_Resume_Model extends Model
 
 	}
 
+	public function get_basic_info($candidate_id){
+
+		$response = DB::table('register_users')->where('id', $candidate_id)->first();
+		return $response;
+	}
+
 	public function get_candidate_general_info($candidate_id){
 
 		$response = DB::table('add_user_generals_info')->where('candidate_id', $candidate_id)->first();

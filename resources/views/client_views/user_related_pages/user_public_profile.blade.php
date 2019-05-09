@@ -205,7 +205,7 @@
 								
 								<div id="typed-strings">
 									<div class="contains_heading" style="font-size: 6px">
-										<h4>{{$general_info->candidate_name}}</h4>
+										<h4>{{$basic_info->candidate_name}}</h4>
 										<span class="designation">{{$general_info->	candidate_profession}}</span>
 										<p>{{$general_info->candidate_website}}</p>
 									</div>
@@ -238,11 +238,10 @@
 						<div class="detail pannel-footer">
 							<div class="col-md-5 col-sm-5">
 								<ul class="detail-footer-social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+									<li><a href="{{$candidate_links->candidate_fackbook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="{{$candidate_links->candidate_google}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="{{$candidate_links->candidate_twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="{{$candidate_links->candidate_linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 								</ul>
 							</div>
 							<div class="col-md-7 col-sm-7">

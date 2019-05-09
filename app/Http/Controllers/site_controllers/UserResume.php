@@ -429,12 +429,20 @@ class UserResume extends Controller
 			'created_at' => $current_date
 		);
 
+		$candidate_facebook_link = ($request->candidate_facebook_link) ? $request->candidate_facebook_link : 'https://www.facebook.com/' ;
+
+		$candidate_google_link = ($request->candidate_google_link) ? $request->candidate_google_link : 'https://plus.google.com/' ;
+
+		$candidate_twitter_link = ($request->candidate_twitter_link) ? $request->candidate_twitter_link : 'https://twitter.com/' ;
+
+		$candidate_linkedin = ($request->candidate_linkedin) ? $request->candidate_linkedin : 'https://www.linkedin.com/' ;
+
 
 		$user_response_2 = array(
-			'candidate_fackbook' => $request->candidate_facebook_link,
-			'candidate_google' => $request->candidate_google_link,
-			'candidate_twitter' => $request->candidate_twitter_link,
-			'candidate_linkedin' => $request->candidate_linkedin,
+			'candidate_fackbook' => $candidate_facebook_link,
+			'candidate_google' => $candidate_google_link,
+			'candidate_twitter' => $candidate_twitter_link,
+			'candidate_linkedin' => $candidate_linkedin,
 			'updated_at' => $current_date
 		);
 
@@ -1420,6 +1428,8 @@ class UserResume extends Controller
 	public function showPreviewTemplate(Request $request,$id){
       //$id=$request->post("x");
 		$dat=DB::table('user_choose_temp')->where(['candidate_id'=>$id])->first();
+		//dd($dat);
+		
 		$data=DB::table('resume_templates')->where(['temp_id'=>$dat->temp_id])->first();
 	
 		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$id])->first();
@@ -1433,8 +1443,6 @@ class UserResume extends Controller
 		$hobb = $obj->fetch_candidate_hobby_resume_details($id);
 
 		$languages = $obj->fetch_candidate_languages_resume_details($id);
-
-
 
 
 		$index_p=$data->index_page;

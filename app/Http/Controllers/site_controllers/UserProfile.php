@@ -9,6 +9,7 @@ use App\SiteModel\User\UserProfileModel;
 use App\SiteModel\ClientSite\ClientSiteModel;
 use App\Http\Controllers\Controller;
 use App\Mail\Site_Mail\User_Mail\User_Change_Email;
+use Validator;
 use Mail;
 use Image;
 use DB;
@@ -60,6 +61,9 @@ class UserProfile extends Controller
 	public function viewUserPublicProfile(Request $request){
 
 		$obj =  new User_Resume_Model();
+
+		$basic_info = $obj->get_basic_info($request->session()->get('id'));
+
 		$general_info = $obj->get_candidate_general_info($request->session()->get('id'));
 		$candidate_education = $obj->fetch_candidate_eduction_resume_details($request->session()->get('id'));
 		$candidate_experience = $obj->fetch_candidate_experience_resume_details($request->session()->get('id'));
@@ -70,8 +74,10 @@ class UserProfile extends Controller
 		$candidate_languages = $obj->fetch_candidate_languages_resume_details($request->session()->get('id'));
 		$candidate_hobbies = $obj->fetch_candidate_hobby_resume_details($request->session()->get('id'));
 		$candidate_skill = $obj->fetch_candidate_skill_resume_details($request->session()->get('id'));
-        $page_title="CareerSpoons - ".$general_info->candidate_name;
-		return view('client_views.user_related_pages.user_public_profile',['general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill,'page_title'=>$page_title]);
+		$candidate_links =  $obj->get_candidate_social_link($request->session()->get('id'));
+
+        $page_title="CareerSpoons - ".$basic_info->candidate_name;
+		return view('client_views.user_related_pages.user_public_profile',['basic_info' => $basic_info,'general_info' => $general_info,'candidate_education' => $candidate_education,'candidate_experience' => $candidate_experience,'get_candidate_skill_just_six' => $get_candidate_skill_just_six,'candidate_project' => $candidate_project,'candidate_languages' => $candidate_languages,'candidate_hobbies' => $candidate_hobbies,'candidate_skill' => $candidate_skill,'candidate_links' => $candidate_links ,'page_title'=>$page_title]);
 
 	}
 
@@ -119,15 +125,13 @@ class UserProfile extends Controller
 	}
 
 
-
 	public function updateUserCoverPic(Request $request){
 
-
-		$this->validate($request, [
-			'input_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		$validation = $this->validate($request, [
+			'input_img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
 		]);
 
-
+	
 		$image = $request->file('input_img');
 		$data = rand().$image->getClientOriginalName();     
 		$destinationPath = './uploads/client_site/cover_photo/cropped';
@@ -158,9 +162,11 @@ class UserProfile extends Controller
 
 		else{
 
-			return redirect('user-profile')->with('error','Your Cover Info is not Updated!');
+			return redirect('user-profile')->with('p_errors','Your Cover Info is not Updated!');
 		}
 
+	
+	
 	}
 
 

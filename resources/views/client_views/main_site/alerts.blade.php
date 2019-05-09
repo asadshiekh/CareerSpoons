@@ -25,6 +25,20 @@
 @endif
 
 
+@if ($message = Session::get('errors'))
+<script type="text/javascript">
+	var notyf = new Notyf();
+	swal({
+		type: 'error',
+		title: 'Oops...',
+		text: 'Your Cover Photo is not Uploaded',
+		footer: '<a href>Why do I have this issue?</a>'
+	})
+	notyf.alert('Something Went Wrong');
+</script>
+@endif
+
+
 
 
 

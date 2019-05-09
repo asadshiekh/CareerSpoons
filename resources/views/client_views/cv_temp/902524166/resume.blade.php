@@ -39,7 +39,7 @@
 		</div> -->
 		
 		<div id="name">
-			<h1 class="quickFade delayTwo">{{$general_info->candidate_name}}</h1>
+			<h1 class="quickFade delayTwo">{{$user_register->candidate_name}}</h1>
 			<h2 class="quickFade delayThree">({{$general_info->candidate_profession}})</h2>
 		</div>
 		<div id="intro">
