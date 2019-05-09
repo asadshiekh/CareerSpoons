@@ -1299,5 +1299,16 @@ public function uploadCompanyLogo(Request $request){
 
 }
 
+public function changeCompanyAgainstUserStatus(Request $request){
+ $v=$request->v;
+ $id=$request->id;
+ $arr=array(
+  'comment_status'=>$v,
+ );
+ if(DB::table('reviews_comments')->where(['comment_id'=>$id])->update($arr)){
+  echo $v;
+ }
+}
+
 
 }

@@ -1,7 +1,7 @@
 @extends('client_views.master2')
 @section('content')
 
-		<section class="inner-header-page">
+		<section class="inner-header-page row">
 			<div class="container">
 				
 				<div class="col-md-8">
@@ -258,7 +258,7 @@
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-3">
-										<span class="resume-exp"><a href="{{('job-details')}}/{{$fetch_post->post_id}}" class="btn btn-success" style="height: 25px;padding-top: 1px;">view</button></span>
+										<span class="resume-exp"><a href="{{('job-details')}}/{{$fetch_post->post_id}}" class="btn btn-success" style="height: 25px;padding-top: 1px;">view</a></span>
 									</div>
 									
 								</div>
@@ -461,7 +461,14 @@
 											?></span></span>
 										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$comm->user_email}})</span>
 										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$comm->user_comments}}.</p>
-										<span class="col-sm-12"></span>
+										<span class="col-sm-8" title="current status" style="font-family: Georgia,Regular;"><b>C.S:</b>&nbsp;&nbsp;<p id="comm-state{{$comm->comment_id}}" style="display: inline;"><?php if($comm->comment_status == "1"){echo"<span style='color:green;'>UnBlock</span>";}else{echo"<span style='color:red;'>Block</span>";} ?></p></span>
+										<span class="col-sm-4">
+											<select class="fa fa-eye" onchange="change_comment_state(this.value,'{{$comm->comment_id}}');">
+												<option hidden selected value="<?php if($comm->comment_status == "1"){echo "1";}else{echo "0";} ?>"><?php if($comm->comment_status == "1"){echo "UnBlock";}else{echo "Block";} ?> </option>
+												<option value="0">Block</option>
+												<option value="1">UnBlock</option>
+											</select>
+										</span>
 
 									</div>
 								</div>
@@ -477,6 +484,22 @@
 				
 			</div>
 		</section>
+		<script type="text/javascript">
+			function change_comment_state(v,id){
+				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+				// alert(v +" "+ id);
+				$.post("change-user-comm-state",{_token:CSRF_TOKEN,v:v,id:id},function(data){
+                 if(data == "1"){
+                  $("#comm-state"+id).html('<span style="color:green;">UnBlock</span>');
+                  swal("success","This comment is UnBlock from your Profile","success");
+                  }else{
+                 	$("#comm-state"+id).html('<span style="color:red;">Block</span>');
+                 	swal("success","This comment is Block from your Profile","success");
+                 }
+				});
+
+			}
+		</script>
 
 		@endsection
 

@@ -20,6 +20,7 @@ class ReviewsComments extends Migration
             $table->string('user_email');
             $table->string('user_comments');
             $table->string('company_id');
+            $table->string('comment_status')->default('1');
             $table->timestamps();
         });
     }
