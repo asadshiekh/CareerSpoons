@@ -136,6 +136,7 @@
 
   											// Declare timestamps
 							$last = new DateTime($date);
+							date_default_timezone_set("Asia/Karachi");
 							$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
    											 // Find difference
 							$interval = $last->diff($now);
