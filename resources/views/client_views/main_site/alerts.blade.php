@@ -31,7 +31,7 @@
 	swal({
 		type: 'error',
 		title: 'Oops...',
-		text: 'Your Cover Photo is not Uploaded',
+		text: "{{$errors->first()}}",
 		footer: '<a href>Why do I have this issue?</a>'
 	})
 	notyf.alert('Something Went Wrong');

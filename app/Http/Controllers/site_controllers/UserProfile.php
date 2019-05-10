@@ -128,10 +128,9 @@ class UserProfile extends Controller
 	public function updateUserCoverPic(Request $request){
 
 		$validation = $this->validate($request, [
-			'input_img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+			'input_img' => 'required|image|mimes:jpeg,png,jpg|max:4096',
 		]);
-
-	
+		// max 4 mbs image 
 		$image = $request->file('input_img');
 		$data = rand().$image->getClientOriginalName();     
 		$destinationPath = './uploads/client_site/cover_photo/cropped';

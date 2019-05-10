@@ -111,7 +111,7 @@
 						<img src="uploads/organization_images/{{$val->company_img}}" class="img-responsive" alt="" />
 					</div>
 					<div class="brows-job-position">
-						<h3><a href="job-details/{{$val->post_id}}">{{$val->job_title}}</a></h3>
+						<h4><a href="job-details/{{$val->post_id}}">{{$val->job_title}}</a></h4>
 						<p><span>{{$val->company_name}}</span></p>
 					</div>
 					<div class="job-position">
