@@ -138,7 +138,9 @@
 							<span class="tg-themetag tg-featuretag">								
 							<?php 
 
-							$date=$val->created_at;   											
+							$valse=DB::table('organization_posts')->where(['post_id'=>$val->post_id])->first();
+						    $val_dat=$valse->created_at;
+                            date_default_timezone_set("Asia/Karachi");  											
 							$last = new DateTime($date);
 							$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
    											 

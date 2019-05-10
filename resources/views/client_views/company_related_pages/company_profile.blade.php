@@ -555,10 +555,12 @@
    											// $this->load->helper('date');
 
     										//client created date get from database
-											$date=$fetch_post->created_at; 
-
+											// $date=$fetch_post->created_at; 
+                                            $valse=DB::table('organization_posts')->where(['post_id'=>$fetch_post->post_id])->first();
+										    $val_dat=$valse->created_at;
+				                            date_default_timezone_set("Asia/Karachi"); 
   											// Declare timestamps
-											$last = new DateTime($date);
+											$last = new DateTime($val_dat);
 											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
    											 // Find difference
 											$interval = $last->diff($now);

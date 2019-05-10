@@ -131,59 +131,58 @@
 						<span class="full-time">
 							
 							<?php 
+						$valse=DB::table('organization_posts')->where(['post_id'=>$val->post_id])->first();
+						 $val_dat=$valse->created_at;
+                            date_default_timezone_set("Asia/Karachi");
+							// $dates=$val->created_at; 
+                       // $date=$val->created_at;
+                         $now= Carbon::now();
+                         $dat=Carbon::parse($val_dat);
+                        // echo $val->created_at;
+                       $days= $dat->diffInDays($now);
+                       $hours= $dat->diffInHours($now);
+                       $months= $dat->diffInMonths($now);
+                       $years= $dat->diffInYears($now);
+                       $minutes= $dat->diffInMinutes($now);
+                      if($years > 1)
+                      {
+                        echo $years.' Years Ago.' ;
+                      }
+                      else if($years == 1)
+                      {
+                      echo $years.' Year Ago.' ;
+                      }
+                      else if($months > 1)
+                      {
+                        echo $months.' Months Ago.' ;
+                      }
+                      else if($months == 1)
+                      {
+                        echo $months.' Month Ago.' ;
+                      }
+                      else if($days > 1)
+                      {
+                        echo $days.' Days Ago.' ;
+                      }
+                      else if($days == 1)
+                      {
+                        echo $days.' Day Ago.' ;
+                      }
+                      else if($hours > 1)
+                      {
+                        echo  $hours.' Hours Ago.' ;
+                      }
+                      else if($hours == 1)
+                      {
+                        echo  $hours.' Hour Ago.' ;
 
-							$date=$val->created_at; 
+                      }
+                      else
+                      {
+                        echo $minutes.' Minutes Ago.' ;
+                      }
+                        
 
-  											// Declare timestamps
-							$last = new DateTime($date);
-							date_default_timezone_set("Asia/Karachi");
-							$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
-   											 // Find difference
-							$interval = $last->diff($now);
-    										// Store in variable to be used for calculation etc
-							$years = (int)$interval->format('%Y');
-							$months = (int)$interval->format('%m');
-							$days = (int)$interval->format('%d');
-							$hours = (int)$interval->format('%H');
-							$minutes = (int)$interval->format('%i');
-                                 			//   $now = date('Y-m-d H:i:s');
-							if($years > 1)
-							{
-								echo $years.' Years Ago.' ;
-							}
-							else if($years == 1)
-							{
-								echo $years.' Year Ago.' ;
-							}
-							else if($months > 1)
-							{
-								echo $months.' Months Ago.' ;
-							}
-							else if($months == 1)
-							{
-								echo $months.' Month Ago.' ;
-							}
-							else if($days > 1)
-							{
-								echo $days.' Days Ago.' ;
-							}
-							else if($days == 1)
-							{
-								echo $days.' Day Ago.' ;
-							}
-							else if($hours > 1)
-							{
-								echo  $hours.' Hours Ago.' ;
-							}
-							else if($hours == 1)
-							{
-								echo  $hours.' Hour Ago.' ;
-
-							}
-							else
-							{
-								echo $minutes.' Minutes Ago.' ;
-							}
 
 							?>
 
