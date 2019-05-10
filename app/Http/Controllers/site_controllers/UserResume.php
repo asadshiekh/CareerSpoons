@@ -1433,17 +1433,17 @@ class UserResume extends Controller
 		
 		$data=DB::table('resume_templates')->where(['temp_id'=>$id])->first();
 	
-		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$id])->first();
-		$user_register=DB::table('register_users')->where(['id'=>$id])->first();
+		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$com_id])->first();
+		$user_register=DB::table('register_users')->where(['id'=>$com_id])->first();
 
 		$obj =  new User_Resume_Model();
-		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($id);
-		$candidate_experience = $obj->fetch_candidate_experience_resume_details($id);
-		$candidate_project = $obj->fetch_candidate_project_resume_details($id);
-		$candidate_skill = $obj->fetch_candidate_skill_resume_details($id);
-		$hobb = $obj->fetch_candidate_hobby_resume_details($id);
+		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($com_id);
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($com_id);
+		$candidate_project = $obj->fetch_candidate_project_resume_details($com_id);
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($com_id);
+		$hobb = $obj->fetch_candidate_hobby_resume_details($com_id);
 
-		$languages = $obj->fetch_candidate_languages_resume_details($id);
+		$languages = $obj->fetch_candidate_languages_resume_details($com_id);
 
 
 		$index_p=$data->index_page;

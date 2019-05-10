@@ -461,7 +461,7 @@
 											?></span></span>
 										<span class="re-designation col-sm-12" style="font-size: 12px;">({{$comm->user_email}})</span>
 										<p class="col-sm-12" style="font-family: Georgia,Regular;margin-top: 8px;">{{$comm->user_comments}}.</p>
-										<span class="col-sm-8" title="current status" style="font-family: Georgia,Regular;"><b>C.S:</b>&nbsp;&nbsp;<p id="comm-state{{$comm->comment_id}}" style="display: inline;"><?php if($comm->comment_status == "1"){echo"<span style='color:green;'>UnBlock</span>";}else{echo"<span style='color:red;'>Block</span>";} ?></p></span>
+										<span class="col-sm-8" title="current status" style="font-family: Georgia,Regular;"><b>C.S:</b>&nbsp;&nbsp;<p id="comm-state{{$comm->comment_id}}" style="display: inline;"><?php if($comm->comment_status == "1"){echo"<span style='color:green;'><u>UnBlock</u></span>";}else{echo"<span style='color:red;'><u>Block</u></span>";} ?></p></span>
 										<span class="col-sm-4">
 											<select class="fa fa-eye" onchange="change_comment_state(this.value,'{{$comm->comment_id}}');">
 												<option hidden selected value="<?php if($comm->comment_status == "1"){echo "1";}else{echo "0";} ?>"><?php if($comm->comment_status == "1"){echo "UnBlock";}else{echo "Block";} ?> </option>
@@ -489,10 +489,10 @@
 				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				$.post("change-user-comm-state",{_token:CSRF_TOKEN,v:v,id:id},function(data){
                   if(data == "1"){
-                  $("#comm-state"+id).html('<span style="color:green;">UnBlock</span>');
+                  $("#comm-state"+id).html('<span style="color:green;"><u>UnBlock</u></span>');
                     swal("success","This comment is UnBlock from your Profile","success");
                   }else{
-                 	$("#comm-state"+id).html('<span style="color:red;">Block</span>');
+                 	$("#comm-state"+id).html('<span style="color:red;"><u>Block</u></span>');
                  	swal("success","This comment is Block from your Profile","success");
                  }
 				});

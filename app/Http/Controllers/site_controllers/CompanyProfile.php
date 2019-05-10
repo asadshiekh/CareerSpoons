@@ -941,10 +941,10 @@ public function updatePostSingleFront(Request $request){
 
     $fetch_org_links=DB::table('add_organization_social_link')->where('organization_id','=',$id)->first();
     $us_id=$request->session()->get('id');
-    $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->count();
+    $fetch_comments=DB::table('reviews_comments')->where('user_id','!=',$us_id)->where('company_id','=',$id)->where('comment_status','=','1')->count();
 
     if($fetch_comments>0){
-     $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->inRandomOrder()->get();
+     $fetch_comments=DB::table('reviews_comments')->join('user_profile_images','reviews_comments.user_id', '=', 'user_profile_images.candidate_id')->where('user_id','!=',$us_id)->where('company_id','=',$id)->where('comment_status','=','1')->inRandomOrder()->get();
      }
      //$fetch_comments=DB::table('reviews_comments')get();
 
