@@ -487,17 +487,15 @@
 		<script type="text/javascript">
 			function change_comment_state(v,id){
 				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-				// alert(v +" "+ id);
 				$.post("change-user-comm-state",{_token:CSRF_TOKEN,v:v,id:id},function(data){
-                 if(data == "1"){
+                  if(data == "1"){
                   $("#comm-state"+id).html('<span style="color:green;">UnBlock</span>');
-                  swal("success","This comment is UnBlock from your Profile","success");
+                    swal("success","This comment is UnBlock from your Profile","success");
                   }else{
                  	$("#comm-state"+id).html('<span style="color:red;">Block</span>');
                  	swal("success","This comment is Block from your Profile","success");
                  }
 				});
-
 			}
 		</script>
 
