@@ -38,7 +38,7 @@ class OrganizationProfile extends Controller
      * @return \Illuminate\Http\Response
      */
     public function doCompanyPost(Request $request){
-      
+      date_default_timezone_set("Asia/Karachi");
       $current_date = date("Y.m.d h:i:s");
       $job_post= array(
         'company_id' => $request->post('x'),
@@ -226,7 +226,7 @@ class OrganizationProfile extends Controller
      */
     public function doCompanyPostData(Request $request)
     {
-
+      date_default_timezone_set("Asia/Karachi");
       $current_date = date("Y.m.d h:i:s");
       $post_dat = $request->post('last_apply_date');
       $post_date=(strtotime($post_dat. ' + 1 days'));
@@ -715,6 +715,7 @@ class OrganizationProfile extends Controller
    public function doUpdatePostData(Request $request){
     $post_dat = $request->post('last_apply_date');
     $post_date=(strtotime($post_dat. ' + 1 days'));
+    date_default_timezone_set("Asia/Karachi");
     $current_date = date("Y.m.d h:i:s");
     $j_post= array(
       'job_title' => $request->post('u_posted_job_title'), 

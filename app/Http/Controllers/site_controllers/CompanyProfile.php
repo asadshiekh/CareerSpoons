@@ -158,6 +158,7 @@ class CompanyProfile extends Controller
       if($validation->passes()){
 
       $company_id=$request->session()->get('company_id');
+      date_default_timezone_set("Asia/Karachi");
       $current_date = date("Y.m.d h:i:s");
       $job_post= array(
         'company_id' => $company_id,
@@ -676,6 +677,7 @@ public function updatePostSingleFront(Request $request){
    }
 
    public function doPostUpdateFront(Request $request){
+    date_default_timezone_set("Asia/Karachi");
      $current_date = date("Y.m.d h:i:s");
       $post_dat = $request->post('last_apply_date');
       $post_date=(strtotime($post_dat. ' + 1 days'));
@@ -783,6 +785,7 @@ public function updatePostSingleFront(Request $request){
    }
 
    public function doUpdateOrgFront(Request $request){
+    date_default_timezone_set("Asia/Karachi");
     $current_date = date("Y.m.d h:i:s");
     $id= $request->session()->get("company_id");
     $up_organization=array(
@@ -1137,7 +1140,7 @@ public function updatePostSingleFront(Request $request){
 
 
    public function addCompanyRating(Request $request){
-
+    date_default_timezone_set("Asia/Karachi");
     $current_date = date("Y.m.d h:i:s");
     $request->rating_description=str_ireplace('<p>','',$request->rating_description);
     $request->rating_description=str_ireplace('</p>','',$request->rating_description);
@@ -1210,6 +1213,7 @@ public function updatePostSingleFront(Request $request){
  }
 
  public function editReviewComments(Request $request){
+  date_default_timezone_set("Asia/Karachi");
   $current_date = date("Y.m.d h:i:s");
   $id= $request->post("id");
   $name= $request->post("n");
