@@ -196,6 +196,7 @@
    $.post("update-major",{_token:CSRF_TOKEN,major:major,id:id,u_area:u_area},function(data){
     if(data){
       $("#myModal5").modal('hide');
+      swal("success","Successfully Updated","success");
       $("#major-td"+id).html(major);
       $("#area-td"+id).html(u_area);
       var originalColor = $("#major-tr"+id).css("background-color");

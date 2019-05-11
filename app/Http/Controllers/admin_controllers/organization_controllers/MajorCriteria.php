@@ -76,7 +76,7 @@ class MajorCriteria extends Controller
             <i class="fa fa-building-o"></i>
           </div>
           <select name="u_functional_area" class="form-control" placeholder="Select Functional Area" id="u_functional_area">
-            <option value="'.$data->area_title.'" disabled="disabled" selected="selected">'.$data->area_title.'</option>';
+            <option value="'.$data->area_title.'" hidden selected="selected">'.$data->area_title.'</option>';
             foreach($all_area as $all_area):
             echo '<option value="'.$all_area->area_title.'">'.$all_area->area_title.'</option>';
             endforeach;
