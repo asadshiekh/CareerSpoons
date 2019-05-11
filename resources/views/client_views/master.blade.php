@@ -1161,7 +1161,13 @@
 
 			</script>
 
+			<?php 
 
+			date_default_timezone_set("Asia/Karachi");
+			$timenow = date('Y-m-d');
+			$timestamp = strtotime($timenow);
+			$total_posts = DB::table('organization_posts')->where('post_status','!=','Block')->where('post_visibility_date','>',$timestamp)->count();
+			?>
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$('#styleOptions').styleSwitcher();
@@ -1217,7 +1223,7 @@
 						  suffix: '+' 
 					};
 
-						var c = new CountUp("counter",0,7000,0,6,options);
+						var c = new CountUp("counter",0,{{$total_posts}},0,6,options);
 						c.start();
 				});
 			</script>
