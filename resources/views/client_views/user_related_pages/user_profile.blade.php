@@ -598,11 +598,11 @@
 			<br>
 			<div class="pie_charts" id="pie_charts">
 				<canvas id="piechart" style="height:40vh; width:60vw"></canvas>
-				<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+				<p style="margin-top: 20px;">Candidate can also view their info in a form of pie chart .A pie chart (or a circle chart) is a circular statistical graphic, which is divided into slices to illustrate numerical proportion.</p>
 			</div>
 			<div class="line_charts" id="line_charts">
 				<canvas id="linechart" style="height:40vh; width:60vw"></canvas>
-				<p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore .</p>
+				<p style="margin-top: 20px;">Candidate can also view their info in a form of bar chart .A bar chart or bar graph is a chart or graph that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent .</p>
 			</div>
 			<div class="ProfileStrengthMeter" id="ProfileStrengthMeter">
 				<div id="GaugeChart"></div>

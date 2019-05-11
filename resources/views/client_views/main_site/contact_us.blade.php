@@ -22,22 +22,27 @@
 					<br/>
 					<form id="contact_us">
 					<div class="col-md-6 col-sm-6">
+						<label>Your Name</label>
 						<input type="text" class="form-control" id="candidate_name" placeholder="Your Name">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
+						<label>Your Email</label>
 						<input type="email" class="form-control" id="candidate_email" placeholder="Your Email">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
+						<label>Phone Number</label>
 						<input type="text" class="form-control" id="candidate_number" placeholder="Phone Number">
 					</div>
 					
 					<div class="col-md-6 col-sm-6">
+						<label>Subject</label>
 						<input type="text" class="form-control" id="candidate_subject" placeholder="Subject">
 					</div>
 					
 					<div class="col-md-12 col-sm-12">
+						<label>Your Message</label>
 						<textarea class="form-control" id="candidate_message" placeholder="Message"></textarea>
 					</div>
 					
