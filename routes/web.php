@@ -213,7 +213,7 @@ Route::get('candidate-email-verification/{email}',"site_controllers\UserEmailVer
 
 //Add 
 Route::any('upload-resume',"site_controllers\UserResume@uploadResume")->middleware('CheckUserProfile');
-Route::get('make-user-resume',"site_controllers\UserResume@manageUserResume")->middleware('CheckUserProfile');
+Route::get('make-user-resume',"site_controllers\UserResume@manageUserResume")->middleware('CheckUserProfile','ResumeCheck');
 Route::any('add-user-education',"site_controllers\UserResume@addUserEduction")->middleware('CheckUserProfile');
 Route::any('add-user-experience',"site_controllers\UserResume@addUserExperience")->middleware('CheckUserProfile');
 Route::any('add-user-project',"site_controllers\UserResume@addUserProject")->middleware('CheckUserProfile');

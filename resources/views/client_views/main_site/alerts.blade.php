@@ -39,6 +39,17 @@
 @endif
 
 
+@if ($message = Session::get('warning'))
+<script type="text/javascript">
+	var notyf = new Notyf();
+	swal({
+		type: 'info',
+		title: 'Oops...',
+		text: "{{$message}}",
+		footer: '<a href>Why do I have this issue?</a>'
+	})
+</script>
+@endif
 
 
 
