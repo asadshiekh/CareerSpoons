@@ -1026,6 +1026,7 @@ function update_post_info(x){
     processData: false,
     success: function (returndata) {
       $("#mymodalpost").modal('hide');
+      swal("success","Post Successfully Updated","success");
       $("#title-td"+x).html(y);
       $("#up-date-td"+x).html(returndata);
       var originalColor = $("#post-tr"+x).css("background-color");
