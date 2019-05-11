@@ -195,7 +195,7 @@
 							</div>
 						</li>
 						<li>
-							<p><a href="job-details/{{$val->post_id}}" class="btn advance-search" title="apply">View</a></p>
+							<p><a href="job-details/{{$val->post_id}}" class="btn advance-search" title="View Job">View</a></p>
 						</li>
 					</ul>
 				</div>

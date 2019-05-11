@@ -27,12 +27,12 @@
 									<li><img class="flag" src="assets/img/gb.svg" alt="">Pakistan</li>
 								<?php if($fetch_company->company_verify_status == "0"){?>
                                 <li>
-                                	<div style="background-color:red;padding: 2%;border-radius: 11%;color:white;font-weight: bold;padding:5px;"><span class="protip" data-pt-scheme="purple" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="CareerSpoons Encourages all employers to verify their companies by providing us a copy of their CNIC or Government issues Identification in the form of image. Please keep in mind that not all employers submit this details. Those who don't are therefore listed on our website as “Unverified.”" data-pt-animate="shake" style="line-height:2">
+                                	<div style="background-color:red;padding: 2%;border-radius: 11%;color:white;font-weight: bold;padding:5px;"><span class="protip" data-pt-scheme="red" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="CareerSpoons Encourages all employers to verify their companies by providing us a copy of their CNIC or Government issues Identification in the form of image. Please keep in mind that not all employers submit this details. Those who don't are therefore listed on our website as “Unverified.”" data-pt-animate="shake" style="line-height:2">
                                 		UnVerified</span>
                                 	</div>
                         		</li>
 								<?php }else{ ?>
-								<li><div class="verified-action">Verified</div></li>
+								<li><div class="verified-action"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Company is Verified" data-pt-animate="bounceIn">Verified</span></div></li>
 							<?php } ?>
 								</ul>
 							</div>

@@ -22,7 +22,7 @@
       </a>
       </div>
       <div id="nav-but">
-      <button type="button" id="nav-buttons" onclick="top_bar('{{$data->temp_id}}');" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button>
+      <!-- <button type="button" id="nav-buttons" onclick="top_bar('{{$data->temp_id}}');" class="navbar-brand" style="margin-right: 3%;background-color: transparent;padding: 10px;">Download PDF</button> -->
       <!-- <a href="{{url('download-candidate-pdf')}}/{{$data->temp_id}}">link</a>
       <a id="nav-buttons" href="{{url('user-profile')}}" class="navbar-brand">Go Back</a> -->
     </div>
@@ -61,7 +61,14 @@
                 <h1 class="col"><span style="font-weight:700">{{$name[0]}}</span> {{$name[1]}}</h1>
                 <div class="contact-info col-right">
                     <div><a href="mailto:jugalm@nyu.edu"><i class="fas fa-envelope" style="padding-right: 4px;"></i>{{$user_register->user_email}}</a></div>
-                    <div><a href="http://jugalm.com"><i class="fas fa-phone" style="padding-right: 4px;"></i>{{$user_register->phone_number}}</a></div>
+                    <?php
+                    if($user_register->current_number_status == '1'){?>
+                    <div><a href="#"><i class="fas fa-phone" style="padding-right: 4px;"></i>{{$user_register->phone_number}}</a></div>
+                <?php } else{  ?>
+                    <div><a href="#"><i class="fas fa-city" style="padding-right: 4px;"></i>{{$general_info->candidate_city}}</a></div>
+
+                <?php } ?>
+
                 </div>
         
             </div>

@@ -4,7 +4,7 @@
 			<div class="clearfix"></div>
 			
 			<!-- Title Header Start -->
-			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-10.jpg);">
+			<section class="inner-header-title" style="background-image:url(public/client_assets/img/banner-7.jpg);">
 				<div class="container">
 					<h1>Contact Page</h1>
 				</div>

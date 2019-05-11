@@ -246,8 +246,8 @@
 							</div>
 							<div class="col-md-7 col-sm-7">
 								<div class="detail-pannel-footer-btn pull-right">
-									<a href="#" class="footer-btn grn-btn" title="">Hire Now</a>
-									<a href="#" class="footer-btn blu-btn" title="">Edit</a>
+									<!-- <a href="#" class="footer-btn grn-btn" title="">Hire Now</a>
+									<a href="#" class="footer-btn blu-btn" title="">Edit</a> -->
 								</div>
 							</div>
 						</div>

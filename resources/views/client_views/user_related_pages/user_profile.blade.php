@@ -44,7 +44,7 @@
 			@if(Session::get('email_status')=='1')
 			<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-scheme="leaf" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Candidate is Verify By Email" data-pt-animate="bounceIn">Verified Candidate</span></div>
 			@else
-			<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-title="Verified Your Email To Became A Verified Candidate" data-pt-animate="shake" style="background-color: red; color: white">Verification Required</span></div>
+			<div class="detail-status" data-aos="flip-up"><span class="protip" data-pt-gravity="top 0 -15; bottom 0 15" data-pt-scheme="red" data-pt-title="Verified Your Email To Became A Verified Candidate" data-pt-animate="shake" style="background-color: red;color:white">Verification Required</span></div>
 			@endif
 
 		</div>
@@ -86,9 +86,9 @@
 
 
 					<ul>
-						<li><strong class="j-view">0</strong>Profile Visitor</li>
+						<!-- <li><strong class="j-view">0</strong>Profile Visitor</li>
 						<li><strong class="j-applied">0</strong>Job Applied</li>
-						<li><strong class="j-shared">0</strong>Invitation</li>
+						<li><strong class="j-shared">0</strong>Job Applied</li> -->
 					</ul>
 				</div>
 			</div>
@@ -111,13 +111,13 @@
 				</div>
 				<div class="col-md-7 col-sm-7">
 					@if(Session::get('cv_status')==0)
-					<div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
+					<div class="detail-pannel-footer-btn pull-right"><!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="footer-btn grn-btn" title="">Upload Resume</a> --><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
 					</div>
 					@elseif (Session::get('cv_status')==1)
 					<div class="detail-pannel-footer-btn pull-right"><a href="{{url('user-public-profile')}}" class="footer-btn grn-btn" title="">Viewed as Public</a>
 					</div>
-					<div class="detail-pannel-footer-btn pull-right"><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
-					</div>
+					<!-- <div class="detail-pannel-footer-btn pull-right"><a href="{{url('make-user-resume')}}" class="footer-btn blu-btn" title="">Make Resume</a>
+					</div> -->
 					@endif
 
 				</div>
@@ -164,7 +164,7 @@
 						<li><a data-toggle="tab" href="#rating">Rating</a></li>
 						<!-- <li><a data-toggle="tab" href="#friends">Friends</a></li> -->
 						<!-- <li><a data-toggle="tab" href="#messages">Messages <span class="info-bar">6</span></a></li> -->
-						<li><a data-toggle="tab" href="#settings">Settings</a></li>
+						<!-- <li><a data-toggle="tab" href="#settings">Settings</a></li> -->
 					</ul>
 
 
