@@ -30,7 +30,7 @@
 							<div class="detail-desc-caption">
 								<div id="new_typed-strings">
 									<div class="contains_heading" style="font-size: 6px">
-										<h4>{{$general_info->candidate_name}}</h4>
+										<h4>{{$info->candidate_name}}</h4>
 									</div>
 								</div>
 								<span id="new_typed"></span>

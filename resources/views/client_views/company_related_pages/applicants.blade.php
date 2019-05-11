@@ -86,9 +86,9 @@
 										            </div>
 										            <div class="col-md-3 col-sm-3">
 												        <?php if($us->view_status === "1"){?>
-												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
+												        <a href="{{url('show-candidate-resume')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;background-color:white;color:green;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">Viewed</a>
 												        <?php }else{ ?>
-												        <a href="{{url('show-temp-preview')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View</a>
+												        <a href="{{url('show-candidate-resume')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;" onclick="go('{{$p_id}}','{{$c_id}}','{{$us->id}}');">View Resume</a>
 												        <?php } ?>
 												        <a href="{{url('candidate-profile')}}/{{$us->id}}" data-toggle="tooltip" title="View" class="btn btn-success" style="height:30px;padding-top:2px;margin-top: 25px;width: 100%;">View Profile</a>
 										            </div>

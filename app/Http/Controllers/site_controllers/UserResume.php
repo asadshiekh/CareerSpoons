@@ -1453,6 +1453,35 @@ class UserResume extends Controller
         $page_title="CareerSpoons - Resume";
 		return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages,'page_title'=>$page_title]);
 	}
+	public function showPreviewTemplatefromApplicants(Request $request,$com_id){
+		//$com_id=$request->session()->get('id');
+      //$id=$request->post("x");
+		$dat=DB::table('user_choose_temp')->where(['candidate_id'=>$com_id])->first();
+		//dd($dat);
+		$t_id=$dat->temp_id;
+		
+		$data=DB::table('resume_templates')->where(['temp_id'=>$t_id])->first();
+	
+		$general_info=DB::table('add_user_generals_info')->where(['candidate_id'=>$com_id])->first();
+		$user_register=DB::table('register_users')->where(['id'=>$com_id])->first();
+
+		$obj =  new User_Resume_Model();
+		$candidate_eductions = $obj->fetch_candidate_eduction_resume_details($com_id);
+		$candidate_experience = $obj->fetch_candidate_experience_resume_details($com_id);
+		$candidate_project = $obj->fetch_candidate_project_resume_details($com_id);
+		$candidate_skill = $obj->fetch_candidate_skill_resume_details($com_id);
+		$hobb = $obj->fetch_candidate_hobby_resume_details($com_id);
+
+		$languages = $obj->fetch_candidate_languages_resume_details($com_id);
+
+
+		$index_p=$data->index_page;
+		$folder_name=$data->template_folder;
+		$index_p=str_ireplace('.blade.php','',$index_p);
+
+        $page_title="CareerSpoons - Resume";
+		return view("client_views/cv_temp/".$folder_name."/".$index_p,['data'=>$data,'general_info'=>$general_info,'user_register'=>$user_register,'candidate_eductions'=>$candidate_eductions,'candidate_experience'=>$candidate_experience,'candidate_project'=>$candidate_project,'candidate_skill'=>$candidate_skill,'hobb'=>$hobb,'languages'=>$languages,'page_title'=>$page_title]);
+	}
 
 
 	public function doDownloadPdf(Request $request,$id){

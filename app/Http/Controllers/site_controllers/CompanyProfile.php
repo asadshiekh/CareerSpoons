@@ -988,7 +988,10 @@ public function updatePostSingleFront(Request $request){
 
                         // $this->load->helper('date');
                         //client created date get from database
-                       $date=$fetch_post->created_at;
+                      $valse=DB::table('organization_posts')->where(['post_id'=>$fetch_post->post_id])->first();
+                        $date=$valse->created_at;
+                                    date_default_timezone_set("Asia/Karachi");
+                       // $date=$fetch_post->created_at;
                          $now= Carbon::now();
                          $dat=Carbon::parse($date);
                      
