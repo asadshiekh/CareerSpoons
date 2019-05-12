@@ -116,8 +116,8 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-						<li class="dropdown megamenu-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Brows</a>
-						</li>
+						<!-- <li class="dropdown megamenu-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Brows</a>
+						</li> -->
 						<li><a href="{{url('all-candidates')}}"><i class="fas fa-users"></i>Candidates </a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->

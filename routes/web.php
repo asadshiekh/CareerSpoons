@@ -80,7 +80,7 @@ Route::get('company-email-verification/{email}',"site_controllers\CompanyEmailVe
 //    CompanyProfile Controller    //
 
 
-Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile");
+Route::get('company-profile',"site_controllers\CompanyProfile@viewCompanyProfile")->middleware('CheckCompanyProfile');
 Route::any('cities-preferences-data',"site_controllers\CompanyProfile@PreferencesCitiesData");
 Route::any('fetch-qual-front-data',"site_controllers\CompanyProfile@PreferencesQualData");
 Route::any('adding-org-information',"site_controllers\CompanyProfile@addingOrgRemainingData");
@@ -99,7 +99,7 @@ Route::any('company-update-password',"site_controllers\CompanyProfile@doUpdateOr
 Route::any('company-update-email',"site_controllers\CompanyProfile@doUpdateOrgEmailFront");
 Route::any('company-upload-image',"site_controllers\CompanyProfile@doUploadOrgImgFront");
 Route::any('fetch_company_f_area_related_majors',"site_controllers\CompanyProfile@fetchFunctionalAreaMajors");
-Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile");
+Route::get('company-public-profile',"site_controllers\CompanyProfile@viewCompanyPublicProfile")->middleware('CheckCompanyProfile');
 Route::any('change-user-comm-state',"site_controllers\CompanyProfile@changeCompanyAgainstUserStatus");
 Route::any('search-company',"site_controllers\CompanyProfile@viewAllCompany");
 Route::any('single-company-profile/{id}',"site_controllers\CompanyProfile@viewCompanySingleProfile");
