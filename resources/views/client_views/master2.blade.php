@@ -8,7 +8,7 @@
 <!-- Basic Page Needs
 	================================================== -->
 	<title><?php if($page_title){echo $page_title;}else{echo "CareerSpoons";} ?></title>
-	<link rel="icon" href="{{url('public/client_assets/img/career_black.png')}}" sizes="16x16">
+	<link rel="icon" href="{{url('public/client_assets/img/log.png')}}" sizes="16x16">
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -593,7 +593,7 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 			<!-- Video Pop Up -->
 			<script src="{{url('public/client_assets/js/video_js/videopopup.js')}}"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+			<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script> -->
 			
 
 			<style type="text/css">

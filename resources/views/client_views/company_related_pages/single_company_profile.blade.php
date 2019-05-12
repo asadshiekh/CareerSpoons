@@ -375,8 +375,8 @@
 
     										//client created date get from database
 											// $date=$data1->created_at; 
-										$valse=DB::table('organization_posts')->where(['post_id'=>$data1->post_id])->first();
-										    $date=$valse->created_at;
+										// $valse=DB::table('organization_posts')->where(['post_id'=>$data1->post_id])->first();
+										     $date=$data1->created_at;
 										    date_default_timezone_set("Asia/Karachi");
 
   											// Declare timestamps
