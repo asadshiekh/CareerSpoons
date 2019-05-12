@@ -5,6 +5,7 @@
 	<!-- Basic Page Needs
 		================================================== -->
 		<title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
+		<link rel="icon" href="{{url('public/client_assets/img/career_black.png')}}" sizes="16x16">
 		<meta charset="utf-8">
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,7 +36,7 @@
 				<div class="container">
 					<div class="lost-ps-screen">
 
-						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
+						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/career_black.png')}}" class="img-responsive" alt=""></a>
 
 
 						@yield('content');

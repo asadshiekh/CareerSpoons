@@ -30,7 +30,7 @@
 			<section class="lost-ps-screen-sec">
 				<div class="container">
 					<div class="lost-ps-screen">
-						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
+						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/career_black.png')}}" class="img-responsive" alt=""></a>
 
 						@yield('content');
 
