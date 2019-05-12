@@ -75,8 +75,8 @@
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
 					<a class="navbar-brand" href="{{url('/')}}">
-						<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-display" alt="">
-						<img src="{{url('public/client_assets/img/logo-white.png')}}" class="logo logo-scrolled" alt="">
+						<img src="{{url('public/client_assets/img/career_white.png')}}" class="logo logo-display" alt="">
+						<img src="{{url('public/client_assets/img/career_white.png')}}" class="logo logo-scrolled" alt="">
 					</a>
 				</div>
 
@@ -132,7 +132,7 @@
 			<div class="row lg-menu">
 				<div class="container">
 					<div class="col-md-4 col-sm-4">
-						<img src="{{url('public/client_assets/img/footer-logo.png')}}" class="img-responsive" alt="" /> 
+						<img src="{{url('public/client_assets/img/career_grey.png')}}" class="img-responsive" alt="" /> 
 					</div>
 					<div class="col-md-8 co-sm-8 pull-right">
 						<ul>

@@ -465,8 +465,8 @@
 
     										//client created date get from database
 											// $date=$comm->created_at; 
-										    $valse=DB::table('organization_posts')->where(['post_id'=>$comm->post_id])->first();
-										    $date=$valse->created_at;
+										    // $valse=DB::table('organization_posts')->where(['post_id'=>$comm->post_id])->first();
+										    $date=$comm->created_at;
 										    date_default_timezone_set("Asia/Karachi");
 
   											// Declare timestamps
@@ -601,17 +601,17 @@
 								</div>
 								<div style="padding: 4%;">
 								 <div id="map">
-				
-			                     </div>
-			                    <!--  <ul id="geoData" style="padding-top: 3%;">
+									
+									
+								</div>
+									<!-- <ul id="geoData" style="padding-top: 3%;">
 								    <li>Latitude: <span id="lat-span"></span></li>
 								    <li>Longitude: <span id="lon-span"></span></li>
-								</ul> -->
-			                     <style type="text/css">
+								    </ul> -->
+									 <style type="text/css">
 			                     	#map {
 							            width: 100%;
 							            height: 400px;
-
 							        }
 			                     </style>
 			                 </div>
@@ -728,7 +728,7 @@ function load_more_data(id,org_id){
 }
 
 </script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
 <script>
 				var v,w;
 			function initMap() {

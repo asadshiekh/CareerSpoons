@@ -384,7 +384,7 @@
            	}
            </script>
 
- <!--            <script>
+            <script>
 			var x,y;
 			function initMap() {
 			var pageURL = window.location.href;
@@ -450,7 +450,7 @@
 
 			}
   
-           </script> -->
+           </script>
           
 
 			

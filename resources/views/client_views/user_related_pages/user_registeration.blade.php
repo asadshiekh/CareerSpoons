@@ -36,7 +36,7 @@
 			<section class="signup-screen-sec">
 				<div class="container">
 					<div class="signup-screen">
-						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/logo.png')}}" class="img-responsive" alt=""></a>
+						<a href="{{url('/')}}"><img src="{{url('public/client_assets/img/career_black.png')}}" class="img-responsive" alt=""></a>
 						<form>
 
 							<div class="form-group">

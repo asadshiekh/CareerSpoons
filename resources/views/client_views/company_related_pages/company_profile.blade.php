@@ -1569,7 +1569,7 @@
 			</script>
 
 
-			<!-- <script>
+			<script>
 				var x,y;
 			function initMap() {
 				
@@ -1609,7 +1609,7 @@
 			     });
 			}
   
-           </script> -->
+           </script>
 <script type="text/javascript">
 	function view_applicants(p_id){
 		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
