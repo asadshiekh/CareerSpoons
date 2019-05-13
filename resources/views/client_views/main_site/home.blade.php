@@ -608,8 +608,8 @@
 									<img src="{{url('uploads/organization_images')}}/{{$org->company_img}}" alt="">
 								</div>
 								<p class="client-description">
-									<?php $org->company_info =str_replace("<p>"," ",$org->company_info);
-									echo $org->company_info =str_replace("</p>"," ",$org->company_info);  ?> ..
+									<?php 
+									echo $org->review_description  ?> 
 								</p>
 								<h3 class="client-testimonial-title">{{$org->company_name}}</h3>
 								<ul class="client-testimonial-rating">
