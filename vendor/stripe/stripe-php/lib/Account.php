@@ -42,6 +42,37 @@ class Account extends ApiResource
     }
     use ApiOperations\Update;
 
+    /**
+     * Possible string representations of an account's business type.
+     * @link https://stripe.com/docs/api/accounts/object#account_object-business_type
+     */
+    const BUSINESS_TYPE_COMPANY    = 'company';
+    const BUSINESS_TYPE_INDIVIDUAL = 'individual';
+
+    /**
+     * Possible string representations of an account's capabilities.
+     * @link https://stripe.com/docs/api/accounts/object#account_object-capabilities
+     */
+    const CAPABILITY_CARD_PAYMENTS     = 'card_payments';
+    const CAPABILITY_LEGACY_PAYMENTS   = 'legacy_payments';
+    const CAPABILITY_PLATFORM_PAYMENTS = 'platform_payments';
+
+    /**
+     * Possible string representations of an account's capability status.
+     * @link https://stripe.com/docs/api/accounts/object#account_object-capabilities
+     */
+    const CAPABILITY_STATUS_ACTIVE   = 'active';
+    const CAPABILITY_STATUS_INACTIVE = 'inactive';
+    const CAPABILITY_STATUS_PENDING  = 'pending';
+
+    /**
+     * Possible string representations of an account's type.
+     * @link https://stripe.com/docs/api/accounts/object#account_object-type
+     */
+    const TYPE_CUSTOM   = 'custom';
+    const TYPE_EXPRESS  = 'express';
+    const TYPE_STANDARD = 'standard';
+
     public static function getSavedNestedResources()
     {
         static $savedNestedResources = null;
@@ -54,6 +85,7 @@ class Account extends ApiResource
         return $savedNestedResources;
     }
 
+    const PATH_CAPABILITIES = '/capabilities';
     const PATH_EXTERNAL_ACCOUNTS = '/external_accounts';
     const PATH_LOGIN_LINKS = '/login_links';
     const PATH_PERSONS = '/persons';
@@ -98,21 +130,6 @@ class Account extends ApiResource
     }
 
     /**
-     * @param array|null $params
-     * @param array|string|null $options
-     *
-     * @return Collection The list of persons.
-     */
-    public function persons($params = null, $options = null)
-    {
-        $url = $this->instanceUrl() . '/persons';
-        list($response, $opts) = $this->_request('get', $url, $params, $options);
-        $obj = Util\Util::convertToStripeObject($response, $opts);
-        $obj->setLastResponse($response);
-        return $obj;
-    }
-
-    /**
      * @param array|null $clientId
      * @param array|string|null $opts
      *
@@ -125,6 +142,51 @@ class Account extends ApiResource
             'stripe_user_id' => $this->id,
         ];
         return OAuth::deauthorize($params, $opts);
+    }
+
+    /*
+     * Capabilities methods
+     * We can not add the capabilities() method today as the Account object already has a
+     * capabilities property which is a hash and not the sub-list of capabilities.
+     */
+
+
+    /**
+     * @param string|null $id The ID of the account to which the capability belongs.
+     * @param string|null $capabilityId The ID of the capability to retrieve.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Capability
+     */
+    public static function retrieveCapability($id, $capabilityId, $params = null, $opts = null)
+    {
+        return self::_retrieveNestedResource($id, static::PATH_CAPABILITIES, $capabilityId, $params, $opts);
+    }
+
+    /**
+     * @param string|null $id The ID of the account to which the capability belongs.
+     * @param string|null $capabilityId The ID of the capability to update.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Capability
+     */
+    public static function updateCapability($id, $capabilityId, $params = null, $opts = null)
+    {
+        return self::_updateNestedResource($id, static::PATH_CAPABILITIES, $capabilityId, $params, $opts);
+    }
+
+    /**
+     * @param string|null $id The ID of the account on which to retrieve the capabilities.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Collection The list of capabilities.
+     */
+    public static function allCapabilities($id, $params = null, $opts = null)
+    {
+        return self::_allNestedResources($id, static::PATH_CAPABILITIES, $params, $opts);
     }
 
     /**
@@ -183,7 +245,7 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return BankAccount|Card
+     * @return Collection The list of external accounts (BankAccount or Card).
      */
     public static function allExternalAccounts($id, $params = null, $opts = null)
     {
@@ -203,6 +265,21 @@ class Account extends ApiResource
     }
 
     /**
+     * @param array|null $params
+     * @param array|string|null $options
+     *
+     * @return Collection The list of persons.
+     */
+    public function persons($params = null, $options = null)
+    {
+        $url = $this->instanceUrl() . '/persons';
+        list($response, $opts) = $this->_request('get', $url, $params, $options);
+        $obj = Util\Util::convertToStripeObject($response, $opts);
+        $obj->setLastResponse($response);
+        return $obj;
+    }
+
+    /**
      * @param string|null $id The ID of the account on which to create the person.
      * @param array|null $params
      * @param array|string|null $opts
@@ -216,7 +293,7 @@ class Account extends ApiResource
 
     /**
      * @param string|null $id The ID of the account to which the person belongs.
-     * @param array|null $personId The ID of the person to retrieve.
+     * @param string|null $personId The ID of the person to retrieve.
      * @param array|null $params
      * @param array|string|null $opts
      *
@@ -229,7 +306,7 @@ class Account extends ApiResource
 
     /**
      * @param string|null $id The ID of the account to which the person belongs.
-     * @param array|null $personId The ID of the person to update.
+     * @param string|null $personId The ID of the person to update.
      * @param array|null $params
      * @param array|string|null $opts
      *
@@ -242,7 +319,7 @@ class Account extends ApiResource
 
     /**
      * @param string|null $id The ID of the account to which the person belongs.
-     * @param array|null $personId The ID of the person to delete.
+     * @param string|null $personId The ID of the person to delete.
      * @param array|null $params
      * @param array|string|null $opts
      *
@@ -258,7 +335,7 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Person
+     * @return Collection The list of persons.
      */
     public static function allPersons($id, $params = null, $opts = null)
     {

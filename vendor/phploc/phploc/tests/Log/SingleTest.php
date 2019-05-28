@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\PHPLOC;
 
 use PHPUnit\Framework\TestCase;
@@ -60,15 +59,18 @@ class SingleTest extends TestCase
         'superGlobalVariableAccesses' => 38,
         'globalConstantAccesses'      => 39,
         'testClasses'                 => 40,
-        'testMethods'                 => 41
+        'testMethods'                 => 41,
+        'classCcnAvg'                 => 42,
+        'classLlocAvg'                => 43,
+        'methodLlocAvg'               => 44,
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->single = new \SebastianBergmann\PHPLOC\Log\Csv;
     }
 
-    public function testPrintedResultContainsHeadings()
+    public function testPrintedResultContainsHeadings(): void
     {
         \ob_start();
 
@@ -78,7 +80,7 @@ class SingleTest extends TestCase
         $this->assertRegExp('#Directories,Files.+$#is', $output, 'Printed result does not contain a heading line');
     }
 
-    public function testPrintedResultContainsData()
+    public function testPrintedResultContainsData(): void
     {
         \ob_start();
 
@@ -88,7 +90,7 @@ class SingleTest extends TestCase
         $this->assertRegExp('#"1","2".+$#is', $output, 'Printed result does not contain a value line');
     }
 
-    public function testPrintedResultContainsEqualNumHeadingsAndValues()
+    public function testPrintedResultContainsEqualNumHeadingsAndValues(): void
     {
         \ob_start();
 
@@ -106,7 +108,7 @@ class SingleTest extends TestCase
         );
     }
 
-    public function testExactlyTwoRowsArePrinted()
+    public function testExactlyTwoRowsArePrinted(): void
     {
         \ob_start();
 
@@ -117,11 +119,10 @@ class SingleTest extends TestCase
         $this->assertEquals(2, \count($rows), 'Printed result contained more or less than expected 2 rows');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testPrintPartialRow()
+    public function testPrintPartialRow(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $count = $this->sample_row;
         unset($count['llocByNof']);
 

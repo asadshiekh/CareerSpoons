@@ -7,12 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\PHPLOC\CLI;
 
 use SebastianBergmann\FinderFacade\FinderFacade;
 use SebastianBergmann\PHPLOC\Analyser;
 use SebastianBergmann\PHPLOC\Log\Csv;
+use SebastianBergmann\PHPLOC\Log\Json;
 use SebastianBergmann\PHPLOC\Log\Text;
 use SebastianBergmann\PHPLOC\Log\Xml;
 use Symfony\Component\Console\Command\Command as AbstractCommand;
@@ -26,15 +26,15 @@ class Command extends AbstractCommand
     /**
      * Configures the current command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('phploc')
              ->setDefinition(
                  [
-                   new InputArgument(
-                       'values',
-                       InputArgument::IS_ARRAY
-                   )
+                     new InputArgument(
+                         'values',
+                         InputArgument::IS_ARRAY
+                     ),
                  ]
              )
              ->addOption(
@@ -70,6 +70,12 @@ class Command extends AbstractCommand
                  'Write result in CSV format to file'
              )
              ->addOption(
+                 'log-json',
+                 null,
+                 InputOption::VALUE_REQUIRED,
+                 'Write result in JSON format to file'
+             )
+             ->addOption(
                  'log-xml',
                  null,
                  InputOption::VALUE_REQUIRED,
@@ -97,7 +103,7 @@ class Command extends AbstractCommand
 
         if (!$count) {
             $output->writeln('No files found to scan');
-            exit(1);
+            exit(0);
         }
 
         $printer = new Text;
@@ -111,6 +117,11 @@ class Command extends AbstractCommand
         if ($input->getOption('log-csv')) {
             $printer = new Csv;
             $printer->printResult($input->getOption('log-csv'), $count);
+        }
+
+        if ($input->getOption('log-json')) {
+            $printer = new Json;
+            $printer->printResult($input->getOption('log-json'), $count);
         }
 
         if ($input->getOption('log-xml')) {
@@ -138,8 +149,7 @@ class Command extends AbstractCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param string         $option
+     * @param string $option
      *
      * @return array
      */

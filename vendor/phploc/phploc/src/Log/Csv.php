@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\PHPLOC\Log;
 
 /**
@@ -41,12 +40,15 @@ class Csv
         'staticMethods'               => 'Static Methods',
         'publicMethods'               => 'Public Methods',
         'nonPublicMethods'            => 'Non-Public Methods',
+        'classCcnAvg'                 => 'Cyclomatic Complexity / Number of Classes' /* In Text output: 'Average Complexity per Class' */,
         'methodCcnAvg'                => 'Cyclomatic Complexity / Number of Methods',
         'functions'                   => 'Functions',
         'namedFunctions'              => 'Named Functions',
         'anonymousFunctions'          => 'Anonymous Functions',
         'llocFunctions'               => 'Functions Length (LLOC)',
         'llocByNof'                   => 'Average Function Length (LLOC)',
+        'classLlocAvg'                => 'Average Class Length',
+        'methodLlocAvg'               => 'Average Method Length',
         'constants'                   => 'Constants',
         'globalConstants'             => 'Global Constants',
         'classConstants'              => 'Class Constants',
@@ -61,16 +63,15 @@ class Csv
         'superGlobalVariableAccesses' => 'Super-Global Variable Accesses',
         'globalConstantAccesses'      => 'Global Constant Accesses',
         'testClasses'                 => 'Test Classes',
-        'testMethods'                 => 'Test Methods'
+        'testMethods'                 => 'Test Methods',
     ];
 
     /**
      * Prints a result set.
      *
      * @param string $filename
-     * @param array  $count
      */
-    public function printResult($filename, array $count)
+    public function printResult($filename, array $count): void
     {
         \file_put_contents(
             $filename,
@@ -79,18 +80,14 @@ class Csv
     }
 
     /**
-     * @param array $count
-     *
      * @return string
      */
     protected function getKeysLine(array $count)
     {
-        return \implode(',', \array_values($this->colmap)) . PHP_EOL;
+        return \implode(',', \array_values($this->colmap)) . \PHP_EOL;
     }
 
     /**
-     * @param array $count
-     *
      * @throws \InvalidArgumentException
      *
      * @return string
@@ -107,6 +104,6 @@ class Csv
             }
         }
 
-        return '"' . \implode('","', $values) . '"' . PHP_EOL;
+        return '"' . \implode('","', $values) . '"' . \PHP_EOL;
     }
 }

@@ -25,23 +25,24 @@ use Twilio\VersionInfo;
  * @property \Twilio\Rest\Chat chat
  * @property \Twilio\Rest\Fax fax
  * @property \Twilio\Rest\FlexApi flexApi
+ * @property \Twilio\Rest\Insights insights
  * @property \Twilio\Rest\IpMessaging ipMessaging
  * @property \Twilio\Rest\Lookups lookups
+ * @property \Twilio\Rest\Messaging messaging
  * @property \Twilio\Rest\Monitor monitor
  * @property \Twilio\Rest\Notify notify
  * @property \Twilio\Rest\Preview preview
  * @property \Twilio\Rest\Pricing pricing
  * @property \Twilio\Rest\Proxy proxy
+ * @property \Twilio\Rest\Serverless serverless
+ * @property \Twilio\Rest\Studio studio
+ * @property \Twilio\Rest\Sync sync
  * @property \Twilio\Rest\Taskrouter taskrouter
  * @property \Twilio\Rest\Trunking trunking
- * @property \Twilio\Rest\Video video
- * @property \Twilio\Rest\Messaging messaging
- * @property \Twilio\Rest\Wireless wireless
- * @property \Twilio\Rest\Sync sync
- * @property \Twilio\Rest\Studio studio
  * @property \Twilio\Rest\Verify verify
+ * @property \Twilio\Rest\Video video
  * @property \Twilio\Rest\Voice voice
- * @property \Twilio\Rest\Insights insights
+ * @property \Twilio\Rest\Wireless wireless
  * @property \Twilio\Rest\Api\V2010\AccountInstance account
  * @property \Twilio\Rest\Api\V2010\Account\AddressList addresses
  * @property \Twilio\Rest\Api\V2010\Account\ApplicationList applications
@@ -103,23 +104,24 @@ class Client {
     protected $_chat = null;
     protected $_fax = null;
     protected $_flexApi = null;
+    protected $_insights = null;
     protected $_ipMessaging = null;
     protected $_lookups = null;
+    protected $_messaging = null;
     protected $_monitor = null;
     protected $_notify = null;
     protected $_preview = null;
     protected $_pricing = null;
     protected $_proxy = null;
+    protected $_serverless = null;
+    protected $_studio = null;
+    protected $_sync = null;
     protected $_taskrouter = null;
     protected $_trunking = null;
-    protected $_video = null;
-    protected $_messaging = null;
-    protected $_wireless = null;
-    protected $_sync = null;
-    protected $_studio = null;
     protected $_verify = null;
+    protected $_video = null;
     protected $_voice = null;
-    protected $_insights = null;
+    protected $_wireless = null;
 
     /**
      * Initializes the Twilio Client
@@ -443,7 +445,7 @@ class Client {
     }
 
     /**
-     * @param string $sid The sid
+     * @param string $sid The unique string that identifies the resource
      * @return \Twilio\Rest\Api\V2010\Account\KeyContext 
      */
     protected function contextKeys($sid) {
@@ -458,7 +460,7 @@ class Client {
     }
 
     /**
-     * @param string $sid Fetch by unique message Sid
+     * @param string $sid The unique string that identifies the resource
      * @return \Twilio\Rest\Api\V2010\Account\MessageContext 
      */
     protected function contextMessages($sid) {
@@ -532,7 +534,7 @@ class Client {
     }
 
     /**
-     * @param string $sid Fetch by unique recording SID
+     * @param string $sid The unique string that identifies the resource
      * @return \Twilio\Rest\Api\V2010\Account\RecordingContext 
      */
     protected function contextRecordings($sid) {
@@ -591,7 +593,7 @@ class Client {
     }
 
     /**
-     * @param string $sid Fetch by unique transcription SID
+     * @param string $sid The unique string that identifies the resource
      * @return \Twilio\Rest\Api\V2010\Account\TranscriptionContext 
      */
     protected function contextTranscriptions($sid) {
@@ -673,6 +675,18 @@ class Client {
     }
 
     /**
+     * Access the Insights Twilio Domain
+     * 
+     * @return \Twilio\Rest\Insights Insights Twilio Domain
+     */
+    protected function getInsights() {
+        if (!$this->_insights) {
+            $this->_insights = new Insights($this);
+        }
+        return $this->_insights;
+    }
+
+    /**
      * Access the IpMessaging Twilio Domain
      * 
      * @return \Twilio\Rest\IpMessaging IpMessaging Twilio Domain
@@ -694,6 +708,18 @@ class Client {
             $this->_lookups = new Lookups($this);
         }
         return $this->_lookups;
+    }
+
+    /**
+     * Access the Messaging Twilio Domain
+     * 
+     * @return \Twilio\Rest\Messaging Messaging Twilio Domain
+     */
+    protected function getMessaging() {
+        if (!$this->_messaging) {
+            $this->_messaging = new Messaging($this);
+        }
+        return $this->_messaging;
     }
 
     /**
@@ -757,6 +783,42 @@ class Client {
     }
 
     /**
+     * Access the Serverless Twilio Domain
+     * 
+     * @return \Twilio\Rest\Serverless Serverless Twilio Domain
+     */
+    protected function getServerless() {
+        if (!$this->_serverless) {
+            $this->_serverless = new Serverless($this);
+        }
+        return $this->_serverless;
+    }
+
+    /**
+     * Access the Studio Twilio Domain
+     * 
+     * @return \Twilio\Rest\Studio Studio Twilio Domain
+     */
+    protected function getStudio() {
+        if (!$this->_studio) {
+            $this->_studio = new Studio($this);
+        }
+        return $this->_studio;
+    }
+
+    /**
+     * Access the Sync Twilio Domain
+     * 
+     * @return \Twilio\Rest\Sync Sync Twilio Domain
+     */
+    protected function getSync() {
+        if (!$this->_sync) {
+            $this->_sync = new Sync($this);
+        }
+        return $this->_sync;
+    }
+
+    /**
      * Access the Taskrouter Twilio Domain
      * 
      * @return \Twilio\Rest\Taskrouter Taskrouter Twilio Domain
@@ -781,66 +843,6 @@ class Client {
     }
 
     /**
-     * Access the Video Twilio Domain
-     * 
-     * @return \Twilio\Rest\Video Video Twilio Domain
-     */
-    protected function getVideo() {
-        if (!$this->_video) {
-            $this->_video = new Video($this);
-        }
-        return $this->_video;
-    }
-
-    /**
-     * Access the Messaging Twilio Domain
-     * 
-     * @return \Twilio\Rest\Messaging Messaging Twilio Domain
-     */
-    protected function getMessaging() {
-        if (!$this->_messaging) {
-            $this->_messaging = new Messaging($this);
-        }
-        return $this->_messaging;
-    }
-
-    /**
-     * Access the Wireless Twilio Domain
-     * 
-     * @return \Twilio\Rest\Wireless Wireless Twilio Domain
-     */
-    protected function getWireless() {
-        if (!$this->_wireless) {
-            $this->_wireless = new Wireless($this);
-        }
-        return $this->_wireless;
-    }
-
-    /**
-     * Access the Sync Twilio Domain
-     * 
-     * @return \Twilio\Rest\Sync Sync Twilio Domain
-     */
-    protected function getSync() {
-        if (!$this->_sync) {
-            $this->_sync = new Sync($this);
-        }
-        return $this->_sync;
-    }
-
-    /**
-     * Access the Studio Twilio Domain
-     * 
-     * @return \Twilio\Rest\Studio Studio Twilio Domain
-     */
-    protected function getStudio() {
-        if (!$this->_studio) {
-            $this->_studio = new Studio($this);
-        }
-        return $this->_studio;
-    }
-
-    /**
      * Access the Verify Twilio Domain
      * 
      * @return \Twilio\Rest\Verify Verify Twilio Domain
@@ -850,6 +852,18 @@ class Client {
             $this->_verify = new Verify($this);
         }
         return $this->_verify;
+    }
+
+    /**
+     * Access the Video Twilio Domain
+     * 
+     * @return \Twilio\Rest\Video Video Twilio Domain
+     */
+    protected function getVideo() {
+        if (!$this->_video) {
+            $this->_video = new Video($this);
+        }
+        return $this->_video;
     }
 
     /**
@@ -865,15 +879,15 @@ class Client {
     }
 
     /**
-     * Access the Insights Twilio Domain
+     * Access the Wireless Twilio Domain
      * 
-     * @return \Twilio\Rest\Insights Insights Twilio Domain
+     * @return \Twilio\Rest\Wireless Wireless Twilio Domain
      */
-    protected function getInsights() {
-        if (!$this->_insights) {
-            $this->_insights = new Insights($this);
+    protected function getWireless() {
+        if (!$this->_wireless) {
+            $this->_wireless = new Wireless($this);
         }
-        return $this->_insights;
+        return $this->_wireless;
     }
 
     /**

@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\PHPLOC;
 
 use PHPUnit\Framework\TestCase;
@@ -19,14 +18,14 @@ class AnalyserTest extends TestCase
      */
     private $analyser;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->analyser = new Analyser;
     }
 
-    public function testWithoutTests()
+    public function testWithoutTests(): void
     {
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             [
                 'files'                       => 1,
                 'loc'                         => 75,
@@ -81,20 +80,19 @@ class AnalyserTest extends TestCase
                 'classLlocMax'                => 22,
                 'methodLlocMin'               => 4,
                 'methodLlocAvg'               => 5.6,
-                'methodLlocMax'               => 7
+                'methodLlocMax'               => 7,
             ],
             $this->analyser->countFiles(
                 [__DIR__ . '/_files/source.php'],
                 false
             ),
-            '',
             0.1
         );
     }
 
-    public function testWithTests()
+    public function testWithTests(): void
     {
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             [
                 'files'                       => 2,
                 'loc'                         => 98,
@@ -149,25 +147,24 @@ class AnalyserTest extends TestCase
                 'classLlocMax'                => 22,
                 'methodLlocMin'               => 4,
                 'methodLlocAvg'               => 5.6,
-                'methodLlocMax'               => 7
+                'methodLlocMax'               => 7,
             ],
             $this->analyser->countFiles(
                 [
                     __DIR__ . '/_files/source.php',
-                    __DIR__ . '/_files/tests.php'
+                    __DIR__ . '/_files/tests.php',
                 ],
                 true
             ),
-            '',
             0.1
         );
     }
 
-    public function testFilesThatExtendPHPUnitTestCaseAreCountedAsTests()
+    public function testFilesThatExtendPHPUnitTestCaseAreCountedAsTests(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/tests.php'
+                __DIR__ . '/_files/tests.php',
             ],
             true
         );
@@ -175,11 +172,11 @@ class AnalyserTest extends TestCase
         $this->assertEquals(1, $result['testClasses']);
     }
 
-    public function testFilesThatExtendPHPUnitTestCaseAreCountedAsTests2()
+    public function testFilesThatExtendPHPUnitTestCaseAreCountedAsTests2(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/tests_old.php'
+                __DIR__ . '/_files/tests_old.php',
             ],
             true
         );
@@ -187,11 +184,11 @@ class AnalyserTest extends TestCase
         $this->assertEquals(1, $result['testClasses']);
     }
 
-    public function testFilesThatIndirectlyExtendPHPUnitTestCaseAreCountedAsTests()
+    public function testFilesThatIndirectlyExtendPHPUnitTestCaseAreCountedAsTests(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/twoTestsThatIndirectlyExtendOldPHPUnitTestCase.php'
+                __DIR__ . '/_files/twoTestsThatIndirectlyExtendOldPHPUnitTestCase.php',
             ],
             true
         );
@@ -199,11 +196,11 @@ class AnalyserTest extends TestCase
         $this->assertEquals(3, $result['testClasses']);
     }
 
-    public function testFilesThatIndirectlyExtendPHPUnitTestCaseAreCountedAsTests2()
+    public function testFilesThatIndirectlyExtendPHPUnitTestCaseAreCountedAsTests2(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/twoTestsThatIndirectlyExtendPHPUnitTestCase.php'
+                __DIR__ . '/_files/twoTestsThatIndirectlyExtendPHPUnitTestCase.php',
             ],
             true
         );
@@ -211,11 +208,11 @@ class AnalyserTest extends TestCase
         $this->assertEquals(3, $result['testClasses']);
     }
 
-    public function testTraitsAreCountedCorrectly()
+    public function testTraitsAreCountedCorrectly(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/trait.php'
+                __DIR__ . '/_files/trait.php',
             ],
             false
         );
@@ -226,11 +223,11 @@ class AnalyserTest extends TestCase
     /**
      * @ticket 64
      */
-    public function testIssue64IsFixed()
+    public function testIssue64IsFixed(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/issue_62.php'
+                __DIR__ . '/_files/issue_62.php',
             ],
             false
         );
@@ -241,11 +238,11 @@ class AnalyserTest extends TestCase
     /**
      * @ticket 112
      */
-    public function testIssue112IsFixed()
+    public function testIssue112IsFixed(): void
     {
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/issue_112.php'
+                __DIR__ . '/_files/issue_112.php',
             ],
             false
         );
@@ -257,15 +254,16 @@ class AnalyserTest extends TestCase
      * @ticket 126
      * @dataProvider issue126Provider
      */
-    public function testIssue126IsFixed($fileNumber, $cloc)
+    public function testIssue126IsFixed($fileNumber, $cloc): void
     {
         $file   = __DIR__ . '/_files/issue_126/issue_126_' . $fileNumber . '.php';
         $result = $this->analyser->countFiles([$file], false);
 
-        $assertString = \sprintf('Failed asserting that %s matches expected %s in issue_126_%d.php',
-                            $result['cloc'],
-                            $cloc,
-                            $fileNumber
+        $assertString = \sprintf(
+            'Failed asserting that %s matches expected %s in issue_126_%d.php',
+            $result['cloc'],
+            $cloc,
+            $fileNumber
         );
 
         $this->assertEquals($cloc, $result['cloc'], $assertString);
@@ -289,13 +287,13 @@ class AnalyserTest extends TestCase
      * @requires PHP 7
      * @ticket 138
      */
-    public function testIssue138IsFixed()
+    public function testIssue138IsFixed(): void
     {
-        \error_reporting(E_ALL);
+        \error_reporting(\E_ALL);
 
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/issue_138.php'
+                __DIR__ . '/_files/issue_138.php',
             ],
             false
         );
@@ -306,13 +304,13 @@ class AnalyserTest extends TestCase
     /**
      * @ticket 139
      */
-    public function testIssue139IsFixed()
+    public function testIssue139IsFixed(): void
     {
-        \error_reporting(E_ALL);
+        \error_reporting(\E_ALL);
 
         $result = $this->analyser->countFiles(
             [
-                __DIR__ . '/_files/issue_139.php'
+                __DIR__ . '/_files/issue_139.php',
             ],
             false
         );
