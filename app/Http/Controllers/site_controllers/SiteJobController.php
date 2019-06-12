@@ -131,9 +131,12 @@ class SiteJobController extends Controller
         $u_in=DB::table('add_user_generals_info')->where(['candidate_id'=>$u_id])->first();
         $p_in=DB::table('organization_posts')->where(['post_id'=>$p_id])->first();
         $post_indus=$p_in->req_industry;
+        $post_level=$p_in->req_career_level;
         $user_indus=$u_in->candidate_industries;
-
+        $user_level=$u_in->candidate_career_level;
         if($post_indus == $user_indus){
+
+        if($post_level == $user_level){
         $resume=DB::table('user_choose_temp')->where(['candidate_id'=>$u_id])->first();
         $r_id=$resume->temp_id;
 
@@ -153,6 +156,9 @@ class SiteJobController extends Controller
         
         if(DB::table('apllied_jobs')->insert($apply)){
         echo "yes";
+        }
+        }else{
+          echo "noo";
         }
       }else{
         echo "no";

@@ -11,7 +11,7 @@
 <form>
 	<div class="row">
 	<div class="form-group">
-		<!-- <span style="text-align: left;height: 16px;"><i id="email-error"></i></span> -->
+		<span style="text-align: left;height: 16px;"><i id="email-error"></i></span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
@@ -22,7 +22,7 @@
 
 	<div class="form-group">
 	
-        <!-- <span style="text-align: left;height: 15px;"><i id="pass-error"></i></span> -->
+        <span style="text-align: left;height: 15px;"><i id="pass-error"></i></span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>

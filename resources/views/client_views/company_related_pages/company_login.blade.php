@@ -2,8 +2,8 @@
 @section('content')
 <form>
 	<div class="form-group">
-       <!-- <span style="text-align: left;height: 15px;"> <i id="emailc-error"></i> -->
-	    <!-- </span> -->
+       <span style="text-align: left;height: 15px;"> <i id="emailc-error"></i>
+	    </span>
 		<div class="input-group">
 
 			<div class="input-group-addon">
@@ -14,8 +14,8 @@
 	</div>
 
 	<div class="form-group">
-		<!-- <span style="text-align: left;height: 15px;"><i id="passc-error"></i></span>
-	    </span> -->
+		<span style="text-align: left;height: 15px;"><i id="passc-error"></i></span>
+	    </span>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>

@@ -113,31 +113,31 @@ function company_login(){
 //function deals on front end
  
 
-  // function checkCemail(){
-  //   	var email=$("#company_email").val();
-  //   	if(email != ""){
-  //   		var valid = validateEmail(email);
+  function checkCemail(){
+    	var email=$("#company_email").val();
+    	if(email != ""){
+    		var valid = validateEmail(email);
 
-  //   		if (!valid) {
-  //   			$("#emailc-error").text('Invalid email format');
-  //   			$("#emailc-error").removeClass('success');
-  //   			$('input[id="company_email"]').removeClass('user-success');
-  //   			$('input[id="company_email"]').addClass('user-danger');
-  //   			$("#emailc-error").addClass('alert');
+    		if (!valid) {
+    			$("#emailc-error").text('Invalid email format');
+    			$("#emailc-error").removeClass('success');
+    			$('input[id="company_email"]').removeClass('user-success');
+    			$('input[id="company_email"]').addClass('user-danger');
+    			$("#emailc-error").addClass('alert');
 
-  //   		} else {
-  //   			$("#emailc-error").text('Looks Good now');
-		// 		$('input[id="company_email"]').removeClass('user-danger');
-		// 		$('input[id="company_email"]').addClass('user-success');
-		// 		$("#emailc-error").removeClass('alert');
-		// 		$("#emailc-error").addClass('success');
-  //   		}			
-  //   	}else{
-  //   		$('input[id="company_email"]').removeClass('user-success');
-  //   		$('input[id="company_email"]').removeClass('user-danger');
-  //   		$("#emailc-error").text(' ');
-  //   	}
-  //   }
+    		} else {
+    			$("#emailc-error").text('Looks Good now');
+				$('input[id="company_email"]').removeClass('user-danger');
+				$('input[id="company_email"]').addClass('user-success');
+				$("#emailc-error").removeClass('alert');
+				$("#emailc-error").addClass('success');
+    		}			
+    	}else{
+    		$('input[id="company_email"]').removeClass('user-success');
+    		$('input[id="company_email"]').removeClass('user-danger');
+    		$("#emailc-error").text(' ');
+    	}
+    }
     //email validation function end
 
     //password function 

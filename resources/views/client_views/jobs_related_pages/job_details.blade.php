@@ -376,6 +376,8 @@
 
             }else if(data == "no"){
             	swal("Oops", "This Job is not about Your Field.", "error");
+            }else if(data == "noo"){
+            	swal("Oops", "Your Education level is not Matched with this job.", "error");
             }else{
             	swal("Oops", "Something Wents Wrong Plz Try Again.", "error");
             }
