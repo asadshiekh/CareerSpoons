@@ -149,60 +149,7 @@
 								</ul>
 								<span class="tg-themetag tg-featuretag"><?php 
 
-   											// $this->load->helper('date');
-
-    										//client created date get from database
-											$date=$jobs->created_at; 
-
-  											// Declare timestamps
-											$last = new DateTime($date);
-											$now = new DateTime( date( 'Y-m-d h:i:s', time() )) ; 
-   											 // Find difference
-											$interval = $last->diff($now);
-    										// Store in variable to be used for calculation etc
-											$years = (int)$interval->format('%Y');
-											$months = (int)$interval->format('%m');
-											$days = (int)$interval->format('%d');
-											$hours = (int)$interval->format('%H');
-											$minutes = (int)$interval->format('%i');
-                                 			//   $now = date('Y-m-d H:i:s');
-											if($years > 1)
-											{
-												echo $years.' Years Ago.' ;
-											}
-											else if($years == 1)
-											{
-											echo $years.' Year Ago.' ;
-											}
-											else if($months > 1)
-											{
-												echo $months.' Months Ago.' ;
-											}
-											else if($months == 1)
-											{
-												echo $months.' Month Ago.' ;
-											}
-											else if($days > 1)
-											{
-												echo $days.' Days Ago.' ;
-											}
-											else if($days == 1)
-											{
-												echo $days.' Day Ago.' ;
-											}
-											else if($hours > 1)
-											{
-												echo  $hours.' Hours Ago.' ;
-											}
-											else if($hours == 1)
-											{
-												echo  $hours.' Hour Ago.' ;
-
-											}
-											else
-											{
-												echo $minutes.' Minutes Ago.' ;
-											}
+   											echo "New";
 
 											?></span>
 							    </div>

@@ -700,9 +700,6 @@
 		</section>
 		<div class="clearfix"></div>
 		<!-- Download app Section End -->
-		
-
-
-
+	
 		
 		@endsection
